@@ -1,5 +1,4 @@
 import { css } from 'styled-components';
-import TopImagePc from '../images/towardsMan/pc/top_pc.png';
 
 export const mediaquery = {
   desktop: (...args) => css`
