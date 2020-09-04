@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import mediaquery from '../../../assets/styles/variable';
 
 import NextRegistrationButton from '../../presentational/atoms/nextRegistrationButton';
-import LoginButton from '../../presentational/atoms/loginButton';
+import NextLoginButton from '../../presentational/atoms/nextLoginButton';
 
 const TopBackground = styled.div`
   position: relative;
@@ -41,7 +41,7 @@ class Top extends Component {
         <TopBackground>
           <Title>Grow</Title>
           <NextRegistrationButton text="まずは会員登録" />
-          <LoginButton />
+          <NextLoginButton />
         </TopBackground>
       </div>
     )
