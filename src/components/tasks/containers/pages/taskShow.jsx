@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { getTasks } from '../../../../infra/api';
+import { getTask } from '../../../../infra/api';
 
 const LoginBackground = styled.div`
   display: flex;
@@ -38,7 +38,7 @@ const TaskList = styled.dl`
   }
 `
 
-class Task extends Component {
+class TaskShow extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,7 +47,11 @@ class Task extends Component {
   }
 
   componentDidMount() {
-    getTasks()
+    // <Link to="~">により保存された「location.pathname」から「task_id」を取得
+    const location = this.props.location.pathname.split("/");
+    const task_id = location[location.length -1];
+
+    getTask(task_id)
     .then(results => {
       this.setState({
         tasks: results.data
@@ -63,19 +67,13 @@ class Task extends Component {
       <div className="App">
         <LoginBackground>
           <Title>Grow</Title>
-          <h2>タスク一覧</h2>
+          <h2>タスク詳細</h2>
 
           <TaskListCover>
-            {this.state.tasks.map((task) => {
-              return (
-                <TaskList key={task.id}>
-                  <dt key={task.id}>
-                    <Link to={`tasks/${task.id}`}>{task.title}</Link>
-                  </dt>
-                  <dd key={task.id}>{task.content}</dd>
-                </TaskList>
-              );
-            })}
+            <TaskList>
+              <dt>{this.state.tasks.title}</dt>
+              <dd>{this.state.tasks.content}</dd>
+            </TaskList>
           </TaskListCover>
         </LoginBackground>
       </div>
@@ -83,4 +81,4 @@ class Task extends Component {
   }
 };
 
-export default Task;
+export default TaskShow;

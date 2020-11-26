@@ -8,11 +8,12 @@ import {
 import './assets/styles/reset.css';
 import styled from 'styled-components';
 // 認証前・サインイン・サインアップ
-import Top from './components/containers/pages/top';
-import Login from './components/containers/pages/login';
-import Registration from './components/containers/pages/registration';
+import Top from './components/static_pages/containers/pages/top';
+import Login from './components/static_pages/containers/pages/login';
+import Registration from './components/static_pages/containers/pages/registration';
 // タスク
 import Task from './components/tasks/containers/pages/task';
+import TaskShow from './components/tasks/containers/pages/taskShow';
 
 class App extends Component {
   constructor() {
@@ -37,7 +38,8 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/registration" component={Registration} />
               {/* task */}
-              <Route exact path="/task" component={Task} />
+              <Route exact path="/tasks" component={Task} />
+              <Route exact path="/tasks/:id" component={TaskShow} />
             </Switch>
           </div>
         </Router>

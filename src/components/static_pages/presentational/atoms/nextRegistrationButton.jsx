@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import mediaquery from '../../../../../assets/styles/variable';
+import mediaquery from '../../../../assets/styles/variable';
 
 const ButtonStyle = styled(Link)`
   display: flex;
@@ -26,10 +26,10 @@ const ButtonStyle = styled(Link)`
 `}
 `
 
-function NextTask(props) {
+function NextRegistrationButton(props) {
   return (
-    <ButtonStyle to="/tasks">{props.text}</ButtonStyle>
+    <ButtonStyle to="/registration">{props.text}</ButtonStyle>
   )
 }
 
-export default NextTask;
+export default NextRegistrationButton;

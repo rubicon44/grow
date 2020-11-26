@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import mediaquery from '../../../assets/styles/variable';
+import mediaquery from '../../../../assets/styles/variable';
 
 const ButtonStyle = styled(Link)`
   display: flex;
