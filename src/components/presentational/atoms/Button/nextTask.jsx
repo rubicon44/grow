@@ -26,10 +26,10 @@ const ButtonStyle = styled(Link)`
 `}
 `
 
-function NextRegistrationButton(props) {
+function NextTask(props) {
   return (
-    <ButtonStyle to="/registration">{props.text}</ButtonStyle>
+    <ButtonStyle to="/tasks">{props.text}</ButtonStyle>
   )
 }
 
-export default NextRegistrationButton;
+export default NextTask;

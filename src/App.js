@@ -8,12 +8,12 @@ import {
 import './assets/styles/reset.css';
 import styled from 'styled-components';
 // 認証前・サインイン・サインアップ
-import Top from './components/static_pages/containers/pages/top';
-import Login from './components/static_pages/containers/pages/login';
-import Registration from './components/static_pages/containers/pages/registration';
+import Top from './components/containers/pages/static_pages/top';
+import Login from './components/containers/pages/static_pages/login';
+import Registration from './components/containers/pages/static_pages/registration';
 // タスク
-import Task from './components/tasks/containers/pages/task';
-import TaskShow from './components/tasks/containers/pages/taskShow';
+import Task from './components/containers/pages/tasks/index';
+import TaskShow from './components/containers/pages/tasks/show';
 
 class App extends Component {
   constructor() {
