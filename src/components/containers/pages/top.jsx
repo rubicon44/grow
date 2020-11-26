@@ -4,6 +4,7 @@ import mediaquery from '../../../assets/styles/variable';
 
 import NextRegistrationButton from '../../presentational/atoms/nextRegistrationButton';
 import NextLoginButton from '../../presentational/atoms/nextLoginButton';
+import NextTask from '../../tasks/presentational/atoms/Button/nextTask';
 
 const TopBackground = styled.div`
   position: relative;
@@ -40,6 +41,7 @@ class Top extends Component {
       <div>
         <TopBackground>
           <Title>Grow</Title>
+          <NextTask text="タスク一覧" />
           <NextRegistrationButton text="まずは会員登録" />
           <NextLoginButton />
         </TopBackground>

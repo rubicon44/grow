@@ -11,6 +11,8 @@ import styled from 'styled-components';
 import Top from './components/containers/pages/top';
 import Login from './components/containers/pages/login';
 import Registration from './components/containers/pages/registration';
+// タスク
+import Task from './components/tasks/containers/pages/task';
 
 class App extends Component {
   constructor() {
@@ -34,6 +36,8 @@ class App extends Component {
               <Route exact path="/top" component={Top} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/registration" component={Registration} />
+              {/* task */}
+              <Route exact path="/task" component={Task} />
             </Switch>
           </div>
         </Router>
