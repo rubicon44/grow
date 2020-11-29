@@ -89,7 +89,7 @@ const ButtonStyle = styled.button`
   cursor: pointer;
 `
 
-export default class Registration extends Component {
+export default class SignUp extends Component {
   render() {
     return (
         <div className="App">
@@ -117,7 +117,7 @@ export default class Registration extends Component {
                 </NextRegistrationButtonCover>
                 {/* login.js */}
                 <NextRegistrationButtonCover>
-                  <OtherText to="/login">アカウントをお持ちの方はこちらからログイン</OtherText>
+                  <OtherText to="/sign_in">アカウントをお持ちの方はこちらからログイン</OtherText>
                 </NextRegistrationButtonCover>
         </RegistrationBackground>
         </div>

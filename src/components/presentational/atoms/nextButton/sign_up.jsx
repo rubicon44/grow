@@ -26,10 +26,10 @@ const ButtonStyle = styled(Link)`
 `}
 `
 
-function NextRegistrationButton(props) {
+function NextSignUpButton(props) {
   return (
-    <ButtonStyle to="/registration">{props.text}</ButtonStyle>
+    <ButtonStyle to="/sign_up">{props.text}</ButtonStyle>
   )
 }
 
-export default NextRegistrationButton;
+export default NextSignUpButton;

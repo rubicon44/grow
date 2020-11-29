@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import mediaquery from '../../../../assets/styles/variable';
 
-import NextRegistration from '../../../presentational/atoms/nextButton/registration';
-import NextLogin from '../../../presentational/atoms/nextButton/login';
+import NextSignUp from '../../../presentational/atoms/nextButton/sign_up';
+import NextSignIn from '../../../presentational/atoms/nextButton/sign_in';
 import NextTask from '../../../presentational/atoms/nextButton/task';
 
 const TopBackground = styled.div`
@@ -42,8 +42,8 @@ class Top extends Component {
         <TopBackground>
           <Title>Grow</Title>
           <NextTask text="タスク一覧" />
-          <NextRegistration text="まずは会員登録" />
-          <NextLogin />
+          <NextSignUp text="まずは会員登録" />
+          <NextSignIn />
         </TopBackground>
       </div>
     )

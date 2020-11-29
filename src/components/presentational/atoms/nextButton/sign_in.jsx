@@ -10,14 +10,14 @@ const LoginText = styled(Link)`
   text-decoration: underline;
 `;
 
-class LoginButton extends Component {
+class NextSingInButton extends Component {
   render() {
     return (
       <div>
-        <LoginText to="/login">ログイン</LoginText>
+        <LoginText to="/sign_in">ログイン</LoginText>
       </div>
     )
   }
 }
 
-export default LoginButton;
+export default NextSingInButton;

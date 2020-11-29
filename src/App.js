@@ -9,8 +9,8 @@ import './assets/styles/reset.css';
 import styled from 'styled-components';
 // 認証前・サインイン・サインアップ
 import Top from './components/containers/pages/static_pages/top';
-import Login from './components/containers/pages/static_pages/login';
-import Registration from './components/containers/pages/static_pages/registration';
+import SignIn from './components/containers/pages/static_pages/sign_in';
+import SignUp from './components/containers/pages/static_pages/sign_up';
 // タスク
 import Task from './components/containers/pages/tasks/index';
 import TaskShow from './components/containers/pages/tasks/show';
@@ -37,8 +37,8 @@ class App extends Component {
               {/* top・サインイン・サインアップ */}
               <Route exact path="/" component={Top} />
               <Route exact path="/top" component={Top} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/registration" component={Registration} />
+              <Route exact path="/sign_in" component={SignIn} />
+              <Route exact path="/sign_up" component={SignUp} />
               {/* task */}
               <Route exact path="/tasks" component={Task} />
               <Route exact path="/tasks/:id" component={TaskShow} />

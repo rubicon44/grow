@@ -91,7 +91,7 @@ const OtherText = styled(Link)`
   }
 `
 
-class Login extends Component {
+class SignIn extends Component {
   render() {
       return (
         <div className="App">
@@ -115,7 +115,7 @@ class Login extends Component {
                 <ButtonStyle onClick={this.handleLogin}>ログイン</ButtonStyle>
               </LoginButtonCover>
               {/* 新規登録.js */}
-              <OtherText to="/registration">新規会員登録はこちら</OtherText>
+              <OtherText to="/sign_up">新規会員登録はこちら</OtherText>
               {/* パスワードをお忘れの方.js */}
               <OtherText to="#">パスワードをお忘れの方</OtherText>
           </LoginBackground>
@@ -124,4 +124,4 @@ class Login extends Component {
   }
 };
 
-export default Login;
+export default SignIn;
