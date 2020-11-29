@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import mediaquery from '../../../../assets/styles/variable';
 
-import NextRegistration from '../../../presentational/atoms/Button/nextRegistration';
-import NextLogin from '../../../presentational/atoms/Button/nextLogin';
-import NextTask from '../../../presentational/atoms/Button/nextTask';
+import NextRegistration from '../../../presentational/atoms/nextButton/registration';
+import NextLogin from '../../../presentational/atoms/nextButton/login';
+import NextTask from '../../../presentational/atoms/nextButton/task';
 
 const TopBackground = styled.div`
   position: relative;

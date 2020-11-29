@@ -14,6 +14,8 @@ import Registration from './components/containers/pages/static_pages/registratio
 // タスク
 import Task from './components/containers/pages/tasks/index';
 import TaskShow from './components/containers/pages/tasks/show';
+import TaskCreate from './components/containers/pages/tasks/create';
+import TaskEdit from './components/containers/pages/tasks/edit';
 
 class App extends Component {
   constructor() {
@@ -40,6 +42,8 @@ class App extends Component {
               {/* task */}
               <Route exact path="/tasks" component={Task} />
               <Route exact path="/tasks/:id" component={TaskShow} />
+              <Route exact path="/taskCreate" component={TaskCreate} />
+              <Route exact path="/task/:id" component={TaskEdit} />
             </Switch>
           </div>
         </Router>

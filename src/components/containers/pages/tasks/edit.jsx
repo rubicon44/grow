@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { postTasks } from '../../../../infra/api';
+import { updateTask } from '../../../../infra/api';
 
 const Head = styled.div`
   display: flex;
@@ -81,10 +81,11 @@ const FormButtonCover = styled.div`
   justify-content: flex-end;
 `
 
-class Create extends React.Component {
+class Edit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: '',
       task: {},
       title: '',
       content: '',
@@ -96,17 +97,20 @@ class Create extends React.Component {
     state[e.target.name] = e.target.value;
     this.setState(state);
 
-    const task = { 'title': this.state.title, 'content': this.state.content }
+    const id = this.props.location.state.id;
+    const task = {'title': this.state.title, 'content': this.state.content }
     this.setState({
+      id: id,
       task: task,
     });
   }
 
   handleTextSubmit = (e) => {
     e.preventDefault();
+    const id = this.state.id;
     const { task } = this.state;
 
-    postTasks(task)
+    updateTask(id, task)
     .then(results => {
       this.setState({
         title: '',
@@ -116,7 +120,7 @@ class Create extends React.Component {
     .catch(data => {
       console.log(data);
     });
-    this.props.history.push("/tasks");
+    this.props.history.push(`/tasks/${this.props.location.state.id}`);
   }
 
   render() {
@@ -128,18 +132,18 @@ class Create extends React.Component {
           <ButtonStyle to="/tasks">一覧へ戻る</ButtonStyle>
         </Head>
         <TopBackground>
-          <Title>新規登録</Title>
+          <Title>編集</Title>
           <FormCover>
             <form onSubmit={this.handleTextSubmit}>
               <FormTitleCover>
                 <label htmlFor="title">題名:</label>
-                <input type="text" name="title" value={title} onChange={this.handleTextChange} placeholder="Title" />
+                <input type="text" name="title" defaultValue={this.props.location.state.title} onChange={this.handleTextChange} placeholder="Title" />
               </FormTitleCover>
               <FormTextAreaCover>
                 <label htmlFor="content">内容:</label>
-                <textarea name="content" onChange={this.handleTextChange} placeholder="Content" cols="80" rows="3" value={content}></textarea>
+                <textarea name="content" onChange={this.handleTextChange} placeholder="Content" cols="80" rows="3" defaultValue={this.props.location.state.content}></textarea>
               </FormTextAreaCover>
-              <FormButtonCover><button type="submit">登録</button></FormButtonCover>
+              <FormButtonCover><button type="submit">編集</button></FormButtonCover>
             </form>
           </FormCover>
         </TopBackground>
@@ -148,4 +152,4 @@ class Create extends React.Component {
   }
 }
 
-export default Create;
+export default Edit;

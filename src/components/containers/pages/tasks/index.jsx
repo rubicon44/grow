@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
 import { getTasks } from '../../../../infra/api';
+
+import NextCreateTask from '../../../presentational/atoms/nextButton/createTask';
 
 const LoginBackground = styled.div`
   display: flex;
@@ -32,55 +33,48 @@ const TaskList = styled.dl`
 
   > dd {
     min-height: 100px;
+    min-width: 180px;
     margin: 10px 0;
     padding: 5px;
     border: 1px solid #bbb;
   }
 `
 
-class Task extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tasks: [],
-    }
-  }
+function Task() {
+  const [tasks, setTasks] = useState([]);
 
-  componentDidMount() {
+  useEffect(() => {
     getTasks()
     .then(results => {
-      this.setState({
-        tasks: results.data
-      });
+      setTasks(results.data);
     })
     .catch(data => {
       console.log(data);
     });
-  }
+  }, [tasks.length]);
 
-  render() {
-    return (
-      <div className="App">
-        <LoginBackground>
-          <Title>Grow</Title>
-          <h2>タスク一覧</h2>
+  return (
+    <div className="App">
+      <LoginBackground>
+        <Title>Grow</Title>
+        <h2>タスク一覧</h2>
 
-          <TaskListCover>
-            {this.state.tasks.map((task) => {
-              return (
-                <TaskList key={task.id}>
-                  <dt key={task.id}>
-                    <Link to={`tasks/${task.id}`}>{task.title}</Link>
-                  </dt>
-                  <dd key={task.id}>{task.content}</dd>
-                </TaskList>
-              );
-            })}
-          </TaskListCover>
-        </LoginBackground>
-      </div>
-    )
-  }
+        <NextCreateTask text="タスク登録" />
+        <TaskListCover>
+          {tasks.map((task) => {
+            return (
+              <TaskList key={task.id}>
+                <dt>
+                  <Link to={`tasks/${task.id}`}>{task.title}</Link>
+                </dt>
+                <dd>{task.content}</dd>
+              </TaskList>
+            );
+          })}
+        </TaskListCover>
+      </LoginBackground>
+    </div>
+  )
 };
 
 export default Task;
