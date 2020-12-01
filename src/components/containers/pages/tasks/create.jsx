@@ -1,32 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { postTasks } from '../../../../infra/api';
+import Header from '../../organisms/header';
 
-const Head = styled.div`
-  display: flex;
-  justify-content: flex-end;
-
-  // todo:子要素にそのままmarginを当てたくないため、「親要素Coverの子要素のaタグ」へのスタイリング指定を行う。
-  > a:first-of-type {
-    margin-right: 10px;
-  }
-`
-
-const ButtonStyle = styled(Link)`
+const BackButtonCover = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 150px;
-  height: 50px;
-  color: #fff;
-  font-size: 20px;
-  font-weight: bold;
-  text-decoration: none;
-  border: none;
-  border-radius: 5px;
-  background-color: #ff444f;
+  height: 30px;
 `
 
 const TopBackground = styled.div`
@@ -91,6 +73,10 @@ class Create extends React.Component {
     }
   }
 
+  handleBackButtonClick = () => {
+    this.props.history.goBack();
+  };
+
   handleTextChange = (e) => {
     const state = this.state;
     state[e.target.name] = e.target.value;
@@ -124,9 +110,10 @@ class Create extends React.Component {
 
     return (
       <div>
-        <Head>
-          <ButtonStyle to="/tasks">一覧へ戻る</ButtonStyle>
-        </Head>
+        <Header />
+        <BackButtonCover>
+          <ArrowBackIosIcon onClick={this.handleBackButtonClick} />
+        </BackButtonCover>
         <TopBackground>
           <Title>新規登録</Title>
           <FormCover>

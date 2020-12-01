@@ -28,7 +28,7 @@ const ButtonStyle = styled(Link)`
 
 function NextCreateTask(props) {
   return (
-    <ButtonStyle to="/taskCreate">{props.text}</ButtonStyle>
+    <ButtonStyle to="/tasks/create">{props.text}</ButtonStyle>
   )
 }
 

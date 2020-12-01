@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
 } from 'react-router-dom';
 // スタイリング
 import './assets/styles/reset.css';
-import styled from 'styled-components';
+// 認証用Context
+import { AuthProvider } from './auth/authProvider';
+import PrivateRoute from './auth/privateRoute';
 // 認証前・サインイン・サインアップ
 import Top from './components/containers/pages/static_pages/top';
 import SignIn from './components/containers/pages/static_pages/sign_in';
@@ -31,22 +32,22 @@ class App extends Component {
       return(<div>Loading...</div>)
     } else {
       return (
-        <Router>
-          <div className="App">
-            <Switch>
+        <AuthProvider>
+          <Router>
+            <div className="App">
               {/* top・サインイン・サインアップ */}
               <Route exact path="/" component={Top} />
               <Route exact path="/top" component={Top} />
               <Route exact path="/sign_in" component={SignIn} />
               <Route exact path="/sign_up" component={SignUp} />
               {/* task */}
-              <Route exact path="/tasks" component={Task} />
-              <Route exact path="/tasks/:id" component={TaskShow} />
-              <Route exact path="/taskCreate" component={TaskCreate} />
-              <Route exact path="/task/:id" component={TaskEdit} />
-            </Switch>
-          </div>
-        </Router>
+              <PrivateRoute exact path="/tasks" component={Task} />
+              <PrivateRoute exact path="/tasks/:id(\d+)" component={TaskShow} />
+              <PrivateRoute exact path="/tasks/create" component={TaskCreate} />
+              <PrivateRoute exact path="/tasks/edit/:id(\d+)" component={TaskEdit} />
+            </div>
+          </Router>
+        </AuthProvider>
       );
     }
   }

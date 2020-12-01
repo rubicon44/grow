@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { getTasks } from '../../../../infra/api';
-
+import Header from '../../organisms/header';
 import NextCreateTask from '../../../presentational/atoms/nextButton/createTask';
 
 const LoginBackground = styled.div`
@@ -55,6 +55,7 @@ function Task() {
 
   return (
     <div className="App">
+      <Header />
       <LoginBackground>
         <Title>Grow</Title>
         <h2>タスク一覧</h2>
