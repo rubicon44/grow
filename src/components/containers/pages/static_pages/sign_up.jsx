@@ -141,17 +141,17 @@ const SignUp = ({ history }) => {
   return (
     <div>
       <Header />
-      <h1>Sign up</h1>
+      <h1>ユーザー登録</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Email
+          メール
           <input name="email" type="email" placeholder="Email" />
         </label>
         <label>
-          Password
+          パスワード
           <input name="password" type="password" placeholder="Password" />
         </label>
-        <button type="submit">Sign Up</button>
+        <button type="submit">登録</button>
       </form>
     </div>
   );

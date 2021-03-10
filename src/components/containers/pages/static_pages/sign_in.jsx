@@ -142,17 +142,17 @@ const SignIn = ({ history }) => {
   return (
     <div>
       <Header />
-      <h1>Sign in</h1>
+      <h1>ログイン</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Email
+          メール
           <input name="email" type="email" placeholder="Email" />
         </label>
         <label>
-          Password
+          パスワード
           <input name="password" type="password" placeholder="Password" />
         </label>
-        <button type="submit">Sign in</button>
+        <button type="submit">ログイン</button>
       </form>
     </div>
   );
