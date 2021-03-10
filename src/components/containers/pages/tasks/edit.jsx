@@ -78,8 +78,8 @@ class Edit extends React.Component {
     this.state = {
       id: '',
       task: {},
-      title: '',
-      content: '',
+      title: this.props.location.state.title,
+      content: this.props.location.state.content,
     }
   }
 

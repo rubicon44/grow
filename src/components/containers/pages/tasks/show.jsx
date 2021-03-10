@@ -70,6 +70,21 @@ class TaskShow extends Component {
     });
   }
 
+  componentDidUpdate() {
+    const location = this.props.location.pathname.split("/");
+    const task_id = location[location.length -1];
+
+    getTask(task_id)
+    .then(results => {
+      this.setState({
+        tasks: results.data
+      });
+    })
+    .catch(data => {
+      console.log(data);
+    });
+  }
+
   handleBackButtonClick = () => {
     this.props.history.goBack();
   };
