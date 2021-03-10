@@ -28,7 +28,14 @@ const ButtonStyle = styled(Link)`
 
 function NextTask(props) {
   return (
-    <ButtonStyle to="/tasks">{props.text}</ButtonStyle>
+    <div>
+      {props.text == "タスク一覧" &&
+        <ButtonStyle to="/tasks">{props.text}</ButtonStyle>
+      }
+      {props.text == "タスク登録" &&
+        <ButtonStyle to="/tasks/create">{props.text}</ButtonStyle>
+      }
+    </div>
   )
 }
 

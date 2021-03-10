@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { getTasks } from '../../../../infra/api';
 import Header from '../../organisms/header';
-import NextCreateTask from '../../../presentational/atoms/nextButton/createTask';
+import NextTask from '../../../presentational/atoms/nextButton/task';
 
 const LoginBackground = styled.div`
   display: flex;
@@ -60,7 +60,7 @@ function Task() {
         <Title>Grow</Title>
         <h2>タスク一覧</h2>
 
-        <NextCreateTask text="タスク登録" />
+        <NextTask text="タスク登録" />
         <TaskListCover>
           {tasks.map((task) => {
             return (
