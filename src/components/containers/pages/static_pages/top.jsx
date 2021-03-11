@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
 
@@ -35,17 +35,15 @@ const Title = styled.h2`
   `}
 `
 
-export class Top extends Component {
-  render() {
-    return (
-      <div>
-        <TopBackground>
-          <Title>Grow</Title>
-          <NextTask text="タスク一覧" />
-          <NextSignUp text="まずは会員登録" />
-          <NextSignIn text="ログイン" />
-        </TopBackground>
-      </div>
-    )
-  }
-}
+export function Top() {
+  return (
+    <div>
+      <TopBackground>
+        <Title>Grow</Title>
+        <NextTask text="タスク一覧" />
+        <NextSignUp text="まずは会員登録" />
+        <NextSignIn text="ログイン" />
+      </TopBackground>
+    </div>
+  )
+};
