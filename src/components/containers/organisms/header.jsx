@@ -13,6 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import { LogOutButton } from '../../presentational/atoms/Button/logOut';
+import { NextTask } from '../../presentational/atoms/nextButton/task';
 
 const HeaderCover = styled.div`
   display: flex;
@@ -107,7 +108,12 @@ export function Header() {
     <HeaderCover>
       <Logo to="/">Grow</Logo>
       <HeaderMenuGroup>
-      { currentUser && <LogOutButton text="ログアウト" /> }
+      { currentUser &&
+        <>
+          <NextTask text="タスク一覧" />
+          <LogOutButton text="ログアウト" />
+        </>
+      }
         {/* 下記topという記述は、Drawerを画面丈夫から引き出すために必要な文言。bottomの場合、画面下からDrawerが引き出される。 */}
         {['top'].map((anchor) => (
           <React.Fragment key={anchor}>
