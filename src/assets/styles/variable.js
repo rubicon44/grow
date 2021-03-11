@@ -12,5 +12,3 @@ export const mediaquery = {
     }
   `,
 };
-
-export default mediaquery;

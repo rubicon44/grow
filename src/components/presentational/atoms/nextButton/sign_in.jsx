@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -10,14 +10,8 @@ const LoginText = styled(Link)`
   text-decoration: underline;
 `;
 
-class NextSingInButton extends Component {
-  render() {
-    return (
-      <div>
-        <LoginText to="/sign_in">ログイン</LoginText>
-      </div>
-    )
-  }
+export function NextSignIn(props) {
+  return (
+    <LoginText to="/sign_in">{props.text}</LoginText>
+  )
 }
-
-export default NextSingInButton;

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { withRouter } from 'react-router';
 import { AuthContext } from '../../../../auth/authProvider';
-import Header from '../../organisms/header';
+import { Header } from '../../organisms/header';
 
 const SignIn = ({ history }) => {
   const { signin } = useContext(AuthContext);
@@ -30,4 +30,4 @@ const SignIn = ({ history }) => {
   );
 };
 
-export default withRouter(SignIn);
+export const SignInWithRouter = withRouter(SignIn);

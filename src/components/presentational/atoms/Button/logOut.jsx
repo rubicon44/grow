@@ -18,11 +18,9 @@ const ButtonStyle = styled.button`
   background-color: #ff444f;
 `
 
-function LogOutButton(props) {
+export function LogOutButton(props) {
   return (
     // コンテキストを使わずにログアウト
     <ButtonStyle onClick={() => auth.signOut()}>{props.text}</ButtonStyle>
   )
 }
-
-export default LogOutButton;

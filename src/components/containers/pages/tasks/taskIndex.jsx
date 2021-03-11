@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { getTasks } from '../../../../infra/api';
-import Header from '../../organisms/header';
-import NextTask from '../../../presentational/atoms/nextButton/task';
+import { Header } from '../../organisms/header';
+import { NextTask } from '../../../presentational/atoms/nextButton/task';
 
 const LoginBackground = styled.div`
   display: flex;
@@ -40,7 +40,7 @@ const TaskList = styled.dl`
   }
 `
 
-function Task() {
+export function TaskIndex() {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
@@ -77,5 +77,3 @@ function Task() {
     </div>
   )
 };
-
-export default Task;

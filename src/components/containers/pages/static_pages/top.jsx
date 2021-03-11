@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import mediaquery from '../../../../assets/styles/variable';
+import { mediaquery } from '../../../../assets/styles/variable';
 
-import NextSignUp from '../../../presentational/atoms/nextButton/sign_up';
-import NextSignIn from '../../../presentational/atoms/nextButton/sign_in';
-import NextTask from '../../../presentational/atoms/nextButton/task';
+import { NextSignUp } from '../../../presentational/atoms/nextButton/sign_up';
+import { NextSignIn } from '../../../presentational/atoms/nextButton/sign_in';
+import { NextTask } from '../../../presentational/atoms/nextButton/task';
 
 const TopBackground = styled.div`
   position: relative;
@@ -35,7 +35,7 @@ const Title = styled.h2`
   `}
 `
 
-class Top extends Component {
+export class Top extends Component {
   render() {
     return (
       <div>
@@ -43,11 +43,9 @@ class Top extends Component {
           <Title>Grow</Title>
           <NextTask text="タスク一覧" />
           <NextSignUp text="まずは会員登録" />
-          <NextSignIn />
+          <NextSignIn text="ログイン" />
         </TopBackground>
       </div>
     )
   }
 }
-
-export default Top;

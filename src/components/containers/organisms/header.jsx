@@ -12,7 +12,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import LogOutButton from '../../presentational/atoms/Button/logOut';
+import { LogOutButton } from '../../presentational/atoms/Button/logOut';
 
 const HeaderCover = styled.div`
   display: flex;
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SwipeableTemporaryDrawer() {
+export function Header() {
   // ユーザーがログインしているかどうかの判定に使用
   const { currentUser } = useContext(AuthContext);
   // useStyles() を呼ぶと上記スタイリングが適応されるユニークなクラスネームが取得できる

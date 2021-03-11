@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import mediaquery from '../../../../assets/styles/variable';
+import { mediaquery } from '../../../../assets/styles/variable';
 
 const ButtonStyle = styled(Link)`
   display: flex;
@@ -26,7 +26,7 @@ const ButtonStyle = styled(Link)`
 `}
 `
 
-function NextTask(props) {
+export function NextTask(props) {
   return (
     <div>
       {props.text == "タスク一覧" &&
@@ -38,5 +38,3 @@ function NextTask(props) {
     </div>
   )
 }
-
-export default NextTask;

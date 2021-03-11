@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { getTask, deleteTask } from '../../../../infra/api';
-import Header from '../../organisms/header';
+import { Header } from '../../organisms/header';
 
 const BackButtonCover = styled.div`
   display: flex;
@@ -46,7 +46,7 @@ const TaskList = styled.dl`
   }
 `
 
-class TaskShow extends Component {
+export class TaskShow extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -137,5 +137,3 @@ class TaskShow extends Component {
     )
   }
 };
-
-export default TaskShow;

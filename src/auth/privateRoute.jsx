@@ -1,13 +1,11 @@
 import React, { useContext } from 'react';
 import { Route } from 'react-router-dom';
 import { AuthContext } from './authProvider';
-import SignIn from '../components/containers/pages/static_pages/sign_in';
+import { SignInWithRouter } from '../components/containers/pages/static_pages/sign_in';
 
-const PrivateRoute = ({ component: RouteComponent, ...options }) => {
+export const PrivateRoute = ({ component: RouteComponent, ...options }) => {
   const { currentUser } = useContext(AuthContext);
-  const Component = currentUser ? RouteComponent : SignIn;
+  const Component = currentUser ? RouteComponent : SignInWithRouter;
 
   return <Route {...options} component={Component} />;
 };
-
-export default PrivateRoute;
