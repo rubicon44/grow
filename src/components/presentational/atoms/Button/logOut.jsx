@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { auth } from '../../../../infra/firebase.js';
+import { AuthContext } from '../../../../auth/authProvider';
 
 const ButtonStyle = styled.button`
   display: flex;
@@ -19,8 +19,13 @@ const ButtonStyle = styled.button`
 `
 
 export function LogOutButton(props) {
+  const { signout } = useContext(AuthContext);
+  const handleSubmit = event => {
+    event.preventDefault();
+    signout();
+  };
+
   return (
-    // コンテキストを使わずにログアウト
-    <ButtonStyle onClick={() => auth.signOut()}>{props.text}</ButtonStyle>
+    <ButtonStyle onClick={handleSubmit}>{props.text}</ButtonStyle>
   )
 }
