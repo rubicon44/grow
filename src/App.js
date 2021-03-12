@@ -22,7 +22,6 @@ export class App extends Component {
   constructor() {
     super();
     this.state = {
-      // 初期値は「true」。
       loading: false
     };
   }
