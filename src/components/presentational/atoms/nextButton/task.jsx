@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import mediaquery from '../../../../assets/styles/variable';
+import { mediaquery } from '../../../../assets/styles/variable';
 
 const ButtonStyle = styled(Link)`
   display: flex;
@@ -26,10 +26,15 @@ const ButtonStyle = styled(Link)`
 `}
 `
 
-function NextTask(props) {
+export function NextTask(props) {
   return (
-    <ButtonStyle to="/tasks">{props.text}</ButtonStyle>
+    <div>
+      {props.text == "タスク一覧" &&
+        <ButtonStyle to="/tasks">{props.text}</ButtonStyle>
+      }
+      {props.text == "タスク登録" &&
+        <ButtonStyle to="/tasks/create">{props.text}</ButtonStyle>
+      }
+    </div>
   )
 }
-
-export default NextTask;

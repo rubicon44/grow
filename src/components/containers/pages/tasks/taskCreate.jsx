@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { postTasks } from '../../../../infra/api';
-import Header from '../../organisms/header';
+import { Header } from '../../organisms/header';
 
 const BackButtonCover = styled.div`
   display: flex;
@@ -63,7 +63,7 @@ const FormButtonCover = styled.div`
   justify-content: flex-end;
 `
 
-class Create extends React.Component {
+export class TaskCreate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -134,5 +134,3 @@ class Create extends React.Component {
     );
   }
 }
-
-export default Create;

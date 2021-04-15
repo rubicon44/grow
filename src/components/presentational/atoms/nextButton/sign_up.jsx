@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import mediaquery from '../../../../assets/styles/variable';
+import { mediaquery } from '../../../../assets/styles/variable';
 
 const ButtonStyle = styled(Link)`
   display: flex;
@@ -26,10 +26,8 @@ const ButtonStyle = styled(Link)`
 `}
 `
 
-function NextSignUpButton(props) {
+export function NextSignUp(props) {
   return (
     <ButtonStyle to="/sign_up">{props.text}</ButtonStyle>
   )
 }
-
-export default NextSignUpButton;
