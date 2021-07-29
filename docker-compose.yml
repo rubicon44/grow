@@ -3,9 +3,12 @@ services:
   front:
     build: .
     volumes:
-      - ./:/grow
-      - '/grow/node_modules'
+      - .:/grow
+      - node_modules:/grow/node_modules
     command: sh -c "yarn start"
     ports:
      - "3001:3000"
     tty: true
+
+volumes:
+  node_modules:
