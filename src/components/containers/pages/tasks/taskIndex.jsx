@@ -69,8 +69,7 @@ export function TaskIndex() {
                   <Link to={`tasks/${task.id}`}>{task.title}</Link>
                 </dt>
                 <dd>{task.content}</dd>
-                {/* todo:add username that created task */}
-                <div>by:</div>
+                <div>by:{task.user_id}</div>
               </TaskList>
             );
           })}
