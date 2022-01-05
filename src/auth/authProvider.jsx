@@ -8,7 +8,14 @@ export const AuthProvider = ({ children }) => {
   const signin = async (email, password, history) => {
     try {
       // 「history.push」より先に実行（await）
-      await auth.signInWithEmailAndPassword(email, password);
+      await auth.signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        let user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        alert(error);
+      });
       history.push("/tasks");
     } catch (error) {
       alert(error);
