@@ -7,8 +7,8 @@ const SignUp = ({ history }) => {
   const { signup } = useContext(AuthContext);
   const handleSubmit = event => {
     event.preventDefault();
-    const { email, password } = event.target.elements;
-    signup(email.value, password.value, history);
+    let { name, email, password } = event.target.elements;
+    signup(name.value, email.value, password.value, history);
   };
 
   return (
@@ -16,6 +16,10 @@ const SignUp = ({ history }) => {
       <Header />
       <h1>ユーザー登録</h1>
       <form onSubmit={handleSubmit}>
+        <label>
+          名前
+          <input name="name" type="text" placeholder="Name" />
+        </label>
         <label>
           メール
           <input name="email" type="email" placeholder="Email" />

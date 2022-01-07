@@ -1,6 +1,8 @@
 import axios from 'axios';
 axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
 
+export const signUp = (params) => axios.post(`/users`, params );
+
 // get list tasks
 export const getTasks = (params) => axios({
   method: 'get',

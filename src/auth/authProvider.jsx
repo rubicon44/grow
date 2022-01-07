@@ -1,30 +1,33 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { auth } from '../infra/firebase.js';
+import { signUp } from '../infra/api';
 
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
 
-  const signin = async (email, password, history) => {
+  const signup = async (name, email, password, history) => {
     try {
-      // 「history.push」より先に実行（await）
-      await auth.signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        let user = userCredential.user;
-        console.log(user);
+      await auth.createUserWithEmailAndPassword(email, password);
+      const user = { name: name };
+      await signUp(user)
+      .then(results => {
+        console.log(results.data);
       })
-      .catch((error) => {
-        alert(error);
-      });
+      .catch(data => {
+        console.log(data);
+      });;
       history.push("/tasks");
     } catch (error) {
       alert(error);
     }
   };
 
-  const signup = async (email, password, history) => {
+  const signin = async (email, password, history) => {
     try {
-      await auth.createUserWithEmailAndPassword(email, password);
+      await auth.signInWithEmailAndPassword(email, password);
+      // const idToken = auth.currentUser.getIdToken(/* forceRefresh */ true);
+      // console.log(idToken);
       history.push("/tasks");
     } catch (error) {
       alert(error);
