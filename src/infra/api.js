@@ -3,6 +3,14 @@ axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
 
 export const signUp = (params) => axios.post(`/users`, params );
 
+export const signIn = (idToken) => axios({
+	method: 'post',
+	url: `/users/sign_in`,
+	headers: {
+		idToken: idToken
+	}
+});
+
 // get list tasks
 export const getTasks = (params) => axios({
   method: 'get',
