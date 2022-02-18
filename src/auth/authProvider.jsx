@@ -22,13 +22,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       alert(error);
       alert('このメールアドレスはすでに登録されています。');
-      auth.signOut().then(async function() {
-        // todo:signout時にlocalstorageを空にする。
-        // localStorage.setItem('token', '');
-        // localStorage.setItem('user', '');
-        // window.location.reload();
-        // _this.props.history.push("/");
-      })
+      auth.signOut();
     };
   };
 
@@ -40,21 +34,15 @@ export const AuthProvider = ({ children }) => {
         signIn(idToken)
         .then(async function(response) {
           const { token, user, exp } = response.data
-          console.log(token, user, exp);
-          // todo:APIからの返却情報をlocalstorageに保存。
-          // if (token) await localStorage.setItem('token', token);
-          // if (user) await localStorage.setItem('user', JSON.stringify(user));
+          // console.log(token, user, exp);
+          if (token) await localStorage.setItem('token', token);
+          if (user) await localStorage.setItem('user', JSON.stringify(user));
+          if (exp) await localStorage.setItem('exp', exp);
         })
         .catch(async function (response) {
           alert(response);
           alert('このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。');
-          auth.signOut().then(async function() {
-            // todo:signout時にlocalstorageを空にする。
-            // localStorage.setItem('token', '');
-            // localStorage.setItem('user', '');
-            // window.location.reload();
-            // _this.props.history.push("/");
-          })
+          auth.signOut();
         });
       });
       history.push("/tasks");
@@ -63,8 +51,13 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signout = async () => {
+  const signout = async (history) => {
     await auth.signOut();
+    localStorage.setItem('token', '');
+    localStorage.setItem('user', '');
+    localStorage.setItem('exp', '');
+    window.location.reload();
+    history.push("/tasks");
   }
 
   useEffect(() => {

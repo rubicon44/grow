@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import {
   BrowserRouter as Router,
   Route,
 } from 'react-router-dom';
+// import * as jwt_decode from 'jwt-decode';
 // スタイリング
 import './assets/styles/reset.css';
 // 認証用Context
@@ -22,8 +23,15 @@ export class App extends Component {
   constructor() {
     super();
     this.state = {
-      loading: false
+      loading: false,
     };
+  }
+
+  async componentWillMount() {
+    // const { signout } = useContext(AuthContext);
+    // if( localStorage.getItem('token') === '' || localStorage.getItem('token') === null || Date.now() >= jwt_decode(localStorage.getItem('token')).exp * 1000){
+    //   await signout();
+    // }
   }
 
   render() {

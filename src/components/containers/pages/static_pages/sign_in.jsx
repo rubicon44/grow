@@ -26,6 +26,10 @@ const SignIn = ({ history }) => {
         </label>
         <button type="submit">ログイン</button>
       </form>
+
+      {/* {console.log( localStorage.getItem('token') )}
+      {console.log( localStorage.getItem('user') )}
+      {console.log( localStorage.getItem('exp') )} */}
     </div>
   );
 };
