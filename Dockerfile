@@ -12,6 +12,7 @@ COPY ./yarn.lock $FRONT_ROOT/yarn.lock
 
 RUN npm install -g n && yarn install
 RUN npm install -g create-react-app
+RUN npm install -g firebase-tools
 RUN npm install --silent
 RUN npm install --save firebase react-router react-router-dom styled-components axios dotenv
 

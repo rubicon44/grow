@@ -69,6 +69,7 @@ export function TaskIndex() {
                   <Link to={`tasks/${task.id}`}>{task.title}</Link>
                 </dt>
                 <dd>{task.content}</dd>
+                <div>by:{task.user_id}</div>
               </TaskList>
             );
           })}

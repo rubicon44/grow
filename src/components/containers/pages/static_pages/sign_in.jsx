@@ -9,6 +9,7 @@ const SignIn = ({ history }) => {
     event.preventDefault();
     const { email, password } = event.target.elements;
     signin(email.value, password.value, history);
+    history.push("/tasks");
   };
 
   return (

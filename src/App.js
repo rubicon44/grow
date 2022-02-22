@@ -3,11 +3,13 @@ import {
   BrowserRouter as Router,
   Route,
 } from 'react-router-dom';
+import jwt_decode from "jwt-decode";
 // スタイリング
 import './assets/styles/reset.css';
 // 認証用Context
 import { AuthProvider } from './auth/authProvider';
 import { PrivateRoute } from './auth/privateRoute';
+import { auth } from './infra/firebase.js';
 // 認証前・サインイン・サインアップ
 import { Top } from './components/containers/pages/static_pages/top';
 import { SignInWithRouter } from './components/containers/pages/static_pages/sign_in';
@@ -22,8 +24,14 @@ export class App extends Component {
   constructor() {
     super();
     this.state = {
-      loading: false
+      loading: false,
     };
+  }
+
+  async componentWillMount() {
+    if( localStorage.getItem('token') === '' || localStorage.getItem('token') === null || Date.now() >= jwt_decode(localStorage.getItem('token')).exp * 1000 ){
+      await auth.signOut();
+    }
   }
 
   render() {

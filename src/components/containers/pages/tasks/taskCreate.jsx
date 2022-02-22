@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import { current_uid } from '../../../../infra/firebase.js';
 import { postTasks } from '../../../../infra/api';
 import { Header } from '../../organisms/header';
 
@@ -70,6 +71,7 @@ export class TaskCreate extends React.Component {
       task: {},
       title: '',
       content: '',
+      user_id: '',
     }
   }
 
@@ -82,7 +84,7 @@ export class TaskCreate extends React.Component {
     state[e.target.name] = e.target.value;
     this.setState(state);
 
-    const task = { 'title': this.state.title, 'content': this.state.content }
+    const task = { 'title': this.state.title, 'content': this.state.content , 'user_id': current_uid}
     this.setState({
       task: task,
     });
@@ -97,6 +99,7 @@ export class TaskCreate extends React.Component {
       this.setState({
         title: '',
         content: '',
+        user_id: '',
       });
     })
     .catch(data => {

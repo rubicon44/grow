@@ -14,4 +14,14 @@ firebase.initializeApp({
 // 認証用
 const auth = firebase.auth();
 
-export { auth };
+let current_uid;
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    const user = auth.currentUser;
+    current_uid = user.uid;
+  } else {
+    auth.signOut();
+  }
+});
+
+export { auth, current_uid };

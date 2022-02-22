@@ -1,31 +1,60 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { auth } from '../infra/firebase.js';
+import { signUp, signIn } from '../infra/api';
 
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
 
-  const signin = async (email, password, history) => {
-    try {
-      // 「history.push」より先に実行（await）
-      await auth.signInWithEmailAndPassword(email, password);
-      history.push("/tasks");
-    } catch (error) {
-      alert(error);
-    }
-  };
-
-  const signup = async (email, password, history) => {
+  const signup = async (name, email, password, history) => {
     try {
       await auth.createUserWithEmailAndPassword(email, password);
-      history.push("/tasks");
+      const user = { name: name, email: email};
+      await signUp(user)
+      .then(results => {
+        // todo:APIからユーザーオブジェクトのみが返却されるので、ポップアップでも出す？（ユーザーが作成されました！）
+        // もしくはエラーの場合のみ出力（取り扱いにルールを設ける）
+      })
+      .catch(data => {
+        console.log(data);
+      });
+      await signin(email, password, history);
+    } catch (error) {
+      alert(error);
+      alert('このメールアドレスはすでに登録されています。');
+      auth.signOut();
+    };
+  };
+
+  const signin = async (email, password, history) => {
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      await auth.currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+        signIn(idToken)
+        .then(async function(response) {
+          const { token, user } = response.data
+          if (token) await localStorage.setItem('token', token);
+          if (user) await localStorage.setItem('user', JSON.stringify(user));
+          await window.location.reload();
+        })
+        .catch(async function (response) {
+          alert(response);
+          alert('このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。');
+          auth.signOut();
+        });
+      });
+      // history.push("/tasks");
     } catch (error) {
       alert(error);
     }
   };
 
-  const signout = async () => {
+  const signout = async (history) => {
     await auth.signOut();
+    localStorage.setItem('token', '');
+    localStorage.setItem('user', '');
+    window.location.reload();
+    history.push("/tasks");
   }
 
   useEffect(() => {

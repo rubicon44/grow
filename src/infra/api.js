@@ -1,32 +1,48 @@
 import axios from 'axios';
+import { currentUser } from './current_user';
 axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
+const token_auth = localStorage.getItem('token');
+axios.defaults.headers.common['Authorization'] = token_auth;
 
-// get list tasks
+export const signUp = (params) => axios.post(`/users`, params );
+
+export const signIn = (idToken) => axios({
+	method: 'post',
+	url: `/users/sign_in`,
+	headers: {
+		idToken: idToken
+	}
+});
+
+// get CurrentUser
+export const getCurrentUser = () => axios({
+  method: 'get',
+  url: `/users/${currentUser.id}`,
+  params: {'current_user': true},
+});
+
+// tasks
 export const getTasks = (params) => axios({
   method: 'get',
   url: `/tasks`,
   params: params,
 });
 
-// create task
 export const postTasks = (params) => axios.post(`/tasks`, params );
 
-// get task detail
 export const getTask = (params) => axios({
   method: 'get',
   url: `/tasks/${params}`,
 });
 
-// delete task
-export const deleteTask = (params) => axios({
-  method: 'delete',
-  url: `/tasks/${params}`,
-  params: params,
-});
-
-// update task
 export const updateTask = (params, data) => axios({
   method: 'put',
   url: `/tasks/${params}`,
   data: data,
+});
+
+export const deleteTask = (params) => axios({
+  method: 'delete',
+  url: `/tasks/${params}`,
+  params: params,
 });
