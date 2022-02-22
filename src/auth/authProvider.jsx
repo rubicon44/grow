@@ -32,10 +32,9 @@ export const AuthProvider = ({ children }) => {
       await auth.currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
         signIn(idToken)
         .then(async function(response) {
-          const { token, user, exp } = response.data
+          const { token, user } = response.data
           if (token) await localStorage.setItem('token', token);
           if (user) await localStorage.setItem('user', JSON.stringify(user));
-          if (exp) await localStorage.setItem('exp', exp);
           await window.location.reload();
         })
         .catch(async function (response) {
@@ -54,7 +53,6 @@ export const AuthProvider = ({ children }) => {
     await auth.signOut();
     localStorage.setItem('token', '');
     localStorage.setItem('user', '');
-    localStorage.setItem('exp', '');
     window.location.reload();
     history.push("/tasks");
   }
