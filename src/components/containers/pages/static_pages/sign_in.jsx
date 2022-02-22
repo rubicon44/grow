@@ -9,6 +9,7 @@ const SignIn = ({ history }) => {
     event.preventDefault();
     const { email, password } = event.target.elements;
     signin(email.value, password.value, history);
+    history.push("/tasks");
   };
 
   return (
@@ -26,10 +27,6 @@ const SignIn = ({ history }) => {
         </label>
         <button type="submit">ログイン</button>
       </form>
-
-      {/* {console.log( localStorage.getItem('token') )}
-      {console.log( localStorage.getItem('user') )}
-      {console.log( localStorage.getItem('exp') )} */}
     </div>
   );
 };

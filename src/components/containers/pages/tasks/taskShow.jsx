@@ -90,6 +90,32 @@ export function TaskShow() {
     history.push("/tasks");
   };
 
+  const EditTaskButton = () => {
+    const taskCreateUserId = tasks.user_id;
+    let currentUserDataText =localStorage.getItem('user');
+    const currentUserData = JSON.parse(currentUserDataText);
+    const currentUserId = currentUserData['firebase_id'];
+
+    if (taskCreateUserId === currentUserId) {
+      return <button onClick={() => editTaskFunc(tasks.id)}>編集</button>;
+    } else {
+      return null;
+    }
+  }
+
+  const DeleteTaskButton = () => {
+    const taskCreateUserId = tasks.user_id;
+    let currentUserDataText =localStorage.getItem('user');
+    const currentUserData = JSON.parse(currentUserDataText);
+    const currentUserId = currentUserData['firebase_id'];
+
+    if (taskCreateUserId === currentUserId) {
+      return <button onClick={() => deleteTaskFunc(tasks.id)}>削除</button>;
+    } else {
+      return null;
+    }
+  }
+
   return (
     <div className="App">
       <Header />
@@ -105,8 +131,8 @@ export function TaskShow() {
             <dt>{tasks.title}</dt>
             <dd>{tasks.content}</dd>
           </TaskList>
-          <button onClick={() => editTaskFunc(tasks.id)}>編集</button>
-          <button onClick={() => deleteTaskFunc(tasks.id)}>削除</button>
+          <EditTaskButton />
+          <DeleteTaskButton />
         </TaskListCover>
       </LoginBackground>
     </div>

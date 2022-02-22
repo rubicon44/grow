@@ -30,14 +30,13 @@ export const AuthProvider = ({ children }) => {
     try {
       await auth.signInWithEmailAndPassword(email, password);
       await auth.currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-        // console.log(idToken);
         signIn(idToken)
         .then(async function(response) {
           const { token, user, exp } = response.data
-          // console.log(token, user, exp);
           if (token) await localStorage.setItem('token', token);
           if (user) await localStorage.setItem('user', JSON.stringify(user));
           if (exp) await localStorage.setItem('exp', exp);
+          await window.location.reload();
         })
         .catch(async function (response) {
           alert(response);
@@ -45,7 +44,7 @@ export const AuthProvider = ({ children }) => {
           auth.signOut();
         });
       });
-      history.push("/tasks");
+      // history.push("/tasks");
     } catch (error) {
       alert(error);
     }
