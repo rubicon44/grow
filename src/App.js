@@ -28,7 +28,7 @@ export class App extends Component {
     };
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     if( localStorage.getItem('token') === '' || localStorage.getItem('token') === null || Date.now() >= jwt_decode(localStorage.getItem('token')).exp * 1000 ){
       await auth.signOut();
     }
