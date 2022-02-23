@@ -62,7 +62,7 @@ export function TaskShow() {
     .catch(data => {
       console.log(data);
     });
-  }, [tasks.length]);
+  }, [task_id]);
 
   const handleBackButtonClick = () => {
     history.goBack();

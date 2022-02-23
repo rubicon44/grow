@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { updateTask } from '../../../../infra/api';
@@ -9,15 +9,6 @@ const BackButtonCover = styled.div`
   flex-direction: column;
   justify-content: center;
   height: 30px;
-`
-
-const LoginBackground = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-color: #f8f7f3;
 `
 
 const TopBackground = styled.div`
@@ -83,6 +74,11 @@ export class TaskEdit extends React.Component {
     }
   }
 
+  // componentWillUnmount = () => {
+  //   return () => this.clearHandleTextSubmit(this.handleTextSubmit(this.id, this.task));
+  //   return () => this.clearHandleTextChange(this.handleTextChange(this.title, this.content));
+  // };
+
   handleBackButtonClick = () => {
     this.props.history.goBack();
   };
@@ -119,8 +115,6 @@ export class TaskEdit extends React.Component {
   }
 
   render() {
-    const { title, content } = this.state;
-
     return (
       <div>
         <Header />
