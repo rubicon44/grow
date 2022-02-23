@@ -13,6 +13,8 @@ jobs:
         uses: actions/checkout@master
       - name: Install Dependencies
         run: npm install
+      - name: Install firebase-tools
+        run: npm install -g firebase-tools
       - name: Build
         run: npm run build
         env:
