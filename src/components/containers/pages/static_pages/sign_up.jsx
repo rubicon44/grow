@@ -5,7 +5,6 @@ import { Header } from '../../organisms/header';
 
 const SignUp = ({ history }) => {
   const { signup } = useContext(AuthContext);
-  const { signin } = useContext(AuthContext);
   const handleSubmit = event => {
     event.preventDefault();
     let { name, email, password } = event.target.elements;
