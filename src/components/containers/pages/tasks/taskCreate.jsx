@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { current_uid } from '../../../../infra/firebase.js';
@@ -64,76 +65,57 @@ const FormButtonCover = styled.div`
   justify-content: flex-end;
 `
 
-export class TaskCreate extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      task: {},
-      title: '',
-      content: '',
-      user_id: '',
-    }
-  }
+export function TaskCreate() {
+  const history = useHistory();
+  let [task, setTask] = useState([]);
+  let [title, setTitle] = useState([]);
+  let [content, setContent] = useState([]);
 
-  handleBackButtonClick = () => {
-    this.props.history.goBack();
+  const handleBackButtonClick = () => {
+    history.goBack();
   };
 
-  handleTextChange = (e) => {
-    const state = this.state;
-    state[e.target.name] = e.target.value;
-    this.setState(state);
-
-    const task = { 'title': this.state.title, 'content': this.state.content , 'user_id': current_uid}
-    this.setState({
-      task: task,
-    });
-  }
-
-  handleTextSubmit = (e) => {
+  const handleTextSubmit = (e) => {
     e.preventDefault();
-    const { task } = this.state;
+    e.persist();
+    const task = { 'title': title, 'content': content, 'user_id': current_uid };
+    setTask(task);
 
     postTasks(task)
     .then(results => {
-      this.setState({
-        title: '',
-        content: '',
-        user_id: '',
-      });
+      setTask('');
+      setTitle('');
+      setContent('');
+      e.target.value = '';
     })
     .catch(data => {
       console.log(data);
     });
-    this.props.history.push("/tasks");
+    history.push("/tasks");
   }
 
-  render() {
-    const { title, content } = this.state;
-
-    return (
-      <div>
-        <Header />
-        <BackButtonCover>
-          <ArrowBackIosIcon onClick={this.handleBackButtonClick} />
-        </BackButtonCover>
-        <TopBackground>
-          <Title>新規登録</Title>
-          <FormCover>
-            <form onSubmit={this.handleTextSubmit}>
-              <FormTitleCover>
-                <label htmlFor="title">題名:</label>
-                <input type="text" name="title" value={title} onChange={this.handleTextChange} placeholder="Title" />
-              </FormTitleCover>
-              <FormTextAreaCover>
-                <label htmlFor="content">内容:</label>
-                <textarea name="content" onChange={this.handleTextChange} placeholder="Content" cols="80" rows="3" value={content}></textarea>
-              </FormTextAreaCover>
-              <FormButtonCover><button type="submit">登録</button></FormButtonCover>
-            </form>
-          </FormCover>
-        </TopBackground>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Header />
+      <BackButtonCover>
+        <ArrowBackIosIcon onClick={handleBackButtonClick} />
+      </BackButtonCover>
+      <TopBackground>
+        <Title>新規登録</Title>
+        <FormCover>
+          <form onSubmit={handleTextSubmit}>
+            <FormTitleCover>
+              <label htmlFor="title">題名:</label>
+              <input type="text" name="title" value={title} onChange={ (e) => { setTitle(e.target.value) }} placeholder="Title" />
+            </FormTitleCover>
+            <FormTextAreaCover>
+              <label htmlFor="content">内容:</label>
+              <textarea name="content" onChange={ (e) => { setContent(e.target.value) }} placeholder="Content" cols="80" rows="3" value={content}></textarea>
+            </FormTextAreaCover>
+            <FormButtonCover><button type="submit">登録</button></FormButtonCover>
+          </form>
+        </FormCover>
+      </TopBackground>
+    </div>
+  );
 }
