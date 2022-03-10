@@ -78,7 +78,7 @@ export function TaskCreate() {
   const handleTextSubmit = (e) => {
     e.preventDefault();
     e.persist();
-    const task = { 'title': title, 'content': content, 'user_id': current_uid };
+    task = { 'title': title, 'content': content, 'user_id': current_uid };
     setTask(task);
 
     postTasks(task)
