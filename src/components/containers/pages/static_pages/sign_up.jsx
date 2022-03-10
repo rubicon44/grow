@@ -26,7 +26,7 @@ const SignUp = ({ history }) => {
         </label>
         <label>
           パスワード
-          <input name="password" type="password" placeholder="Password" />
+          <input name="password" type="password" placeholder="Password" autoComplete="on" />
         </label>
         <button type="submit">登録</button>
       </form>

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { updateTask } from '../../../../infra/api';
@@ -63,81 +64,62 @@ const FormButtonCover = styled.div`
   justify-content: flex-end;
 `
 
-export class TaskEdit extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: '',
-      task: {},
-      title: this.props.location.state.title,
-      content: this.props.location.state.content,
-    }
-  }
+export function TaskEdit() {
+  const history = useHistory();
+  const location = useLocation();
+  let [id, setId] = useState([]);
+  let [task, setTask] = useState([]);
+  let [title, setTitle] = useState([]);
+  let [content, setContent] = useState([]);
 
-  // componentWillUnmount = () => {
-  //   return () => this.clearHandleTextSubmit(this.handleTextSubmit(this.id, this.task));
-  //   return () => this.clearHandleTextChange(this.handleTextChange(this.title, this.content));
-  // };
-
-  handleBackButtonClick = () => {
-    this.props.history.goBack();
+  const handleBackButtonClick = () => {
+    history.goBack();
   };
 
-  handleTextChange = (e) => {
-    const state = this.state;
-    state[e.target.name] = e.target.value;
-    this.setState(state);
-
-    const id = this.props.location.state.id;
-    const task = {'title': this.state.title, 'content': this.state.content }
-    this.setState({
-      id: id,
-      task: task,
-    });
-  }
-
-  handleTextSubmit = (e) => {
+  const handleTextSubmit = (e) => {
     e.preventDefault();
-    const id = this.state.id;
-    const { task } = this.state;
+    e.persist();
+    id = location.state.id;
+    task = { 'title': title, 'content': content };
+    setId(id);
+    setTask(task);
 
     updateTask(id, task)
     .then(results => {
-      this.setState({
-        title: '',
-        content: '',
-      });
+      setId('');
+      setTask('');
+      setTitle('');
+      setContent('');
+      e.target.value = '';
     })
     .catch(data => {
       console.log(data);
     });
-    this.props.history.push(`/tasks/${this.props.location.state.id}`);
+    history.push(`/tasks/${location.state.id}`);
   }
 
-  render() {
-    return (
-      <div>
-        <Header />
-        <BackButtonCover>
-          <ArrowBackIosIcon onClick={this.handleBackButtonClick} />
-        </BackButtonCover>
-        <TopBackground>
-          <Title>編集</Title>
-          <FormCover>
-            <form onSubmit={this.handleTextSubmit}>
-              <FormTitleCover>
-                <label htmlFor="title">題名:</label>
-                <input type="text" name="title" defaultValue={this.props.location.state.title} onChange={this.handleTextChange} placeholder="Title" />
-              </FormTitleCover>
-              <FormTextAreaCover>
-                <label htmlFor="content">内容:</label>
-                <textarea name="content" onChange={this.handleTextChange} placeholder="Content" cols="80" rows="3" defaultValue={this.props.location.state.content}></textarea>
-              </FormTextAreaCover>
-              <FormButtonCover><button type="submit">編集</button></FormButtonCover>
-            </form>
-          </FormCover>
-        </TopBackground>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Header />
+      <BackButtonCover>
+        <ArrowBackIosIcon onClick={handleBackButtonClick} />
+      </BackButtonCover>
+      <TopBackground>
+        <Title>編集</Title>
+        <FormCover>
+          <form onSubmit={handleTextSubmit}>
+            <FormTitleCover>
+              <label htmlFor="title">題名:</label>
+              <input type="text" name="title" defaultValue={location.state.title} onChange={ (e) => { setTitle(e.target.value) }} placeholder="Title" />
+            </FormTitleCover>
+            <FormTextAreaCover>
+              <label htmlFor="content">内容:</label>
+              <textarea name="content" onChange={ (e) => { setContent(e.target.value) }} placeholder="Content" cols="80" rows="3" defaultValue={location.state.content}></textarea>
+            </FormTextAreaCover>
+            <FormButtonCover><button type="submit">編集</button></FormButtonCover>
+          </form>
+        </FormCover>
+      </TopBackground>
+    </div>
+  );
 }

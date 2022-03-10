@@ -23,7 +23,7 @@ const SignIn = ({ history }) => {
         </label>
         <label>
           パスワード
-          <input name="password" type="password" placeholder="Password" />
+          <input name="password" type="password" placeholder="Password" autoComplete="on" />
         </label>
         <button type="submit">ログイン</button>
       </form>
