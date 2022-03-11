@@ -45,8 +45,8 @@ export function TaskIndex() {
 
   useEffect(() => {
     getTasks()
-    .then(results => {
-      setTasks(results.data);
+    .then(response => {
+      setTasks(response.data);
     })
     .catch(data => {
       console.log(data);

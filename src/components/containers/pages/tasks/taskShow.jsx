@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -56,8 +56,8 @@ export function TaskShow() {
 
   useEffect(() => {
     getTask(task_id)
-    .then(results => {
-      setTasks(results.data);
+    .then(response => {
+      setTasks(response.data);
     })
     .catch(data => {
       console.log(data);
@@ -79,16 +79,17 @@ export function TaskShow() {
     });
   };
 
-  const deleteTaskFunc = (id) => {
+  const deleteTaskFunc = useCallback((id) => {
     deleteTask(id)
-    .then(results => {
-      setTasks(results.data);
+    .then(response => {
+      console.log(response.data);
+      console.log("正常に削除されました。");
     })
-    .catch(data => {
-      console.log(data);
+    .catch(response => {
+      console.log(response.data);
     });
     history.push("/tasks");
-  };
+  }, [history]);
 
   const EditTaskButton = () => {
     const taskCreateUserId = tasks.user_id;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -75,22 +75,22 @@ export function TaskCreate() {
     history.goBack();
   };
 
+  const postTasksFunc = useCallback((task) => {
+    postTasks(task)
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(response => {
+      console.log(response.data);
+    });
+  }, []);
+
   const handleTextSubmit = (e) => {
     e.preventDefault();
     e.persist();
     task = { 'title': title, 'content': content, 'user_id': current_uid };
     setTask(task);
-
-    postTasks(task)
-    .then(results => {
-      setTask('');
-      setTitle('');
-      setContent('');
-      e.target.value = '';
-    })
-    .catch(data => {
-      console.log(data);
-    });
+    postTasksFunc(task);
     history.push("/tasks");
   }
 

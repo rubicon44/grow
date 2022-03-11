@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -76,6 +76,16 @@ export function TaskEdit() {
     history.goBack();
   };
 
+  const updateTaskFunc = useCallback((id, task) => {
+    updateTask(id, task)
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(response => {
+      console.log(response.data);
+    });
+  }, []);
+
   const handleTextSubmit = (e) => {
     e.preventDefault();
     e.persist();
@@ -83,18 +93,7 @@ export function TaskEdit() {
     task = { 'title': title, 'content': content };
     setId(id);
     setTask(task);
-
-    updateTask(id, task)
-    .then(results => {
-      setId('');
-      setTask('');
-      setTitle('');
-      setContent('');
-      e.target.value = '';
-    })
-    .catch(data => {
-      console.log(data);
-    });
+    updateTaskFunc(id, task);
     history.push(`/tasks/${location.state.id}`);
   }
 
