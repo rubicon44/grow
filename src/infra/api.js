@@ -28,7 +28,7 @@ export const getTasks = (params) => axios({
   params: params,
 });
 
-export const postTasks = (params) => axios.post(`/tasks`, params );
+export const postTasks = (params) => axios.post(`/tasks`, params);
 
 export const getTask = (params) => axios({
   method: 'get',

@@ -11,7 +11,8 @@ export const AuthProvider = ({ children }) => {
       await auth.createUserWithEmailAndPassword(email, password);
       const user = { name: name, email: email};
       await signUp(user)
-      .then(results => {
+      .then(response => {
+        console.log(response.data);
         // todo:APIからユーザーオブジェクトのみが返却されるので、ポップアップでも出す？（ユーザーが作成されました！）
         // もしくはエラーの場合のみ出力（取り扱いにルールを設ける）
       })
