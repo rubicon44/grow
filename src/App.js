@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -20,42 +20,38 @@ import { TaskShow } from './components/containers/pages/tasks/taskShow';
 import { TaskCreate } from './components/containers/pages/tasks/taskCreate';
 import { TaskEdit } from './components/containers/pages/tasks/taskEdit';
 
-export class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      loading: false,
-    };
-  }
+export function App() {
+  const [loading, setLoading] = useState(true)
 
-  async componentDidMount() {
+  useEffect(() => {
+    // setTimeout(() => setLoading(false), 1000)
+    setLoading(false)
+
     if( localStorage.getItem('token') === '' || localStorage.getItem('token') === null || Date.now() >= jwt_decode(localStorage.getItem('token')).exp * 1000 ){
-      await auth.signOut();
+      auth.signOut();
     }
-  }
+  }, []);
 
-  render() {
-    if(this.state.loading) {
-      return(<div>Loading...</div>)
-    } else {
-      return (
-        <AuthProvider>
-          <Router>
-            <div className="App">
-              {/* top・サインイン・サインアップ */}
-              <Route exact path="/" component={Top} />
-              <Route exact path="/top" component={Top} />
-              <Route exact path="/sign_in" component={SignInWithRouter} />
-              <Route exact path="/sign_up" component={SignUpWithRouter} />
-              {/* task */}
-              <PrivateRoute exact path="/tasks" component={TaskIndex} />
-              <PrivateRoute exact path="/tasks/:id(\d+)" component={TaskShow} />
-              <PrivateRoute exact path="/tasks/create" component={TaskCreate} />
-              <PrivateRoute exact path="/tasks/edit/:id(\d+)" component={TaskEdit} />
-            </div>
-          </Router>
-        </AuthProvider>
-      );
-    }
+  if(loading) {
+    return(<div>Loading...</div>)
+  } else {
+    return (
+      <AuthProvider>
+        <Router>
+          <div className="App">
+            {/* top・サインイン・サインアップ */}
+            <Route exact path="/" component={Top} />
+            <Route exact path="/top" component={Top} />
+            <Route exact path="/sign_in" component={SignInWithRouter} />
+            <Route exact path="/sign_up" component={SignUpWithRouter} />
+            {/* task */}
+            <PrivateRoute exact path="/tasks" component={TaskIndex} />
+            <PrivateRoute exact path="/tasks/:id(\d+)" component={TaskShow} />
+            <PrivateRoute exact path="/tasks/create" component={TaskCreate} />
+            <PrivateRoute exact path="/tasks/edit/:id(\d+)" component={TaskEdit} />
+          </div>
+        </Router>
+      </AuthProvider>
+    );
   }
 }
