@@ -51,7 +51,7 @@ export function TaskIndex() {
     .catch(data => {
       console.log(data);
     });
-  }, [tasks.length]);
+  }, []);
 
   return (
     <div className="App">

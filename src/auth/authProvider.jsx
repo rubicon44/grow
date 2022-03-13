@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('token', '');
     localStorage.setItem('user', '');
     window.location.reload();
-    history.push("/tasks");
+    history.push("/");
   }
 
   useEffect(() => {
