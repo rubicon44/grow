@@ -1,10 +1,12 @@
 import React, { createContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from '../infra/firebase.js';
 import { signUp, signIn } from '../infra/api';
 
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(null);
 
   const signup = async (name, email, password) => {
