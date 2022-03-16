@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { current_uid } from '../../../../infra/firebase.js';
@@ -66,13 +66,13 @@ const FormButtonCover = styled.div`
 `
 
 export function TaskCreate() {
-  const history = useHistory();
+  const navigate = useNavigate();
   let [task, setTask] = useState([]);
   let [title, setTitle] = useState([]);
   let [content, setContent] = useState([]);
 
   const handleBackButtonClick = () => {
-    history.goBack();
+    navigate(-1);
   };
 
   const postTasksFunc = useCallback((task) => {
@@ -91,7 +91,7 @@ export function TaskCreate() {
     task = { 'title': title, 'content': content, 'user_id': current_uid };
     setTask(task);
     postTasksFunc(task);
-    history.push("/tasks");
+    navigate("/tasks");
   }
 
   return (

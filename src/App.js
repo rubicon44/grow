@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
+  Routes,
   Route,
 } from 'react-router-dom';
+import { signOut } from "firebase/auth";
 import jwt_decode from "jwt-decode";
 // スタイリング
 import './assets/styles/reset.css';
@@ -10,10 +12,11 @@ import './assets/styles/reset.css';
 import { AuthProvider } from './auth/authProvider';
 import { PrivateRoute } from './auth/privateRoute';
 import { auth } from './infra/firebase.js';
-// 認証前・サインイン・サインアップ
+// 認証前・サインイン・サインアップ・NotFound
 import { Top } from './components/containers/pages/static_pages/top';
-import { SignInWithRouter } from './components/containers/pages/static_pages/sign_in';
-import { SignUpWithRouter } from './components/containers/pages/static_pages/sign_up';
+import { SignIn } from './components/containers/pages/static_pages/sign_in';
+import { SignUp } from './components/containers/pages/static_pages/sign_up';
+import { NotFound } from './components/containers/pages/static_pages/notFound';
 // タスク
 import { TaskIndex } from './components/containers/pages/tasks/taskIndex';
 import { TaskShow } from './components/containers/pages/tasks/taskShow';
@@ -28,7 +31,7 @@ export function App() {
     setLoading(false)
 
     if( localStorage.getItem('token') === '' || localStorage.getItem('token') === null || Date.now() >= jwt_decode(localStorage.getItem('token')).exp * 1000 ){
-      auth.signOut();
+      signOut(auth);
     }
   }, []);
 
@@ -36,22 +39,25 @@ export function App() {
     return(<div>Loading...</div>)
   } else {
     return (
-      <AuthProvider>
-        <Router>
-          <div className="App">
-            {/* top・サインイン・サインアップ */}
-            <Route exact path="/" component={Top} />
-            <Route exact path="/top" component={Top} />
-            <Route exact path="/sign_in" component={SignInWithRouter} />
-            <Route exact path="/sign_up" component={SignUpWithRouter} />
-            {/* task */}
-            <PrivateRoute exact path="/tasks" component={TaskIndex} />
-            <PrivateRoute exact path="/tasks/:id(\d+)" component={TaskShow} />
-            <PrivateRoute exact path="/tasks/create" component={TaskCreate} />
-            <PrivateRoute exact path="/tasks/edit/:id(\d+)" component={TaskEdit} />
-          </div>
-        </Router>
-      </AuthProvider>
+      <div className="App">
+        <AuthProvider>
+          <Router>
+            <Routes>
+              {/* top・サインイン・サインアップ・NotFound */}
+              <Route exact path="/" element={<Top />} />
+              <Route exact path="/top" element={<Top />} />
+              <Route exact path="/sign_in" element={<SignIn />} />
+              <Route exact path="/sign_up" element={<SignUp />} />
+              <Route exact path="*" element={<NotFound />} />
+              {/* task */}
+              <Route exact path="/tasks" element={<PrivateRoute element={<TaskIndex />} />} />
+              <Route exact path="/tasks/:id" element={<PrivateRoute element={<TaskShow />} />} />
+              <Route exact path="/tasks/create" element={<PrivateRoute element={<TaskCreate />} />} />
+              <Route exact path="/tasks/edit/:id" element={<PrivateRoute element={<TaskEdit />} />} />
+            </Routes>
+          </Router>
+        </AuthProvider>
+      </div>
     );
   }
 }

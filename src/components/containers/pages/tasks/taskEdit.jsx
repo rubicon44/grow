@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { updateTask } from '../../../../infra/api';
@@ -65,7 +65,7 @@ const FormButtonCover = styled.div`
 `
 
 export function TaskEdit() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
   let [id, setId] = useState([]);
   let [task, setTask] = useState([]);
@@ -73,7 +73,7 @@ export function TaskEdit() {
   let [content, setContent] = useState([]);
 
   const handleBackButtonClick = () => {
-    history.goBack();
+    navigate(-1);
   };
 
   const updateTaskFunc = useCallback((id, task) => {
@@ -94,7 +94,7 @@ export function TaskEdit() {
     setId(id);
     setTask(task);
     updateTaskFunc(id, task);
-    history.push(`/tasks/${location.state.id}`);
+    navigate(`/tasks/${location.state.id}`);
   }
 
   return (
