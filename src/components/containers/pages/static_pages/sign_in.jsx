@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import { AuthContext } from '../../../../auth/authProvider';
 import { Header } from '../../organisms/header';
 

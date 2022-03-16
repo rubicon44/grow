@@ -1,5 +1,8 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
+// import firebase from "firebase/app";
+import * as firebase from "firebase/app";
+// import "firebase/auth";
+import { getAuth } from "firebase/auth";
+// require("firebase/auth")
 
 firebase.initializeApp({
   // Authentication infomation
@@ -12,7 +15,8 @@ firebase.initializeApp({
 })
 
 // 認証用
-const auth = firebase.auth();
+// const auth = firebase.auth();
+const auth = getAuth();
 
 let current_uid;
 auth.onAuthStateChanged((user) => {

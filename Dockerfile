@@ -1,5 +1,6 @@
+FROM node:16-alpine
 # FROM node:13.12.0-alpine
-FROM node:12.18.3-alpine
+# FROM node:12.18.3-alpine
 
 RUN mkdir /grow
 ENV FRONT_ROOT /grow
