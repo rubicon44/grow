@@ -69,14 +69,6 @@ export function TaskShow() {
   };
 
   const editTaskFunc = (id) => {
-    // navigate({
-    //   pathname: `/tasks/edit/${id}`,
-    //   state: {
-    //     id: id,
-    //     title: tasks.title,
-    //     content: tasks.content,
-    //   },
-    // });
     navigate('/tasks/edit/${id}', {
       state: {
         id: id,
