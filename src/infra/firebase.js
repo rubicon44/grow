@@ -1,5 +1,5 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import * as firebase from "firebase/app";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 
 firebase.initializeApp({
   // Authentication infomation
@@ -12,15 +12,15 @@ firebase.initializeApp({
 })
 
 // 認証用
-const auth = firebase.auth();
+const auth = getAuth();
 
 let current_uid;
-auth.onAuthStateChanged((user) => {
+onAuthStateChanged(auth, (user) => {
   if (user) {
     const user = auth.currentUser;
     current_uid = user.uid;
   } else {
-    auth.signOut();
+    signOut(auth);
   }
 });
 

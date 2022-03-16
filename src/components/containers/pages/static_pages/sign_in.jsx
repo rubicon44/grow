@@ -1,15 +1,17 @@
 import React, { useContext } from 'react';
-import { withRouter } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../../auth/authProvider';
 import { Header } from '../../organisms/header';
 
-const SignIn = ({ history }) => {
+export const SignIn = () => {
+  const navigate = useNavigate();
   const { signin } = useContext(AuthContext);
+
   const handleSubmit = event => {
     event.preventDefault();
     const { email, password } = event.target.elements;
-    signin(email.value, password.value, history);
-    history.push("/tasks");
+    signin(email.value, password.value);
+    navigate("/tasks");
   };
 
   return (
@@ -30,5 +32,3 @@ const SignIn = ({ history }) => {
     </div>
   );
 };
-
-export const SignInWithRouter = withRouter(SignIn);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { getTask, deleteTask } from '../../../../infra/api';
@@ -48,7 +48,7 @@ const TaskList = styled.dl`
 `
 
 export function TaskShow() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
   const locationPathName = location.pathname.split("/");
   const [tasks, setTasks] = useState([]);
@@ -65,12 +65,11 @@ export function TaskShow() {
   }, [task_id]);
 
   const handleBackButtonClick = () => {
-    history.goBack();
+    navigate(-1);
   };
 
   const editTaskFunc = (id) => {
-    history.push({
-      pathname: `/tasks/edit/${id}`,
+    navigate('/tasks/edit/${id}', {
       state: {
         id: id,
         title: tasks.title,
@@ -88,8 +87,8 @@ export function TaskShow() {
     .catch(response => {
       console.log(response.data);
     });
-    history.push("/tasks");
-  }, [history]);
+    navigate("/tasks");
+  }, []);
 
   const EditTaskButton = () => {
     const taskCreateUserId = tasks.user_id;

@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
-import { withRouter } from 'react-router';
+import { useNavigate } from 'react-router';
 import { AuthContext } from '../../../../auth/authProvider';
 import { Header } from '../../organisms/header';
 
-const SignUp = ({ history }) => {
+export const SignUp = () => {
+  const navigate = useNavigate();
   const { signup } = useContext(AuthContext);
   const handleSubmit = event => {
     event.preventDefault();
     let { name, email, password } = event.target.elements;
-    signup(name.value, email.value, password.value, history);
+    signup(name.value, email.value, password.value);
   };
 
   return (
@@ -33,5 +34,3 @@ const SignUp = ({ history }) => {
     </div>
   );
 };
-
-export const SignUpWithRouter = withRouter(SignUp);

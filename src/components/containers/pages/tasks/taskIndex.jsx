@@ -51,7 +51,7 @@ export function TaskIndex() {
     .catch(data => {
       console.log(data);
     });
-  }, [tasks.length]);
+  }, []);
 
   return (
     <div className="App">
@@ -66,7 +66,7 @@ export function TaskIndex() {
             return (
               <TaskList key={task.id}>
                 <dt>
-                  <Link to={`tasks/${task.id}`}>{task.title}</Link>
+                  <Link to={`${task.id}`}>{task.title}</Link>
                 </dt>
                 <dd>{task.content}</dd>
                 <div>by:{task.user_id}</div>

@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from '../infra/firebase.js';
 import { signUp, signIn } from '../infra/api';
 
@@ -6,9 +7,9 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
 
-  const signup = async (name, email, password, history) => {
+  const signup = async (name, email, password) => {
     try {
-      await auth.createUserWithEmailAndPassword(email, password);
+      await createUserWithEmailAndPassword(auth, email, password);
       const user = { name: name, email: email};
       await signUp(user)
       .then(response => {
@@ -19,17 +20,17 @@ export const AuthProvider = ({ children }) => {
       .catch(data => {
         console.log(data);
       });
-      await signin(email, password, history);
+      await signin(email, password);
     } catch (error) {
       alert(error);
       alert('このメールアドレスはすでに登録されています。');
-      auth.signOut();
+      signOut(auth);
     };
   };
 
-  const signin = async (email, password, history) => {
+  const signin = async (email, password) => {
     try {
-      await auth.signInWithEmailAndPassword(email, password);
+      await signInWithEmailAndPassword(auth, email, password);
       await auth.currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
         signIn(idToken)
         .then(async function(response) {
@@ -41,25 +42,24 @@ export const AuthProvider = ({ children }) => {
         .catch(async function (response) {
           alert(response);
           alert('このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。');
-          auth.signOut();
+          signOut(auth);
         });
       });
-      // history.push("/tasks");
     } catch (error) {
       alert(error);
     }
   };
 
-  const signout = async (history) => {
-    await auth.signOut();
+  const signout = async () => {
+    await signOut(auth);
     localStorage.setItem('token', '');
     localStorage.setItem('user', '');
     window.location.reload();
-    history.push("/tasks");
+    navigate("/");
   }
 
   useEffect(() => {
-    auth.onAuthStateChanged(setCurrentUser);
+    onAuthStateChanged(auth, setCurrentUser);
   }, []);
 
   return (
