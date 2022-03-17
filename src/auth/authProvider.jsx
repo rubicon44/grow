@@ -6,7 +6,6 @@ import { signUp, signIn } from '../infra/api';
 
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
-  const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(null);
 
   const signup = async (name, email, password) => {
@@ -53,6 +52,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signout = async () => {
+    const navigate = useNavigate();
     await signOut(auth);
     localStorage.setItem('token', '');
     localStorage.setItem('user', '');
