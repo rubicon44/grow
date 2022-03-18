@@ -21,13 +21,12 @@ const TopBackground = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   height: 460px;
   text-align: center;
   background-color: #ddd;
 `
 
-const Title = styled.h1`
+const Title = styled.h2`
   width: 288px;
   color: #ff444f;
   font-size: 36px;
@@ -35,7 +34,8 @@ const Title = styled.h1`
 `
 
 const FormCover = styled.div`
-  width: 300px;
+  min-width: 260px;
+  padding: 0 10px;
   text-align: left;
 `
 
@@ -47,7 +47,7 @@ const FormTitleCover = styled.div`
   }
 
   > input {
-    width: 300px;
+    min-width: 260px;
   }
 `
 
@@ -59,7 +59,7 @@ const FormTextAreaCover = styled.div`
   }
 
   > textarea {
-    width: 300px;
+    min-width: 260px;
     min-height: 200px;
   }
 `

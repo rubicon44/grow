@@ -25,7 +25,7 @@ const LoginBackground = styled.div`
   background-color: #f8f7f3;
 `
 
-const Title = styled.h1`
+const Title = styled.h2`
   width: 288px;
   font-size: 36px;
   font-family: YuMincho;
@@ -127,8 +127,7 @@ export function TaskShow() {
         <ArrowBackIosIcon onClick={handleBackButtonClick} />
       </BackButtonCover>
       <LoginBackground>
-        <Title>Grow</Title>
-        <h2>タスク詳細</h2>
+        <Title>タスク詳細</Title>
 
         <TaskListCover>
           <TaskList>

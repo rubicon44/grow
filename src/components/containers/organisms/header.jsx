@@ -104,6 +104,11 @@ export function Header() {
             <ListItemText primary="Post" />
           </ListItem>
         </Link>
+        <Link to="/users/show">
+          <ListItem button className={clsx(classes.listCenter)}>
+            <ListItemText primary="Report" />
+          </ListItem>
+        </Link>
       </List>
       <Divider />
       <List>

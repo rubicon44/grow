@@ -14,7 +14,7 @@ const LoginBackground = styled.div`
   background-color: #f8f7f3;
 `
 
-const Title = styled.h1`
+const Title = styled.h2`
   width: 288px;
   font-size: 36px;
   font-family: YuMincho;
@@ -88,8 +88,7 @@ export function TaskIndex() {
     <div className="App">
       <Header />
       <LoginBackground>
-        <Title>Grow</Title>
-        <h2>タスク一覧</h2>
+        <Title>タスク一覧</Title>
 
         <NextTask text="タスク登録" />
         <TaskListCover>

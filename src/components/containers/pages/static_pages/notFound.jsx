@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
+import { Header } from '../../organisms/header';
 
 const TopBackground = styled.div`
   position: relative;
@@ -33,10 +34,11 @@ const Title = styled.h2`
 
 export function NotFound() {
   return (
-    <div>
+    <React.Fragment>
+      <Header />
       <TopBackground>
         <Title>お探しのページが見つかりません。</Title>
       </TopBackground>
-    </div>
+    </React.Fragment>
   )
 };
