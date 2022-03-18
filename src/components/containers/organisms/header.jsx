@@ -56,9 +56,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export function Header() {
-  // ユーザーがログインしているかどうかの判定に使用
   const { currentUser } = useContext(AuthContext);
-  // useStyles() を呼ぶと上記スタイリングが適応されるユニークなクラスネームが取得できる
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -85,17 +83,26 @@ export function Header() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['ABOUT', 'CURRENT', 'MISSION', 'PROMOTION'].map((text, index) => (
-          // 各コンポーネントにスタイルをあてる
+        {/* {['Home', 'Post', 'Report', 'Notification'].map((text, index) => (
           <ListItem button key={text} className={clsx(classes.listCenter)}>
             <ListItemText primary={text} />
           </ListItem>
-        ))}
+        ))} */}
+
+        <Link to="/tasks">
+          <ListItem button className={clsx(classes.listCenter)}>
+            <ListItemText primary="Home" />
+          </ListItem>
+        </Link>
+        <Link to="/tasks/create">
+          <ListItem button className={clsx(classes.listCenter)}>
+            <ListItemText primary="Post" />
+          </ListItem>
+        </Link>
       </List>
       <Divider />
       <List>
         {['ログイン', '会員登録'].map((text, index) => (
-          // 各コンポーネントにスタイルをあてる
           <ListItem button key={text} className={clsx(classes.listCenter)}>
             <ListItemText primary={text} />
           </ListItem>
@@ -109,15 +116,13 @@ export function Header() {
       <Logo to="/">Grow</Logo>
       <HeaderMenuGroup>
       { currentUser &&
-        <>
+        <React.Fragment>
           <NextTask text="タスク一覧" />
           <LogOutButton text="ログアウト" />
-        </>
+        </React.Fragment>
       }
-        {/* 下記topという記述は、Drawerを画面丈夫から引き出すために必要な文言。bottomの場合、画面下からDrawerが引き出される。 */}
         {['top'].map((anchor) => (
           <React.Fragment key={anchor}>
-            {/* 下記<MenuIcon />の記述を他のIconに変更すれば、Iconが変更される。 */}
             <IconButton onClick={toggleDrawer(anchor, true)}><MenuIcon /></IconButton>
             <SwipeableDrawer
               anchor={anchor}

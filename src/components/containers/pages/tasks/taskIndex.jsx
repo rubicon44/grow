@@ -46,12 +46,41 @@ export function TaskIndex() {
   useEffect(() => {
     getTasks()
     .then(response => {
-      setTasks(response.data);
+      const dOrderData = sortdOrder(response);
+      setTasks(dOrderData);
     })
     .catch(data => {
       console.log(data);
     });
   }, []);
+
+  // const sortAOrder = () => {
+  //   const list = tasks;
+  //   const aOrder = list.sort(function (a, b) {
+  //     if (a.id < b.id) {
+  //       return -1;
+  //     }
+  //     if (a.id > b.id) {
+  //       return 1;
+  //     }
+  //     return 0;
+  //   });
+  //   return aOrder;
+  // };
+
+  const sortdOrder = (response) => {
+    const list = response.data;
+    const dOrder = list.sort(function (a, b) {
+      if (a.id < b.id) {
+        return 1;
+      }
+      if (a.id > b.id) {
+        return -1;
+      }
+      return 0;
+    });
+    return dOrder;
+  };
 
   return (
     <div className="App">

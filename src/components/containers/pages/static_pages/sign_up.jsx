@@ -13,7 +13,7 @@ export const SignUp = () => {
   return (
     <div>
       <Header />
-      <h1>ユーザー登録</h1>
+      <h1>会員登録</h1>
       <form onSubmit={handleSubmit}>
         <label>
           名前

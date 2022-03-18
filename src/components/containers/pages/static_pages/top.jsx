@@ -15,10 +15,9 @@ const TopBackground = styled.div`
   height: 460px;
   text-align: center;
 
-  ${mediaquery.desktop`
-    max-width: 1280px;
-    height: 700px;
-  `}
+  > a:not(:first-of-type) {
+    margin-top: 10px;
+  }
 `
 
 const Title = styled.h2`
@@ -37,13 +36,11 @@ const Title = styled.h2`
 
 export function Top() {
   return (
-    <div>
-      <TopBackground>
-        <Title>Grow</Title>
-        <NextTask text="タスク一覧" />
-        <NextSignUp text="まずは会員登録" />
-        <NextSignIn text="ログイン" />
-      </TopBackground>
-    </div>
+    <TopBackground>
+      <Title>Grow</Title>
+      <NextTask text="タスク一覧" />
+      <NextSignUp text="会員登録" />
+      <NextSignIn text="ログイン" />
+    </TopBackground>
   )
 };

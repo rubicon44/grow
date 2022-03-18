@@ -11,6 +11,10 @@ const BackButtonCover = styled.div`
   flex-direction: column;
   justify-content: center;
   height: 30px;
+
+  > svg {
+    cursor: pointer;
+  }
 `
 
 const TopBackground = styled.div`
