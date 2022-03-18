@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../auth/authProvider';
 import clsx from 'clsx';
@@ -13,7 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import { LogOutButton } from '../../presentational/atoms/Button/logOut';
-import { NextTask } from '../../presentational/atoms/nextButton/task';
+// import { NextTask } from '../../presentational/atoms/nextButton/task';
 
 const HeaderCover = styled.div`
   display: flex;
@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 export function Header() {
   const { currentUser } = useContext(AuthContext);
   const classes = useStyles();
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     top: false,
     left: false,
     bottom: false,
@@ -89,9 +89,14 @@ export function Header() {
           </ListItem>
         ))} */}
 
-        <Link to="/tasks">
+        <Link to="/top">
           <ListItem button className={clsx(classes.listCenter)}>
             <ListItemText primary="Home" />
+          </ListItem>
+        </Link>
+        <Link to="/tasks">
+          <ListItem button className={clsx(classes.listCenter)}>
+            <ListItemText primary="Task" />
           </ListItem>
         </Link>
         <Link to="/tasks/create">
@@ -102,11 +107,22 @@ export function Header() {
       </List>
       <Divider />
       <List>
-        {['ログイン', '会員登録'].map((text, index) => (
+        {/* {['ログイン', '会員登録'].map((text, index) => (
           <ListItem button key={text} className={clsx(classes.listCenter)}>
             <ListItemText primary={text} />
           </ListItem>
-        ))}
+        ))} */}
+
+        <Link to="/sign_in">
+          <ListItem button className={clsx(classes.listCenter)}>
+            <ListItemText primary="ログイン" />
+          </ListItem>
+        </Link>
+        <Link to="/sign_up">
+          <ListItem button className={clsx(classes.listCenter)}>
+            <ListItemText primary="会員登録" />
+          </ListItem>
+        </Link>
       </List>
     </div>
   );
@@ -117,7 +133,7 @@ export function Header() {
       <HeaderMenuGroup>
       { currentUser &&
         <React.Fragment>
-          <NextTask text="タスク一覧" />
+          {/* <NextTask text="タスク一覧" /> */}
           <LogOutButton text="ログアウト" />
         </React.Fragment>
       }

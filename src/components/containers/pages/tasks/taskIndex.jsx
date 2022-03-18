@@ -44,15 +44,17 @@ export function TaskIndex() {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
+    let isMounted = true;
     getTasks()
     .then(response => {
       const dOrderData = sortdOrder(response);
-      setTasks(dOrderData);
+      if (isMounted) setTasks(dOrderData);
     })
     .catch(data => {
       console.log(data);
     });
-  }, []);
+    return () => { isMounted = false };
+  }, [tasks]);
 
   // const sortAOrder = () => {
   //   const list = tasks;

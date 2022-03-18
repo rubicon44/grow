@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from '../infra/firebase.js';
 import { signUp, signIn } from '../infra/api';
@@ -52,12 +51,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signout = async () => {
-    const navigate = useNavigate();
     await signOut(auth);
     localStorage.setItem('token', '');
     localStorage.setItem('user', '');
     window.location.reload();
-    navigate("/");
   }
 
   useEffect(() => {
