@@ -10,6 +10,10 @@ const BackButtonCover = styled.div`
   flex-direction: column;
   justify-content: center;
   height: 30px;
+
+  > svg {
+    cursor: pointer;
+  }
 `
 
 const TopBackground = styled.div`
@@ -30,7 +34,8 @@ const Title = styled.h1`
 `
 
 const FormCover = styled.div`
-  width: 300px;
+  min-width: 260px;
+  padding: 0 10px;
   text-align: left;
 `
 
@@ -42,7 +47,7 @@ const FormTitleCover = styled.div`
   }
 
   > input {
-    width: 300px;
+    min-width: 260px;
   }
 `
 
@@ -54,7 +59,7 @@ const FormTextAreaCover = styled.div`
   }
 
   > textarea {
-    width: 300px;
+    min-width: 260px;
     min-height: 200px;
   }
 `

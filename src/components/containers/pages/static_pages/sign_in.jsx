@@ -1,7 +1,20 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 import { AuthContext } from '../../../../auth/authProvider';
 import { Header } from '../../organisms/header';
+
+const Title = styled.h2`
+  width: 288px;
+  font-size: 36px;
+  font-family: YuMincho;
+`
+
+const FormCover = styled.div`
+  min-width: 260px;
+  padding: 0 10px;
+  text-align: left;
+`
 
 export const SignIn = () => {
   const navigate = useNavigate();
@@ -15,20 +28,22 @@ export const SignIn = () => {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <Header />
-      <h1>ログイン</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          メール
-          <input name="email" type="email" placeholder="Email" />
-        </label>
-        <label>
-          パスワード
-          <input name="password" type="password" placeholder="Password" autoComplete="on" />
-        </label>
-        <button type="submit">ログイン</button>
-      </form>
-    </div>
+      <Title>ログイン</Title>
+      <FormCover>
+        <form onSubmit={handleSubmit}>
+          <label>
+            メール
+            <input name="email" type="email" placeholder="Email" />
+          </label>
+          <label>
+            パスワード
+            <input name="password" type="password" placeholder="Password" autoComplete="on" />
+          </label>
+          <button type="submit">ログイン</button>
+        </form>
+      </FormCover>
+    </React.Fragment>
   );
 };

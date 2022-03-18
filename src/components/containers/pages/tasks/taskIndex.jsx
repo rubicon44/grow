@@ -14,7 +14,7 @@ const LoginBackground = styled.div`
   background-color: #f8f7f3;
 `
 
-const Title = styled.h1`
+const Title = styled.h2`
   width: 288px;
   font-size: 36px;
   font-family: YuMincho;
@@ -44,21 +44,51 @@ export function TaskIndex() {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
+    let isMounted = true;
     getTasks()
     .then(response => {
-      setTasks(response.data);
+      const dOrderData = sortdOrder(response);
+      if (isMounted) setTasks(dOrderData);
     })
     .catch(data => {
       console.log(data);
     });
-  }, []);
+    return () => { isMounted = false };
+  }, [tasks]);
+
+  // const sortAOrder = () => {
+  //   const list = tasks;
+  //   const aOrder = list.sort(function (a, b) {
+  //     if (a.id < b.id) {
+  //       return -1;
+  //     }
+  //     if (a.id > b.id) {
+  //       return 1;
+  //     }
+  //     return 0;
+  //   });
+  //   return aOrder;
+  // };
+
+  const sortdOrder = (response) => {
+    const list = response.data;
+    const dOrder = list.sort(function (a, b) {
+      if (a.id < b.id) {
+        return 1;
+      }
+      if (a.id > b.id) {
+        return -1;
+      }
+      return 0;
+    });
+    return dOrder;
+  };
 
   return (
     <div className="App">
       <Header />
       <LoginBackground>
-        <Title>Grow</Title>
-        <h2>タスク一覧</h2>
+        <Title>タスク一覧</Title>
 
         <NextTask text="タスク登録" />
         <TaskListCover>

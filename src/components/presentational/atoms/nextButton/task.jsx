@@ -28,13 +28,13 @@ const ButtonStyle = styled(Link)`
 
 export function NextTask(props) {
   return (
-    <div>
+    <React.Fragment>
       {props.text === "タスク一覧" &&
         <ButtonStyle to="/tasks">{props.text}</ButtonStyle>
       }
       {props.text === "タスク登録" &&
         <ButtonStyle to="/tasks/create">{props.text}</ButtonStyle>
       }
-    </div>
+    </React.Fragment>
   )
 }

@@ -52,3 +52,7 @@ a {
     color: inherit;
     text-decoration: none;
 }
+input, textarea {
+  width: 100%;
+  box-sizing: border-box;
+}

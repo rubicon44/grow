@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../auth/authProvider';
 import clsx from 'clsx';
@@ -13,7 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import { LogOutButton } from '../../presentational/atoms/Button/logOut';
-import { NextTask } from '../../presentational/atoms/nextButton/task';
+// import { NextTask } from '../../presentational/atoms/nextButton/task';
 
 const HeaderCover = styled.div`
   display: flex;
@@ -56,11 +56,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export function Header() {
-  // ユーザーがログインしているかどうかの判定に使用
   const { currentUser } = useContext(AuthContext);
-  // useStyles() を呼ぶと上記スタイリングが適応されるユニークなクラスネームが取得できる
   const classes = useStyles();
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     top: false,
     left: false,
     bottom: false,
@@ -85,21 +83,51 @@ export function Header() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['ABOUT', 'CURRENT', 'MISSION', 'PROMOTION'].map((text, index) => (
-          // 各コンポーネントにスタイルをあてる
+        {/* {['Home', 'Post', 'Report', 'Notification'].map((text, index) => (
           <ListItem button key={text} className={clsx(classes.listCenter)}>
             <ListItemText primary={text} />
           </ListItem>
-        ))}
+        ))} */}
+
+        <Link to="/top">
+          <ListItem button className={clsx(classes.listCenter)}>
+            <ListItemText primary="Home" />
+          </ListItem>
+        </Link>
+        <Link to="/tasks">
+          <ListItem button className={clsx(classes.listCenter)}>
+            <ListItemText primary="Task" />
+          </ListItem>
+        </Link>
+        <Link to="/tasks/create">
+          <ListItem button className={clsx(classes.listCenter)}>
+            <ListItemText primary="Post" />
+          </ListItem>
+        </Link>
+        <Link to="/users/show">
+          <ListItem button className={clsx(classes.listCenter)}>
+            <ListItemText primary="Report" />
+          </ListItem>
+        </Link>
       </List>
       <Divider />
       <List>
-        {['ログイン', '会員登録'].map((text, index) => (
-          // 各コンポーネントにスタイルをあてる
+        {/* {['ログイン', '会員登録'].map((text, index) => (
           <ListItem button key={text} className={clsx(classes.listCenter)}>
             <ListItemText primary={text} />
           </ListItem>
-        ))}
+        ))} */}
+
+        <Link to="/sign_in">
+          <ListItem button className={clsx(classes.listCenter)}>
+            <ListItemText primary="ログイン" />
+          </ListItem>
+        </Link>
+        <Link to="/sign_up">
+          <ListItem button className={clsx(classes.listCenter)}>
+            <ListItemText primary="会員登録" />
+          </ListItem>
+        </Link>
       </List>
     </div>
   );
@@ -109,15 +137,13 @@ export function Header() {
       <Logo to="/">Grow</Logo>
       <HeaderMenuGroup>
       { currentUser &&
-        <>
-          <NextTask text="タスク一覧" />
+        <React.Fragment>
+          {/* <NextTask text="タスク一覧" /> */}
           <LogOutButton text="ログアウト" />
-        </>
+        </React.Fragment>
       }
-        {/* 下記topという記述は、Drawerを画面丈夫から引き出すために必要な文言。bottomの場合、画面下からDrawerが引き出される。 */}
         {['top'].map((anchor) => (
           <React.Fragment key={anchor}>
-            {/* 下記<MenuIcon />の記述を他のIconに変更すれば、Iconが変更される。 */}
             <IconButton onClick={toggleDrawer(anchor, true)}><MenuIcon /></IconButton>
             <SwipeableDrawer
               anchor={anchor}
