@@ -98,7 +98,7 @@ export function TaskShow() {
     const taskCreateUserId = tasks.user_id;
     let currentUserDataText =localStorage.getItem('user');
     const currentUserData = JSON.parse(currentUserDataText);
-    const currentUserId = currentUserData['firebase_id'];
+    const currentUserId = currentUserData['id'].toString();
 
     if (taskCreateUserId === currentUserId) {
       return <button onClick={() => editTaskFunc(tasks.id)}>編集</button>;
@@ -111,7 +111,7 @@ export function TaskShow() {
     const taskCreateUserId = tasks.user_id;
     let currentUserDataText =localStorage.getItem('user');
     const currentUserData = JSON.parse(currentUserDataText);
-    const currentUserId = currentUserData['firebase_id'];
+    const currentUserId = currentUserData['id'].toString();
 
     if (taskCreateUserId === currentUserId) {
       return <button onClick={() => deleteTaskFunc(tasks.id)}>削除</button>;

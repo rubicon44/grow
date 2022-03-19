@@ -14,7 +14,7 @@ export const signIn = (idToken) => axios({
 	}
 });
 
-// get CurrentUser
+// users
 export const getCurrentUser = () => axios({
   method: 'get',
   url: `/users/${currentUser.id}`,

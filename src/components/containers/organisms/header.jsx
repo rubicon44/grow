@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../auth/authProvider';
 import clsx from 'clsx';
@@ -13,7 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import { LogOutButton } from '../../presentational/atoms/Button/logOut';
-// import { NextTask } from '../../presentational/atoms/nextButton/task';
+import { getCurrentUser } from '../../../infra/api';
 
 const HeaderCover = styled.div`
   display: flex;
@@ -65,6 +65,20 @@ export function Header() {
     right: false,
   });
 
+  const [userId, setUserId] = useState([]);
+  useEffect(() => {
+    let isMounted = true;
+    getCurrentUser()
+    .then(response => {
+      const userId = response.data.user.id;
+      if (isMounted) setUserId(userId);
+    })
+    .catch(data => {
+      console.log(data);
+    });
+    return () => { isMounted = false };
+  }, [userId]);
+
   const toggleDrawer = (anchor, open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -104,7 +118,7 @@ export function Header() {
             <ListItemText primary="Post" />
           </ListItem>
         </Link>
-        <Link to="/users/show">
+        <Link to={"/users/" + userId}>
           <ListItem button className={clsx(classes.listCenter)}>
             <ListItemText primary="Report" />
           </ListItem>
@@ -138,7 +152,6 @@ export function Header() {
       <HeaderMenuGroup>
       { currentUser &&
         <React.Fragment>
-          {/* <NextTask text="タスク一覧" /> */}
           <LogOutButton text="ログアウト" />
         </React.Fragment>
       }

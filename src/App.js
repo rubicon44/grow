@@ -24,6 +24,8 @@ import { TaskIndex } from './components/containers/pages/tasks/taskIndex';
 import { TaskShow } from './components/containers/pages/tasks/taskShow';
 import { TaskCreate } from './components/containers/pages/tasks/taskCreate';
 import { TaskEdit } from './components/containers/pages/tasks/taskEdit';
+// ユーザー
+import { UserShow } from './components/containers/pages/users/userShow';
 
 const Wrapper = styled.div`
   position: relative;
@@ -73,9 +75,11 @@ export function App() {
                 <Route exact path="*" element={<NotFound />} />
                 {/* task */}
                 <Route exact path="/tasks" element={<PrivateRoute element={<TaskIndex />} />} />
-                <Route exact path="/tasks/:id" element={<PrivateRoute element={<TaskShow />} />} />
                 <Route exact path="/tasks/create" element={<PrivateRoute element={<TaskCreate />} />} />
                 <Route exact path="/tasks/edit/:id" element={<PrivateRoute element={<TaskEdit />} />} />
+                {/* user */}
+                <Route exact path="/users/:id" element={<PrivateRoute element={<UserShow />} />} />
+                <Route exact path="/users/:id/tasks/:id" element={<PrivateRoute element={<TaskShow />} />} />
               </Routes>
             </Router>
           </AuthProvider>
