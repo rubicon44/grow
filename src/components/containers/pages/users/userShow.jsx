@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { getTasks } from '../../../../infra/api';
+import { getCurrentUser } from '../../../../infra/api';
 import { Header } from '../../organisms/header';
-import { NextTask } from '../../../presentational/atoms/nextButton/task';
 
 const LoginBackground = styled.div`
   display: flex;
@@ -20,7 +19,6 @@ const Title = styled.h2`
   font-family: YuMincho;
 `
 
-// task一覧表示
 const TaskListCover = styled.div``
 
 const TaskList = styled.dl`
@@ -40,37 +38,28 @@ const TaskList = styled.dl`
   }
 `
 
-export function TaskIndex() {
-  const [tasks, setTasks] = useState([]);
+export function UserShow() {
+  const [currentUser, setCurrentUser] = useState([]);
+  const [userTasks, setUserTasks] = useState([]);
+
   useEffect(() => {
     let isMounted = true;
-    getTasks()
+    getCurrentUser()
     .then(response => {
-      const dOrderData = sortdOrder(response);
-      if (isMounted) setTasks(dOrderData);
+      const currentUser = response.data.user;
+      const taskData = response.data.tasks;
+      const dOrderData = sortdOrder(taskData);
+      if (isMounted) setCurrentUser(currentUser);
+      if (isMounted) setUserTasks(dOrderData);
     })
     .catch(data => {
       console.log(data);
     });
     return () => { isMounted = false };
-  }, [tasks]);
+  }, [userTasks]);
 
-  // const sortAOrder = () => {
-  //   const list = tasks;
-  //   const aOrder = list.sort(function (a, b) {
-  //     if (a.id < b.id) {
-  //       return -1;
-  //     }
-  //     if (a.id > b.id) {
-  //       return 1;
-  //     }
-  //     return 0;
-  //   });
-  //   return aOrder;
-  // };
-
-  const sortdOrder = (response) => {
-    const list = response.data;
+  const sortdOrder = (taskData) => {
+    const list = taskData;
     const dOrder = list.sort(function (a, b) {
       if (a.id < b.id) {
         return 1;
@@ -87,15 +76,14 @@ export function TaskIndex() {
     <React.Fragment>
       <Header />
       <LoginBackground>
-        <Title>タスク一覧</Title>
+        <Title>{currentUser.name}</Title>
 
-        <NextTask text="タスク登録" />
         <TaskListCover>
-          {tasks.map((task) => {
+          {userTasks.map((task) => {
             return (
               <TaskList key={task.id}>
                 <dt>
-                  <Link to={`/users/${task.user_id}/tasks/${task.id}`}>{task.title}</Link>
+                  <Link to={`tasks/${task.id}`}>{task.title}</Link>
                 </dt>
                 <dd>{task.content}</dd>
                 <div>by:{task.user_id}</div>

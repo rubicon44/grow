@@ -9,18 +9,25 @@ export const AuthProvider = ({ children }) => {
 
   const signup = async (name, email, password) => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      const user = { name: name, email: email};
-      await signUp(user)
-      .then(response => {
-        console.log(response.data);
-        // todo:APIからユーザーオブジェクトのみが返却されるので、ポップアップでも出す？（ユーザーが作成されました！）
-        // もしくはエラーの場合のみ出力（取り扱いにルールを設ける）
+      createUserWithEmailAndPassword(auth, email, password)
+      .then(async(userCredential) => {
+        console.log(userCredential.data);
+        const firebase_id = userCredential.user.uid;
+        const user = { name: name, email: email, firebase_id: firebase_id};
+        await signUp(user)
+        .then(response => {
+          console.log(response.data);
+          // todo:APIからユーザーオブジェクトのみが返却されるので、ポップアップでも出す？（ユーザーが作成されました！）
+          // もしくはエラーの場合のみ出力（取り扱いにルールを設ける）
+        })
+        .catch(data => {
+          console.log(data);
+        });
+        await signin(email, password);
       })
-      .catch(data => {
+      .catch((data) => {
         console.log(data);
       });
-      await signin(email, password);
     } catch (error) {
       alert(error);
       alert('このメールアドレスはすでに登録されています。');
