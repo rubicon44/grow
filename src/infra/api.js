@@ -21,6 +21,12 @@ export const getCurrentUser = () => axios({
   params: {'current_user': true},
 });
 
+export const getUser = (params) => axios({
+  method: 'get',
+  url: `/users/${params}`,
+  params: {'current_user': true},
+});
+
 // tasks
 export const getTasks = (params) => axios({
   method: 'get',

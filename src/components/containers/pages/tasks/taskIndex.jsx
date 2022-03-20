@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { getTasks } from '../../../../infra/api';
 import { Header } from '../../organisms/header';
@@ -49,8 +49,8 @@ export function TaskIndex() {
       const dOrderData = sortdOrder(response);
       if (isMounted) setTasks(dOrderData);
     })
-    .catch(data => {
-      console.log(data);
+    .catch(response => {
+      console.log(response.data);
     });
     return () => { isMounted = false };
   }, [tasks]);
@@ -83,6 +83,15 @@ export function TaskIndex() {
     return dOrder;
   };
 
+  const navigate = useNavigate();
+  const userShowFunc = (task) => {
+    navigate({
+      state: {
+        user_id: task.user.id,
+      },
+    });
+  };
+
   return (
     <React.Fragment>
       <Header />
@@ -98,7 +107,10 @@ export function TaskIndex() {
                   <Link to={`/users/${task.user_id}/tasks/${task.id}`}>{task.title}</Link>
                 </dt>
                 <dd>{task.content}</dd>
-                <div>by:{task.user_id}</div>
+                <div>
+                  by:
+                  <Link to={`/users/${task.user.id}`} onClick={async() => await userShowFunc(task)}>{task.user.name}</Link>
+                </div>
               </TaskList>
             );
           })}
