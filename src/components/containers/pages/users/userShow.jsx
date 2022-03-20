@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { getCurrentUser } from '../../../../infra/api';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import { getUser } from '../../../../infra/api';
 import { Header } from '../../organisms/header';
+
+const BackButtonCover = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 30px;
+
+  > svg {
+    cursor: pointer;
+  }
+`
 
 const LoginBackground = styled.div`
   display: flex;
@@ -39,17 +51,21 @@ const TaskList = styled.dl`
 `
 
 export function UserShow() {
-  const [currentUser, setCurrentUser] = useState([]);
+  const location = useLocation();
+  const locationPathName = location.pathname.split("/");
+  const user_id = locationPathName[locationPathName.length -1];
+
+  const [taskUser, setTaskUser] = useState([]);
   const [userTasks, setUserTasks] = useState([]);
 
   useEffect(() => {
     let isMounted = true;
-    getCurrentUser()
+    getUser(user_id)
     .then(response => {
-      const currentUser = response.data.user;
-      const taskData = response.data.tasks;
+      const taskUser = response.data.user;
+      let taskData = taskUser.tasks;
       const dOrderData = sortdOrder(taskData);
-      if (isMounted) setCurrentUser(currentUser);
+      if (isMounted) setTaskUser(taskUser);
       if (isMounted) setUserTasks(dOrderData);
     })
     .catch(data => {
@@ -60,35 +76,57 @@ export function UserShow() {
 
   const sortdOrder = (taskData) => {
     const list = taskData;
-    const dOrder = list.sort(function (a, b) {
-      if (a.id < b.id) {
-        return 1;
-      }
-      if (a.id > b.id) {
-        return -1;
-      }
-      return 0;
-    });
-    return dOrder;
+    if (list == "") {
+      const dOrder = [""];
+      return dOrder;
+    } else {
+      const dOrder = list.sort(function (a, b) {
+        if (a.id < b.id) {
+          return 1;
+        }
+        if (a.id > b.id) {
+          return -1;
+        }
+        return 0;
+      });
+      return dOrder;
+    }
+  };
+
+  const navigate = useNavigate();
+  const handleBackButtonClick = () => {
+    navigate(-1);
   };
 
   return (
     <React.Fragment>
       <Header />
+      <BackButtonCover>
+        <ArrowBackIosIcon onClick={handleBackButtonClick} />
+      </BackButtonCover>
       <LoginBackground>
-        <Title>{currentUser.name}</Title>
+        <Title>{taskUser.name}</Title>
 
         <TaskListCover>
           {userTasks.map((task) => {
-            return (
-              <TaskList key={task.id}>
-                <dt>
-                  <Link to={`tasks/${task.id}`}>{task.title}</Link>
-                </dt>
-                <dd>{task.content}</dd>
-                <div>by:{task.user_id}</div>
-              </TaskList>
-            );
+            if (userTasks == ""){
+              return (
+                <div key={task}>まだ投稿はありません。</div>
+              );
+            } else {
+              return (
+                <TaskList key={task.id}>
+                  <dt>
+                    <Link to={`tasks/${task.id}`}>{task.title}</Link>
+                  </dt>
+                  <dd>{task.content}</dd>
+                  <div>
+                    by:
+                    <Link to={`/users/${taskUser.id}`}>{taskUser.name}</Link>
+                  </div>
+                </TaskList>
+              );
+            }
           })}
         </TaskListCover>
       </LoginBackground>

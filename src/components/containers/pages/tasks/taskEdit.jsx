@@ -99,7 +99,7 @@ export function TaskEdit() {
     setId(id);
     setTask(task);
     updateTaskFunc(id, task);
-    navigate(`/tasks/${location.state.id}`);
+    navigate(`/users/${location.state.current_user_id}/tasks/${location.state.id}`);
   }
 
   return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { getTask, deleteTask } from '../../../../infra/api';
@@ -55,29 +55,35 @@ export function TaskShow() {
   const navigate = useNavigate();
   const location = useLocation();
   const locationPathName = location.pathname.split("/");
-  const [tasks, setTasks] = useState([]);
+  const [task, setTask] = useState([]);
+  const [taskCreatedUser, setTaskCreatedUser] = useState("");
   const task_id = locationPathName[locationPathName.length -1];
 
   useEffect(() => {
+    let isMounted = true;
     getTask(task_id)
     .then(response => {
-      setTasks(response.data);
+      console.log(response.data);
+      if (isMounted) setTask(response.data);
+      if (isMounted) setTaskCreatedUser(response.data.user);
     })
     .catch(data => {
       console.log(data);
     });
+    return () => { isMounted = false };
   }, [task_id]);
 
   const handleBackButtonClick = () => {
     navigate(-1);
   };
 
-  const editTaskFunc = (id) => {
-    navigate('/tasks/edit/${id}', {
+  const editTaskFunc = (id, currentUserId) => {
+    navigate(`/tasks/edit/${id}`, {
       state: {
         id: id,
-        title: tasks.title,
-        content: tasks.content,
+        title: task.title,
+        content: task.content,
+        current_user_id: currentUserId,
       },
     });
   };
@@ -91,30 +97,30 @@ export function TaskShow() {
     .catch(response => {
       console.log(response.data);
     });
-    navigate("/tasks");
-  }, []);
+    navigate(`/users/${taskCreatedUser.id}`);
+  }, [taskCreatedUser]);
 
   const EditTaskButton = () => {
-    const taskCreateUserId = tasks.user_id;
+    const taskCreateUserId = task.user_id;
     let currentUserDataText =localStorage.getItem('user');
     const currentUserData = JSON.parse(currentUserDataText);
     const currentUserId = currentUserData['id'].toString();
 
     if (taskCreateUserId === currentUserId) {
-      return <button onClick={() => editTaskFunc(tasks.id)}>編集</button>;
+      return <button onClick={() => editTaskFunc(task.id, currentUserId)}>編集</button>;
     } else {
       return null;
     }
   }
 
   const DeleteTaskButton = () => {
-    const taskCreateUserId = tasks.user_id;
+    const taskCreateUserId = task.user_id;
     let currentUserDataText =localStorage.getItem('user');
     const currentUserData = JSON.parse(currentUserDataText);
     const currentUserId = currentUserData['id'].toString();
 
     if (taskCreateUserId === currentUserId) {
-      return <button onClick={() => deleteTaskFunc(tasks.id)}>削除</button>;
+      return <button onClick={() => deleteTaskFunc(task.id)}>削除</button>;
     } else {
       return null;
     }
@@ -131,8 +137,12 @@ export function TaskShow() {
 
         <TaskListCover>
           <TaskList>
-            <dt>{tasks.title}</dt>
-            <dd>{tasks.content}</dd>
+            <dt>{task.title}</dt>
+            <dd>{task.content}</dd>
+            <div>
+              by:
+              <Link to={`/users/${taskCreatedUser.id}`}>{taskCreatedUser.name}</Link>
+            </div>
           </TaskList>
           <EditTaskButton />
           <DeleteTaskButton />

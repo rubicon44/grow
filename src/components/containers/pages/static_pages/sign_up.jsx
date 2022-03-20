@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { AuthContext } from '../../../../auth/authProvider';
 import { Header } from '../../organisms/header';
@@ -16,11 +17,13 @@ const FormCover = styled.div`
 `
 
 export const SignUp = () => {
+  const navigate = useNavigate();
   const { signup } = useContext(AuthContext);
   const handleSubmit = event => {
     event.preventDefault();
     let { name, email, password } = event.target.elements;
     signup(name.value, email.value, password.value);
+    navigate("/tasks");
   };
 
   return (
