@@ -1,6 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../../auth/authProvider';
 import clsx from 'clsx';
 import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,8 +10,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-
-import { LogOutButton } from '../../presentational/atoms/Button/logOut';
 import { getCurrentUser } from '../../../infra/api';
 
 const HeaderCover = styled.div`
@@ -56,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export function Header() {
-  const { currentUser } = useContext(AuthContext);
   const classes = useStyles();
   const [state, setState] = useState({
     top: false,
@@ -150,11 +146,6 @@ export function Header() {
     <HeaderCover>
       <Logo to="/">Grow</Logo>
       <HeaderMenuGroup>
-      { currentUser &&
-        <React.Fragment>
-          <LogOutButton text="ログアウト" />
-        </React.Fragment>
-      }
         {['top'].map((anchor) => (
           <React.Fragment key={anchor}>
             <IconButton onClick={toggleDrawer(anchor, true)}><MenuIcon /></IconButton>
