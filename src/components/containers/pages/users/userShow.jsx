@@ -7,7 +7,6 @@ import { Header } from '../../organisms/header';
 import { AuthContext } from '../../../../auth/authProvider';
 import { LogOutButton } from '../../../presentational/atoms/Button/logOut';
 import { getCurrentUser } from '../../../../infra/api';
-// import { updateUser } from '../../../../infra/api';
 import { ProfileSwitch } from './profileSwitch';
 
 const BackButtonCover = styled.div`
@@ -21,7 +20,7 @@ const BackButtonCover = styled.div`
   }
 `
 
-const LoginBackground = styled.div`
+const Background = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,45 +30,26 @@ const LoginBackground = styled.div`
 `
 
 const Title = styled.h2`
-  width: 288px;
   font-size: 36px;
   font-family: YuMincho;
 `
 
-// Profile
-const Profile = styled.div`
-  text-align: left;
-  white-space: pre-wrap;
-`
-
-// Form
-const FormCover = styled.div`
-  min-width: 260px;
-  padding: 0 10px;
-  text-align: left;
-`
-
-const FormTextAreaCover = styled.div`
-  margin-bottom: 10px;
-
-  > label {
-    display: block;
-  }
-
-  > textarea {
-    min-width: 260px;
-    min-height: 200px;
-  }
-`
-
-const FormButtonCover = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`
-
-
 // TaskList
-const TaskListCover = styled.div``
+const ContentHeader = styled.div`
+  padding: 0 20px;
+`
+
+const Content = styled.article`
+  border-top: 1px solid #ddd;
+  width: 100%;
+`
+
+const TaskListCover = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
 
 const TaskList = styled.dl`
   margin-top: 30px;
@@ -161,125 +141,40 @@ export function UserShow() {
     return () => { isMounted = false };
   }, [currentUserId]);
 
-  // Profile
-  // const ProfileSwitch = () => {
-  //   const location = useLocation();
-  //   const locationPathName = location.pathname.split("/");
-  //   const user_id = locationPathName[locationPathName.length -1];
-
-  //   const [taskUser, setTaskUser] = useState([]);
-  //   let [userProfile, setUserProfile] = useState([]);
-  //   useEffect(() => {
-  //     let isMounted = true;
-  //     getUser(user_id)
-  //     .then(response => {
-  //       const taskUser = response.data.user;
-  //       const userProfile = response.data.user.profile;
-  //       if (isMounted) setTaskUser(taskUser);
-  //       if (isMounted) setUserProfile(userProfile);
-  //     })
-  //     .catch(data => {
-  //       console.log(data);
-  //     });
-  //     return () => { isMounted = false };
-  //   }, [userProfile]);
-
-  //   let [id, setId] = useState([]);
-  //   let [user, setUser] = useState([]);
-  //   const handleTextSubmit = async(e) => {
-  //     e.preventDefault();
-  //     e.persist();
-  //     id = user_id;
-  //     user = { 'profile': userProfile };
-  //     setId(id);
-  //     setUser(user);
-  //     updateUserFunc(id, user);
-  //     setProfileAble(true);
-  //   }
-
-  //   const updateUserFunc = useCallback((id, user) => {
-  //     updateUser(id, user)
-  //     .then(response => {
-  //       console.log(response.data);
-  //       const userProfile = response.data.user.profile;
-  //       setUserProfile(userProfile);
-  //     })
-  //     .catch(response => {
-  //       console.log(response.data);
-  //     });
-  //   }, []);
-
-  //   const [currentUserId, setCurrentUserId] = useState([]);
-  //   useEffect(() => {
-  //     let isMounted = true;
-  //     getCurrentUser()
-  //     .then(response => {
-  //       const currentUserId = response.data.user.id;
-  //       if (isMounted) setCurrentUserId(currentUserId);
-  //     })
-  //     .catch(data => {
-  //       console.log(data);
-  //     });
-  //     return () => { isMounted = false };
-  //   }, [currentUserId]);
-
-  //   const [profileAble, setProfileAble] = useState(true);
-  //   if (profileAble === true) {
-  //     return <div>
-  //              <Profile>{userProfile}</Profile>
-  //              {currentUserId === taskUser.id &&
-  //                <div>
-  //                  <button type="button" onClick={ (e) => { setProfileAble(false) }}>編集</button>
-  //                </div>
-  //              }
-  //            </div>
-  //   } else {
-  //     return <React.Fragment>
-  //              {currentUserId === taskUser.id &&
-  //                <FormCover>
-  //                  <form onSubmit={handleTextSubmit}>
-  //                    <FormTextAreaCover>
-  //                      <label htmlFor="profile">プロフィール:</label>
-  //                      <textarea name="profile" onChange={ (e) => { setUserProfile(e.target.value) }} placeholder="profile" cols="80" rows="3" defaultValue={userProfile}></textarea>
-  //                    </FormTextAreaCover>
-  //                    <FormButtonCover><button type="submit">保存</button></FormButtonCover>
-  //                  </form>
-  //                </FormCover>
-  //              }
-  //            </React.Fragment>
-  //   }
-  // }
-
   return (
     <React.Fragment>
       <Header />
       <BackButtonCover>
         <ArrowBackIosIcon onClick={handleBackButtonClick} />
       </BackButtonCover>
-      <LoginBackground>
-        <Title>{taskUser.name}</Title>
-        <ProfileSwitch />
-        <TaskListCover>
-          {userTasks.length === 0
-            ? <div key={userTasks}>まだ投稿はありません。</div>
-            : userTasks.map((task) => {
-                return (
-                  <TaskList key={task.id}>
-                    <dt>
-                      <Link to={`tasks/${task.id}`}>{task.title}</Link>
-                    </dt>
-                    <dd>{task.content}</dd>
-                  </TaskList>
-                );
-              })
-          }
-        </TaskListCover>
+      <Background>
+        <ContentHeader>
+          <Title>{taskUser.name}</Title>
+          <ProfileSwitch />
+        </ContentHeader>
+        <Content>
+          <TaskListCover>
+            {userTasks.length === 0
+              ? <div key={userTasks}>まだ投稿はありません。</div>
+              : userTasks.map((task) => {
+                  return (
+                    <TaskList key={task.id}>
+                      <dt>
+                        <Link to={`tasks/${task.id}`}>{task.title}</Link>
+                      </dt>
+                      <dd>{task.content}</dd>
+                    </TaskList>
+                  );
+                })
+            }
+          </TaskListCover>
+        </Content>
         {currentUserId === taskUser.id &&
           <LogOutButtonCover>
             { currentUser && <LogOutButton text="ログアウト" /> }
           </LogOutButtonCover>
         }
-      </LoginBackground>
+      </Background>
     </React.Fragment>
   )
 };
