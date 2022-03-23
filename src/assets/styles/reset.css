@@ -56,3 +56,11 @@ input, textarea {
   width: 100%;
   box-sizing: border-box;
 }
+textarea {
+  min-width: 260px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  line-height: 1.3rem;
+  resize: none;
+}

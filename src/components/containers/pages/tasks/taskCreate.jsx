@@ -89,12 +89,15 @@ export function TaskCreate() {
     });
   }, []);
 
+  const [load, setLoad] = useState(false);
   const handleTextSubmit = (e) => {
     e.preventDefault();
     e.persist();
+    setLoad(true);
     task = { 'title': title, 'content': content, 'user_id': current_uid };
     setTask(task);
     postTasksFunc(task);
+    setLoad(false)
     navigate("/tasks");
   }
 
@@ -116,7 +119,7 @@ export function TaskCreate() {
               <label htmlFor="content">内容:</label>
               <textarea name="content" onChange={ (e) => { setContent(e.target.value) }} placeholder="Content" cols="80" rows="3" value={content}></textarea>
             </FormTextAreaCover>
-            <FormButtonCover><button type="submit">登録</button></FormButtonCover>
+            <FormButtonCover><button type="submit" disabled={load}>登録</button></FormButtonCover>
           </form>
         </FormCover>
       </TopBackground>

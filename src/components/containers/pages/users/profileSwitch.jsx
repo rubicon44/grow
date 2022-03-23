@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { getUser } from '../../../../infra/api';
@@ -7,14 +7,50 @@ import { updateUser } from '../../../../infra/api';
 
 // Profile
 const Profile = styled.div`
+  margin-bottom: 30px;
+`
+const ProfileHeader = styled.div`
+`
+
+const BioChangeLinkCover = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`
+
+const BioChangeLink = styled.a`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  width: 168px;
+  border: 1px solid black;
+  border-color: rgb(207, 217, 222);
+  border-radius: 9999px;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+`
+
+const ProfileContent = styled.div`
   text-align: left;
+`
+
+const UserName = styled.div`
+  display: flex;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+`
+
+const Bio = styled.div`
   white-space: pre-wrap;
 `
 
 // Form
 const FormCover = styled.div`
   min-width: 260px;
-  padding: 0 10px;
   text-align: left;
 `
 
@@ -23,6 +59,7 @@ const FormTextAreaCover = styled.div`
 
   > label {
     display: block;
+    margin-bottom: 10px;
   }
 
   > textarea {
@@ -42,15 +79,15 @@ export const ProfileSwitch = () => {
   const user_id = locationPathName[locationPathName.length -1];
 
   const [taskUser, setTaskUser] = useState([]);
-  const [userProfile, setUserProfile] = useState([]);
+  const [userBio, setUserBio] = useState([]);
   useEffect(() => {
     let isMounted = true;
     getUser(user_id)
     .then(response => {
       const taskUser = response.data.user;
-      const userProfile = response.data.user.profile;
+      const userBio = response.data.user.bio;
       if (isMounted) setTaskUser(taskUser);
-      if (isMounted) setUserProfile(userProfile);
+      if (isMounted) setUserBio(userBio);
     })
     .catch(data => {
       console.log(data);
@@ -58,25 +95,28 @@ export const ProfileSwitch = () => {
     return () => { isMounted = false };
   }, [user_id]);
 
-  const updateUserFunc = useCallback((id, user) => {
+  const updateUserFunc = (id, user) => {
     updateUser(id, user)
     .then(response => {
       console.log(response.data);
-      const userProfile = response.data.user.profile;
-      setUserProfile(userProfile);
+      const userBio = response.data.user.bio;
+      setUserBio(userBio);
     })
     .catch(response => {
       console.log(response.data);
     });
-  }, []);
+  };
 
+  const [load, setLoad] = useState(false);
   const handleTextSubmit = (e) => {
     e.preventDefault();
     e.persist();
+    setLoad(true);
     const id = user_id;
-    const user = { 'profile': userProfile };
+    const user = { 'bio': userBio };
     updateUserFunc(id, user);
-    setProfileAble(true);
+    setBioAble(true);
+    setLoad(false);
   }
 
   const [currentUserId, setCurrentUserId] = useState([]);
@@ -93,26 +133,32 @@ export const ProfileSwitch = () => {
     return () => { isMounted = false };
   }, [currentUserId]);
 
-  const [profileAble, setProfileAble] = useState(true);
-  if (profileAble === true) {
-    return (<div>
-             <Profile>{userProfile}</Profile>
-             {currentUserId === user_id &&
-               <div>
-                 <button type="button" onClick={ (e) => { setProfileAble(false) }}>編集</button>
-               </div>
-             }
-           </div>)
+  const [bioAble, setBioAble] = useState(true);
+  if (bioAble === true) {
+    return (<Profile>
+              <ProfileHeader>
+                {currentUserId === user_id &&
+                  <BioChangeLinkCover>
+                    <BioChangeLink onClick={ (e) => { setBioAble(false) }}><span>プロフィールを編集</span></BioChangeLink>
+                  </BioChangeLinkCover>
+                }
+              </ProfileHeader>
+              <ProfileContent>
+                <UserName>{taskUser.name}</UserName>
+                <Bio>{userBio}</Bio>
+              </ProfileContent>
+           </Profile>)
   } else {
     return (<React.Fragment>
              {currentUserId === user_id &&
                <FormCover>
                  <form onSubmit={handleTextSubmit}>
                    <FormTextAreaCover>
-                     <label htmlFor="profile">プロフィール:</label>
-                     <textarea name="profile" onChange={ (e) => { setUserProfile(e.target.value) }} placeholder="profile" cols="80" rows="3" defaultValue={userProfile}></textarea>
+                     <label htmlFor="bio">プロフィール</label>
+                     <textarea name="bio" onChange={ (e) => { setUserBio(e.target.value) }} placeholder="bio" cols="80" rows="3" defaultValue={userBio}></textarea>
                    </FormTextAreaCover>
-                   <FormButtonCover><button type="submit">保存</button></FormButtonCover>
+                   <FormButtonCover><button type="button" onClick={ (e) => { setBioAble(true) } }>閉じる</button></FormButtonCover>
+                   <FormButtonCover><button type="submit" disabled={load}>保存</button></FormButtonCover>
                  </form>
                </FormCover>
              }

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -81,7 +81,7 @@ export function TaskEdit() {
     navigate(-1);
   };
 
-  const updateTaskFunc = useCallback((id, task) => {
+  const updateTaskFunc = (id, task) => {
     updateTask(id, task)
     .then(response => {
       console.log(response.data);
@@ -89,16 +89,19 @@ export function TaskEdit() {
     .catch(response => {
       console.log(response.data);
     });
-  }, []);
+  };
 
+  const [load, setLoad] = useState(false);
   const handleTextSubmit = (e) => {
     e.preventDefault();
     e.persist();
+    setLoad(true);
     id = location.state.id;
     task = { 'title': title, 'content': content };
     setId(id);
     setTask(task);
     updateTaskFunc(id, task);
+    setLoad(false)
     navigate(`/users/${location.state.current_user_id}/tasks/${location.state.id}`);
   }
 
@@ -120,7 +123,7 @@ export function TaskEdit() {
               <label htmlFor="content">内容:</label>
               <textarea name="content" onChange={ (e) => { setContent(e.target.value) }} placeholder="Content" cols="80" rows="3" defaultValue={location.state.content}></textarea>
             </FormTextAreaCover>
-            <FormButtonCover><button type="submit">編集</button></FormButtonCover>
+            <FormButtonCover><button type="submit" disabled={load}>編集</button></FormButtonCover>
           </form>
         </FormCover>
       </TopBackground>
