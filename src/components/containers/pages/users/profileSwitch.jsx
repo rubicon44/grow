@@ -85,7 +85,7 @@ export const ProfileSwitch = () => {
     getUser(user_id)
     .then(response => {
       const taskUser = response.data.user;
-      const userBio = response.data.user.profile;
+      const userBio = response.data.user.bio;
       if (isMounted) setTaskUser(taskUser);
       if (isMounted) setUserBio(userBio);
     })
@@ -99,7 +99,7 @@ export const ProfileSwitch = () => {
     updateUser(id, user)
     .then(response => {
       console.log(response.data);
-      const userBio = response.data.user.profile;
+      const userBio = response.data.user.bio;
       setUserBio(userBio);
     })
     .catch(response => {
@@ -111,7 +111,7 @@ export const ProfileSwitch = () => {
     e.preventDefault();
     e.persist();
     const id = user_id;
-    const user = { 'profile': userBio };
+    const user = { 'bio': userBio };
     updateUserFunc(id, user);
     setBioAble(true);
   }
