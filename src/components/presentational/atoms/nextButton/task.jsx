@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
 
-const ButtonStyle = styled(Link)`
+const LinkStyle = styled(Link)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,10 +30,10 @@ export function NextTask(props) {
   return (
     <React.Fragment>
       {props.text === "タスク一覧" &&
-        <ButtonStyle to="/tasks">{props.text}</ButtonStyle>
+        <LinkStyle to="/tasks">{props.text}</LinkStyle>
       }
       {props.text === "タスク登録" &&
-        <ButtonStyle to="/tasks/create">{props.text}</ButtonStyle>
+        <LinkStyle to="/tasks/create">{props.text}</LinkStyle>
       }
     </React.Fragment>
   )

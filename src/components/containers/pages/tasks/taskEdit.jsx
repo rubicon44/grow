@@ -91,14 +91,17 @@ export function TaskEdit() {
     });
   };
 
+  const [load, setLoad] = useState(false);
   const handleTextSubmit = (e) => {
     e.preventDefault();
     e.persist();
+    setLoad(true);
     id = location.state.id;
     task = { 'title': title, 'content': content };
     setId(id);
     setTask(task);
     updateTaskFunc(id, task);
+    setLoad(false)
     navigate(`/users/${location.state.current_user_id}/tasks/${location.state.id}`);
   }
 
@@ -120,7 +123,7 @@ export function TaskEdit() {
               <label htmlFor="content">内容:</label>
               <textarea name="content" onChange={ (e) => { setContent(e.target.value) }} placeholder="Content" cols="80" rows="3" defaultValue={location.state.content}></textarea>
             </FormTextAreaCover>
-            <FormButtonCover><button type="submit">編集</button></FormButtonCover>
+            <FormButtonCover><button type="submit" disabled={load}>編集</button></FormButtonCover>
           </form>
         </FormCover>
       </TopBackground>

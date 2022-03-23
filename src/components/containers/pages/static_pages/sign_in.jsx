@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { AuthContext } from '../../../../auth/authProvider';
@@ -19,11 +19,13 @@ const FormCover = styled.div`
 export const SignIn = () => {
   const navigate = useNavigate();
   const { signin } = useContext(AuthContext);
-
-  const handleSubmit = event => {
-    event.preventDefault();
-    const { email, password } = event.target.elements;
+  const [load, setLoad] = useState(false);
+  const handleSubmit = e => {
+    e.preventDefault();
+    setLoad(true);
+    const { email, password } = e.target.elements;
     signin(email.value, password.value);
+    setLoad(false)
     navigate("/tasks");
   };
 
@@ -41,7 +43,7 @@ export const SignIn = () => {
             パスワード
             <input name="password" type="password" placeholder="Password" autoComplete="on" />
           </label>
-          <button type="submit">ログイン</button>
+          <button type="submit" disabled={load}>ログイン</button>
         </form>
       </FormCover>
     </React.Fragment>

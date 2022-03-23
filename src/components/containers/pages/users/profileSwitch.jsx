@@ -107,13 +107,16 @@ export const ProfileSwitch = () => {
     });
   };
 
+  const [load, setLoad] = useState(false);
   const handleTextSubmit = (e) => {
     e.preventDefault();
     e.persist();
+    setLoad(true);
     const id = user_id;
     const user = { 'bio': userBio };
     updateUserFunc(id, user);
     setBioAble(true);
+    setLoad(false);
   }
 
   const [currentUserId, setCurrentUserId] = useState([]);
@@ -155,7 +158,7 @@ export const ProfileSwitch = () => {
                      <textarea name="bio" onChange={ (e) => { setUserBio(e.target.value) }} placeholder="bio" cols="80" rows="3" defaultValue={userBio}></textarea>
                    </FormTextAreaCover>
                    <FormButtonCover><button type="button" onClick={ (e) => { setBioAble(true) } }>閉じる</button></FormButtonCover>
-                   <FormButtonCover><button type="submit">保存</button></FormButtonCover>
+                   <FormButtonCover><button type="submit" disabled={load}>保存</button></FormButtonCover>
                  </form>
                </FormCover>
              }
