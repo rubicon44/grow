@@ -58,12 +58,16 @@ export function TaskShow() {
   const [task, setTask] = useState([]);
   const [taskCreatedUser, setTaskCreatedUser] = useState("");
   const task_id = locationPathName[locationPathName.length -1];
+  const [taskTitle, setTaskTitle] = useState([]);
+  const [taskContent, setTaskContent] = useState([]);
 
   useEffect(() => {
     let isMounted = true;
     getTask(task_id)
     .then(response => {
       console.log(response.data);
+      if (isMounted) setTaskTitle(response.data.title);
+      if (isMounted) setTaskContent(response.data.content);
       if (isMounted) setTask(response.data);
       if (isMounted) setTaskCreatedUser(response.data.user);
     })
@@ -71,7 +75,7 @@ export function TaskShow() {
       console.log(data);
     });
     return () => { isMounted = false };
-  }, [task_id]);
+  }, [taskTitle, taskContent]);
 
   const handleBackButtonClick = () => {
     navigate(-1);

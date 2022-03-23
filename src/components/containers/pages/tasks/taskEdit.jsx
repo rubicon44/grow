@@ -81,7 +81,7 @@ export function TaskEdit() {
     navigate(-1);
   };
 
-  const updateTaskFunc = useCallback((id, task) => {
+  const updateTaskFunc = (id, task) => {
     updateTask(id, task)
     .then(response => {
       console.log(response.data);
@@ -89,7 +89,7 @@ export function TaskEdit() {
     .catch(response => {
       console.log(response.data);
     });
-  }, []);
+  };
 
   const handleTextSubmit = (e) => {
     e.preventDefault();

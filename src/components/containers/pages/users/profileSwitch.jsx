@@ -58,7 +58,7 @@ export const ProfileSwitch = () => {
     return () => { isMounted = false };
   }, [user_id]);
 
-  const updateUserFunc = useCallback((id, user) => {
+  const updateUserFunc = (id, user) => {
     updateUser(id, user)
     .then(response => {
       console.log(response.data);
@@ -68,7 +68,7 @@ export const ProfileSwitch = () => {
     .catch(response => {
       console.log(response.data);
     });
-  }, []);
+  };
 
   const handleTextSubmit = (e) => {
     e.preventDefault();
