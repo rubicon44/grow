@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { getTasks } from '../../../../infra/api';
 import { Header } from '../../organisms/header';
-import { NextTask } from '../../../presentational/atoms/nextButton/task';
+import { NextTask } from '../../../presentational/atoms/Button/nextTask';
 
 const LoginBackground = styled.div`
   display: flex;
@@ -55,20 +55,6 @@ export function TaskIndex() {
     return () => { isMounted = false };
   }, [tasks]);
 
-  // const sortAOrder = () => {
-  //   const list = tasks;
-  //   const aOrder = list.sort(function (a, b) {
-  //     if (a.id < b.id) {
-  //       return -1;
-  //     }
-  //     if (a.id > b.id) {
-  //       return 1;
-  //     }
-  //     return 0;
-  //   });
-  //   return aOrder;
-  // };
-
   const sortdOrder = (response) => {
     const list = response.data;
     const dOrder = list.sort(function (a, b) {
@@ -98,7 +84,7 @@ export function TaskIndex() {
       <LoginBackground>
         <Title>タスク一覧</Title>
 
-        <NextTask text="タスク登録" />
+        <NextTask text="タスク登録" url="/tasks/create" />
         <TaskListCover>
           {tasks.map((task) => {
             return (

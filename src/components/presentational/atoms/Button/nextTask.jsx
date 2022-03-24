@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
 
-const ButtonStyle = styled(Link)`
+const LinkStyle = styled(Link)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,8 +26,15 @@ const ButtonStyle = styled(Link)`
 `}
 `
 
-export function NextSignUp(props) {
+export function NextTask(props) {
   return (
-    <ButtonStyle to="/sign_up">{props.text}</ButtonStyle>
+    <React.Fragment>
+      {props.text === "タスク一覧" &&
+        <LinkStyle to={props.url}>{props.text}</LinkStyle>
+      }
+      {props.text === "タスク登録" &&
+        <LinkStyle to={props.url}>{props.text}</LinkStyle>
+      }
+    </React.Fragment>
   )
 }
