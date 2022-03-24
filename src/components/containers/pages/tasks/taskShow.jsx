@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -75,7 +75,7 @@ export function TaskShow() {
       console.log(data);
     });
     return () => { isMounted = false };
-  }, [taskTitle, taskContent]);
+  }, [task_id, taskTitle, taskContent]);
 
   const handleBackButtonClick = () => {
     navigate(-1);
@@ -92,7 +92,7 @@ export function TaskShow() {
     });
   };
 
-  const deleteTaskFunc = useCallback((id) => {
+  const deleteTaskFunc = (id) => {
     deleteTask(id)
     .then(response => {
       console.log(response.data);
@@ -102,7 +102,7 @@ export function TaskShow() {
       console.log(response.data);
     });
     navigate(`/users/${taskCreatedUser.id}`);
-  }, [taskCreatedUser]);
+  };
 
   const EditTaskButton = () => {
     const taskCreateUserId = task.user_id;
