@@ -100,7 +100,7 @@ export function UserShow() {
       console.log(data);
     });
     return () => { isMounted = false };
-  }, [taskUser]);
+  }, [user_id, taskUser]);
 
   const sortdOrder = (taskData) => {
     const list = taskData;
