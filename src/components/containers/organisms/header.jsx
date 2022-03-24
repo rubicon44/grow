@@ -101,12 +101,12 @@ export function Header() {
 
         <Link to="/top">
           <ListItem button className={clsx(classes.listCenter)}>
-            <ListItemText primary="Home" />
+            <ListItemText primary="Top" />
           </ListItem>
         </Link>
         <Link to="/tasks">
           <ListItem button className={clsx(classes.listCenter)}>
-            <ListItemText primary="Task" />
+            <ListItemText primary="Home" />
           </ListItem>
         </Link>
         <Link to="/tasks/create">
@@ -144,7 +144,7 @@ export function Header() {
 
   return (
     <HeaderCover>
-      <Logo to="/">Grow</Logo>
+      <Logo to="/tasks">Grow</Logo>
       <HeaderMenuGroup>
         {['top'].map((anchor) => (
           <React.Fragment key={anchor}>

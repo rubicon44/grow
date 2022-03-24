@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
-
-import { NextSignUp } from '../../../presentational/atoms/nextButton/sign_up';
-import { NextSignIn } from '../../../presentational/atoms/nextButton/sign_in';
-import { NextTask } from '../../../presentational/atoms/nextButton/task';
+import { NextAuth } from '../../../presentational/atoms/Button/nextAuth';
+import { NextTask } from '../../../presentational/atoms/Button/nextTask';
 
 const TopBackground = styled.div`
   position: relative;
@@ -38,9 +36,9 @@ export function Top() {
   return (
     <TopBackground>
       <Title>Grow</Title>
-      <NextTask text="タスク一覧" />
-      <NextSignUp text="会員登録" />
-      <NextSignIn text="ログイン" />
+      <NextTask text="タスク一覧" url="/tasks" />
+      <NextAuth text="会員登録" url="/sign_up" />
+      <NextAuth text="ログイン" url="/sign_in" />
     </TopBackground>
   )
 };

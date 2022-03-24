@@ -26,15 +26,22 @@ const LinkStyle = styled(Link)`
 `}
 `
 
-export function NextTask(props) {
+const LoginText = styled(Link)`
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 30px;
+  text-decoration: underline;
+`;
+
+export function NextAuth(props) {
   return (
     <React.Fragment>
-      {props.text === "タスク一覧" &&
-        <LinkStyle to="/tasks">{props.text}</LinkStyle>
-      }
-      {props.text === "タスク登録" &&
-        <LinkStyle to="/tasks/create">{props.text}</LinkStyle>
-      }
-    </React.Fragment>
+    {props.text === "会員登録" &&
+      <LinkStyle to={props.url}>{props.text}</LinkStyle>
+    }
+    {props.text === "ログイン" &&
+      <LoginText to={props.url}>{props.text}</LoginText>
+    }
+  </React.Fragment>
   )
 }
