@@ -29,12 +29,7 @@ const LinkStyle = styled(Link)`
 export function NextTask(props) {
   return (
     <React.Fragment>
-      {props.text === "タスク一覧" &&
-        <LinkStyle to={props.url}>{props.text}</LinkStyle>
-      }
-      {props.text === "タスク登録" &&
-        <LinkStyle to={props.url}>{props.text}</LinkStyle>
-      }
+      <LinkStyle to={props.url}>{props.text}</LinkStyle>
     </React.Fragment>
   )
 }
