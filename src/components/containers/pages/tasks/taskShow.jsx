@@ -1,20 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { getTask, deleteTask } from '../../../../infra/api';
 import { Header } from '../../organisms/header';
-
-const BackButtonCover = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 30px;
-
-  > svg {
-    cursor: pointer;
-  }
-`
+import { Title } from '../../../presentational/atoms/Title/index';
+import { BackButton } from '../../../presentational/atoms/Button/backButton';
 
 const LoginBackground = styled.div`
   display: flex;
@@ -23,12 +13,6 @@ const LoginBackground = styled.div`
   align-items: center;
   text-align: center;
   background-color: #f8f7f3;
-`
-
-const Title = styled.h2`
-  width: 288px;
-  font-size: 36px;
-  font-family: YuMincho;
 `
 
 // task一覧表示
@@ -76,10 +60,6 @@ export function TaskShow() {
     });
     return () => { isMounted = false };
   }, [task_id, taskTitle, taskContent]);
-
-  const handleBackButtonClick = () => {
-    navigate(-1);
-  };
 
   const editTaskFunc = (id, currentUserId) => {
     navigate(`/tasks/edit/${id}`, {
@@ -133,12 +113,9 @@ export function TaskShow() {
   return (
     <div className="App">
       <Header />
-      <BackButtonCover>
-        <ArrowBackIosIcon onClick={handleBackButtonClick} />
-      </BackButtonCover>
+      <BackButton />
       <LoginBackground>
-        <Title>タスク詳細</Title>
-
+        <Title title="タスク詳細" />
         <TaskListCover>
           <TaskList>
             <dt>{task.title}</dt>

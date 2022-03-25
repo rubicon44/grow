@@ -1,24 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { getUser } from '../../../../infra/api';
 import { Header } from '../../organisms/header';
 import { AuthContext } from '../../../../auth/authProvider';
+import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { LogOutButton } from '../../../presentational/atoms/Button/logOut';
 import { getCurrentUser } from '../../../../infra/api';
 import { ProfileSwitch } from './profileSwitch';
-
-const BackButtonCover = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 30px;
-
-  > svg {
-    cursor: pointer;
-  }
-`
 
 const Background = styled.div`
   display: flex;
@@ -121,11 +110,6 @@ export function UserShow() {
     }
   };
 
-  const navigate = useNavigate();
-  const handleBackButtonClick = () => {
-    navigate(-1);
-  };
-
   const { currentUser } = useContext(AuthContext);
   const [currentUserId, setCurrentUserId] = useState([]);
   useEffect(() => {
@@ -144,9 +128,7 @@ export function UserShow() {
   return (
     <React.Fragment>
       <Header />
-      <BackButtonCover>
-        <ArrowBackIosIcon onClick={handleBackButtonClick} />
-      </BackButtonCover>
+      <BackButton />
       <Background>
         <ContentHeader>
           <Title>{taskUser.name}</Title>
