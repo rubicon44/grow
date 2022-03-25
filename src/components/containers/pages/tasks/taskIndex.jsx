@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { getTasks } from '../../../../infra/api';
 import { Header } from '../../organisms/header';
+import { Title } from '../../../presentational/atoms/Title/index';
 import { NextTask } from '../../../presentational/atoms/Button/nextTask';
 
 const LoginBackground = styled.div`
@@ -12,12 +13,6 @@ const LoginBackground = styled.div`
   align-items: center;
   text-align: center;
   background-color: #f8f7f3;
-`
-
-const Title = styled.h2`
-  width: 288px;
-  font-size: 36px;
-  font-family: YuMincho;
 `
 
 // task一覧表示
@@ -82,7 +77,7 @@ export function TaskIndex() {
     <React.Fragment>
       <Header />
       <LoginBackground>
-        <Title>タスク一覧</Title>
+        <Title title="タスク一覧" />
 
         <NextTask text="タスク登録" url="/tasks/create" />
         <TaskListCover>
