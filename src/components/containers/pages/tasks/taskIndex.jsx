@@ -15,10 +15,7 @@ const LoginBackground = styled.div`
   background-color: #f8f7f3;
 `
 
-// task一覧表示
-const TaskListCover = styled.div``
-
-const TaskList = styled.dl`
+const TasksList = styled.dl`
   margin-top: 30px;
   text-align: left;
 
@@ -78,12 +75,11 @@ export function TaskIndex() {
       <Header />
       <LoginBackground>
         <Title title="タスク一覧" />
-
         <NextTask text="タスク登録" url="/tasks/create" />
-        <TaskListCover>
+        <div>
           {tasks.map((task) => {
             return (
-              <TaskList key={task.id}>
+              <TasksList key={task.id}>
                 <dt>
                   <Link to={`/users/${task.user_id}/tasks/${task.id}`}>{task.title}</Link>
                 </dt>
@@ -92,10 +88,10 @@ export function TaskIndex() {
                   by:
                   <Link to={`/users/${task.user.id}`} onClick={async() => await userShowFunc(task)}>{task.user.name}</Link>
                 </div>
-              </TaskList>
+              </TasksList>
             );
           })}
-        </TaskListCover>
+        </div>
       </LoginBackground>
     </React.Fragment>
   )
