@@ -47,7 +47,7 @@ export const SignUp = () => {
             パスワード
             <input name="password" type="password" placeholder="Password" autoComplete="on" />
           </label>
-          <button type="submit" disabled={load}>登録</button>
+          <button type="submit" disabled={load}>会員登録</button>
         </form>
       </FormCover>
     </React.Fragment>

@@ -83,6 +83,18 @@ export function Header() {
     setState({ ...state, [anchor]: open });
   };
 
+  const headerLinks        = [
+                               { url: "/top", text: "Top" },
+                               { url: "/tasks", text: "Home" },
+                               { url: "/tasks/create", text: "Post" },
+                               { url: "/users/" + userId, text: "Report" },
+                             ];
+
+  const headerLinksForAuth = [
+                               { url: "/sign_in", text: "ログイン" },
+                               { url: "/sign_up", text: "会員登録" },
+                             ];
+
   const list = (anchor) => (
     <div
       className={clsx(classes.list, {
@@ -93,51 +105,23 @@ export function Header() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {/* {['Home', 'Post', 'Report', 'Notification'].map((text, index) => (
-          <ListItem button key={text} className={clsx(classes.listCenter)}>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))} */}
-
-        <Link to="/top">
-          <ListItem button className={clsx(classes.listCenter)}>
-            <ListItemText primary="Top" />
-          </ListItem>
-        </Link>
-        <Link to="/tasks">
-          <ListItem button className={clsx(classes.listCenter)}>
-            <ListItemText primary="Home" />
-          </ListItem>
-        </Link>
-        <Link to="/tasks/create">
-          <ListItem button className={clsx(classes.listCenter)}>
-            <ListItemText primary="Post" />
-          </ListItem>
-        </Link>
-        <Link to={"/users/" + userId}>
-          <ListItem button className={clsx(classes.listCenter)}>
-            <ListItemText primary="Report" />
-          </ListItem>
-        </Link>
+        {headerLinks.map((headerLink) => (
+          <Link to={headerLink.url} key={headerLink.url}>
+            <ListItem button key={headerLink.text} className={clsx(classes.listCenter)}>
+              <ListItemText primary={headerLink.text} />
+            </ListItem>
+          </Link>
+        ))}
       </List>
       <Divider />
       <List>
-        {/* {['ログイン', '会員登録'].map((text, index) => (
-          <ListItem button key={text} className={clsx(classes.listCenter)}>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))} */}
-
-        <Link to="/sign_in">
-          <ListItem button className={clsx(classes.listCenter)}>
-            <ListItemText primary="ログイン" />
-          </ListItem>
-        </Link>
-        <Link to="/sign_up">
-          <ListItem button className={clsx(classes.listCenter)}>
-            <ListItemText primary="会員登録" />
-          </ListItem>
-        </Link>
+      {headerLinksForAuth.map((headerLink) => (
+          <Link to={headerLink.url} key={headerLink.url}>
+            <ListItem button key={headerLink.text} className={clsx(classes.listCenter)}>
+              <ListItemText primary={headerLink.text} />
+            </ListItem>
+          </Link>
+        ))}
       </List>
     </div>
   );

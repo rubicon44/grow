@@ -119,7 +119,7 @@ export function TaskCreate() {
               <label htmlFor="content">内容:</label>
               <textarea name="content" onChange={ (e) => { setContent(e.target.value) }} placeholder="Content" cols="80" rows="3" value={content}></textarea>
             </FormTextAreaCover>
-            <FormButtonCover><button type="submit" disabled={load}>登録</button></FormButtonCover>
+            <FormButtonCover><button type="submit" disabled={load}>作成</button></FormButtonCover>
           </form>
         </FormCover>
       </TopBackground>
