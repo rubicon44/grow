@@ -13,10 +13,10 @@ export function FormUpdate(props) {
 
   useEffect(() => {
     let isMounted = true;
-    id = props.id;
-    title = props.title;
-    content = props.content;
-    currentUserId = props.current_user_id;
+    const id = props.id;
+    const title = props.title;
+    const content = props.content;
+    const currentUserId = props.current_user_id;
     if (isMounted) setId(id);
     if (isMounted) setTitle(title);
     if (isMounted) setContent(content);
