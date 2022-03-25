@@ -1,29 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { updateTask } from '../../../infra/api';
 import { Form } from '../../presentational/molecules/Form/index';
 
 export function FormUpdate(props) {
+  const [load, setLoad] = useState(false);
+  const [title, setTitle] = useState([props.title]);
+  const [content, setContent] = useState([props.content]);
+  const id = props.id;
+  const currentUserId = props.current_user_id;
   const navigate = useNavigate();
-  let [id, setId] = useState([]);
-  let [task, setTask] = useState([]);
-  let [title, setTitle] = useState([]);
-  let [content, setContent] = useState([]);
-  let [currentUserId, setCurrentUserId] = useState([]);
-
-  useEffect(() => {
-    let isMounted = true;
-    const id = props.id;
-    const title = props.title;
-    const content = props.content;
-    const currentUserId = props.current_user_id;
-    if (isMounted) setId(id);
-    if (isMounted) setTitle(title);
-    if (isMounted) setContent(content);
-    if (isMounted) setCurrentUserId(currentUserId);
-    return () => { isMounted = false };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  const handleTextSubmit = (e) => {
+    e.preventDefault();
+    e.persist();
+    setLoad(true);
+    let task = { 'title': title, 'content': content };
+    updateTaskFunc(id, task);
+    setLoad(false)
+    navigate(`/users/${currentUserId}/tasks/${id}`);
+  };
 
   const updateTaskFunc = (id, task) => {
     updateTask(id, task)
@@ -35,19 +30,7 @@ export function FormUpdate(props) {
     });
   };
 
-  const [load, setLoad] = useState(false);
-  const handleTextSubmit = (e) => {
-    e.preventDefault();
-    e.persist();
-    setLoad(true);
-    task = { 'title': title, 'content': content };
-    setTask(task);
-    updateTaskFunc(id, task);
-    setLoad(false)
-    navigate(`/users/${currentUserId}/tasks/${id}`);
-  }
-
   return (
-    <Form title={title} content={content} setTitle={setTitle} setContent={setContent} load={load} handleTextSubmit={handleTextSubmit} />
+    <Form load={load} title={title} setTitle={setTitle} content={content} setContent={setContent} handleTextSubmit={handleTextSubmit} />
   )
 }
