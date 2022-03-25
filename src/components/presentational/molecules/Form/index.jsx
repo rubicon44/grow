@@ -49,7 +49,10 @@ export function Form(props) {
           <label htmlFor="content">内容:</label>
           <textarea name="content" onChange={ (e) => { props.setContent(e.target.value) }} placeholder="Content" cols="80" rows="3" defaultValue={props.content}></textarea>
         </FormTextAreaCover>
-        <FormButtonCover><button type="submit" disabled={props.load}>作成</button></FormButtonCover>
+        <FormButtonCover>
+          <button type="submit" disabled={props.load}>
+            { !props.title ? "作成" : "更新" }
+          </button></FormButtonCover>
       </form>
     </FormCover>
   )
