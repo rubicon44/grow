@@ -22,6 +22,7 @@ export function FormUpdate(props) {
     if (isMounted) setContent(content);
     if (isMounted) setCurrentUserId(currentUserId);
     return () => { isMounted = false };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const updateTaskFunc = (id, task) => {
