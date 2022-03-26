@@ -28,8 +28,6 @@ const LinkStyle = styled(Link)`
 
 export function NextTask(props) {
   return (
-    <React.Fragment>
-      <LinkStyle to={props.url}>{props.text}</LinkStyle>
-    </React.Fragment>
+    <LinkStyle to={props.url}>{props.text}</LinkStyle>
   )
 }

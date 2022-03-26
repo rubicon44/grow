@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
 
-const LinkStyle = styled(Link)`
+const ButtonStyle = styled(Link)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,23 +25,8 @@ const LinkStyle = styled(Link)`
     line-height: 36px;
 `}
 `
-
-const LoginText = styled(Link)`
-  font-size: 20px;
-  font-weight: bold;
-  line-height: 30px;
-  text-decoration: underline;
-`;
-
-export function NextAuth(props) {
+export function NextButton(props) {
   return (
-    <React.Fragment>
-    {props.text === "会員登録" &&
-      <LinkStyle to={props.url}>{props.text}</LinkStyle>
-    }
-    {props.text === "ログイン" &&
-      <LoginText to={props.url}>{props.text}</LoginText>
-    }
-  </React.Fragment>
+    <ButtonStyle to={props.url}>{props.text}</ButtonStyle>
   )
 }
