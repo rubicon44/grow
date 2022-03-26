@@ -17,16 +17,15 @@ const TaskCreatedUserCover = styled.div`
 
 export function TaskList(props) {
   const task = props.task;
-  const taskCreatedUser = props.taskCreatedUser;
   const taskId = task.id;
   const taskTitle = task.title;
   const taskContent = task.content;
   const taskCreatedUserId = task.user_id;
+  const taskCreatedUserName = props.taskCreatedUser.name;
 
   let currentUserDataText =localStorage.getItem('user');
   const currentUserData = JSON.parse(currentUserDataText);
   const currentUserId = currentUserData['id'].toString();
-
 
   const EditTaskButton = () => {
     if (taskCreatedUserId === currentUserId) {
@@ -65,7 +64,7 @@ export function TaskList(props) {
     .catch(response => {
       console.log(response.data);
     });
-    navigate(`/users/${taskCreatedUser.id}`);
+    navigate(`/users/${taskCreatedUserId}`);
   };
 
   return (
@@ -74,7 +73,7 @@ export function TaskList(props) {
         <List title={taskTitle} content={taskContent} />
         <TaskCreatedUserCover>
           by:
-          <Link to={`/users/${taskCreatedUser.id}`}>{taskCreatedUser.name}</Link>
+          <Link to={`/users/${taskCreatedUserId}`}>{taskCreatedUserName}</Link>
         </TaskCreatedUserCover>
         <EditTaskButton />
         <DeleteTaskButton />

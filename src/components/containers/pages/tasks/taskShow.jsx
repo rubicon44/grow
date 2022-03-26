@@ -20,10 +20,10 @@ export function TaskShow() {
   const location = useLocation();
   const locationPathName = location.pathname.split("/");
   const task_id = locationPathName[locationPathName.length -1];
+  const [task, setTask] = useState([]);
   const [taskTitle, setTaskTitle] = useState([]);
   const [taskContent, setTaskContent] = useState([]);
-  const [task, setTask] = useState([]);
-  const [taskCreatedUser, setTaskCreatedUser] = useState("");
+  const [taskCreatedUser, setTaskCreatedUser] = useState([]);
   useEffect(() => {
     let isMounted = true;
     getTask(task_id)
