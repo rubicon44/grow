@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
-import { NextAuth } from '../../../presentational/atoms/Button/nextAuth';
+import { NextButton } from '../../../presentational/atoms/Button/nextButton';
+import { NextLink } from '../../../presentational/atoms/Link/nextLink';
 import { NextTask } from '../../../presentational/atoms/Button/nextTask';
 
 const TopBackground = styled.div`
@@ -37,8 +38,8 @@ export function Top() {
     <TopBackground>
       <Title>Grow</Title>
       <NextTask text="タスク一覧" url="/tasks" />
-      <NextAuth text="会員登録" url="/sign_up" />
-      <NextAuth text="ログイン" url="/sign_in" />
+      <NextButton text="会員登録" url="/sign_up" />
+      <NextLink text="ログイン" url="/sign_in" />
     </TopBackground>
   )
 };
