@@ -5,7 +5,7 @@ import { getTask } from '../../../../infra/api';
 import { Header } from '../../organisms/header';
 import { Title } from '../../../presentational/atoms/Title/index';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
-import { TaskList } from '../../organisms/taskList';
+import { TaskList } from '../../organisms/tasks/taskList';
 
 const LoginBackground = styled.div`
   display: flex;

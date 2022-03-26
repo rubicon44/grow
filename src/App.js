@@ -20,12 +20,12 @@ import { SignIn } from './components/containers/pages/static_pages/sign_in';
 import { SignUp } from './components/containers/pages/static_pages/sign_up';
 import { NotFound } from './components/containers/pages/static_pages/notFound';
 // タスク
-import { TaskIndex } from './components/containers/pages/tasks/taskIndex';
-import { TaskShow } from './components/containers/pages/tasks/taskShow';
-import { TaskCreate } from './components/containers/pages/tasks/taskCreate';
-import { TaskEdit } from './components/containers/pages/tasks/taskEdit';
+import { TaskIndex } from './components/containers/pages/tasks';
+import { TaskShow } from './components/containers/pages/tasks/show';
+import { TaskCreate } from './components/containers/pages/tasks/create';
+import { TaskEdit } from './components/containers/pages/tasks/edit';
 // ユーザー
-import { UserShow } from './components/containers/pages/users/userShow';
+import { UserShow } from './components/containers/pages/users/show';
 
 const Wrapper = styled.div`
   position: relative;

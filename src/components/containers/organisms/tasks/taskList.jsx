@@ -1,10 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { deleteTask } from '../../../infra/api';
-import { List } from '../../presentational/molecules/List';
+import { deleteTask } from '../../../../infra/api';
+import { List } from '../../../presentational/molecules/List/list';
 
-const TaskListCover = styled.div`
+const ListCover = styled.div`
   min-width: 180px;
   margin-top: 30px;
 `
@@ -63,11 +63,13 @@ export function TaskList(props) {
 
   return (
     <React.Fragment>
-      <TaskListCover>
-        <List title={taskTitle} content={taskContent} createdUserId={taskCreatedUserId} createdUserName={taskCreatedUserName} />
+      <ListCover>
+        <List title={taskTitle} content={taskContent}
+              link={<Link to={`/users/${taskCreatedUserId}`}>{taskCreatedUserName}</Link>}
+        />
         <EditTaskButton />
         <DeleteTaskButton />
-      </TaskListCover>
+      </ListCover>
     </React.Fragment>
   )
 }

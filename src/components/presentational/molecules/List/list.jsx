@@ -22,7 +22,7 @@ export function List(props) {
     <ListStyle>
       <dt>{props.title}</dt>
       <dd>{props.content}</dd>
-      <CreatedUser createdUserId={props.createdUserId} createdUserName={props.createdUserName} />
+      <CreatedUser link={props.link} />
     </ListStyle>
   )
 }
