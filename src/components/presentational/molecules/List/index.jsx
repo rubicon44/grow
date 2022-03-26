@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { CreatedUser } from '../../atoms/Link/createdUser';
 
 const ListStyle = styled.dl`
   text-align: left;
@@ -21,6 +22,7 @@ export function List(props) {
     <ListStyle>
       <dt>{props.title}</dt>
       <dd>{props.content}</dd>
+      <CreatedUser createdUserId={props.createdUserId} createdUserName={props.createdUserName} />
     </ListStyle>
   )
 }

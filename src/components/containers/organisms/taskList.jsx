@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { deleteTask } from '../../../infra/api';
 import { List } from '../../presentational/molecules/List';
@@ -7,12 +7,6 @@ import { List } from '../../presentational/molecules/List';
 const TaskListCover = styled.div`
   min-width: 180px;
   margin-top: 30px;
-`
-
-const TaskCreatedUserCover = styled.div`
-  display: flex;
-  justify-content: end;
-  align-items: center;
 `
 
 export function TaskList(props) {
@@ -70,11 +64,7 @@ export function TaskList(props) {
   return (
     <React.Fragment>
       <TaskListCover>
-        <List title={taskTitle} content={taskContent} />
-        <TaskCreatedUserCover>
-          by:
-          <Link to={`/users/${taskCreatedUserId}`}>{taskCreatedUserName}</Link>
-        </TaskCreatedUserCover>
+        <List title={taskTitle} content={taskContent} createdUserId={taskCreatedUserId} createdUserName={taskCreatedUserName} />
         <EditTaskButton />
         <DeleteTaskButton />
       </TaskListCover>
