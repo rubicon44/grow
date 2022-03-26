@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { postTasks } from '../../../infra/api';
-import { current_uid } from '../../../infra/firebase.js';
-import { Form } from '../../presentational/molecules/Form/index';
+import { postTasks } from '../../../../infra/api';
+import { current_uid } from '../../../../infra/firebase.js';
+import { Form } from '../../../presentational/molecules/Form/form';
 
-export function FormCreate() {
+export function TaskCreateForm() {
   const [load, setLoad] = useState(false);
   const [title, setTitle] = useState([]);
   const [content, setContent] = useState([]);

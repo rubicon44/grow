@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { updateTask } from '../../../infra/api';
-import { Form } from '../../presentational/molecules/Form/index';
+import { updateTask } from '../../../../infra/api';
+import { Form } from '../../../presentational/molecules/Form/form';
 
-export function FormUpdate(props) {
+export function TaskUpdateForm(props) {
   const [load, setLoad] = useState(false);
   const [title, setTitle] = useState([props.title]);
   const [content, setContent] = useState([props.content]);
