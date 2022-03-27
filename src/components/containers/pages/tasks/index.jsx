@@ -6,7 +6,7 @@ import { Title } from '../../../presentational/atoms/Title/title';
 import { NextTask } from '../../../presentational/atoms/Button/nextTask';
 import { TasksList } from '../../organisms/tasks/tasksList';
 
-const LoginBackground = styled.div`
+const Background = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,11 +47,11 @@ export function TaskIndex() {
   return (
     <React.Fragment>
       <Header />
-      <LoginBackground>
+      <Background>
         <Title title="タスク一覧" />
         <NextTask text="タスク登録" url="/tasks/create" />
         <TasksList tasks={tasks} />
-      </LoginBackground>
+      </Background>
     </React.Fragment>
   )
 };

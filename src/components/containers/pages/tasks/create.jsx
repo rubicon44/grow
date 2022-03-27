@@ -5,7 +5,7 @@ import { Title } from '../../../presentational/atoms/Title/title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { TaskCreateForm } from '../../organisms/tasks/taskCreateForm';
 
-const TopBackground = styled.div`
+const Background = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,10 +19,10 @@ export function TaskCreate() {
     <React.Fragment>
       <Header />
       <BackButton />
-      <TopBackground>
+      <Background>
         <Title title="新規登録" />
         <TaskCreateForm />
-      </TopBackground>
+      </Background>
     </React.Fragment>
   );
 }

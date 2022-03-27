@@ -6,7 +6,7 @@ import { Title } from '../../../presentational/atoms/Title/title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { TaskUpdateForm } from '../../organisms/tasks/taskUpdateForm';
 
-const TopBackground = styled.div`
+const Background = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,10 +27,10 @@ export function TaskEdit() {
     <React.Fragment>
       <Header />
       <BackButton />
-      <TopBackground>
+      <Background>
         <Title title="編集" />
         <TaskUpdateForm id={id} title={title} content={content} current_user_id={current_user_id} />
-      </TopBackground>
+      </Background>
     </React.Fragment>
   );
 }

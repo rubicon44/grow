@@ -133,6 +133,18 @@ export const ProfileSwitch = () => {
     return () => { isMounted = false };
   }, [currentUserId]);
 
+  const revertUserBio = (user_id) => {
+    getUser(user_id)
+    .then(response => {
+      const userBio = response.data.user.bio;
+      setUserBio(userBio);
+    })
+    .catch(data => {
+      console.log(data);
+    });
+    setBioAble(true);
+  }
+
   const [bioAble, setBioAble] = useState(true);
   if (bioAble === true) {
     return (<Profile>
@@ -157,7 +169,7 @@ export const ProfileSwitch = () => {
                      <label htmlFor="bio">プロフィール</label>
                      <textarea name="bio" onChange={ (e) => { setUserBio(e.target.value) }} placeholder="bio" cols="80" rows="3" defaultValue={userBio}></textarea>
                    </FormTextAreaCover>
-                   <FormButtonCover><button type="button" onClick={ (e) => { setBioAble(true) } }>閉じる</button></FormButtonCover>
+                   <FormButtonCover><button type="button" onClick={ () => { revertUserBio(user_id) } }>閉じる</button></FormButtonCover>
                    <FormButtonCover><button type="submit" disabled={load}>保存</button></FormButtonCover>
                  </form>
                </FormCover>

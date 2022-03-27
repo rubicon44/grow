@@ -7,7 +7,7 @@ import { Title } from '../../../presentational/atoms/Title/title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { TaskList } from '../../organisms/tasks/taskList';
 
-const LoginBackground = styled.div`
+const Background = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,10 +44,10 @@ export function TaskShow() {
     <React.Fragment>
       <Header />
       <BackButton />
-      <LoginBackground>
+      <Background>
         <Title title="タスク詳細" />
         <TaskList task={task} taskCreatedUser={taskCreatedUser} />
-      </LoginBackground>
+      </Background>
     </React.Fragment>
   )
 };
