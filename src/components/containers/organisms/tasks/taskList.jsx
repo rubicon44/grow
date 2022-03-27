@@ -2,11 +2,30 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { deleteTask } from '../../../../infra/api';
+import { Title } from '../../../presentational/atoms/Title/title';
+import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { List } from '../../../presentational/molecules/List/list';
 
 const ListCover = styled.div`
   min-width: 180px;
-  margin-top: 30px;
+  margin-top: 15px;
+`
+
+const ListHeader = styled.div`
+  display: flex;
+  width: 100%;
+
+  > h2 {
+    width: 100%;
+    margin-right: 45px;
+  }
+`
+
+const ButtonCover = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 10px 0;
 `
 
 export function TaskList(props) {
@@ -62,12 +81,20 @@ export function TaskList(props) {
   };
 
   return (
-    <ListCover>
-      <List title={taskTitle} content={taskContent}
-            link={<Link to={`/users/${taskCreatedUserId}`}>{taskCreatedUserName}</Link>}
-      />
-      <EditTaskButton />
-      <DeleteTaskButton />
-    </ListCover>
+    <React.Fragment>
+      <ListHeader>
+        <BackButton />
+        <Title title="タスク詳細" />
+      </ListHeader>
+      <ListCover>
+        <List title={taskTitle} content={taskContent}
+              link={<Link to={`/users/${taskCreatedUserId}`}>{taskCreatedUserName}</Link>}
+        />
+        <ButtonCover>
+          <EditTaskButton />
+          <DeleteTaskButton />
+        </ButtonCover>
+      </ListCover>
+    </React.Fragment>
   )
 }

@@ -1,16 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Header } from '../../organisms/header';
-import { Title } from '../../../presentational/atoms/Title/title';
-import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { TaskUpdateForm } from '../../organisms/tasks/updateForm';
 
-const Background = styled.div`
+const Main = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 460px;
+  padding: 30px 10px;
   text-align: center;
   background-color: #ddd;
 `
@@ -24,11 +22,9 @@ export function TaskEditTemplate(props) {
   return (
     <React.Fragment>
       <Header />
-      <BackButton />
-      <Background>
-        <Title title="編集" />
+      <Main>
         <TaskUpdateForm id={id} title={title} content={content} current_user_id={current_user_id} />
-      </Background>
+      </Main>
     </React.Fragment>
   );
 }

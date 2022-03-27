@@ -1,15 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Header } from '../../organisms/header';
-import { Title } from '../../../presentational/atoms/Title/title';
-import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { TaskList } from '../../organisms/tasks/taskList';
 
-const Background = styled.div`
+const Main = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 30px 10px;
   text-align: center;
   background-color: #f8f7f3;
 `
@@ -21,11 +20,9 @@ export function TaskShowTemplate(props) {
   return (
     <React.Fragment>
       <Header />
-      <BackButton />
-      <Background>
-        <Title title="タスク詳細" />
+      <Main>
         <TaskList task={task} taskCreatedUser={taskCreatedUser} />
-      </Background>
+      </Main>
     </React.Fragment>
   )
 };

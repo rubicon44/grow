@@ -7,6 +7,7 @@ const BackButtonCover = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 45px;
   height: 30px;
 
   > svg {
