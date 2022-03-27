@@ -35,7 +35,7 @@ const Wrapper = styled.div`
   align-items: center;
 `
 
-const Main = styled.main`
+const PageWrapper = styled.div`
   min-width: 300px;
   max-width: 300px;
   min-height: 700px;
@@ -63,7 +63,7 @@ export function App() {
   } else {
     return (
       <Wrapper>
-        <Main>
+        <PageWrapper>
           <AuthProvider>
             <Router>
               <Routes>
@@ -83,7 +83,7 @@ export function App() {
               </Routes>
             </Router>
           </AuthProvider>
-        </Main>
+        </PageWrapper>
       </Wrapper>
     );
   }

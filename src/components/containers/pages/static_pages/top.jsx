@@ -5,7 +5,7 @@ import { NextButton } from '../../../presentational/atoms/Button/nextButton';
 import { NextLink } from '../../../presentational/atoms/Link/nextLink';
 import { NextTask } from '../../../presentational/atoms/Button/nextTask';
 
-const TopBackground = styled.div`
+const Main = styled.main`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -35,11 +35,11 @@ const Title = styled.h2`
 
 export function Top() {
   return (
-    <TopBackground>
+    <Main>
       <Title>Grow</Title>
       <NextTask text="タスク一覧" url="/tasks" />
       <NextButton text="会員登録" url="/sign_up" />
       <NextLink text="ログイン" url="/sign_in" />
-    </TopBackground>
+    </Main>
   )
 };

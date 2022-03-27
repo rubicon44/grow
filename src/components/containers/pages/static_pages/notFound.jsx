@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
 import { Header } from '../../organisms/header';
 
-const TopBackground = styled.div`
+const Main = styled.main`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -36,9 +36,9 @@ export function NotFound() {
   return (
     <React.Fragment>
       <Header />
-      <TopBackground>
+      <Main>
         <Title>お探しのページが見つかりません。</Title>
-      </TopBackground>
+      </Main>
     </React.Fragment>
   )
 };

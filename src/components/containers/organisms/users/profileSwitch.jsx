@@ -69,7 +69,9 @@ const FormTextAreaCover = styled.div`
 
 const FormButtonCover = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: end;
+  align-items: center;
+  margin: 10px 0;
 `
 
 export const ProfileSwitch = () => {
@@ -168,8 +170,10 @@ export const ProfileSwitch = () => {
                      <label htmlFor="bio">プロフィール</label>
                      <textarea name="bio" onChange={ (e) => { setUserBio(e.target.value) }} placeholder="bio" cols="80" rows="3" defaultValue={userBio}></textarea>
                    </FormTextAreaCover>
-                   <FormButtonCover><button type="button" onClick={ () => { revertUserBio(user_id) } }>閉じる</button></FormButtonCover>
-                   <FormButtonCover><button type="submit" disabled={load}>保存</button></FormButtonCover>
+                   <FormButtonCover>
+                     <button type="button" onClick={ () => { revertUserBio(user_id) } }>閉じる</button>
+                     <button type="submit" disabled={load}>保存</button>
+                   </FormButtonCover>
                  </form>
                </FormCover>
              }

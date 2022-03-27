@@ -10,6 +10,7 @@ const LinkStyle = styled(Link)`
   align-items: center;
   width: 220px;
   height: 50px;
+  margin: 5px;
   color: #fff;
   font-size: 20px;
   font-weight: bold;
