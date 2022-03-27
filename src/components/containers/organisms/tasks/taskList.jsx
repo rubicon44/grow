@@ -62,14 +62,12 @@ export function TaskList(props) {
   };
 
   return (
-    <React.Fragment>
-      <ListCover>
-        <List title={taskTitle} content={taskContent}
-              link={<Link to={`/users/${taskCreatedUserId}`}>{taskCreatedUserName}</Link>}
-        />
-        <EditTaskButton />
-        <DeleteTaskButton />
-      </ListCover>
-    </React.Fragment>
+    <ListCover>
+      <List title={taskTitle} content={taskContent}
+            link={<Link to={`/users/${taskCreatedUserId}`}>{taskCreatedUserName}</Link>}
+      />
+      <EditTaskButton />
+      <DeleteTaskButton />
+    </ListCover>
   )
 }
