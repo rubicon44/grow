@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { getTasks } from '../../../../infra/api';
 import { Header } from '../../organisms/header';
-import { Title } from '../../../presentational/atoms/Title/index';
+import { Title } from '../../../presentational/atoms/Title/title';
 import { NextTask } from '../../../presentational/atoms/Button/nextTask';
 import { TasksList } from '../../organisms/tasks/tasksList';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { Header } from '../../organisms/header';
-import { Title } from '../../../presentational/atoms/Title/index';
+import { Title } from '../../../presentational/atoms/Title/title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { TaskUpdateForm } from '../../organisms/tasks/taskUpdateForm';
 

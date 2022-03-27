@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Header } from '../../organisms/header';
-import { Title } from '../../../presentational/atoms/Title/index';
+import { Title } from '../../../presentational/atoms/Title/title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { TaskCreateForm } from '../../organisms/tasks/taskCreateForm';
 
