@@ -1,72 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
 import { getUser } from '../../../../infra/api';
-import { Header } from '../../organisms/header';
 import { AuthContext } from '../../../../auth/authProvider';
-import { BackButton } from '../../../presentational/atoms/Button/backButton';
-import { LogOutButton } from '../../../presentational/atoms/Button/logOut';
 import { getCurrentUser } from '../../../../infra/api';
-import { ProfileSwitch } from './profileSwitch';
-
-const Background = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-color: #f8f7f3;
-`
-
-const Title = styled.h2`
-  font-size: 36px;
-  font-family: YuMincho;
-`
-
-// TaskList
-const ContentHeader = styled.div`
-  padding: 0 20px;
-`
-
-const Content = styled.article`
-  border-top: 1px solid #ddd;
-  width: 100%;
-`
-
-const TaskListCover = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`
-
-const TaskList = styled.dl`
-  margin-top: 30px;
-  text-align: left;
-
-  > dt {
-    font-weight: bold;
-  }
-
-  > dd {
-    min-height: 100px;
-    min-width: 180px;
-    margin: 10px 0;
-    padding: 5px;
-    border: 1px solid #bbb;
-  }
-`
-
-const LogOutButtonCover = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  border-top: 1px solid #000;
-  box-sizing: border-box;
-`
+import { UserShowTemplate } from '../../templates/users/show';
 
 export function UserShow() {
   const location = useLocation();
@@ -126,37 +63,6 @@ export function UserShow() {
   }, [currentUserId]);
 
   return (
-    <React.Fragment>
-      <Header />
-      <BackButton />
-      <Background>
-        <ContentHeader>
-          <Title>{taskUser.name}</Title>
-          <ProfileSwitch />
-        </ContentHeader>
-        <Content>
-          <TaskListCover>
-            {userTasks.length === 0
-              ? <div key={userTasks}>まだ投稿はありません。</div>
-              : userTasks.map((task) => {
-                  return (
-                    <TaskList key={task.id}>
-                      <dt>
-                        <Link to={`tasks/${task.id}`}>{task.title}</Link>
-                      </dt>
-                      <dd>{task.content}</dd>
-                    </TaskList>
-                  );
-                })
-            }
-          </TaskListCover>
-        </Content>
-        {currentUserId === taskUser.id &&
-          <LogOutButtonCover>
-            { currentUser && <LogOutButton text="ログアウト" /> }
-          </LogOutButtonCover>
-        }
-      </Background>
-    </React.Fragment>
+    <UserShowTemplate taskUser={taskUser} userTasks={userTasks} currentUserId={currentUserId} currentUser={currentUser} />
   )
 };

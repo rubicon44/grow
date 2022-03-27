@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { CreatedUser } from '../../atoms/Link/createdUser';
 
 const ListStyle = styled.dl`
+  min-width: 180px;
   text-align: left;
 
   > dt {

@@ -20,12 +20,8 @@ const ButtonStyle = styled.button`
 
 export function LogOutButton(props) {
   const { signout } = useContext(AuthContext);
-  const handleClick = event => {
-    event.preventDefault();
-    signout();
-  };
 
   return (
-    <ButtonStyle onClick={handleClick}>{props.text}</ButtonStyle>
+    <ButtonStyle onClick={() => { signout() }}>{props.text}</ButtonStyle>
   )
 }
