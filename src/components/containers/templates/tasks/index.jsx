@@ -15,13 +15,15 @@ const Background = styled.div`
 `
 
 export function TaskIndexTemplate(props) {
+  const tasks = props.tasks;
+
   return (
     <React.Fragment>
       <Header />
       <Background>
         <Title title="タスク一覧" />
         <NextTask text="タスク登録" url="/tasks/create" />
-        <TasksList tasks={props.tasks} />
+        <TasksList tasks={tasks} />
       </Background>
     </React.Fragment>
   )

@@ -15,13 +15,16 @@ const Background = styled.div`
 `
 
 export function TaskShowTemplate(props) {
+  const task = props.task;
+  const taskCreatedUser = props.taskCreatedUser;
+
   return (
     <React.Fragment>
       <Header />
       <BackButton />
       <Background>
         <Title title="タスク詳細" />
-        <TaskList task={props.task} taskCreatedUser={props.taskCreatedUser} />
+        <TaskList task={task} taskCreatedUser={taskCreatedUser} />
       </Background>
     </React.Fragment>
   )

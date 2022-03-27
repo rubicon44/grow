@@ -1,43 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
 import { getUser } from '../../../../infra/api';
-import { Header } from '../../organisms/header';
 import { AuthContext } from '../../../../auth/authProvider';
-import { BackButton } from '../../../presentational/atoms/Button/backButton';
-import { LogOutButton } from '../../../presentational/atoms/Button/logOut';
-import { Title } from '../../../presentational/atoms/Title/title';
 import { getCurrentUser } from '../../../../infra/api';
-import { ProfileSwitch } from './profileSwitch';
-import { UserTasksList } from '../../organisms/users/userTasksList';
-
-const Background = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-color: #f8f7f3;
-`
-const ContentHeader = styled.div`
-  padding: 0 20px;
-`
-
-const Content = styled.article`
-  border-top: 1px solid #ddd;
-  width: 100%;
-`
-
-const LogOutButtonCover = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  border-top: 1px solid #000;
-  box-sizing: border-box;
-`
+import { UserShowTemplate } from '../../templates/users/show';
 
 export function UserShow() {
   const location = useLocation();
@@ -97,23 +63,6 @@ export function UserShow() {
   }, [currentUserId]);
 
   return (
-    <React.Fragment>
-      <Header />
-      <BackButton />
-      <Background>
-        <ContentHeader>
-          <Title title={taskUser.name} />
-          <ProfileSwitch />
-        </ContentHeader>
-        <Content>
-          <UserTasksList userTasks={userTasks} taskUser={taskUser} />
-        </Content>
-        {currentUserId === taskUser.id &&
-          <LogOutButtonCover>
-            { currentUser && <LogOutButton text="ログアウト" /> }
-          </LogOutButtonCover>
-        }
-      </Background>
-    </React.Fragment>
+    <UserShowTemplate taskUser={taskUser} userTasks={userTasks} currentUserId={currentUserId} currentUser={currentUser} />
   )
 };

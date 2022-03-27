@@ -16,13 +16,18 @@ const Background = styled.div`
 `
 
 export function TaskEditTemplate(props) {
+  const id = props.id;
+  const title = props.title;
+  const content = props.content;
+  const current_user_id = props.current_user_id;
+
   return (
     <React.Fragment>
       <Header />
       <BackButton />
       <Background>
         <Title title="編集" />
-        <TaskUpdateForm id={props.id} title={props.title} content={props.content} current_user_id={props.current_user_id} />
+        <TaskUpdateForm id={id} title={title} content={content} current_user_id={current_user_id} />
       </Background>
     </React.Fragment>
   );
