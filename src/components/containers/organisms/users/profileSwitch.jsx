@@ -5,7 +5,6 @@ import { getUser } from '../../../../infra/api';
 import { getCurrentUser } from '../../../../infra/api';
 import { updateUser } from '../../../../infra/api';
 
-// Profile
 const Profile = styled.div`
   margin-bottom: 30px;
 `

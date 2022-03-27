@@ -4,7 +4,7 @@ import { Header } from '../../organisms/header';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { LogOutButton } from '../../../presentational/atoms/Button/logOut';
 import { Title } from '../../../presentational/atoms/Title/title';
-import { ProfileSwitch } from '../../pages/users/profileSwitch';
+import { ProfileSwitch } from '../../organisms/users/profileSwitch';
 import { UserTasksList } from '../../organisms/users/userTasksList';
 
 const Background = styled.div`

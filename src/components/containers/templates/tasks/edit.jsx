@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Header } from '../../organisms/header';
 import { Title } from '../../../presentational/atoms/Title/title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
-import { TaskUpdateForm } from '../../organisms/tasks/taskUpdateForm';
+import { TaskUpdateForm } from '../../organisms/tasks/updateForm';
 
 const Background = styled.div`
   display: flex;
