@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Header } from '../../organisms/header';
 import { TaskList } from '../../organisms/tasks/taskList';
@@ -17,7 +18,6 @@ const Main = styled.main`
 export function TaskShowTemplate(props) {
   const task = props.task;
   const taskCreatedUser = props.taskCreatedUser;
-
   return (
     <React.Fragment>
       <Header />
@@ -26,4 +26,15 @@ export function TaskShowTemplate(props) {
       </Main>
     </React.Fragment>
   )
+};
+
+TaskShowTemplate.propTypes = {
+  task: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
+  taskCreatedUser: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ])
 };

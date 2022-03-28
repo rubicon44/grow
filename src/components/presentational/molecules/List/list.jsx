@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { CreatedUser } from '../../atoms/Link/createdUser';
 
@@ -19,11 +20,23 @@ const ListStyle = styled.dl`
 `
 
 export function List(props) {
+  const title = props.title;
+  const content = props.content;
+  const link = props.link;
   return (
     <ListStyle>
-      <dt>{props.title}</dt>
-      <dd>{props.content}</dd>
-      <CreatedUser link={props.link} />
+      <dt>{title}</dt>
+      <dd>{content}</dd>
+      <CreatedUser link={link} />
     </ListStyle>
   )
 }
+
+List.propTypes = {
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]),
+  content: PropTypes.string,
+  link: PropTypes.object
+};

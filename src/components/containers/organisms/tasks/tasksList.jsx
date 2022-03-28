@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Title } from '../../../presentational/atoms/Title/title';
-import { NextTask } from '../../../presentational/atoms/Button/nextTask';
+import { NextButton } from '../../../presentational/atoms/Button/nextButton';
 import { List } from '../../../presentational/molecules/List/list';
 
 const ListCover = styled.div`
@@ -15,7 +16,7 @@ export function TasksList(props) {
   return (
     <React.Fragment>
       <Title title="タスク一覧" />
-      <NextTask text="タスク登録" url="/tasks/create" />
+      <NextButton text="タスク登録" url="/tasks/create" />
       {tasks.map((task) => {
         return (
           <ListCover key={task.id}>
@@ -29,3 +30,7 @@ export function TasksList(props) {
     </React.Fragment>
   )
 }
+
+TasksList.propTypes = {
+  tasks: PropTypes.array
+};
