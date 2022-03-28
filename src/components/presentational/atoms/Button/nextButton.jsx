@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
 
@@ -26,7 +27,14 @@ const ButtonStyle = styled(Link)`
 `}
 `
 export function NextButton(props) {
+  const url = props.url;
+  const text = props.text;
   return (
-    <ButtonStyle to={props.url}>{props.text}</ButtonStyle>
+    <ButtonStyle to={url}>{text}</ButtonStyle>
   )
 }
+
+NextButton.propTypes = {
+  url: PropTypes.string,
+  text: PropTypes.string
+};

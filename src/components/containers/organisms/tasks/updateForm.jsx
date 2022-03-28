@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { updateTask } from '../../../../infra/api';
 import { Title } from '../../../presentational/atoms/Title/title';
@@ -53,3 +54,10 @@ export function TaskUpdateForm(props) {
     </React.Fragment>
   )
 }
+
+TaskUpdateForm.propTypes = {
+  id: PropTypes.number,
+  title: PropTypes.string,
+  content: PropTypes.string,
+  current_user_id: PropTypes.string
+};

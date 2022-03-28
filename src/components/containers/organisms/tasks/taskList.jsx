@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { deleteTask } from '../../../../infra/api';
 import { Title } from '../../../presentational/atoms/Title/title';
@@ -139,3 +140,15 @@ export function TaskList(props) {
     </React.Fragment>
   )
 }
+
+TaskList.propTypes = {
+  task: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
+  taskId: PropTypes.string,
+  taskTitle: PropTypes.string,
+  taskContent: PropTypes.string,
+  taskCreatedUserId: PropTypes.string,
+  taskCreatedUserName: PropTypes.string
+};

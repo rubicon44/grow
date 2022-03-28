@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { List } from '../../../presentational/molecules/List/list';
 
@@ -13,8 +14,8 @@ const ListCover = styled.div`
 `
 
 export function UserTasksList(props) {
-  const userTasks = props.userTasks;
   const taskUser = props.taskUser;
+  const userTasks = props.userTasks;
   return (
     <React.Fragment>
       {userTasks.length === 0
@@ -33,3 +34,11 @@ export function UserTasksList(props) {
     </React.Fragment>
   )
 }
+
+UserTasksList.propTypes = {
+  taskUser: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
+  userTasks: PropTypes.array,
+};

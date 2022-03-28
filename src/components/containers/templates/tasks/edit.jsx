@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Header } from '../../organisms/header';
 import { TaskUpdateForm } from '../../organisms/tasks/updateForm';
@@ -28,3 +29,10 @@ export function TaskEditTemplate(props) {
     </React.Fragment>
   );
 }
+
+TaskEditTemplate.propTypes = {
+  id: PropTypes.number,
+  title: PropTypes.string,
+  content: PropTypes.string,
+  current_user_id: PropTypes.string
+};

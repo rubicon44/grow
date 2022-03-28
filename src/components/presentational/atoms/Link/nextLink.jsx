@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const LinkStyle = styled(Link)`
@@ -10,7 +11,14 @@ const LinkStyle = styled(Link)`
 `;
 
 export function NextLink(props) {
+  const url = props.url;
+  const text = props.text;
   return (
-    <LinkStyle to={props.url}>{props.text}</LinkStyle>
+    <LinkStyle to={url}>{text}</LinkStyle>
   )
 }
+
+NextLink.propTypes = {
+  url: PropTypes.string,
+  text: PropTypes.string
+};

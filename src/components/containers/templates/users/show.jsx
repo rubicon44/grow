@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Header } from '../../organisms/header';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
@@ -39,8 +40,7 @@ export function UserShowTemplate(props) {
   const taskUser = props.taskUser;
   const userTasks = props.userTasks;
   const currentUserId = props.currentUserId;
-  const currentUser = props.currentUse;
-
+  const currentUser = props.currentUser;
   return (
     <React.Fragment>
       <Header />
@@ -61,4 +61,17 @@ export function UserShowTemplate(props) {
       </Background>
     </React.Fragment>
   )
+};
+
+UserShowTemplate.propTypes = {
+  taskUser: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
+  userTasks: PropTypes.array,
+  currentUserId: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.number,
+  ]),
+  currentUser: PropTypes.object
 };

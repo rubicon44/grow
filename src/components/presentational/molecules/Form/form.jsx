@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const FormCover = styled.div`
@@ -38,22 +39,43 @@ const FormButtonCover = styled.div`
 `
 
 export function Form(props) {
+  const handleTextSubmit = props.handleTextSubmit;
+  const title = props.title;
+  const setTitle = props.setTitle;
+  const content = props.content;
+  const setContent = props.setContent;
+  const load = props.load;
   return (
     <FormCover>
-      <form onSubmit={props.handleTextSubmit}>
+      <form onSubmit={handleTextSubmit}>
         <FormTitleCover>
           <label htmlFor="title">題名:</label>
-          <input type="text" name="title" defaultValue={props.title} onChange={ (e) => { props.setTitle(e.target.value) }} placeholder="Title" />
+          <input type="text" name="title" defaultValue={title} onChange={ (e) => { setTitle(e.target.value) }} placeholder="Title" />
         </FormTitleCover>
         <FormTextAreaCover>
           <label htmlFor="content">内容:</label>
-          <textarea name="content" onChange={ (e) => { props.setContent(e.target.value) }} placeholder="Content" cols="80" rows="3" defaultValue={props.content}></textarea>
+          <textarea name="content" onChange={ (e) => { setContent(e.target.value) }} placeholder="Content" cols="80" rows="3" defaultValue={content}></textarea>
         </FormTextAreaCover>
         <FormButtonCover>
-          <button type="submit" disabled={props.load}>
-            { !props.title ? "作成" : "更新" }
+          <button type="submit" disabled={load}>
+            { !title ? "作成" : "更新" }
           </button></FormButtonCover>
       </form>
     </FormCover>
   )
 }
+
+Form.propTypes = {
+  handleTextSubmit: PropTypes.func,
+  title: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.string,
+  ]),
+  setTitle: PropTypes.func,
+  title: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.string,
+  ]),
+  setContent: PropTypes.func,
+  load: PropTypes.bool
+};
