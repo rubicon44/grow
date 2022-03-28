@@ -49,7 +49,6 @@ const Bio = styled.div`
 
 // Form
 const FormCover = styled.div`
-  min-width: 260px;
   text-align: left;
 `
 
@@ -62,7 +61,6 @@ const FormTextAreaCover = styled.div`
   }
 
   > textarea {
-    min-width: 260px;
     min-height: 200px;
   }
 `
