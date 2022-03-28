@@ -4,6 +4,7 @@ import { Header } from '../../organisms/header';
 import { TaskList } from '../../organisms/tasks/taskList';
 
 const Main = styled.main`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
