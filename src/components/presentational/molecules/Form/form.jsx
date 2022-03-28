@@ -72,7 +72,7 @@ Form.propTypes = {
     PropTypes.string,
   ]),
   setTitle: PropTypes.func,
-  title: PropTypes.oneOfType([
+  content: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.string,
   ]),
