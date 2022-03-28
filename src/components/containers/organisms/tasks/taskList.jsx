@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { deleteTask } from '../../../../infra/api';
@@ -28,6 +28,25 @@ const ButtonCover = styled.div`
   margin: 10px 0;
 `
 
+const BackgroundDisAbledCover = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: #ddd;
+`
+
+const BackgroundDisAbled = styled.div`
+  margin: 30px;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+`
+
 export function TaskList(props) {
   const task = props.task;
   const taskId = task.id;
@@ -40,9 +59,10 @@ export function TaskList(props) {
   const currentUserData = JSON.parse(currentUserDataText);
   const currentUserId = currentUserData['id'].toString();
 
+  const [load, setLoad] = useState(false);
   const EditTaskButton = () => {
     if (taskCreatedUserId === currentUserId) {
-      return <button onClick={() => editTaskFunc(taskId, currentUserId)}>編集</button>;
+      return <button disabled={load} onClick={() => editTaskFunc(taskId, currentUserId)}>編集</button>;
     } else {
       return null;
     }
@@ -62,10 +82,20 @@ export function TaskList(props) {
 
   const DeleteTaskButton = () => {
     if (taskCreatedUserId === currentUserId) {
-      return <button onClick={() => deleteTaskFunc(taskId)}>削除</button>;
+      return <button onClick={() => deleteCheckFunc()}>削除</button>;
     } else {
       return null;
     }
+  }
+
+  const deleteCheckFunc = () => {
+    setLoad(true);
+    setDeleteCheckAble(true);
+  }
+
+  const unDeleteCheckFunc = () => {
+    setLoad(false)
+    setDeleteCheckAble(false)
   }
 
   const deleteTaskFunc = (taskId) => {
@@ -77,9 +107,11 @@ export function TaskList(props) {
     .catch(response => {
       console.log(response.data);
     });
+    setLoad(false)
     navigate(`/users/${taskCreatedUserId}`);
   };
 
+  const [deleteCheckAble, setDeleteCheckAble] = useState(false);
   return (
     <React.Fragment>
       <ListHeader>
@@ -95,6 +127,15 @@ export function TaskList(props) {
           <DeleteTaskButton />
         </ButtonCover>
       </ListCover>
+      {deleteCheckAble === true &&
+        <BackgroundDisAbledCover>
+          <BackgroundDisAbled>
+            <div>本当に削除しますか?</div>
+            <button onClick={() => deleteTaskFunc(taskId)}>はい</button>
+            <button onClick={() => unDeleteCheckFunc()}>いいえ</button>
+          </BackgroundDisAbled>
+        </BackgroundDisAbledCover>
+        }
     </React.Fragment>
   )
 }
