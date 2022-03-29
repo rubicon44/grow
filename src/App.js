@@ -5,15 +5,15 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-import { signOut } from "firebase/auth";
-import jwt_decode from "jwt-decode";
+import { signOut } from 'firebase/auth';
+import jwtDecode from 'jwt-decode';
 // スタイリング
 import './assets/styles/reset.css';
 import { mediaquery } from './assets/styles/variable';
 // 認証用Context
 import { AuthProvider } from './auth/authProvider';
 import { PrivateRoute } from './auth/privateRoute';
-import { auth } from './infra/firebase.js';
+import { auth } from './infra/firebase';
 // 認証前・サインイン・サインアップ・NotFound
 import { Top } from './components/containers/pages/static_pages/top';
 import { SignIn } from './components/containers/pages/static_pages/sign_in';
@@ -33,7 +33,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const PageWrapper = styled.div`
   min-width: 300px;
@@ -44,47 +44,46 @@ const PageWrapper = styled.div`
   ${mediaquery.desktop`
     max-width: 1280px;
   `}
-`
+`;
 
 export function App() {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // setTimeout(() => setLoading(false), 1000)
-    setLoading(false)
+    setLoading(false);
 
-    if( localStorage.getItem('token') === '' || localStorage.getItem('token') === null || Date.now() >= jwt_decode(localStorage.getItem('token')).exp * 1000 ){
+    if (localStorage.getItem('token') === '' || localStorage.getItem('token') === null || Date.now() >= jwtDecode(localStorage.getItem('token')).exp * 1000) {
       signOut(auth);
     }
   }, []);
 
-  if(loading) {
-    return(<div>Loading...</div>)
-  } else {
-    return (
-      <Wrapper>
-        <PageWrapper>
-          <AuthProvider>
-            <Router>
-              <Routes>
-                {/* top・サインイン・サインアップ・NotFound */}
-                <Route exact path="/" element={<Top />} />
-                <Route exact path="/top" element={<Top />} />
-                <Route exact path="/sign_in" element={<SignIn />} />
-                <Route exact path="/sign_up" element={<SignUp />} />
-                <Route exact path="*" element={<NotFound />} />
-                {/* task */}
-                <Route exact path="/tasks" element={<PrivateRoute element={<TaskIndex />} />} />
-                <Route exact path="/tasks/create" element={<PrivateRoute element={<TaskCreate />} />} />
-                <Route exact path="/tasks/edit/:id" element={<PrivateRoute element={<TaskEdit />} />} />
-                {/* user */}
-                <Route exact path="/users/:id" element={<PrivateRoute element={<UserShow />} />} />
-                <Route exact path="/users/:id/tasks/:id" element={<PrivateRoute element={<TaskShow />} />} />
-              </Routes>
-            </Router>
-          </AuthProvider>
-        </PageWrapper>
-      </Wrapper>
-    );
+  if (loading) {
+    return (<div>Loading...</div>);
   }
+  return (
+    <Wrapper>
+      <PageWrapper>
+        <AuthProvider>
+          <Router>
+            <Routes>
+              {/* top・サインイン・サインアップ・NotFound */}
+              <Route exact path="/" element={<Top />} />
+              <Route exact path="/top" element={<Top />} />
+              <Route exact path="/sign_in" element={<SignIn />} />
+              <Route exact path="/sign_up" element={<SignUp />} />
+              <Route exact path="*" element={<NotFound />} />
+              {/* task */}
+              <Route exact path="/tasks" element={<PrivateRoute element={<TaskIndex />} />} />
+              <Route exact path="/tasks/create" element={<PrivateRoute element={<TaskCreate />} />} />
+              <Route exact path="/tasks/edit/:id" element={<PrivateRoute element={<TaskEdit />} />} />
+              {/* user */}
+              <Route exact path="/users/:id" element={<PrivateRoute element={<UserShow />} />} />
+              <Route exact path="/users/:id/tasks/:id" element={<PrivateRoute element={<TaskShow />} />} />
+            </Routes>
+          </Router>
+        </AuthProvider>
+      </PageWrapper>
+    </Wrapper>
+  );
 }

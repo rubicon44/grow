@@ -4,8 +4,12 @@
         "es2021": true
     },
     "extends": [
+        "react-app",
+        "react-app/jest",
         "plugin:react/recommended",
-        "airbnb"
+        "airbnb",
+        "plugin:import/errors",
+        "plugin:import/warnings"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -15,8 +19,32 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "import"
     ],
     "rules": {
-    }
+        "react/jsx-filename-extension": [
+          "error",
+          {
+              "extensions": [
+                  ".js",
+                  ".jsx",
+                  ".ts",
+                  ".tsx"
+              ]
+          }
+        ]
+    },
+    "settings": {
+      "import/resolver": {
+          "node": {
+              "extensions": [
+                  ".js",
+                  ".jsx",
+                  ".ts",
+                  ".tsx"
+              ]
+          }
+      }
+  }
 }
