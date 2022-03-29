@@ -12,20 +12,30 @@ const Main = styled.main`
   padding: 30px 10px;
   text-align: center;
   background-color: #f8f7f3;
-`
+`;
 
 export function TaskIndexTemplate(props) {
-  const tasks = props.tasks;
+  const { tasks } = props;
   return (
-    <React.Fragment>
+    <>
       <Header />
       <Main>
         <TasksList tasks={tasks} />
       </Main>
-    </React.Fragment>
-  )
+    </>
+  );
+}
+
+TaskIndexTemplate.defaultProps = {
+  tasks: [],
 };
 
-TasksList.propTypes = {
-  tasks: PropTypes.array
+TaskIndexTemplate.propTypes = {
+  // todo: objectはオブジェクトの中のあたいの方までは厳密に定義しないため非推奨となっている。
+  //       このため、tasksという大きなオブジェクトを全て渡してしまうと全ての型を定義することになるため、親コンポーネントで数を制御する。
+  tasks: PropTypes.arrayOf(PropTypes.object),
+  // tasks: PropTypes.arrayOf(PropTypes.exact({
+  //   id: PropTypes.number,
+  //   title: PropTypes.string
+  // }))
 };
