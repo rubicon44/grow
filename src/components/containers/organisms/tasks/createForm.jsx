@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { postTasks } from '../../../../infra/api';
-import { current_uid } from '../../../../infra/firebase.js';
+import { currentUid } from '../../../../infra/firebase.js';
 import { Title } from '../../../presentational/atoms/Title/title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { Form } from '../../../presentational/molecules/Form/form';
@@ -26,7 +26,7 @@ export function TaskCreateForm() {
     e.preventDefault();
     e.persist();
     setLoad(true);
-    let task = { 'title': title, 'content': content, 'user_id': current_uid };
+    let task = { 'title': title, 'content': content, 'user_id': currentUid };
     postTasksFunc(task);
     setLoad(false)
     navigate("/tasks");
