@@ -29,9 +29,7 @@ const ButtonStyle = styled(Link)`
 export function NextButton(props) {
   const { url } = props;
   const { text } = props;
-  return (
-    <ButtonStyle to={url}>{text}</ButtonStyle>
-  );
+  return <ButtonStyle to={url}>{text}</ButtonStyle>;
 }
 
 NextButton.defaultProps = {

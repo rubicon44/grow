@@ -1,6 +1,9 @@
 import React, { createContext, useState, useEffect } from 'react';
 import {
-  createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
 } from 'firebase/auth';
 import { auth } from '../infra/firebase';
 import { signUp, signIn } from '../infra/api';
@@ -11,20 +14,23 @@ export function AuthProvider({ children }) {
   const signin = async (email, password) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      await auth.currentUser.getIdToken(/* forceRefresh */ true).then((idToken) => {
-        signIn(idToken)
-          .then(async (response) => {
-            const { token, user } = response.data;
-            if (token) await localStorage.setItem('token', token);
-            if (user) await localStorage.setItem('user', JSON.stringify(user));
-            await window.location.reload();
-          })
-          .catch(async () => {
-            // alert(response);
-            // alert('このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。');
-            signOut(auth);
-          });
-      });
+      await auth.currentUser
+        .getIdToken(/* forceRefresh */ true)
+        .then((idToken) => {
+          signIn(idToken)
+            .then(async (response) => {
+              const { token, user } = response.data;
+              if (token) await localStorage.setItem('token', token);
+              if (user)
+                await localStorage.setItem('user', JSON.stringify(user));
+              await window.location.reload();
+            })
+            .catch(async () => {
+              // alert(response);
+              // alert('このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。');
+              signOut(auth);
+            });
+        });
     } catch (error) {
       // alert(error);
     }
@@ -36,9 +42,7 @@ export function AuthProvider({ children }) {
         .then(async (userCredential) => {
           const firebaseId = userCredential.user.uid;
           const user = { name, email, firebaseId };
-          await signUp(user)
-            .then()
-            .catch();
+          await signUp(user).then().catch();
           // .then((response) => {
           //   // todo:APIからユーザーオブジェクトのみが返却されるので、ポップアップでも出す？（ユーザーが作成されました！）
           //   // もしくはエラーの場合のみ出力（取り扱いにルールを設ける）
@@ -69,9 +73,13 @@ export function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{
-      currentUser, signin, signup, signout,
-    }}
+    <AuthContext.Provider
+      value={{
+        currentUser,
+        signin,
+        signup,
+        signout,
+      }}
     >
       {children}
     </AuthContext.Provider>

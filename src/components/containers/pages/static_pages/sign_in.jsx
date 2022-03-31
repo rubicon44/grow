@@ -41,9 +41,16 @@ export function SignIn() {
           </label>
           <label htmlFor="password">
             パスワード
-            <input name="password" type="password" placeholder="Password" autoComplete="on" />
+            <input
+              name="password"
+              type="password"
+              placeholder="Password"
+              autoComplete="on"
+            />
           </label>
-          <button type="submit" disabled={load}>ログイン</button>
+          <button type="submit" disabled={load}>
+            ログイン
+          </button>
         </form>
       </FormCover>
     </>

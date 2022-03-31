@@ -19,9 +19,7 @@ const FormHeader = styled.div`
 
 export function TaskUpdateForm(props) {
   const updateTaskFunc = (id, task) => {
-    updateTask(id, task)
-      .then()
-      .catch();
+    updateTask(id, task).then().catch();
     // .then((response) => {
     // })
     // .catch((response) => {
@@ -52,7 +50,14 @@ export function TaskUpdateForm(props) {
         <BackButton />
         <Title title="編集" />
       </FormHeader>
-      <Form load={load} title={title} setTitle={setTitle} content={content} setContent={setContent} handleTextSubmit={handleTextSubmit} />
+      <Form
+        load={load}
+        title={title}
+        setTitle={setTitle}
+        content={content}
+        setContent={setContent}
+        handleTextSubmit={handleTextSubmit}
+      />
     </>
   );
 }

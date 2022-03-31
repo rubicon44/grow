@@ -7,8 +7,7 @@ const Profile = styled.div`
   width: 100%;
   margin-bottom: 30px;
 `;
-const ProfileHeader = styled.div`
-`;
+const ProfileHeader = styled.div``;
 
 const BioChangeLinkCover = styled.div`
   display: flex;
@@ -90,7 +89,9 @@ export function ProfileSwitch() {
       .catch();
     // .catch((data) => {
     // });
-    return () => { isMounted = false; };
+    return () => {
+      isMounted = false;
+    };
   }, [userId]);
 
   const updateUserFunc = (id, user) => {
@@ -128,7 +129,9 @@ export function ProfileSwitch() {
       .catch();
     // .catch((data) => {
     // });
-    return () => { isMounted = false; };
+    return () => {
+      isMounted = false;
+    };
   }, [currentUserId]);
 
   const revertUserBio = (userId) => {
@@ -147,12 +150,17 @@ export function ProfileSwitch() {
     return (
       <Profile>
         <ProfileHeader>
-          {currentUserId === userId
-                  && (
-                  <BioChangeLinkCover>
-                    <BioChangeLink onClick={() => { setBioAble(false); }}><span>プロフィールを編集</span></BioChangeLink>
-                  </BioChangeLinkCover>
-                  )}
+          {currentUserId === userId && (
+            <BioChangeLinkCover>
+              <BioChangeLink
+                onClick={() => {
+                  setBioAble(false);
+                }}
+              >
+                <span>プロフィールを編集</span>
+              </BioChangeLink>
+            </BioChangeLinkCover>
+          )}
         </ProfileHeader>
         <ProfileContent>
           <UserName>{taskUser.name}</UserName>
@@ -163,23 +171,40 @@ export function ProfileSwitch() {
   }
   return (
     <>
-      {currentUserId === userId
-               && (
-               <FormCover>
-                 <form onSubmit={handleTextSubmit}>
-                   <FormTextAreaCover>
-                     <label htmlFor="bio">
-                       プロフィール
-                       <textarea name="bio" onChange={(e) => { setUserBio(e.target.value); }} placeholder="bio" cols="80" rows="3" defaultValue={userBio} />
-                     </label>
-                   </FormTextAreaCover>
-                   <FormButtonCover>
-                     <button type="button" onClick={() => { revertUserBio(userId); }}>閉じる</button>
-                     <button type="submit" disabled={load}>保存</button>
-                   </FormButtonCover>
-                 </form>
-               </FormCover>
-               )}
+      {currentUserId === userId && (
+        <FormCover>
+          <form onSubmit={handleTextSubmit}>
+            <FormTextAreaCover>
+              <label htmlFor="bio">
+                プロフィール
+                <textarea
+                  name="bio"
+                  onChange={(e) => {
+                    setUserBio(e.target.value);
+                  }}
+                  placeholder="bio"
+                  cols="80"
+                  rows="3"
+                  defaultValue={userBio}
+                />
+              </label>
+            </FormTextAreaCover>
+            <FormButtonCover>
+              <button
+                type="button"
+                onClick={() => {
+                  revertUserBio(userId);
+                }}
+              >
+                閉じる
+              </button>
+              <button type="submit" disabled={load}>
+                保存
+              </button>
+            </FormButtonCover>
+          </form>
+        </FormCover>
+      )}
     </>
   );
 }

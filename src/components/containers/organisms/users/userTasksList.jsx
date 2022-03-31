@@ -68,9 +68,12 @@ export function UserTasksList(props) {
         <ProfileSwitch />
       </ContentHeaderCover>
       <Content>
-        {userTasks.length === 0
-          ? <ListCover key={userTasks}><div>まだ投稿はありません。</div></ListCover>
-          : userTasks.map((task) => (
+        {userTasks.length === 0 ? (
+          <ListCover key={userTasks}>
+            <div>まだ投稿はありません。</div>
+          </ListCover>
+        ) : (
+          userTasks.map((task) => (
             <ListCover key={task.id}>
               <List
                 taskId={String(task.id)}
@@ -81,14 +84,14 @@ export function UserTasksList(props) {
                 taskCreatedUserName={taskUser.name}
               />
             </ListCover>
-          ))}
-      </Content>
-      {currentUserId === String(taskUser.id)
-        && (
-        <LogOutButtonCover>
-          { currentUserAble && <LogOutButton text="ログアウト" /> }
-        </LogOutButtonCover>
+          ))
         )}
+      </Content>
+      {currentUserId === String(taskUser.id) && (
+        <LogOutButtonCover>
+          {currentUserAble && <LogOutButton text="ログアウト" />}
+        </LogOutButtonCover>
+      )}
     </>
   );
 }
@@ -110,23 +113,27 @@ UserTasksList.propTypes = {
     firebase_id: PropTypes.string,
     password_digest: PropTypes.string,
     bio: PropTypes.string,
-    tasks: PropTypes.arrayOf(PropTypes.exact({
+    tasks: PropTypes.arrayOf(
+      PropTypes.exact({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        content: PropTypes.string,
+        created_at: PropTypes.string,
+        updated_at: PropTypes.string,
+        user_id: PropTypes.string,
+      }),
+    ),
+  }),
+  userTasks: PropTypes.arrayOf(
+    PropTypes.exact({
       id: PropTypes.number,
       title: PropTypes.string,
       content: PropTypes.string,
       created_at: PropTypes.string,
       updated_at: PropTypes.string,
       user_id: PropTypes.string,
-    })),
-  }),
-  userTasks: PropTypes.arrayOf(PropTypes.exact({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    content: PropTypes.string,
-    created_at: PropTypes.string,
-    updated_at: PropTypes.string,
-    user_id: PropTypes.string,
-  })),
+    }),
+  ),
   currentUserId: PropTypes.string,
   currentUserAble: PropTypes.bool,
   // currentUser: PropTypes.exact({

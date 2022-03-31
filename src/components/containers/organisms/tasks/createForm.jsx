@@ -19,9 +19,7 @@ const FormHeader = styled.div`
 
 export function TaskCreateForm() {
   const postTasksFunc = (task) => {
-    postTasks(task)
-      .then()
-      .catch();
+    postTasks(task).then().catch();
     // .then((response) => {
     // })
     // .catch((response) => {
@@ -48,7 +46,13 @@ export function TaskCreateForm() {
         <BackButton />
         <Title title="新規登録" />
       </FormHeader>
-      <Form load={load} setTitle={setTitle} content={content} setContent={setContent} handleTextSubmit={handleTextSubmit} />
+      <Form
+        load={load}
+        setTitle={setTitle}
+        content={content}
+        setContent={setContent}
+        handleTextSubmit={handleTextSubmit}
+      />
     </>
   );
 }

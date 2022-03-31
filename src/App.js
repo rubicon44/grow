@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import jwtDecode from 'jwt-decode';
 // スタイリング
@@ -53,13 +49,17 @@ export function App() {
     // setTimeout(() => setLoading(false), 1000)
     setLoading(false);
 
-    if (localStorage.getItem('token') === '' || localStorage.getItem('token') === null || Date.now() >= jwtDecode(localStorage.getItem('token')).exp * 1000) {
+    if (
+      localStorage.getItem('token') === '' ||
+      localStorage.getItem('token') === null ||
+      Date.now() >= jwtDecode(localStorage.getItem('token')).exp * 1000
+    ) {
       signOut(auth);
     }
   }, []);
 
   if (loading) {
-    return (<div>Loading...</div>);
+    return <div>Loading...</div>;
   }
   return (
     <Wrapper>
@@ -74,12 +74,32 @@ export function App() {
               <Route exact path="/sign_up" element={<SignUp />} />
               <Route exact path="*" element={<NotFound />} />
               {/* task */}
-              <Route exact path="/tasks" element={<PrivateRoute element={<TaskIndex />} />} />
-              <Route exact path="/tasks/create" element={<PrivateRoute element={<TaskCreate />} />} />
-              <Route exact path="/tasks/edit/:id" element={<PrivateRoute element={<TaskEdit />} />} />
+              <Route
+                exact
+                path="/tasks"
+                element={<PrivateRoute element={<TaskIndex />} />}
+              />
+              <Route
+                exact
+                path="/tasks/create"
+                element={<PrivateRoute element={<TaskCreate />} />}
+              />
+              <Route
+                exact
+                path="/tasks/edit/:id"
+                element={<PrivateRoute element={<TaskEdit />} />}
+              />
               {/* user */}
-              <Route exact path="/users/:id" element={<PrivateRoute element={<UserShow />} />} />
-              <Route exact path="/users/:id/tasks/:id" element={<PrivateRoute element={<TaskShow />} />} />
+              <Route
+                exact
+                path="/users/:id"
+                element={<PrivateRoute element={<UserShow />} />}
+              />
+              <Route
+                exact
+                path="/users/:id/tasks/:id"
+                element={<PrivateRoute element={<TaskShow />} />}
+              />
             </Routes>
           </Router>
         </AuthProvider>

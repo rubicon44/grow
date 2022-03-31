@@ -22,7 +22,12 @@ export function UserShowTemplate(props) {
     <>
       <Header />
       <Main>
-        <UserTasksList taskUser={taskUser} userTasks={userTasks} currentUserId={currentUserId} currentUserAble={currentUserAble} />
+        <UserTasksList
+          taskUser={taskUser}
+          userTasks={userTasks}
+          currentUserId={currentUserId}
+          currentUserAble={currentUserAble}
+        />
       </Main>
     </>
   );
@@ -45,23 +50,27 @@ UserShowTemplate.propTypes = {
     firebase_id: PropTypes.string,
     password_digest: PropTypes.string,
     bio: PropTypes.string,
-    tasks: PropTypes.arrayOf(PropTypes.exact({
+    tasks: PropTypes.arrayOf(
+      PropTypes.exact({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        content: PropTypes.string,
+        created_at: PropTypes.string,
+        updated_at: PropTypes.string,
+        user_id: PropTypes.string,
+      }),
+    ),
+  }),
+  userTasks: PropTypes.arrayOf(
+    PropTypes.exact({
       id: PropTypes.number,
       title: PropTypes.string,
       content: PropTypes.string,
       created_at: PropTypes.string,
       updated_at: PropTypes.string,
       user_id: PropTypes.string,
-    })),
-  }),
-  userTasks: PropTypes.arrayOf(PropTypes.exact({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    content: PropTypes.string,
-    created_at: PropTypes.string,
-    updated_at: PropTypes.string,
-    user_id: PropTypes.string,
-  })),
+    }),
+  ),
   currentUserId: PropTypes.string,
   currentUserAble: PropTypes.bool,
   // currentUser: PropTypes.exact({

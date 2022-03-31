@@ -13,9 +13,7 @@ const LinkStyle = styled(Link)`
 export function NextLink(props) {
   const { url } = props;
   const { text } = props;
-  return (
-    <LinkStyle to={url}>{text}</LinkStyle>
-  );
+  return <LinkStyle to={url}>{text}</LinkStyle>;
 }
 
 NextLink.defaultProps = {

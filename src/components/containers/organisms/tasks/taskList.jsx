@@ -77,7 +77,15 @@ export function TaskList(props) {
   const [load, setLoad] = useState(false);
   function EditTaskButton() {
     if (taskCreatedUserId === currentUserId) {
-      return <button type="button" disabled={load} onClick={() => editTaskFunc(taskId, currentUserId)}>編集</button>;
+      return (
+        <button
+          type="button"
+          disabled={load}
+          onClick={() => editTaskFunc(taskId, currentUserId)}
+        >
+          編集
+        </button>
+      );
     }
     return null;
   }
@@ -90,7 +98,11 @@ export function TaskList(props) {
 
   function DeleteTaskButton() {
     if (taskCreatedUserId === currentUserId) {
-      return <button type="button" onClick={() => deleteCheckFunc()}>削除</button>;
+      return (
+        <button type="button" onClick={() => deleteCheckFunc()}>
+          削除
+        </button>
+      );
     }
     return null;
   }
@@ -101,9 +113,7 @@ export function TaskList(props) {
   };
 
   const deleteTaskFunc = (taskId) => {
-    deleteTask(taskId)
-      .then()
-      .catch();
+    deleteTask(taskId).then().catch();
     // .catch((response) => {
     // });
     setLoad(false);
@@ -130,16 +140,19 @@ export function TaskList(props) {
           <DeleteTaskButton />
         </ButtonCover>
       </ListCover>
-      {deleteCheckAble === true
-        && (
+      {deleteCheckAble === true && (
         <BackgroundDisAbledCover>
           <BackgroundDisAbled>
             <div>本当に削除しますか?</div>
-            <button type="button" onClick={() => deleteTaskFunc(taskId)}>はい</button>
-            <button type="button" onClick={() => unDeleteCheckFunc()}>いいえ</button>
+            <button type="button" onClick={() => deleteTaskFunc(taskId)}>
+              はい
+            </button>
+            <button type="button" onClick={() => unDeleteCheckFunc()}>
+              いいえ
+            </button>
           </BackgroundDisAbled>
         </BackgroundDisAbledCover>
-        )}
+      )}
     </>
   );
 }

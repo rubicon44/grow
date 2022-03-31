@@ -23,7 +23,13 @@ export function LogOutButton(props) {
   const { signout } = useContext(AuthContext);
   const { text } = props;
   return (
-    <ButtonStyle onClick={() => { signout(); }}>{text}</ButtonStyle>
+    <ButtonStyle
+      onClick={() => {
+        signout();
+      }}
+    >
+      {text}
+    </ButtonStyle>
   );
 }
 

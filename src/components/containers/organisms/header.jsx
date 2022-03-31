@@ -71,11 +71,17 @@ export function Header() {
       .catch();
     // .catch((data) => {
     // });
-    return () => { isMounted = false; };
+    return () => {
+      isMounted = false;
+    };
   }, [userId]);
 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    if (
+      event &&
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
       return;
     }
 
@@ -106,7 +112,11 @@ export function Header() {
       <List>
         {headerLinks.map((headerLink) => (
           <Link to={headerLink.url} key={headerLink.url}>
-            <ListItem button key={headerLink.text} className={clsx(classes.listCenter)}>
+            <ListItem
+              button
+              key={headerLink.text}
+              className={clsx(classes.listCenter)}
+            >
               <ListItemText primary={headerLink.text} />
             </ListItem>
           </Link>
@@ -116,7 +126,11 @@ export function Header() {
       <List>
         {headerLinksForAuth.map((headerLink) => (
           <Link to={headerLink.url} key={headerLink.url}>
-            <ListItem button key={headerLink.text} className={clsx(classes.listCenter)}>
+            <ListItem
+              button
+              key={headerLink.text}
+              className={clsx(classes.listCenter)}
+            >
               <ListItemText primary={headerLink.text} />
             </ListItem>
           </Link>
@@ -131,7 +145,9 @@ export function Header() {
       <HeaderMenuGroup>
         {['top'].map((anchor) => (
           <React.Fragment key={anchor}>
-            <IconButton onClick={toggleDrawer(anchor, true)}><MenuIcon /></IconButton>
+            <IconButton onClick={toggleDrawer(anchor, true)}>
+              <MenuIcon />
+            </IconButton>
             <SwipeableDrawer
               anchor={anchor}
               open={state[anchor]}

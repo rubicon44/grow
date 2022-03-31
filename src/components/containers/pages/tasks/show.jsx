@@ -23,10 +23,10 @@ export function TaskShow() {
       .catch();
     // .catch((data) => {
     // });
-    return () => { isMounted = false; };
+    return () => {
+      isMounted = false;
+    };
   }, [taskId, taskTitle, taskContent]);
 
-  return (
-    <TaskShowTemplate task={task} taskCreatedUser={taskCreatedUser} />
-  );
+  return <TaskShowTemplate task={task} taskCreatedUser={taskCreatedUser} />;
 }

@@ -24,7 +24,12 @@ export function TaskEditTemplate(props) {
     <>
       <Header />
       <Main>
-        <TaskUpdateForm id={id} title={title} content={content} currentUserId={currentUserId} />
+        <TaskUpdateForm
+          id={id}
+          title={title}
+          content={content}
+          currentUserId={currentUserId}
+        />
       </Main>
     </>
   );

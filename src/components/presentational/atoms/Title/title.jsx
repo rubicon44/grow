@@ -9,9 +9,7 @@ const TitleStyle = styled.h2`
 
 export function Title(props) {
   const { title } = props;
-  return (
-    <TitleStyle>{title}</TitleStyle>
-  );
+  return <TitleStyle>{title}</TitleStyle>;
 }
 
 Title.defaultProps = {

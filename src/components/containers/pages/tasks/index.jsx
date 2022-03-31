@@ -28,10 +28,10 @@ export function TaskIndex() {
       .catch();
     // .catch(() => {
     // });
-    return () => { isMounted = false; };
+    return () => {
+      isMounted = false;
+    };
   }, [tasks]);
 
-  return (
-    <TaskIndexTemplate tasks={tasks} />
-  );
+  return <TaskIndexTemplate tasks={tasks} />;
 }

@@ -37,22 +37,24 @@ TasksList.defaultProps = {
 };
 
 TasksList.propTypes = {
-  tasks: PropTypes.arrayOf(PropTypes.exact({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    content: PropTypes.string,
-    created_at: PropTypes.string,
-    updated_at: PropTypes.string,
-    user_id: PropTypes.string,
-    user: PropTypes.exact({
+  tasks: PropTypes.arrayOf(
+    PropTypes.exact({
       id: PropTypes.number,
-      name: PropTypes.string,
+      title: PropTypes.string,
+      content: PropTypes.string,
       created_at: PropTypes.string,
       updated_at: PropTypes.string,
-      email: PropTypes.string,
-      firebase_id: PropTypes.string,
-      password_digest: PropTypes.string,
-      bio: PropTypes.string,
+      user_id: PropTypes.string,
+      user: PropTypes.exact({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        created_at: PropTypes.string,
+        updated_at: PropTypes.string,
+        email: PropTypes.string,
+        firebase_id: PropTypes.string,
+        password_digest: PropTypes.string,
+        bio: PropTypes.string,
+      }),
     }),
-  })),
+  ),
 };

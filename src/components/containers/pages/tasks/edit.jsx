@@ -10,6 +10,11 @@ export function TaskEdit() {
   const { currentUserId } = location.state;
 
   return (
-    <TaskEditTemplate id={id} title={title} content={content} currentUserId={currentUserId} />
+    <TaskEditTemplate
+      id={id}
+      title={title}
+      content={content}
+      currentUserId={currentUserId}
+    />
   );
 }

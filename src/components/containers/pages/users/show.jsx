@@ -41,7 +41,9 @@ export function UserShow() {
       .catch();
     // .catch((data) => {
     // });
-    return () => { isMounted = false; };
+    return () => {
+      isMounted = false;
+    };
   }, [userId, taskUser]);
 
   const { currentUser } = useContext(AuthContext);
@@ -58,10 +60,17 @@ export function UserShow() {
       .catch();
     // .catch((data) => {
     // });
-    return () => { isMounted = false; };
+    return () => {
+      isMounted = false;
+    };
   }, [currentUser, currentUserId]);
 
   return (
-    <UserShowTemplate taskUser={taskUser} userTasks={userTasks} currentUserId={currentUserId} currentUserAble={currentUserAble} />
+    <UserShowTemplate
+      taskUser={taskUser}
+      userTasks={userTasks}
+      currentUserId={currentUserId}
+      currentUserAble={currentUserAble}
+    />
   );
 }

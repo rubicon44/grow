@@ -51,18 +51,35 @@ export function Form(props) {
         <FormTitleCover>
           <label htmlFor="title">
             題名:
-            <input type="text" name="title" defaultValue={title} onChange={(e) => { setTitle(e.target.value); }} placeholder="Title" />
+            <input
+              type="text"
+              name="title"
+              defaultValue={title}
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
+              placeholder="Title"
+            />
           </label>
         </FormTitleCover>
         <FormTextAreaCover>
           <label htmlFor="content">
             内容:
-            <textarea name="content" defaultValue={content} onChange={(e) => { setContent(e.target.value); }} placeholder="Content" cols="80" rows="3" />
+            <textarea
+              name="content"
+              defaultValue={content}
+              onChange={(e) => {
+                setContent(e.target.value);
+              }}
+              placeholder="Content"
+              cols="80"
+              rows="3"
+            />
           </label>
         </FormTextAreaCover>
         <FormButtonCover>
           <button type="submit" disabled={load}>
-            { !title ? '作成' : '更新' }
+            {!title ? '作成' : '更新'}
           </button>
         </FormButtonCover>
       </form>
