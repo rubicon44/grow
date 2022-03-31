@@ -11,32 +11,60 @@ const Main = styled.main`
   align-items: center;
   text-align: center;
   background-color: #f8f7f3;
-`
+`;
 
 export function UserShowTemplate(props) {
-  const taskUser = props.taskUser;
-  const userTasks = props.userTasks;
-  const currentUserId = props.currentUserId;
-  const currentUser = props.currentUser;
+  const { taskUser } = props;
+  const { userTasks } = props;
+  const { currentUserId } = props;
+  const { currentUser } = props;
   return (
-    <React.Fragment>
+    <>
       <Header />
       <Main>
         <UserTasksList taskUser={taskUser} userTasks={userTasks} currentUserId={currentUserId} currentUser={currentUser} />
       </Main>
-    </React.Fragment>
-  )
+    </>
+  );
+}
+
+UserShowTemplate.defaultProps = {
+  taskUser: {},
+  userTasks: [],
+  currentUserId: '',
+  // currentUser: {},
 };
 
 UserShowTemplate.propTypes = {
-  taskUser: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  userTasks: PropTypes.array,
-  currentUserId: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.number,
-  ]),
-  currentUser: PropTypes.object
+  taskUser: PropTypes.exact({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    created_at: PropTypes.string,
+    updated_at: PropTypes.string,
+    email: PropTypes.string,
+    firebase_id: PropTypes.string,
+    password_digest: PropTypes.string,
+    bio: PropTypes.string,
+    tasks: PropTypes.arrayOf(PropTypes.exact({
+      id: PropTypes.number,
+      title: PropTypes.string,
+      content: PropTypes.string,
+      created_at: PropTypes.string,
+      updated_at: PropTypes.string,
+      user_id: PropTypes.string,
+    })),
+  }),
+  userTasks: PropTypes.arrayOf(PropTypes.exact({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    content: PropTypes.string,
+    created_at: PropTypes.string,
+    updated_at: PropTypes.string,
+    user_id: PropTypes.string,
+  })),
+  currentUserId: PropTypes.string,
+  // currentUser: PropTypes.exact({
+  //   uid: PropTypes.string,
+  //   email: PropTypes.string,
+  // }),
 };

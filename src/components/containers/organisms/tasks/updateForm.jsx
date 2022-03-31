@@ -15,49 +15,58 @@ const FormHeader = styled.div`
     width: 100%;
     margin-right: 45px;
   }
-`
+`;
 
 export function TaskUpdateForm(props) {
+  const updateTaskFunc = (id, task) => {
+    updateTask(id, task)
+      .then()
+      .catch();
+    // .then((response) => {
+    // })
+    // .catch((response) => {
+    // });
+  };
+
+  const { title: taskTitle } = props;
+  const { content: taskContent } = props;
   const [load, setLoad] = useState(false);
-  const [title, setTitle] = useState([props.title]);
-  const [content, setContent] = useState([props.content]);
-  const id = props.id;
-  const currentUserId = props.current_user_id;
+  const [title, setTitle] = useState(taskTitle);
+  const [content, setContent] = useState(taskContent);
+  const { id } = props;
+  const { currentUserId } = props;
   const navigate = useNavigate();
   const handleTextSubmit = (e) => {
     e.preventDefault();
     e.persist();
     setLoad(true);
-    let task = { 'title': title, 'content': content };
+    const task = { title, content };
     updateTaskFunc(id, task);
-    setLoad(false)
+    setLoad(false);
     navigate(`/users/${currentUserId}/tasks/${id}`);
   };
 
-  const updateTaskFunc = (id, task) => {
-    updateTask(id, task)
-    .then(response => {
-      console.log(response.data);
-    })
-    .catch(response => {
-      console.log(response.data);
-    });
-  };
-
   return (
-    <React.Fragment>
+    <>
       <FormHeader>
         <BackButton />
         <Title title="編集" />
       </FormHeader>
       <Form load={load} title={title} setTitle={setTitle} content={content} setContent={setContent} handleTextSubmit={handleTextSubmit} />
-    </React.Fragment>
-  )
+    </>
+  );
 }
+
+TaskUpdateForm.defaultProps = {
+  id: 0,
+  title: '',
+  content: '',
+  currentUserId: '',
+};
 
 TaskUpdateForm.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,
   content: PropTypes.string,
-  current_user_id: PropTypes.string
+  currentUserId: PropTypes.string,
 };

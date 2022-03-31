@@ -10,15 +10,15 @@ const Main = styled.main`
   padding: 30px 10px;
   text-align: center;
   background-color: #ddd;
-`
+`;
 
 export function TaskCreateTemplate() {
   return (
-    <React.Fragment>
+    <>
       <Header />
       <Main>
         <TaskCreateForm />
       </Main>
-    </React.Fragment>
+    </>
   );
 }

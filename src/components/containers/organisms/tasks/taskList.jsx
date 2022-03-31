@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { deleteTask } from '../../../../infra/api';
@@ -10,7 +10,7 @@ import { List } from '../../../presentational/molecules/List/list';
 const ListCover = styled.div`
   min-width: 180px;
   margin-top: 15px;
-`
+`;
 
 const ListHeader = styled.div`
   display: flex;
@@ -20,14 +20,14 @@ const ListHeader = styled.div`
     width: 100%;
     margin-right: 45px;
   }
-`
+`;
 
 const ButtonCover = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
   margin: 10px 0;
-`
+`;
 
 const BackgroundDisAbledCover = styled.div`
   position: absolute;
@@ -38,7 +38,7 @@ const BackgroundDisAbledCover = styled.div`
   width: 100%;
   height: 100%;
   background: #ddd;
-`
+`;
 
 const BackgroundDisAbled = styled.div`
   margin: 30px;
@@ -46,28 +46,21 @@ const BackgroundDisAbled = styled.div`
   border: 1px solid #ddd;
   border-radius: 4px;
   background: #fff;
-`
+`;
 
 export function TaskList(props) {
-  const task = props.task;
-  const taskId = task.id;
-  const taskTitle = task.title;
-  const taskContent = task.content;
-  const taskCreatedUserId = task.user_id;
-  const taskCreatedUserName = props.taskCreatedUser.name;
+  const { task } = props;
+  const { id: taskId } = task;
+  const { user_id: taskUserId } = task;
+  const { title: taskTitle } = task;
+  const { content: taskContent } = task;
+  const { user_id: taskCreatedUserId } = task;
+  const { taskCreatedUser } = props;
+  const { name: taskCreatedUserName } = taskCreatedUser;
 
-  let currentUserDataText =localStorage.getItem('user');
+  const currentUserDataText = localStorage.getItem('user');
   const currentUserData = JSON.parse(currentUserDataText);
-  const currentUserId = currentUserData['id'].toString();
-
-  const [load, setLoad] = useState(false);
-  const EditTaskButton = () => {
-    if (taskCreatedUserId === currentUserId) {
-      return <button disabled={load} onClick={() => editTaskFunc(taskId, currentUserId)}>編集</button>;
-    } else {
-      return null;
-    }
-  }
+  const currentUserId = String(currentUserData.id);
 
   const navigate = useNavigate();
   const editTaskFunc = (taskId, currentUserId) => {
@@ -76,79 +69,113 @@ export function TaskList(props) {
         id: taskId,
         title: taskTitle,
         content: taskContent,
-        current_user_id: currentUserId,
+        currentUserId,
       },
     });
   };
 
-  const DeleteTaskButton = () => {
+  const [load, setLoad] = useState(false);
+  function EditTaskButton() {
     if (taskCreatedUserId === currentUserId) {
-      return <button onClick={() => deleteCheckFunc()}>削除</button>;
-    } else {
-      return null;
+      return <button type="button" disabled={load} onClick={() => editTaskFunc(taskId, currentUserId)}>編集</button>;
     }
+    return null;
   }
 
+  const [deleteCheckAble, setDeleteCheckAble] = useState(false);
   const deleteCheckFunc = () => {
     setLoad(true);
     setDeleteCheckAble(true);
+  };
+
+  function DeleteTaskButton() {
+    if (taskCreatedUserId === currentUserId) {
+      return <button type="button" onClick={() => deleteCheckFunc()}>削除</button>;
+    }
+    return null;
   }
 
   const unDeleteCheckFunc = () => {
-    setLoad(false)
-    setDeleteCheckAble(false)
-  }
+    setLoad(false);
+    setDeleteCheckAble(false);
+  };
 
   const deleteTaskFunc = (taskId) => {
     deleteTask(taskId)
-    .then(response => {
-      console.log(response.data);
-      console.log("正常に削除されました。");
-    })
-    .catch(response => {
-      console.log(response.data);
-    });
-    setLoad(false)
+      .then()
+      .catch();
+    // .catch((response) => {
+    // });
+    setLoad(false);
     navigate(`/users/${taskCreatedUserId}`);
   };
 
-  const [deleteCheckAble, setDeleteCheckAble] = useState(false);
   return (
-    <React.Fragment>
+    <>
       <ListHeader>
         <BackButton />
         <Title title="タスク詳細" />
       </ListHeader>
       <ListCover>
-        <List title={taskTitle} content={taskContent}
-              link={<Link to={`/users/${taskCreatedUserId}`}>{taskCreatedUserName}</Link>}
+        <List
+          title={taskTitle}
+          taskId={String(taskId)}
+          content={taskContent}
+          taskUserId={String(taskUserId)}
+          taskCreatedUserId={String(taskCreatedUserId)}
+          taskCreatedUserName={taskCreatedUserName}
         />
         <ButtonCover>
           <EditTaskButton />
           <DeleteTaskButton />
         </ButtonCover>
       </ListCover>
-      {deleteCheckAble === true &&
+      {deleteCheckAble === true
+        && (
         <BackgroundDisAbledCover>
           <BackgroundDisAbled>
             <div>本当に削除しますか?</div>
-            <button onClick={() => deleteTaskFunc(taskId)}>はい</button>
-            <button onClick={() => unDeleteCheckFunc()}>いいえ</button>
+            <button type="button" onClick={() => deleteTaskFunc(taskId)}>はい</button>
+            <button type="button" onClick={() => unDeleteCheckFunc()}>いいえ</button>
           </BackgroundDisAbled>
         </BackgroundDisAbledCover>
-        }
-    </React.Fragment>
-  )
+        )}
+    </>
+  );
 }
 
+TaskList.defaultProps = {
+  task: {},
+  taskCreatedUser: {},
+};
+
 TaskList.propTypes = {
-  task: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  taskId: PropTypes.string,
-  taskTitle: PropTypes.string,
-  taskContent: PropTypes.string,
-  taskCreatedUserId: PropTypes.string,
-  taskCreatedUserName: PropTypes.string
+  task: PropTypes.exact({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    content: PropTypes.string,
+    created_at: PropTypes.string,
+    updated_at: PropTypes.string,
+    user_id: PropTypes.string,
+    user: PropTypes.exact({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      created_at: PropTypes.string,
+      updated_at: PropTypes.string,
+      email: PropTypes.string,
+      firebase_id: PropTypes.string,
+      password_digest: PropTypes.string,
+      bio: PropTypes.string,
+    }),
+  }),
+  taskCreatedUser: PropTypes.exact({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    created_at: PropTypes.string,
+    updated_at: PropTypes.string,
+    email: PropTypes.string,
+    firebase_id: PropTypes.string,
+    password_digest: PropTypes.string,
+    bio: PropTypes.string,
+  }),
 };

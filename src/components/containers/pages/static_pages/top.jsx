@@ -16,7 +16,7 @@ const Main = styled.main`
   > a:not(:first-of-type) {
     margin-top: 10px;
   }
-`
+`;
 
 const Title = styled.h2`
   width: 288px;
@@ -30,7 +30,7 @@ const Title = styled.h2`
     font-size: 46px;
     line-height: 69px;
   `}
-`
+`;
 
 export function Top() {
   return (
@@ -40,5 +40,5 @@ export function Top() {
       <NextButton text="会員登録" url="/sign_up" />
       <NextLink text="ログイン" url="/sign_in" />
     </Main>
-  )
-};
+  );
+}

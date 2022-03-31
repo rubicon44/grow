@@ -25,16 +25,21 @@ const ButtonStyle = styled(Link)`
     font-size: 24px;
     line-height: 36px;
 `}
-`
+`;
 export function NextButton(props) {
-  const url = props.url;
-  const text = props.text;
+  const { url } = props;
+  const { text } = props;
   return (
     <ButtonStyle to={url}>{text}</ButtonStyle>
-  )
+  );
 }
+
+NextButton.defaultProps = {
+  url: '',
+  text: '',
+};
 
 NextButton.propTypes = {
   url: PropTypes.string,
-  text: PropTypes.string
+  text: PropTypes.string,
 };

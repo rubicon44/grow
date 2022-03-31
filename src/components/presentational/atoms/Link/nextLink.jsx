@@ -11,14 +11,19 @@ const LinkStyle = styled(Link)`
 `;
 
 export function NextLink(props) {
-  const url = props.url;
-  const text = props.text;
+  const { url } = props;
+  const { text } = props;
   return (
     <LinkStyle to={url}>{text}</LinkStyle>
-  )
+  );
 }
+
+NextLink.defaultProps = {
+  url: '',
+  text: '',
+};
 
 NextLink.propTypes = {
   url: PropTypes.string,
-  text: PropTypes.string
+  text: PropTypes.string,
 };

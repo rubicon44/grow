@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { currentUser } from './current_user';
+import { currentUser } from './currentUser';
 
 axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
 const tokenAuth = localStorage.getItem('token');
@@ -19,13 +19,13 @@ export const signIn = (idToken) => axios({
 export const getCurrentUser = () => axios({
   method: 'get',
   url: `/users/${currentUser.id}`,
-  params: { current_user: true },
+  params: { currentUser: true },
 });
 
 export const getUser = (params) => axios({
   method: 'get',
   url: `/users/${params}`,
-  params: { current_user: true },
+  params: { currentUser: true },
 });
 
 export const updateUser = (params, data) => axios({

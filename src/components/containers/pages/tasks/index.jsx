@@ -25,8 +25,9 @@ export function TaskIndex() {
         const dOrderData = sortdOrder(response);
         if (isMounted) setTasks(dOrderData);
       })
-      .catch(() => {
-      });
+      .catch();
+    // .catch(() => {
+    // });
     return () => { isMounted = false; };
   }, [tasks]);
 

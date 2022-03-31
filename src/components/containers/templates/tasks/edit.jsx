@@ -12,27 +12,34 @@ const Main = styled.div`
   padding: 30px 10px;
   text-align: center;
   background-color: #ddd;
-`
+`;
 
 export function TaskEditTemplate(props) {
-  const id = props.id;
-  const title = props.title;
-  const content = props.content;
-  const current_user_id = props.current_user_id;
+  const { id } = props;
+  const { title } = props;
+  const { content } = props;
+  const { currentUserId } = props;
 
   return (
-    <React.Fragment>
+    <>
       <Header />
       <Main>
-        <TaskUpdateForm id={id} title={title} content={content} current_user_id={current_user_id} />
+        <TaskUpdateForm id={id} title={title} content={content} currentUserId={currentUserId} />
       </Main>
-    </React.Fragment>
+    </>
   );
 }
+
+TaskEditTemplate.defaultProps = {
+  id: 0,
+  title: '',
+  content: '',
+  currentUserId: '',
+};
 
 TaskEditTemplate.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,
   content: PropTypes.string,
-  current_user_id: PropTypes.string
+  currentUserId: PropTypes.string,
 };
