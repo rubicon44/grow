@@ -17,16 +17,26 @@ const ButtonStyle = styled.button`
   border: none;
   border-radius: 5px;
   background-color: #ff444f;
-`
+`;
 
 export function LogOutButton(props) {
   const { signout } = useContext(AuthContext);
-  const text = props.text;
+  const { text } = props;
   return (
-    <ButtonStyle onClick={() => { signout() }}>{text}</ButtonStyle>
-  )
+    <ButtonStyle
+      onClick={() => {
+        signout();
+      }}
+    >
+      {text}
+    </ButtonStyle>
+  );
 }
 
+LogOutButton.defaultProps = {
+  text: '',
+};
+
 LogOutButton.propTypes = {
-  text: PropTypes.string
+  text: PropTypes.string,
 };

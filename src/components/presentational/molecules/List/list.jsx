@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { CreatedUser } from '../../atoms/Link/createdUser';
@@ -17,26 +18,43 @@ const ListStyle = styled.dl`
     padding: 5px;
     border: 1px solid #bbb;
   }
-`
+`;
 
 export function List(props) {
-  const title = props.title;
-  const content = props.content;
-  const link = props.link;
+  const { taskId } = props;
+  const { taskUserId } = props;
+  const { title } = props;
+  const { content } = props;
+  const { taskCreatedUserId } = props;
+  const { taskCreatedUserName } = props;
   return (
     <ListStyle>
-      <dt>{title}</dt>
+      <dt>
+        <Link to={`/users/${taskUserId}/tasks/${taskId}`}>{title}</Link>
+      </dt>
       <dd>{content}</dd>
-      <CreatedUser link={link} />
+      <CreatedUser
+        taskCreatedUserId={taskCreatedUserId}
+        taskCreatedUserName={taskCreatedUserName}
+      />
     </ListStyle>
-  )
+  );
 }
 
+List.defaultProps = {
+  taskId: '',
+  taskUserId: '',
+  title: '',
+  content: '',
+  taskCreatedUserId: '',
+  taskCreatedUserName: '',
+};
+
 List.propTypes = {
-  title: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-  ]),
+  taskId: PropTypes.string,
+  taskUserId: PropTypes.string,
+  title: PropTypes.string,
   content: PropTypes.string,
-  link: PropTypes.object
+  taskCreatedUserId: PropTypes.string,
+  taskCreatedUserName: PropTypes.string,
 };

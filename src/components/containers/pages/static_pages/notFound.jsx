@@ -16,7 +16,7 @@ const Main = styled.main`
     max-width: 1280px;
     height: 700px;
   `}
-`
+`;
 
 const Title = styled.h2`
   width: 288px;
@@ -30,15 +30,15 @@ const Title = styled.h2`
     font-size: 46px;
     line-height: 69px;
   `}
-`
+`;
 
 export function NotFound() {
   return (
-    <React.Fragment>
+    <>
       <Header />
       <Main>
         <Title>お探しのページが見つかりません。</Title>
       </Main>
-    </React.Fragment>
-  )
-};
+    </>
+  );
+}

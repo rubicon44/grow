@@ -25,12 +25,13 @@ export function TaskIndex() {
         const dOrderData = sortdOrder(response);
         if (isMounted) setTasks(dOrderData);
       })
-      .catch(() => {
-      });
-    return () => { isMounted = false; };
+      .catch();
+    // .catch(() => {
+    // });
+    return () => {
+      isMounted = false;
+    };
   }, [tasks]);
 
-  return (
-    <TaskIndexTemplate tasks={tasks} />
-  );
+  return <TaskIndexTemplate tasks={tasks} />;
 }

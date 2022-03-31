@@ -17,7 +17,7 @@ const HeaderCover = styled.div`
   height: 50px;
   padding: 12px 15px;
   box-sizing: border-box;
-`
+`;
 
 const Logo = styled(Link)`
   font-size: 22px;
@@ -25,17 +25,16 @@ const Logo = styled(Link)`
   font-family: YuMincho;
   color: #ff444f;
   text-decoraiton: none;
-`
+`;
 
 const HeaderMenuGroup = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-`
+`;
 
-// 下記「(theme) => ({~を追記することにより、useStylesの中でthemeが扱えるようになる。」
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   list: {
     width: 250,
   },
@@ -65,35 +64,41 @@ export function Header() {
   useEffect(() => {
     let isMounted = true;
     getCurrentUser()
-    .then(response => {
-      const userId = response.data.user.id;
-      if (isMounted) setUserId(userId);
-    })
-    .catch(data => {
-      console.log(data);
-    });
-    return () => { isMounted = false };
+      .then((response) => {
+        const userId = response.data.user.id;
+        if (isMounted) setUserId(userId);
+      })
+      .catch();
+    // .catch((data) => {
+    // });
+    return () => {
+      isMounted = false;
+    };
   }, [userId]);
 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    if (
+      event &&
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
       return;
     }
 
     setState({ ...state, [anchor]: open });
   };
 
-  const headerLinks        = [
-                               { url: "/top", text: "Top" },
-                               { url: "/tasks", text: "Home" },
-                               { url: "/tasks/create", text: "Post" },
-                               { url: "/users/" + userId, text: "Report" },
-                             ];
+  const headerLinks = [
+    { url: '/top', text: 'Top' },
+    { url: '/tasks', text: 'Home' },
+    { url: '/tasks/create', text: 'Post' },
+    { url: `/users/${userId}`, text: 'Report' },
+  ];
 
   const headerLinksForAuth = [
-                               { url: "/sign_in", text: "ログイン" },
-                               { url: "/sign_up", text: "会員登録" },
-                             ];
+    { url: '/sign_in', text: 'ログイン' },
+    { url: '/sign_up', text: '会員登録' },
+  ];
 
   const list = (anchor) => (
     <div
@@ -107,7 +112,11 @@ export function Header() {
       <List>
         {headerLinks.map((headerLink) => (
           <Link to={headerLink.url} key={headerLink.url}>
-            <ListItem button key={headerLink.text} className={clsx(classes.listCenter)}>
+            <ListItem
+              button
+              key={headerLink.text}
+              className={clsx(classes.listCenter)}
+            >
               <ListItemText primary={headerLink.text} />
             </ListItem>
           </Link>
@@ -115,9 +124,13 @@ export function Header() {
       </List>
       <Divider />
       <List>
-      {headerLinksForAuth.map((headerLink) => (
+        {headerLinksForAuth.map((headerLink) => (
           <Link to={headerLink.url} key={headerLink.url}>
-            <ListItem button key={headerLink.text} className={clsx(classes.listCenter)}>
+            <ListItem
+              button
+              key={headerLink.text}
+              className={clsx(classes.listCenter)}
+            >
               <ListItemText primary={headerLink.text} />
             </ListItem>
           </Link>
@@ -132,7 +145,9 @@ export function Header() {
       <HeaderMenuGroup>
         {['top'].map((anchor) => (
           <React.Fragment key={anchor}>
-            <IconButton onClick={toggleDrawer(anchor, true)}><MenuIcon /></IconButton>
+            <IconButton onClick={toggleDrawer(anchor, true)}>
+              <MenuIcon />
+            </IconButton>
             <SwipeableDrawer
               anchor={anchor}
               open={state[anchor]}

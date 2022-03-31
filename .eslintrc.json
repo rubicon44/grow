@@ -9,7 +9,8 @@
         "plugin:react/recommended",
         "airbnb",
         "plugin:import/errors",
-        "plugin:import/warnings"
+        "plugin:import/warnings",
+        "prettier"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -20,9 +21,12 @@
     },
     "plugins": [
         "react",
-        "import"
+        "import",
+        "react-hooks"
     ],
     "rules": {
+        "import/prefer-default-export": "off",
+        "no-shadow": "off",
         "react/jsx-filename-extension": [
           "error",
           {
@@ -33,7 +37,9 @@
                   ".tsx"
               ]
           }
-        ]
+        ],
+        "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+        "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
     },
     "settings": {
       "import/resolver": {

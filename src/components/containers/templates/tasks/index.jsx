@@ -31,11 +31,24 @@ TaskIndexTemplate.defaultProps = {
 };
 
 TaskIndexTemplate.propTypes = {
-  // todo: objectはオブジェクトの中のあたいの方までは厳密に定義しないため非推奨となっている。
-  //       このため、tasksという大きなオブジェクトを全て渡してしまうと全ての型を定義することになるため、親コンポーネントで数を制御する。
-  tasks: PropTypes.arrayOf(PropTypes.object),
-  // tasks: PropTypes.arrayOf(PropTypes.exact({
-  //   id: PropTypes.number,
-  //   title: PropTypes.string
-  // }))
+  tasks: PropTypes.arrayOf(
+    PropTypes.exact({
+      id: PropTypes.number,
+      title: PropTypes.string,
+      content: PropTypes.string,
+      created_at: PropTypes.string,
+      updated_at: PropTypes.string,
+      user_id: PropTypes.string,
+      user: PropTypes.exact({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        created_at: PropTypes.string,
+        updated_at: PropTypes.string,
+        email: PropTypes.string,
+        firebase_id: PropTypes.string,
+        password_digest: PropTypes.string,
+        bio: PropTypes.string,
+      }),
+    }),
+  ),
 };

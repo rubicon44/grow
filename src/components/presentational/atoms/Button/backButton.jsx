@@ -13,7 +13,7 @@ const BackButtonCover = styled.div`
   > svg {
     cursor: pointer;
   }
-`
+`;
 
 export function BackButton() {
   const navigate = useNavigate();
@@ -25,5 +25,5 @@ export function BackButton() {
     <BackButtonCover>
       <ArrowBackIosIcon onClick={handleBackButtonClick} />
     </BackButtonCover>
-  )
+  );
 }
