@@ -45,9 +45,11 @@ export function UserShow() {
   }, [userId, taskUser]);
 
   const { currentUser } = useContext(AuthContext);
+  const [currentUserAble, setCurrentUserAble] = useState(false);
   const [currentUserId, setCurrentUserId] = useState();
   useEffect(() => {
     let isMounted = true;
+    if (currentUser) setCurrentUserAble(true);
     getCurrentUser()
       .then((response) => {
         const currentUserId = String(response.data.user.id);
@@ -57,9 +59,9 @@ export function UserShow() {
     // .catch((data) => {
     // });
     return () => { isMounted = false; };
-  }, [currentUserId]);
+  }, [currentUser, currentUserId]);
 
   return (
-    <UserShowTemplate taskUser={taskUser} userTasks={userTasks} currentUserId={currentUserId} currentUser={currentUser} />
+    <UserShowTemplate taskUser={taskUser} userTasks={userTasks} currentUserId={currentUserId} currentUserAble={currentUserAble} />
   );
 }

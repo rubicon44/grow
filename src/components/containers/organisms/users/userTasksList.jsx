@@ -57,7 +57,7 @@ export function UserTasksList(props) {
   const { taskUser } = props;
   const { userTasks } = props;
   const { currentUserId } = props;
-  const { currentUser } = props;
+  const { currentUserAble } = props;
   return (
     <>
       <ContentHeaderCover>
@@ -86,7 +86,7 @@ export function UserTasksList(props) {
       {currentUserId === String(taskUser.id)
         && (
         <LogOutButtonCover>
-          { currentUser && <LogOutButton text="ログアウト" /> }
+          { currentUserAble && <LogOutButton text="ログアウト" /> }
         </LogOutButtonCover>
         )}
     </>
@@ -97,7 +97,7 @@ UserTasksList.defaultProps = {
   taskUser: {},
   userTasks: [],
   currentUserId: '',
-  // currentUser: {},
+  currentUserAble: false,
 };
 
 UserTasksList.propTypes = {
@@ -128,6 +128,7 @@ UserTasksList.propTypes = {
     user_id: PropTypes.string,
   })),
   currentUserId: PropTypes.string,
+  currentUserAble: PropTypes.bool,
   // currentUser: PropTypes.exact({
   //   uid: PropTypes.string,
   //   email: PropTypes.string,

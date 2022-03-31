@@ -17,12 +17,12 @@ export function UserShowTemplate(props) {
   const { taskUser } = props;
   const { userTasks } = props;
   const { currentUserId } = props;
-  const { currentUser } = props;
+  const { currentUserAble } = props;
   return (
     <>
       <Header />
       <Main>
-        <UserTasksList taskUser={taskUser} userTasks={userTasks} currentUserId={currentUserId} currentUser={currentUser} />
+        <UserTasksList taskUser={taskUser} userTasks={userTasks} currentUserId={currentUserId} currentUserAble={currentUserAble} />
       </Main>
     </>
   );
@@ -32,7 +32,7 @@ UserShowTemplate.defaultProps = {
   taskUser: {},
   userTasks: [],
   currentUserId: '',
-  // currentUser: {},
+  currentUserAble: false,
 };
 
 UserShowTemplate.propTypes = {
@@ -63,6 +63,7 @@ UserShowTemplate.propTypes = {
     user_id: PropTypes.string,
   })),
   currentUserId: PropTypes.string,
+  currentUserAble: PropTypes.bool,
   // currentUser: PropTypes.exact({
   //   uid: PropTypes.string,
   //   email: PropTypes.string,
