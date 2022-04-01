@@ -58,7 +58,7 @@ UserShowTemplate.propTypes = {
         created_at: PropTypes.string,
         updated_at: PropTypes.string,
         user_id: PropTypes.string,
-      }),
+      })
     ),
   }),
   userTasks: PropTypes.arrayOf(
@@ -69,7 +69,7 @@ UserShowTemplate.propTypes = {
       created_at: PropTypes.string,
       updated_at: PropTypes.string,
       user_id: PropTypes.string,
-    }),
+    })
   ),
   currentUserId: PropTypes.string,
   currentUserAble: PropTypes.bool,

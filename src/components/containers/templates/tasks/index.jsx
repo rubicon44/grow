@@ -49,6 +49,6 @@ TaskIndexTemplate.propTypes = {
         password_digest: PropTypes.string,
         bio: PropTypes.string,
       }),
-    }),
+    })
   ),
 };
