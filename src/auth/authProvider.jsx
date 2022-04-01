@@ -21,8 +21,9 @@ export function AuthProvider({ children }) {
             .then(async (response) => {
               const { token, user } = response.data;
               if (token) await localStorage.setItem('token', token);
-              if (user)
+              if (user) {
                 await localStorage.setItem('user', JSON.stringify(user));
+              }
               await window.location.reload();
             })
             .catch(async () => {
