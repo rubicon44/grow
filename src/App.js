@@ -33,7 +33,7 @@ const Wrapper = styled.div`
 
 const PageWrapper = styled.div`
   min-width: 300px;
-  max-width: 300px;
+  max-width: 320px;
   min-height: 700px;
   background-color: #eeeff1;
 
