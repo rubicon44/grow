@@ -29,12 +29,13 @@ export function TaskCreateForm() {
   const [load, setLoad] = useState(false);
   const [title, setTitle] = useState();
   const [content, setContent] = useState();
+  const [status, setStatus] = useState(0);
   const navigate = useNavigate();
   const handleTextSubmit = (e) => {
     e.preventDefault();
     e.persist();
     setLoad(true);
-    const task = { title, content, user_id: currentUid };
+    const task = { title, content, status, user_id: currentUid };
     postTasksFunc(task);
     setLoad(false);
     navigate('/tasks');
@@ -51,6 +52,8 @@ export function TaskCreateForm() {
         setTitle={setTitle}
         content={content}
         setContent={setContent}
+        status={status}
+        setStatus={setStatus}
         handleTextSubmit={handleTextSubmit}
       />
     </>

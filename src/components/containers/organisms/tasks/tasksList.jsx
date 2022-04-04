@@ -4,8 +4,10 @@ import styled from 'styled-components';
 import { Title } from '../../../presentational/atoms/Title/title';
 import { NextButton } from '../../../presentational/atoms/Button/nextButton';
 import { List } from '../../../presentational/molecules/List/list';
+import { TaskStatusSwitch } from './taskStatusSwitch';
 
 const ListCover = styled.div`
+  position: relative;
   min-width: 180px;
   margin-top: 15px;
 `;
@@ -26,6 +28,7 @@ export function TasksList(props) {
             taskCreatedUserId={String(task.user.id)}
             taskCreatedUserName={task.user.name}
           />
+          <TaskStatusSwitch taskStatus={task.status} />
         </ListCover>
       ))}
     </>
@@ -42,6 +45,7 @@ TasksList.propTypes = {
       id: PropTypes.number,
       title: PropTypes.string,
       content: PropTypes.string,
+      status: PropTypes.number,
       created_at: PropTypes.string,
       updated_at: PropTypes.string,
       user_id: PropTypes.string,

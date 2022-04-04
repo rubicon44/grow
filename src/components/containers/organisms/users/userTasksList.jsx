@@ -7,6 +7,7 @@ import { LogOutButton } from '../../../presentational/atoms/Button/logOut';
 import { List } from '../../../presentational/molecules/List/list';
 import { ProfileSwitch } from './profileSwitch';
 import { GunttChart } from '../tasks/ganttChart';
+import { TaskStatusSwitch } from '../tasks/taskStatusSwitch';
 
 const Content = styled.article`
   border-top: 1px solid #ddd;
@@ -45,7 +46,7 @@ const ContentHeaderCover = styled.div`
   background-color: #f8f7f3;
 `;
 
-const ListCover = styled.div`
+const ListCoverWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -53,6 +54,11 @@ const ListCover = styled.div`
   min-width: 180px;
   margin-top: 30px;
 `;
+
+const ListCover = styled.div`
+  position: relative;
+`;
+
 
 export function UserTasksList(props) {
   const { taskUser } = props;
@@ -76,16 +82,19 @@ export function UserTasksList(props) {
           </ListCover>
         ) : (
           userTasks.map((task) => (
-            <ListCover key={task.id}>
-              <List
-                taskId={String(task.id)}
-                title={task.title}
-                content={task.content}
-                taskUserId={String(taskUser.id)}
-                taskCreatedUserId={String(taskUser.id)}
-                taskCreatedUserName={taskUser.name}
-              />
-            </ListCover>
+            <ListCoverWrapper>
+              <ListCover key={task.id}>
+                <List
+                  taskId={String(task.id)}
+                  title={task.title}
+                  content={task.content}
+                  taskUserId={String(taskUser.id)}
+                  taskCreatedUserId={String(taskUser.id)}
+                  taskCreatedUserName={taskUser.name}
+                />
+                <TaskStatusSwitch taskStatus={task.status} />
+              </ListCover>
+            </ListCoverWrapper>
           ))
         )}
       </Content>
@@ -120,6 +129,7 @@ UserTasksList.propTypes = {
         id: PropTypes.number,
         title: PropTypes.string,
         content: PropTypes.string,
+        status: PropTypes.number,
         created_at: PropTypes.string,
         updated_at: PropTypes.string,
         user_id: PropTypes.string,
@@ -131,6 +141,7 @@ UserTasksList.propTypes = {
       id: PropTypes.number,
       title: PropTypes.string,
       content: PropTypes.string,
+      status: PropTypes.number,
       created_at: PropTypes.string,
       updated_at: PropTypes.string,
       user_id: PropTypes.string,

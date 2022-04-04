@@ -33,6 +33,14 @@ const FormTextAreaCover = styled.div`
   }
 `;
 
+const FormInputCover = styled.div`
+  margin-bottom: 10px;
+
+  > label {
+    display: block;
+  }
+`;
+
 const FormButtonCover = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -44,6 +52,8 @@ export function Form(props) {
   const { setTitle } = props;
   const { content } = props;
   const { setContent } = props;
+  const { status } = props;
+  const { setStatus } = props;
   const { load } = props;
   return (
     <FormCover>
@@ -77,6 +87,14 @@ export function Form(props) {
             />
           </label>
         </FormTextAreaCover>
+        <FormInputCover>
+          <select value={status} onChange={(e) => { setStatus(Number(e.target.value));}}>
+            <option value="0">未対応</option>
+            <option value="1">処理中</option>
+            <option value="2">処理済み</option>
+            <option value="3">完了</option>
+          </select>
+        </FormInputCover>
         <FormButtonCover>
           <button type="submit" disabled={load}>
             {!title ? '作成' : '更新'}
@@ -93,6 +111,8 @@ Form.defaultProps = {
   setTitle: () => {},
   content: '',
   setContent: () => {},
+  status: 0,
+  setStatus: () => {},
   load: false,
 };
 
@@ -102,5 +122,7 @@ Form.propTypes = {
   setTitle: PropTypes.func,
   content: PropTypes.string,
   setContent: PropTypes.func,
+  status: PropTypes.number,
+  setStatus: PropTypes.func,
   load: PropTypes.bool,
 };
