@@ -18,6 +18,7 @@ export function TaskEditTemplate(props) {
   const { id } = props;
   const { title } = props;
   const { content } = props;
+  const { status } = props;
   const { currentUserId } = props;
 
   return (
@@ -28,6 +29,7 @@ export function TaskEditTemplate(props) {
           id={id}
           title={title}
           content={content}
+          status={status}
           currentUserId={currentUserId}
         />
       </Main>
@@ -39,6 +41,7 @@ TaskEditTemplate.defaultProps = {
   id: 0,
   title: '',
   content: '',
+  status: 0,
   currentUserId: '',
 };
 
@@ -46,5 +49,6 @@ TaskEditTemplate.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,
   content: PropTypes.string,
+  status: PropTypes.number,
   currentUserId: PropTypes.string,
 };

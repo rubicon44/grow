@@ -7,6 +7,7 @@ export function TaskEdit() {
   const { id } = location.state;
   const { title } = location.state;
   const { content } = location.state;
+  const { status } = location.state;
   const { currentUserId } = location.state;
 
   return (
@@ -14,6 +15,7 @@ export function TaskEdit() {
       id={id}
       title={title}
       content={content}
+      status={status}
       currentUserId={currentUserId}
     />
   );

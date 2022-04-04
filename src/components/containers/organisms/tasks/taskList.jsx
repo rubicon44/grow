@@ -6,8 +6,10 @@ import { deleteTask } from '../../../../infra/api';
 import { Title } from '../../../presentational/atoms/Title/title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { List } from '../../../presentational/molecules/List/list';
+import { TaskStatusSwitch } from './taskStatusSwitch';
 
 const ListCover = styled.div`
+  position: relative;
   min-width: 180px;
   margin-top: 15px;
 `;
@@ -54,6 +56,7 @@ export function TaskList(props) {
   const { user_id: taskUserId } = task;
   const { title: taskTitle } = task;
   const { content: taskContent } = task;
+  const { status: taskStatus } = task;
   const { user_id: taskCreatedUserId } = task;
   const { taskCreatedUser } = props;
   const { name: taskCreatedUserName } = taskCreatedUser;
@@ -69,6 +72,7 @@ export function TaskList(props) {
         id: taskId,
         title: taskTitle,
         content: taskContent,
+        status: taskStatus,
         currentUserId,
       },
     });
@@ -135,6 +139,7 @@ export function TaskList(props) {
           taskCreatedUserId={String(taskCreatedUserId)}
           taskCreatedUserName={taskCreatedUserName}
         />
+        <TaskStatusSwitch taskStatus={taskStatus} />
         <ButtonCover>
           <EditTaskButton />
           <DeleteTaskButton />
@@ -167,6 +172,7 @@ TaskList.propTypes = {
     id: PropTypes.number,
     title: PropTypes.string,
     content: PropTypes.string,
+    status: PropTypes.number,
     created_at: PropTypes.string,
     updated_at: PropTypes.string,
     user_id: PropTypes.string,

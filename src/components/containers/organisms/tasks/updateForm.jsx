@@ -28,9 +28,11 @@ export function TaskUpdateForm(props) {
 
   const { title: taskTitle } = props;
   const { content: taskContent } = props;
+  const { status: taskStatus } = props;
   const [load, setLoad] = useState(false);
   const [title, setTitle] = useState(taskTitle);
   const [content, setContent] = useState(taskContent);
+  const [status, setStatus] = useState(taskStatus);
   const { id } = props;
   const { currentUserId } = props;
   const navigate = useNavigate();
@@ -38,7 +40,7 @@ export function TaskUpdateForm(props) {
     e.preventDefault();
     e.persist();
     setLoad(true);
-    const task = { title, content };
+    const task = { title, content, status };
     updateTaskFunc(id, task);
     setLoad(false);
     navigate(`/users/${currentUserId}/tasks/${id}`);
@@ -56,6 +58,8 @@ export function TaskUpdateForm(props) {
         setTitle={setTitle}
         content={content}
         setContent={setContent}
+        status={status}
+        setStatus={setStatus}
         handleTextSubmit={handleTextSubmit}
       />
     </>
@@ -66,6 +70,7 @@ TaskUpdateForm.defaultProps = {
   id: 0,
   title: '',
   content: '',
+  status: 0,
   currentUserId: '',
 };
 
@@ -73,5 +78,6 @@ TaskUpdateForm.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,
   content: PropTypes.string,
+  status: PropTypes.number,
   currentUserId: PropTypes.string,
 };
