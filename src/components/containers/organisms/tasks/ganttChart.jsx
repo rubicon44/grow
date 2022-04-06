@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
+import { TaskStatusSwitchText } from './taskStatusSwitchText';
+import { CalenderTableBodyColorSwitch } from './calenderTableBodyColorSwitch';
 
 const GunttHeader = styled.div`
 `;
@@ -73,24 +75,7 @@ const CalenderTableHead = styled.thead`
 const CalenderTableBody = styled.tbody`
 `;
 
-const ColoredBlueDayOfWeek = styled.tr`
-  background: rgb(219 234 254);
-`;
-
-const ColoredRedDayOfWeek = styled.tr`
-  background: rgb(254 226 226);
-`;
-
-
 export function GunttChart(props) {
-  const list = {
-    name: "タスク1",
-    startDate: "2022, 4, 4",
-    endDate: "2022, 4, 7",
-    createdUser: "user3",
-    status: "未対応",
-  };
-
   // const [days, setDays] = useState([]);
   const getDays = (year, month, blockNumber) => {
     const dayOfWeek = ['日', '月', '火', '水', '木', '金', '土'];
@@ -151,32 +136,64 @@ export function GunttChart(props) {
     getCalendar();
   }, []);
 
-  const CalenderTableBodyColorSwitch = (props) => {
-    const { days } = props;
-    if(days.dayOfWeek !== "土" && days.dayOfWeek !== "日") {
-      return (
-        <tr key={days.blockNumber}>
-          <td>{days.dayOfWeek}</td>
-          <td>{days.day}</td>
-        </tr>
-      );
-    } else if(days.dayOfWeek === "土") {
-      return (
-        <ColoredBlueDayOfWeek key={days.blockNumber}>
-          <td>{days.dayOfWeek}</td>
-          <td>{days.day}</td>
-        </ColoredBlueDayOfWeek>
-      );
-    } else if(days.dayOfWeek === "日") {
-      return (
-        <ColoredRedDayOfWeek key={days.blockNumber}>
-          <td>{days.dayOfWeek}</td>
-          <td>{days.day}</td>
-        </ColoredRedDayOfWeek>
-      );
-    };
-    return null;
-  }
+  // const list = {
+  //   title: "タスク1",
+  //   startDate: "2022-04-04",
+  //   endDate: "2022-04-07",
+  //   createdUser: "user3",
+  //   status: "未対応",
+  // };
+
+  const list = {
+    start_month: '2020-10',
+    end_month: '2021-02',
+    block_size: 30,
+    block_number: 0,
+    calendars:[],
+    inner_width:'',
+    inner_height:'',
+    task_width:'',
+    task_height:'',
+  };
+
+    const [style, setStyle] = useState([]);
+  const taskBars = () => {
+    let start_date = dayjs(list.start_month);
+    let top = 10;
+    let left;
+    let between;
+    let start;
+    let style;
+    // return lists.map(list => {
+      style = {}
+      // if(list.cat==='task'){
+        let date_from = dayjs(list.start_date);
+        let date_to = dayjs(list.end_date);
+        between = date_to.diff(date_from, 'days');
+        between++;
+        start = date_from.diff(start_date, 'days');
+        left = start * list.block_size;
+        style = {
+          top: `${top}px`,
+          left: `${left}px`,
+          width: `${list.block_size * between}px`,
+        }
+      // }
+      setStyle(style);
+      top = top + 40;
+      return {
+        style,
+        list
+      }
+    // })
+  };
+
+  useEffect(() => {
+    taskBars();
+  }, []);
+
+  const { userTasks } = props;
+  const { taskUser } = props;
 
   return (
     <div>
@@ -196,13 +213,19 @@ export function GunttChart(props) {
             </tr>
           </GunttTaskTitle>
           <GunttTaskList>
-            <tr>
-              <td>{list.name}</td>
-              <td>{list.startDate}</td>
-              <td>{list.endDate}</td>
-              <td>{list.createdUser}</td>
-              <td>{list.status}</td>
-            </tr>
+            {userTasks.map((task) => (
+              <tr key={task.id}>
+                <td>{task.title}</td>
+                <td>{}</td>
+                <td>{}</td>
+                {/* <td>{task.startDate}</td>
+                <td>{task.endDate}</td> */}
+                <td>{taskUser.name}</td>
+                <td>
+                  <TaskStatusSwitchText taskStatus={task.status} />
+                </td>
+              </tr>
+            ))}
           </GunttTaskList>
         </GunttTask>
 
@@ -234,3 +257,9 @@ export function GunttChart(props) {
     </div>
   );
 }
+
+// const AAA = styled.div`
+// top: ${style.top};
+// left: ${style.left};
+// width: ${style.width};
+// `;

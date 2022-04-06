@@ -75,7 +75,7 @@ export function UserTasksList(props) {
         <ProfileSwitch />
       </ContentHeaderCover>
       <Content>
-        <GunttChart />
+        <GunttChart userTasks={userTasks} taskUser={taskUser} />
         {userTasks.length === 0 ? (
           <ListCover key={userTasks}>
             <div>まだ投稿はありません。</div>
@@ -130,6 +130,8 @@ UserTasksList.propTypes = {
         title: PropTypes.string,
         content: PropTypes.string,
         status: PropTypes.number,
+        start_date: PropTypes.string,
+        end_date: PropTypes.string,
         created_at: PropTypes.string,
         updated_at: PropTypes.string,
         user_id: PropTypes.string,
@@ -142,6 +144,8 @@ UserTasksList.propTypes = {
       title: PropTypes.string,
       content: PropTypes.string,
       status: PropTypes.number,
+      start_date: PropTypes.string,
+      end_date: PropTypes.string,
       created_at: PropTypes.string,
       updated_at: PropTypes.string,
       user_id: PropTypes.string,
