@@ -57,6 +57,8 @@ export function TaskList(props) {
   const { title: taskTitle } = task;
   const { content: taskContent } = task;
   const { status: taskStatus } = task;
+  const { start_date: startDate } = task;
+  const { end_date: endDate } = task;
   const { user_id: taskCreatedUserId } = task;
   const { taskCreatedUser } = props;
   const { name: taskCreatedUserName } = taskCreatedUser;
@@ -73,6 +75,8 @@ export function TaskList(props) {
         title: taskTitle,
         content: taskContent,
         status: taskStatus,
+        startDate: startDate,
+        endDate: endDate,
         currentUserId,
       },
     });
@@ -140,6 +144,8 @@ export function TaskList(props) {
           taskCreatedUserName={taskCreatedUserName}
         />
         <TaskStatusSwitch taskStatus={taskStatus} />
+        <div>開始日:{startDate}</div>
+        <div>終了日:{endDate}</div>
         <ButtonCover>
           <EditTaskButton />
           <DeleteTaskButton />

@@ -54,6 +54,10 @@ export function Form(props) {
   const { setContent } = props;
   const { status } = props;
   const { setStatus } = props;
+  const { startDate } = props;
+  const { setStartDate } = props;
+  const { endDate } = props;
+  const { setEndDate } = props;
   const { load } = props;
   return (
     <FormCover>
@@ -95,6 +99,34 @@ export function Form(props) {
             <option value="3">完了</option>
           </select>
         </FormInputCover>
+        <FormInputCover>
+          <label htmlFor="startDate">
+              開始日:
+              <input
+                type="date"
+                name="startDate"
+                defaultValue={startDate}
+                onChange={(e) => {
+                  setStartDate(e.target.value);
+                }}
+                placeholder="StartDate"
+              />
+            </label>
+        </FormInputCover>
+        <FormInputCover>
+          <label htmlFor="endDate">
+              終了日:
+              <input
+                type="date"
+                name="endDate"
+                defaultValue={endDate}
+                onChange={(e) => {
+                  setEndDate(e.target.value);
+                }}
+                placeholder="EndDate"
+              />
+            </label>
+        </FormInputCover>
         <FormButtonCover>
           <button type="submit" disabled={load}>
             {!title ? '作成' : '更新'}
@@ -113,6 +145,10 @@ Form.defaultProps = {
   setContent: () => {},
   status: 0,
   setStatus: () => {},
+  startDate: '',
+  setStartDate: () => {},
+  endDate: 0,
+  setEndDate: () => {},
   load: false,
 };
 
@@ -124,5 +160,9 @@ Form.propTypes = {
   setContent: PropTypes.func,
   status: PropTypes.number,
   setStatus: PropTypes.func,
+  startDate: PropTypes.string,
+  setStartDate: PropTypes.func,
+  endDate: PropTypes.string,
+  setEndDate: PropTypes.func,
   load: PropTypes.bool,
 };

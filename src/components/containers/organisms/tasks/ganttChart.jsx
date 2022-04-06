@@ -207,7 +207,7 @@ export function GunttChart(props) {
             <tr>
               <th>タスク</th>
               <th>開始日</th>
-              <th>完了期限日</th>
+              <th>終了日</th>
               <th>担当</th>
               <th>進捗</th>
             </tr>
@@ -216,8 +216,8 @@ export function GunttChart(props) {
             {userTasks.map((task) => (
               <tr key={task.id}>
                 <td>{task.title}</td>
-                <td>{}</td>
-                <td>{}</td>
+                <td>{task.start_date}</td>
+                <td>{task.end_date}</td>
                 {/* <td>{task.startDate}</td>
                 <td>{task.endDate}</td> */}
                 <td>{taskUser.name}</td>

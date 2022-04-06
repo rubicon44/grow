@@ -19,6 +19,8 @@ export function TaskEditTemplate(props) {
   const { title } = props;
   const { content } = props;
   const { status } = props;
+  const { startDate } = props;
+  const { endDate } = props;
   const { currentUserId } = props;
 
   return (
@@ -30,6 +32,8 @@ export function TaskEditTemplate(props) {
           title={title}
           content={content}
           status={status}
+          startDate={startDate}
+          endDate={endDate}
           currentUserId={currentUserId}
         />
       </Main>

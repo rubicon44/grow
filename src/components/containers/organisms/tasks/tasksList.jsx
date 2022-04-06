@@ -25,6 +25,8 @@ export function TasksList(props) {
             taskId={String(task.id)}
             title={task.title}
             content={task.content}
+            startDate={task.start_date}
+            endDate={task.end_date}
             taskCreatedUserId={String(task.user.id)}
             taskCreatedUserName={task.user.name}
           />

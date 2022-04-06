@@ -30,12 +30,14 @@ export function TaskCreateForm() {
   const [title, setTitle] = useState();
   const [content, setContent] = useState();
   const [status, setStatus] = useState(0);
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
   const navigate = useNavigate();
   const handleTextSubmit = (e) => {
     e.preventDefault();
     e.persist();
     setLoad(true);
-    const task = { title, content, status, user_id: currentUid };
+    const task = { title, content, status, start_date: startDate, end_date: endDate, user_id: currentUid };
     postTasksFunc(task);
     setLoad(false);
     navigate('/tasks');
@@ -54,6 +56,10 @@ export function TaskCreateForm() {
         setContent={setContent}
         status={status}
         setStatus={setStatus}
+        startDate={startDate}
+        setStartDate={setStartDate}
+        endDate={endDate}
+        setEndDate={setEndDate}
         handleTextSubmit={handleTextSubmit}
       />
     </>
