@@ -31,9 +31,13 @@ const GunttTaskTitle = styled.thead`
 const GunttTaskList = styled.tbody`
 `;
 
+const CalenderTableCoverWrapper = styled.div`
+  position: relative;
+  overflow: scroll;
+`;
+
 const CalenderTableCover = styled.div`
   display: flex;
-  overflow: scroll;
 `;
 
 const CalenderTable = styled.table`
@@ -53,13 +57,14 @@ const CalenderTable = styled.table`
 
   > tbody {
     display: flex;
+    // todo: タスクの縦幅に合わせて動的にheightを変更(関数を作成し、stateで値を保持し、styleを直接コンポーネントに当てる。)。
+    height: 275px;
 
     > tr {
       display: flex;
       flex-wrap: wrap;
       flex-direction: column;
       width: 30px;
-      height: 100px;
       border: 1px solid #ddd;
 
       > td:last-of-type {
@@ -73,6 +78,20 @@ const CalenderTableHead = styled.thead`
 `;
 
 const CalenderTableBody = styled.tbody`
+`;
+
+const CalenderTaskBar = styled.div`
+  position: absolute;
+  top: 55px;
+  width: 933px;
+  height: 30px;
+
+  > span {
+    position: absolute;
+    height: 10px;
+    background: red;
+    width: 30px;
+  }
 `;
 
 export function GunttChart(props) {
@@ -136,18 +155,10 @@ export function GunttChart(props) {
     getCalendar();
   }, []);
 
-  // const list = {
-  //   title: "タスク1",
-  //   startDate: "2022-04-04",
-  //   endDate: "2022-04-07",
-  //   createdUser: "user3",
-  //   status: "未対応",
-  // };
-
   const list = {
-    start_month: '2020-10',
-    end_month: '2021-02',
-    block_size: 30,
+    start_month: '2022-04',
+    end_month: '2022-08',
+    block_size: 32,
     block_number: 0,
     calendars:[],
     inner_width:'',
@@ -156,19 +167,20 @@ export function GunttChart(props) {
     task_height:'',
   };
 
-    const [style, setStyle] = useState([]);
-  const taskBars = () => {
+  const { userTasks } = props;
+  const [styles, setStyles] = useState([]);
+  const taskBars = (userTasks) => {
     let start_date = dayjs(list.start_month);
     let top = 10;
     let left;
     let between;
     let start;
     let style;
-    // return lists.map(list => {
-      style = {}
-      // if(list.cat==='task'){
-        let date_from = dayjs(list.start_date);
-        let date_to = dayjs(list.end_date);
+    style = {};
+    const styleData = userTasks.map((task) => {
+      if(task.start_date && task.end_date) {
+        let date_from = dayjs(task.start_date);
+        let date_to = dayjs(task.end_date);
         between = date_to.diff(date_from, 'days');
         between++;
         start = date_from.diff(start_date, 'days');
@@ -178,21 +190,24 @@ export function GunttChart(props) {
           left: `${left}px`,
           width: `${list.block_size * between}px`,
         }
-      // }
-      setStyle(style);
-      top = top + 40;
-      return {
-        style,
-        list
       }
-    // })
+      top = top + 40;
+
+      return style;
+    });
+    setStyles(styleData);
+    return {
+      style,
+      list
+    }
+    // });
+    // console.log(aaa);
   };
 
   useEffect(() => {
-    taskBars();
-  }, []);
+    taskBars(userTasks);
+  }, [userTasks]);
 
-  const { userTasks } = props;
   const { taskUser } = props;
 
   return (
@@ -237,29 +252,30 @@ export function GunttChart(props) {
           </div>
         ))} */}
         {/* 4ヶ月分 */}
-        <CalenderTableCover>
-          {calenders.map((calender) => (
-            <CalenderTable key={calender.date}>
-              <CalenderTableHead>
-                <tr>
-                  <th>{calender.date}</th>
-                </tr>
-              </CalenderTableHead>
-              <CalenderTableBody>
-                {calender.days.map((days) => (
-                  <CalenderTableBodyColorSwitch days={days} />
-                ))}
-              </CalenderTableBody>
-            </CalenderTable>
-          ))}
-        </CalenderTableCover>
+        <CalenderTableCoverWrapper>
+          <CalenderTableCover>
+            {calenders.map((calender) => (
+              <CalenderTable key={calender.date}>
+                <CalenderTableHead>
+                  <tr>
+                    <th>{calender.date}</th>
+                  </tr>
+                </CalenderTableHead>
+                <CalenderTableBody>
+                  {calender.days.map((days) => (
+                    <CalenderTableBodyColorSwitch days={days} />
+                  ))}
+                </CalenderTableBody>
+              </CalenderTable>
+            ))}
+          </CalenderTableCover>
+          <CalenderTaskBar>
+            {styles.map((style) => (
+              <span style={{top: style.top, left: style.left, width: style.width, height: 10, background: "red"}}></span>
+            ))}
+          </CalenderTaskBar>
+        </CalenderTableCoverWrapper>
       </GunttContent>
     </div>
   );
-}
-
-// const AAA = styled.div`
-// top: ${style.top};
-// left: ${style.left};
-// width: ${style.width};
-// `;
+};
