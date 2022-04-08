@@ -22,6 +22,7 @@ import { TaskCreate } from './components/containers/pages/tasks/create';
 import { TaskEdit } from './components/containers/pages/tasks/edit';
 // ユーザー
 import { UserShow } from './components/containers/pages/users/show';
+import { UserGuntt } from './components/containers/pages/users/guntt';
 
 const Wrapper = styled.div`
   position: relative;
@@ -94,6 +95,12 @@ export function App() {
                 exact
                 path="/users/:id"
                 element={<PrivateRoute element={<UserShow />} />}
+              />
+              {/* GunttChart */}
+              <Route
+                exact
+                path="/users/:id/guntt"
+                element={<PrivateRoute element={<UserGuntt />} />}
               />
               <Route
                 exact

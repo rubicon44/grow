@@ -6,6 +6,8 @@ import { CreatedUser } from '../../atoms/Link/createdUser';
 
 const ListStyle = styled.dl`
   min-width: 180px;
+  max-width: 180px;
+  margin-top: 15px;
   text-align: left;
 
   > dt {
@@ -17,6 +19,7 @@ const ListStyle = styled.dl`
     margin: 10px 0 5px;
     padding: 5px;
     border: 1px solid #bbb;
+    white-space: pre-wrap;
   }
 `;
 

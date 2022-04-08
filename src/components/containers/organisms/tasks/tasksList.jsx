@@ -9,7 +9,7 @@ import { TaskStatusSwitch } from './taskStatusSwitch';
 const ListCover = styled.div`
   position: relative;
   min-width: 180px;
-  margin-top: 15px;
+  margin-top: 30px;
 `;
 
 export function TasksList(props) {

@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
 import { TaskStatusSwitchText } from './taskStatusSwitchText';
 import { CalenderTableBodyColorSwitch } from './calenderTableBodyColorSwitch';
+
+const GunttChartCover = styled.div`
+  overflow: scroll;
+`;
 
 const GunttHeader = styled.div`
 `;
@@ -25,10 +29,14 @@ const GunttTask = styled.table`
 `;
 
 const GunttTaskTitle = styled.thead`
+  height: 51px;
   background: #ed8077;
 `;
 
 const GunttTaskList = styled.tbody`
+  > tr {
+    height: 65px;
+  }
 `;
 
 const CalenderTableCoverWrapper = styled.div`
@@ -58,7 +66,7 @@ const CalenderTable = styled.table`
   > tbody {
     display: flex;
     // todo: タスクの縦幅に合わせて動的にheightを変更(関数を作成し、stateで値を保持し、styleを直接コンポーネントに当てる。)。
-    height: 275px;
+    height: 359px;
 
     > tr {
       display: flex;
@@ -88,9 +96,10 @@ const CalenderTaskBar = styled.div`
 
   > span {
     position: absolute;
-    height: 10px;
-    background: red;
+    height: 30px;
     width: 30px;
+    border-radius: 4px;
+    background-color: #fbd38d;
   }
 `;
 
@@ -171,7 +180,7 @@ export function GunttChart(props) {
   const [styles, setStyles] = useState([]);
   const taskBars = (userTasks) => {
     let start_date = dayjs(list.start_month);
-    let top = 10;
+    let top = 17;
     let left;
     let between;
     let start;
@@ -191,7 +200,7 @@ export function GunttChart(props) {
           width: `${list.block_size * between}px`,
         }
       }
-      top = top + 40;
+      top = top + 65;
 
       return style;
     });
@@ -210,13 +219,19 @@ export function GunttChart(props) {
 
   const { taskUser } = props;
 
+  const elm = useRef(null);
+  useEffect(() => {
+    console.log(elm.current);
+    console.log(JSON.stringify(elm.current.getBoundingClientRect().height));
+  }, []);
+
   return (
-    <div>
+    <GunttChartCover>
       <GunttHeader>
         <h1>ガントチャート</h1>
       </GunttHeader>
 
-      <GunttContent>
+      <GunttContent ref={elm}>
         <GunttTask>
           <GunttTaskTitle>
             <tr>
@@ -271,11 +286,11 @@ export function GunttChart(props) {
           </CalenderTableCover>
           <CalenderTaskBar>
             {styles.map((style) => (
-              <span style={{top: style.top, left: style.left, width: style.width, height: 10, background: "red"}}></span>
+              <span style={{top: style.top, left: style.left, width: style.width}}></span>
             ))}
           </CalenderTaskBar>
         </CalenderTableCoverWrapper>
       </GunttContent>
-    </div>
+    </GunttChartCover>
   );
 };
