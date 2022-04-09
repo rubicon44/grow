@@ -5,9 +5,6 @@ import { Header } from '../../organisms/header';
 import { GunttChart } from '../../organisms/tasks/ganttChart';
 
 const Main = styled.main`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   text-align: center;
   background-color: #f8f7f3;
 `;

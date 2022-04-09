@@ -2,14 +2,35 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
+import { mediaquery } from '../../../../assets/styles/variable';
+import { BackButton } from '../../../presentational/atoms/Button/backButton';
+import { Title } from '../../../presentational/atoms/Title/title';
 import { TaskStatusSwitchText } from './taskStatusSwitchText';
 import { CalenderTableBodyColorSwitch } from './calenderTableBodyColorSwitch';
 
-const GunttChartCover = styled.div`
-  overflow: scroll;
+const ContentHeader = styled.div`
+  display: flex;
+  width: 100%;
+
+  > h2 {
+    width: 100%;
+    margin-right: 45px;
+  }
 `;
 
-const GunttHeader = styled.div`
+const ContentHeaderCover = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 260px;
+  padding: 30px 10px 0;
+  text-align: center;
+  background-color: #f8f7f3;
+`;
+
+const Content = styled.div`
+  overflow: scroll;
 `;
 
 const GunttContent = styled.div`
@@ -42,6 +63,10 @@ const GunttTaskList = styled.tbody`
 const CalenderTableCoverWrapper = styled.div`
   position: relative;
   overflow: scroll;
+
+  ${mediaquery.desktop`
+  width: 1500px;
+`}
 `;
 
 const CalenderTableCover = styled.div`
@@ -65,8 +90,6 @@ const CalenderTable = styled.table`
 
   > tbody {
     display: flex;
-    // todo: タスクの縦幅に合わせて動的にheightを変更(関数を作成し、stateで値を保持し、styleを直接コンポーネントに当てる。)。
-    height: 359px;
 
     > tr {
       display: flex;
@@ -217,80 +240,87 @@ export function GunttChart(props) {
     taskBars(userTasks);
   }, [userTasks]);
 
+  const elm = useRef(null);
+  const [calenderHeight, setCalenderHeight] = useState();
+  useEffect(() => {
+    const calenderHeaderHeight = elm.current.getBoundingClientRect().height + 33;
+    const plusCalenderHeaderHeight = JSON.stringify(calenderHeaderHeight);
+    setCalenderHeight(plusCalenderHeaderHeight);
+  }, [calenderHeight]);
+
   const { taskUser } = props;
 
-  const elm = useRef(null);
-  useEffect(() => {
-    console.log(elm.current);
-    console.log(JSON.stringify(elm.current.getBoundingClientRect().height));
-  }, []);
-
   return (
-    <GunttChartCover>
-      <GunttHeader>
-        <h1>ガントチャート</h1>
-      </GunttHeader>
+    <>
+      <ContentHeaderCover>
+        <ContentHeader>
+          <BackButton />
+          <Title title="ガントチャート" />
+        </ContentHeader>
+      </ContentHeaderCover>
 
-      <GunttContent ref={elm}>
-        <GunttTask>
-          <GunttTaskTitle>
-            <tr>
-              <th>タスク</th>
-              <th>開始日</th>
-              <th>終了日</th>
-              <th>担当</th>
-              <th>進捗</th>
-            </tr>
-          </GunttTaskTitle>
-          <GunttTaskList>
-            {userTasks.map((task) => (
-              <tr key={task.id}>
-                <td>{task.title}</td>
-                <td>{task.start_date}</td>
-                <td>{task.end_date}</td>
-                {/* <td>{task.startDate}</td>
-                <td>{task.endDate}</td> */}
-                <td>{taskUser.name}</td>
-                <td>
-                  <TaskStatusSwitchText taskStatus={task.status} />
-                </td>
+      <Content>
+        <GunttContent>
+          <GunttTask>
+            <GunttTaskTitle>
+              <tr>
+                <th>タスク</th>
+                <th>開始日</th>
+                <th>終了日</th>
+                <th>担当</th>
+                <th>進捗</th>
               </tr>
-            ))}
-          </GunttTaskList>
-        </GunttTask>
+            </GunttTaskTitle>
+            <GunttTaskList ref={elm}>
+              {userTasks.map((task) => (
+                <tr key={task.id}>
+                  <td>{task.title}</td>
+                  <td>{task.start_date}</td>
+                  <td>{task.end_date}</td>
+                  {/* <td>{task.startDate}</td>
+                  <td>{task.endDate}</td> */}
+                  <td>{taskUser.name}</td>
+                  <td>
+                    <TaskStatusSwitchText taskStatus={task.status} />
+                  </td>
+                </tr>
+              ))}
+            </GunttTaskList>
+          </GunttTask>
 
-        {/* 1ヶ月のみ */}
-        {/* {days.map((days) => (
-          <div key={days.blockNumber}>
-            <div>{days.dayOfWeek}</div>
-            <div>{days.day}</div>
-          </div>
-        ))} */}
-        {/* 4ヶ月分 */}
-        <CalenderTableCoverWrapper>
-          <CalenderTableCover>
-            {calenders.map((calender) => (
-              <CalenderTable key={calender.date}>
-                <CalenderTableHead>
-                  <tr>
-                    <th>{calender.date}</th>
-                  </tr>
-                </CalenderTableHead>
-                <CalenderTableBody>
-                  {calender.days.map((days) => (
-                    <CalenderTableBodyColorSwitch days={days} />
-                  ))}
-                </CalenderTableBody>
-              </CalenderTable>
-            ))}
-          </CalenderTableCover>
-          <CalenderTaskBar>
-            {styles.map((style) => (
-              <span style={{top: style.top, left: style.left, width: style.width}}></span>
-            ))}
-          </CalenderTaskBar>
-        </CalenderTableCoverWrapper>
-      </GunttContent>
-    </GunttChartCover>
+          {/* 1ヶ月のみ */}
+          {/* {days.map((days) => (
+            <div key={days.blockNumber}>
+              <div>{days.dayOfWeek}</div>
+              <div>{days.day}</div>
+            </div>
+          ))} */}
+          {/* 4ヶ月分 */}
+          <CalenderTableCoverWrapper>
+            <CalenderTableCover>
+              {calenders.map((calender) => (
+                <CalenderTable key={calender.date}>
+                  <CalenderTableHead>
+                    <tr>
+                      <th>{calender.date}</th>
+                    </tr>
+                  </CalenderTableHead>
+                  <CalenderTableBody style={{height: calenderHeight + 'px'}}>
+                    {calender.days.map((days) => (
+                      <CalenderTableBodyColorSwitch days={days} />
+                    ))}
+                  </CalenderTableBody>
+                </CalenderTable>
+              ))}
+            </CalenderTableCover>
+            <CalenderTaskBar>
+              {styles.map((style) => (
+                <span style={{top: style.top, left: style.left, width: style.width}}></span>
+              ))}
+            </CalenderTaskBar>
+          </CalenderTableCoverWrapper>
+        </GunttContent>
+      </Content>
+    </>
   );
 };
