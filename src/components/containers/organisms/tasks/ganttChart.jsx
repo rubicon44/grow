@@ -30,7 +30,6 @@ const ContentHeaderCover = styled.div`
 `;
 
 const Content = styled.div`
-  overflow: scroll;
 `;
 
 const GunttContent = styled.div`
@@ -74,6 +73,7 @@ const CalenderTableCover = styled.div`
 `;
 
 const CalenderTable = styled.table`
+  position: relative;
   border-right: 2px solid #000;
 
   > thead, tbody {
@@ -111,19 +111,12 @@ const CalenderTableHead = styled.thead`
 const CalenderTableBody = styled.tbody`
 `;
 
-const CalenderTaskBar = styled.div`
+const CalenderTaskBar = styled.span`
   position: absolute;
-  top: 55px;
-  width: 933px;
   height: 30px;
-
-  > span {
-    position: absolute;
-    height: 30px;
-    width: 30px;
-    border-radius: 4px;
-    background-color: #fbd38d;
-  }
+  width: 30px;
+  border-radius: 4px;
+  background-color: #fbd38d;
 `;
 
 export function GunttChart(props) {
@@ -203,7 +196,7 @@ export function GunttChart(props) {
   const [styles, setStyles] = useState([]);
   const taskBars = (userTasks) => {
     let start_date = dayjs(list.start_month);
-    let top = 17;
+    let top = 17 + 33 + 17;
     let left;
     let between;
     let start;
@@ -313,11 +306,9 @@ export function GunttChart(props) {
                 </CalenderTable>
               ))}
             </CalenderTableCover>
-            <CalenderTaskBar>
-              {styles.map((style) => (
-                <span style={{top: style.top, left: style.left, width: style.width}}></span>
-              ))}
-            </CalenderTaskBar>
+            {styles.map((style) => (
+              <CalenderTaskBar style={{top: style.top, left: style.left, width: style.width}}></CalenderTaskBar>
+            ))}
           </CalenderTableCoverWrapper>
         </GunttContent>
       </Content>
