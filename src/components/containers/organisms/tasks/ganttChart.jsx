@@ -7,6 +7,7 @@ import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { Title } from '../../../presentational/atoms/Title/title';
 import { TaskStatusSwitchText } from './taskStatusSwitchText';
 import { CalenderTableBodyColorSwitch } from './calenderTableBodyColorSwitch';
+import { useVirtualScroll } from "../../../../hooks/useVirtualScroll";
 
 const ContentHeader = styled.div`
   display: flex;
@@ -141,9 +142,11 @@ export function GunttChart(props) {
     return days;
   };
 
+  // Calender月の総数は、サービス開始から10年の日付とする。
+  // Calenderの通常時のstart位置は、今日の日付とする。
   const calenderData = {
     startMonth: '2022-04',
-    endMonth: '2022-10',
+    endMonth: '2023-10',
     block_size: 30,
     blockNumber: 0,
     calenders:[],
@@ -243,6 +246,30 @@ export function GunttChart(props) {
 
   const { taskUser } = props;
 
+  // 仮想スクロール用
+  const [calenderWidth, setCalenderWidth] = useState(961);
+
+  const items = calenders;
+  // 30: 961
+  // 31: 993
+  const itemHeight = calenderWidth;
+  const containerHeight = 2000;
+  const containerWidth = 500;
+  const { displayingItems, handleScroll, startIndex } = useVirtualScroll({
+    containerHeight,
+    itemHeight,
+    items,
+  });
+
+  const elm2 = useRef(null);
+  useEffect(() => {
+    // console.log(elm2.current.getBoundingClientRect().width);
+    // console.log(elm2.current);
+    if(elm2.current) {
+      setCalenderWidth(JSON.stringify(elm2.current.getBoundingClientRect().width));
+    }
+  });
+
   return (
     <>
       <ContentHeaderCover>
@@ -289,10 +316,11 @@ export function GunttChart(props) {
             </div>
           ))} */}
           {/* 4ヶ月分 */}
-          <CalenderTableCoverWrapper>
+          <CalenderTableCoverWrapper onScroll={handleScroll}>
             <CalenderTableCover>
-              {calenders.map((calender) => (
-                <CalenderTable key={calender.date}>
+              {displayingItems.map((calender) => (
+                <CalenderTable key={calender.date} style={{left: startIndex * itemHeight, position: "relative"}} ref={elm2}>
+                  {console.log(startIndex * itemHeight)}
                   <CalenderTableHead>
                     <tr>
                       <th>{calender.date}</th>
