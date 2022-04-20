@@ -75,7 +75,7 @@ const CalenderTableCover = styled.div`
 
 const CalenderTable = styled.table`
   position: relative;
-  border-right: 2px solid #000;
+  // border-right: 2px solid #000;
 
   > thead, tbody {
     white-space: nowrap;
@@ -147,7 +147,7 @@ export function GunttChart(props) {
   const calenderData = {
     startMonth: '2022-04',
     endMonth: '2023-10',
-    block_size: 30,
+    blockSize: 32,
     blockNumber: 0,
     calenders:[],
   };
@@ -183,22 +183,22 @@ export function GunttChart(props) {
     getCalendar();
   }, []);
 
-  const list = {
-    start_month: '2022-04',
-    end_month: '2022-08',
-    block_size: 32,
-    block_number: 0,
-    calendars:[],
-    inner_width:'',
-    inner_height:'',
-    task_width:'',
-    task_height:'',
-  };
+  // const list = {
+  //   start_month: '2022-04',
+  //   end_month: '2022-08',
+  //   block_size: 32,
+  //   block_number: 0,
+  //   calendars:[],
+  //   inner_width:'',
+  //   inner_height:'',
+  //   task_width:'',
+  //   task_height:'',
+  // };
 
   const { userTasks } = props;
   const [styles, setStyles] = useState([]);
   const taskBars = (userTasks) => {
-    let start_date = dayjs(list.start_month);
+    let start_date = dayjs(calenderData.startMonth);
     let top = 17 + 33 + 17;
     let left;
     let between;
@@ -212,11 +212,11 @@ export function GunttChart(props) {
         between = date_to.diff(date_from, 'days');
         between++;
         start = date_from.diff(start_date, 'days');
-        left = start * list.block_size;
+        left = start * calenderData.blockSize;
         style = {
           top: `${top}px`,
           left: `${left}px`,
-          width: `${list.block_size * between}px`,
+          width: `${calenderData.blockSize * between}px`,
         }
       }
       top = top + 65;
@@ -226,7 +226,7 @@ export function GunttChart(props) {
     setStyles(styleData);
     return {
       style,
-      list
+      // list
     }
     // });
     // console.log(aaa);
@@ -247,29 +247,23 @@ export function GunttChart(props) {
   const { taskUser } = props;
 
   // 仮想スクロール用
-  const [calenderWidth, setCalenderWidth] = useState(961);
+  // const [calenderWidth, setCalenderWidth] = useState(962.5);
+  const elm2 = useRef([]);
 
   const items = calenders;
   // 30: 961
   // 31: 993
-  const itemHeight = calenderWidth;
-  const containerHeight = 2000;
-  const containerWidth = 500;
-  const { displayingItems, handleScroll, startIndex } = useVirtualScroll({
-    containerHeight,
-    itemHeight,
-    items,
-  });
+  // const itemHeight = calenderWidth;
 
-  const elm2 = useRef(null);
-  useEffect(() => {
-    // console.log(elm2.current.getBoundingClientRect().width);
-    // console.log(elm2.current);
-    if(elm2.current) {
-      setCalenderWidth(JSON.stringify(elm2.current.getBoundingClientRect().width));
-    }
-  });
+  // const containerHeight = 1500;
+  // const { displayingItems, handleScroll, startIndex, calenderPositionLeft } = useVirtualScroll({
+  //   containerHeight,
+  //   // itemHeight,
+  //   items,
+  //   elm2,
+  // });
 
+  // console.log(items);
   return (
     <>
       <ContentHeaderCover>
@@ -316,11 +310,19 @@ export function GunttChart(props) {
             </div>
           ))} */}
           {/* 4ヶ月分 */}
-          <CalenderTableCoverWrapper onScroll={handleScroll}>
+          <CalenderTableCoverWrapper>
+          {/* <CalenderTableCoverWrapper onScroll={handleScroll}> */}
             <CalenderTableCover>
-              {displayingItems.map((calender) => (
-                <CalenderTable key={calender.date} style={{left: startIndex * itemHeight, position: "relative"}} ref={elm2}>
-                  {console.log(startIndex * itemHeight)}
+            {/* {console.log("合計:" + calenderWidth)} */}
+              {/* {console.log("合計:" + calenderPositionLeft)}
+              {console.log(calenderWidth)} */}
+              {/* {console.log("start:" + startIndex)}
+              {console.log("before:" + beforeIndex)} */}
+              {/* {calenders.map((calender) => ( */}
+              {/* {displayingItems.map((calender, i) => ( */}
+              {items.map((calender, i) => (
+                <CalenderTable key={calender.date} ref={elm2}>
+                {/* <CalenderTable key={calender.date} style={{willChange: "transform", transform: `translateX(${calenderPositionLeft}px)`}} ref={(element) => {elm2.current[i] = element}}> */}
                   <CalenderTableHead>
                     <tr>
                       <th>{calender.date}</th>
