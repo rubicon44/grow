@@ -7,7 +7,8 @@ import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { Title } from '../../../presentational/atoms/Title/title';
 import { TaskStatusSwitchText } from './taskStatusSwitchText';
 import { CalenderTableBodyColorSwitch } from './calenderTableBodyColorSwitch';
-import { useVirtualScroll } from "../../../../hooks/useVirtualScroll";
+// import { useVirtualScroll } from "../../../../hooks/useVirtualScroll";
+import { VariableSizeList as List } from 'react-window';
 
 const ContentHeader = styled.div`
   display: flex;
@@ -146,7 +147,7 @@ export function GunttChart(props) {
   // Calenderの通常時のstart位置は、今日の日付とする。
   const calenderData = {
     startMonth: '2022-04',
-    endMonth: '2023-10',
+    endMonth: '2025-10',
     blockSize: 32,
     blockNumber: 0,
     calenders:[],
@@ -249,23 +250,102 @@ export function GunttChart(props) {
   // 仮想スクロール用
   // const [calenderWidth, setCalenderWidth] = useState(962.5);
   const elm2 = useRef([]);
-
   const items = calenders;
-  // 30: 961
-  // 31: 993
-  // const itemHeight = calenderWidth;
 
-  // const containerHeight = 1500;
-  // const { displayingItems, handleScroll, startIndex, calenderPositionLeft } = useVirtualScroll({
-  //   containerHeight,
-  //   // itemHeight,
-  //   items,
-  //   elm2,
-  // });
+  const [itemCalenderWidthArray, setItemCalenderWidthArray] = useState([]);
+  useEffect(() => {
+    items.map((item) => {
+      let calenderWidth;
+      for (let i = 1; i < items.length; i++) {
+        if(item.calender == 31) {
+          calenderWidth = 992;
+        } else if(item.calender == 30) {
+          calenderWidth = 960;
+        } else if(item.calender == 29) {
+          calenderWidth = 928;
+        } else if(item.calender == 28) {
+          calenderWidth = 896;
+        } else {
+          calenderWidth = 0;
+        }
+      }
+      itemCalenderWidthArray.push(calenderWidth);
+    })
+  }, [items]);
 
-  // console.log(items);
+const getItemSize = (index) => {
+  if(index >= 3) {
+    // console.log("index:" + index);
+    // console.log("itemCalenderWidthArray[index - 3]:" + itemCalenderWidthArray[index - 3]);
+    // console.log("itemCalenderWidthArray:" + itemCalenderWidthArray);
+    return itemCalenderWidthArray[index];
+  } else if(index < 3) {
+    if(index == 0) {
+      return 960;
+    }
+
+    if(index == 1) {
+      return 992;
+    }
+
+    if(index == 2) {
+      return 960;
+      // todo: 下記がundefinedになっている。おそらく、useEffectの依存配列がitemsになっていて、それが実行される前に、このgetItemSizeが呼び出されているためだと思う。
+      // 使えるようにするためには、上記を改善する必要がある。
+      // return itemCalenderWidthArray[2];
+    }
+  }
+  return 960;
+};
+
+const Column = ({ index, style, data }) => (
+  <>
+    <div style={style}>
+      <CalenderTable ref={elm2}>
+        <thead>
+          <tr>
+            <th>{data[index].date}</th>
+          </tr>
+        </thead>
+        <tbody style={{height: calenderHeight + 'px'}}>
+          {data[index].days.map((days) => (
+            <CalenderTableBodyColorSwitch days={days} />
+          ))}
+        </tbody>
+      </CalenderTable>
+    </div>
+    {styles.map((style) => (
+      <CalenderTaskBar style={{top: style.top, left: style.left, width: style.width}}></CalenderTaskBar>
+    ))}
+  </>
+);
+
+const Example = () => (
+  <List
+    layout="horizontal"
+    direction="ltr"
+    height={443}
+    itemData={items}
+    itemCount={items.length}
+    // itemSize={getItemSize}
+    // itemSize={(index) => (items[index])}
+    itemSize={(index) => (getItemSize(index))}
+    // itemSize={(index) => (console.log("index:" + index))}
+    // itemSize={(index) => (itemCalenderWidthArray[index -2])}
+    width={919}
+  >
+    {Column}
+  </List>
+);
+
   return (
     <>
+      <CalenderTableCoverWrapper>
+        <CalenderTableCover>
+          <Example />
+        </CalenderTableCover>
+      </CalenderTableCoverWrapper>
+
       <ContentHeaderCover>
         <ContentHeader>
           <BackButton />
@@ -291,8 +371,6 @@ export function GunttChart(props) {
                   <td>{task.title}</td>
                   <td>{task.start_date}</td>
                   <td>{task.end_date}</td>
-                  {/* <td>{task.startDate}</td>
-                  <td>{task.endDate}</td> */}
                   <td>{taskUser.name}</td>
                   <td>
                     <TaskStatusSwitchText taskStatus={task.status} />
