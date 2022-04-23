@@ -7,7 +7,6 @@ import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { Title } from '../../../presentational/atoms/Title/title';
 import { TaskStatusSwitchText } from './taskStatusSwitchText';
 import { CalenderTableBodyColorSwitch } from './calenderTableBodyColorSwitch';
-// import { useVirtualScroll } from "../../../../hooks/useVirtualScroll";
 import { VariableSizeList as List } from 'react-window';
 
 const ContentHeader = styled.div`
@@ -122,7 +121,6 @@ const CalenderTaskBar = styled.span`
 `;
 
 export function GunttChart(props) {
-  // const [days, setDays] = useState([]);
   const getDays = (year, month, blockNumber) => {
     const dayOfWeek = ['日', '月', '火', '水', '木', '金', '土'];
     let days = [];
@@ -139,7 +137,6 @@ export function GunttChart(props) {
       date = dayjs(`${dateFormat}`).add(1, 'day');
       blockNumber++;
     }
-    // setDays(days);
     return days;
   };
 
@@ -180,21 +177,8 @@ export function GunttChart(props) {
   };
 
   useEffect(() => {
-    // getDays('2022','4',0);
     getCalendar();
   }, []);
-
-  // const list = {
-  //   start_month: '2022-04',
-  //   end_month: '2022-08',
-  //   block_size: 32,
-  //   block_number: 0,
-  //   calendars:[],
-  //   inner_width:'',
-  //   inner_height:'',
-  //   task_width:'',
-  //   task_height:'',
-  // };
 
   const { userTasks } = props;
   const [styles, setStyles] = useState([]);
@@ -227,10 +211,7 @@ export function GunttChart(props) {
     setStyles(styleData);
     return {
       style,
-      // list
     }
-    // });
-    // console.log(aaa);
   };
 
   useEffect(() => {
@@ -248,7 +229,6 @@ export function GunttChart(props) {
   const { taskUser } = props;
 
   // 仮想スクロール用
-  // const [calenderWidth, setCalenderWidth] = useState(962.5);
   const elm2 = useRef([]);
   const items = calenders;
 
@@ -275,9 +255,6 @@ export function GunttChart(props) {
 
 const getItemSize = (index) => {
   if(index >= 3) {
-    // console.log("index:" + index);
-    // console.log("itemCalenderWidthArray[index - 3]:" + itemCalenderWidthArray[index - 3]);
-    // console.log("itemCalenderWidthArray:" + itemCalenderWidthArray);
     return itemCalenderWidthArray[index];
   } else if(index < 3) {
     if(index == 0) {
@@ -327,11 +304,7 @@ const Example = () => (
     height={443}
     itemData={items}
     itemCount={items.length}
-    // itemSize={getItemSize}
-    // itemSize={(index) => (items[index])}
     itemSize={(index) => (getItemSize(index))}
-    // itemSize={(index) => (console.log("index:" + index))}
-    // itemSize={(index) => (itemCalenderWidthArray[index -2])}
     width={919}
   >
     {Column}
@@ -389,18 +362,9 @@ const Example = () => (
           ))} */}
           {/* 4ヶ月分 */}
           <CalenderTableCoverWrapper>
-          {/* <CalenderTableCoverWrapper onScroll={handleScroll}> */}
             <CalenderTableCover>
-            {/* {console.log("合計:" + calenderWidth)} */}
-              {/* {console.log("合計:" + calenderPositionLeft)}
-              {console.log(calenderWidth)} */}
-              {/* {console.log("start:" + startIndex)}
-              {console.log("before:" + beforeIndex)} */}
-              {/* {calenders.map((calender) => ( */}
-              {/* {displayingItems.map((calender, i) => ( */}
               {items.map((calender, i) => (
                 <CalenderTable key={calender.date} ref={elm2}>
-                {/* <CalenderTable key={calender.date} style={{willChange: "transform", transform: `translateX(${calenderPositionLeft}px)`}} ref={(element) => {elm2.current[i] = element}}> */}
                   <CalenderTableHead>
                     <tr>
                       <th>{calender.date}</th>

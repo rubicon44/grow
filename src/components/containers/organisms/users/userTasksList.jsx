@@ -7,7 +7,6 @@ import { Title } from '../../../presentational/atoms/Title/title';
 import { LogOutButton } from '../../../presentational/atoms/Button/logOut';
 import { List } from '../../../presentational/molecules/List/list';
 import { ProfileSwitch } from './profileSwitch';
-// import { GunttChart } from '../tasks/ganttChart';
 import { TaskStatusSwitch } from '../tasks/taskStatusSwitch';
 
 const Content = styled.article`
