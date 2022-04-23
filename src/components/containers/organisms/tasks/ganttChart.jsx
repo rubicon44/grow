@@ -313,12 +313,6 @@ const Example = () => (
 
   return (
     <>
-      <CalenderTableCoverWrapper>
-        <CalenderTableCover>
-          <Example />
-        </CalenderTableCover>
-      </CalenderTableCoverWrapper>
-
       <ContentHeaderCover>
         <ContentHeader>
           <BackButton />
@@ -363,24 +357,8 @@ const Example = () => (
           {/* 4ヶ月分 */}
           <CalenderTableCoverWrapper>
             <CalenderTableCover>
-              {items.map((calender, i) => (
-                <CalenderTable key={calender.date} ref={elm2}>
-                  <CalenderTableHead>
-                    <tr>
-                      <th>{calender.date}</th>
-                    </tr>
-                  </CalenderTableHead>
-                  <CalenderTableBody style={{height: calenderHeight + 'px'}}>
-                    {calender.days.map((days) => (
-                      <CalenderTableBodyColorSwitch days={days} />
-                    ))}
-                  </CalenderTableBody>
-                </CalenderTable>
-              ))}
+              <Example />
             </CalenderTableCover>
-            {styles.map((style) => (
-              <CalenderTaskBar style={{top: style.top, left: style.left, width: style.width}}></CalenderTaskBar>
-            ))}
           </CalenderTableCoverWrapper>
         </GunttContent>
       </Content>
