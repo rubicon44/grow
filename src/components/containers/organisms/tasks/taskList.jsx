@@ -7,6 +7,7 @@ import { Title } from '../../../presentational/atoms/Title/title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { List } from '../../../presentational/molecules/List/list';
 import { TaskStatusSwitch } from './taskStatusSwitch';
+import { LikeButton } from '../likes/likeButton';
 
 const ListCover = styled.div`
   position: relative;
@@ -146,6 +147,7 @@ export function TaskList(props) {
         <TaskStatusSwitch taskStatus={taskStatus} />
         <div>開始日:{startDate}</div>
         <div>終了日:{endDate}</div>
+        <LikeButton />
         <ButtonCover>
           <EditTaskButton />
           <DeleteTaskButton />

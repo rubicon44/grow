@@ -5,6 +5,7 @@ import { Title } from '../../../presentational/atoms/Title/title';
 import { NextButton } from '../../../presentational/atoms/Button/nextButton';
 import { List } from '../../../presentational/molecules/List/list';
 import { TaskStatusSwitch } from './taskStatusSwitch';
+import { LikeButton } from '../likes/likeButton';
 
 const ListCover = styled.div`
   position: relative;
@@ -31,6 +32,7 @@ export function TasksList(props) {
             taskCreatedUserName={task.user.name}
           />
           <TaskStatusSwitch taskStatus={task.status} />
+          <LikeButton />
         </ListCover>
       ))}
     </>
