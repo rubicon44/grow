@@ -7,11 +7,12 @@ import { Title } from '../../../presentational/atoms/Title/title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { List } from '../../../presentational/molecules/List/list';
 import { TaskStatusSwitch } from './taskStatusSwitch';
+import { LikeButton } from '../likes/likeButton';
 
 const ListCover = styled.div`
   position: relative;
   min-width: 180px;
-  margin-top: 15px;
+  margin-top: 30px;
 `;
 
 const ListHeader = styled.div`
@@ -57,6 +58,8 @@ export function TaskList(props) {
   const { title: taskTitle } = task;
   const { content: taskContent } = task;
   const { status: taskStatus } = task;
+  const { start_date: startDate } = task;
+  const { end_date: endDate } = task;
   const { user_id: taskCreatedUserId } = task;
   const { taskCreatedUser } = props;
   const { name: taskCreatedUserName } = taskCreatedUser;
@@ -73,6 +76,8 @@ export function TaskList(props) {
         title: taskTitle,
         content: taskContent,
         status: taskStatus,
+        startDate: startDate,
+        endDate: endDate,
         currentUserId,
       },
     });
@@ -140,6 +145,9 @@ export function TaskList(props) {
           taskCreatedUserName={taskCreatedUserName}
         />
         <TaskStatusSwitch taskStatus={taskStatus} />
+        <div>開始日:{startDate}</div>
+        <div>終了日:{endDate}</div>
+        <LikeButton />
         <ButtonCover>
           <EditTaskButton />
           <DeleteTaskButton />
@@ -173,6 +181,8 @@ TaskList.propTypes = {
     title: PropTypes.string,
     content: PropTypes.string,
     status: PropTypes.number,
+    start_date: PropTypes.string,
+    end_date: PropTypes.string,
     created_at: PropTypes.string,
     updated_at: PropTypes.string,
     user_id: PropTypes.string,

@@ -5,11 +5,12 @@ import { Title } from '../../../presentational/atoms/Title/title';
 import { NextButton } from '../../../presentational/atoms/Button/nextButton';
 import { List } from '../../../presentational/molecules/List/list';
 import { TaskStatusSwitch } from './taskStatusSwitch';
+import { LikeButton } from '../likes/likeButton';
 
 const ListCover = styled.div`
   position: relative;
   min-width: 180px;
-  margin-top: 15px;
+  margin-top: 30px;
 `;
 
 export function TasksList(props) {
@@ -25,10 +26,13 @@ export function TasksList(props) {
             taskId={String(task.id)}
             title={task.title}
             content={task.content}
+            startDate={task.start_date}
+            endDate={task.end_date}
             taskCreatedUserId={String(task.user.id)}
             taskCreatedUserName={task.user.name}
           />
           <TaskStatusSwitch taskStatus={task.status} />
+          <LikeButton />
         </ListCover>
       ))}
     </>
@@ -46,6 +50,8 @@ TasksList.propTypes = {
       title: PropTypes.string,
       content: PropTypes.string,
       status: PropTypes.number,
+      start_date: PropTypes.string,
+      end_date: PropTypes.string,
       created_at: PropTypes.string,
       updated_at: PropTypes.string,
       user_id: PropTypes.string,

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
@@ -6,7 +7,6 @@ import { Title } from '../../../presentational/atoms/Title/title';
 import { LogOutButton } from '../../../presentational/atoms/Button/logOut';
 import { List } from '../../../presentational/molecules/List/list';
 import { ProfileSwitch } from './profileSwitch';
-import { GunttChart } from '../tasks/ganttChart';
 import { TaskStatusSwitch } from '../tasks/taskStatusSwitch';
 
 const Content = styled.article`
@@ -46,6 +46,14 @@ const ContentHeaderCover = styled.div`
   background-color: #f8f7f3;
 `;
 
+const NextGunttLink = styled.button`
+  font-size: 22px;
+  font-weight: bold;
+  font-family: YuMincho;
+  color: #ff444f;
+  text-decoraiton: none;
+`;
+
 const ListCoverWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -65,6 +73,19 @@ export function UserTasksList(props) {
   const { userTasks } = props;
   const { currentUserId } = props;
   const { currentUserAble } = props;
+
+  const navigate = useNavigate();
+  const nextGunttFunc = () => {
+    navigate(`/users/${taskUser.id}/guntt`, {
+      state: {
+        taskUser: taskUser,
+        userTasks: userTasks,
+      },
+    });
+  };
+
+  // console.log(taskUser);
+
   return (
     <>
       <ContentHeaderCover>
@@ -75,7 +96,12 @@ export function UserTasksList(props) {
         <ProfileSwitch />
       </ContentHeaderCover>
       <Content>
-        <GunttChart />
+        <NextGunttLink
+          type="button"
+          onClick={() => nextGunttFunc(currentUserId)}
+        >
+          ガントチャート
+        </NextGunttLink>
         {userTasks.length === 0 ? (
           <ListCover key={userTasks}>
             <div>まだ投稿はありません。</div>
@@ -130,6 +156,8 @@ UserTasksList.propTypes = {
         title: PropTypes.string,
         content: PropTypes.string,
         status: PropTypes.number,
+        start_date: PropTypes.string,
+        end_date: PropTypes.string,
         created_at: PropTypes.string,
         updated_at: PropTypes.string,
         user_id: PropTypes.string,
@@ -142,6 +170,8 @@ UserTasksList.propTypes = {
       title: PropTypes.string,
       content: PropTypes.string,
       status: PropTypes.number,
+      start_date: PropTypes.string,
+      end_date: PropTypes.string,
       created_at: PropTypes.string,
       updated_at: PropTypes.string,
       user_id: PropTypes.string,

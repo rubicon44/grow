@@ -29,10 +29,14 @@ export function TaskUpdateForm(props) {
   const { title: taskTitle } = props;
   const { content: taskContent } = props;
   const { status: taskStatus } = props;
+  const { startDate: taskStartDate } = props;
+  const { endDate: taskEndDate } = props;
   const [load, setLoad] = useState(false);
   const [title, setTitle] = useState(taskTitle);
   const [content, setContent] = useState(taskContent);
   const [status, setStatus] = useState(taskStatus);
+  const [startDate, setStartDate] = useState(taskStartDate);
+  const [endDate, setEndDate] = useState(taskEndDate);
   const { id } = props;
   const { currentUserId } = props;
   const navigate = useNavigate();
@@ -40,7 +44,7 @@ export function TaskUpdateForm(props) {
     e.preventDefault();
     e.persist();
     setLoad(true);
-    const task = { title, content, status };
+    const task = { title, content, status, start_date: startDate, end_date: endDate };
     updateTaskFunc(id, task);
     setLoad(false);
     navigate(`/users/${currentUserId}/tasks/${id}`);
@@ -60,6 +64,10 @@ export function TaskUpdateForm(props) {
         setContent={setContent}
         status={status}
         setStatus={setStatus}
+        startDate={startDate}
+        setStartDate={setStartDate}
+        endDate={endDate}
+        setEndDate={setEndDate}
         handleTextSubmit={handleTextSubmit}
       />
     </>

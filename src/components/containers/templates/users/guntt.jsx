@@ -2,45 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Header } from '../../organisms/header';
-import { UserTasksList } from '../../organisms/users/userTasksList';
+import { GunttChart } from '../../organisms/tasks/ganttChart';
 
 const Main = styled.main`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   text-align: center;
   background-color: #f8f7f3;
 `;
 
-export function UserShowTemplate(props) {
+export function UserGunttTemplate(props) {
   const { taskUser } = props;
   const { userTasks } = props;
-  const { currentUserId } = props;
-  const { currentUserAble } = props;
   return (
     <>
       <Header />
       <Main>
-        <UserTasksList
-          taskUser={taskUser}
-          userTasks={userTasks}
-          currentUserId={currentUserId}
-          currentUserAble={currentUserAble}
-        />
+        <GunttChart userTasks={userTasks} taskUser={taskUser} />
       </Main>
     </>
   );
 }
 
-UserShowTemplate.defaultProps = {
+UserGunttTemplate.defaultProps = {
   taskUser: {},
   userTasks: [],
-  currentUserId: '',
-  currentUserAble: false,
 };
 
-UserShowTemplate.propTypes = {
+UserGunttTemplate.propTypes = {
   taskUser: PropTypes.exact({
     id: PropTypes.number,
     name: PropTypes.string,
@@ -77,10 +64,4 @@ UserShowTemplate.propTypes = {
       user_id: PropTypes.string,
     })
   ),
-  currentUserId: PropTypes.string,
-  currentUserAble: PropTypes.bool,
-  // currentUser: PropTypes.exact({
-  //   uid: PropTypes.string,
-  //   email: PropTypes.string,
-  // }),
 };

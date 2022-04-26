@@ -37,6 +37,8 @@ TaskIndexTemplate.propTypes = {
       title: PropTypes.string,
       content: PropTypes.string,
       status: PropTypes.number,
+      start_date: PropTypes.string,
+      end_date: PropTypes.string,
       created_at: PropTypes.string,
       updated_at: PropTypes.string,
       user_id: PropTypes.string,
