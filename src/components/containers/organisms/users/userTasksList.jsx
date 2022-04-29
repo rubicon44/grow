@@ -86,6 +86,9 @@ export function UserTasksList(props) {
 
   // console.log(taskUser);
 
+  // todo:ユーザー詳細ページにおいて、そのユーザーがいいねしたtaskを表示する
+  // 表示の際は、「そのユーザーが投稿したタスク」と「いいねしたタスク」をボタンで切り替えて表示する(それぞれコンポーネントに分ける？)
+
   return (
     <>
       <ContentHeaderCover>

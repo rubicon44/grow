@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getTasks } from '../../../../infra/api';
+import { getTasks, getCurrentUser } from '../../../../infra/api';
 import { TaskIndexTemplate } from '../../templates/tasks';
 
 export function TaskIndex() {
@@ -33,5 +33,21 @@ export function TaskIndex() {
     };
   }, [tasks]);
 
-  return <TaskIndexTemplate tasks={tasks} />;
+  const [currentUserId, setCurrentUserId] = useState([]);
+  useEffect(() => {
+    let isMounted = true;
+    getCurrentUser()
+      .then((response) => {
+        const currentUserId = response.data.user.id;
+        if (isMounted) setCurrentUserId(currentUserId);
+      })
+      .catch();
+    // .catch((data) => {
+    // });
+    return () => {
+      isMounted = false;
+    };
+  }, [currentUserId]);
+
+  return <TaskIndexTemplate tasks={tasks} currentUserId={currentUserId} />;
 }

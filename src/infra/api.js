@@ -67,3 +67,25 @@ export const deleteTask = (params) =>
     url: `/tasks/${params}`,
     params,
   });
+
+// likes
+export const postLikes = (params) =>
+  axios({
+    method: 'post',
+    url: `/tasks/${params.task_id}/likes`,
+    params,
+  });
+
+export const getLikes = (params) =>
+  axios({
+    method: 'get',
+    url: `/tasks/${params.task_id}/likes`,
+    params,
+  });
+
+export const deleteLike = (params) =>
+  axios({
+    method: 'delete',
+    url: `/tasks/${params.task_id}/likes/${params.like_id}`,
+    params,
+  });

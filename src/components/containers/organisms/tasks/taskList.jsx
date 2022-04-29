@@ -147,7 +147,7 @@ export function TaskList(props) {
         <TaskStatusSwitch taskStatus={taskStatus} />
         <div>開始日:{startDate}</div>
         <div>終了日:{endDate}</div>
-        <LikeButton />
+        <LikeButton taskId={String(taskId)} currentUserId={currentUserId} />
         <ButtonCover>
           <EditTaskButton />
           <DeleteTaskButton />

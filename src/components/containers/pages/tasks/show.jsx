@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { getTask } from '../../../../infra/api';
+import { getTask, getCurrentUser } from '../../../../infra/api';
 import { TaskShowTemplate } from '../../templates/tasks/show';
 
 export function TaskShow() {
@@ -28,5 +28,21 @@ export function TaskShow() {
     };
   }, [taskId, taskTitle, taskContent]);
 
-  return <TaskShowTemplate task={task} taskCreatedUser={taskCreatedUser} />;
+  const [currentUserId, setCurrentUserId] = useState([]);
+  useEffect(() => {
+    let isMounted = true;
+    getCurrentUser()
+      .then((response) => {
+        const currentUserId = response.data.user.id;
+        if (isMounted) setCurrentUserId(currentUserId);
+      })
+      .catch();
+    // .catch((data) => {
+    // });
+    return () => {
+      isMounted = false;
+    };
+  }, [currentUserId]);
+
+  return <TaskShowTemplate task={task} taskCreatedUser={taskCreatedUser} currentUserId={currentUserId} />;
 }
