@@ -53,9 +53,6 @@ export function LikeButton(props) {
     };
   };
 
-  console.log("taskId" + taskId);
-  console.log("currentTaskId" + currentTaskId);
-
   const handleClickLikeDelete = () => {
     let isMounted = true;
     const like = { task_id: taskId, current_user_id: currentUserId, like_id: likeId };
@@ -75,25 +72,40 @@ export function LikeButton(props) {
     };
   };
 
-  function LikeButtonSwitch() {
-    if(currentUserId === likedUserId && taskId === currentTaskId ) {
-      return (
+  // const LikeButtonSwitch = () => {
+  //   if(currentUserId === likedUserId && taskId === currentTaskId ) {
+  //     return (
+  //       <span onClick={handleClickLikeDelete}>
+  //         <ThumbUpIcon sx={{ color: pink[500] }} />
+  //         {likeCount}
+  //       </span>
+  //     );
+  //   } else {
+  //     return (
+  //       <span onClick={handleClickLikePost}>
+  //         <ThumbUpIcon />
+  //         {likeCount}
+  //       </span>
+  //     );
+  //   };
+  // };
+
+  return (
+    // <LikeButtonSwitch />
+
+    <>
+      {currentUserId === likedUserId && taskId === currentTaskId
+        ?
         <span onClick={handleClickLikeDelete}>
           <ThumbUpIcon sx={{ color: pink[500] }} />
           {likeCount}
         </span>
-      );
-    } else {
-      return (
+        :
         <span onClick={handleClickLikePost}>
           <ThumbUpIcon />
           {likeCount}
         </span>
-      );
-    };
-  };
-
-  return (
-    <LikeButtonSwitch />
+      }
+    </>
   );
 };
