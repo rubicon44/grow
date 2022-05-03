@@ -54,6 +54,15 @@ const NextGunttLink = styled.button`
   text-decoraiton: none;
 `;
 
+const LikedTask = styled.div`
+  margin: 30px 0;
+  padding-top: 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: red;
+  border-top: 1px solid #ddd;
+`;
+
 const ListCoverWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -67,10 +76,11 @@ const ListCover = styled.div`
   position: relative;
 `;
 
-
 export function UserTasksList(props) {
   const { taskUser } = props;
   const { userTasks } = props;
+  const { userLikedTasks } = props;
+  const { taskCreatedUser } = props;
   const { currentUserId } = props;
   const { currentUserAble } = props;
 
@@ -83,11 +93,6 @@ export function UserTasksList(props) {
       },
     });
   };
-
-  // console.log(taskUser);
-
-  // todo:ユーザー詳細ページにおいて、そのユーザーがいいねしたtaskを表示する
-  // 表示の際は、「そのユーザーが投稿したタスク」と「いいねしたタスク」をボタンで切り替えて表示する(それぞれコンポーネントに分ける？)
 
   return (
     <>
@@ -124,6 +129,34 @@ export function UserTasksList(props) {
                 <TaskStatusSwitch taskStatus={task.status} />
               </ListCover>
             </ListCoverWrapper>
+          ))
+        )}
+
+        <LikedTask>いいねしたタスク</LikedTask>
+        {userLikedTasks.length === 0 ? (
+          <ListCover key={userLikedTasks}>
+            <div>まだいいねはありません。</div>
+          </ListCover>
+        ) : (
+          userLikedTasks.map((task) => (
+            // todo: この方法はあまり綺麗ではない気がする(特にAPIでのデータの返し方を再考したい)。
+            taskCreatedUser.map((user) => (
+              String(task.user_id) === String(user.id) && (
+                <ListCoverWrapper>
+                  <ListCover key={task.id}>
+                    <List
+                      taskId={String(task.id)}
+                      title={task.title}
+                      content={task.content}
+                      taskUserId={String(taskUser.id)}
+                      taskCreatedUserId={String(user.id)}
+                      taskCreatedUserName={user.name}
+                    />
+                    <TaskStatusSwitch taskStatus={task.status} />
+                  </ListCover>
+                </ListCoverWrapper>
+              )
+            ))
           ))
         )}
       </Content>

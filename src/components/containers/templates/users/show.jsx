@@ -16,6 +16,8 @@ const Main = styled.main`
 export function UserShowTemplate(props) {
   const { taskUser } = props;
   const { userTasks } = props;
+  const { userLikedTasks } = props;
+  const { taskCreatedUser } = props;
   const { currentUserId } = props;
   const { currentUserAble } = props;
   return (
@@ -25,6 +27,8 @@ export function UserShowTemplate(props) {
         <UserTasksList
           taskUser={taskUser}
           userTasks={userTasks}
+          userLikedTasks={userLikedTasks}
+          taskCreatedUser={taskCreatedUser}
           currentUserId={currentUserId}
           currentUserAble={currentUserAble}
         />
