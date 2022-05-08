@@ -8,6 +8,7 @@ import { LogOutButton } from '../../../presentational/atoms/Button/logOut';
 import { List } from '../../../presentational/molecules/List/list';
 import { ProfileSwitch } from './profileSwitch';
 import { TaskStatusSwitch } from '../tasks/taskStatusSwitch';
+import { FollowButton } from './followButton';
 
 const Content = styled.article`
   border-top: 1px solid #ddd;
@@ -101,6 +102,7 @@ export function UserTasksList(props) {
           <BackButton />
           <Title title={taskUser.name} />
         </ContentHeader>
+        <FollowButton />
         <ProfileSwitch />
       </ContentHeaderCover>
       <Content>
