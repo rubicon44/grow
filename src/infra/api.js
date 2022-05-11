@@ -89,3 +89,32 @@ export const deleteLike = (params) =>
     url: `/tasks/${params.task_id}/likes/${params.like_id}`,
     params,
   });
+
+// relationships
+export const postRelationships = (params) =>
+  axios({
+    method: 'post',
+    url: `/users/${params.following_id}/relationships`,
+    params,
+  });
+
+export const deleteRelationships = (params) =>
+  axios({
+    method: 'delete',
+    url: `/users/${params.following_id}/relationships`,
+    params,
+  });
+
+export const getFollowings = (params) =>
+  axios({
+    method: 'get',
+    url: `/users/${params}/followings`,
+    params,
+  });
+
+export const getFollowers = (params) =>
+  axios({
+    method: 'get',
+    url: `/users/${params}/followers`,
+    params,
+  });

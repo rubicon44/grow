@@ -23,6 +23,8 @@ import { TaskEdit } from './components/containers/pages/tasks/edit';
 // ユーザー
 import { UserShow } from './components/containers/pages/users/show';
 import { UserGuntt } from './components/containers/pages/users/guntt';
+import { UserFollowings } from './components/containers/pages/users/followings';
+import { UserFollowers } from './components/containers/pages/users/followers';
 
 const Wrapper = styled.div`
   position: relative;
@@ -106,6 +108,17 @@ export function App() {
                 exact
                 path="/users/:id/tasks/:id"
                 element={<PrivateRoute element={<TaskShow />} />}
+              />
+              {/* Relationships */}
+              <Route
+                exact
+                path="/users/:id/followings"
+                element={<PrivateRoute element={<UserFollowings />} />}
+              />
+              <Route
+                exact
+                path="/users/:id/followers"
+                element={<PrivateRoute element={<UserFollowers />} />}
               />
             </Routes>
           </Router>

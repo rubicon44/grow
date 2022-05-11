@@ -47,6 +47,25 @@ const ContentHeaderCover = styled.div`
   background-color: #f8f7f3;
 `;
 
+const RelationshipsCover = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 30px;
+
+  > a {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  > a:last-of-type {
+    margin-left: 10px;
+  }
+`;
+
 const NextGunttLink = styled.button`
   font-size: 22px;
   font-weight: bold;
@@ -95,6 +114,14 @@ export function UserTasksList(props) {
     });
   };
 
+  const nextFollowingsFunc = () => {
+    navigate(`/users/${taskUser.id}/followings`, {
+      state: {
+        userId: taskUser.id,
+      },
+    });
+  };
+
   return (
     <>
       <ContentHeaderCover>
@@ -104,6 +131,14 @@ export function UserTasksList(props) {
         </ContentHeader>
         <FollowButton />
         <ProfileSwitch />
+        <RelationshipsCover>
+          <a onClick={() => nextFollowingsFunc()}>
+            <span>フォロー中</span>
+          </a>
+          <a href="#">
+            <span>フォロワー</span>
+          </a>
+        </RelationshipsCover>
       </ContentHeaderCover>
       <Content>
         <NextGunttLink
