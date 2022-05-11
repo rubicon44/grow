@@ -60,7 +60,7 @@ const FollowChangeLinkNone = styled.a`
 `;
 
 export function FollowButton() {
-  // const [followAble, setFollowAble] = useState(false);
+  const [followAble, setFollowAble] = useState(false);
   const [changeFollowButtonStyle, setChangeFollowButtonStyle] = useState(false);
 
   const [currentUserId, setCurrentUserId] = useState([]);
@@ -92,7 +92,10 @@ export function FollowButton() {
       .catch();
     // .catch((data) => {
     // });
-    // setFollowAble(true);
+    setFollowAble(false);
+    // todo: 下記方法は修正の余地ありの可能性あり。
+    // 「フォロー中」と「フォロー」を切り替えるため、useEffectの依存関係になっているcurrentUserIdを更新。
+    setCurrentUserId(null)
   };
 
   const unFollowFunc = () => {
@@ -104,7 +107,7 @@ export function FollowButton() {
       .catch();
     // .catch((data) => {
     // });
-    // setFollowAble(false);
+    setFollowAble(true);
   };
 
   const [followings, setFollowings] = useState([]);
@@ -123,53 +126,6 @@ export function FollowButton() {
     };
   }, [currentUserId]);
 
-  // const FollowingsChange = () => {
-  //   if (followAble === true) {
-  //     return (
-  //       <FollowChange>
-  //         <FollowChangeLinkCover>
-  //           {changeFollowButtonStyle === false ? (
-  //             <FollowChangeLinkDone
-  //               onMouseEnter={() => {
-  //                 setChangeFollowButtonStyle(true);
-  //               }}
-  //               >
-  //               <span>フォロー中</span>
-  //             </FollowChangeLinkDone>
-  //           ) : (
-  //             <FollowChangeLinkDoneToUnFollow
-  //               onMouseLeave={() => {
-  //                 setChangeFollowButtonStyle(false);
-  //               }}
-  //               onClick={() => {
-  //                 unFollowFunc();
-  //               }}
-  //               >
-  //               <span>フォロー解除</span>
-  //             </FollowChangeLinkDoneToUnFollow>
-  //           )}
-  //         </FollowChangeLinkCover>
-  //       </FollowChange>
-  //     );
-  //   } else {
-  //     return (
-  //       <FollowChange>
-  //         <FollowChangeLinkCover>
-  //           <FollowChangeLinkNone
-  //             onClick={() => {
-  //               followFunc();
-  //             }}
-  //           >
-  //             <span>フォロー</span>
-  //           </FollowChangeLinkNone>
-  //         </FollowChangeLinkCover>
-  //       </FollowChange>
-  //     );
-  //   };
-  // }
-
-  // followingsの中にfollowerIdがあった場合、「フォロー中」ボタンを表示する
-  // followingsの中にfollowerIdがなかった場合、「フォロー」ボタンを表示する
   const [usersFollowingId, setUsersFollowingId] = useState();
   useEffect(() => {
     followings.map((users) => {
@@ -186,7 +142,7 @@ export function FollowButton() {
   if(currentUserId !== followerId) {
     return(
       <>
-        {/* {followAble === true ? ( */}
+        {followAble === false ? (
           <>
             {String(usersFollowingId) === String(followerId) ? (
               <FollowChange>
@@ -228,7 +184,7 @@ export function FollowButton() {
               </FollowChange>
             )}
           </>
-        {/* ) : (
+        ) : (
           <FollowChange>
             <FollowChangeLinkCover>
               <FollowChangeLinkNone
@@ -240,7 +196,7 @@ export function FollowButton() {
               </FollowChangeLinkNone>
             </FollowChangeLinkCover>
           </FollowChange>
-        )} */}
+        )}
       </>
     );
   } else {
