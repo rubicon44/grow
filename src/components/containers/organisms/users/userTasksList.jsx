@@ -122,6 +122,14 @@ export function UserTasksList(props) {
     });
   };
 
+  const nextFollowersFunc = () => {
+    navigate(`/users/${taskUser.id}/followers`, {
+      state: {
+        userId: taskUser.id,
+      },
+    });
+  };
+
   return (
     <>
       <ContentHeaderCover>
@@ -135,7 +143,7 @@ export function UserTasksList(props) {
           <a onClick={() => nextFollowingsFunc()}>
             <span>フォロー中</span>
           </a>
-          <a href="#">
+          <a onClick={() => nextFollowersFunc()}>
             <span>フォロワー</span>
           </a>
         </RelationshipsCover>

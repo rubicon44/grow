@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 // todo: フォローしている人をこのページでもフォロー解除 or フォローできるようにしたい(ここでもフォローボタンを呼び出す)。
 // フォローボタンとフォロー解除ボタンは3箇所でしか使用しないため、共通化しなくても良さそう。そのままベタ書きでOK。
 // つまり、このページにもfollowing_idとfollower_idが必要になる(userShowページから飛ばす？それしか方法がなさそう。)。
-import { postRelationships, deleteRelationships } from '../../../../infra/api';
+// import { postRelationships, deleteRelationships } from '../../../../infra/api';
 import { Title } from '../../../presentational/atoms/Title/title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 // import { List } from '../../../presentational/molecules/List/list';
@@ -112,7 +112,7 @@ export function FollowingsList(props) {
           <Title title="フォロー中" />
         </ListHeader>
         <ListCover>
-          <div>フォローしているユーザーはありません。</div>
+          <div>フォローしているユーザーはいません。</div>
         </ListCover>
       </>
     )
