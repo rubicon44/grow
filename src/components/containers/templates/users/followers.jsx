@@ -16,11 +16,12 @@ const Main = styled.main`
 
 export function UserFollowersTemplate(props) {
   const { followers } = props;
+  const { userId } = props;
   return (
     <>
       <Header />
       <Main>
-        <FollowersList followers={followers} />
+        <FollowersList followers={followers} userId={userId} />
       </Main>
     </>
   );

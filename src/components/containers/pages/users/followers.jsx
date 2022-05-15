@@ -23,5 +23,5 @@ export function UserFollowers() {
     };
   }, [userId]);
 
-  return <UserFollowersTemplate followers={followers} />;
+  return <UserFollowersTemplate followers={followers} userId={userId} />;
 }

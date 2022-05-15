@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 // todo: フォローしている人をこのページでもフォロー解除 or フォローできるようにしたい(ここでもフォローボタンを呼び出す)。
@@ -8,6 +9,7 @@ import styled from 'styled-components';
 import { Title } from '../../../presentational/atoms/Title/title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 // import { List } from '../../../presentational/molecules/List/list';
+import { FollowButtonForUsersList } from './followButtonForUsersList';
 
 const ListCover = styled.div`
   position: relative;
@@ -26,6 +28,8 @@ const ListHeader = styled.div`
 `;
 
 const UsersList = styled.div`
+  display: flex;
+  align-items: center;
   text-align: left;
   padding-bottom: 10px;
   border-bottom: 1px solid #ddd;
@@ -57,6 +61,7 @@ const UsersList = styled.div`
 // todo: まずは、フォローしたユーザーを一覧表示させるのが先決。このページでfollowFunc、unFollowFuncを実装するのはあとで良い。
 export function FollowingsList(props) {
   const { followings } = props;
+  const { userId } = props;
 
   // const followFunc = () => {
   //   const relationships = { following_id: followings.following_id, follower_id: followings.follower_id };
@@ -131,7 +136,10 @@ export function FollowingsList(props) {
             <dd>{content}</dd>
           </ListStyle> */}
           {followings.map((users) => (
-            <UsersList>{users.name}</UsersList>
+            <UsersList>
+              <Link to={`/users/${users.id}`}>{users.name}</Link>
+              <FollowButtonForUsersList followerId={users.id} userId={userId} />
+            </UsersList>
           ))}
         </ListCover>
       </>
