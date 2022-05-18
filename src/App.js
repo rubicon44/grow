@@ -25,6 +25,7 @@ import { UserShow } from './components/containers/pages/users/show';
 import { UserGuntt } from './components/containers/pages/users/guntt';
 import { UserFollowings } from './components/containers/pages/users/followings';
 import { UserFollowers } from './components/containers/pages/users/followers';
+import { UserNotifications } from './components/containers/pages/users/notifications';
 
 const Wrapper = styled.div`
   position: relative;
@@ -119,6 +120,12 @@ export function App() {
                 exact
                 path="/users/:id/followers"
                 element={<PrivateRoute element={<UserFollowers />} />}
+              />
+              {/* Notifications */}
+              <Route
+                exact
+                path="/notifications"
+                element={<PrivateRoute element={<UserNotifications />} />}
               />
             </Routes>
           </Router>

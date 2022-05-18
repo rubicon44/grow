@@ -118,3 +118,11 @@ export const getFollowers = (params) =>
     url: `/users/${params}/followers`,
     params,
   });
+
+// notifications
+export const getNotifications = (params) =>
+  axios({
+    method: 'get',
+    url: `/notifications`,
+    params,
+  });
