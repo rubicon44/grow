@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Title } from '../../../presentational/atoms/Title/title';
@@ -32,6 +33,13 @@ const UsersList = styled.div`
   }
 `;
 
+
+const UserName = styled(Link)`
+  :hover {
+    text-decoration: underline;
+  }
+`;
+
 // const ListStyle = styled.dl`
 //   min-width: 180px;
 //   max-width: 180px;
@@ -52,7 +60,10 @@ const UsersList = styled.div`
 // `;
 
 export function NotificationsList(props) {
+  const { currentUserId } = props;
   const { notifications } = props;
+  const { visitors } = props;
+  const { likeVisitors } = props;
   return (
     <>
       <ListHeader>
@@ -60,21 +71,37 @@ export function NotificationsList(props) {
         <Title title="通知一覧" />
       </ListHeader>
       <ListCover>
-        {notifications == null || notifications == '' && (
+        {notifications == null || notifications == '' ? (
           <div>通知はありません。</div>
+        ) : (
+          notifications.map((notification) => (
+            <UsersList>
+              {notification.action === "like" && (
+                likeVisitors.map((visitor) => (
+                  String(notification.visitor_id) === String(visitor.id) && (
+                    <div>
+                      あなたの
+                      <UserName to={`/users/${currentUserId}/tasks/${notification.task_id}`} key={notification.task_id}>タスク</UserName>
+                      が
+                      <UserName to={`/users/${visitor.id}`} key={visitor.id}>{visitor.name}</UserName>
+                      にいいねされました。
+                    </div>
+                  )
+                ))
+              )}
+              {notification.action === "follow" && (
+                visitors.map((visitor) => (
+                  String(notification.visitor_id) === String(visitor.id) && (
+                    <div>
+                      <UserName to={`/users/${visitor.id}`} key={visitor.id}>{visitor.name}</UserName>
+                      さんにフォローされました。
+                    </div>
+                  )
+                ))
+              )}
+            </UsersList>
+          ))
         )}
-        {notifications.map((notification) => (
-          <UsersList>
-            {notification.action === "like" && (
-              // todo: いいねされたタスクに移動する
-              <div>~のタスクがいいねされました。</div>
-            )}
-            {notification.action === "follow" && (
-              // フォローしてきたユーザー詳細画面に移動する
-              <div>~さんにフォローされました。</div>
-            )}
-          </UsersList>
-        ))}
       </ListCover>
     </>
   );

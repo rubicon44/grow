@@ -93,7 +93,7 @@ export function Header() {
     { url: '/tasks', text: 'Home' },
     { url: '/tasks/create', text: 'Post' },
     { url: `/users/${userId}`, text: 'Report' },
-    { url: `/notifications`, text: 'Noti' },
+    { url: `/notifications`, text: 'Notifications' },
   ];
 
   const headerLinksForAuth = [
