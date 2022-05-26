@@ -26,6 +26,8 @@ import { UserGuntt } from './components/containers/pages/users/guntt';
 import { UserFollowings } from './components/containers/pages/users/followings';
 import { UserFollowers } from './components/containers/pages/users/followers';
 import { UserNotifications } from './components/containers/pages/users/notifications';
+// 検索
+import { SearchIndex } from './components/containers/pages/search';
 
 const Wrapper = styled.div`
   position: relative;
@@ -126,6 +128,12 @@ export function App() {
                 exact
                 path="/notifications"
                 element={<PrivateRoute element={<UserNotifications />} />}
+              />
+              {/* Searches */}
+              <Route
+                exact
+                path="/search"
+                element={<PrivateRoute element={<SearchIndex />} />}
               />
             </Routes>
           </Router>

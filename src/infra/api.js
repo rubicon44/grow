@@ -126,3 +126,11 @@ export const getNotifications = (params) =>
     url: `/notifications`,
     params,
   });
+
+// searches
+export const getSearches = (params) =>
+  axios({
+    method: 'get',
+    url: `/searches`,
+    params,
+  });
