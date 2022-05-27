@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Title } from '../../../presentational/atoms/Title/title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
+import { getSearches } from '../../../../infra/api';
 
 const ListCover = styled.div`
   position: relative;
@@ -63,19 +63,30 @@ const FormCover = styled.div`
 //   }
 // `;
 
-export function SearchList(props) {
-  // const { currentUserId } = props;
-  // const { notifications } = props;
-  // const { visitors } = props;
-  // const { likeVisitors } = props;
-
+export function SearchList() {
   const [load, setLoad] = useState(false);
+  const [searches, setSearches] = useState([]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoad(true);
-    // const { email, password } = e.target.elements;
-    // signin(email.value, password.value);
+    const { contents } = e.target.elements;
+    const { model } = e.target.elements;
+    const { method } = e.target.elements;
+    const searchData = { contents: contents.value, model: model.value, method: method.value };
+    let isMounted = true;
+    getSearches(searchData)
+      .then((response) => {
+        console.log(response.data)
+        if (isMounted) setSearches(response.data.contents);
+      })
+      .catch();
+    // .catch(() => {
+    // });
     setLoad(false);
+    return () => {
+      isMounted = false;
+    };
   };
 
   return (
@@ -87,9 +98,17 @@ export function SearchList(props) {
       <div>
         <FormCover>
           <form onSubmit={handleSubmit}>
-            <label htmlFor="search">
-              <input name="search" type="search" placeholder="Search" />
+            <label htmlFor="contents">
+              <input name="contents" type="contents" placeholder="Contents" />
             </label>
+            <select name="model">
+            <option value="user">User</option>
+              <option value="task">Task</option>
+            </select>
+            <select name="method">
+              <option value="perfect">完全一致</option>
+              <option value="partial">部分一致</option>
+            </select>
             <button type="submit" disabled={load}>
               検索
             </button>
@@ -106,42 +125,3 @@ export function SearchList(props) {
     </>
   );
 }
-
-// TaskList.defaultProps = {
-//   task: {},
-//   taskCreatedUser: {},
-// };
-
-// TaskList.propTypes = {
-//   task: PropTypes.exact({
-//     id: PropTypes.number,
-//     title: PropTypes.string,
-//     content: PropTypes.string,
-//     status: PropTypes.number,
-//     start_date: PropTypes.string,
-//     end_date: PropTypes.string,
-//     created_at: PropTypes.string,
-//     updated_at: PropTypes.string,
-//     user_id: PropTypes.string,
-//     user: PropTypes.exact({
-//       id: PropTypes.number,
-//       name: PropTypes.string,
-//       created_at: PropTypes.string,
-//       updated_at: PropTypes.string,
-//       email: PropTypes.string,
-//       firebase_id: PropTypes.string,
-//       password_digest: PropTypes.string,
-//       bio: PropTypes.string,
-//     }),
-//   }),
-//   taskCreatedUser: PropTypes.exact({
-//     id: PropTypes.number,
-//     name: PropTypes.string,
-//     created_at: PropTypes.string,
-//     updated_at: PropTypes.string,
-//     email: PropTypes.string,
-//     firebase_id: PropTypes.string,
-//     password_digest: PropTypes.string,
-//     bio: PropTypes.string,
-//   }),
-// };
