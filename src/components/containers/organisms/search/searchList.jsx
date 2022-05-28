@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Title } from '../../../presentational/atoms/Title/title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
@@ -26,46 +27,21 @@ const FormCover = styled.div`
   text-align: left;
 `;
 
-// const UsersList = styled.div`
-//   display: flex;
-//   align-items: center;
-//   text-align: left;
-//   padding-bottom: 10px;
-//   border-bottom: 1px solid #ddd;
+const List = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
 
-//   &:not(:first-of-type) {
-//     margin-top: 10px;
-//   }
-// `;
-
-// const UserName = styled(Link)`
-//   :hover {
-//     text-decoration: underline;
-//   }
-// `;
-
-// const ListStyle = styled.dl`
-//   min-width: 180px;
-//   max-width: 180px;
-//   margin-top: 15px;
-//   text-align: left;
-
-//   > dt {
-//     font-weight: bold;
-//   }
-
-//   > dd {
-//     min-height: 100px;
-//     margin: 10px 0 5px;
-//     padding: 5px;
-//     border: 1px solid #bbb;
-//     white-space: pre-wrap;
-//   }
-// `;
+  &:not(:first-of-type) {
+    margin-top: 10px;
+  }
+`;
 
 export function SearchList() {
   const [load, setLoad] = useState(false);
-  const [searches, setSearches] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -77,8 +53,7 @@ export function SearchList() {
     let isMounted = true;
     getSearches(searchData)
       .then((response) => {
-        console.log(response.data)
-        if (isMounted) setSearches(response.data.contents);
+        if (isMounted) setSearchResults(response.data.results);
       })
       .catch();
     // .catch(() => {
@@ -115,11 +90,23 @@ export function SearchList() {
           </form>
         </FormCover>
         <ListCover>
-          {/* {notifications.map((notification) => (
-              <UsersList>
-                <div>{notification}</div>
-              </UsersList>
-          ))} */}
+          {searchResults.map((result) => (
+            <>
+              {result.name && (
+                <List>
+                  name:
+                  <Link to={`/users/${result.id}`}>{result.name}</Link>
+                </List>
+              )}
+              {result.title && (
+                <List>
+                  title:
+                  <Link to={`/users/${result.user_id}/tasks/${result.id}`}>{result.title}</Link>
+                  <div>cotent:{result.content}</div>
+                </List>
+              )}
+            </>
+          ))}
         </ListCover>
       </div>
     </>
