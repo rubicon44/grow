@@ -77,14 +77,17 @@ export function ProfileSwitch() {
 
   const [taskUser, setTaskUser] = useState([]);
   const [userBio, setUserBio] = useState([]);
+  const [userName, setUserName] = useState([]);
   useEffect(() => {
     let isMounted = true;
     getUser(userId)
       .then((response) => {
         const taskUser = response.data.user;
         const userBio = response.data.user.bio;
+        const userName = response.data.user.name;
         if (isMounted) setTaskUser(taskUser);
         if (isMounted) setUserBio(userBio);
+        if (isMounted) setUserName(userName);
       })
       .catch();
     // .catch((data) => {
@@ -97,8 +100,11 @@ export function ProfileSwitch() {
   const updateUserFunc = (id, user) => {
     updateUser(id, user)
       .then((response) => {
+        console.log(response.data);
         const userBio = response.data.user.bio;
+        const userName = response.data.user.name;
         setUserBio(userBio);
+        setUserName(userName);
       })
       .catch();
     // .catch((response) => {
@@ -112,7 +118,7 @@ export function ProfileSwitch() {
     e.persist();
     setLoad(true);
     const id = userId;
-    const user = { bio: userBio };
+    const user = { bio: userBio, name: userName };
     updateUserFunc(id, user);
     setBioAble(true);
     setLoad(false);
@@ -163,7 +169,7 @@ export function ProfileSwitch() {
           )}
         </ProfileHeader>
         <ProfileContent>
-          <UserName>{taskUser.name}</UserName>
+          <UserName>{userName}</UserName>
           <Bio>{userBio}</Bio>
         </ProfileContent>
       </Profile>
@@ -175,6 +181,19 @@ export function ProfileSwitch() {
         <FormCover>
           <form onSubmit={handleTextSubmit}>
             <FormTextAreaCover>
+              <label htmlFor="name">
+                名前
+                <input
+                  name="name"
+                  onChange={(e) => {
+                    setUserName(e.target.value);
+                  }}
+                  placeholder="name"
+                  cols="80"
+                  rows="3"
+                  defaultValue={userName}
+                />
+              </label>
               <label htmlFor="bio">
                 プロフィール
                 <textarea
