@@ -98,12 +98,12 @@ export function FollowersList(props) {
   //       </ListHeader>
   //       <ListCover>
   //         {/* <List
-  //           title={followings.name}
+  //           title={followings.nickname}
   //           taskId={String(taskId)}
   //           content={taskContent}
   //           taskUserId={String(taskUserId)}
   //           taskCreatedUserId={String(taskCreatedUserId)}
-  //           taskCreatedUserName={taskCreatedUserName}
+  //           taskCreatedUserNickName={taskCreatedUserNickName}
   //         /> */}
   //       </ListCover>
   //     </>
@@ -137,7 +137,7 @@ export function FollowersList(props) {
           </ListStyle> */}
           {followers.map((users) => (
             <UsersList>
-              <Link to={`/users/${users.id}`}>{users.name}</Link>
+              <Link to={`/users/${users.id}`}>{users.nickname}</Link>
               <FollowButtonForUsersList followerId={users.id} userId={userId} />
             </UsersList>
           ))}
@@ -165,7 +165,7 @@ export function FollowersList(props) {
 //     user_id: PropTypes.string,
 //     user: PropTypes.exact({
 //       id: PropTypes.number,
-//       name: PropTypes.string,
+//       nickname: PropTypes.string,
 //       created_at: PropTypes.string,
 //       updated_at: PropTypes.string,
 //       email: PropTypes.string,
@@ -176,7 +176,7 @@ export function FollowersList(props) {
 //   }),
 //   taskCreatedUser: PropTypes.exact({
 //     id: PropTypes.number,
-//     name: PropTypes.string,
+//     nickname: PropTypes.string,
 //     created_at: PropTypes.string,
 //     updated_at: PropTypes.string,
 //     email: PropTypes.string,

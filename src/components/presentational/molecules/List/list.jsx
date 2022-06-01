@@ -29,7 +29,7 @@ export function List(props) {
   const { title } = props;
   const { content } = props;
   const { taskCreatedUserId } = props;
-  const { taskCreatedUserName } = props;
+  const { taskCreatedUserNickName } = props;
   return (
     <ListStyle>
       <dt>
@@ -38,7 +38,7 @@ export function List(props) {
       <dd>{content}</dd>
       <CreatedUser
         taskCreatedUserId={taskCreatedUserId}
-        taskCreatedUserName={taskCreatedUserName}
+        taskCreatedUserNickName={taskCreatedUserNickName}
       />
     </ListStyle>
   );
@@ -50,7 +50,7 @@ List.defaultProps = {
   title: '',
   content: '',
   taskCreatedUserId: '',
-  taskCreatedUserName: '',
+  taskCreatedUserNickName: '',
 };
 
 List.propTypes = {
@@ -59,5 +59,5 @@ List.propTypes = {
   title: PropTypes.string,
   content: PropTypes.string,
   taskCreatedUserId: PropTypes.string,
-  taskCreatedUserName: PropTypes.string,
+  taskCreatedUserNickName: PropTypes.string,
 };

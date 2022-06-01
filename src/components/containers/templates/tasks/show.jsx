@@ -48,7 +48,7 @@ TaskShowTemplate.propTypes = {
     user_id: PropTypes.string,
     user: PropTypes.exact({
       id: PropTypes.number,
-      name: PropTypes.string,
+      nickname: PropTypes.string,
       created_at: PropTypes.string,
       updated_at: PropTypes.string,
       email: PropTypes.string,
@@ -59,7 +59,7 @@ TaskShowTemplate.propTypes = {
   }),
   taskCreatedUser: PropTypes.exact({
     id: PropTypes.number,
-    name: PropTypes.string,
+    nickname: PropTypes.string,
     created_at: PropTypes.string,
     updated_at: PropTypes.string,
     email: PropTypes.string,

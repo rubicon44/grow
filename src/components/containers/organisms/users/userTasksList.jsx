@@ -135,7 +135,7 @@ export function UserTasksList(props) {
       <ContentHeaderCover>
         <ContentHeader>
           <BackButton />
-          <Title title={taskUser.name} />
+          <Title title={taskUser.nickname} />
         </ContentHeader>
         <FollowButton />
         <ProfileSwitch />
@@ -169,7 +169,7 @@ export function UserTasksList(props) {
                   content={task.content}
                   taskUserId={String(taskUser.id)}
                   taskCreatedUserId={String(taskUser.id)}
-                  taskCreatedUserName={taskUser.name}
+                  taskCreatedUserNickName={taskUser.nickname}
                 />
                 <TaskStatusSwitch taskStatus={task.status} />
               </ListCover>
@@ -195,7 +195,7 @@ export function UserTasksList(props) {
                       content={task.content}
                       taskUserId={String(taskUser.id)}
                       taskCreatedUserId={String(user.id)}
-                      taskCreatedUserName={user.name}
+                      taskCreatedUserNickName={user.nickname}
                     />
                     <TaskStatusSwitch taskStatus={task.status} />
                   </ListCover>
@@ -224,7 +224,7 @@ UserTasksList.defaultProps = {
 UserTasksList.propTypes = {
   taskUser: PropTypes.exact({
     id: PropTypes.number,
-    name: PropTypes.string,
+    nickname: PropTypes.string,
     created_at: PropTypes.string,
     updated_at: PropTypes.string,
     email: PropTypes.string,

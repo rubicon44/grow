@@ -34,7 +34,7 @@ const ProfileContent = styled.div`
   text-align: left;
 `;
 
-const UserName = styled.div`
+const UserNickName = styled.div`
   display: flex;
   margin-bottom: 10px;
   font-size: 1.5rem;
@@ -77,17 +77,17 @@ export function ProfileSwitch() {
 
   const [taskUser, setTaskUser] = useState([]);
   const [userBio, setUserBio] = useState([]);
-  const [userName, setUserName] = useState([]);
+  const [userNickName, setUserNickName] = useState([]);
   useEffect(() => {
     let isMounted = true;
     getUser(userId)
       .then((response) => {
         const taskUser = response.data.user;
         const userBio = response.data.user.bio;
-        const userName = response.data.user.name;
+        const userNickName = response.data.user.nickname;
         if (isMounted) setTaskUser(taskUser);
         if (isMounted) setUserBio(userBio);
-        if (isMounted) setUserName(userName);
+        if (isMounted) setUserNickName(userNickName);
       })
       .catch();
     // .catch((data) => {
@@ -102,9 +102,9 @@ export function ProfileSwitch() {
       .then((response) => {
         console.log(response.data);
         const userBio = response.data.user.bio;
-        const userName = response.data.user.name;
+        const userNickName = response.data.user.nickname;
         setUserBio(userBio);
-        setUserName(userName);
+        setUserNickName(userNickName);
       })
       .catch();
     // .catch((response) => {
@@ -118,7 +118,7 @@ export function ProfileSwitch() {
     e.persist();
     setLoad(true);
     const id = userId;
-    const user = { bio: userBio, name: userName };
+    const user = { bio: userBio, nickname: userNickName };
     updateUserFunc(id, user);
     setBioAble(true);
     setLoad(false);
@@ -169,7 +169,7 @@ export function ProfileSwitch() {
           )}
         </ProfileHeader>
         <ProfileContent>
-          <UserName>{userName}</UserName>
+          <UserNickName>{userNickName}</UserNickName>
           <Bio>{userBio}</Bio>
         </ProfileContent>
       </Profile>
@@ -181,17 +181,17 @@ export function ProfileSwitch() {
         <FormCover>
           <form onSubmit={handleTextSubmit}>
             <FormTextAreaCover>
-              <label htmlFor="name">
+              <label htmlFor="nickname">
                 名前
                 <input
-                  name="name"
+                  name="nickname"
                   onChange={(e) => {
-                    setUserName(e.target.value);
+                    setUserNickName(e.target.value);
                   }}
-                  placeholder="name"
+                  placeholder="nickname"
                   cols="80"
                   rows="3"
-                  defaultValue={userName}
+                  defaultValue={userNickName}
                 />
               </label>
               <label htmlFor="bio">

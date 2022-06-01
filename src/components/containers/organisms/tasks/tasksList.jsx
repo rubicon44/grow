@@ -30,7 +30,7 @@ export function TasksList(props) {
             startDate={task.start_date}
             endDate={task.end_date}
             taskCreatedUserId={String(task.user.id)}
-            taskCreatedUserName={task.user.name}
+            taskCreatedUserNickName={task.user.nickname}
           />
           <TaskStatusSwitch taskStatus={task.status} />
           <LikeButton taskId={String(task.id)} currentUserId={String(currentUserId)} />
@@ -58,7 +58,7 @@ TasksList.propTypes = {
       user_id: PropTypes.string,
       user: PropTypes.exact({
         id: PropTypes.number,
-        name: PropTypes.string,
+        nickname: PropTypes.string,
         created_at: PropTypes.string,
         updated_at: PropTypes.string,
         email: PropTypes.string,

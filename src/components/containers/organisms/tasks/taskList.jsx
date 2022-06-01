@@ -62,7 +62,7 @@ export function TaskList(props) {
   const { end_date: endDate } = task;
   const { user_id: taskCreatedUserId } = task;
   const { taskCreatedUser } = props;
-  const { name: taskCreatedUserName } = taskCreatedUser;
+  const { nickname: taskCreatedUserNickName } = taskCreatedUser;
 
   const currentUserDataText = localStorage.getItem('user');
   const currentUserData = JSON.parse(currentUserDataText);
@@ -142,7 +142,7 @@ export function TaskList(props) {
           content={taskContent}
           taskUserId={String(taskUserId)}
           taskCreatedUserId={String(taskCreatedUserId)}
-          taskCreatedUserName={taskCreatedUserName}
+          taskCreatedUserNickName={taskCreatedUserNickName}
         />
         <TaskStatusSwitch taskStatus={taskStatus} />
         <div>開始日:{startDate}</div>
@@ -188,7 +188,7 @@ TaskList.propTypes = {
     user_id: PropTypes.string,
     user: PropTypes.exact({
       id: PropTypes.number,
-      name: PropTypes.string,
+      nickname: PropTypes.string,
       created_at: PropTypes.string,
       updated_at: PropTypes.string,
       email: PropTypes.string,
@@ -199,7 +199,7 @@ TaskList.propTypes = {
   }),
   taskCreatedUser: PropTypes.exact({
     id: PropTypes.number,
-    name: PropTypes.string,
+    nickname: PropTypes.string,
     created_at: PropTypes.string,
     updated_at: PropTypes.string,
     email: PropTypes.string,

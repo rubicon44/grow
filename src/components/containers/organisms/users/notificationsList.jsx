@@ -34,7 +34,7 @@ const UsersList = styled.div`
 `;
 
 
-const UserName = styled(Link)`
+const UserNickName = styled(Link)`
   :hover {
     text-decoration: underline;
   }
@@ -81,9 +81,9 @@ export function NotificationsList(props) {
                   String(notification.visitor_id) === String(visitor.id) && (
                     <div>
                       あなたの
-                      <UserName to={`/users/${currentUserId}/tasks/${notification.task_id}`} key={notification.task_id}>タスク</UserName>
+                      <UserNickName to={`/users/${currentUserId}/tasks/${notification.task_id}`} key={notification.task_id}>タスク</UserNickName>
                       が
-                      <UserName to={`/users/${visitor.id}`} key={visitor.id}>{visitor.name}</UserName>
+                      <UserNickName to={`/users/${visitor.id}`} key={visitor.id}>{visitor.nickname}</UserNickName>
                       にいいねされました。
                     </div>
                   )
@@ -93,7 +93,7 @@ export function NotificationsList(props) {
                 visitors.map((visitor) => (
                   String(notification.visitor_id) === String(visitor.id) && (
                     <div>
-                      <UserName to={`/users/${visitor.id}`} key={visitor.id}>{visitor.name}</UserName>
+                      <UserNickName to={`/users/${visitor.id}`} key={visitor.id}>{visitor.nickname}</UserNickName>
                       さんにフォローされました。
                     </div>
                   )
@@ -125,7 +125,7 @@ export function NotificationsList(props) {
 //     user_id: PropTypes.string,
 //     user: PropTypes.exact({
 //       id: PropTypes.number,
-//       name: PropTypes.string,
+//       nickname: PropTypes.string,
 //       created_at: PropTypes.string,
 //       updated_at: PropTypes.string,
 //       email: PropTypes.string,
@@ -136,7 +136,7 @@ export function NotificationsList(props) {
 //   }),
 //   taskCreatedUser: PropTypes.exact({
 //     id: PropTypes.number,
-//     name: PropTypes.string,
+//     nickname: PropTypes.string,
 //     created_at: PropTypes.string,
 //     updated_at: PropTypes.string,
 //     email: PropTypes.string,

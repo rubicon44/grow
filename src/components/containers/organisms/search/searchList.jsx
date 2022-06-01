@@ -92,10 +92,10 @@ export function SearchList() {
         <ListCover>
           {searchResults.map((result) => (
             <>
-              {result.name && (
+              {result.nickname && (
                 <List>
-                  name:
-                  <Link to={`/users/${result.id}`}>{result.name}</Link>
+                  nickname:
+                  <Link to={`/users/${result.id}`}>{result.nickname}</Link>
                 </List>
               )}
               {result.title && (
