@@ -75,7 +75,6 @@ export function ProfileSwitch() {
   const locationPathName = location.pathname.split('/');
   const userId = locationPathName[locationPathName.length - 1];
 
-  const [taskUser, setTaskUser] = useState([]);
   const [userBio, setUserBio] = useState([]);
   const [userNickName, setUserNickName] = useState([]);
   const [userName, setUserName] = useState([]);
@@ -83,11 +82,9 @@ export function ProfileSwitch() {
     let isMounted = true;
     getUser(userId)
       .then((response) => {
-        const taskUser = response.data.user;
         const userBio = response.data.user.bio;
         const userNickName = response.data.user.nickname;
         const userName = response.data.user.user_name;
-        if (isMounted) setTaskUser(taskUser);
         if (isMounted) setUserBio(userBio);
         if (isMounted) setUserNickName(userNickName);
         if (isMounted) setUserName(userName);
