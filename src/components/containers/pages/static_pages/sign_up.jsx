@@ -23,8 +23,8 @@ export function SignUp() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoad(true);
-    const { nickname, user_name, email, password } = e.target.elements;
-    signup(nickname.value, user_name.value, email.value, password.value);
+    const { nickname, username, email, password } = e.target.elements;
+    signup(nickname.value, username.value, email.value, password.value);
     setLoad(false);
     navigate('/tasks');
   };
@@ -39,9 +39,9 @@ export function SignUp() {
             ニックネーム
             <input name="nickname" type="text" placeholder="NickName" />
           </label>
-          <label htmlFor="user_name">
+          <label htmlFor="username">
             ユーザーネーム
-            <input name="user_name" type="text" placeholder="UserName" />
+            <input name="username" type="text" placeholder="UserName" />
           </label>
           <label htmlFor="email">
             メール

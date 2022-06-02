@@ -84,7 +84,7 @@ export function ProfileSwitch() {
       .then((response) => {
         const userBio = response.data.user.bio;
         const userNickName = response.data.user.nickname;
-        const userName = response.data.user.user_name;
+        const userName = response.data.user.username;
         if (isMounted) setUserBio(userBio);
         if (isMounted) setUserNickName(userNickName);
         if (isMounted) setUserName(userName);
@@ -103,7 +103,7 @@ export function ProfileSwitch() {
         console.log(response.data);
         const userBio = response.data.user.bio;
         const userNickName = response.data.user.nickname;
-        const userName = response.data.user.user_name
+        const userName = response.data.user.username
         setUserBio(userBio);
         setUserNickName(userNickName);
         setUserName(userName);
@@ -120,7 +120,7 @@ export function ProfileSwitch() {
     e.persist();
     setLoad(true);
     const id = userId;
-    const user = { nickname: userNickName, user_name: userName, bio: userBio };
+    const user = { nickname: userNickName, username: userName, bio: userBio };
     updateUserFunc(id, user);
     setBioAble(true);
     setLoad(false);
@@ -197,14 +197,14 @@ export function ProfileSwitch() {
                   defaultValue={userNickName}
                 />
               </label>
-              <label htmlFor="user_name">
+              <label htmlFor="username">
                 ユーザーネーム
                 <input
-                  name="user_name"
+                  name="username"
                   onChange={(e) => {
                     setUserName(e.target.value);
                   }}
-                  placeholder="user_name"
+                  placeholder="username"
                   cols="80"
                   rows="3"
                   defaultValue={userName}
