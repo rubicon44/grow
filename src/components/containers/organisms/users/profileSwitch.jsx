@@ -78,6 +78,7 @@ export function ProfileSwitch() {
   const [userBio, setUserBio] = useState([]);
   const [userNickName, setUserNickName] = useState([]);
   const [userName, setUserName] = useState([]);
+  const [userNameDefault, setUserNameDefault] = useState([]);
   useEffect(() => {
     let isMounted = true;
     getUser(userId)
@@ -85,9 +86,11 @@ export function ProfileSwitch() {
         const userBio = response.data.user.bio;
         const userNickName = response.data.user.nickname;
         const userName = response.data.user.username;
+        const userNameDefault = response.data.user.username;
         if (isMounted) setUserBio(userBio);
         if (isMounted) setUserNickName(userNickName);
         if (isMounted) setUserName(userName);
+        if (isMounted) setUserNameDefault(userNameDefault);
       })
       .catch();
     // .catch((data) => {
@@ -97,24 +100,28 @@ export function ProfileSwitch() {
     };
   }, [userId]);
 
+  const [bioAble, setBioAble] = useState(true);
+  const [load, setLoad] = useState(false);
   const updateUserFunc = (id, user) => {
     updateUser(id, user)
       .then((response) => {
-        console.log(response.data);
         const userBio = response.data.user.bio;
         const userNickName = response.data.user.nickname;
         const userName = response.data.user.username
         setUserBio(userBio);
         setUserNickName(userNickName);
         setUserName(userName);
+        setBioAble(true);
+        setLoad(false);
       })
-      .catch();
-    // .catch((response) => {
-    // });
+      // .catch();
+      .catch(errors => {
+        window.alert("このusernameはすでに登録されています。");
+        setUserName(userNameDefault);
+        setLoad(false);
+      });
   };
 
-  const [bioAble, setBioAble] = useState(true);
-  const [load, setLoad] = useState(false);
   const handleTextSubmit = (e) => {
     e.preventDefault();
     e.persist();
@@ -122,8 +129,6 @@ export function ProfileSwitch() {
     const id = userId;
     const user = { nickname: userNickName, username: userName, bio: userBio };
     updateUserFunc(id, user);
-    setBioAble(true);
-    setLoad(false);
   };
 
   const [currentUserId, setCurrentUserId] = useState([]);
@@ -149,7 +154,7 @@ export function ProfileSwitch() {
         setUserBio(userBio);
       })
       .catch();
-    // .catch((data) => {
+    // .catch((response) => {
     // });
     setBioAble(true);
   };
