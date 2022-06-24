@@ -16,7 +16,10 @@ const Main = styled.main`
 export function UserShowTemplate(props) {
   const { taskUser } = props;
   const { userTasks } = props;
+  const { userLikedTasks } = props;
+  const { taskCreatedUser } = props;
   const { currentUserId } = props;
+  const { currentUserName } = props;
   const { currentUserAble } = props;
   return (
     <>
@@ -25,7 +28,10 @@ export function UserShowTemplate(props) {
         <UserTasksList
           taskUser={taskUser}
           userTasks={userTasks}
+          userLikedTasks={userLikedTasks}
+          taskCreatedUser={taskCreatedUser}
           currentUserId={currentUserId}
+          currentUserName={currentUserName}
           currentUserAble={currentUserAble}
         />
       </Main>
@@ -43,7 +49,7 @@ UserShowTemplate.defaultProps = {
 UserShowTemplate.propTypes = {
   taskUser: PropTypes.exact({
     id: PropTypes.number,
-    name: PropTypes.string,
+    nickname: PropTypes.string,
     created_at: PropTypes.string,
     updated_at: PropTypes.string,
     email: PropTypes.string,

@@ -17,7 +17,7 @@
 //   });
 
 //   it('タイトルが「タスク一覧」になっているか', async () => {
-//     const testCurrentUser = { name: 'testUser', email: 'test@test.com' };
+//     const testCurrentUser = { nickname: 'testUser', email: 'test@test.com' };
 //     const [currentUser, setCurrentUser] = useStateMock(testCurrentUser);
 
 //     render(

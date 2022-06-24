@@ -338,7 +338,7 @@ const Example = () => (
                   <td>{task.title}</td>
                   <td>{task.start_date}</td>
                   <td>{task.end_date}</td>
-                  <td>{taskUser.name}</td>
+                  <td>{taskUser.nickname}</td>
                   <td>
                     <TaskStatusSwitchText taskStatus={task.status} />
                   </td>

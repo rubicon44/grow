@@ -10,22 +10,22 @@ const CreatedUserCover = styled.div`
 `;
 
 export function CreatedUser(props) {
-  const { taskCreatedUserId } = props;
   const { taskCreatedUserName } = props;
+  const { taskCreatedUserNickName } = props;
   return (
     <CreatedUserCover>
       作成者:
-      <Link to={`/users/${taskCreatedUserId}`}>{taskCreatedUserName}</Link>
+      <Link to={`/${taskCreatedUserName}`}>{taskCreatedUserNickName}</Link>
     </CreatedUserCover>
   );
 }
 
 CreatedUser.defaultProps = {
   taskCreatedUserId: '',
-  taskCreatedUserName: '',
+  taskCreatedUserNickName: '',
 };
 
 CreatedUser.propTypes = {
   taskCreatedUserId: PropTypes.string,
-  taskCreatedUserName: PropTypes.string,
+  taskCreatedUserNickName: PropTypes.string,
 };

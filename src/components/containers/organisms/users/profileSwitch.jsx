@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { getUser, getCurrentUser, updateUser } from '../../../../infra/api';
+import { getUser, updateUser } from '../../../../infra/api';
 
 const Profile = styled.div`
   width: 100%;
@@ -34,7 +34,7 @@ const ProfileContent = styled.div`
   text-align: left;
 `;
 
-const UserName = styled.div`
+const UserNickName = styled.div`
   display: flex;
   margin-bottom: 10px;
   font-size: 1.5rem;
@@ -70,21 +70,31 @@ const FormButtonCover = styled.div`
   margin: 10px 0;
 `;
 
-export function ProfileSwitch() {
+export function ProfileSwitch(props) {
   const location = useLocation();
   const locationPathName = location.pathname.split('/');
-  const userId = locationPathName[locationPathName.length - 1];
+  const userNameInUrl = locationPathName[locationPathName.length - 1];
 
-  const [taskUser, setTaskUser] = useState([]);
+  const { currentUserId } = props;
   const [userBio, setUserBio] = useState([]);
+  const [userNickName, setUserNickName] = useState([]);
+  const [userName, setUserName] = useState([]);
+  const [userId, setUserId] = useState([]);
+  const [userNameDefault, setUserNameDefault] = useState([]);
   useEffect(() => {
     let isMounted = true;
-    getUser(userId)
+    getUser(userNameInUrl)
       .then((response) => {
-        const taskUser = response.data.user;
         const userBio = response.data.user.bio;
-        if (isMounted) setTaskUser(taskUser);
+        const userNickName = response.data.user.nickname;
+        const userName = response.data.user.username;
+        const userId = response.data.user.id;
+        const userNameDefault = response.data.user.username;
         if (isMounted) setUserBio(userBio);
+        if (isMounted) setUserNickName(userNickName);
+        if (isMounted) setUserName(userName);
+        if (isMounted) setUserId(String(userId));
+        if (isMounted) setUserNameDefault(userNameDefault);
       })
       .catch();
     // .catch((data) => {
@@ -92,56 +102,48 @@ export function ProfileSwitch() {
     return () => {
       isMounted = false;
     };
-  }, [userId]);
+  }, [userNameInUrl]);
 
-  const updateUserFunc = (id, user) => {
-    updateUser(id, user)
+  const [bioAble, setBioAble] = useState(true);
+  const [load, setLoad] = useState(false);
+  const updateUserFunc = (username, user) => {
+    updateUser(username, user)
+      .then((response) => {
+        const userBio = response.data.user.bio;
+        const userNickName = response.data.user.nickname;
+        const userName = response.data.user.username
+        setUserBio(userBio);
+        setUserNickName(userNickName);
+        setUserName(userName);
+        setBioAble(true);
+        setLoad(false);
+      })
+      // .catch();
+      .catch(errors => {
+        // console.log(errors);
+        window.alert("このusernameはすでに登録されています。");
+        setUserName(userNameDefault);
+        setLoad(false);
+      });
+  };
+
+  const handleTextSubmit = (e) => {
+    e.preventDefault();
+    e.persist();
+    setLoad(true);
+    const username = userNameDefault;
+    const user = { nickname: userNickName, username: userName, bio: userBio };
+    updateUserFunc(username, user);
+  };
+
+  const revertUserBio = (userName) => {
+    getUser(userName)
       .then((response) => {
         const userBio = response.data.user.bio;
         setUserBio(userBio);
       })
       .catch();
     // .catch((response) => {
-    // });
-  };
-
-  const [bioAble, setBioAble] = useState(true);
-  const [load, setLoad] = useState(false);
-  const handleTextSubmit = (e) => {
-    e.preventDefault();
-    e.persist();
-    setLoad(true);
-    const id = userId;
-    const user = { bio: userBio };
-    updateUserFunc(id, user);
-    setBioAble(true);
-    setLoad(false);
-  };
-
-  const [currentUserId, setCurrentUserId] = useState([]);
-  useEffect(() => {
-    let isMounted = true;
-    getCurrentUser()
-      .then((response) => {
-        const currentUserId = String(response.data.user.id);
-        if (isMounted) setCurrentUserId(currentUserId);
-      })
-      .catch();
-    // .catch((data) => {
-    // });
-    return () => {
-      isMounted = false;
-    };
-  }, [currentUserId]);
-
-  const revertUserBio = (userId) => {
-    getUser(userId)
-      .then((response) => {
-        const userBio = response.data.user.bio;
-        setUserBio(userBio);
-      })
-      .catch();
-    // .catch((data) => {
     // });
     setBioAble(true);
   };
@@ -163,7 +165,8 @@ export function ProfileSwitch() {
           )}
         </ProfileHeader>
         <ProfileContent>
-          <UserName>{taskUser.name}</UserName>
+          <UserNickName>{userNickName}</UserNickName>
+          <UserNickName>{userName}</UserNickName>
           <Bio>{userBio}</Bio>
         </ProfileContent>
       </Profile>
@@ -175,6 +178,32 @@ export function ProfileSwitch() {
         <FormCover>
           <form onSubmit={handleTextSubmit}>
             <FormTextAreaCover>
+              <label htmlFor="nickname">
+                ニックネーム
+                <input
+                  name="nickname"
+                  onChange={(e) => {
+                    setUserNickName(e.target.value);
+                  }}
+                  placeholder="nickname"
+                  cols="80"
+                  rows="3"
+                  defaultValue={userNickName}
+                />
+              </label>
+              <label htmlFor="username">
+                ユーザーネーム
+                <input
+                  name="username"
+                  onChange={(e) => {
+                    setUserName(e.target.value);
+                  }}
+                  placeholder="username"
+                  cols="80"
+                  rows="3"
+                  defaultValue={userName}
+                />
+              </label>
               <label htmlFor="bio">
                 プロフィール
                 <textarea
@@ -193,7 +222,7 @@ export function ProfileSwitch() {
               <button
                 type="button"
                 onClick={() => {
-                  revertUserBio(userId);
+                  revertUserBio(userName);
                 }}
               >
                 閉じる

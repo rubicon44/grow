@@ -23,6 +23,11 @@ import { TaskEdit } from './components/containers/pages/tasks/edit';
 // ユーザー
 import { UserShow } from './components/containers/pages/users/show';
 import { UserGuntt } from './components/containers/pages/users/guntt';
+import { UserFollowings } from './components/containers/pages/users/followings';
+import { UserFollowers } from './components/containers/pages/users/followers';
+import { UserNotifications } from './components/containers/pages/users/notifications';
+// 検索
+import { SearchIndex } from './components/containers/pages/search';
 
 const Wrapper = styled.div`
   position: relative;
@@ -93,7 +98,7 @@ export function App() {
               {/* user */}
               <Route
                 exact
-                path="/users/:id"
+                path="/:username"
                 element={<PrivateRoute element={<UserShow />} />}
               />
               {/* GunttChart */}
@@ -104,8 +109,31 @@ export function App() {
               />
               <Route
                 exact
-                path="/users/:id/tasks/:id"
+                path="/:username/tasks/:id"
                 element={<PrivateRoute element={<TaskShow />} />}
+              />
+              {/* Relationships */}
+              <Route
+                exact
+                path="/:username/followings"
+                element={<PrivateRoute element={<UserFollowings />} />}
+              />
+              <Route
+                exact
+                path="/:username/followers"
+                element={<PrivateRoute element={<UserFollowers />} />}
+              />
+              {/* Notifications */}
+              <Route
+                exact
+                path="/notifications"
+                element={<PrivateRoute element={<UserNotifications />} />}
+              />
+              {/* Searches */}
+              <Route
+                exact
+                path="/search"
+                element={<PrivateRoute element={<SearchIndex />} />}
               />
             </Routes>
           </Router>

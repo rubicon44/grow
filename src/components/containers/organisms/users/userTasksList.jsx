@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
@@ -8,6 +8,7 @@ import { LogOutButton } from '../../../presentational/atoms/Button/logOut';
 import { List } from '../../../presentational/molecules/List/list';
 import { ProfileSwitch } from './profileSwitch';
 import { TaskStatusSwitch } from '../tasks/taskStatusSwitch';
+import { FollowButton } from './followButton';
 
 const Content = styled.article`
   border-top: 1px solid #ddd;
@@ -46,12 +47,40 @@ const ContentHeaderCover = styled.div`
   background-color: #f8f7f3;
 `;
 
+const RelationshipsCover = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 30px;
+
+  > a {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  > a:last-of-type {
+    margin-left: 10px;
+  }
+`;
+
 const NextGunttLink = styled.button`
   font-size: 22px;
   font-weight: bold;
   font-family: YuMincho;
   color: #ff444f;
   text-decoraiton: none;
+`;
+
+const LikedTask = styled.div`
+  margin: 30px 0;
+  padding-top: 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: red;
+  border-top: 1px solid #ddd;
 `;
 
 const ListCoverWrapper = styled.div`
@@ -67,11 +96,17 @@ const ListCover = styled.div`
   position: relative;
 `;
 
-
 export function UserTasksList(props) {
+  const location = useLocation();
+  const locationPathName = location.pathname.split('/');
+  const userNameInUrl = locationPathName[locationPathName.length - 1];
+
   const { taskUser } = props;
   const { userTasks } = props;
+  const { userLikedTasks } = props;
+  const { taskCreatedUser } = props;
   const { currentUserId } = props;
+  const { currentUserName } = props;
   const { currentUserAble } = props;
 
   const navigate = useNavigate();
@@ -84,16 +119,39 @@ export function UserTasksList(props) {
     });
   };
 
-  // console.log(taskUser);
+  const nextFollowingsFunc = () => {
+    navigate(`/${taskUser.username}/followings`, {
+      state: {
+        userId: taskUser.id,
+      },
+    });
+  };
+
+  const nextFollowersFunc = () => {
+    navigate(`/${taskUser.username}/followers`, {
+      state: {
+        userId: taskUser.id,
+      },
+    });
+  };
 
   return (
     <>
       <ContentHeaderCover>
         <ContentHeader>
           <BackButton />
-          <Title title={taskUser.name} />
+          <Title title={taskUser.nickname} />
         </ContentHeader>
-        <ProfileSwitch />
+        <FollowButton />
+        <ProfileSwitch currentUserId={String(currentUserId)} />
+        <RelationshipsCover>
+          <a onClick={() => nextFollowingsFunc()}>
+            <span>フォロー中</span>
+          </a>
+          <a onClick={() => nextFollowersFunc()}>
+            <span>フォロワー</span>
+          </a>
+        </RelationshipsCover>
       </ContentHeaderCover>
       <Content>
         <NextGunttLink
@@ -116,15 +174,44 @@ export function UserTasksList(props) {
                   content={task.content}
                   taskUserId={String(taskUser.id)}
                   taskCreatedUserId={String(taskUser.id)}
-                  taskCreatedUserName={taskUser.name}
+                  taskCreatedUserName={String(taskUser.username)}
+                  taskCreatedUserNickName={taskUser.nickname}
                 />
                 <TaskStatusSwitch taskStatus={task.status} />
               </ListCover>
             </ListCoverWrapper>
           ))
         )}
+
+        <LikedTask>いいねしたタスク</LikedTask>
+        {userLikedTasks.length === 0 ? (
+          <ListCover key={userLikedTasks}>
+            <div>まだいいねはありません。</div>
+          </ListCover>
+        ) : (
+          userLikedTasks.map((task) => (
+            // todo: この方法はあまり綺麗ではない気がする(特にAPIでのデータの返し方を再考したい)。
+            taskCreatedUser.map((user) => (
+              String(task.user_id) === String(user.id) && (
+                <ListCoverWrapper>
+                  <ListCover key={task.id}>
+                    <List
+                      taskId={String(task.id)}
+                      title={task.title}
+                      content={task.content}
+                      taskUserId={String(taskUser.id)}
+                      taskCreatedUserName={user.username}
+                      taskCreatedUserNickName={user.nickname}
+                    />
+                    <TaskStatusSwitch taskStatus={task.status} />
+                  </ListCover>
+                </ListCoverWrapper>
+              )
+            ))
+          ))
+        )}
       </Content>
-      {currentUserId === String(taskUser.id) && (
+      {String(currentUserName) === String(userNameInUrl) && (
         <LogOutButtonCover>
           {currentUserAble && <LogOutButton text="ログアウト" />}
         </LogOutButtonCover>
@@ -143,7 +230,7 @@ UserTasksList.defaultProps = {
 UserTasksList.propTypes = {
   taskUser: PropTypes.exact({
     id: PropTypes.number,
-    name: PropTypes.string,
+    nickname: PropTypes.string,
     created_at: PropTypes.string,
     updated_at: PropTypes.string,
     email: PropTypes.string,

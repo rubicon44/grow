@@ -18,11 +18,15 @@ const Main = styled.main`
 export function TaskShowTemplate(props) {
   const { task } = props;
   const { taskCreatedUser } = props;
+  const { taskCreatedUserName } = props;
+  const { currentUserId } = props;
+  const { currentUserName } = props;
+
   return (
     <>
       <Header />
       <Main>
-        <TaskList task={task} taskCreatedUser={taskCreatedUser} />
+        <TaskList task={task} taskCreatedUser={taskCreatedUser} taskCreatedUserName={taskCreatedUserName} currentUserId={currentUserId} currentUserName={currentUserName} />
       </Main>
     </>
   );
@@ -46,7 +50,7 @@ TaskShowTemplate.propTypes = {
     user_id: PropTypes.string,
     user: PropTypes.exact({
       id: PropTypes.number,
-      name: PropTypes.string,
+      nickname: PropTypes.string,
       created_at: PropTypes.string,
       updated_at: PropTypes.string,
       email: PropTypes.string,
@@ -57,7 +61,7 @@ TaskShowTemplate.propTypes = {
   }),
   taskCreatedUser: PropTypes.exact({
     id: PropTypes.number,
-    name: PropTypes.string,
+    nickname: PropTypes.string,
     created_at: PropTypes.string,
     updated_at: PropTypes.string,
     email: PropTypes.string,

@@ -20,21 +20,21 @@ export const signIn = (idToken) =>
 export const getCurrentUser = () =>
   axios({
     method: 'get',
-    url: `/users/${currentUser.id}`,
+    url: `/${currentUser.username}`,
     params: { currentUser: true },
   });
 
 export const getUser = (params) =>
   axios({
     method: 'get',
-    url: `/users/${params}`,
+    url: `/${params}`,
     params: { currentUser: true },
   });
 
 export const updateUser = (params, data) =>
   axios({
     method: 'put',
-    url: `/users/${params}`,
+    url: `/${params}`,
     data,
   });
 
@@ -65,5 +65,72 @@ export const deleteTask = (params) =>
   axios({
     method: 'delete',
     url: `/tasks/${params}`,
+    params,
+  });
+
+// likes
+export const postLikes = (params) =>
+  axios({
+    method: 'post',
+    url: `/tasks/${params.task_id}/likes`,
+    params,
+  });
+
+export const getLikes = (params) =>
+  axios({
+    method: 'get',
+    url: `/tasks/${params.task_id}/likes`,
+    params,
+  });
+
+export const deleteLike = (params) =>
+  axios({
+    method: 'delete',
+    url: `/tasks/${params.task_id}/likes/${params.like_id}`,
+    params,
+  });
+
+// relationships
+export const postRelationships = (params) =>
+  axios({
+    method: 'post',
+    url: `/users/${params.following_id}/relationships`,
+    params,
+  });
+
+export const deleteRelationships = (params) =>
+  axios({
+    method: 'delete',
+    url: `/users/${params.following_id}/relationships`,
+    params,
+  });
+
+export const getFollowings = (params) =>
+  axios({
+    method: 'get',
+    url: `/users/${params}/followings`,
+    params,
+  });
+
+export const getFollowers = (params) =>
+  axios({
+    method: 'get',
+    url: `/users/${params}/followers`,
+    params,
+  });
+
+// notifications
+export const getNotifications = (params) =>
+  axios({
+    method: 'get',
+    url: `/notifications`,
+    params,
+  });
+
+// searches
+export const getSearches = (params) =>
+  axios({
+    method: 'get',
+    url: `/searches`,
     params,
   });

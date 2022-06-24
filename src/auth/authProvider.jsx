@@ -37,12 +37,12 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const signup = async (name, email, password) => {
+  const signup = async (nickname, username, email, password) => {
     try {
       createUserWithEmailAndPassword(auth, email, password)
         .then(async (userCredential) => {
           const firebaseId = userCredential.user.uid;
-          const user = { name, email, firebaseId };
+          const user = { nickname, username, email, firebaseId };
           await signUp(user).then().catch();
           // .then((response) => {
           //   // todo:APIからユーザーオブジェクトのみが返却されるので、ポップアップでも出す？（ユーザーが作成されました！）

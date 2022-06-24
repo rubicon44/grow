@@ -16,11 +16,13 @@ const Main = styled.main`
 
 export function TaskIndexTemplate(props) {
   const { tasks } = props;
+  const { currentUserId } = props;
+  const { currentUserName } = props;
   return (
     <>
       <Header />
       <Main>
-        <TasksList tasks={tasks} />
+        <TasksList tasks={tasks} currentUserId={currentUserId} currentUserName={currentUserName} />
       </Main>
     </>
   );
@@ -44,7 +46,7 @@ TaskIndexTemplate.propTypes = {
       user_id: PropTypes.string,
       user: PropTypes.exact({
         id: PropTypes.number,
-        name: PropTypes.string,
+        nickname: PropTypes.string,
         created_at: PropTypes.string,
         updated_at: PropTypes.string,
         email: PropTypes.string,

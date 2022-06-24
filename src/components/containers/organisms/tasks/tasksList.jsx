@@ -15,6 +15,8 @@ const ListCover = styled.div`
 
 export function TasksList(props) {
   const { tasks } = props;
+  const { currentUserId } = props;
+  const { currentUserName } = props;
   return (
     <>
       <Title title="タスク一覧" />
@@ -28,11 +30,11 @@ export function TasksList(props) {
             content={task.content}
             startDate={task.start_date}
             endDate={task.end_date}
-            taskCreatedUserId={String(task.user.id)}
-            taskCreatedUserName={task.user.name}
+            taskCreatedUserName={String(task.user.username)}
+            taskCreatedUserNickName={task.user.nickname}
           />
           <TaskStatusSwitch taskStatus={task.status} />
-          <LikeButton />
+          <LikeButton taskId={String(task.id)} currentUserId={String(currentUserId)} currentUserName={currentUserName} />
         </ListCover>
       ))}
     </>
@@ -57,7 +59,7 @@ TasksList.propTypes = {
       user_id: PropTypes.string,
       user: PropTypes.exact({
         id: PropTypes.number,
-        name: PropTypes.string,
+        nickname: PropTypes.string,
         created_at: PropTypes.string,
         updated_at: PropTypes.string,
         email: PropTypes.string,

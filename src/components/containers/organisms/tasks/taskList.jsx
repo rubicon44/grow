@@ -54,7 +54,6 @@ const BackgroundDisAbled = styled.div`
 export function TaskList(props) {
   const { task } = props;
   const { id: taskId } = task;
-  const { user_id: taskUserId } = task;
   const { title: taskTitle } = task;
   const { content: taskContent } = task;
   const { status: taskStatus } = task;
@@ -62,7 +61,8 @@ export function TaskList(props) {
   const { end_date: endDate } = task;
   const { user_id: taskCreatedUserId } = task;
   const { taskCreatedUser } = props;
-  const { name: taskCreatedUserName } = taskCreatedUser;
+  const { taskCreatedUserName } = props;
+  const { nickname: taskCreatedUserNickName } = taskCreatedUser;
 
   const currentUserDataText = localStorage.getItem('user');
   const currentUserData = JSON.parse(currentUserDataText);
@@ -140,14 +140,14 @@ export function TaskList(props) {
           title={taskTitle}
           taskId={String(taskId)}
           content={taskContent}
-          taskUserId={String(taskUserId)}
           taskCreatedUserId={String(taskCreatedUserId)}
           taskCreatedUserName={taskCreatedUserName}
+          taskCreatedUserNickName={taskCreatedUserNickName}
         />
         <TaskStatusSwitch taskStatus={taskStatus} />
         <div>開始日:{startDate}</div>
         <div>終了日:{endDate}</div>
-        <LikeButton />
+        <LikeButton taskId={String(taskId)} currentUserId={String(currentUserId)} />
         <ButtonCover>
           <EditTaskButton />
           <DeleteTaskButton />
@@ -188,7 +188,7 @@ TaskList.propTypes = {
     user_id: PropTypes.string,
     user: PropTypes.exact({
       id: PropTypes.number,
-      name: PropTypes.string,
+      nickname: PropTypes.string,
       created_at: PropTypes.string,
       updated_at: PropTypes.string,
       email: PropTypes.string,
@@ -199,7 +199,7 @@ TaskList.propTypes = {
   }),
   taskCreatedUser: PropTypes.exact({
     id: PropTypes.number,
-    name: PropTypes.string,
+    nickname: PropTypes.string,
     created_at: PropTypes.string,
     updated_at: PropTypes.string,
     email: PropTypes.string,
