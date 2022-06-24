@@ -61,12 +61,15 @@ export function Header() {
   });
 
   const [userId, setUserId] = useState([]);
+  const [userName, setUserName] = useState([]);
   useEffect(() => {
     let isMounted = true;
     getCurrentUser()
       .then((response) => {
         const userId = response.data.user.id;
+        const userName = response.data.user.username;
         if (isMounted) setUserId(userId);
+        if (isMounted) setUserName(userName);
       })
       .catch();
     // .catch((data) => {
@@ -92,7 +95,7 @@ export function Header() {
     { url: '/top', text: 'Top' },
     { url: '/tasks', text: 'Home' },
     { url: '/tasks/create', text: 'Post' },
-    { url: `/users/${userId}`, text: 'Report' },
+    { url: `/${userName}`, text: 'Report' },
     { url: `/notifications`, text: 'Notifications' },
     { url: `/search`, text: 'Search' },
   ];

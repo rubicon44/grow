@@ -137,7 +137,7 @@ export function FollowersList(props) {
           </ListStyle> */}
           {followers.map((users) => (
             <UsersList>
-              <Link to={`/users/${users.id}`}>{users.nickname}</Link>
+              <Link to={`/${users.username}`}>{users.nickname}</Link>
               <FollowButtonForUsersList followerId={users.id} userId={userId} />
             </UsersList>
           ))}

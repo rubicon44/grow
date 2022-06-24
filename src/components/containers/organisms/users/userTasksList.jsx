@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
@@ -97,11 +97,16 @@ const ListCover = styled.div`
 `;
 
 export function UserTasksList(props) {
+  const location = useLocation();
+  const locationPathName = location.pathname.split('/');
+  const userNameInUrl = locationPathName[locationPathName.length - 1];
+
   const { taskUser } = props;
   const { userTasks } = props;
   const { userLikedTasks } = props;
   const { taskCreatedUser } = props;
   const { currentUserId } = props;
+  const { currentUserName } = props;
   const { currentUserAble } = props;
 
   const navigate = useNavigate();
@@ -115,7 +120,7 @@ export function UserTasksList(props) {
   };
 
   const nextFollowingsFunc = () => {
-    navigate(`/users/${taskUser.id}/followings`, {
+    navigate(`/${taskUser.username}/followings`, {
       state: {
         userId: taskUser.id,
       },
@@ -123,7 +128,7 @@ export function UserTasksList(props) {
   };
 
   const nextFollowersFunc = () => {
-    navigate(`/users/${taskUser.id}/followers`, {
+    navigate(`/${taskUser.username}/followers`, {
       state: {
         userId: taskUser.id,
       },
@@ -138,7 +143,7 @@ export function UserTasksList(props) {
           <Title title={taskUser.nickname} />
         </ContentHeader>
         <FollowButton />
-        <ProfileSwitch />
+        <ProfileSwitch currentUserId={String(currentUserId)} />
         <RelationshipsCover>
           <a onClick={() => nextFollowingsFunc()}>
             <span>フォロー中</span>
@@ -169,6 +174,7 @@ export function UserTasksList(props) {
                   content={task.content}
                   taskUserId={String(taskUser.id)}
                   taskCreatedUserId={String(taskUser.id)}
+                  taskCreatedUserName={String(taskUser.username)}
                   taskCreatedUserNickName={taskUser.nickname}
                 />
                 <TaskStatusSwitch taskStatus={task.status} />
@@ -194,7 +200,7 @@ export function UserTasksList(props) {
                       title={task.title}
                       content={task.content}
                       taskUserId={String(taskUser.id)}
-                      taskCreatedUserId={String(user.id)}
+                      taskCreatedUserName={user.username}
                       taskCreatedUserNickName={user.nickname}
                     />
                     <TaskStatusSwitch taskStatus={task.status} />
@@ -205,7 +211,7 @@ export function UserTasksList(props) {
           ))
         )}
       </Content>
-      {currentUserId === String(taskUser.id) && (
+      {String(currentUserName) === String(userNameInUrl) && (
         <LogOutButtonCover>
           {currentUserAble && <LogOutButton text="ログアウト" />}
         </LogOutButtonCover>

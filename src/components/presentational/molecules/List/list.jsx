@@ -25,19 +25,18 @@ const ListStyle = styled.dl`
 
 export function List(props) {
   const { taskId } = props;
-  const { taskUserId } = props;
   const { title } = props;
   const { content } = props;
-  const { taskCreatedUserId } = props;
+  const { taskCreatedUserName } = props;
   const { taskCreatedUserNickName } = props;
   return (
     <ListStyle>
       <dt>
-        <Link to={`/users/${taskUserId}/tasks/${taskId}`}>{title}</Link>
+        <Link to={`/${taskCreatedUserName}/tasks/${taskId}`}>{title}</Link>
       </dt>
       <dd>{content}</dd>
       <CreatedUser
-        taskCreatedUserId={taskCreatedUserId}
+        taskCreatedUserName={taskCreatedUserName}
         taskCreatedUserNickName={taskCreatedUserNickName}
       />
     </ListStyle>

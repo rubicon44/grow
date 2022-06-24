@@ -41,19 +41,23 @@ const List = styled.div`
 
 export function SearchList() {
   const [load, setLoad] = useState(false);
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResultsUsersForUser, setSearchResultsUsersForUser] = useState([]);
+  const [searchResultsUsers, setSearchResultsUsers] = useState([]);
+  const [searchResultsTasks, setSearchResultsTasks] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoad(true);
-    const { contents } = e.target.elements;
     const { model } = e.target.elements;
+    const { contents } = e.target.elements;
     const { method } = e.target.elements;
-    const searchData = { contents: contents.value, model: model.value, method: method.value };
+    const searchData = { model: model.value, contents: contents.value, method: method.value };
     let isMounted = true;
     getSearches(searchData)
       .then((response) => {
-        if (isMounted) setSearchResults(response.data.results);
+        if (isMounted) setSearchResultsUsersForUser(response.data.results.users_for_user);
+        if (isMounted) setSearchResultsUsers(response.data.results.users);
+        if (isMounted) setSearchResultsTasks(response.data.results.tasks);
       })
       .catch();
     // .catch(() => {
@@ -81,8 +85,8 @@ export function SearchList() {
               <option value="task">Task</option>
             </select>
             <select name="method">
-              <option value="perfect">完全一致</option>
               <option value="partial">部分一致</option>
+              <option value="perfect">完全一致</option>
             </select>
             <button type="submit" disabled={load}>
               検索
@@ -90,23 +94,37 @@ export function SearchList() {
           </form>
         </FormCover>
         <ListCover>
-          {searchResults.map((result) => (
-            <>
-              {result.nickname && (
+          {searchResultsUsersForUser && (
+            searchResultsUsersForUser.map((user) => (
+              <>
+              {/* 下記の配列の出し分け方法だと、一度すべての配列を取得してから出し分けするので、データ量が多いと効率が悪いかも? */}
                 <List>
-                  nickname:
-                  <Link to={`/users/${result.id}`}>{result.nickname}</Link>
+                  <Link to={`/${user.username}`}>
+                    {user.nickname}
+                    (<span>{user.username}</span>)
+                  </Link>
                 </List>
-              )}
-              {result.title && (
+              </>
+            ))
+          )}
+          {searchResultsTasks && (
+            searchResultsTasks.map((task) => (
+              <>
+              {/* 下記の配列の出し分け方法だと、一度すべての配列を取得してから出し分けするので、データ量が多いと効率が悪いかも? */}
                 <List>
                   title:
-                  <Link to={`/users/${result.user_id}/tasks/${result.id}`}>{result.title}</Link>
-                  <div>cotent:{result.content}</div>
+                  {searchResultsUsers.map((user) => (
+                    user.id == task.user_id && (
+                      <Link to={`/${user.username}/tasks/${task.id}`}>
+                        {task.title}
+                        <span>cotent:{task.content}</span>
+                      </Link>
+                    )
+                  ))}
                 </List>
-              )}
-            </>
-          ))}
+              </>
+            ))
+          )}
         </ListCover>
       </div>
     </>

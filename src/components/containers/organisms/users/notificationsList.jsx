@@ -60,7 +60,7 @@ const UserNickName = styled(Link)`
 // `;
 
 export function NotificationsList(props) {
-  const { currentUserId } = props;
+  const { currentUserName } = props;
   const { notifications } = props;
   const { visitors } = props;
   const { likeVisitors } = props;
@@ -81,9 +81,9 @@ export function NotificationsList(props) {
                   String(notification.visitor_id) === String(visitor.id) && (
                     <div>
                       あなたの
-                      <UserNickName to={`/users/${currentUserId}/tasks/${notification.task_id}`} key={notification.task_id}>タスク</UserNickName>
+                      <UserNickName to={`/${currentUserName}/tasks/${notification.task_id}`} key={notification.task_id}>タスク</UserNickName>
                       が
-                      <UserNickName to={`/users/${visitor.id}`} key={visitor.id}>{visitor.nickname}</UserNickName>
+                      <UserNickName to={`/${visitor.username}`} key={visitor.username}>{visitor.nickname}</UserNickName>
                       にいいねされました。
                     </div>
                   )
@@ -93,7 +93,7 @@ export function NotificationsList(props) {
                 visitors.map((visitor) => (
                   String(notification.visitor_id) === String(visitor.id) && (
                     <div>
-                      <UserNickName to={`/users/${visitor.id}`} key={visitor.id}>{visitor.nickname}</UserNickName>
+                      <UserNickName to={`/${visitor.username}`} key={visitor.username}>{visitor.nickname}</UserNickName>
                       さんにフォローされました。
                     </div>
                   )

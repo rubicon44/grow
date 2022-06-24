@@ -11,6 +11,7 @@ export function TaskShow() {
   const [taskTitle, setTaskTitle] = useState();
   const [taskContent, setTaskContent] = useState();
   const [taskCreatedUser, setTaskCreatedUser] = useState();
+  const [taskCreatedUserName, setTaskCreatedUserName] = useState();
   useEffect(() => {
     let isMounted = true;
     getTask(taskId)
@@ -19,6 +20,7 @@ export function TaskShow() {
         if (isMounted) setTaskContent(response.data.content);
         if (isMounted) setTask(response.data);
         if (isMounted) setTaskCreatedUser(response.data.user);
+        if (isMounted) setTaskCreatedUserName(response.data.user.username);
       })
       .catch();
     // .catch((data) => {
@@ -29,12 +31,15 @@ export function TaskShow() {
   }, [taskId, taskTitle, taskContent]);
 
   const [currentUserId, setCurrentUserId] = useState([]);
+  const [currentUserName, setCurrentUserName] = useState([]);
   useEffect(() => {
     let isMounted = true;
     getCurrentUser()
       .then((response) => {
         const currentUserId = response.data.user.id;
+        const currentUserName = response.data.user.username;
         if (isMounted) setCurrentUserId(currentUserId);
+        if (isMounted) setCurrentUserName(currentUserName);
       })
       .catch();
     // .catch((data) => {
@@ -44,5 +49,5 @@ export function TaskShow() {
     };
   }, [currentUserId]);
 
-  return <TaskShowTemplate task={task} taskCreatedUser={taskCreatedUser} currentUserId={currentUserId} />;
+  return <TaskShowTemplate task={task} taskCreatedUser={taskCreatedUser} taskCreatedUserName={taskCreatedUserName} currentUserId={currentUserId} currentUserName={currentUserName} />;
 }

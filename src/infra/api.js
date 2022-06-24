@@ -20,21 +20,21 @@ export const signIn = (idToken) =>
 export const getCurrentUser = () =>
   axios({
     method: 'get',
-    url: `/users/${currentUser.id}`,
+    url: `/${currentUser.username}`,
     params: { currentUser: true },
   });
 
 export const getUser = (params) =>
   axios({
     method: 'get',
-    url: `/users/${params}`,
+    url: `/${params}`,
     params: { currentUser: true },
   });
 
 export const updateUser = (params, data) =>
   axios({
     method: 'put',
-    url: `/users/${params}`,
+    url: `/${params}`,
     data,
   });
 

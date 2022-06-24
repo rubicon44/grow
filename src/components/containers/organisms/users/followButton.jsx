@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { getCurrentUser, postRelationships, deleteRelationships, getFollowings } from '../../../../infra/api';
+import { getUser, getCurrentUser, postRelationships, deleteRelationships, getFollowings } from '../../../../infra/api';
 
 const FollowChange = styled.div`
   width: 100%;
@@ -81,13 +81,28 @@ export function FollowButton() {
 
   const location = useLocation();
   const locationPathName = location.pathname.split('/');
-  const followerId = locationPathName[locationPathName.length - 1];
+  const userNameInUrl = locationPathName[locationPathName.length - 1];
+  const [followerId, setFollowerId] = useState([]);
+  useEffect(() => {
+    let isMounted = true;
+    getUser(userNameInUrl)
+      .then((response) => {
+        const followerId = response.data.user.id;
+        if (isMounted) setFollowerId(String(followerId));
+      })
+      .catch();
+    // .catch((data) => {
+    // });
+    return () => {
+      isMounted = false;
+    };
+  }, [userNameInUrl]);
 
   const followFunc = () => {
     const relationships = { following_id: currentUserId, follower_id: followerId };
     postRelationships(relationships)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch();
     // .catch((data) => {
@@ -102,7 +117,7 @@ export function FollowButton() {
     const relationships = { following_id: currentUserId, follower_id: followerId };
     deleteRelationships(relationships)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch();
     // .catch((data) => {

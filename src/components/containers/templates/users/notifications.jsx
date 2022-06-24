@@ -15,7 +15,7 @@ const Main = styled.main`
 `;
 
 export function UserNotificationsTemplate(props) {
-  const { currentUserId } = props;
+  const { currentUserName } = props;
   const { notifications } = props;
   const { visitors } = props;
   const { likeVisitors } = props;
@@ -23,7 +23,7 @@ export function UserNotificationsTemplate(props) {
     <>
       <Header />
       <Main>
-        <NotificationsList currentUserId={currentUserId} notifications={notifications} visitors={visitors} likeVisitors={likeVisitors} />
+        <NotificationsList currentUserName={currentUserName} notifications={notifications} visitors={visitors} likeVisitors={likeVisitors} />
       </Main>
     </>
   );

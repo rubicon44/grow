@@ -98,7 +98,7 @@ export function App() {
               {/* user */}
               <Route
                 exact
-                path="/users/:id"
+                path="/:username"
                 element={<PrivateRoute element={<UserShow />} />}
               />
               {/* GunttChart */}
@@ -109,18 +109,18 @@ export function App() {
               />
               <Route
                 exact
-                path="/users/:id/tasks/:id"
+                path="/:username/tasks/:id"
                 element={<PrivateRoute element={<TaskShow />} />}
               />
               {/* Relationships */}
               <Route
                 exact
-                path="/users/:id/followings"
+                path="/:username/followings"
                 element={<PrivateRoute element={<UserFollowings />} />}
               />
               <Route
                 exact
-                path="/users/:id/followers"
+                path="/:username/followers"
                 element={<PrivateRoute element={<UserFollowers />} />}
               />
               {/* Notifications */}

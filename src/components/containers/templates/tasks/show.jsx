@@ -18,13 +18,15 @@ const Main = styled.main`
 export function TaskShowTemplate(props) {
   const { task } = props;
   const { taskCreatedUser } = props;
-  const { currentUserId } =props;
+  const { taskCreatedUserName } = props;
+  const { currentUserId } = props;
+  const { currentUserName } = props;
 
   return (
     <>
       <Header />
       <Main>
-        <TaskList task={task} taskCreatedUser={taskCreatedUser} currentUserId={currentUserId} />
+        <TaskList task={task} taskCreatedUser={taskCreatedUser} taskCreatedUserName={taskCreatedUserName} currentUserId={currentUserId} currentUserName={currentUserName} />
       </Main>
     </>
   );

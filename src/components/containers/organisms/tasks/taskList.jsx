@@ -54,7 +54,6 @@ const BackgroundDisAbled = styled.div`
 export function TaskList(props) {
   const { task } = props;
   const { id: taskId } = task;
-  const { user_id: taskUserId } = task;
   const { title: taskTitle } = task;
   const { content: taskContent } = task;
   const { status: taskStatus } = task;
@@ -62,6 +61,7 @@ export function TaskList(props) {
   const { end_date: endDate } = task;
   const { user_id: taskCreatedUserId } = task;
   const { taskCreatedUser } = props;
+  const { taskCreatedUserName } = props;
   const { nickname: taskCreatedUserNickName } = taskCreatedUser;
 
   const currentUserDataText = localStorage.getItem('user');
@@ -140,8 +140,8 @@ export function TaskList(props) {
           title={taskTitle}
           taskId={String(taskId)}
           content={taskContent}
-          taskUserId={String(taskUserId)}
           taskCreatedUserId={String(taskCreatedUserId)}
+          taskCreatedUserName={taskCreatedUserName}
           taskCreatedUserNickName={taskCreatedUserNickName}
         />
         <TaskStatusSwitch taskStatus={taskStatus} />

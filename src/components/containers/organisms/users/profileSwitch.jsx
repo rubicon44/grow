@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { getUser, getCurrentUser, updateUser } from '../../../../infra/api';
+import { getUser, updateUser } from '../../../../infra/api';
 
 const Profile = styled.div`
   width: 100%;
@@ -70,26 +70,30 @@ const FormButtonCover = styled.div`
   margin: 10px 0;
 `;
 
-export function ProfileSwitch() {
+export function ProfileSwitch(props) {
   const location = useLocation();
   const locationPathName = location.pathname.split('/');
-  const userId = locationPathName[locationPathName.length - 1];
+  const userNameInUrl = locationPathName[locationPathName.length - 1];
 
+  const { currentUserId } = props;
   const [userBio, setUserBio] = useState([]);
   const [userNickName, setUserNickName] = useState([]);
   const [userName, setUserName] = useState([]);
+  const [userId, setUserId] = useState([]);
   const [userNameDefault, setUserNameDefault] = useState([]);
   useEffect(() => {
     let isMounted = true;
-    getUser(userId)
+    getUser(userNameInUrl)
       .then((response) => {
         const userBio = response.data.user.bio;
         const userNickName = response.data.user.nickname;
         const userName = response.data.user.username;
+        const userId = response.data.user.id;
         const userNameDefault = response.data.user.username;
         if (isMounted) setUserBio(userBio);
         if (isMounted) setUserNickName(userNickName);
         if (isMounted) setUserName(userName);
+        if (isMounted) setUserId(String(userId));
         if (isMounted) setUserNameDefault(userNameDefault);
       })
       .catch();
@@ -98,12 +102,12 @@ export function ProfileSwitch() {
     return () => {
       isMounted = false;
     };
-  }, [userId]);
+  }, [userNameInUrl]);
 
   const [bioAble, setBioAble] = useState(true);
   const [load, setLoad] = useState(false);
-  const updateUserFunc = (id, user) => {
-    updateUser(id, user)
+  const updateUserFunc = (username, user) => {
+    updateUser(username, user)
       .then((response) => {
         const userBio = response.data.user.bio;
         const userNickName = response.data.user.nickname;
@@ -116,6 +120,7 @@ export function ProfileSwitch() {
       })
       // .catch();
       .catch(errors => {
+        // console.log(errors);
         window.alert("このusernameはすでに登録されています。");
         setUserName(userNameDefault);
         setLoad(false);
@@ -126,29 +131,13 @@ export function ProfileSwitch() {
     e.preventDefault();
     e.persist();
     setLoad(true);
-    const id = userId;
+    const username = userNameDefault;
     const user = { nickname: userNickName, username: userName, bio: userBio };
-    updateUserFunc(id, user);
+    updateUserFunc(username, user);
   };
 
-  const [currentUserId, setCurrentUserId] = useState([]);
-  useEffect(() => {
-    let isMounted = true;
-    getCurrentUser()
-      .then((response) => {
-        const currentUserId = String(response.data.user.id);
-        if (isMounted) setCurrentUserId(currentUserId);
-      })
-      .catch();
-    // .catch((data) => {
-    // });
-    return () => {
-      isMounted = false;
-    };
-  }, [currentUserId]);
-
-  const revertUserBio = (userId) => {
-    getUser(userId)
+  const revertUserBio = (userName) => {
+    getUser(userName)
       .then((response) => {
         const userBio = response.data.user.bio;
         setUserBio(userBio);
@@ -233,7 +222,7 @@ export function ProfileSwitch() {
               <button
                 type="button"
                 onClick={() => {
-                  revertUserBio(userId);
+                  revertUserBio(userName);
                 }}
               >
                 閉じる

@@ -5,13 +5,16 @@ import { UserNotificationsTemplate } from '../../templates/users/notifications';
 export function UserNotifications() {
   // todo: 現在のユーザーのみNotificationsを取得する際に必要？
   const [currentUserId, setCurrentUserId] = useState();
+  const [currentUserName, setCurrentUserName] = useState();
   useEffect(() => {
     let isMounted = true;
     getCurrentUser()
       .then((response) => {
         const currentUser = response.data.user;
         const currentUserId = String(currentUser.id);
+        const currentUserName = String(currentUser.username);
         if (isMounted) setCurrentUserId(currentUserId);
+        if (isMounted) setCurrentUserName(currentUserName);
       })
       .catch();
     // .catch((data) => {
@@ -41,5 +44,5 @@ export function UserNotifications() {
     };
   }, [currentUserId]);
 
-  return <UserNotificationsTemplate currentUserId={currentUserId} notifications={notifications} visitors={visitors} likeVisitors={likeVisitors} />;
+  return <UserNotificationsTemplate currentUserName={currentUserName} notifications={notifications} visitors={visitors} likeVisitors={likeVisitors} />;
 }

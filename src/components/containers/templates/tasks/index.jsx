@@ -16,12 +16,13 @@ const Main = styled.main`
 
 export function TaskIndexTemplate(props) {
   const { tasks } = props;
-  const { currentUserId } =props;
+  const { currentUserId } = props;
+  const { currentUserName } = props;
   return (
     <>
       <Header />
       <Main>
-        <TasksList tasks={tasks} currentUserId={currentUserId} />
+        <TasksList tasks={tasks} currentUserId={currentUserId} currentUserName={currentUserName} />
       </Main>
     </>
   );

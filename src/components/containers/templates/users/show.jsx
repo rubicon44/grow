@@ -19,6 +19,7 @@ export function UserShowTemplate(props) {
   const { userLikedTasks } = props;
   const { taskCreatedUser } = props;
   const { currentUserId } = props;
+  const { currentUserName } = props;
   const { currentUserAble } = props;
   return (
     <>
@@ -30,6 +31,7 @@ export function UserShowTemplate(props) {
           userLikedTasks={userLikedTasks}
           taskCreatedUser={taskCreatedUser}
           currentUserId={currentUserId}
+          currentUserName={currentUserName}
           currentUserAble={currentUserAble}
         />
       </Main>

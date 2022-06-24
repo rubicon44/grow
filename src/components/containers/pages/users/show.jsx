@@ -5,6 +5,28 @@ import { AuthContext } from '../../../../auth/authProvider';
 import { UserShowTemplate } from '../../templates/users/show';
 
 export function UserShow() {
+  const { currentUser } = useContext(AuthContext);
+  const [currentUserAble, setCurrentUserAble] = useState(false);
+  const [currentUserId, setCurrentUserId] = useState();
+  const [currentUserName, setCurrentUserName] = useState([]);
+  useEffect(() => {
+    let isMounted = true;
+    if (currentUser) setCurrentUserAble(true);
+    getCurrentUser()
+      .then((response) => {
+        const currentUserId = String(response.data.user.id);
+        const currentUserName = response.data.user.username;
+        if (isMounted) setCurrentUserId(currentUserId);
+        if (isMounted) setCurrentUserName(currentUserName);
+      })
+      .catch();
+    // .catch((data) => {
+    // });
+    return () => {
+      isMounted = false;
+    };
+  }, [currentUser]);
+
   const sortdOrder = (taskData) => {
     const list = taskData;
     if (list.length === 0) {
@@ -25,14 +47,15 @@ export function UserShow() {
 
   const location = useLocation();
   const locationPathName = location.pathname.split('/');
-  const userId = locationPathName[locationPathName.length - 1];
+  const userNameInUrl = locationPathName[locationPathName.length - 1];
+
   const [taskUser, setTaskUser] = useState();
   const [userTasks, setUserTasks] = useState([]);
   const [userLikedTasks, setUserLikedTasks] = useState([]);
   const [taskCreatedUser, setTaskCreatedUser] = useState([]);
   useEffect(() => {
     let isMounted = true;
-    getUser(userId)
+    getUser(userNameInUrl)
       .then((response) => {
         const taskUser = response.data.user;
         const taskData = taskUser.tasks;
@@ -59,26 +82,7 @@ export function UserShow() {
     return () => {
       isMounted = false;
     };
-  }, [userId, taskUser]);
-
-  const { currentUser } = useContext(AuthContext);
-  const [currentUserAble, setCurrentUserAble] = useState(false);
-  const [currentUserId, setCurrentUserId] = useState();
-  useEffect(() => {
-    let isMounted = true;
-    if (currentUser) setCurrentUserAble(true);
-    getCurrentUser()
-      .then((response) => {
-        const currentUserId = String(response.data.user.id);
-        if (isMounted) setCurrentUserId(currentUserId);
-      })
-      .catch();
-    // .catch((data) => {
-    // });
-    return () => {
-      isMounted = false;
-    };
-  }, [currentUser, currentUserId]);
+  }, [userNameInUrl]);
 
   return (
     <UserShowTemplate
@@ -87,6 +91,7 @@ export function UserShow() {
       userLikedTasks={userLikedTasks}
       taskCreatedUser={taskCreatedUser}
       currentUserId={currentUserId}
+      currentUserName={currentUserName}
       currentUserAble={currentUserAble}
     />
   );

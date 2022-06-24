@@ -34,12 +34,15 @@ export function TaskIndex() {
   }, [tasks]);
 
   const [currentUserId, setCurrentUserId] = useState([]);
+  const [currentUserName, setCurrentUserName] = useState([]);
   useEffect(() => {
     let isMounted = true;
     getCurrentUser()
       .then((response) => {
         const currentUserId = response.data.user.id;
+        const currentUserName = response.data.user.username;
         if (isMounted) setCurrentUserId(currentUserId);
+        if (isMounted) setCurrentUserName(currentUserName);
       })
       .catch();
     // .catch((data) => {
@@ -49,5 +52,5 @@ export function TaskIndex() {
     };
   }, [currentUserId]);
 
-  return <TaskIndexTemplate tasks={tasks} currentUserId={currentUserId} />;
+  return <TaskIndexTemplate tasks={tasks} currentUserId={currentUserId} currentUserName={currentUserName} />;
 }
