@@ -67,9 +67,10 @@ export function TaskList(props) {
   const currentUserDataText = localStorage.getItem('user');
   const currentUserData = JSON.parse(currentUserDataText);
   const currentUserId = String(currentUserData.id);
+  const currentUserName = String(currentUserData.username);
 
   const navigate = useNavigate();
-  const editTaskFunc = (taskId, currentUserId) => {
+  const editTaskFunc = (taskId, currentUserName) => {
     navigate(`/tasks/edit/${taskId}`, {
       state: {
         id: taskId,
@@ -78,7 +79,7 @@ export function TaskList(props) {
         status: taskStatus,
         startDate: startDate,
         endDate: endDate,
-        currentUserId,
+        currentUserName,
       },
     });
   };
@@ -90,7 +91,7 @@ export function TaskList(props) {
         <button
           type="button"
           disabled={load}
-          onClick={() => editTaskFunc(taskId, currentUserId)}
+          onClick={() => editTaskFunc(taskId, currentUserName)}
         >
           編集
         </button>
@@ -126,7 +127,7 @@ export function TaskList(props) {
     // .catch((response) => {
     // });
     setLoad(false);
-    navigate(`/users/${taskCreatedUserId}`);
+    navigate(`/${taskCreatedUserName}`);
   };
 
   return (

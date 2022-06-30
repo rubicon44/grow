@@ -38,7 +38,7 @@ export function TaskUpdateForm(props) {
   const [startDate, setStartDate] = useState(taskStartDate);
   const [endDate, setEndDate] = useState(taskEndDate);
   const { id } = props;
-  const { currentUserId } = props;
+  const { currentUserName } = props;
   const navigate = useNavigate();
   const handleTextSubmit = (e) => {
     e.preventDefault();
@@ -47,7 +47,7 @@ export function TaskUpdateForm(props) {
     const task = { title, content, status, start_date: startDate, end_date: endDate };
     updateTaskFunc(id, task);
     setLoad(false);
-    navigate(`/users/${currentUserId}/tasks/${id}`);
+    navigate(`/${currentUserName}/tasks/${id}`);
   };
 
   return (

@@ -10,7 +10,7 @@ export function TaskEdit() {
   const { status } = location.state;
   const { startDate } = location.state;
   const { endDate } = location.state;
-  const { currentUserId } = location.state;
+  const { currentUserName } = location.state;
 
   return (
     <TaskEditTemplate
@@ -20,7 +20,7 @@ export function TaskEdit() {
       status={status}
       startDate={startDate}
       endDate={endDate}
-      currentUserId={currentUserId}
+      currentUserName={currentUserName}
     />
   );
 }
