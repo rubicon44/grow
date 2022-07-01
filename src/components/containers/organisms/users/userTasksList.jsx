@@ -111,7 +111,7 @@ export function UserTasksList(props) {
 
   const navigate = useNavigate();
   const nextGunttFunc = () => {
-    navigate(`/users/${taskUser.id}/guntt`, {
+    navigate(`/${taskUser.username}/guntt`, {
       state: {
         taskUser: taskUser,
         userTasks: userTasks,

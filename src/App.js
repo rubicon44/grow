@@ -104,7 +104,7 @@ export function App() {
               {/* GunttChart */}
               <Route
                 exact
-                path="/users/:id/guntt"
+                path="/:username/guntt"
                 element={<PrivateRoute element={<UserGuntt />} />}
               />
               <Route
