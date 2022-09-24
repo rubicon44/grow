@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { getTask } from '../../../../infra/api';
 import { useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { deleteTask } from '../../../../infra/api';
 import { Title } from '../../../presentational/atoms/Title/title';
@@ -9,8 +10,29 @@ import { List } from '../../../presentational/molecules/List/list';
 import { TaskStatusSwitch } from './taskStatusSwitch';
 import { LikeButton } from '../likes/likeButton';
 
-export function TaskList(props) {
-  const { task } = props;
+export function TaskList() {
+  const location = useLocation();
+  const locationPathName = location.pathname.split('/');
+  const currentTaskId = locationPathName[locationPathName.length - 1];
+  const [task, setTask] = useState([]);
+  const [taskCreatedUser, setTaskCreatedUser] = useState([]);
+  const [taskCreatedUserName, setTaskCreatedUserName] = useState();
+  useEffect(() => {
+    let isMounted = true;
+    getTask(currentTaskId)
+      .then((response) => {
+        if (isMounted) setTask(response.data);
+        if (isMounted) setTaskCreatedUser(response.data.user);
+        if (isMounted) setTaskCreatedUserName(response.data.user.username);
+      })
+      .catch();
+    // .catch((data) => {
+    // });
+    return () => {
+      isMounted = false;
+    };
+  }, [currentTaskId]);
+
   const { id: taskId } = task;
   const { title: taskTitle } = task;
   const { content: taskContent } = task;
@@ -18,8 +40,6 @@ export function TaskList(props) {
   const { start_date: startDate } = task;
   const { end_date: endDate } = task;
   const { user_id: taskCreatedUserId } = task;
-  const { taskCreatedUser } = props;
-  const { taskCreatedUserName } = props;
   const { nickname: taskCreatedUserNickName } = taskCreatedUser;
 
   const currentUserDataText = localStorage.getItem('user');
@@ -170,42 +190,3 @@ const BackgroundDisAbled = styled.div`
   border-radius: 4px;
   background: #fff;
 `;
-
-TaskList.defaultProps = {
-  task: {},
-  taskCreatedUser: {},
-};
-
-TaskList.propTypes = {
-  task: PropTypes.exact({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    content: PropTypes.string,
-    status: PropTypes.number,
-    start_date: PropTypes.string,
-    end_date: PropTypes.string,
-    created_at: PropTypes.string,
-    updated_at: PropTypes.string,
-    user_id: PropTypes.string,
-    user: PropTypes.exact({
-      id: PropTypes.number,
-      nickname: PropTypes.string,
-      created_at: PropTypes.string,
-      updated_at: PropTypes.string,
-      email: PropTypes.string,
-      firebase_id: PropTypes.string,
-      password_digest: PropTypes.string,
-      bio: PropTypes.string,
-    }),
-  }),
-  taskCreatedUser: PropTypes.exact({
-    id: PropTypes.number,
-    nickname: PropTypes.string,
-    created_at: PropTypes.string,
-    updated_at: PropTypes.string,
-    email: PropTypes.string,
-    firebase_id: PropTypes.string,
-    password_digest: PropTypes.string,
-    bio: PropTypes.string,
-  }),
-};

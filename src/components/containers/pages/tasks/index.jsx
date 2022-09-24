@@ -1,56 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { getTasks, getCurrentUser } from '../../../../infra/api';
+import React from 'react';
 import { TaskIndexTemplate } from '../../templates/tasks';
 
 export function TaskIndex() {
-  const sortdOrder = (response) => {
-    const list = response.data;
-    const dOrder = list.sort((a, b) => {
-      if (a.id < b.id) {
-        return 1;
-      }
-      if (a.id > b.id) {
-        return -1;
-      }
-      return 0;
-    });
-    return dOrder;
-  };
-
-  const [tasks, setTasks] = useState([]);
-  useEffect(() => {
-    let isMounted = true;
-    getTasks()
-      .then((response) => {
-        const dOrderData = sortdOrder(response);
-        if (isMounted) setTasks(dOrderData);
-      })
-      .catch();
-    // .catch(() => {
-    // });
-    return () => {
-      isMounted = false;
-    };
-  }, [tasks]);
-
-  const [currentUserId, setCurrentUserId] = useState([]);
-  const [currentUserName, setCurrentUserName] = useState([]);
-  useEffect(() => {
-    let isMounted = true;
-    getCurrentUser()
-      .then((response) => {
-        const currentUserId = response.data.user.id;
-        const currentUserName = response.data.user.username;
-        if (isMounted) setCurrentUserId(currentUserId);
-        if (isMounted) setCurrentUserName(currentUserName);
-      })
-      .catch();
-    // .catch((data) => {
-    // });
-    return () => {
-      isMounted = false;
-    };
-  }, [currentUserId]);
-
-  return <TaskIndexTemplate tasks={tasks} currentUserId={currentUserId} currentUserName={currentUserName} />;
+  return <TaskIndexTemplate />;
 }
