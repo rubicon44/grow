@@ -4,15 +4,6 @@ import styled from 'styled-components';
 import { Header } from '../../organisms/header';
 import { UserTasksList } from '../../organisms/users/userTasksList';
 
-const Main = styled.main`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-color: #f8f7f3;
-`;
-
 export function UserShowTemplate(props) {
   const { taskUser } = props;
   const { userTasks } = props;
@@ -38,6 +29,15 @@ export function UserShowTemplate(props) {
     </>
   );
 }
+
+const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #f8f7f3;
+`;
 
 UserShowTemplate.defaultProps = {
   taskUser: {},

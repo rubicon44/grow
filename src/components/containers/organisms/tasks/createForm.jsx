@@ -7,16 +7,6 @@ import { Title } from '../../../presentational/atoms/Title/title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { Form } from '../../../presentational/molecules/Form/form';
 
-const FormHeader = styled.div`
-  display: flex;
-  width: 100%;
-
-  > h2 {
-    width: 100%;
-    margin-right: 45px;
-  }
-`;
-
 export function TaskCreateForm() {
   const postTasksFunc = (task) => {
     postTasks(task).then().catch();
@@ -65,3 +55,13 @@ export function TaskCreateForm() {
     </>
   );
 }
+
+const FormHeader = styled.div`
+  display: flex;
+  width: 100%;
+
+  > h2 {
+    width: 100%;
+    margin-right: 45px;
+  }
+`;

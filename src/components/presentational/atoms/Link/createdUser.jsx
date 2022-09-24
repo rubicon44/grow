@@ -3,12 +3,6 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const CreatedUserCover = styled.div`
-  display: flex;
-  justify-content: end;
-  align-items: center;
-`;
-
 export function CreatedUser(props) {
   const { taskCreatedUserName } = props;
   const { taskCreatedUserNickName } = props;
@@ -19,6 +13,12 @@ export function CreatedUser(props) {
     </CreatedUserCover>
   );
 }
+
+const CreatedUserCover = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+`;
 
 CreatedUser.defaultProps = {
   taskCreatedUserId: '',

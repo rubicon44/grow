@@ -4,18 +4,6 @@ import styled from 'styled-components';
 import { AuthContext } from '../../../../auth/authProvider';
 import { Header } from '../../organisms/header';
 
-const Title = styled.h2`
-  width: 288px;
-  font-size: 36px;
-  font-family: YuMincho;
-`;
-
-const FormCover = styled.div`
-  min-width: 260px;
-  padding: 0 10px;
-  text-align: left;
-`;
-
 export function SignIn() {
   const navigate = useNavigate();
   const { signin } = useContext(AuthContext);
@@ -56,3 +44,15 @@ export function SignIn() {
     </>
   );
 }
+
+const Title = styled.h2`
+  width: 288px;
+  font-size: 36px;
+  font-family: YuMincho;
+`;
+
+const FormCover = styled.div`
+  min-width: 260px;
+  padding: 0 10px;
+  text-align: left;
+`;

@@ -2,6 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+export function TaskStatusSwitch(props) {
+  const { taskStatus } = props;
+
+  switch(taskStatus) {
+    case 0:
+      return ( <TaskStatusNot>未対応</TaskStatusNot> )
+    case 1:
+      return ( <TaskStatusProcess>処理中</TaskStatusProcess> )
+    case 2:
+      return ( <TaskStatusProcessed>処理済み</TaskStatusProcessed> )
+    case 3:
+      return ( <TaskStatusDone>完了</TaskStatusDone> )
+    default:
+  };
+  return null;
+};
+
 const TaskStatusNot = styled.span`
   position: absolute;
   top: 0;
@@ -55,23 +72,6 @@ const TaskStatusDone = styled.span`
   color: #fff;
   background: #a1af2f;
 `;
-
-export function TaskStatusSwitch(props) {
-  const { taskStatus } = props;
-
-  switch(taskStatus) {
-    case 0:
-      return ( <TaskStatusNot>未対応</TaskStatusNot> )
-    case 1:
-      return ( <TaskStatusProcess>処理中</TaskStatusProcess> )
-    case 2:
-      return ( <TaskStatusProcessed>処理済み</TaskStatusProcessed> )
-    case 3:
-      return ( <TaskStatusDone>完了</TaskStatusDone> )
-    default:
-  };
-  return null;
-};
 
 TaskStatusSwitch.defaultProps = {
   taskStatus: 0,

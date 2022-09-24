@@ -7,12 +7,6 @@ import { List } from '../../../presentational/molecules/List/list';
 import { TaskStatusSwitch } from './taskStatusSwitch';
 import { LikeButton } from '../likes/likeButton';
 
-const ListCover = styled.div`
-  position: relative;
-  min-width: 180px;
-  margin-top: 30px;
-`;
-
 export function TasksList(props) {
   const { tasks } = props;
   const { currentUserId } = props;
@@ -40,6 +34,12 @@ export function TasksList(props) {
     </>
   );
 }
+
+const ListCover = styled.div`
+  position: relative;
+  min-width: 180px;
+  margin-top: 30px;
+`;
 
 TasksList.defaultProps = {
   tasks: [],

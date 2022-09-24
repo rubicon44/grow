@@ -12,45 +12,6 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { getCurrentUser } from '../../../infra/api';
 
-const HeaderCover = styled.div`
-  display: flex;
-  height: 50px;
-  padding: 12px 15px;
-  box-sizing: border-box;
-`;
-
-const Logo = styled(Link)`
-  font-size: 22px;
-  font-weight: bold;
-  font-family: YuMincho;
-  color: #ff444f;
-  text-decoraiton: none;
-`;
-
-const HeaderMenuGroup = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 100%;
-`;
-
-const useStyles = makeStyles(() => ({
-  list: {
-    width: 250,
-  },
-  fullList: {
-    width: 'auto',
-  },
-  listCenter: {
-    textAlign: 'center',
-  },
-  iconButton: {
-    padding: 0,
-    marginLeft: 16,
-    color: '#bbb',
-  },
-}));
-
 export function Header() {
   const classes = useStyles();
   const [state, setState] = useState({
@@ -167,3 +128,42 @@ export function Header() {
     </HeaderCover>
   );
 }
+
+const HeaderCover = styled.div`
+  display: flex;
+  height: 50px;
+  padding: 12px 15px;
+  box-sizing: border-box;
+`;
+
+const Logo = styled(Link)`
+  font-size: 22px;
+  font-weight: bold;
+  font-family: YuMincho;
+  color: #ff444f;
+  text-decoraiton: none;
+`;
+
+const HeaderMenuGroup = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+`;
+
+const useStyles = makeStyles(() => ({
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
+  listCenter: {
+    textAlign: 'center',
+  },
+  iconButton: {
+    padding: 0,
+    marginLeft: 16,
+    color: '#bbb',
+  },
+}));

@@ -4,6 +4,17 @@ import { mediaquery } from '../../../../assets/styles/variable';
 import { NextButton } from '../../../presentational/atoms/Button/nextButton';
 import { NextLink } from '../../../presentational/atoms/Link/nextLink';
 
+export function Top() {
+  return (
+    <Main>
+      <Title>Grow</Title>
+      <NextButton text="タスク一覧" url="/tasks" />
+      <NextButton text="会員登録" url="/sign_up" />
+      <NextLink text="ログイン" url="/sign_in" />
+    </Main>
+  );
+}
+
 const Main = styled.main`
   position: relative;
   display: flex;
@@ -31,14 +42,3 @@ const Title = styled.h2`
     line-height: 69px;
   `}
 `;
-
-export function Top() {
-  return (
-    <Main>
-      <Title>Grow</Title>
-      <NextButton text="タスク一覧" url="/tasks" />
-      <NextButton text="会員登録" url="/sign_up" />
-      <NextLink text="ログイン" url="/sign_in" />
-    </Main>
-  );
-}

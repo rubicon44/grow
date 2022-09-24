@@ -5,60 +5,6 @@ import styled from 'styled-components';
 import { Title } from '../../../presentational/atoms/Title/title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 
-const ListCover = styled.div`
-  position: relative;
-  min-width: 180px;
-  margin-top: 30px;
-`;
-
-const ListHeader = styled.div`
-  display: flex;
-  width: 100%;
-
-  > h2 {
-    width: 100%;
-    margin-right: 45px;
-  }
-`;
-
-const UsersList = styled.div`
-  display: flex;
-  align-items: center;
-  text-align: left;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ddd;
-
-  &:not(:first-of-type) {
-    margin-top: 10px;
-  }
-`;
-
-
-const UserNickName = styled(Link)`
-  :hover {
-    text-decoration: underline;
-  }
-`;
-
-// const ListStyle = styled.dl`
-//   min-width: 180px;
-//   max-width: 180px;
-//   margin-top: 15px;
-//   text-align: left;
-
-//   > dt {
-//     font-weight: bold;
-//   }
-
-//   > dd {
-//     min-height: 100px;
-//     margin: 10px 0 5px;
-//     padding: 5px;
-//     border: 1px solid #bbb;
-//     white-space: pre-wrap;
-//   }
-// `;
-
 export function NotificationsList(props) {
   const { currentUserName } = props;
   const { notifications } = props;
@@ -106,6 +52,41 @@ export function NotificationsList(props) {
     </>
   );
 }
+
+const ListCover = styled.div`
+  position: relative;
+  min-width: 180px;
+  margin-top: 30px;
+`;
+
+const ListHeader = styled.div`
+  display: flex;
+  width: 100%;
+
+  > h2 {
+    width: 100%;
+    margin-right: 45px;
+  }
+`;
+
+const UsersList = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+
+  &:not(:first-of-type) {
+    margin-top: 10px;
+  }
+`;
+
+
+const UserNickName = styled(Link)`
+  :hover {
+    text-decoration: underline;
+  }
+`;
 
 // TaskList.defaultProps = {
 //   task: {},

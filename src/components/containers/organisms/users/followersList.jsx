@@ -11,53 +11,6 @@ import { BackButton } from '../../../presentational/atoms/Button/backButton';
 // import { List } from '../../../presentational/molecules/List/list';
 import { FollowButtonForUsersList } from './followButtonForUsersList';
 
-const ListCover = styled.div`
-  position: relative;
-  min-width: 180px;
-  margin-top: 30px;
-`;
-
-const ListHeader = styled.div`
-  display: flex;
-  width: 100%;
-
-  > h2 {
-    width: 100%;
-    margin-right: 45px;
-  }
-`;
-
-const UsersList = styled.div`
-  display: flex;
-  align-items: center;
-  text-align: left;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ddd;
-
-  &:not(:first-of-type) {
-    margin-top: 10px;
-  }
-`;
-
-// const ListStyle = styled.dl`
-//   min-width: 180px;
-//   max-width: 180px;
-//   margin-top: 15px;
-//   text-align: left;
-
-//   > dt {
-//     font-weight: bold;
-//   }
-
-//   > dd {
-//     min-height: 100px;
-//     margin: 10px 0 5px;
-//     padding: 5px;
-//     border: 1px solid #bbb;
-//     white-space: pre-wrap;
-//   }
-// `;
-
 // todo: まずは、フォローしたユーザーを一覧表示させるのが先決。このページでfollowFunc、unFollowFuncを実装するのはあとで良い。
 export function FollowersList(props) {
   const { followers } = props;
@@ -146,6 +99,34 @@ export function FollowersList(props) {
     );
   }
 }
+
+const ListCover = styled.div`
+  position: relative;
+  min-width: 180px;
+  margin-top: 30px;
+`;
+
+const ListHeader = styled.div`
+  display: flex;
+  width: 100%;
+
+  > h2 {
+    width: 100%;
+    margin-right: 45px;
+  }
+`;
+
+const UsersList = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+
+  &:not(:first-of-type) {
+    margin-top: 10px;
+  }
+`;
 
 // TaskList.defaultProps = {
 //   task: {},

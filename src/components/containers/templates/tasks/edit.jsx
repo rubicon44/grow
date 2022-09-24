@@ -4,16 +4,6 @@ import styled from 'styled-components';
 import { Header } from '../../organisms/header';
 import { TaskUpdateForm } from '../../organisms/tasks/updateForm';
 
-const Main = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px 10px;
-  text-align: center;
-  background-color: #ddd;
-`;
-
 export function TaskEditTemplate(props) {
   const { id } = props;
   const { title } = props;
@@ -40,6 +30,16 @@ export function TaskEditTemplate(props) {
     </>
   );
 }
+
+const Main = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 10px;
+  text-align: center;
+  background-color: #ddd;
+`;
 
 TaskEditTemplate.defaultProps = {
   id: 0,

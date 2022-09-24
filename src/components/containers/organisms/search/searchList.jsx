@@ -5,40 +5,6 @@ import { Title } from '../../../presentational/atoms/Title/title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { getSearches } from '../../../../infra/api';
 
-const ListCover = styled.div`
-  position: relative;
-  min-width: 180px;
-  margin-top: 30px;
-`;
-
-const ListHeader = styled.div`
-  display: flex;
-  width: 100%;
-
-  > h2 {
-    width: 100%;
-    margin-right: 45px;
-  }
-`;
-
-const FormCover = styled.div`
-  min-width: 260px;
-  padding: 0 10px;
-  text-align: left;
-`;
-
-const List = styled.div`
-  display: flex;
-  align-items: center;
-  text-align: left;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ddd;
-
-  &:not(:first-of-type) {
-    margin-top: 10px;
-  }
-`;
-
 export function SearchList() {
   const [load, setLoad] = useState(false);
   const [searchResultsUsersForUser, setSearchResultsUsersForUser] = useState([]);
@@ -130,3 +96,37 @@ export function SearchList() {
     </>
   );
 }
+
+const ListCover = styled.div`
+  position: relative;
+  min-width: 180px;
+  margin-top: 30px;
+`;
+
+const ListHeader = styled.div`
+  display: flex;
+  width: 100%;
+
+  > h2 {
+    width: 100%;
+    margin-right: 45px;
+  }
+`;
+
+const FormCover = styled.div`
+  min-width: 260px;
+  padding: 0 10px;
+  text-align: left;
+`;
+
+const List = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+
+  &:not(:first-of-type) {
+    margin-top: 10px;
+  }
+`;

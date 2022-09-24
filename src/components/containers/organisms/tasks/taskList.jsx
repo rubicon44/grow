@@ -9,48 +9,6 @@ import { List } from '../../../presentational/molecules/List/list';
 import { TaskStatusSwitch } from './taskStatusSwitch';
 import { LikeButton } from '../likes/likeButton';
 
-const ListCover = styled.div`
-  position: relative;
-  min-width: 180px;
-  margin-top: 30px;
-`;
-
-const ListHeader = styled.div`
-  display: flex;
-  width: 100%;
-
-  > h2 {
-    width: 100%;
-    margin-right: 45px;
-  }
-`;
-
-const ButtonCover = styled.div`
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  margin: 10px 0;
-`;
-
-const BackgroundDisAbledCover = styled.div`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background: #ddd;
-`;
-
-const BackgroundDisAbled = styled.div`
-  margin: 30px;
-  padding: 30px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background: #fff;
-`;
-
 export function TaskList(props) {
   const { task } = props;
   const { id: taskId } = task;
@@ -170,6 +128,48 @@ export function TaskList(props) {
     </>
   );
 }
+
+const ListCover = styled.div`
+  position: relative;
+  min-width: 180px;
+  margin-top: 30px;
+`;
+
+const ListHeader = styled.div`
+  display: flex;
+  width: 100%;
+
+  > h2 {
+    width: 100%;
+    margin-right: 45px;
+  }
+`;
+
+const ButtonCover = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 10px 0;
+`;
+
+const BackgroundDisAbledCover = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: #ddd;
+`;
+
+const BackgroundDisAbled = styled.div`
+  margin: 30px;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+`;
 
 TaskList.defaultProps = {
   task: {},

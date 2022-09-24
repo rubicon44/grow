@@ -9,117 +9,6 @@ import { TaskStatusSwitchText } from './taskStatusSwitchText';
 import { CalenderTableBodyColorSwitch } from './calenderTableBodyColorSwitch';
 import { VariableSizeList as List } from 'react-window';
 
-const ContentHeader = styled.div`
-  display: flex;
-  width: 100%;
-
-  > h2 {
-    width: 100%;
-    margin-right: 45px;
-  }
-`;
-
-const ContentHeaderCover = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-width: 260px;
-  padding: 30px 10px 0;
-  text-align: center;
-  background-color: #f8f7f3;
-`;
-
-const Content = styled.div`
-`;
-
-const GunttContent = styled.div`
-  display: flex;
-`;
-
-const GunttTask = styled.table`
-  border: 1px solid;
-
-  > thead, tbody {
-    border: 1px solid;
-
-    > tr > th, td {
-      border: 1px solid;
-    }
-  }
-`;
-
-const GunttTaskTitle = styled.thead`
-  height: 51px;
-  background: #ed8077;
-`;
-
-const GunttTaskList = styled.tbody`
-  > tr {
-    height: 65px;
-  }
-`;
-
-const CalenderTableCoverWrapper = styled.div`
-  position: relative;
-  overflow: scroll;
-
-  ${mediaquery.desktop`
-  width: 1500px;
-`}
-`;
-
-const CalenderTableCover = styled.div`
-  display: flex;
-`;
-
-const CalenderTable = styled.table`
-  position: relative;
-  // border-right: 2px solid #000;
-
-  > thead, tbody {
-    white-space: nowrap;
-
-    > tr {
-      border: 1px solid #ddd;
-    }
-  }
-
-  > thead > tr {
-    background: #7FCCE3;
-  }
-
-  > tbody {
-    display: flex;
-
-    > tr {
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: column;
-      width: 30px;
-      border: 1px solid #ddd;
-
-      > td:last-of-type {
-        border-bottom: 1px solid #ddd;
-      }
-    }
-  }
-`;
-
-const CalenderTableHead = styled.thead`
-`;
-
-const CalenderTableBody = styled.tbody`
-`;
-
-const CalenderTaskBar = styled.span`
-  position: absolute;
-  height: 30px;
-  width: 30px;
-  border-radius: 4px;
-  background-color: #fbd38d;
-`;
-
 export function GunttChart(props) {
   const getDays = (year, month, blockNumber) => {
     const dayOfWeek = ['日', '月', '火', '水', '木', '金', '土'];
@@ -365,3 +254,114 @@ const Example = () => (
     </>
   );
 };
+
+const ContentHeader = styled.div`
+  display: flex;
+  width: 100%;
+
+  > h2 {
+    width: 100%;
+    margin-right: 45px;
+  }
+`;
+
+const ContentHeaderCover = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 260px;
+  padding: 30px 10px 0;
+  text-align: center;
+  background-color: #f8f7f3;
+`;
+
+const Content = styled.div`
+`;
+
+const GunttContent = styled.div`
+  display: flex;
+`;
+
+const GunttTask = styled.table`
+  border: 1px solid;
+
+  > thead, tbody {
+    border: 1px solid;
+
+    > tr > th, td {
+      border: 1px solid;
+    }
+  }
+`;
+
+const GunttTaskTitle = styled.thead`
+  height: 51px;
+  background: #ed8077;
+`;
+
+const GunttTaskList = styled.tbody`
+  > tr {
+    height: 65px;
+  }
+`;
+
+const CalenderTableCoverWrapper = styled.div`
+  position: relative;
+  overflow: scroll;
+
+  ${mediaquery.desktop`
+  width: 1500px;
+`}
+`;
+
+const CalenderTableCover = styled.div`
+  display: flex;
+`;
+
+const CalenderTable = styled.table`
+  position: relative;
+  // border-right: 2px solid #000;
+
+  > thead, tbody {
+    white-space: nowrap;
+
+    > tr {
+      border: 1px solid #ddd;
+    }
+  }
+
+  > thead > tr {
+    background: #7FCCE3;
+  }
+
+  > tbody {
+    display: flex;
+
+    > tr {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      width: 30px;
+      border: 1px solid #ddd;
+
+      > td:last-of-type {
+        border-bottom: 1px solid #ddd;
+      }
+    }
+  }
+`;
+
+const CalenderTableHead = styled.thead`
+`;
+
+const CalenderTableBody = styled.tbody`
+`;
+
+const CalenderTaskBar = styled.span`
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  border-radius: 4px;
+  background-color: #fbd38d;
+`;

@@ -4,11 +4,6 @@ import styled from 'styled-components';
 import { Header } from '../../organisms/header';
 import { GunttChart } from '../../organisms/tasks/ganttChart';
 
-const Main = styled.main`
-  text-align: center;
-  background-color: #f8f7f3;
-`;
-
 export function UserGunttTemplate(props) {
   const { taskUser } = props;
   const { userTasks } = props;
@@ -21,6 +16,11 @@ export function UserGunttTemplate(props) {
     </>
   );
 }
+
+const Main = styled.main`
+  text-align: center;
+  background-color: #f8f7f3;
+`;
 
 UserGunttTemplate.defaultProps = {
   taskUser: {},

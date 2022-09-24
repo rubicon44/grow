@@ -10,92 +10,6 @@ import { ProfileSwitch } from './profileSwitch';
 import { TaskStatusSwitch } from '../tasks/taskStatusSwitch';
 import { FollowButton } from './followButton';
 
-const Content = styled.article`
-  border-top: 1px solid #ddd;
-  width: 100%;
-`;
-
-const LogOutButtonCover = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  border-top: 1px solid #000;
-  box-sizing: border-box;
-`;
-
-const ContentHeader = styled.div`
-  display: flex;
-  width: 100%;
-
-  > h2 {
-    width: 100%;
-    margin-right: 45px;
-  }
-`;
-
-const ContentHeaderCover = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-width: 260px;
-  padding: 30px 10px 0;
-  text-align: center;
-  background-color: #f8f7f3;
-`;
-
-const RelationshipsCover = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 30px;
-
-  > a {
-    cursor: pointer;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  > a:last-of-type {
-    margin-left: 10px;
-  }
-`;
-
-const NextGunttLink = styled.button`
-  font-size: 22px;
-  font-weight: bold;
-  font-family: YuMincho;
-  color: #ff444f;
-  text-decoraiton: none;
-`;
-
-const LikedTask = styled.div`
-  margin: 30px 0;
-  padding-top: 30px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: red;
-  border-top: 1px solid #ddd;
-`;
-
-const ListCoverWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-width: 180px;
-  margin-top: 30px;
-`;
-
-const ListCover = styled.div`
-  position: relative;
-`;
-
 export function UserTasksList(props) {
   const location = useLocation();
   const locationPathName = location.pathname.split('/');
@@ -219,6 +133,92 @@ export function UserTasksList(props) {
     </>
   );
 }
+
+const Content = styled.article`
+  border-top: 1px solid #ddd;
+  width: 100%;
+`;
+
+const LogOutButtonCover = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-top: 1px solid #000;
+  box-sizing: border-box;
+`;
+
+const ContentHeader = styled.div`
+  display: flex;
+  width: 100%;
+
+  > h2 {
+    width: 100%;
+    margin-right: 45px;
+  }
+`;
+
+const ContentHeaderCover = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 260px;
+  padding: 30px 10px 0;
+  text-align: center;
+  background-color: #f8f7f3;
+`;
+
+const RelationshipsCover = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 30px;
+
+  > a {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  > a:last-of-type {
+    margin-left: 10px;
+  }
+`;
+
+const NextGunttLink = styled.button`
+  font-size: 22px;
+  font-weight: bold;
+  font-family: YuMincho;
+  color: #ff444f;
+  text-decoraiton: none;
+`;
+
+const LikedTask = styled.div`
+  margin: 30px 0;
+  padding-top: 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: red;
+  border-top: 1px solid #ddd;
+`;
+
+const ListCoverWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 180px;
+  margin-top: 30px;
+`;
+
+const ListCover = styled.div`
+  position: relative;
+`;
 
 UserTasksList.defaultProps = {
   taskUser: {},

@@ -3,6 +3,17 @@ import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
 import { Header } from '../../organisms/header';
 
+export function NotFound() {
+  return (
+    <>
+      <Header />
+      <Main>
+        <Title>お探しのページが見つかりません。</Title>
+      </Main>
+    </>
+  );
+}
+
 const Main = styled.main`
   position: relative;
   display: flex;
@@ -31,14 +42,3 @@ const Title = styled.h2`
     line-height: 69px;
   `}
 `;
-
-export function NotFound() {
-  return (
-    <>
-      <Header />
-      <Main>
-        <Title>お探しのページが見つかりません。</Title>
-      </Main>
-    </>
-  );
-}

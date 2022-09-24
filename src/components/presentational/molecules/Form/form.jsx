@@ -2,50 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const FormCover = styled.div`
-  min-width: 260px;
-  padding: 0 10px;
-  text-align: left;
-`;
-
-const FormTitleCover = styled.div`
-  margin-bottom: 10px;
-
-  > label {
-    display: block;
-
-    > input {
-      min-width: 260px;
-    }
-  }
-`;
-
-const FormTextAreaCover = styled.div`
-  margin-bottom: 10px;
-
-  > label {
-    display: block;
-
-    > textarea {
-      min-width: 260px;
-      min-height: 200px;
-    }
-  }
-`;
-
-const FormInputCover = styled.div`
-  margin-bottom: 10px;
-
-  > label {
-    display: block;
-  }
-`;
-
-const FormButtonCover = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;
-
 export function Form(props) {
   const { handleTextSubmit } = props;
   const { title } = props;
@@ -136,6 +92,50 @@ export function Form(props) {
     </FormCover>
   );
 }
+
+const FormCover = styled.div`
+  min-width: 260px;
+  padding: 0 10px;
+  text-align: left;
+`;
+
+const FormTitleCover = styled.div`
+  margin-bottom: 10px;
+
+  > label {
+    display: block;
+
+    > input {
+      min-width: 260px;
+    }
+  }
+`;
+
+const FormTextAreaCover = styled.div`
+  margin-bottom: 10px;
+
+  > label {
+    display: block;
+
+    > textarea {
+      min-width: 260px;
+      min-height: 200px;
+    }
+  }
+`;
+
+const FormInputCover = styled.div`
+  margin-bottom: 10px;
+
+  > label {
+    display: block;
+  }
+`;
+
+const FormButtonCover = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
 
 Form.defaultProps = {
   handleTextSubmit: () => {},
