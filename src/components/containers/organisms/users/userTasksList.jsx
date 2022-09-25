@@ -105,6 +105,7 @@ export function UserTasksList(props) {
         ) : (
           userLikedTasks.map((task) => (
             // todo: この方法はあまり綺麗ではない気がする(特にAPIでのデータの返し方を再考したい)。
+            // 下記方法だと、自分の投稿をいいねした場合、いいねリストに同じタスクが重複してしまう。
             taskCreatedUser.map((user) => (
               String(task.user_id) === String(user.id) && (
                 <ListCoverWrapper>
@@ -117,6 +118,8 @@ export function UserTasksList(props) {
                       taskCreatedUserName={user.username}
                       taskCreatedUserNickName={user.nickname}
                     />
+                    {console.log("task.user_id:" + task.user_id)}
+                    {console.log("user.id:" + user.id)}
                     <TaskStatusSwitch taskStatus={task.status} />
                   </ListCover>
                 </ListCoverWrapper>
