@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { getUser, getCurrentUser } from '../../../../infra/api';
+import { AuthContext } from '../../../../auth/authProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { Title } from '../../../presentational/atoms/Title/title';
@@ -10,18 +11,76 @@ import { ProfileSwitch } from './profileSwitch';
 import { TaskStatusSwitch } from '../tasks/taskStatusSwitch';
 import { FollowButton } from './followButton';
 
-export function UserTasksList(props) {
+export function UserTasksList() {
+  const { currentUser } = useContext(AuthContext);
+  const [currentUserAble, setCurrentUserAble] = useState(false);
+  const [currentUserId, setCurrentUserId] = useState();
+  const [currentUserName, setCurrentUserName] = useState([]);
+  useEffect(() => {
+    let isMounted = true;
+    if (currentUser) setCurrentUserAble(true);
+    getCurrentUser()
+      .then((response) => {
+        const currentUserId = String(response.data.user.id);
+        const currentUserName = response.data.user.username;
+        if (isMounted) setCurrentUserId(currentUserId);
+        if (isMounted) setCurrentUserName(currentUserName);
+      })
+      .catch();
+    // .catch((data) => {
+    // });
+    return () => {
+      isMounted = false;
+    };
+  }, [currentUser]);
+
+  const sortdOrder = (taskData) => {
+    const list = taskData;
+    if (list.length === 0) {
+      const dOrder = [];
+      return dOrder;
+    }
+    const dOrder = list.sort((a, b) => {
+      if (a.id < b.id) {
+        return 1;
+      }
+      if (a.id > b.id) {
+        return -1;
+      }
+      return 0;
+    });
+    return dOrder;
+  };
+
   const location = useLocation();
   const locationPathName = location.pathname.split('/');
   const userNameInUrl = locationPathName[locationPathName.length - 1];
 
-  const { taskUser } = props;
-  const { userTasks } = props;
-  const { userLikedTasks } = props;
-  const { taskCreatedUser } = props;
-  const { currentUserId } = props;
-  const { currentUserName } = props;
-  const { currentUserAble } = props;
+  const [taskUser, setTaskUser] = useState([]);
+  const [userTasks, setUserTasks] = useState([]);
+  const [userLikedTasks, setUserLikedTasks] = useState([]);
+  const [taskCreatedUser, setTaskCreatedUser] = useState([]);
+  useEffect(() => {
+    let isMounted = true;
+    getUser(userNameInUrl)
+      .then((response) => {
+        const taskUser = response.data.user;
+        const taskData = taskUser.tasks;
+        const dOrderData = sortdOrder(taskData);
+        const likeTaskData = taskUser.like_tasks;
+        const taskCreatedUser = response.data.task_created_user;
+        if (isMounted) setTaskCreatedUser(taskCreatedUser);
+        if (isMounted) setUserLikedTasks(likeTaskData);
+        if (isMounted) setTaskUser(taskUser);
+        if (isMounted) setUserTasks(dOrderData);
+      })
+      .catch();
+    // .catch((data) => {
+    // });
+    return () => {
+      isMounted = false;
+    };
+  }, [userNameInUrl]);
 
   const navigate = useNavigate();
   const nextGunttFunc = () => {
@@ -74,59 +133,62 @@ export function UserTasksList(props) {
         >
           ガントチャート
         </NextGunttLink>
-        {userTasks.length === 0 ? (
-          <ListCover key={userTasks}>
-            <div>まだ投稿はありません。</div>
-          </ListCover>
-        ) : (
-          userTasks.map((task) => (
-            <ListCoverWrapper>
-              <ListCover key={task.id}>
-                <List
-                  taskId={String(task.id)}
-                  title={task.title}
-                  content={task.content}
-                  taskUserId={String(taskUser.id)}
-                  taskCreatedUserId={String(taskUser.id)}
-                  taskCreatedUserName={String(taskUser.username)}
-                  taskCreatedUserNickName={taskUser.nickname}
-                />
-                <TaskStatusSwitch taskStatus={task.status} />
-              </ListCover>
-            </ListCoverWrapper>
-          ))
-        )}
 
-        <LikedTask>いいねしたタスク</LikedTask>
-        {userLikedTasks.length === 0 ? (
-          <ListCover key={userLikedTasks}>
-            <div>まだいいねはありません。</div>
-          </ListCover>
-        ) : (
-          userLikedTasks.map((task) => (
-            // todo: この方法はあまり綺麗ではない気がする(特にAPIでのデータの返し方を再考したい)。
-            // 下記方法だと、自分の投稿をいいねした場合、いいねリストに同じタスクが重複してしまう。
-            taskCreatedUser.map((user) => (
-              String(task.user_id) === String(user.id) && (
-                <ListCoverWrapper>
-                  <ListCover key={task.id}>
-                    <List
-                      taskId={String(task.id)}
-                      title={task.title}
-                      content={task.content}
-                      taskUserId={String(taskUser.id)}
-                      taskCreatedUserName={user.username}
-                      taskCreatedUserNickName={user.nickname}
-                    />
-                    {console.log("task.user_id:" + task.user_id)}
-                    {console.log("user.id:" + user.id)}
-                    <TaskStatusSwitch taskStatus={task.status} />
-                  </ListCover>
-                </ListCoverWrapper>
-              )
+        <>
+          {userTasks.length === 0 ? (
+            <ListCover key={userTasks}>
+              <div>まだ投稿はありません。</div>
+            </ListCover>
+          ) : (
+            userTasks.map((task) => (
+              <ListCoverWrapper key={task.id}>
+                <ListCover>
+                  <List
+                    taskId={String(task.id)}
+                    title={task.title}
+                    content={task.content}
+                    taskUserId={String(taskUser.id)}
+                    taskCreatedUserId={String(taskUser.id)}
+                    taskCreatedUserName={String(taskUser.username)}
+                    taskCreatedUserNickName={taskUser.nickname}
+                  />
+                  <TaskStatusSwitch taskStatus={task.status} />
+                </ListCover>
+              </ListCoverWrapper>
             ))
-          ))
-        )}
+          )}
+        </>
+
+        <>
+          <LikedTask>いいねしたタスク</LikedTask>
+          {userLikedTasks.length === 0 ? (
+            <ListCover key={userLikedTasks}>
+              <div>まだいいねはありません。</div>
+            </ListCover>
+          ) : (
+            userLikedTasks.map((task) => (
+              // todo: この方法はあまり綺麗ではない気がする(特にAPIでのデータの返し方を再考したい)。
+              // 下記方法だと、自分の投稿をいいねした場合、いいねリストに同じタスクが重複してしまう。
+              taskCreatedUser.map((user) => (
+                String(task.user_id) === String(user.id) && (
+                  <ListCoverWrapper key={task.id}>
+                    <ListCover>
+                      <List
+                        taskId={String(task.id)}
+                        title={task.title}
+                        content={task.content}
+                        taskUserId={String(taskUser.id)}
+                        taskCreatedUserName={user.username}
+                        taskCreatedUserNickName={user.nickname}
+                      />
+                      <TaskStatusSwitch taskStatus={task.status} />
+                    </ListCover>
+                  </ListCoverWrapper>
+                )
+              ))
+            ))
+          )}
+        </>
       </Content>
       {String(currentUserName) === String(userNameInUrl) && (
         <LogOutButtonCover>
@@ -222,55 +284,3 @@ const ListCoverWrapper = styled.div`
 const ListCover = styled.div`
   position: relative;
 `;
-
-UserTasksList.defaultProps = {
-  taskUser: {},
-  userTasks: [],
-  currentUserId: '',
-  currentUserAble: false,
-};
-
-UserTasksList.propTypes = {
-  taskUser: PropTypes.exact({
-    id: PropTypes.number,
-    nickname: PropTypes.string,
-    created_at: PropTypes.string,
-    updated_at: PropTypes.string,
-    email: PropTypes.string,
-    firebase_id: PropTypes.string,
-    password_digest: PropTypes.string,
-    bio: PropTypes.string,
-    tasks: PropTypes.arrayOf(
-      PropTypes.exact({
-        id: PropTypes.number,
-        title: PropTypes.string,
-        content: PropTypes.string,
-        status: PropTypes.number,
-        start_date: PropTypes.string,
-        end_date: PropTypes.string,
-        created_at: PropTypes.string,
-        updated_at: PropTypes.string,
-        user_id: PropTypes.string,
-      })
-    ),
-  }),
-  userTasks: PropTypes.arrayOf(
-    PropTypes.exact({
-      id: PropTypes.number,
-      title: PropTypes.string,
-      content: PropTypes.string,
-      status: PropTypes.number,
-      start_date: PropTypes.string,
-      end_date: PropTypes.string,
-      created_at: PropTypes.string,
-      updated_at: PropTypes.string,
-      user_id: PropTypes.string,
-    })
-  ),
-  currentUserId: PropTypes.string,
-  currentUserAble: PropTypes.bool,
-  // currentUser: PropTypes.exact({
-  //   uid: PropTypes.string,
-  //   email: PropTypes.string,
-  // }),
-};
