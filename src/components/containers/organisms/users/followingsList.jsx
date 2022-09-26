@@ -47,10 +47,10 @@ export function FollowingsList() {
           <Title title="フォロー中" />
         </ListHeader>
         <ListCover>
-          {followings.map((user) => (
-            <UsersList key={user.id}>
-              <Link to={`/${user.username}`}>{user.nickname}</Link>
-              <FollowButtonForUsersList followerId={user.id} userId={userId} />
+          {followings.map((following) => (
+            <UsersList key={following.id}>
+              <Link to={`/${following.username}`}>{following.nickname}</Link>
+              <FollowButtonForUsersList followerId={following.id} userId={userId} />
             </UsersList>
           ))}
         </ListCover>
