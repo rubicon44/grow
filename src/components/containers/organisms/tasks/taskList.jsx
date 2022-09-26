@@ -64,7 +64,7 @@ export function TaskList() {
 
   const [load, setLoad] = useState(false);
   function EditTaskButton() {
-    if (taskCreatedUserId === currentUserId) {
+    if (String(taskCreatedUserId) === currentUserId) {
       return (
         <button
           type="button"
@@ -85,7 +85,7 @@ export function TaskList() {
   };
 
   function DeleteTaskButton() {
-    if (taskCreatedUserId === currentUserId) {
+    if (String(taskCreatedUserId) === currentUserId) {
       return (
         <button type="button" onClick={() => deleteCheckFunc()}>
           削除
