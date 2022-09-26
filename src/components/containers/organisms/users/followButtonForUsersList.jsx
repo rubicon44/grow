@@ -55,7 +55,7 @@ export function FollowButtonForUsersList(props) {
   const [followings, setFollowings] = useState([]);
   useEffect(() => {
     let isMounted = true;
-    const user_id = currentUserId;
+    const user_id = userId;
     getFollowings(user_id)
       .then((response) => {
         if (isMounted) setFollowings(response.data.followings);
@@ -66,7 +66,7 @@ export function FollowButtonForUsersList(props) {
     return () => {
       isMounted = false;
     };
-  }, [currentUserId]);
+  }, [userId]);
 
   const [usersFollowingId, setUsersFollowingId] = useState();
   useEffect(() => {
