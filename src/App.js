@@ -12,8 +12,8 @@ import { PrivateRoute } from './auth/privateRoute';
 import { auth } from './infra/firebase';
 // 認証前・サインイン・サインアップ・NotFound
 import { Top } from './components/containers/pages/static_pages/top';
-import { SignIn } from './components/containers/pages/static_pages/sign_in';
-import { SignUp } from './components/containers/pages/static_pages/sign_up';
+import { SignIn } from './components/containers/pages/static_pages/signIn';
+import { SignUp } from './components/containers/pages/static_pages/signUp';
 import { NotFound } from './components/containers/pages/static_pages/notFound';
 // タスク
 import { TaskIndex } from './components/containers/pages/tasks';
@@ -76,8 +76,8 @@ export function App() {
               {/* top・サインイン・サインアップ・NotFound */}
               <Route exact path="/" element={<Top />} />
               <Route exact path="/top" element={<Top />} />
-              <Route exact path="/sign_in" element={<SignIn />} />
-              <Route exact path="/sign_up" element={<SignUp />} />
+              <Route exact path="/signIn" element={<SignIn />} />
+              <Route exact path="/signUp" element={<SignUp />} />
               <Route exact path="*" element={<NotFound />} />
               {/* task */}
               <Route

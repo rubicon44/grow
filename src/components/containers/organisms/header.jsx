@@ -62,8 +62,8 @@ export function Header() {
   ];
 
   const headerLinksForAuth = [
-    { url: '/sign_in', text: 'ログイン' },
-    { url: '/sign_up', text: '会員登録' },
+    { url: '/signIn', text: 'ログイン' },
+    { url: '/signUp', text: '会員登録' },
   ];
 
   const list = (anchor) => (

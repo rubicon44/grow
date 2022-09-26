@@ -9,8 +9,8 @@ export function Top() {
     <Main>
       <Title>Grow</Title>
       <NextButton text="タスク一覧" url="/tasks" />
-      <NextButton text="会員登録" url="/sign_up" />
-      <NextLink text="ログイン" url="/sign_in" />
+      <NextButton text="会員登録" url="/signUp" />
+      <NextLink text="ログイン" url="/signIn" />
     </Main>
   );
 }
