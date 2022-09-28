@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { AuthContext } from '../../../../auth/authProvider';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
-import { Title } from '../../../presentational/atoms/Title/title';
+import { Title } from '../../../presentational/atoms/Title';
 
 export function SignUpForm() {
   const navigate = useNavigate();

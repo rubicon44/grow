@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getTasks, getCurrentUser } from '../../../../infra/api';
 import styled from 'styled-components';
-import { Title } from '../../../presentational/atoms/Title/title';
+import { Title } from '../../../presentational/atoms/Title';
 import { NextLinkButton } from '../../../presentational/atoms/Link/nextLinkButton';
-import { List } from '../../../presentational/molecules/List/list';
+import { List } from '../../../presentational/molecules/List';
 import { TaskStatusSwitch } from './taskStatusSwitch';
 import { LikeButton } from '../likes/likeButton';
 

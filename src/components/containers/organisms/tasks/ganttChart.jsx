@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
 import { mediaquery } from '../../../../assets/styles/variable';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
-import { Title } from '../../../presentational/atoms/Title/title';
+import { Title } from '../../../presentational/atoms/Title';
 import { TaskStatusSwitchText } from './taskStatusSwitchText';
 import { CalenderTableBodyColorSwitch } from './calenderTableBodyColorSwitch';
 import { VariableSizeList as List } from 'react-window';

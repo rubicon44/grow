@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Title } from '../../../presentational/atoms/Title/title';
+import { Title } from '../../../presentational/atoms/Title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { getSearches } from '../../../../infra/api';
 

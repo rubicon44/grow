@@ -4,9 +4,9 @@ import { getTask } from '../../../../infra/api';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { deleteTask } from '../../../../infra/api';
-import { Title } from '../../../presentational/atoms/Title/title';
+import { Title } from '../../../presentational/atoms/Title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
-import { List } from '../../../presentational/molecules/List/list';
+import { List } from '../../../presentational/molecules/List';
 import { TaskStatusSwitch } from './taskStatusSwitch';
 import { LikeButton } from '../likes/likeButton';
 

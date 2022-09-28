@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { postTasks } from '../../../../infra/api';
 import { currentUid } from '../../../../infra/firebase';
-import { Title } from '../../../presentational/atoms/Title/title';
+import { Title } from '../../../presentational/atoms/Title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
-import { Form } from '../../../presentational/molecules/Form/form';
+import { Form } from '../../../presentational/molecules/Form';
 
 export function TaskCreateForm() {
   const postTasksFunc = (task) => {

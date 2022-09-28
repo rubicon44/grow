@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getNotifications } from '../../../../infra/api';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Title } from '../../../presentational/atoms/Title/title';
+import { Title } from '../../../presentational/atoms/Title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 
 export function NotificationsList() {

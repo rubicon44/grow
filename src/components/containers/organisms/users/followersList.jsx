@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { getFollowers } from '../../../../infra/api';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Title } from '../../../presentational/atoms/Title/title';
+import { Title } from '../../../presentational/atoms/Title';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { FollowButtonForUsersList } from './followButtonForUsersList';
 
