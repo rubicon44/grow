@@ -1,16 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
-import { NextButton } from '../../../presentational/atoms/Button/nextButton';
-import { NextLink } from '../../../presentational/atoms/Link/nextLink';
+import { NextLinkButton } from '../../../presentational/atoms/Link/nextLinkButton';
 
 export function Top() {
   return (
     <Main>
       <Title>Grow</Title>
-      <NextButton text="タスク一覧" url="/tasks" />
-      <NextButton text="会員登録" url="/signUp" />
-      <NextLink text="ログイン" url="/signIn" />
+      <NextLinkButton text="タスク一覧" url="/tasks" />
+      <NextLinkButton text="会員登録" url="/signUp" />
+      <LinkText to="/signIn">ログイン</LinkText>
     </Main>
   );
 }
@@ -41,4 +41,11 @@ const Title = styled.h2`
     font-size: 46px;
     line-height: 69px;
   `}
+`;
+
+const LinkText = styled(Link)`
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 30px;
+  text-decoration: underline;
 `;

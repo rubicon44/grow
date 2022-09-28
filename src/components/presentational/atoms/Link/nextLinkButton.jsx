@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
 
-export function NextButton(props) {
+export function NextLinkButton(props) {
   const { url } = props;
   const { text } = props;
-  return <ButtonStyle to={url}>{text}</ButtonStyle>;
+  return <DangerLinkButton to={url}>{text}</DangerLinkButton>;
 }
 
-const ButtonStyle = styled(Link)`
+const DangerLinkButton = styled(Link)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,12 +33,12 @@ const ButtonStyle = styled(Link)`
 `}
 `;
 
-NextButton.defaultProps = {
+NextLinkButton.defaultProps = {
   url: '',
   text: '',
 };
 
-NextButton.propTypes = {
+NextLinkButton.propTypes = {
   url: PropTypes.string,
   text: PropTypes.string,
 };
