@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { BackButton } from '../../../presentational/atoms/Button/backButton';
 import { Title } from '../../../presentational/atoms/Title/title';
-import { LogOutButton } from '../logOut';
+import { LogOutButton } from '../logOutButton';
 import { List } from '../../../presentational/molecules/List/list';
 import { ProfileSwitch } from './profileSwitch';
 import { TaskStatusSwitch } from '../tasks/taskStatusSwitch';
