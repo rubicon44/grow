@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
-import { NextLinkButton } from '../../../presentational/atoms/Link/nextLinkButton';
+import { NextButtonLink } from '../../../presentational/atoms/Link/nextButtonLink';
 
 export function Top() {
   return (
     <Main>
       <Title>Grow</Title>
-      <NextLinkButton text="タスク一覧" url="/tasks" />
-      <NextLinkButton text="会員登録" url="/signUp" />
+      <NextButtonLink text="タスク一覧" url="/tasks" />
+      <NextButtonLink text="会員登録" url="/signUp" />
       <LinkText to="/signIn">ログイン</LinkText>
     </Main>
   );

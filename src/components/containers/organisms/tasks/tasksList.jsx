@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getTasks, getCurrentUser } from '../../../../infra/api';
 import styled from 'styled-components';
 import { Title } from '../../../presentational/atoms/Title';
-import { NextLinkButton } from '../../../presentational/atoms/Link/nextLinkButton';
+import { NextButtonLink } from '../../../presentational/atoms/Link/nextButtonLink';
 import { List } from '../../../presentational/molecules/List';
 import { TaskStatusSwitch } from './taskStatusSwitch';
 import { LikeButton } from '../likes/likeButton';
@@ -60,7 +60,7 @@ export function TasksList() {
   return (
     <>
       <Title title="タスク一覧" />
-      <NextLinkButton text="タスク登録" url="/tasks/create" />
+      <NextButtonLink text="タスク登録" url="/tasks/create" />
       {tasks.map((task) => (
         <ListCover key={task.id}>
           <List

@@ -2,11 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-export function BaseLink(props) {
+export const BaseLink = ({ children, className, ...props }) => {
   const { url } = props;
-  const { text } = props;
-  return <Link to={`/${url}`}>{text}</Link>;
-}
+  return <Link className={className} to={url} >{children}</Link>;
+};
 
 BaseLink.defaultProps = {
   url: '',
