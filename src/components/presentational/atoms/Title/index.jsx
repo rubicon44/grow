@@ -4,10 +4,10 @@ import styled from 'styled-components';
 
 export function Title(props) {
   const { title } = props;
-  return <TitleStyle>{title}</TitleStyle>;
+  return <BaseTitle>{title}</BaseTitle>;
 }
 
-const TitleStyle = styled.h2`
+const BaseTitle = styled.h2`
   font-size: 36px;
   font-family: YuMincho;
 `;

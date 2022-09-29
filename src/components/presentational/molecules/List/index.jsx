@@ -11,7 +11,7 @@ export function List(props) {
   const { url } = props;
   const { text } = props;
   return (
-    <ListStyle>
+    <BaseList>
       <dt>
         <Link to={titleUrl}>{title}</Link>
       </dt>
@@ -23,11 +23,11 @@ export function List(props) {
           text={text}
         />
       </CreatedUserCover>
-    </ListStyle>
+    </BaseList>
   );
 }
 
-const ListStyle = styled.dl`
+const BaseList = styled.dl`
   min-width: 180px;
   max-width: 180px;
   margin-top: 15px;
