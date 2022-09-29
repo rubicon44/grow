@@ -3,7 +3,7 @@ import { getNotifications } from '../../../../infra/api';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Title } from '../../../presentational/atoms/Title';
-import { BackButton } from '../../../presentational/atoms/Button/backButton';
+import { BackArrow } from '../../../presentational/atoms/Arrow/backArrow';
 
 export function NotificationsList() {
   // todo: 別ファイルからの呼び出しで、行数削減できそう。
@@ -39,7 +39,7 @@ export function NotificationsList() {
   return (
     <>
       <ListHeader>
-        <BackButton />
+        <BackArrow />
         <Title title="通知一覧" />
       </ListHeader>
       <ListCover>

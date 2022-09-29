@@ -4,7 +4,7 @@ import { getFollowers } from '../../../../infra/api';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Title } from '../../../presentational/atoms/Title';
-import { BackButton } from '../../../presentational/atoms/Button/backButton';
+import { BackArrow } from '../../../presentational/atoms/Arrow/backArrow';
 import { FollowButtonForUsersList } from './followButtonForUsersList';
 
 export function FollowersList() {
@@ -31,7 +31,7 @@ export function FollowersList() {
     return (
       <>
         <ListHeader>
-          <BackButton />
+          <BackArrow />
           <Title title="フォロワー" />
         </ListHeader>
         <ListCover>
@@ -43,7 +43,7 @@ export function FollowersList() {
     return (
       <>
         <ListHeader>
-          <BackButton />
+          <BackArrow />
           <Title title="フォロワー" />
         </ListHeader>
         <ListCover>

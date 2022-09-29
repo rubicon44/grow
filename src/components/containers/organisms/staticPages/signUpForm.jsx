@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { AuthContext } from '../../../../auth/authProvider';
-import { BackButton } from '../../../presentational/atoms/Button/backButton';
+import { BackArrow } from '../../../presentational/atoms/Arrow/backArrow';
 import { Title } from '../../../presentational/atoms/Title';
 
 export function SignUpForm() {
@@ -21,7 +21,7 @@ export function SignUpForm() {
   return (
     <>
       <ListHeader>
-        <BackButton />
+        <BackArrow />
         <Title title="会員登録" />
       </ListHeader>
       <FormCover>

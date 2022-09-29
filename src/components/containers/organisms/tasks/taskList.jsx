@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { deleteTask } from '../../../../infra/api';
 import { Title } from '../../../presentational/atoms/Title';
-import { BackButton } from '../../../presentational/atoms/Button/backButton';
+import { BackArrow } from '../../../presentational/atoms/Arrow/backArrow';
 import { List } from '../../../presentational/molecules/List';
 import { TaskStatusSwitch } from './taskStatusSwitch';
 import { LikeButton } from '../likes/likeButton';
@@ -111,7 +111,7 @@ export function TaskList() {
   return (
     <>
       <ListHeader>
-        <BackButton />
+        <BackArrow />
         <Title title="タスク詳細" />
       </ListHeader>
       <ListCover>

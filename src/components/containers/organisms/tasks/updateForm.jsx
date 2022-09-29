@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { updateTask } from '../../../../infra/api';
 import { Title } from '../../../presentational/atoms/Title';
-import { BackButton } from '../../../presentational/atoms/Button/backButton';
+import { BackArrow } from '../../../presentational/atoms/Arrow/backArrow';
 import { Form } from '../../../presentational/molecules/Form';
 
 export function TaskUpdateForm(props) {
@@ -43,7 +43,7 @@ export function TaskUpdateForm(props) {
   return (
     <>
       <FormHeader>
-        <BackButton />
+        <BackArrow />
         <Title title="編集" />
       </FormHeader>
       <Form

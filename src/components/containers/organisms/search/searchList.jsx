@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Title } from '../../../presentational/atoms/Title';
-import { BackButton } from '../../../presentational/atoms/Button/backButton';
+import { BackArrow } from '../../../presentational/atoms/Arrow/backArrow';
 import { getSearches } from '../../../../infra/api';
 
 export function SearchList() {
@@ -37,7 +37,7 @@ export function SearchList() {
   return (
     <>
       <ListHeader>
-        <BackButton />
+        <BackArrow />
         <Title title="検索一覧" />
       </ListHeader>
       <div>

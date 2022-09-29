@@ -3,7 +3,7 @@ import { getUser, getCurrentUser } from '../../../../infra/api';
 import { AuthContext } from '../../../../auth/authProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { BackButton } from '../../../presentational/atoms/Button/backButton';
+import { BackArrow } from '../../../presentational/atoms/Arrow/backArrow';
 import { Title } from '../../../presentational/atoms/Title';
 import { LogOutButton } from '../logOutButton';
 import { List } from '../../../presentational/molecules/List';
@@ -112,7 +112,7 @@ export function UserTasksList() {
     <>
       <ContentHeaderCover>
         <ContentHeader>
-          <BackButton />
+          <BackArrow />
           <Title title={taskUser.nickname} />
         </ContentHeader>
         <FollowButton />

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { postTasks } from '../../../../infra/api';
 import { currentUid } from '../../../../infra/firebase';
 import { Title } from '../../../presentational/atoms/Title';
-import { BackButton } from '../../../presentational/atoms/Button/backButton';
+import { BackArrow } from '../../../presentational/atoms/Arrow/backArrow';
 import { Form } from '../../../presentational/molecules/Form';
 
 export function TaskCreateForm() {
@@ -36,7 +36,7 @@ export function TaskCreateForm() {
   return (
     <>
       <FormHeader>
-        <BackButton />
+        <BackArrow />
         <Title title="新規登録" />
       </FormHeader>
       <Form

@@ -4,20 +4,20 @@ import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 // todo: 「Arrow/index」と「Arrow/backArrow」に分けたい。
-export function BackButton() {
+export function BackArrow() {
   const navigate = useNavigate();
-  const handleBackButtonClick = () => {
+  const handleBackArrowClick = () => {
     navigate(-1);
   };
 
   return (
-    <BackButtonCover>
-      <ArrowBackIosIcon onClick={handleBackButtonClick} />
-    </BackButtonCover>
+    <BackArrowCover>
+      <ArrowBackIosIcon onClick={handleBackArrowClick} />
+    </BackArrowCover>
   );
 }
 
-const BackButtonCover = styled.div`
+const BackArrowCover = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

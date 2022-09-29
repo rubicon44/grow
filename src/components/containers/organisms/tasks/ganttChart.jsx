@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
 import { mediaquery } from '../../../../assets/styles/variable';
-import { BackButton } from '../../../presentational/atoms/Button/backButton';
+import { BackArrow } from '../../../presentational/atoms/Arrow/backArrow';
 import { Title } from '../../../presentational/atoms/Title';
 import { TaskStatusSwitchText } from './taskStatusSwitchText';
 import { CalenderTableBodyColorSwitch } from './calenderTableBodyColorSwitch';
@@ -204,7 +204,7 @@ const Example = () => (
     <>
       <ContentHeaderCover>
         <ContentHeader>
-          <BackButton />
+          <BackArrow />
           <Title title="ガントチャート" />
         </ContentHeader>
       </ContentHeaderCover>
