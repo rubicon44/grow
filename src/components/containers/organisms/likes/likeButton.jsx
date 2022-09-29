@@ -3,7 +3,7 @@ import { postLikes, getLikes, deleteLike } from '../../../../infra/api';
 import { pink } from '@mui/material/colors';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 // import PropTypes from 'prop-types';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
 export function LikeButton(props) {
   const { currentUserId } = props;
@@ -91,16 +91,20 @@ export function LikeButton(props) {
     <>
       {currentUserId === likedUserId && taskId === currentTaskId
         ?
-        <span onClick={handleClickLikeDelete}>
+        <ThumbUpIconCover onClick={handleClickLikeDelete}>
           <ThumbUpIcon sx={{ color: pink[500] }} />
           {likeCount}
-        </span>
+        </ThumbUpIconCover>
         :
-        <span onClick={handleClickLikePost}>
+        <ThumbUpIconCover onClick={handleClickLikePost}>
           <ThumbUpIcon />
           {likeCount}
-        </span>
+        </ThumbUpIconCover>
       }
     </>
   );
 };
+
+const ThumbUpIconCover = styled.span`
+  cursor: pointer;
+`;

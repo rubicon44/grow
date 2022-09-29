@@ -117,11 +117,10 @@ export function TaskList() {
       <ListCover>
         <List
           title={taskTitle}
-          taskId={String(taskId)}
+          titleUrl={`/${taskCreatedUserName}/tasks/${String(task.id)}`}
           content={taskContent}
-          taskCreatedUserId={String(taskCreatedUserId)}
-          taskCreatedUserName={taskCreatedUserName}
-          taskCreatedUserNickName={taskCreatedUserNickName}
+          url={String(taskCreatedUserName)}
+          text={taskCreatedUserNickName}
         />
         <TaskStatusSwitch taskStatus={taskStatus} />
         <div>開始日:{startDate}</div>

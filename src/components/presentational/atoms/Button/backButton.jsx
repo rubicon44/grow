@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
+// todo: 「Arrow/index」と「Arrow/backArrow」に分けたい。
 export function BackButton() {
   const navigate = useNavigate();
   const handleBackButtonClick = () => {

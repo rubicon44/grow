@@ -2,24 +2,27 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { CreatedUser } from '../../atoms/Link/createdUser';
+import { BaseLink } from '../../atoms/Link';
 
 export function List(props) {
-  const { taskId } = props;
   const { title } = props;
+  const { titleUrl } = props;
   const { content } = props;
-  const { taskCreatedUserName } = props;
-  const { taskCreatedUserNickName } = props;
+  const { url } = props;
+  const { text } = props;
   return (
     <ListStyle>
       <dt>
-        <Link to={`/${taskCreatedUserName}/tasks/${taskId}`}>{title}</Link>
+        <Link to={titleUrl}>{title}</Link>
       </dt>
       <dd>{content}</dd>
-      <CreatedUser
-        taskCreatedUserName={taskCreatedUserName}
-        taskCreatedUserNickName={taskCreatedUserNickName}
-      />
+      <CreatedUserCover>
+        作成者:
+        <BaseLink
+          url={url}
+          text={text}
+        />
+      </CreatedUserCover>
     </ListStyle>
   );
 }
@@ -43,20 +46,24 @@ const ListStyle = styled.dl`
   }
 `;
 
+const CreatedUserCover = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+`;
+
 List.defaultProps = {
-  taskId: '',
-  taskUserId: '',
   title: '',
+  titleUrl: '',
   content: '',
-  taskCreatedUserId: '',
-  taskCreatedUserNickName: '',
+  url: '',
+  text: '',
 };
 
 List.propTypes = {
-  taskId: PropTypes.string,
-  taskUserId: PropTypes.string,
   title: PropTypes.string,
+  titleUrl: PropTypes.string,
   content: PropTypes.string,
-  taskCreatedUserId: PropTypes.string,
-  taskCreatedUserNickName: PropTypes.string,
+  url: PropTypes.string,
+  text: PropTypes.string,
 };

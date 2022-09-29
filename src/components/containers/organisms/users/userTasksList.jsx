@@ -144,13 +144,11 @@ export function UserTasksList() {
               <ListCoverWrapper key={task.id}>
                 <ListCover>
                   <List
-                    taskId={String(task.id)}
                     title={task.title}
+                    titleUrl={`/${String(taskUser.username)}/tasks/${String(task.id)}`}
                     content={task.content}
-                    taskUserId={String(taskUser.id)}
-                    taskCreatedUserId={String(taskUser.id)}
-                    taskCreatedUserName={String(taskUser.username)}
-                    taskCreatedUserNickName={taskUser.nickname}
+                    url={String(taskUser.username)}
+                    text={taskUser.nickname}
                   />
                   <TaskStatusSwitch taskStatus={task.status} />
                 </ListCover>
@@ -174,12 +172,11 @@ export function UserTasksList() {
                   <ListCoverWrapper key={task.id}>
                     <ListCover>
                       <List
-                        taskId={String(task.id)}
                         title={task.title}
+                        titleUrl={`/${String(user.username)}/tasks/${String(task.id)}`}
                         content={task.content}
-                        taskUserId={String(taskUser.id)}
-                        taskCreatedUserName={user.username}
-                        taskCreatedUserNickName={user.nickname}
+                        url={user.username}
+                        text={user.nickname}
                       />
                       <TaskStatusSwitch taskStatus={task.status} />
                     </ListCover>

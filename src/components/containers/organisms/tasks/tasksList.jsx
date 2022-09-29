@@ -64,14 +64,11 @@ export function TasksList() {
       {tasks.map((task) => (
         <ListCover key={task.id}>
           <List
-            taskUserId={String(task.user_id)}
-            taskId={String(task.id)}
             title={task.title}
+            titleUrl={`/${task.user.username}/tasks/${String(task.id)}`}
             content={task.content}
-            startDate={task.start_date}
-            endDate={task.end_date}
-            taskCreatedUserName={String(task.user.username)}
-            taskCreatedUserNickName={task.user.nickname}
+            url={String(task.user.username)}
+            text={task.user.nickname}
           />
           <TaskStatusSwitch taskStatus={task.status} />
           <LikeButton taskId={String(task.id)} currentUserId={String(currentUserId)} currentUserName={currentUserName} />
