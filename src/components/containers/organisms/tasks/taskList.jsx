@@ -119,7 +119,7 @@ export function TaskList() {
           title={taskTitle}
           titleUrl={`/${taskCreatedUserName}/tasks/${String(task.id)}`}
           content={taskContent}
-          url={String(taskCreatedUserName)}
+          url={`/${taskCreatedUserName}`}
           text={taskCreatedUserNickName}
         />
         <TaskStatusSwitch taskStatus={taskStatus} />

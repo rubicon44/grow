@@ -43,7 +43,7 @@ export function FollowingsList() {
     return (
       <>
         <ListHeader>
-          <BackButton />
+          <BackArrow />
           <Title title="フォロー中" />
         </ListHeader>
         <ListCover>

@@ -18,10 +18,7 @@ export function List(props) {
       <dd>{content}</dd>
       <CreatedUserCover>
         作成者:
-        <BaseLink
-          url={url}
-          text={text}
-        />
+        <BaseLink url={url}>{text}</BaseLink>
       </CreatedUserCover>
     </BaseList>
   );

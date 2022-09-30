@@ -67,7 +67,7 @@ export function TasksList() {
             title={task.title}
             titleUrl={`/${task.user.username}/tasks/${String(task.id)}`}
             content={task.content}
-            url={String(task.user.username)}
+            url={`/${task.user.username}`}
             text={task.user.nickname}
           />
           <TaskStatusSwitch taskStatus={task.status} />

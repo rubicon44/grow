@@ -20,7 +20,6 @@ const DangerButtonLink = styled(BaseLink)`
   color: #fff;
   font-size: 20px;
   font-weight: bold;
-  text-decoration: none;
   border: none;
   border-radius: 50px;
   background-color: #ff444f;
