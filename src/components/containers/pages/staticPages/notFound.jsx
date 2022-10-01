@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
 import { Header } from '../../organisms/header';
+import { Main } from '../../templates/main';
 
 export function NotFound() {
   return (
@@ -13,21 +14,6 @@ export function NotFound() {
     </>
   );
 }
-
-const Main = styled.main`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 460px;
-  text-align: center;
-
-  ${mediaquery.desktop`
-    max-width: 1280px;
-    height: 700px;
-  `}
-`;
 
 const Title = styled.h2`
   width: 288px;

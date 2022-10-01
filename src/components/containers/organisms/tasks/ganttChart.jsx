@@ -271,7 +271,7 @@ const ContentHeaderCover = styled.div`
   justify-content: center;
   align-items: center;
   min-width: 260px;
-  padding: 30px 10px 0;
+  padding: 30px 10px;
   text-align: center;
   background-color: #f8f7f3;
 `;

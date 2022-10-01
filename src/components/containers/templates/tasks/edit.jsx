@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { Header } from '../../organisms/header';
+import { Main } from '../main';
 import { TaskUpdateForm } from '../../organisms/tasks/updateForm';
 
 export function TaskEditTemplate(props) {
@@ -30,16 +30,6 @@ export function TaskEditTemplate(props) {
     </>
   );
 }
-
-const Main = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px 10px;
-  text-align: center;
-  background-color: #ddd;
-`;
 
 TaskEditTemplate.defaultProps = {
   id: 0,

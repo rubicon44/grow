@@ -2,28 +2,21 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
+import { Main } from '../../templates/main';
 import { NextButtonLink } from '../../../presentational/atoms/Link/nextButtonLink';
 
 export function Top() {
   return (
-    <Main>
+    <TopMain>
       <Title>Grow</Title>
       <NextButtonLink text="タスク一覧" url="/tasks" />
       <NextButtonLink text="会員登録" url="/signUp" />
       <LinkText to="/signIn">ログイン</LinkText>
-    </Main>
+    </TopMain>
   );
 }
 
-const Main = styled.main`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 460px;
-  text-align: center;
-
+const TopMain = styled(Main)`
   > a:not(:first-of-type) {
     margin-top: 10px;
   }

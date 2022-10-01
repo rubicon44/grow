@@ -29,25 +29,6 @@ import { UserNotifications } from './components/containers/pages/users/notificat
 // 検索
 import { SearchIndex } from './components/containers/pages/search';
 
-const Wrapper = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const PageWrapper = styled.div`
-  min-width: 300px;
-  max-width: 320px;
-  min-height: 700px;
-  background-color: #eeeff1;
-
-  ${mediaquery.desktop`
-    max-width: 1280px;
-  `}
-`;
-
 export function App() {
   const [loading, setLoading] = useState(true);
 
@@ -142,3 +123,22 @@ export function App() {
     </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const PageWrapper = styled.div`
+  min-width: 320px;
+  max-width: 320px;
+  min-height: 700px;
+  background-color: #eeeff1;
+
+  ${mediaquery.desktop`
+    max-width: 1280px;
+  `}
+`;
