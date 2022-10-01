@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { getUser, getCurrentUser } from '../../../../infra/api';
+import { getUser, getCurrentUser, updateUser } from '../../../../infra/api';
 import { AuthContext } from '../../../../auth/authProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -59,6 +59,11 @@ export function UserTasksList() {
   const [userTasks, setUserTasks] = useState([]);
   const [userLikedTasks, setUserLikedTasks] = useState([]);
   const [taskCreatedUser, setTaskCreatedUser] = useState([]);
+  const [userBio, setUserBio] = useState([]);
+  const [userNickName, setUserNickName] = useState([]);
+  const [userName, setUserName] = useState([]);
+  const [userId, setUserId] = useState([]);
+  const [userNameDefault, setUserNameDefault] = useState([]);
   useEffect(() => {
     let isMounted = true;
     getUser(userNameInUrl)
@@ -68,10 +73,20 @@ export function UserTasksList() {
         const dOrderData = sortdOrder(taskData);
         const likeTaskData = taskUser.like_tasks;
         const taskCreatedUser = response.data.task_created_user;
+        const userBio = response.data.user.bio;
+        const userNickName = response.data.user.nickname;
+        const userName = response.data.user.username;
+        const userId = response.data.user.id;
+        const userNameDefault = response.data.user.username;
         if (isMounted) setTaskCreatedUser(taskCreatedUser);
         if (isMounted) setUserLikedTasks(likeTaskData);
         if (isMounted) setTaskUser(taskUser);
         if (isMounted) setUserTasks(dOrderData);
+        if (isMounted) setUserBio(userBio);
+        if (isMounted) setUserNickName(userNickName);
+        if (isMounted) setUserName(userName);
+        if (isMounted) setUserId(String(userId));
+        if (isMounted) setUserNameDefault(userNameDefault);
       })
       .catch();
     // .catch((data) => {
@@ -107,12 +122,69 @@ export function UserTasksList() {
     });
   };
 
+  const [bioAble, setBioAble] = useState(true);
+  const [load, setLoad] = useState(false);
+  const updateUserFunc = (username, user) => {
+    updateUser(username, user)
+      .then((response) => {
+        const userBio = response.data.user.bio;
+        const userNickName = response.data.user.nickname;
+        const userName = response.data.user.username
+        setUserBio(userBio);
+        setUserNickName(userNickName);
+        setUserName(userName);
+        setBioAble(true);
+        setLoad(false);
+      })
+      // .catch();
+      .catch(errors => {
+        // console.log(errors);
+        window.alert("このusernameはすでに登録されています。");
+        setUserName(userNameDefault);
+        setLoad(false);
+      });
+  };
+
+  const handleTextSubmit = (e) => {
+    e.preventDefault();
+    e.persist();
+    setLoad(true);
+    const username = userNameDefault;
+    const user = { nickname: userNickName, username: userName, bio: userBio };
+    updateUserFunc(username, user);
+  };
+
+  const revertUserBio = (userName) => {
+    getUser(userName)
+      .then((response) => {
+        const userBio = response.data.user.bio;
+        setUserBio(userBio);
+      })
+      .catch();
+    // .catch((response) => {
+    // });
+    setBioAble(true);
+  };
+
   return (
     <>
       <ContentHeaderCover>
-        <TitleWithBackArrowHeader>{taskUser.nickname}</TitleWithBackArrowHeader>
+        <TitleWithBackArrowHeader>{userNickName}</TitleWithBackArrowHeader>
         <FollowButton />
-        <ProfileSwitch currentUserId={String(currentUserId)} />
+        <ProfileSwitch
+          currentUserId={String(currentUserId)}
+          userBio={userBio}
+          userNickName={userNickName}
+          setUserNickName={setUserNickName}
+          userName={userName}
+          setUserName={setUserName}
+          userId={userId}
+          bioAble={bioAble}
+          setBioAble={setBioAble}
+          load={load}
+          handleTextSubmit={handleTextSubmit}
+          revertUserBio={revertUserBio}
+           />
         <RelationshipsCover>
           <a onClick={() => nextFollowingsFunc()}>
             <span>フォロー中</span>

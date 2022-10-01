@@ -1,85 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
 import styled from 'styled-components';
-import { getUser, updateUser } from '../../../../infra/api';
 
 export function ProfileSwitch(props) {
-  const location = useLocation();
-  const locationPathName = location.pathname.split('/');
-  const userNameInUrl = locationPathName[locationPathName.length - 1];
-
   const { currentUserId } = props;
-  const [userBio, setUserBio] = useState([]);
-  const [userNickName, setUserNickName] = useState([]);
-  const [userName, setUserName] = useState([]);
-  const [userId, setUserId] = useState([]);
-  const [userNameDefault, setUserNameDefault] = useState([]);
-  useEffect(() => {
-    let isMounted = true;
-    getUser(userNameInUrl)
-      .then((response) => {
-        const userBio = response.data.user.bio;
-        const userNickName = response.data.user.nickname;
-        const userName = response.data.user.username;
-        const userId = response.data.user.id;
-        const userNameDefault = response.data.user.username;
-        if (isMounted) setUserBio(userBio);
-        if (isMounted) setUserNickName(userNickName);
-        if (isMounted) setUserName(userName);
-        if (isMounted) setUserId(String(userId));
-        if (isMounted) setUserNameDefault(userNameDefault);
-      })
-      .catch();
-    // .catch((data) => {
-    // });
-    return () => {
-      isMounted = false;
-    };
-  }, [userNameInUrl]);
-
-  const [bioAble, setBioAble] = useState(true);
-  const [load, setLoad] = useState(false);
-  const updateUserFunc = (username, user) => {
-    updateUser(username, user)
-      .then((response) => {
-        const userBio = response.data.user.bio;
-        const userNickName = response.data.user.nickname;
-        const userName = response.data.user.username
-        setUserBio(userBio);
-        setUserNickName(userNickName);
-        setUserName(userName);
-        setBioAble(true);
-        setLoad(false);
-      })
-      // .catch();
-      .catch(errors => {
-        // console.log(errors);
-        window.alert("このusernameはすでに登録されています。");
-        setUserName(userNameDefault);
-        setLoad(false);
-      });
-  };
-
-  const handleTextSubmit = (e) => {
-    e.preventDefault();
-    e.persist();
-    setLoad(true);
-    const username = userNameDefault;
-    const user = { nickname: userNickName, username: userName, bio: userBio };
-    updateUserFunc(username, user);
-  };
-
-  const revertUserBio = (userName) => {
-    getUser(userName)
-      .then((response) => {
-        const userBio = response.data.user.bio;
-        setUserBio(userBio);
-      })
-      .catch();
-    // .catch((response) => {
-    // });
-    setBioAble(true);
-  };
+  const { userBio } = props;
+  const { userNickName } = props;
+  const { setUserNickName } = props;
+  const { userName } = props;
+  const { setUserName } = props;
+  const { userId } = props;
+  const { bioAble } = props;
+  const { setBioAble } = props;
+  const { load } = props;
+  const { handleTextSubmit } = props;
+  const { revertUserBio } = props;
 
   if (bioAble === true) {
     return (
