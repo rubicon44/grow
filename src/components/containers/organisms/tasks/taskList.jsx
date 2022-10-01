@@ -4,8 +4,7 @@ import { getTask } from '../../../../infra/api';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { deleteTask } from '../../../../infra/api';
-import { Title } from '../../../presentational/atoms/Title';
-import { BackArrow } from '../../../presentational/atoms/Arrow/backArrow';
+import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 import { List } from '../../../presentational/molecules/List';
 import { TaskStatusSwitch } from './taskStatusSwitch';
 import { LikeButton } from '../likes/likeButton';
@@ -110,10 +109,7 @@ export function TaskList() {
 
   return (
     <>
-      <ListHeader>
-        <BackArrow />
-        <Title title="タスク詳細" />
-      </ListHeader>
+      <TitleWithBackArrowHeader>タスク詳細</TitleWithBackArrowHeader>
       <ListCover>
         <List
           title={taskTitle}
@@ -152,16 +148,6 @@ const ListCover = styled.div`
   position: relative;
   min-width: 180px;
   margin-top: 30px;
-`;
-
-const ListHeader = styled.div`
-  display: flex;
-  width: 100%;
-
-  > h2 {
-    width: 100%;
-    margin-right: 45px;
-  }
 `;
 
 const ButtonCover = styled.div`

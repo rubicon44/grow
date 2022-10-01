@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import { postTasks } from '../../../../infra/api';
 import { currentUid } from '../../../../infra/firebase';
-import { Title } from '../../../presentational/atoms/Title';
-import { BackArrow } from '../../../presentational/atoms/Arrow/backArrow';
+import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 import { Form } from '../../../presentational/molecules/Form';
 
 export function TaskCreateForm() {
@@ -35,10 +33,7 @@ export function TaskCreateForm() {
 
   return (
     <>
-      <FormHeader>
-        <BackArrow />
-        <Title title="新規登録" />
-      </FormHeader>
+      <TitleWithBackArrowHeader>新規登録</TitleWithBackArrowHeader>
       <Form
         load={load}
         setTitle={setTitle}
@@ -55,13 +50,3 @@ export function TaskCreateForm() {
     </>
   );
 }
-
-const FormHeader = styled.div`
-  display: flex;
-  width: 100%;
-
-  > h2 {
-    width: 100%;
-    margin-right: 45px;
-  }
-`;

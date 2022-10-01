@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Title } from '../../../presentational/atoms/Title';
-import { BackArrow } from '../../../presentational/atoms/Arrow/backArrow';
+import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 import { getSearches } from '../../../../infra/api';
 
 export function SearchList() {
@@ -36,10 +35,7 @@ export function SearchList() {
 
   return (
     <>
-      <ListHeader>
-        <BackArrow />
-        <Title title="検索一覧" />
-      </ListHeader>
+      <TitleWithBackArrowHeader>検索一覧</TitleWithBackArrowHeader>
       <div>
         <FormCover>
           <form onSubmit={handleSubmit}>
@@ -101,16 +97,6 @@ const ListCover = styled.div`
   position: relative;
   min-width: 180px;
   margin-top: 30px;
-`;
-
-const ListHeader = styled.div`
-  display: flex;
-  width: 100%;
-
-  > h2 {
-    width: 100%;
-    margin-right: 45px;
-  }
 `;
 
 const FormCover = styled.div`

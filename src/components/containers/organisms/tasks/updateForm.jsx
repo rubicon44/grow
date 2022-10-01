@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { updateTask } from '../../../../infra/api';
-import { Title } from '../../../presentational/atoms/Title';
-import { BackArrow } from '../../../presentational/atoms/Arrow/backArrow';
+import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 import { Form } from '../../../presentational/molecules/Form';
 
 export function TaskUpdateForm(props) {
@@ -42,10 +40,7 @@ export function TaskUpdateForm(props) {
 
   return (
     <>
-      <FormHeader>
-        <BackArrow />
-        <Title title="編集" />
-      </FormHeader>
+      <TitleWithBackArrowHeader>編集</TitleWithBackArrowHeader>
       <Form
         load={load}
         title={title}
@@ -63,16 +58,6 @@ export function TaskUpdateForm(props) {
     </>
   );
 }
-
-const FormHeader = styled.div`
-  display: flex;
-  width: 100%;
-
-  > h2 {
-    width: 100%;
-    margin-right: 45px;
-  }
-`;
 
 TaskUpdateForm.defaultProps = {
   id: 0,

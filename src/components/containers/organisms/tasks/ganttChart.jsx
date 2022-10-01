@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
 import { mediaquery } from '../../../../assets/styles/variable';
-import { BackArrow } from '../../../presentational/atoms/Arrow/backArrow';
-import { Title } from '../../../presentational/atoms/Title';
+import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 import { TaskStatusSwitchText } from './taskStatusSwitchText';
 import { CalenderTableBodyColorSwitch } from './calenderTableBodyColorSwitch';
 import { VariableSizeList as List } from 'react-window';
@@ -203,10 +202,7 @@ const Example = () => (
   return (
     <>
       <ContentHeaderCover>
-        <ContentHeader>
-          <BackArrow />
-          <Title title="ガントチャート" />
-        </ContentHeader>
+        <TitleWithBackArrowHeader>ガントチャート</TitleWithBackArrowHeader>
       </ContentHeaderCover>
 
       <Content>
@@ -254,16 +250,6 @@ const Example = () => (
     </>
   );
 };
-
-const ContentHeader = styled.div`
-  display: flex;
-  width: 100%;
-
-  > h2 {
-    width: 100%;
-    margin-right: 45px;
-  }
-`;
 
 const ContentHeaderCover = styled.div`
   display: flex;

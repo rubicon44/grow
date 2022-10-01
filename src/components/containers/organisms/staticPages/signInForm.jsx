@@ -2,8 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { AuthContext } from '../../../../auth/authProvider';
-import { BackArrow } from '../../../presentational/atoms/Arrow/backArrow';
-import { Title } from '../../../presentational/atoms/Title';
+import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 
 export function SignInForm() {
   const navigate = useNavigate();
@@ -20,10 +19,7 @@ export function SignInForm() {
 
   return (
     <>
-      <ListHeader>
-        <BackArrow />
-        <Title title="ログイン" />
-      </ListHeader>
+      <TitleWithBackArrowHeader>ログイン</TitleWithBackArrowHeader>
       <FormCover>
         <form onSubmit={handleSubmit}>
           <label htmlFor="email">
@@ -47,16 +43,6 @@ export function SignInForm() {
     </>
   );
 }
-
-const ListHeader = styled.div`
-  display: flex;
-  width: 100%;
-
-  > h2 {
-    width: 100%;
-    margin-right: 45px;
-  }
-`;
 
 const FormCover = styled.div`
   min-width: 260px;

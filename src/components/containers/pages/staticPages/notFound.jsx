@@ -3,23 +3,22 @@ import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
 import { Header } from '../../organisms/header';
 import { Main } from '../../templates/main';
+import { Title } from '../../../presentational/atoms/Title';
 
 export function NotFound() {
   return (
     <>
       <Header />
       <Main>
-        <Title>お探しのページが見つかりません。</Title>
+        <NotFoundTitle>お探しのページが見つかりません。</NotFoundTitle>
       </Main>
     </>
   );
 }
 
-const Title = styled.h2`
+const NotFoundTitle = styled(Title)`
   width: 288px;
-  font-size: 36px;
   font-weight: 600;
-  font-family: serif;
   line-height: 130.2%;
 
   ${mediaquery.desktop`

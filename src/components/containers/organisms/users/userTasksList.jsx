@@ -3,8 +3,7 @@ import { getUser, getCurrentUser } from '../../../../infra/api';
 import { AuthContext } from '../../../../auth/authProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { BackArrow } from '../../../presentational/atoms/Arrow/backArrow';
-import { Title } from '../../../presentational/atoms/Title';
+import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 import { LogOutButton } from '../logOutButton';
 import { List } from '../../../presentational/molecules/List';
 import { ProfileSwitch } from './profileSwitch';
@@ -111,10 +110,7 @@ export function UserTasksList() {
   return (
     <>
       <ContentHeaderCover>
-        <ContentHeader>
-          <BackArrow />
-          <Title title={taskUser.nickname} />
-        </ContentHeader>
+        <TitleWithBackArrowHeader>{taskUser.nickname}</TitleWithBackArrowHeader>
         <FollowButton />
         <ProfileSwitch currentUserId={String(currentUserId)} />
         <RelationshipsCover>
@@ -210,16 +206,6 @@ const LogOutButtonCover = styled.div`
   padding: 10px;
   border-top: 1px solid #000;
   box-sizing: border-box;
-`;
-
-const ContentHeader = styled.div`
-  display: flex;
-  width: 100%;
-
-  > h2 {
-    width: 100%;
-    margin-right: 45px;
-  }
 `;
 
 const ContentHeaderCover = styled.div`

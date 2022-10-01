@@ -3,8 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { getFollowers } from '../../../../infra/api';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Title } from '../../../presentational/atoms/Title';
-import { BackArrow } from '../../../presentational/atoms/Arrow/backArrow';
+import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 import { FollowButtonForUsersList } from './followButtonForUsersList';
 
 export function FollowersList() {
@@ -30,10 +29,7 @@ export function FollowersList() {
   if (followers == null || followers == '') {
     return (
       <>
-        <ListHeader>
-          <BackArrow />
-          <Title title="フォロワー" />
-        </ListHeader>
+        <TitleWithBackArrowHeader>フォロワー</TitleWithBackArrowHeader>
         <ListCover>
           <div>フォロワーはいません。</div>
         </ListCover>
@@ -42,10 +38,7 @@ export function FollowersList() {
   } else {
     return (
       <>
-        <ListHeader>
-          <BackArrow />
-          <Title title="フォロワー" />
-        </ListHeader>
+        <TitleWithBackArrowHeader>フォロワー</TitleWithBackArrowHeader>
         <ListCover>
           {followers.map((follower) => (
             <UsersList key={follower.id}>
@@ -63,16 +56,6 @@ const ListCover = styled.div`
   position: relative;
   min-width: 180px;
   margin-top: 30px;
-`;
-
-const ListHeader = styled.div`
-  display: flex;
-  width: 100%;
-
-  > h2 {
-    width: 100%;
-    margin-right: 45px;
-  }
 `;
 
 const UsersList = styled.div`

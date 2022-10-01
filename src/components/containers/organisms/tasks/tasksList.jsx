@@ -59,7 +59,7 @@ export function TasksList() {
 
   return (
     <>
-      <Title title="タスク一覧" />
+      <Title>タスク一覧</Title>
       <NextButtonLink text="タスク登録" url="/tasks/create" />
       {tasks.map((task) => (
         <ListCover key={task.id}>
