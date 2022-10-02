@@ -89,7 +89,7 @@ export function ProfileSwitch(props) {
               <button
                 type="button"
                 onClick={() => {
-                  revertUserBio(userName);
+                  revertUserBio();
                 }}
               >
                 閉じる

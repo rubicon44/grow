@@ -6,6 +6,7 @@ export const Main = ({ children, className }) => {
 }
 
 const BaseMain = styled.main`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;

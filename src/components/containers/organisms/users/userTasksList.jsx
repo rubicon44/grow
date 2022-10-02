@@ -11,6 +11,7 @@ import { TaskStatusSwitch } from '../tasks/taskStatusSwitch';
 import { FollowButton } from './followButton';
 
 export function UserTasksList() {
+  const { signout } = useContext(AuthContext);
   const { currentUser } = useContext(AuthContext);
   const [currentUserAble, setCurrentUserAble] = useState(false);
   const [currentUserId, setCurrentUserId] = useState();
@@ -124,12 +125,14 @@ export function UserTasksList() {
 
   const [bioAble, setBioAble] = useState(true);
   const [load, setLoad] = useState(false);
-  const updateUserFunc = (username, user) => {
+  const updateUserFunc = () => {
+    const username = userNameDefault;
+    const user = { nickname: userNickName, username: userName, bio: userBio };
     updateUser(username, user)
       .then((response) => {
         const userBio = response.data.user.bio;
         const userNickName = response.data.user.nickname;
-        const userName = response.data.user.username
+        const userName = response.data.user.username;
         setUserBio(userBio);
         setUserNickName(userNickName);
         setUserName(userName);
@@ -145,20 +148,60 @@ export function UserTasksList() {
       });
   };
 
+  const [changeUserNameCheckAble, setChangeUserNameCheckAble] = useState(false);
+  const changeUserNameFunc = () => {
+    setLoad(false);
+    setChangeUserNameCheckAble(false);
+    updateUserFunc();
+    navigate(`/signIn`);
+    signout();
+    // setTimeout(() => signout(), 1000);
+  };
+
+  const revertUserNameFunc = (username) => {
+    getUser(username)
+    .then((response) => {
+      const userNickName = response.data.user.nickname;
+      const userName = response.data.user.username;
+      setUserNickName(userNickName);
+      setUserName(userName);
+    })
+    .catch();
+    // .catch((response) => {
+    // });
+  }
+
+  const unChangeUserNameFunc = () => {
+    setLoad(false);
+    const username = userNameDefault;
+    revertUserNameFunc(username);
+    setChangeUserNameCheckAble(false);
+    setBioAble(true);
+  };
+
   const handleTextSubmit = (e) => {
     e.preventDefault();
     e.persist();
     setLoad(true);
     const username = userNameDefault;
     const user = { nickname: userNickName, username: userName, bio: userBio };
-    updateUserFunc(username, user);
+    if(username === userName) {
+      updateUserFunc(username, user);
+    } else {
+      setChangeUserNameCheckAble(true);
+    }
   };
 
-  const revertUserBio = (userName) => {
-    getUser(userName)
+  const revertUserBio = () => {
+    const username = userNameDefault;
+    getUser(username)
       .then((response) => {
         const userBio = response.data.user.bio;
+        const userNickName = response.data.user.nickname;
+        const userName = response.data.user.username;
         setUserBio(userBio);
+        setUserNickName(userNickName);
+        setUserName(userName);
       })
       .catch();
     // .catch((response) => {
@@ -168,6 +211,19 @@ export function UserTasksList() {
 
   return (
     <>
+      {changeUserNameCheckAble === true && (
+        <BackgroundDisAbledCover>
+          <BackgroundDisAbled>
+            <div>ユーザーIDの変更には際ログインが必要です。変更しますか？</div>
+            <button type="button" onClick={() => changeUserNameFunc()}>
+              はい
+            </button>
+            <button type="button" onClick={() => unChangeUserNameFunc()}>
+              いいえ
+            </button>
+          </BackgroundDisAbled>
+        </BackgroundDisAbledCover>
+      )}
       <ContentHeaderCover>
         <TitleWithBackArrowHeader>{userNickName}</TitleWithBackArrowHeader>
         <FollowButton />
@@ -263,6 +319,23 @@ export function UserTasksList() {
     </>
   );
 }
+
+const BackgroundDisAbledCover = styled.div`
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ddd;
+`;
+
+const BackgroundDisAbled = styled.div`
+  margin: 30px;
+  margin-top: 40%;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+`;
 
 const Content = styled.article`
   border-top: 1px solid #ddd;
