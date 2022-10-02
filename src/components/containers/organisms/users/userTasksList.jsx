@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { getUser, getCurrentUser, updateUser } from '../../../../infra/api';
+import { getUser, updateUser } from '../../../../infra/api';
 import { AuthContext } from '../../../../auth/authProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -13,26 +13,10 @@ import { FollowButton } from './followButton';
 export function UserTasksList() {
   const { signout } = useContext(AuthContext);
   const { currentUser } = useContext(AuthContext);
-  const [currentUserAble, setCurrentUserAble] = useState(false);
-  const [currentUserId, setCurrentUserId] = useState();
-  const [currentUserName, setCurrentUserName] = useState([]);
-  useEffect(() => {
-    let isMounted = true;
-    if (currentUser) setCurrentUserAble(true);
-    getCurrentUser()
-      .then((response) => {
-        const currentUserId = String(response.data.user.id);
-        const currentUserName = response.data.user.username;
-        if (isMounted) setCurrentUserId(currentUserId);
-        if (isMounted) setCurrentUserName(currentUserName);
-      })
-      .catch();
-    // .catch((data) => {
-    // });
-    return () => {
-      isMounted = false;
-    };
-  }, [currentUser]);
+  const currentUserDataText = localStorage.getItem('user');
+  const currentUserData = JSON.parse(currentUserDataText);
+  const currentUserId = String(currentUserData.id);
+  const currentUserName = String(currentUserData.username);
 
   const sortdOrder = (taskData) => {
     const list = taskData;
@@ -226,7 +210,7 @@ export function UserTasksList() {
       )}
       <ContentHeaderCover>
         <TitleWithBackArrowHeader>{userNickName}</TitleWithBackArrowHeader>
-        <FollowButton />
+        <FollowButton currentUserId={currentUserId} />
         <ProfileSwitch
           currentUserId={String(currentUserId)}
           userBio={userBio}
@@ -313,7 +297,7 @@ export function UserTasksList() {
       </Content>
       {String(currentUserName) === String(userNameInUrl) && (
         <LogOutButtonCover>
-          {currentUserAble && <LogOutButton text="ログアウト" />}
+          {currentUser && <LogOutButton text="ログアウト" />}
         </LogOutButtonCover>
       )}
     </>

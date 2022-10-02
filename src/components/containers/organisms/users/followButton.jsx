@@ -1,27 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { getUser, getCurrentUser, postRelationships, deleteRelationships, getFollowings } from '../../../../infra/api';
+import { getUser, postRelationships, deleteRelationships, getFollowings } from '../../../../infra/api';
 
-export function FollowButton() {
+export function FollowButton(props) {
   const [followAble, setFollowAble] = useState(false);
   const [changeFollowButtonStyle, setChangeFollowButtonStyle] = useState(false);
-
-  const [currentUserId, setCurrentUserId] = useState([]);
-  useEffect(() => {
-    let isMounted = true;
-    getCurrentUser()
-      .then((response) => {
-        const currentUserId = String(response.data.user.id);
-        if (isMounted) setCurrentUserId(currentUserId);
-      })
-      .catch();
-    // .catch((data) => {
-    // });
-    return () => {
-      isMounted = false;
-    };
-  }, [currentUserId]);
+  const { currentUserId } = props;
 
   const location = useLocation();
   const locationPathName = location.pathname.split('/');
