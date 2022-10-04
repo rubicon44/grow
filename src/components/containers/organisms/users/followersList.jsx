@@ -9,6 +9,9 @@ import { FollowButtonForUsersList } from './followButtonForUsersList';
 export function FollowersList() {
   const location = useLocation();
   const { userId } = location.state;
+  const currentUserDataText = localStorage.getItem('user');
+  const currentUserData = JSON.parse(currentUserDataText);
+  const currentUserId = String(currentUserData.id);
   const [followers, setFollowers] = useState([]);
 
   useEffect(() => {
@@ -43,7 +46,7 @@ export function FollowersList() {
           {followers.map((follower) => (
             <UsersList key={follower.id}>
               <Link to={`/${follower.username}`}>{follower.nickname}</Link>
-              <FollowButtonForUsersList followerId={follower.id} userId={userId} />
+              <FollowButtonForUsersList followerId={follower.id} currentUserId={currentUserId} userId={userId} />
             </UsersList>
           ))}
         </ListCover>

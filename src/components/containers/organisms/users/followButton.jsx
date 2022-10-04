@@ -4,13 +4,12 @@ import styled from 'styled-components';
 import { getUser, postRelationships, deleteRelationships, getFollowings } from '../../../../infra/api';
 
 export function FollowButton(props) {
-  const [followAble, setFollowAble] = useState(false);
-  const [changeFollowButtonStyle, setChangeFollowButtonStyle] = useState(false);
-  const { currentUserId } = props;
-
   const location = useLocation();
   const locationPathName = location.pathname.split('/');
   const userNameInUrl = locationPathName[locationPathName.length - 1];
+  const { currentUserId } = props;
+  const [followAble, setFollowAble] = useState(false);
+  const [changeFollowButtonStyle, setChangeFollowButtonStyle] = useState(false);
   const [followerId, setFollowerId] = useState([]);
   useEffect(() => {
     let isMounted = true;
@@ -27,6 +26,7 @@ export function FollowButton(props) {
     };
   }, [userNameInUrl]);
 
+  const [usersFollowingId, setUsersFollowingId] = useState([]);
   const followFunc = () => {
     const relationships = { following_id: currentUserId, follower_id: followerId };
     postRelationships(relationships)
@@ -37,9 +37,7 @@ export function FollowButton(props) {
     // .catch((data) => {
     // });
     setFollowAble(false);
-    // todo: 下記方法は修正の余地ありの可能性あり。
-    // 「フォロー中」と「フォロー」を切り替えるため、useEffectの依存関係になっているcurrentUserIdを更新。
-    setCurrentUserId(null)
+    setUsersFollowingId(followerId);
   };
 
   const unFollowFunc = () => {
@@ -68,20 +66,17 @@ export function FollowButton(props) {
     return () => {
       isMounted = false;
     };
-  }, [currentUserId]);
+  }, [followAble]);
 
-  const [usersFollowingId, setUsersFollowingId] = useState();
   useEffect(() => {
     followings.map((users) => {
-      for (let i = 0; i < followings.length; i++) {
-        if(String(users.id) == String(followerId)) {
-          setUsersFollowingId(users.id);
-        } else {
-          return null;
-        }
+      if(String(users.id) === String(followerId)) {
+        setUsersFollowingId(users.id);
+      } else {
+        return null;
       }
     })
-  }, [followings]);
+  }, [followerId]);
 
   if(currentUserId !== followerId) {
     return(

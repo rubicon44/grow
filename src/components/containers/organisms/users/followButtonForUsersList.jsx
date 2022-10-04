@@ -1,50 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { getCurrentUser, postRelationships, deleteRelationships, getFollowings } from '../../../../infra/api';
+import { postRelationships, deleteRelationships, getFollowings } from '../../../../infra/api';
 
 export function FollowButtonForUsersList(props) {
+  const { currentUserId } = props;
+  const { userId } = props;
+  const { followerId } = props;
   const [followAble, setFollowAble] = useState(false);
   const [changeFollowButtonStyle, setChangeFollowButtonStyle] = useState(false);
-
-  const [currentUserId, setCurrentUserId] = useState([]);
-  useEffect(() => {
-    let isMounted = true;
-    getCurrentUser()
-      .then((response) => {
-        const currentUserId = String(response.data.user.id);
-        if (isMounted) setCurrentUserId(currentUserId);
-      })
-      .catch();
-    // .catch((data) => {
-    // });
-    return () => {
-      isMounted = false;
-    };
-  }, [currentUserId]);
-
-  const { followerId } = props;
-  const { userId } = props;
-
+  const [usersFollowingId, setUsersFollowingId] = useState([]);
   const followFunc = () => {
     const relationships = { following_id: currentUserId, follower_id: followerId };
     postRelationships(relationships)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch();
     // .catch((data) => {
     // });
     setFollowAble(false);
-    // todo: 下記方法は修正の余地ありの可能性あり。
-    // 「フォロー中」と「フォロー」を切り替えるため、useEffectの依存関係になっているcurrentUserIdを更新。
-    setCurrentUserId(null)
+    setUsersFollowingId(followerId);
   };
 
   const unFollowFunc = () => {
     const relationships = { following_id: currentUserId, follower_id: followerId };
     deleteRelationships(relationships)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch();
     // .catch((data) => {
@@ -66,17 +48,14 @@ export function FollowButtonForUsersList(props) {
     return () => {
       isMounted = false;
     };
-  }, [userId]);
+  }, [followAble]);
 
-  const [usersFollowingId, setUsersFollowingId] = useState();
   useEffect(() => {
     followings.map((users) => {
-      for (let i = 0; i < followings.length; i++) {
-        if(String(users.id) == String(followerId)) {
-          setUsersFollowingId(users.id);
-        } else {
-          return null;
-        }
+      if(String(users.id) === String(followerId)) {
+        setUsersFollowingId(users.id);
+      } else {
+        return null;
       }
     })
   }, [followings]);
