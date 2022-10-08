@@ -3,12 +3,17 @@ import styled from 'styled-components';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
 import { mediaquery } from '../../../../assets/styles/variable';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 import { TaskStatusSwitchText } from './taskStatusSwitchText';
 import { CalenderTableBodyColorSwitch } from './calenderTableBodyColorSwitch';
 import { VariableSizeList as List } from 'react-window';
 
 export function GunttChart(props) {
+  const { taskUser } = props;
+  const { userTasks } = props;
+
   const getDays = (year, month, blockNumber) => {
     const dayOfWeek = ['日', '月', '火', '水', '木', '金', '土'];
     let days = [];
@@ -28,9 +33,24 @@ export function GunttChart(props) {
     return days;
   };
 
+  const [currentPositionNumber, setCurrentPositionNumber] = useState(0);
+  const handleBackToPreviousMonthClick = () => {
+    setCurrentPositionNumber(currentPositionNumber - 1);
+  };
+
+  const handleForwardToNextMonthClick = () => {
+    if(currentPositionNumber < 0) {
+      setCurrentPositionNumber(currentPositionNumber + 1);
+    }
+  };
+
+  // 日付を取得し指定する。
   const currentDate = new Date();
-  const year = currentDate.getFullYear();
-  const yearPlusOne = currentDate.getFullYear() + 1;
+  let year = currentDate.getFullYear();
+  if(currentPositionNumber < 0) {
+    year = year + currentPositionNumber;
+  }
+  const yearPlusOne = year + 1;
   const month = currentDate.getMonth() + 1;
   const calenderData = {
     startMonth: `${year}-${month}`,
@@ -68,9 +88,8 @@ export function GunttChart(props) {
 
   useEffect(() => {
     getCalendar();
-  }, []);
+  }, [year]);
 
-  const { userTasks } = props;
   const [styles, setStyles] = useState([]);
   const taskBars = (userTasks) => {
     let start_date = dayjs(calenderData.startMonth);
@@ -108,7 +127,7 @@ export function GunttChart(props) {
 
   useEffect(() => {
     taskBars(userTasks);
-  }, [userTasks]);
+  }, [year]);
 
   const elm = useRef(null);
   const [calenderHeight, setCalenderHeight] = useState();
@@ -117,8 +136,6 @@ export function GunttChart(props) {
     const plusCalenderHeaderHeight = JSON.stringify(calenderHeaderHeight);
     setCalenderHeight(plusCalenderHeaderHeight);
   }, [calenderHeight]);
-
-  const { taskUser } = props;
 
   // 仮想スクロール用
   const items = calenders;
@@ -234,6 +251,10 @@ const Example = () => {
       </ContentHeaderCover>
 
       <Content>
+        <ArrowIconCover>
+          <ArrowBackIosIcon onClick={handleBackToPreviousMonthClick}>前月へ</ArrowBackIosIcon>
+          <ArrowForwardIosIcon onClick={handleForwardToNextMonthClick}>次月へ</ArrowForwardIosIcon>
+        </ArrowIconCover>
         <GunttContent>
           <GunttTask>
             <GunttTaskTitle>
@@ -279,6 +300,11 @@ const ContentHeaderCover = styled.div`
   padding: 30px 10px;
   text-align: center;
   background-color: #f8f7f3;
+`;
+
+const ArrowIconCover = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Content = styled.div`
