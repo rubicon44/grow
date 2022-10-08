@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, forwardRef } from 'react';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
@@ -28,11 +28,13 @@ export function GunttChart(props) {
     return days;
   };
 
-  // Calender月の総数は、サービス開始から10年の日付とする。
-  // Calenderの通常時のstart位置は、今日の日付とする。
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const yearPlusOne = currentDate.getFullYear() + 1;
+  const month = currentDate.getMonth() + 1;
   const calenderData = {
-    startMonth: '2022-04',
-    endMonth: '2025-10',
+    startMonth: `${year}-${month}`,
+    endMonth: `${yearPlusOne}-${month}`,
     blockSize: 32,
     blockNumber: 0,
     calenders:[],
@@ -72,6 +74,8 @@ export function GunttChart(props) {
   const [styles, setStyles] = useState([]);
   const taskBars = (userTasks) => {
     let start_date = dayjs(calenderData.startMonth);
+    // タスク期限バーの高さ
+    // todo: 動的に変化させる
     let top = 17 + 33 + 17;
     let left;
     let between;
@@ -117,10 +121,11 @@ export function GunttChart(props) {
   const { taskUser } = props;
 
   // 仮想スクロール用
-  const elm2 = useRef([]);
   const items = calenders;
-
   const [itemCalenderWidthArray, setItemCalenderWidthArray] = useState([]);
+  const [item0, setItem0] = useState([]);
+  const [item1, setItem1] = useState([]);
+  const [item2, setItem2] = useState([]);
   useEffect(() => {
     items.map((item) => {
       let calenderWidth;
@@ -138,35 +143,50 @@ export function GunttChart(props) {
         }
       }
       itemCalenderWidthArray.push(calenderWidth);
+      setItemCalenderWidthArray(itemCalenderWidthArray);
+      setItem0(itemCalenderWidthArray[0]);
+      setItem1(itemCalenderWidthArray[1]);
+      setItem2(itemCalenderWidthArray[2]);
     })
   }, [items]);
 
 const getItemSize = (index) => {
-  if(index >= 3) {
-    return itemCalenderWidthArray[index];
-  } else if(index < 3) {
-    if(index == 0) {
-      return 960;
-    }
+  // todo: 条件分岐をもっとわかりやすく修正する。
+  // 最初はobject、setItemされた後はnumberが入っている(これが原因でエラーが起こっている模様)。
+  if(typeof(item0) === "number") {
+    if(index >= 3) {
+      return itemCalenderWidthArray[index];
+    } else if(index < 3) {
+      if(index == 0) {
+        return item0;
+      }
 
-    if(index == 1) {
-      return 992;
-    }
+      if(index == 1) {
+        return item1;
+      }
 
-    if(index == 2) {
-      return 960;
-      // todo: 下記がundefinedになっている。おそらく、useEffectの依存配列がitemsになっていて、それが実行される前に、このgetItemSizeが呼び出されているためだと思う。
-      // 使えるようにするためには、上記を改善する必要がある。
-      // return itemCalenderWidthArray[2];
+      if(index == 2) {
+        return item2;
+      }
     }
   }
   return 960;
 };
 
-const Column = ({ index, style, data }) => (
-  <>
+const [moveTocurrentPositionAble, setMoveTocurrentPositionAble] = useState(false);
+useEffect(() => {
+  const currentDate = new Date();
+  const day = currentDate.getDate();
+  const currentPosition = day * '32' - '32';
+  document.getElementById('outer').scrollLeft = currentPosition;
+}, [moveTocurrentPositionAble]);
+
+const Column = ({ index, style, data }) => {
+  setMoveTocurrentPositionAble(true);
+  return (
+    <>
     <div style={style}>
-      <CalenderTable ref={elm2}>
+      <CalenderTable>
         <thead>
           <tr>
             <th>{data[index].date}</th>
@@ -183,21 +203,29 @@ const Column = ({ index, style, data }) => (
       <CalenderTaskBar style={{top: style.top, left: style.left, width: style.width}}></CalenderTaskBar>
     ))}
   </>
+  )
+};
+
+const outerElementType = (props) => (
+  <div id="outer" {...props} />
 );
 
-const Example = () => (
-  <List
-    layout="horizontal"
-    direction="ltr"
-    height={443}
-    itemData={items}
-    itemCount={items.length}
-    itemSize={(index) => (getItemSize(index))}
-    width={919}
-  >
-    {Column}
-  </List>
-);
+const Example = () => {
+  return(
+    <List
+    outerElementType={outerElementType}
+      layout="horizontal"
+      direction="ltr"
+      height={443}
+      itemData={items}
+      itemCount={items.length}
+      itemSize={(index) => (getItemSize(index))}
+      width={920}
+    >
+      {Column}
+    </List>
+  )
+};
 
   return (
     <>
@@ -231,15 +259,6 @@ const Example = () => (
               ))}
             </GunttTaskList>
           </GunttTask>
-
-          {/* 1ヶ月のみ */}
-          {/* {days.map((days) => (
-            <div key={days.blockNumber}>
-              <div>{days.dayOfWeek}</div>
-              <div>{days.day}</div>
-            </div>
-          ))} */}
-          {/* 4ヶ月分 */}
           <CalenderTableCoverWrapper>
             <CalenderTableCover>
               <Example />
@@ -336,12 +355,6 @@ const CalenderTable = styled.table`
       }
     }
   }
-`;
-
-const CalenderTableHead = styled.thead`
-`;
-
-const CalenderTableBody = styled.tbody`
 `;
 
 const CalenderTaskBar = styled.span`
