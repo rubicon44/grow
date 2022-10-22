@@ -99,7 +99,7 @@ export function GunttChart(props) {
     let start_date = dayjs(calenderData.startMonth);
     // タスク期限バーの高さ
     // todo: 動的に変化させる
-    let top = 17 + 33 + 17;
+    let top = 75;
     let left;
     let width;
     let start;
@@ -191,7 +191,7 @@ export function GunttChart(props) {
           width: `${width}px`,
         }
       }
-      top = top + 65;
+      top = top + 80;
 
       return style;
     });
@@ -283,30 +283,31 @@ useEffect(() => {
   const day = currentDate.getDate();
   const currentPosition = day * "32" - "32";
   document.getElementById("outer").scrollLeft = currentPosition;
+  document.getElementById("outer").style.padding = "1px 0 0 0";
 }, [moveTocurrentPositionAble]);
 
 const Column = ({ index, style, data }) => {
   setMoveTocurrentPositionAble(true);
   return (
     <>
-    <div style={style}>
-      <CalenderTable>
-        <thead>
-          <tr>
-            <th>{data[index].date}</th>
-          </tr>
-        </thead>
-        <tbody style={{height: calenderHeight + 'px'}}>
-          {data[index].days.map((days) => (
-            <CalenderTableBodyColorSwitch days={days} />
-          ))}
-        </tbody>
-      </CalenderTable>
-    </div>
-    {styles.map((style) => (
-      <CalenderTaskBar style={{top: style.top, left: style.left, width: style.width}}></CalenderTaskBar>
-    ))}
-  </>
+      <div style={style}>
+        <CalenderTable>
+          <thead>
+            <tr>
+              <th>{data[index].date}</th>
+            </tr>
+          </thead>
+          <tbody style={{height: calenderHeight + 'px'}}>
+            {data[index].days.map((days) => (
+              <CalenderTableBodyColorSwitch days={days} />
+            ))}
+          </tbody>
+        </CalenderTable>
+      </div>
+      {styles.map((style) => (
+        <CalenderTaskBar style={{top: style.top, left: style.left, width: style.width}}></CalenderTaskBar>
+      ))}
+    </>
   )
 };
 
@@ -320,7 +321,7 @@ const Example = () => {
       outerElementType={outerElementType}
       layout="horizontal"
       direction="ltr"
-      height={443}
+      height={50 + 80 * userTasks.length}
       itemData={items}
       itemCount={items.length}
       itemSize={(index) => (getItemSize(index))}
@@ -399,6 +400,8 @@ const Content = styled.div`
 
 const GunttContent = styled.div`
   display: flex;
+  max-height: 450px;
+  overflow: scroll;
 `;
 
 const GunttTask = styled.table`
@@ -409,24 +412,24 @@ const GunttTask = styled.table`
 
     > tr > th, td {
       border: 1px solid;
+      box-sizing: border-box;
     }
   }
 `;
 
 const GunttTaskTitle = styled.thead`
-  height: 51px;
+  height: 50px;
   background: #ed8077;
 `;
 
 const GunttTaskList = styled.tbody`
-  > tr {
-    height: 65px;
+  > tr, td {
+    height: 80px;
   }
 `;
 
 const CalenderTableCoverWrapper = styled.div`
   position: relative;
-  overflow: scroll;
 
   ${mediaquery.desktop`
   width: 1500px;
@@ -439,7 +442,6 @@ const CalenderTableCover = styled.div`
 
 const CalenderTable = styled.table`
   position: relative;
-  // border-right: 2px solid #000;
 
   > thead, tbody {
     white-space: nowrap;
