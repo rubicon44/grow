@@ -98,7 +98,6 @@ export function GunttChart(props) {
   const taskBars = (userTasks) => {
     let start_date = dayjs(calenderData.startMonth);
     // タスク期限バーの高さ
-    // todo: 動的に変化させる
     let top = 75;
     let left;
     let width;
@@ -119,12 +118,12 @@ export function GunttChart(props) {
         let CeDb = 31;
 
         const taskStartDate = task.start_date.split( /[-|]/ );
-        TsYa = taskStartDate[0];
+        TsYa = Number(taskStartDate[0]);
         TsMa = Number(taskStartDate[1].replace(/^0/, ''));
         TsDa = taskStartDate[2].replace(/^0/, '');
         const taskEndDate = task.end_date.split( /[-|]/ );
-        TeYb = taskEndDate[0];
-        TeMb = taskEndDate[1].replace(/^0/, '');
+        TeYb = Number(taskEndDate[0]);
+        TeMb = Number(taskEndDate[1].replace(/^0/, ''));
         TeDb = Number(taskEndDate[2].replace(/^0/, ''));
 
         const getEndOfMonth = (year, month) => {
@@ -166,7 +165,12 @@ export function GunttChart(props) {
         }
         let EndOfMonth = getEndOfMonth(TsYa, TsMa);
         let restOfDatesOfMonthStart = calcRestOfDatesOfMonthStart(TsDa, EndOfMonth);
-        let allDaysInTask = allDaysInBetweenMonth + restOfDatesOfMonthStart + TeDb;
+        let allDaysInTask;
+        if(TsYa === TeYb && TsMa === TeMb) {
+          allDaysInTask = TeDb - restOfDatesOfMonthStart + 1;
+        } else {
+          allDaysInTask = allDaysInBetweenMonth + restOfDatesOfMonthStart + TeDb;
+        }
         let lastDayInCurrentCalender = new Date(`${CeYb}-${CeMb}-${CeDb} 0:00`); // Date関数のずれをなくす書き方
         let lastDayInTaskBar = new Date(`${TeYb}-${TeMb}-${TeDb} 0:00`);
         let termDay = 0;
