@@ -167,7 +167,7 @@ export function GunttChart(props) {
         let restOfDatesOfMonthStart = calcRestOfDatesOfMonthStart(TsDa, EndOfMonth);
         let allDaysInTask;
         if(TsYa === TeYb && TsMa === TeMb) {
-          allDaysInTask = TeDb - restOfDatesOfMonthStart + 1;
+          allDaysInTask = TeDb - TsDa + 1;
         } else {
           allDaysInTask = allDaysInBetweenMonth + restOfDatesOfMonthStart + TeDb;
         }
