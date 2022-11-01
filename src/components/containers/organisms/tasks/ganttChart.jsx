@@ -193,6 +193,7 @@ export function GunttChart(props) {
           top: `${top}px`,
           left: `${left}px`,
           width: `${width}px`,
+          taskStatus: task.status,
         }
       }
       top = top + 80;
@@ -308,9 +309,20 @@ const Column = ({ index, style, data }) => {
           </tbody>
         </CalenderTable>
       </div>
-      {styles.map((style) => (
-        <CalenderTaskBar style={{top: style.top, left: style.left, width: style.width}}></CalenderTaskBar>
-      ))}
+      {styles.map((style) => {
+        switch(style.taskStatus) {
+            case 0:
+              return ( <RedCalenderTaskBar style={{top: style.top, left: style.left, width: style.width}}></RedCalenderTaskBar> )
+            case 1:
+              return ( <BlueCalenderTaskBar style={{top: style.top, left: style.left, width: style.width}}></BlueCalenderTaskBar> )
+            case 2:
+              return ( <GreenCalenderTaskBar style={{top: style.top, left: style.left, width: style.width}}></GreenCalenderTaskBar> )
+            case 3:
+              return ( <YellowGreenCalenderTaskBar style={{top: style.top, left: style.left, width: style.width}}></YellowGreenCalenderTaskBar> )
+            default:
+          };
+          return <CalenderTaskBar style={{top: style.top, left: style.left, width: style.width}}></CalenderTaskBar>;
+      })}
     </>
   )
 };
@@ -400,7 +412,6 @@ const Example = () => {
     </StickyList>
   )
 };
-
 
 // const Example = () => {
 //   return(
@@ -568,6 +579,22 @@ const CalenderTaskBar = styled.span`
   width: 30px;
   border-radius: 4px;
   background-color: #fbd38d;
+`;
+
+const RedCalenderTaskBar = styled(CalenderTaskBar)`
+  background-color: #ed8077;
+`;
+
+const BlueCalenderTaskBar = styled(CalenderTaskBar)`
+  background-color: #4484c5;
+`;
+
+const GreenCalenderTaskBar = styled(CalenderTaskBar)`
+  background-color: #5eb5a6;
+`;
+
+const YellowGreenCalenderTaskBar = styled(CalenderTaskBar)`
+  background-color: #a1af2f;
 `;
 
 const Outer = styled.div`
