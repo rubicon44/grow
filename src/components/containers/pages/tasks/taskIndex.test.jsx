@@ -1,36 +1,11 @@
-// import React, { useState as useStateMock } from 'react';
-// import { BrowserRouter as Router } from 'react-router-dom';
-// import { render, screen, waitFor } from '@testing-library/react';
-// import { TaskIndex } from './taskIndex';
-// import { AuthContext } from '../../../../auth/authProvider';
+import { TaskIndex } from './index';
+import { render } from '../../../../utils/test-utils';
+import { screen } from '@testing-library/react';
 
-// jest.mock('react', () => ({
-//   ...jest.requireActual('react'),
-//   useState: jest.fn(),
-// }));
+describe('TaskIndex', () => {
+  test('renders TaskIndex component', () => {
+    render(<TaskIndex />);
 
-// describe('TaskIndexコンポーネントテスト', () => {
-//   const setState = jest.fn();
-
-//   beforeEach(() => {
-//     useStateMock.mockImplementation((init) => [init, setState]);
-//   });
-
-//   it('タイトルが「タスク一覧」になっているか', async () => {
-//     const testCurrentUser = { nickname: 'testUser', email: 'test@test.com' };
-//     const [currentUser, setCurrentUser] = useStateMock(testCurrentUser);
-
-//     render(
-//       <Router>
-//         <AuthContext.Provider value={{ currentUser }}>
-//           <TaskIndex />
-//         </AuthContext.Provider>
-//       </Router>,
-//     );
-
-//     await waitFor(() => {
-//       const nextTaskCreateLink = screen.getByText('タスク登録');
-//       expect(nextTaskCreateLink).toHaveTextContent(/^タスク登録$/);
-//     });
-//   });
-// });
+    screen.debug();
+  });
+});
