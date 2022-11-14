@@ -36,7 +36,7 @@ export function TasksList() {
     return () => {
       isMounted = false;
     };
-  }, [tasks]);
+  }, []);
 
   const [currentUserId, setCurrentUserId] = useState([]);
   const [currentUserName, setCurrentUserName] = useState([]);
