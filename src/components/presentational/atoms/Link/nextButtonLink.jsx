@@ -1,10 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
+import { BaseLink } from '../Link';
 
-const ButtonStyle = styled(Link)`
+export function NextButtonLink(props) {
+  const { url } = props;
+  const { text } = props;
+  return <DangerButtonLink url={url} >{text}</DangerButtonLink>;
+}
+
+const DangerButtonLink = styled(BaseLink)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,7 +20,6 @@ const ButtonStyle = styled(Link)`
   color: #fff;
   font-size: 20px;
   font-weight: bold;
-  text-decoration: none;
   border: none;
   border-radius: 50px;
   background-color: #ff444f;
@@ -24,20 +29,15 @@ const ButtonStyle = styled(Link)`
     height: 60px;
     font-size: 24px;
     line-height: 36px;
-`}
+  `}
 `;
-export function NextButton(props) {
-  const { url } = props;
-  const { text } = props;
-  return <ButtonStyle to={url}>{text}</ButtonStyle>;
-}
 
-NextButton.defaultProps = {
+NextButtonLink.defaultProps = {
   url: '',
   text: '',
 };
 
-NextButton.propTypes = {
+NextButtonLink.propTypes = {
   url: PropTypes.string,
   text: PropTypes.string,
 };

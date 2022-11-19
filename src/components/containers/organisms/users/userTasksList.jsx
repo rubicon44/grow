@@ -1,14 +1,330 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { getUser, updateUser } from '../../../../infra/api';
+import { AuthContext } from '../../../../auth/authProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { BackButton } from '../../../presentational/atoms/Button/backButton';
-import { Title } from '../../../presentational/atoms/Title/title';
-import { LogOutButton } from '../../../presentational/atoms/Button/logOut';
-import { List } from '../../../presentational/molecules/List/list';
+import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
+import { LogOutButton } from '../logOutButton';
+import { List } from '../../../presentational/molecules/List';
 import { ProfileSwitch } from './profileSwitch';
 import { TaskStatusSwitch } from '../tasks/taskStatusSwitch';
 import { FollowButton } from './followButton';
+
+export function UserTasksList() {
+  const { signout } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
+  const currentUserDataText = localStorage.getItem('user');
+  const currentUserData = JSON.parse(currentUserDataText);
+  const currentUserId = String(currentUserData.id);
+  const currentUserName = String(currentUserData.username);
+
+  const sortdOrder = (taskData) => {
+    const list = taskData;
+    if (list.length === 0) {
+      const dOrder = [];
+      return dOrder;
+    }
+    const dOrder = list.sort((a, b) => {
+      if (a.id < b.id) {
+        return 1;
+      }
+      if (a.id > b.id) {
+        return -1;
+      }
+      return 0;
+    });
+    return dOrder;
+  };
+
+  const location = useLocation();
+  const locationPathName = location.pathname.split('/');
+  const userNameInUrl = locationPathName[locationPathName.length - 1];
+
+  const [taskUser, setTaskUser] = useState([]);
+  const [userTasks, setUserTasks] = useState([]);
+  const [userLikedTasks, setUserLikedTasks] = useState([]);
+  const [taskCreatedUser, setTaskCreatedUser] = useState([]);
+  const [userBio, setUserBio] = useState([]);
+  const [userNickName, setUserNickName] = useState([]);
+  const [userName, setUserName] = useState([]);
+  const [userId, setUserId] = useState([]);
+  const [userNameDefault, setUserNameDefault] = useState([]);
+  useEffect(() => {
+    let isMounted = true;
+    getUser(userNameInUrl)
+      .then((response) => {
+        const taskUser = response.data.user;
+        const taskData = taskUser.tasks;
+        const dOrderData = sortdOrder(taskData);
+        const likeTaskData = taskUser.like_tasks;
+        const taskCreatedUser = response.data.task_created_user;
+        const userBio = response.data.user.bio;
+        const userNickName = response.data.user.nickname;
+        const userName = response.data.user.username;
+        const userId = response.data.user.id;
+        const userNameDefault = response.data.user.username;
+        if (isMounted) setTaskCreatedUser(taskCreatedUser);
+        if (isMounted) setUserLikedTasks(likeTaskData);
+        if (isMounted) setTaskUser(taskUser);
+        if (isMounted) setUserTasks(dOrderData);
+        if (isMounted) setUserBio(userBio);
+        if (isMounted) setUserNickName(userNickName);
+        if (isMounted) setUserName(userName);
+        if (isMounted) setUserId(String(userId));
+        if (isMounted) setUserNameDefault(userNameDefault);
+      })
+      .catch();
+    // .catch((data) => {
+    // });
+    return () => {
+      isMounted = false;
+    };
+  }, [userNameInUrl]);
+
+  const navigate = useNavigate();
+  const nextGunttFunc = () => {
+    navigate(`/${taskUser.username}/guntt`, {
+      state: {
+        taskUser: taskUser,
+        userTasks: userTasks,
+      },
+    });
+  };
+
+  const nextFollowingsFunc = () => {
+    navigate(`/${taskUser.username}/followings`, {
+      state: {
+        userId: taskUser.id,
+      },
+    });
+  };
+
+  const nextFollowersFunc = () => {
+    navigate(`/${taskUser.username}/followers`, {
+      state: {
+        userId: taskUser.id,
+      },
+    });
+  };
+
+  const [bioAble, setBioAble] = useState(true);
+  const [load, setLoad] = useState(false);
+  const updateUserFunc = () => {
+    const username = userNameDefault;
+    const user = { nickname: userNickName, username: userName, bio: userBio };
+    updateUser(username, user)
+      .then((response) => {
+        const userBio = response.data.user.bio;
+        const userNickName = response.data.user.nickname;
+        const userName = response.data.user.username;
+        setUserBio(userBio);
+        setUserNickName(userNickName);
+        setUserName(userName);
+        setBioAble(true);
+        setLoad(false);
+      })
+      // .catch();
+      .catch(errors => {
+        if(errors.response.status === 401) {
+          window.alert("認証できませんでした。");
+        } else {
+          window.alert("このusernameはすでに登録されています。");
+        }
+        setUserName(userNameDefault);
+        setLoad(false);
+      });
+  };
+
+  const [changeUserNameCheckAble, setChangeUserNameCheckAble] = useState(false);
+  const changeUserNameFunc = () => {
+    setLoad(false);
+    setChangeUserNameCheckAble(false);
+    updateUserFunc();
+    navigate(`/signIn`);
+    signout();
+    // setTimeout(() => signout(), 1000);
+  };
+
+  const revertUserNameFunc = (username) => {
+    getUser(username)
+    .then((response) => {
+      const userNickName = response.data.user.nickname;
+      const userName = response.data.user.username;
+      setUserNickName(userNickName);
+      setUserName(userName);
+    })
+    .catch();
+    // .catch((response) => {
+    // });
+  }
+
+  const unChangeUserNameFunc = () => {
+    setLoad(false);
+    const username = userNameDefault;
+    revertUserNameFunc(username);
+    setChangeUserNameCheckAble(false);
+    setBioAble(true);
+  };
+
+  const handleTextSubmit = (e) => {
+    e.preventDefault();
+    e.persist();
+    setLoad(true);
+    const username = userNameDefault;
+    const user = { nickname: userNickName, username: userName, bio: userBio };
+    if(username === userName) {
+      updateUserFunc(username, user);
+    } else {
+      setChangeUserNameCheckAble(true);
+    }
+  };
+
+  const revertUserBio = () => {
+    const username = userNameDefault;
+    getUser(username)
+      .then((response) => {
+        const userBio = response.data.user.bio;
+        const userNickName = response.data.user.nickname;
+        const userName = response.data.user.username;
+        setUserBio(userBio);
+        setUserNickName(userNickName);
+        setUserName(userName);
+      })
+      .catch();
+    // .catch((response) => {
+    // });
+    setBioAble(true);
+  };
+
+  const uniqueTaskCreatedUsers = Array.from(
+    new Map(taskCreatedUser.map((user) => [user.id, user])).values()
+  );
+
+  return (
+    <>
+      {changeUserNameCheckAble === true && (
+        <BackgroundDisAbledCover>
+          <BackgroundDisAbled>
+            <div>ユーザーIDの変更には際ログインが必要です。変更しますか？</div>
+            <button type="button" onClick={() => changeUserNameFunc()}>
+              はい
+            </button>
+            <button type="button" onClick={() => unChangeUserNameFunc()}>
+              いいえ
+            </button>
+          </BackgroundDisAbled>
+        </BackgroundDisAbledCover>
+      )}
+      <ContentHeaderCover>
+        <TitleWithBackArrowHeader>{userNickName}</TitleWithBackArrowHeader>
+        <FollowButton currentUserId={currentUserId} />
+        <ProfileSwitch
+          currentUserId={String(currentUserId)}
+          userBio={userBio}
+          userNickName={userNickName}
+          setUserNickName={setUserNickName}
+          userName={userName}
+          setUserName={setUserName}
+          userId={userId}
+          bioAble={bioAble}
+          setBioAble={setBioAble}
+          load={load}
+          handleTextSubmit={handleTextSubmit}
+          revertUserBio={revertUserBio}
+           />
+        <RelationshipsCover>
+          <a onClick={() => nextFollowingsFunc()}>
+            <span>フォロー中</span>
+          </a>
+          <a onClick={() => nextFollowersFunc()}>
+            <span>フォロワー</span>
+          </a>
+        </RelationshipsCover>
+      </ContentHeaderCover>
+      <Content>
+        <NextGunttLink
+          type="button"
+          onClick={() => nextGunttFunc(currentUserId)}
+        >
+          ガントチャート
+        </NextGunttLink>
+
+        <>
+          {userTasks.length === 0 ? (
+            <ListCover key={userTasks}>
+              <div>まだ投稿はありません。</div>
+            </ListCover>
+          ) : (
+            userTasks.map((task) => (
+              <ListCoverWrapper key={task.id}>
+                <ListCover>
+                  <List
+                    title={task.title}
+                    titleUrl={`/${String(taskUser.username)}/tasks/${String(task.id)}`}
+                    content={task.content}
+                    url={`/${taskUser.username}`}
+                    text={taskUser.nickname}
+                  />
+                  <TaskStatusSwitch taskStatus={task.status} />
+                </ListCover>
+              </ListCoverWrapper>
+            ))
+          )}
+        </>
+
+        <>
+          <LikedTask>いいねしたタスク</LikedTask>
+          {userLikedTasks.length === 0 ? (
+            <ListCover key={userLikedTasks}>
+              <div>まだいいねはありません。</div>
+            </ListCover>
+          ) : (
+            userLikedTasks.map((task) => (
+              uniqueTaskCreatedUsers.map((user) => (
+                String(task.user_id) === String(user.id) && (
+                  <ListCoverWrapper key={task.id}>
+                    <ListCover>
+                      <List
+                        title={task.title}
+                        titleUrl={`/${String(user.username)}/tasks/${String(task.id)}`}
+                        content={task.content}
+                        url={`/${user.username}`}
+                        text={user.nickname}
+                      />
+                      <TaskStatusSwitch taskStatus={task.status} />
+                    </ListCover>
+                  </ListCoverWrapper>
+                )
+              ))
+            ))
+          )}
+        </>
+      </Content>
+      {String(currentUserName) === String(userNameInUrl) && (
+        <LogOutButtonCover>
+          {currentUser && <LogOutButton text="ログアウト" />}
+        </LogOutButtonCover>
+      )}
+    </>
+  );
+}
+
+const BackgroundDisAbledCover = styled.div`
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ddd;
+`;
+
+const BackgroundDisAbled = styled.div`
+  margin: 30px;
+  margin-top: 40%;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+`;
 
 const Content = styled.article`
   border-top: 1px solid #ddd;
@@ -26,23 +342,12 @@ const LogOutButtonCover = styled.div`
   box-sizing: border-box;
 `;
 
-const ContentHeader = styled.div`
-  display: flex;
-  width: 100%;
-
-  > h2 {
-    width: 100%;
-    margin-right: 45px;
-  }
-`;
-
 const ContentHeaderCover = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-width: 260px;
-  padding: 30px 10px 0;
   text-align: center;
   background-color: #f8f7f3;
 `;
@@ -95,179 +400,3 @@ const ListCoverWrapper = styled.div`
 const ListCover = styled.div`
   position: relative;
 `;
-
-export function UserTasksList(props) {
-  const location = useLocation();
-  const locationPathName = location.pathname.split('/');
-  const userNameInUrl = locationPathName[locationPathName.length - 1];
-
-  const { taskUser } = props;
-  const { userTasks } = props;
-  const { userLikedTasks } = props;
-  const { taskCreatedUser } = props;
-  const { currentUserId } = props;
-  const { currentUserName } = props;
-  const { currentUserAble } = props;
-
-  const navigate = useNavigate();
-  const nextGunttFunc = () => {
-    navigate(`/users/${taskUser.id}/guntt`, {
-      state: {
-        taskUser: taskUser,
-        userTasks: userTasks,
-      },
-    });
-  };
-
-  const nextFollowingsFunc = () => {
-    navigate(`/${taskUser.username}/followings`, {
-      state: {
-        userId: taskUser.id,
-      },
-    });
-  };
-
-  const nextFollowersFunc = () => {
-    navigate(`/${taskUser.username}/followers`, {
-      state: {
-        userId: taskUser.id,
-      },
-    });
-  };
-
-  return (
-    <>
-      <ContentHeaderCover>
-        <ContentHeader>
-          <BackButton />
-          <Title title={taskUser.nickname} />
-        </ContentHeader>
-        <FollowButton />
-        <ProfileSwitch currentUserId={String(currentUserId)} />
-        <RelationshipsCover>
-          <a onClick={() => nextFollowingsFunc()}>
-            <span>フォロー中</span>
-          </a>
-          <a onClick={() => nextFollowersFunc()}>
-            <span>フォロワー</span>
-          </a>
-        </RelationshipsCover>
-      </ContentHeaderCover>
-      <Content>
-        <NextGunttLink
-          type="button"
-          onClick={() => nextGunttFunc(currentUserId)}
-        >
-          ガントチャート
-        </NextGunttLink>
-        {userTasks.length === 0 ? (
-          <ListCover key={userTasks}>
-            <div>まだ投稿はありません。</div>
-          </ListCover>
-        ) : (
-          userTasks.map((task) => (
-            <ListCoverWrapper>
-              <ListCover key={task.id}>
-                <List
-                  taskId={String(task.id)}
-                  title={task.title}
-                  content={task.content}
-                  taskUserId={String(taskUser.id)}
-                  taskCreatedUserId={String(taskUser.id)}
-                  taskCreatedUserName={String(taskUser.username)}
-                  taskCreatedUserNickName={taskUser.nickname}
-                />
-                <TaskStatusSwitch taskStatus={task.status} />
-              </ListCover>
-            </ListCoverWrapper>
-          ))
-        )}
-
-        <LikedTask>いいねしたタスク</LikedTask>
-        {userLikedTasks.length === 0 ? (
-          <ListCover key={userLikedTasks}>
-            <div>まだいいねはありません。</div>
-          </ListCover>
-        ) : (
-          userLikedTasks.map((task) => (
-            // todo: この方法はあまり綺麗ではない気がする(特にAPIでのデータの返し方を再考したい)。
-            taskCreatedUser.map((user) => (
-              String(task.user_id) === String(user.id) && (
-                <ListCoverWrapper>
-                  <ListCover key={task.id}>
-                    <List
-                      taskId={String(task.id)}
-                      title={task.title}
-                      content={task.content}
-                      taskUserId={String(taskUser.id)}
-                      taskCreatedUserName={user.username}
-                      taskCreatedUserNickName={user.nickname}
-                    />
-                    <TaskStatusSwitch taskStatus={task.status} />
-                  </ListCover>
-                </ListCoverWrapper>
-              )
-            ))
-          ))
-        )}
-      </Content>
-      {String(currentUserName) === String(userNameInUrl) && (
-        <LogOutButtonCover>
-          {currentUserAble && <LogOutButton text="ログアウト" />}
-        </LogOutButtonCover>
-      )}
-    </>
-  );
-}
-
-UserTasksList.defaultProps = {
-  taskUser: {},
-  userTasks: [],
-  currentUserId: '',
-  currentUserAble: false,
-};
-
-UserTasksList.propTypes = {
-  taskUser: PropTypes.exact({
-    id: PropTypes.number,
-    nickname: PropTypes.string,
-    created_at: PropTypes.string,
-    updated_at: PropTypes.string,
-    email: PropTypes.string,
-    firebase_id: PropTypes.string,
-    password_digest: PropTypes.string,
-    bio: PropTypes.string,
-    tasks: PropTypes.arrayOf(
-      PropTypes.exact({
-        id: PropTypes.number,
-        title: PropTypes.string,
-        content: PropTypes.string,
-        status: PropTypes.number,
-        start_date: PropTypes.string,
-        end_date: PropTypes.string,
-        created_at: PropTypes.string,
-        updated_at: PropTypes.string,
-        user_id: PropTypes.string,
-      })
-    ),
-  }),
-  userTasks: PropTypes.arrayOf(
-    PropTypes.exact({
-      id: PropTypes.number,
-      title: PropTypes.string,
-      content: PropTypes.string,
-      status: PropTypes.number,
-      start_date: PropTypes.string,
-      end_date: PropTypes.string,
-      created_at: PropTypes.string,
-      updated_at: PropTypes.string,
-      user_id: PropTypes.string,
-    })
-  ),
-  currentUserId: PropTypes.string,
-  currentUserAble: PropTypes.bool,
-  // currentUser: PropTypes.exact({
-  //   uid: PropTypes.string,
-  //   email: PropTypes.string,
-  // }),
-};

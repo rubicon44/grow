@@ -2,21 +2,9 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { AuthContext } from '../../../../auth/authProvider';
-import { Header } from '../../organisms/header';
+import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 
-const Title = styled.h2`
-  width: 288px;
-  font-size: 36px;
-  font-family: YuMincho;
-`;
-
-const FormCover = styled.div`
-  min-width: 260px;
-  padding: 0 10px;
-  text-align: left;
-`;
-
-export function SignIn() {
+export function SignInForm() {
   const navigate = useNavigate();
   const { signin } = useContext(AuthContext);
   const [load, setLoad] = useState(false);
@@ -31,8 +19,7 @@ export function SignIn() {
 
   return (
     <>
-      <Header />
-      <Title>ログイン</Title>
+      <TitleWithBackArrowHeader>ログイン</TitleWithBackArrowHeader>
       <FormCover>
         <form onSubmit={handleSubmit}>
           <label htmlFor="email">
@@ -56,3 +43,9 @@ export function SignIn() {
     </>
   );
 }
+
+const FormCover = styled.div`
+  min-width: 260px;
+  padding: 0 10px;
+  text-align: left;
+`;

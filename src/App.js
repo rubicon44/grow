@@ -11,10 +11,10 @@ import { AuthProvider } from './auth/authProvider';
 import { PrivateRoute } from './auth/privateRoute';
 import { auth } from './infra/firebase';
 // 認証前・サインイン・サインアップ・NotFound
-import { Top } from './components/containers/pages/static_pages/top';
-import { SignIn } from './components/containers/pages/static_pages/sign_in';
-import { SignUp } from './components/containers/pages/static_pages/sign_up';
-import { NotFound } from './components/containers/pages/static_pages/notFound';
+import { Top } from './components/containers/pages/staticPages/top';
+import { SignIn } from './components/containers/pages/staticPages/signIn';
+import { SignUp } from './components/containers/pages/staticPages/signUp';
+import { NotFound } from './components/containers/pages/staticPages/notFound';
 // タスク
 import { TaskIndex } from './components/containers/pages/tasks';
 import { TaskShow } from './components/containers/pages/tasks/show';
@@ -28,25 +28,6 @@ import { UserFollowers } from './components/containers/pages/users/followers';
 import { UserNotifications } from './components/containers/pages/users/notifications';
 // 検索
 import { SearchIndex } from './components/containers/pages/search';
-
-const Wrapper = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const PageWrapper = styled.div`
-  min-width: 300px;
-  max-width: 320px;
-  min-height: 700px;
-  background-color: #eeeff1;
-
-  ${mediaquery.desktop`
-    max-width: 1280px;
-  `}
-`;
 
 export function App() {
   const [loading, setLoading] = useState(true);
@@ -76,8 +57,8 @@ export function App() {
               {/* top・サインイン・サインアップ・NotFound */}
               <Route exact path="/" element={<Top />} />
               <Route exact path="/top" element={<Top />} />
-              <Route exact path="/sign_in" element={<SignIn />} />
-              <Route exact path="/sign_up" element={<SignUp />} />
+              <Route exact path="/signIn" element={<SignIn />} />
+              <Route exact path="/signUp" element={<SignUp />} />
               <Route exact path="*" element={<NotFound />} />
               {/* task */}
               <Route
@@ -104,7 +85,7 @@ export function App() {
               {/* GunttChart */}
               <Route
                 exact
-                path="/users/:id/guntt"
+                path="/:username/guntt"
                 element={<PrivateRoute element={<UserGuntt />} />}
               />
               <Route
@@ -142,3 +123,22 @@ export function App() {
     </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const PageWrapper = styled.div`
+  min-width: 320px;
+  max-width: 320px;
+  min-height: 700px;
+  background-color: #eeeff1;
+
+  ${mediaquery.desktop`
+    max-width: 1280px;
+  `}
+`;

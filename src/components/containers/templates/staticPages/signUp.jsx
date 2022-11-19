@@ -1,14 +1,14 @@
 import React from 'react';
 import { Header } from '../../organisms/header';
 import { Main } from '../main';
-import { SearchList } from '../../organisms/search/searchList';
+import { SignUpForm } from '../../organisms/staticPages/signUpForm';
 
-export function SearchTemplate() {
+export function SignUpTemplate() {
   return (
     <>
       <Header />
       <Main>
-        <SearchList />
+        <SignUpForm />
       </Main>
     </>
   );

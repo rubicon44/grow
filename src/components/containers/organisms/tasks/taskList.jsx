@@ -1,58 +1,36 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { getTask } from '../../../../infra/api';
 import styled from 'styled-components';
 import { deleteTask } from '../../../../infra/api';
-import { Title } from '../../../presentational/atoms/Title/title';
-import { BackButton } from '../../../presentational/atoms/Button/backButton';
-import { List } from '../../../presentational/molecules/List/list';
+import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
+import { List } from '../../../presentational/molecules/List';
 import { TaskStatusSwitch } from './taskStatusSwitch';
 import { LikeButton } from '../likes/likeButton';
 
-const ListCover = styled.div`
-  position: relative;
-  min-width: 180px;
-  margin-top: 30px;
-`;
+export function TaskList() {
+  const location = useLocation();
+  const locationPathName = location.pathname.split('/');
+  const currentTaskId = locationPathName[locationPathName.length - 1];
+  const [task, setTask] = useState([]);
+  const [taskCreatedUser, setTaskCreatedUser] = useState([]);
+  const [taskCreatedUserName, setTaskCreatedUserName] = useState();
+  useEffect(() => {
+    let isMounted = true;
+    getTask(currentTaskId)
+      .then((response) => {
+        if (isMounted) setTask(response.data);
+        if (isMounted) setTaskCreatedUser(response.data.user);
+        if (isMounted) setTaskCreatedUserName(response.data.user.username);
+      })
+      .catch();
+    // .catch((data) => {
+    // });
+    return () => {
+      isMounted = false;
+    };
+  }, [currentTaskId]);
 
-const ListHeader = styled.div`
-  display: flex;
-  width: 100%;
-
-  > h2 {
-    width: 100%;
-    margin-right: 45px;
-  }
-`;
-
-const ButtonCover = styled.div`
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  margin: 10px 0;
-`;
-
-const BackgroundDisAbledCover = styled.div`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background: #ddd;
-`;
-
-const BackgroundDisAbled = styled.div`
-  margin: 30px;
-  padding: 30px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background: #fff;
-`;
-
-export function TaskList(props) {
-  const { task } = props;
   const { id: taskId } = task;
   const { title: taskTitle } = task;
   const { content: taskContent } = task;
@@ -60,16 +38,15 @@ export function TaskList(props) {
   const { start_date: startDate } = task;
   const { end_date: endDate } = task;
   const { user_id: taskCreatedUserId } = task;
-  const { taskCreatedUser } = props;
-  const { taskCreatedUserName } = props;
   const { nickname: taskCreatedUserNickName } = taskCreatedUser;
 
   const currentUserDataText = localStorage.getItem('user');
   const currentUserData = JSON.parse(currentUserDataText);
   const currentUserId = String(currentUserData.id);
+  const currentUserName = String(currentUserData.username);
 
   const navigate = useNavigate();
-  const editTaskFunc = (taskId, currentUserId) => {
+  const editTaskFunc = (taskId, currentUserName) => {
     navigate(`/tasks/edit/${taskId}`, {
       state: {
         id: taskId,
@@ -78,19 +55,19 @@ export function TaskList(props) {
         status: taskStatus,
         startDate: startDate,
         endDate: endDate,
-        currentUserId,
+        currentUserName,
       },
     });
   };
 
   const [load, setLoad] = useState(false);
   function EditTaskButton() {
-    if (taskCreatedUserId === currentUserId) {
+    if (String(taskCreatedUserId) === currentUserId) {
       return (
         <button
           type="button"
           disabled={load}
-          onClick={() => editTaskFunc(taskId, currentUserId)}
+          onClick={() => editTaskFunc(taskId, currentUserName)}
         >
           編集
         </button>
@@ -106,7 +83,7 @@ export function TaskList(props) {
   };
 
   function DeleteTaskButton() {
-    if (taskCreatedUserId === currentUserId) {
+    if (String(taskCreatedUserId) === currentUserId) {
       return (
         <button type="button" onClick={() => deleteCheckFunc()}>
           削除
@@ -126,23 +103,19 @@ export function TaskList(props) {
     // .catch((response) => {
     // });
     setLoad(false);
-    navigate(`/users/${taskCreatedUserId}`);
+    navigate(`/${taskCreatedUserName}`);
   };
 
   return (
     <>
-      <ListHeader>
-        <BackButton />
-        <Title title="タスク詳細" />
-      </ListHeader>
+      <TitleWithBackArrowHeader>タスク詳細</TitleWithBackArrowHeader>
       <ListCover>
         <List
           title={taskTitle}
-          taskId={String(taskId)}
+          titleUrl={`/${taskCreatedUserName}/tasks/${String(task.id)}`}
           content={taskContent}
-          taskCreatedUserId={String(taskCreatedUserId)}
-          taskCreatedUserName={taskCreatedUserName}
-          taskCreatedUserNickName={taskCreatedUserNickName}
+          url={`/${taskCreatedUserName}`}
+          text={taskCreatedUserNickName}
         />
         <TaskStatusSwitch taskStatus={taskStatus} />
         <div>開始日:{startDate}</div>
@@ -170,41 +143,34 @@ export function TaskList(props) {
   );
 }
 
-TaskList.defaultProps = {
-  task: {},
-  taskCreatedUser: {},
-};
+const ListCover = styled.div`
+  position: relative;
+  min-width: 180px;
+  margin-top: 30px;
+`;
 
-TaskList.propTypes = {
-  task: PropTypes.exact({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    content: PropTypes.string,
-    status: PropTypes.number,
-    start_date: PropTypes.string,
-    end_date: PropTypes.string,
-    created_at: PropTypes.string,
-    updated_at: PropTypes.string,
-    user_id: PropTypes.string,
-    user: PropTypes.exact({
-      id: PropTypes.number,
-      nickname: PropTypes.string,
-      created_at: PropTypes.string,
-      updated_at: PropTypes.string,
-      email: PropTypes.string,
-      firebase_id: PropTypes.string,
-      password_digest: PropTypes.string,
-      bio: PropTypes.string,
-    }),
-  }),
-  taskCreatedUser: PropTypes.exact({
-    id: PropTypes.number,
-    nickname: PropTypes.string,
-    created_at: PropTypes.string,
-    updated_at: PropTypes.string,
-    email: PropTypes.string,
-    firebase_id: PropTypes.string,
-    password_digest: PropTypes.string,
-    bio: PropTypes.string,
-  }),
-};
+const ButtonCover = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 10px 0;
+`;
+
+const BackgroundDisAbledCover = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: #ddd;
+`;
+
+const BackgroundDisAbled = styled.div`
+  margin: 30px;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+`;

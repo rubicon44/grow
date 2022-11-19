@@ -2,17 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const ColoredNoneDayOfWeek = styled.tr`
-`;
-
-const ColoredBlueDayOfWeek = styled.tr`
-  background: rgb(219 234 254);
-`;
-
-const ColoredRedDayOfWeek = styled.tr`
-  background: rgb(254 226 226);
-`;
-
 export function CalenderTableBodyColorSwitch(props) {
   const { days } = props;
   if(days.dayOfWeek !== "土" && days.dayOfWeek !== "日") {
@@ -40,6 +29,18 @@ export function CalenderTableBodyColorSwitch(props) {
     return null;
   };
 };
+
+const ColoredNoneDayOfWeek = styled.tr`
+`;
+
+const ColoredBlueDayOfWeek = styled.tr`
+  background: rgb(219 234 254);
+`;
+
+const ColoredRedDayOfWeek = styled.tr`
+  background: rgb(254 226 226);
+`;
+
 
 CalenderTableBodyColorSwitch.defaultProps = {
   days: {},

@@ -3,7 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
-const BackButtonCover = styled.div`
+export function BackArrow() {
+  const navigate = useNavigate();
+  const handleBackArrowClick = () => {
+    navigate(-1);
+  };
+
+  return (
+    <BackArrowCover>
+      <ArrowBackIosIcon onClick={handleBackArrowClick} />
+    </BackArrowCover>
+  );
+}
+
+const BackArrowCover = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,16 +27,3 @@ const BackButtonCover = styled.div`
     cursor: pointer;
   }
 `;
-
-export function BackButton() {
-  const navigate = useNavigate();
-  const handleBackButtonClick = () => {
-    navigate(-1);
-  };
-
-  return (
-    <BackButtonCover>
-      <ArrowBackIosIcon onClick={handleBackButtonClick} />
-    </BackButtonCover>
-  );
-}

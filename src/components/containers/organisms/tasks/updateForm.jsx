@@ -1,21 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { updateTask } from '../../../../infra/api';
-import { Title } from '../../../presentational/atoms/Title/title';
-import { BackButton } from '../../../presentational/atoms/Button/backButton';
-import { Form } from '../../../presentational/molecules/Form/form';
-
-const FormHeader = styled.div`
-  display: flex;
-  width: 100%;
-
-  > h2 {
-    width: 100%;
-    margin-right: 45px;
-  }
-`;
+import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
+import { Form } from '../../../presentational/molecules/Form';
 
 export function TaskUpdateForm(props) {
   const updateTaskFunc = (id, task) => {
@@ -38,7 +26,7 @@ export function TaskUpdateForm(props) {
   const [startDate, setStartDate] = useState(taskStartDate);
   const [endDate, setEndDate] = useState(taskEndDate);
   const { id } = props;
-  const { currentUserId } = props;
+  const { currentUserName } = props;
   const navigate = useNavigate();
   const handleTextSubmit = (e) => {
     e.preventDefault();
@@ -47,15 +35,12 @@ export function TaskUpdateForm(props) {
     const task = { title, content, status, start_date: startDate, end_date: endDate };
     updateTaskFunc(id, task);
     setLoad(false);
-    navigate(`/users/${currentUserId}/tasks/${id}`);
+    navigate(`/${currentUserName}/tasks/${id}`);
   };
 
   return (
     <>
-      <FormHeader>
-        <BackButton />
-        <Title title="編集" />
-      </FormHeader>
+      <TitleWithBackArrowHeader>編集</TitleWithBackArrowHeader>
       <Form
         load={load}
         title={title}

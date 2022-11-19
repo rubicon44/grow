@@ -2,21 +2,9 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { AuthContext } from '../../../../auth/authProvider';
-import { Header } from '../../organisms/header';
+import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 
-const Title = styled.h2`
-  width: 288px;
-  font-size: 36px;
-  font-family: YuMincho;
-`;
-
-const FormCover = styled.div`
-  min-width: 260px;
-  padding: 0 10px;
-  text-align: left;
-`;
-
-export function SignUp() {
+export function SignUpForm() {
   const navigate = useNavigate();
   const { signup } = useContext(AuthContext);
   const [load, setLoad] = useState(false);
@@ -31,8 +19,7 @@ export function SignUp() {
 
   return (
     <>
-      <Header />
-      <Title>会員登録</Title>
+      <TitleWithBackArrowHeader>会員登録</TitleWithBackArrowHeader>
       <FormCover>
         <form onSubmit={handleSubmit}>
           <label htmlFor="nickname">
@@ -64,3 +51,9 @@ export function SignUp() {
     </>
   );
 }
+
+const FormCover = styled.div`
+  min-width: 260px;
+  padding: 0 10px;
+  text-align: left;
+`;

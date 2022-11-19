@@ -1,37 +1,74 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import { getTasks, getCurrentUser } from '../../../../infra/api';
 import styled from 'styled-components';
-import { Title } from '../../../presentational/atoms/Title/title';
-import { NextButton } from '../../../presentational/atoms/Button/nextButton';
-import { List } from '../../../presentational/molecules/List/list';
+import { Title } from '../../../presentational/atoms/Title';
+import { NextButtonLink } from '../../../presentational/atoms/Link/nextButtonLink';
+import { List } from '../../../presentational/molecules/List';
 import { TaskStatusSwitch } from './taskStatusSwitch';
 import { LikeButton } from '../likes/likeButton';
 
-const ListCover = styled.div`
-  position: relative;
-  min-width: 180px;
-  margin-top: 30px;
-`;
+export function TasksList() {
+  const sortdOrder = (response) => {
+    const list = response.data;
+    const dOrder = list.sort((a, b) => {
+      if (a.id < b.id) {
+        return 1;
+      }
+      if (a.id > b.id) {
+        return -1;
+      }
+      return 0;
+    });
+    return dOrder;
+  };
 
-export function TasksList(props) {
-  const { tasks } = props;
-  const { currentUserId } = props;
-  const { currentUserName } = props;
+  const [tasks, setTasks] = useState([]);
+  useEffect(() => {
+    let isMounted = true;
+    getTasks()
+      .then((response) => {
+        const dOrderData = sortdOrder(response);
+        if (isMounted) setTasks(dOrderData);
+      })
+      .catch();
+    // .catch(() => {
+    // });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const [currentUserId, setCurrentUserId] = useState([]);
+  const [currentUserName, setCurrentUserName] = useState([]);
+  useEffect(() => {
+    let isMounted = true;
+    getCurrentUser()
+      .then((response) => {
+        const currentUserId = response.data.user.id;
+        const currentUserName = response.data.user.username;
+        if (isMounted) setCurrentUserId(currentUserId);
+        if (isMounted) setCurrentUserName(currentUserName);
+      })
+      .catch();
+    // .catch((data) => {
+    // });
+    return () => {
+      isMounted = false;
+    };
+  }, [currentUserId]);
+
   return (
     <>
-      <Title title="タスク一覧" />
-      <NextButton text="タスク登録" url="/tasks/create" />
+      <Title>タスク一覧</Title>
+      <NextButtonLink text="タスク登録" url="/tasks/create" />
       {tasks.map((task) => (
         <ListCover key={task.id}>
           <List
-            taskUserId={task.user_id}
-            taskId={String(task.id)}
             title={task.title}
+            titleUrl={`/${task.user.username}/tasks/${String(task.id)}`}
             content={task.content}
-            startDate={task.start_date}
-            endDate={task.end_date}
-            taskCreatedUserName={String(task.user.username)}
-            taskCreatedUserNickName={task.user.nickname}
+            url={`/${task.user.username}`}
+            text={task.user.nickname}
           />
           <TaskStatusSwitch taskStatus={task.status} />
           <LikeButton taskId={String(task.id)} currentUserId={String(currentUserId)} currentUserName={currentUserName} />
@@ -41,32 +78,8 @@ export function TasksList(props) {
   );
 }
 
-TasksList.defaultProps = {
-  tasks: [],
-};
-
-TasksList.propTypes = {
-  tasks: PropTypes.arrayOf(
-    PropTypes.exact({
-      id: PropTypes.number,
-      title: PropTypes.string,
-      content: PropTypes.string,
-      status: PropTypes.number,
-      start_date: PropTypes.string,
-      end_date: PropTypes.string,
-      created_at: PropTypes.string,
-      updated_at: PropTypes.string,
-      user_id: PropTypes.string,
-      user: PropTypes.exact({
-        id: PropTypes.number,
-        nickname: PropTypes.string,
-        created_at: PropTypes.string,
-        updated_at: PropTypes.string,
-        email: PropTypes.string,
-        firebase_id: PropTypes.string,
-        password_digest: PropTypes.string,
-        bio: PropTypes.string,
-      }),
-    })
-  ),
-};
+const ListCover = styled.div`
+  position: relative;
+  min-width: 180px;
+  margin-top: 30px;
+`;
