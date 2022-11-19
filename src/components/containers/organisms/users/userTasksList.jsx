@@ -125,8 +125,11 @@ export function UserTasksList() {
       })
       // .catch();
       .catch(errors => {
-        // console.log(errors);
-        window.alert("このusernameはすでに登録されています。");
+        if(errors.response.status === 401) {
+          window.alert("認証できませんでした。");
+        } else {
+          window.alert("このusernameはすでに登録されています。");
+        }
         setUserName(userNameDefault);
         setLoad(false);
       });
