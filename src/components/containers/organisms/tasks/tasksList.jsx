@@ -22,28 +22,10 @@ export function TasksList() {
     return dOrder;
   };
 
-  const [initialTasks, setInitialTasks] = useState([]);
-  useEffect(() => {
-    let isMounted = true;
-    getTasks()
-      .then((response) => {
-        if (isMounted) {
-          const dOrderData = sortdOrder(response);
-          setInitialTasks(dOrderData);
-        }
-      })
-      .catch();
-    // .catch(() => {
-    // });
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
   const [tasks, setTasks] = useState([]);
-  useEffect(() => {
+  useEffect(async () => {
     let isMounted = true;
-    getTasks()
+    await getTasks()
       .then((response) => {
         if (isMounted) {
           const dOrderData = sortdOrder(response);
@@ -56,7 +38,7 @@ export function TasksList() {
     return () => {
       isMounted = false;
     };
-  }, [initialTasks]);
+  }, []);
 
   const [currentUserId, setCurrentUserId] = useState([]);
   const [currentUserName, setCurrentUserName] = useState([]);
