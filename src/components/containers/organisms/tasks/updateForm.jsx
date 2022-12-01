@@ -6,12 +6,18 @@ import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Head
 import { Form } from '../../../presentational/molecules/Form';
 
 export function TaskUpdateForm(props) {
-  const updateTaskFunc = (id, task) => {
-    updateTask(id, task).then().catch();
-    // .then((response) => {
-    // })
-    // .catch((response) => {
-    // });
+  const navigate = useNavigate();
+  const [load, setLoad] = useState(false);
+  const updateTaskFunc = async (id, task) => {
+    // updateTask(id, task).then().catch();
+    await updateTask(id, task)
+    .then((response) => {
+    })
+    .catch(async (response) => {
+      setLoad(false);
+      window.alert("タスクを更新できませんでした。");
+      await navigate('/tasks');
+    });
   };
 
   const { title: taskTitle } = props;
@@ -19,7 +25,6 @@ export function TaskUpdateForm(props) {
   const { status: taskStatus } = props;
   const { startDate: taskStartDate } = props;
   const { endDate: taskEndDate } = props;
-  const [load, setLoad] = useState(false);
   const [title, setTitle] = useState(taskTitle);
   const [content, setContent] = useState(taskContent);
   const [status, setStatus] = useState(taskStatus);
@@ -27,15 +32,13 @@ export function TaskUpdateForm(props) {
   const [endDate, setEndDate] = useState(taskEndDate);
   const { id } = props;
   const { currentUserName } = props;
-  const navigate = useNavigate();
-  const handleTextSubmit = (e) => {
+  const handleTextSubmit = async (e) => {
     e.preventDefault();
     e.persist();
     setLoad(true);
     const task = { title, content, status, start_date: startDate, end_date: endDate };
-    updateTaskFunc(id, task);
-    setLoad(false);
-    navigate(`/${currentUserName}/tasks/${id}`);
+    await updateTaskFunc(id, task);
+    await navigate(`/${currentUserName}/tasks/${id}`);
   };
 
   return (
