@@ -55,64 +55,54 @@ export function App() {
           <Router>
             <Routes>
               {/* top・サインイン・サインアップ・NotFound */}
-              <Route exact path="/" element={<Top />} />
-              <Route exact path="/top" element={<Top />} />
-              <Route exact path="/signIn" element={<SignIn />} />
-              <Route exact path="/signUp" element={<SignUp />} />
-              <Route exact path="*" element={<NotFound />} />
+              <Route path="/" element={<Top />} />
+              <Route path="/top" element={<Top />} />
+              <Route path="/signIn" element={<SignIn />} />
+              <Route path="/signUp" element={<SignUp />} />
+              <Route path="*" element={<NotFound />} />
               {/* task */}
               <Route
-                exact
                 path="/tasks"
                 element={<PrivateRoute element={<TaskIndex />} />}
               />
               <Route
-                exact
                 path="/tasks/create"
                 element={<PrivateRoute element={<TaskCreate />} />}
               />
               <Route
-                exact
                 path="/tasks/edit/:id"
                 element={<PrivateRoute element={<TaskEdit />} />}
               />
               {/* user */}
               <Route
-                exact
                 path="/:username"
                 element={<PrivateRoute element={<UserShow />} />}
               />
               {/* GunttChart */}
               <Route
-                exact
                 path="/:username/guntt"
                 element={<PrivateRoute element={<UserGuntt />} />}
               />
               <Route
-                exact
                 path="/:username/tasks/:id"
                 element={<PrivateRoute element={<TaskShow />} />}
               />
               {/* Relationships */}
               <Route
-                exact
                 path="/:username/followings"
                 element={<PrivateRoute element={<UserFollowings />} />}
               />
               <Route
-                exact
                 path="/:username/followers"
                 element={<PrivateRoute element={<UserFollowers />} />}
               />
               {/* Notifications */}
               <Route
-                exact
                 path="/notifications"
                 element={<PrivateRoute element={<UserNotifications />} />}
               />
               {/* Searches */}
               <Route
-                exact
                 path="/search"
                 element={<PrivateRoute element={<SearchIndex />} />}
               />
