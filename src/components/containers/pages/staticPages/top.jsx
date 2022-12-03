@@ -10,7 +10,6 @@ export function Top() {
   return (
     <TopMain>
       <TopTitle>Grow</TopTitle>
-      <NextButtonLink text="タスク一覧" url="/tasks" />
       <NextButtonLink text="会員登録" url="/signUp" />
       <LinkText to="/signIn">ログイン</LinkText>
     </TopMain>

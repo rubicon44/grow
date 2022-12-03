@@ -1,20 +1,27 @@
 import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { AuthContext } from '../../../../auth/authProvider';
 import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 
 export function SignInForm() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { signin } = useContext(AuthContext);
   const [load, setLoad] = useState(false);
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoad(true);
     const { email, password } = e.target.elements;
-    signin(email.value, password.value);
+    await signin(email.value, password.value);
     setLoad(false);
-    navigate('/tasks');
+    const locationPathName = location.pathname.split('/');
+    const tasksText = locationPathName[locationPathName.length - 1];
+    if(tasksText === "tasks") {
+      window.location.reload();
+    } else {
+      await navigate('/tasks');
+    }
   };
 
   return (

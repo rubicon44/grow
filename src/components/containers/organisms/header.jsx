@@ -21,24 +21,14 @@ export function Header() {
     right: false,
   });
 
-  const [userId, setUserId] = useState([]);
-  const [userName, setUserName] = useState([]);
-  useEffect(() => {
-    let isMounted = true;
-    getCurrentUser()
-      .then((response) => {
-        const userId = response.data.user.id;
-        const userName = response.data.user.username;
-        if (isMounted) setUserId(userId);
-        if (isMounted) setUserName(userName);
-      })
-      .catch();
-    // .catch((data) => {
-    // });
-    return () => {
-      isMounted = false;
-    };
-  }, [userId]);
+  let currentUserDataText;
+  let currentUserData;
+  let userName;
+  if(localStorage.getItem('user')) {
+    currentUserDataText = localStorage.getItem('user');
+    currentUserData = JSON.parse(currentUserDataText);
+    userName = String(currentUserData.username);
+  }
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (

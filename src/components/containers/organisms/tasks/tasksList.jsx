@@ -40,24 +40,17 @@ export function TasksList() {
     };
   }, []);
 
-  const [currentUserId, setCurrentUserId] = useState([]);
-  const [currentUserName, setCurrentUserName] = useState([]);
-  useEffect(() => {
-    let isMounted = true;
-    getCurrentUser()
-      .then((response) => {
-        const currentUserId = response.data.user.id;
-        const currentUserName = response.data.user.username;
-        if (isMounted) setCurrentUserId(currentUserId);
-        if (isMounted) setCurrentUserName(currentUserName);
-      })
-      .catch();
-    // .catch((data) => {
-    // });
-    return () => {
-      isMounted = false;
-    };
-  }, [currentUserId]);
+
+  let currentUserDataText;
+  let currentUserData;
+  let currentUserId;
+  let currentUserName;
+  if(localStorage.getItem('user')) {
+    currentUserDataText = localStorage.getItem('user');
+    currentUserData = JSON.parse(currentUserDataText);
+    currentUserId = String(currentUserData.id);
+    currentUserName = String(currentUserData.username);
+  }
 
   return (
     <>

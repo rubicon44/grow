@@ -13,10 +13,17 @@ import { FollowButton } from './followButton';
 export function UserTasksList() {
   const { signout } = useContext(AuthContext);
   const { currentUser } = useContext(AuthContext);
-  const currentUserDataText = localStorage.getItem('user');
-  const currentUserData = JSON.parse(currentUserDataText);
-  const currentUserId = String(currentUserData.id);
-  const currentUserName = String(currentUserData.username);
+
+  let currentUserDataText;
+  let currentUserData;
+  let currentUserId;
+  let currentUserName;
+  if(localStorage.getItem('user')) {
+    currentUserDataText = localStorage.getItem('user');
+    currentUserData = JSON.parse(currentUserDataText);
+    currentUserId = String(currentUserData.id);
+    currentUserName = String(currentUserData.username);
+  }
 
   const sortdOrder = (taskData) => {
     const list = taskData;

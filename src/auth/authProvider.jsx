@@ -5,6 +5,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth';
+import axios from 'axios';
 import { auth } from '../infra/firebase';
 import { signUp, signIn } from '../infra/api';
 
@@ -16,17 +17,18 @@ export function AuthProvider({ children }) {
       await signInWithEmailAndPassword(auth, email, password);
       await auth.currentUser
         .getIdToken(/* forceRefresh */ true)
-        .then((idToken) => {
-          signIn(idToken)
-            .then(async (response) => {
+        .then(async (idToken) => {
+          await signIn(idToken)
+            .then((response) => {
               const { token, user } = response.data;
-              if (token) await localStorage.setItem('token', token);
-              if (user) {
-                await localStorage.setItem('user', JSON.stringify(user));
-              }
-              await window.location.reload();
+              if (token) localStorage.setItem('token', token);
+              if (user) localStorage.setItem('user', JSON.stringify(user));
+
+              axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
+              const tokenAuth = localStorage.getItem('token');
+              axios.defaults.headers.common.Authorization = tokenAuth;
             })
-            .catch(async () => {
+            .catch(() => {
               // alert(response);
               // alert('このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。');
               signOut(auth);
