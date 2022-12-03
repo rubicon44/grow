@@ -17,12 +17,12 @@ export const signIn = (idToken) =>
   });
 
 // users
-export const getCurrentUser = () =>
-  axios({
-    method: 'get',
-    url: `/${currentUser.username}`,
-    params: { currentUser: true },
-  });
+// export const getCurrentUser = () =>
+//   axios({
+//     method: 'get',
+//     url: `/${currentUser().username}`,
+//     params: { currentUser: true },
+//   });
 
 export const getUser = (params) =>
   axios({

@@ -11,7 +11,7 @@ import { signUp, signIn } from '../infra/api';
 
 export const AuthContext = createContext();
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUserAuth, setCurrentUserAuth] = useState(null);
   const signin = async (email, password) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
@@ -41,7 +41,7 @@ export function AuthProvider({ children }) {
 
   const signup = async (nickname, username, email, password) => {
     try {
-      createUserWithEmailAndPassword(auth, email, password)
+      await createUserWithEmailAndPassword(auth, email, password)
         .then(async (userCredential) => {
           const firebaseId = userCredential.user.uid;
           const user = { nickname, username, email, firebaseId };
@@ -72,13 +72,13 @@ export function AuthProvider({ children }) {
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, setCurrentUser);
+    onAuthStateChanged(auth, setCurrentUserAuth);
   }, []);
 
   return (
     <AuthContext.Provider
       value={{
-        currentUser,
+        currentUserAuth,
         signin,
         signup,
         signout,

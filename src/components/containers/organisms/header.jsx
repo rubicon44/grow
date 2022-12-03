@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import styled from 'styled-components';
@@ -10,7 +10,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import { getCurrentUser } from '../../../infra/api';
+import { currentUser } from '../../../infra/currentUser';
 
 export function Header() {
   const classes = useStyles();
@@ -21,13 +21,9 @@ export function Header() {
     right: false,
   });
 
-  let currentUserDataText;
-  let currentUserData;
-  let userName;
+  let currentUserName;
   if(localStorage.getItem('user')) {
-    currentUserDataText = localStorage.getItem('user');
-    currentUserData = JSON.parse(currentUserDataText);
-    userName = String(currentUserData.username);
+    currentUserName = currentUser().username;
   }
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -46,7 +42,7 @@ export function Header() {
     { url: '/top', text: 'Top' },
     { url: '/tasks', text: 'Home' },
     { url: '/tasks/create', text: 'Post' },
-    { url: `/${userName}`, text: 'Report' },
+    { url: `/${currentUserName}`, text: 'Report' },
     { url: `/notifications`, text: 'Notifications' },
     { url: `/search`, text: 'Search' },
   ];

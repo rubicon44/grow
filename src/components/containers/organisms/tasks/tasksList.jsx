@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { getTasks, getCurrentUser } from '../../../../infra/api';
 import styled from 'styled-components';
+import { getTasks } from '../../../../infra/api';
+import { currentUser } from '../../../../infra/currentUser';
 import { Title } from '../../../presentational/atoms/Title';
 import { NextButtonLink } from '../../../presentational/atoms/Link/nextButtonLink';
 import { List } from '../../../presentational/molecules/List';
@@ -41,15 +42,11 @@ export function TasksList() {
   }, []);
 
 
-  let currentUserDataText;
-  let currentUserData;
   let currentUserId;
   let currentUserName;
   if(localStorage.getItem('user')) {
-    currentUserDataText = localStorage.getItem('user');
-    currentUserData = JSON.parse(currentUserDataText);
-    currentUserId = String(currentUserData.id);
-    currentUserName = String(currentUserData.username);
+    currentUserId = currentUser().id;
+    currentUserName = currentUser().username;
   }
 
   return (

@@ -31,11 +31,9 @@ import { SearchIndex } from './components/containers/pages/search';
 
 export function App() {
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     // setTimeout(() => setLoading(false), 1000)
     setLoading(false);
-
     if (
       localStorage.getItem('token') === '' ||
       localStorage.getItem('token') === null ||

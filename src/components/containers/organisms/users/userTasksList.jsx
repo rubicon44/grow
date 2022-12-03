@@ -1,8 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { getUser, updateUser } from '../../../../infra/api';
-import { AuthContext } from '../../../../auth/authProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { getUser, updateUser } from '../../../../infra/api';
+import { currentUser } from '../../../../infra/currentUser';
+import { AuthContext } from '../../../../auth/authProvider';
 import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 import { LogOutButton } from '../logOutButton';
 import { List } from '../../../presentational/molecules/List';
@@ -12,17 +13,13 @@ import { FollowButton } from './followButton';
 
 export function UserTasksList() {
   const { signout } = useContext(AuthContext);
-  const { currentUser } = useContext(AuthContext);
+  const { currentUserAuth } = useContext(AuthContext);
 
-  let currentUserDataText;
-  let currentUserData;
   let currentUserId;
   let currentUserName;
   if(localStorage.getItem('user')) {
-    currentUserDataText = localStorage.getItem('user');
-    currentUserData = JSON.parse(currentUserDataText);
-    currentUserId = String(currentUserData.id);
-    currentUserName = String(currentUserData.username);
+    currentUserId = currentUser().id;
+    currentUserName = currentUser().username;
   }
 
   const sortdOrder = (taskData) => {
@@ -309,7 +306,7 @@ export function UserTasksList() {
       </Content>
       {String(currentUserName) === String(userNameInUrl) && (
         <LogOutButtonCover>
-          {currentUser && <LogOutButton text="ログアウト" />}
+          {currentUserAuth && <LogOutButton text="ログアウト" />}
         </LogOutButtonCover>
       )}
     </>
