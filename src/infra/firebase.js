@@ -11,7 +11,7 @@ firebase.initializeApp({
   messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
 });
 
-// 認証用
+// for auth
 const auth = getAuth();
 let currentUid;
 onAuthStateChanged(auth, (user) => {
