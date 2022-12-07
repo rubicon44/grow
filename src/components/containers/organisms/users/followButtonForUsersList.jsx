@@ -50,6 +50,7 @@ export function FollowButtonForUsersList(props) {
     };
   }, [followAble]);
 
+  // todo: ここのuseEffectは削減できそうな気がする(他の処理の中に書き込めるかも。)
   useEffect(() => {
     followings.map((users) => {
       if(String(users.id) === String(followerId)) {
@@ -60,6 +61,7 @@ export function FollowButtonForUsersList(props) {
     })
   }, [followings]);
 
+  // todo: 分岐が見辛すぎる(それぞれを関数にまとめて分岐処理した方が良い。)
   if(String(currentUserId) === String(userId)) {
     return(
       <>

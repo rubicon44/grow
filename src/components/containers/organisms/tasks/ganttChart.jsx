@@ -10,6 +10,7 @@ import { TaskStatusSwitchText } from './taskStatusSwitchText';
 import { CalenderTableBodyColorSwitch } from './calenderTableBodyColorSwitch';
 import { VariableSizeList as List } from 'react-window';
 
+// todo: useEffectが削減できるかどうか見直す(カレンダーの処理を切り出す必要有りかも？)
 export function GunttChart(props) {
   const { taskUser } = props;
   const { userTasks } = props;

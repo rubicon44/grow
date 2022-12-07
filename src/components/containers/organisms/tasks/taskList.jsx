@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { getTask } from '../../../../infra/api';
 import styled from 'styled-components';
 import { deleteTask } from '../../../../infra/api';
+import { currentUser } from '../../../../infra/currentUser';
 import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 import { List } from '../../../presentational/molecules/List';
 import { TaskStatusSwitch } from './taskStatusSwitch';
@@ -40,10 +41,8 @@ export function TaskList() {
   const { user_id: taskCreatedUserId } = task;
   const { nickname: taskCreatedUserNickName } = taskCreatedUser;
 
-  const currentUserDataText = localStorage.getItem('user');
-  const currentUserData = JSON.parse(currentUserDataText);
-  const currentUserId = String(currentUserData.id);
-  const currentUserName = String(currentUserData.username);
+  const currentUserId = currentUser().id;
+  const currentUserName = currentUser().username;
 
   const navigate = useNavigate();
   const editTaskFunc = (taskId, currentUserName) => {
