@@ -8,7 +8,7 @@ import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Head
 export function NotificationsList() {
   const currentUserId = currentUser().id;
   const currentUserName = currentUser().username;
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [visitorsData, setVisitorsData] = useState({
     notifications: [],
     visitors: [],
@@ -24,7 +24,7 @@ export function NotificationsList() {
           visitors: response.data.follow_visitors,
           likeVisitors: response.data.like_visitors,
         });
-        if (isMounted) setIsLoaded(true);
+        if (isMounted) setIsLoading(true);
       })
       .catch();
     return () => {
@@ -89,7 +89,7 @@ export function NotificationsList() {
   return (
     <>
       <TitleWithBackArrowHeader>通知一覧</TitleWithBackArrowHeader>
-      {isLoaded ? (
+      {isLoading ? (
         <ListCover>
           {visitorsData.notifications == null || visitorsData.notifications == '' ? (
             <div>通知はありません。</div>
