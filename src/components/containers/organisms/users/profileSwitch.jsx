@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 export function ProfileSwitch(props) {
+  // todo: propsを変数に格納せずに取り出すのは、Formを適切に分割してから行う。
   const { currentUserId } = props;
   const { userBio } = props;
   const { userNickName } = props;

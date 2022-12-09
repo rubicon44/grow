@@ -4,12 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { BaseLink } from '../../atoms/Link';
 
-export function List(props) {
-  const { title } = props;
-  const { titleUrl } = props;
-  const { content } = props;
-  const { url } = props;
-  const { text } = props;
+export function List({ title, titleUrl, content, url, text }) {
   return (
     <BaseList>
       <dt>

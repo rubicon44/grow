@@ -4,9 +4,7 @@ import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
 import { BaseLink } from '../Link';
 
-export function NextButtonLink(props) {
-  const { url } = props;
-  const { text } = props;
+export function NextButtonLink({ url, text }) {
   return <DangerButtonLink url={url} >{text}</DangerButtonLink>;
 }
 

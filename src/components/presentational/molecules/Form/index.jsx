@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export function Form(props) {
+  // todo: propsを変数に格納せずに取り出すのは、Formを適切に分割してから行う。
   const { handleTextSubmit } = props;
   const { title } = props;
   const { setTitle } = props;

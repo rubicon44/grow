@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-export const BaseLink = ({ children, className, ...props }) => {
-  const { url } = props;
+export const BaseLink = ({ children, className, url }) => {
   return <Link className={className} to={url} >{children}</Link>;
 };
 

@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export function TaskStatusSwitchText(props) {
-  const { taskStatus } = props;
-
+export function TaskStatusSwitchText({ taskStatus }) {
   switch(taskStatus) {
     case 0:
       return ( <>未対応</> )
