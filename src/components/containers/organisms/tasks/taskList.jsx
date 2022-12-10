@@ -9,7 +9,7 @@ import { List } from '../../../presentational/molecules/List';
 import { TaskStatusSwitch } from './taskStatusSwitch';
 import { LikeButton } from '../likes/likeButton';
 
-export function TaskList() {
+export const TaskList = () => {
   const location = useLocation();
   const locationPathName = location.pathname.split('/');
   const currentTaskId = locationPathName[locationPathName.length - 1];
@@ -43,7 +43,7 @@ export function TaskList() {
   const currentUserName = currentUser().username;
 
   const navigate = useNavigate();
-  const editTaskFunc = (taskId, currentUserName) => {
+  const editTaskFunc = () => {
     navigate(`/tasks/edit/${taskId}`, {
       state: {
         id: taskId,
@@ -58,9 +58,9 @@ export function TaskList() {
   };
 
   const [load, setLoad] = useState(false);
-  function EditTaskButton() {
+  const EditTaskButton = () => {
     if (String(taskCreatedUserId) === currentUserId) {
-      return (<button type="button" disabled={load} onClick={() => editTaskFunc(taskId, currentUserName)}>編集</button>);
+      return (<button type="button" disabled={load} onClick={editTaskFunc}>編集</button>);
     }
     return null;
   }
@@ -71,9 +71,9 @@ export function TaskList() {
     setDeleteCheckAble(true);
   };
 
-  function DeleteTaskButton() {
+  const DeleteTaskButton = () => {
     if (String(taskCreatedUserId) === currentUserId) {
-      return (<button type="button" onClick={() => deleteCheckFunc()}>削除</button>);
+      return (<button type="button" onClick={deleteCheckFunc}>削除</button>);
     }
     return null;
   }
@@ -83,10 +83,10 @@ export function TaskList() {
     setDeleteCheckAble(false);
   };
 
-  const deleteTaskFunc = (taskId) => {
-    deleteTask(taskId).then().catch();
+  const deleteTaskFunc = async () => {
+    await deleteTask(taskId).then().catch();
     setLoad(false);
-    navigate(`/${taskCreatedUserName}`);
+    await navigate(`/${taskCreatedUserName}`);
   };
 
   return (
@@ -113,8 +113,8 @@ export function TaskList() {
         <BackgroundDisAbledCover>
           <BackgroundDisAbled>
             <div>本当に削除しますか?</div>
-            <button type="button" onClick={() => deleteTaskFunc(taskId)}>はい</button>
-            <button type="button" onClick={() => unDeleteCheckFunc()}>いいえ</button>
+            <button type="button" onClick={deleteTaskFunc}>はい</button>
+            <button type="button" onClick={unDeleteCheckFunc}>いいえ</button>
           </BackgroundDisAbled>
         </BackgroundDisAbledCover>
       )}

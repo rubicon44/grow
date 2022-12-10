@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserNotificationsTemplate } from '../../templates/users/notifications';
 
-export function UserNotifications() {
+export const UserNotifications = () => {
   return <UserNotificationsTemplate />;
 }

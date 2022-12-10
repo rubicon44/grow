@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { AuthContext } from '../../../auth/authProvider';
 import { Button } from '../../presentational/atoms/Button';
 
-export function LogOutButton(props) {
+export const LogOutButton = (props) => {
   const navigate = useNavigate();
   const { signout } = useContext(AuthContext);
   const { text } = props;
@@ -15,7 +15,7 @@ export function LogOutButton(props) {
     await signout();
   }
 
-  return (<DangerButton onClick={() => { signoutFunc(); }}>{text}</DangerButton>);
+  return (<DangerButton onClick={signoutFunc}>{text}</DangerButton>);
 }
 
 // const DangerButton = styled(props => <Button {...props} />)`

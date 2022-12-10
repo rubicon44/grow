@@ -6,7 +6,7 @@ import { Main } from '../../templates/main';
 import { Title } from '../../../presentational/atoms/Title';
 import { NextButtonLink } from '../../../presentational/atoms/Link/nextButtonLink';
 
-export function Top() {
+export const Top = () => {
   return (
     <TopMain>
       <TopTitle>Grow</TopTitle>

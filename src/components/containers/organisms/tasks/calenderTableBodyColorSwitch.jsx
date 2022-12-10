@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-export function CalenderTableBodyColorSwitch({ days }) {
+export const CalenderTableBodyColorSwitch = ({ days }) => {
   if(days.dayOfWeek !== "土" && days.dayOfWeek !== "日") {
     return (
       <tr key={days.blockNumber}>

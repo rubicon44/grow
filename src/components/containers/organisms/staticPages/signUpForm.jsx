@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { AuthContext } from '../../../../auth/authProvider';
 import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 
-export function SignUpForm() {
+export const SignUpForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { signup } = useContext(AuthContext);

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-export function Form(props) {
+export const Form = (props) => {
   // todo: propsを変数に格納せずに取り出すのは、Formを適切に分割してから行う。
   const { handleTextSubmit } = props;
   const { title } = props;
@@ -16,6 +16,27 @@ export function Form(props) {
   const { endDate } = props;
   const { setEndDate } = props;
   const { load } = props;
+
+  const setTitleFunc = (e) => {
+    setTitle(e.target.value);
+  }
+
+  const setContentFunc = (e) => {
+    setContent(e.target.value);
+  }
+
+  const setStatusFunc = (e) => {
+    setStatus(Number(e.target.value));
+  }
+
+  const setStartDateFunc = (e) => {
+    setStartDate(e.target.value);
+  }
+
+  const setEndDateFunc = (e) => {
+    setEndDate(e.target.value);
+  }
+
   return (
     <FormCover>
       <form onSubmit={handleTextSubmit}>
@@ -25,7 +46,7 @@ export function Form(props) {
               type="text"
               name="title"
               defaultValue={title}
-              onChange={(e) => { setTitle(e.target.value); }}
+              onChange={setTitleFunc}
               placeholder="Title"
             />
           </label>
@@ -35,7 +56,7 @@ export function Form(props) {
             <textarea
               name="content"
               defaultValue={content}
-              onChange={(e) => { setContent(e.target.value); }}
+              onChange={setContentFunc}
               placeholder="Content"
               cols="80"
               rows="3"
@@ -43,7 +64,7 @@ export function Form(props) {
           </label>
         </FormTextAreaCover>
         <FormInputCover>
-          <select value={status} onChange={(e) => { setStatus(Number(e.target.value));}}>
+          <select value={status} onChange={setStatusFunc}>
             <option value="0">未対応</option>
             <option value="1">処理中</option>
             <option value="2">処理済み</option>
@@ -56,7 +77,7 @@ export function Form(props) {
                 type="date"
                 name="startDate"
                 defaultValue={startDate}
-                onChange={(e) => { setStartDate(e.target.value); }}
+                onChange={setStartDateFunc}
                 placeholder="StartDate"
               />
             </label>
@@ -67,7 +88,7 @@ export function Form(props) {
                 type="date"
                 name="endDate"
                 defaultValue={endDate}
-                onChange={(e) => { setEndDate(e.target.value); }}
+                onChange={setEndDateFunc}
                 placeholder="EndDate"
               />
             </label>

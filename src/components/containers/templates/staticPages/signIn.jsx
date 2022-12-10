@@ -3,7 +3,7 @@ import { Header } from '../../organisms/header';
 import { Main } from '../main';
 import { SignInForm } from '../../organisms/staticPages/signInForm';
 
-export function SignInTemplate() {
+export const SignInTemplate = () => {
   return (
     <>
       <Header />

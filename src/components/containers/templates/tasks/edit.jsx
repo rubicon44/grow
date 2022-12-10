@@ -4,7 +4,7 @@ import { Header } from '../../organisms/header';
 import { Main } from '../main';
 import { TaskUpdateForm } from '../../organisms/tasks/updateForm';
 
-export function TaskEditTemplate(props) {
+export const TaskEditTemplate = (props) => {
   const { id } = props;
   const { title } = props;
   const { content } = props;

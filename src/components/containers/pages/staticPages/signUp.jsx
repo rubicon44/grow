@@ -1,6 +1,6 @@
 import React from 'react';
 import { SignUpTemplate } from '../../templates/staticPages/signUp';
 
-export function SignUp() {
+export const SignUp = () => {
   return <SignUpTemplate />;
 }

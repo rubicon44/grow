@@ -3,7 +3,7 @@ import { Header } from '../../organisms/header';
 import { Main } from '../main';
 import { TaskCreateForm } from '../../organisms/tasks/createForm';
 
-export function TaskCreateTemplate() {
+export const TaskCreateTemplate = () => {
   return (
     <>
       <Header />

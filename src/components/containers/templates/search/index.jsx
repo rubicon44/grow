@@ -3,7 +3,7 @@ import { Header } from '../../organisms/header';
 import { Main } from '../main';
 import { SearchList } from '../../organisms/search/searchList';
 
-export function SearchTemplate() {
+export const SearchTemplate = () => {
   return (
     <>
       <Header />

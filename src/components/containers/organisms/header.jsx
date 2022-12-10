@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { currentUser } from '../../../infra/currentUser';
 
-export function Header() {
+export const Header = () => {
   const classes = useStyles();
   const [state, setState] = useState({
     top: false,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserFollowersTemplate } from '../../templates/users/followers';
 
-export function UserFollowers() {
+export const UserFollowers = () => {
   return <UserFollowersTemplate />;
 }

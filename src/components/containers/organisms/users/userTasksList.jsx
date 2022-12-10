@@ -11,7 +11,7 @@ import { ProfileSwitch } from './profileSwitch';
 import { TaskStatusSwitch } from '../tasks/taskStatusSwitch';
 import { FollowButton } from './followButton';
 
-export function UserTasksList() {
+export const UserTasksList = () => {
   const { signout } = useContext(AuthContext);
   const { currentUserAuth } = useContext(AuthContext);
 
@@ -204,8 +204,8 @@ export function UserTasksList() {
         <BackgroundDisAbledCover>
           <BackgroundDisAbled>
             <div>ユーザーIDの変更には際ログインが必要です。変更しますか？</div>
-            <button type="button" onClick={() => changeUserNameFunc()}>はい</button>
-            <button type="button" onClick={() => unChangeUserNameFunc()}>いいえ</button>
+            <button type="button" onClick={changeUserNameFunc}>はい</button>
+            <button type="button" onClick={unChangeUserNameFunc}>いいえ</button>
           </BackgroundDisAbled>
         </BackgroundDisAbledCover>
       )}
@@ -228,16 +228,16 @@ export function UserTasksList() {
           revertUserBio={revertUserBio}
            />
         <RelationshipsCover>
-          <a onClick={() => nextFollowingsFunc()}>
+          <a onClick={nextFollowingsFunc}>
             <span>フォロー中</span>
           </a>
-          <a onClick={() => nextFollowersFunc()}>
+          <a onClick={nextFollowersFunc}>
             <span>フォロワー</span>
           </a>
         </RelationshipsCover>
       </ContentHeaderCover>
       <Content>
-        <NextGunttLink type="button" onClick={() => nextGunttFunc(currentUserId)}>ガントチャート</NextGunttLink>
+        <NextGunttLink type="button" onClick={nextGunttFunc}>ガントチャート</NextGunttLink>
 
         <>
           {userTasks.length === 0 ? (

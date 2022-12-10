@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Header } from '../../organisms/header';
 import { GunttChart } from '../../organisms/tasks/ganttChart';
 
-export function UserGunttTemplate(props) {
+export const UserGunttTemplate = (props) => {
   const { taskUser } = props;
   const { userTasks } = props;
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export function ProfileSwitch(props) {
+export const ProfileSwitch = (props) => {
   // todo: propsを変数に格納せずに取り出すのは、Formを適切に分割してから行う。
   const { currentUserId } = props;
   const { userBio } = props;
@@ -17,13 +17,33 @@ export function ProfileSwitch(props) {
   const { handleTextSubmit } = props;
   const { revertUserBio } = props;
 
+  const setBioAbleFunc = () => {
+    setBioAble(false);
+  }
+
+  const setUserNickNameFunc = (e) => {
+    setUserNickName(e.target.value);
+  }
+
+  const setUserNameFunc = (e) => {
+    setUserName(e.target.value);
+  }
+
+  const setUserBioFunc = (e) => {
+    setUserBio(e.target.value);
+  }
+
+  const revertUserBioFunc = () => {
+    revertUserBio();
+  }
+
   if (bioAble === true) {
     return (
       <Profile>
         <ProfileHeader>
           {currentUserId === userId && (
             <BioChangeLinkCover>
-              <BioChangeLink onClick={() => { setBioAble(false); }}>
+              <BioChangeLink onClick={setBioAbleFunc}>
                 <span>プロフィールを編集</span>
               </BioChangeLink>
             </BioChangeLinkCover>
@@ -46,7 +66,7 @@ export function ProfileSwitch(props) {
               <label htmlFor="nickname">ニックネーム
                 <input
                   name="nickname"
-                  onChange={(e) => { setUserNickName(e.target.value); }}
+                  onChange={setUserNickNameFunc}
                   placeholder="nickname"
                   cols="80"
                   rows="3"
@@ -56,7 +76,7 @@ export function ProfileSwitch(props) {
               <label htmlFor="username">ユーザーネーム
                 <input
                   name="username"
-                  onChange={(e) => { setUserName(e.target.value); }}
+                  onChange={setUserNameFunc}
                   placeholder="username"
                   cols="80"
                   rows="3"
@@ -66,7 +86,7 @@ export function ProfileSwitch(props) {
               <label htmlFor="bio">プロフィール
                 <textarea
                   name="bio"
-                  onChange={(e) => { setUserBio(e.target.value); }}
+                  onChange={setUserBioFunc}
                   placeholder="bio"
                   cols="80"
                   rows="3"
@@ -75,7 +95,8 @@ export function ProfileSwitch(props) {
               </label>
             </FormTextAreaCover>
             <FormButtonCover>
-              <button type="button" onClick={() => { revertUserBio(); }}>閉じる</button>
+              <button type="button" onClick={revertUserBioFunc}>閉じる</button>
+              {/* todo: 保存に合わせて、プロフィールの「自身が作成したタスク」「自身がいいねしたタスク」のニックネームを変更したい(現状、reloadすると変更される)。 */}
               <button type="submit" disabled={load}>保存</button>
             </FormButtonCover>
           </form>

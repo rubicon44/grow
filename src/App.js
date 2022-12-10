@@ -29,7 +29,7 @@ import { UserNotifications } from './components/containers/pages/users/notificat
 // 検索
 import { SearchIndex } from './components/containers/pages/search';
 
-export function App() {
+export const App = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     // setTimeout(() => setLoading(false), 1000)

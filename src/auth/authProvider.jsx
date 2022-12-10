@@ -10,7 +10,7 @@ import { auth } from '../infra/firebase';
 import { signUp, signIn } from '../infra/api';
 
 export const AuthContext = createContext();
-export function AuthProvider({ children }) {
+export const AuthProvider = ({ children }) => {
   const [currentUserAuth, setCurrentUserAuth] = useState(null);
   const signin = async (email, password) => {
     try {

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 import { getSearches } from '../../../../infra/api';
 
-export function SearchList() {
+export const SearchList = () => {
   const [load, setLoad] = useState(false);
   const [searchResultsUsersForUser, setSearchResultsUsersForUser] = useState([]);
   const [searchResultsUsers, setSearchResultsUsers] = useState([]);
@@ -71,8 +71,7 @@ export function SearchList() {
                   {searchResultsUsers.map((user) => (
                     user.id == task.user_id && (
                       <Link to={`/${user.username}/tasks/${task.id}`}>
-                        {task.title}
-                        <span>cotent:{task.content}</span>
+                        {task.title}<span>cotent:{task.content}</span>
                       </Link>
                     )
                   ))}

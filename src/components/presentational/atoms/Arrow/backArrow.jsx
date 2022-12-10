@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
-export function BackArrow() {
+export const BackArrow = () => {
   const navigate = useNavigate();
   const handleBackArrowClick = () => {
     navigate(-1);

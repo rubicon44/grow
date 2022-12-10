@@ -3,7 +3,7 @@ import { Header } from '../../organisms/header';
 import { Main } from '../main';
 import { FollowingsList } from '../../organisms/users/followingsList';
 
-export function UserFollowingsTemplate() {
+export const UserFollowingsTemplate = () => {
   return (
     <>
       <Header />

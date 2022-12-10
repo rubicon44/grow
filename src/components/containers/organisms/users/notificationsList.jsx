@@ -5,7 +5,7 @@ import { getNotifications } from '../../../../infra/api';
 import { currentUser } from '../../../../infra/currentUser';
 import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 
-export function NotificationsList() {
+export const NotificationsList = () => {
   const currentUserId = currentUser().id;
   const currentUserName = currentUser().username;
   const [isLoading, setIsLoading] = useState(false);
@@ -36,6 +36,7 @@ export function NotificationsList() {
     new Map(visitorsData.likeVisitors.map((visitor) => [visitor.id, visitor])).values()
   );
 
+  // todo: UIとロジックの関数が一緒の場所にあるのは気持ちが悪い(styleも一緒)。別に切り出せないものか。
   const NotificaitonsLikeFunc = ({ notification, visitor }) => {
     return (
       <>

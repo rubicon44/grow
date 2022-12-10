@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { getUser, postRelationships, deleteRelationships, getFollowings } from '../../../../infra/api';
 
-export function FollowButton(props) {
+export const FollowButton = (props) => {
   const location = useLocation();
   const locationPathName = location.pathname.split('/');
   const userNameInUrl = locationPathName[locationPathName.length - 1];
@@ -64,46 +64,58 @@ export function FollowButton(props) {
     })
   }, [followerId]);
 
-  // todo: 分岐が見辛すぎる(それぞれを関数にまとめて分岐処理した方が良い。)
+  const setChangeFollowButtonStyleToTrueFunc = () => {
+    setChangeFollowButtonStyle(true);
+  }
+
+  const setChangeFollowButtonStyleToFalseFunc = () => {
+    setChangeFollowButtonStyle(false);
+  }
+
+  const FollowChangeLinkDoneFunc = () => {
+    return (
+      <FollowChangeLinkDone onMouseEnter={setChangeFollowButtonStyleToTrueFunc}>
+        <span>フォロー中</span>
+      </FollowChangeLinkDone>
+    );
+  }
+
+  const FollowChangeLinkDoneToUnFollowFunc = () => {
+    return (
+      <FollowChangeLinkDoneToUnFollow onMouseLeave={setChangeFollowButtonStyleToFalseFunc} onClick={unFollowFunc}>
+        <span>フォロー解除</span>
+      </FollowChangeLinkDoneToUnFollow>
+    );
+  }
+
+  const FollowChangeLinkDoneOrLinkDoneToUnFollowFunc = () => {
+    return (
+      <FollowChange>
+        <FollowChangeLinkCover>
+          {changeFollowButtonStyle === false ? (<FollowChangeLinkDoneFunc />) : (<FollowChangeLinkDoneToUnFollowFunc />)}
+        </FollowChangeLinkCover>
+      </FollowChange>
+    );
+  }
+
+  const FollowChangeFunc = () => {
+    return(
+      <FollowChange>
+        <FollowChangeLinkCover>
+          <FollowChangeLinkNone onClick={followFunc}>
+            <span>フォロー</span>
+          </FollowChangeLinkNone>
+        </FollowChangeLinkCover>
+      </FollowChange>
+    );
+  }
+
   if(currentUserId !== followerId) {
     return(
       <>
         {followAble === false ? (
-          <>
-            {String(usersFollowingId) === String(followerId) ? (
-              <FollowChange>
-                <FollowChangeLinkCover>
-                  {changeFollowButtonStyle === false ? (
-                    <FollowChangeLinkDone onMouseEnter={() => { setChangeFollowButtonStyle(true); }}>
-                      <span>フォロー中</span>
-                    </FollowChangeLinkDone>
-                  )
-                  : (
-                    <FollowChangeLinkDoneToUnFollow onMouseLeave={() => { setChangeFollowButtonStyle(false); }} onClick={() => { unFollowFunc(); }}>
-                      <span>フォロー解除</span>
-                    </FollowChangeLinkDoneToUnFollow>
-                  )}
-                </FollowChangeLinkCover>
-              </FollowChange>
-            ) : (
-              <FollowChange>
-                <FollowChangeLinkCover>
-                  <FollowChangeLinkNone onClick={() => { followFunc(); }}>
-                    <span>フォロー</span>
-                  </FollowChangeLinkNone>
-                </FollowChangeLinkCover>
-              </FollowChange>
-            )}
-          </>
-        ) : (
-          <FollowChange>
-            <FollowChangeLinkCover>
-              <FollowChangeLinkNone onClick={() => { followFunc(); }}>
-                <span>フォロー</span>
-              </FollowChangeLinkNone>
-            </FollowChangeLinkCover>
-          </FollowChange>
-        )}
+          <>{String(usersFollowingId) === String(followerId) ? (<FollowChangeLinkDoneOrLinkDoneToUnFollowFunc />) : (<FollowChangeFunc />)}</>
+        ) : (<FollowChangeFunc />)}
       </>
     );
   } else {

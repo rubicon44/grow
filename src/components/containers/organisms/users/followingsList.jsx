@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 import { FollowButtonForUsersList } from './followButtonForUsersList';
 
-export function FollowingsList() {
+export const FollowingsList = () => {
   const location = useLocation();
   const { userId } = location.state;
   const currentUserDataText = localStorage.getItem('user');

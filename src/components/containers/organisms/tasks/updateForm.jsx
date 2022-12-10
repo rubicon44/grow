@@ -5,7 +5,7 @@ import { updateTask } from '../../../../infra/api';
 import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 import { Form } from '../../../presentational/molecules/Form';
 
-export function TaskUpdateForm(props) {
+export const TaskUpdateForm = (props) => {
   const navigate = useNavigate();
   const [load, setLoad] = useState(false);
   const updateTaskFunc = async (id, task) => {

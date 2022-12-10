@@ -4,7 +4,7 @@ import { pink } from '@mui/material/colors';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import styled from 'styled-components';
 
-export function LikeButton(props) {
+export const LikeButton = (props) => {
   const { currentUserId } = props;
   const { taskId } = props;
   const [likeCount, setLikeCount] = useState(0);

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { AuthContext } from '../../../../auth/authProvider';
 import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 
-export function SignInForm() {
+export const SignInForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { signin } = useContext(AuthContext);

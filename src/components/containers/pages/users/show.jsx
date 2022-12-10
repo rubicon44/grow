@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserShowTemplate } from '../../templates/users/show';
 
-export function UserShow() {
+export const UserShow = () => {
   return <UserShowTemplate />;
 }

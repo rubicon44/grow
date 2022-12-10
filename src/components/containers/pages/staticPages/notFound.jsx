@@ -5,7 +5,7 @@ import { Header } from '../../organisms/header';
 import { Main } from '../../templates/main';
 import { Title } from '../../../presentational/atoms/Title';
 
-export function NotFound() {
+export const NotFound = () => {
   return (
     <>
       <Header />

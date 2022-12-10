@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { TaskEditTemplate } from '../../templates/tasks/edit';
 
-export function TaskEdit() {
+export const TaskEdit = () => {
   //todo: location.stateを使用するのは正しいのだろうか。
   const location = useLocation();
   const { id } = location.state;

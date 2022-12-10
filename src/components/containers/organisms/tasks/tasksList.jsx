@@ -8,7 +8,7 @@ import { List } from '../../../presentational/molecules/List';
 import { TaskStatusSwitch } from './taskStatusSwitch';
 import { LikeButton } from '../likes/likeButton';
 
-export function TasksList() {
+export const TasksList = () => {
   const sortdOrder = (response) => {
     const list = response.data;
     const dOrder = list.sort((a, b) => {

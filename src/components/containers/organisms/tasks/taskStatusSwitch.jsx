@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-export function TaskStatusSwitch({ taskStatus }) {
+export const TaskStatusSwitch = ({ taskStatus }) => {
   switch(taskStatus) {
     case 0:
       return ( <TaskStatusNot>未対応</TaskStatusNot> )

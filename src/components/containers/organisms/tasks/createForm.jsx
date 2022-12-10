@@ -5,7 +5,7 @@ import { currentUid } from '../../../../infra/firebase';
 import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
 import { Form } from '../../../presentational/molecules/Form';
 
-export function TaskCreateForm() {
+export const TaskCreateForm = () => {
   const navigate = useNavigate();
   const [load, setLoad] = useState(false);
   const postTasksFunc = async (task) => {

@@ -11,7 +11,7 @@ import { CalenderTableBodyColorSwitch } from './calenderTableBodyColorSwitch';
 import { VariableSizeList as List } from 'react-window';
 
 // todo: useEffectが削減できるかどうか見直す(カレンダーの処理を切り出す必要有りかも？)
-export function GunttChart(props) {
+export const GunttChart = (props) => {
   const { taskUser } = props;
   const { userTasks } = props;
 
@@ -136,17 +136,17 @@ export function GunttChart(props) {
         CeMb = calenderEndDate[1].replace(/^0/, '');
         CeDb = getEndOfMonth(CeYb, CeMb);
 
-        function addPlusOneToPrevMonth(year, month, add){
+        const addPlusOneToPrevMonth = (year, month, add) => {
           let addMonth = month + add;
           let addMonthDate = new Date(year, addMonth - 1);
           return addMonthDate;
         }
 
-        function calcBetweenMonths(Ya, Ma, Yb, Mb) {
+        const calcBetweenMonths = (Ya, Ma, Yb, Mb) => {
           return (12 - Ma + 1) + (12 - (12 - Mb)) + (Yb - Ya - 1) * 12;
         }
 
-        function calcRestOfDatesOfMonthStart(Da, EndOfMonth) {
+        const calcRestOfDatesOfMonthStart = (Da, EndOfMonth) => {
           return (EndOfMonth - Da) + 1;
         }
 
@@ -354,7 +354,7 @@ const Example = () => {
       height={50 + 80 * userTasks.length}
       itemData={items}
       itemCount={items.length}
-      itemSize={(index) => (getItemSize(index))}
+      itemSize={getItemSize}
       width={920}
     >
       {Column}
@@ -367,7 +367,6 @@ const Example = () => {
       <ContentHeaderCover>
         <TitleWithBackArrowHeader>ガントチャート</TitleWithBackArrowHeader>
       </ContentHeaderCover>
-
       <div>
         <ArrowIconCover>
           <ArrowBackIosIcon onClick={handleBackToPreviousMonthClick}>前月へ</ArrowBackIosIcon>
