@@ -310,16 +310,16 @@ const Column = ({ index, style, data }) => {
       {styles.map((style) => {
         switch(style.taskStatus) {
             case 0:
-              return ( <RedCalenderTaskBar style={{top: style.top, left: style.left, width: style.width}}></RedCalenderTaskBar> )
+              return ( <RedCalenderTaskBar style={{top: style.top, left: style.left, width: style.width}} /> )
             case 1:
-              return ( <BlueCalenderTaskBar style={{top: style.top, left: style.left, width: style.width}}></BlueCalenderTaskBar> )
+              return ( <BlueCalenderTaskBar style={{top: style.top, left: style.left, width: style.width}} /> )
             case 2:
-              return ( <GreenCalenderTaskBar style={{top: style.top, left: style.left, width: style.width}}></GreenCalenderTaskBar> )
+              return ( <GreenCalenderTaskBar style={{top: style.top, left: style.left, width: style.width}} /> )
             case 3:
-              return ( <YellowGreenCalenderTaskBar style={{top: style.top, left: style.left, width: style.width}}></YellowGreenCalenderTaskBar> )
+              return ( <YellowGreenCalenderTaskBar style={{top: style.top, left: style.left, width: style.width}} /> )
             default:
           };
-          return <CalenderTaskBar style={{top: style.top, left: style.left, width: style.width}}></CalenderTaskBar>;
+          return <CalenderTaskBar style={{top: style.top, left: style.left, width: style.width}} />;
       })}
     </>
   )
