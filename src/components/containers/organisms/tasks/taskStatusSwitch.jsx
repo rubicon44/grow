@@ -3,18 +3,14 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const TaskStatusSwitch = ({ taskStatus }) => {
-  switch(taskStatus) {
-    case 0:
-      return ( <TaskStatusNot>未対応</TaskStatusNot> )
-    case 1:
-      return ( <TaskStatusProcess>処理中</TaskStatusProcess> )
-    case 2:
-      return ( <TaskStatusProcessed>処理済み</TaskStatusProcessed> )
-    case 3:
-      return ( <TaskStatusDone>完了</TaskStatusDone> )
-    default:
+  const componentMap = {
+    0: <TaskStatusNot>未対応</TaskStatusNot>,
+    1: <TaskStatusProcess>処理中</TaskStatusProcess>,
+    2: <TaskStatusProcessed>処理済み</TaskStatusProcessed>,
+    3: <TaskStatusDone>完了</TaskStatusDone>
   };
-  return null;
+  const Component = componentMap[taskStatus];
+  return <Component />;
 };
 
 const TaskStatusNot = styled.span`

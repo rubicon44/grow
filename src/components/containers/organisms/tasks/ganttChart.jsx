@@ -308,18 +308,14 @@ const Column = ({ index, style, data }) => {
         </CalenderTable>
       </div>
       {styles.map((style) => {
-        switch(style.taskStatus) {
-            case 0:
-              return ( <RedCalenderTaskBar style={{top: style.top, left: style.left, width: style.width}} /> )
-            case 1:
-              return ( <BlueCalenderTaskBar style={{top: style.top, left: style.left, width: style.width}} /> )
-            case 2:
-              return ( <GreenCalenderTaskBar style={{top: style.top, left: style.left, width: style.width}} /> )
-            case 3:
-              return ( <YellowGreenCalenderTaskBar style={{top: style.top, left: style.left, width: style.width}} /> )
-            default:
-          };
-          return <CalenderTaskBar style={{top: style.top, left: style.left, width: style.width}} />;
+        const componentMap = {
+          0: RedCalenderTaskBar,
+          1: BlueCalenderTaskBar,
+          2: GreenCalenderTaskBar,
+          3: YellowGreenCalenderTaskBar
+        };
+        const Component = componentMap[style.taskStatus];
+        return <Component style={{top: style.top, left: style.left, width: style.width}} />;
       })}
     </>
   )
