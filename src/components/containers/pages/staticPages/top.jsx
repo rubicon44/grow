@@ -26,7 +26,6 @@ const TopTitle = styled(Title)`
   width: 288px;
   font-weight: 600;
   line-height: 130.2%;
-
   ${mediaquery.desktop`
     width: 100%;
     font-size: 46px;

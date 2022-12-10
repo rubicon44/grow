@@ -5,10 +5,10 @@ import styled from 'styled-components';
 export function CalenderTableBodyColorSwitch({ days }) {
   if(days.dayOfWeek !== "土" && days.dayOfWeek !== "日") {
     return (
-      <ColoredNoneDayOfWeek key={days.blockNumber}>
+      <tr key={days.blockNumber}>
         <td>{days.dayOfWeek}</td>
         <td>{days.day}</td>
-      </ColoredNoneDayOfWeek>
+      </tr>
     );
   } else if(days.dayOfWeek === "土") {
     return (
@@ -28,9 +28,6 @@ export function CalenderTableBodyColorSwitch({ days }) {
     return null;
   };
 };
-
-const ColoredNoneDayOfWeek = styled.tr`
-`;
 
 const ColoredBlueDayOfWeek = styled.tr`
   background: rgb(219 234 254);

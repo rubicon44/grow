@@ -20,28 +20,22 @@ export function Form(props) {
     <FormCover>
       <form onSubmit={handleTextSubmit}>
         <FormTitleCover>
-          <label htmlFor="title">
-            題名:
+          <label htmlFor="title">題名:
             <input
               type="text"
               name="title"
               defaultValue={title}
-              onChange={(e) => {
-                setTitle(e.target.value);
-              }}
+              onChange={(e) => { setTitle(e.target.value); }}
               placeholder="Title"
             />
           </label>
         </FormTitleCover>
         <FormTextAreaCover>
-          <label htmlFor="content">
-            内容:
+          <label htmlFor="content">内容:
             <textarea
               name="content"
               defaultValue={content}
-              onChange={(e) => {
-                setContent(e.target.value);
-              }}
+              onChange={(e) => { setContent(e.target.value); }}
               placeholder="Content"
               cols="80"
               rows="3"
@@ -57,37 +51,29 @@ export function Form(props) {
           </select>
         </FormInputCover>
         <FormInputCover>
-          <label htmlFor="startDate">
-              開始日:
+          <label htmlFor="startDate">開始日:
               <input
                 type="date"
                 name="startDate"
                 defaultValue={startDate}
-                onChange={(e) => {
-                  setStartDate(e.target.value);
-                }}
+                onChange={(e) => { setStartDate(e.target.value); }}
                 placeholder="StartDate"
               />
             </label>
         </FormInputCover>
         <FormInputCover>
-          <label htmlFor="endDate">
-              終了日:
+          <label htmlFor="endDate">終了日:
               <input
                 type="date"
                 name="endDate"
                 defaultValue={endDate}
-                onChange={(e) => {
-                  setEndDate(e.target.value);
-                }}
+                onChange={(e) => { setEndDate(e.target.value); }}
                 placeholder="EndDate"
               />
             </label>
         </FormInputCover>
         <FormButtonCover>
-          <button type="submit" disabled={load}>
-            {!title ? '作成' : '更新'}
-          </button>
+          <button type="submit" disabled={load}>{!title ? '作成' : '更新'}</button>
         </FormButtonCover>
       </form>
     </FormCover>
@@ -102,10 +88,8 @@ const FormCover = styled.div`
 
 const FormTitleCover = styled.div`
   margin-bottom: 10px;
-
   > label {
     display: block;
-
     > input {
       min-width: 260px;
     }
@@ -114,10 +98,8 @@ const FormTitleCover = styled.div`
 
 const FormTextAreaCover = styled.div`
   margin-bottom: 10px;
-
   > label {
     display: block;
-
     > textarea {
       min-width: 260px;
       min-height: 200px;
@@ -127,7 +109,6 @@ const FormTextAreaCover = styled.div`
 
 const FormInputCover = styled.div`
   margin-bottom: 10px;
-
   > label {
     display: block;
   }

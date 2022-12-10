@@ -9,11 +9,9 @@ export function TaskCreateForm() {
   const navigate = useNavigate();
   const [load, setLoad] = useState(false);
   const postTasksFunc = async (task) => {
-    // await postTasks(task).then().catch();
     await postTasks(task)
-    .then((response) => {
-    })
-    .catch(async (response) => {
+    .then()
+    .catch(async () => {
       setLoad(false);
       window.alert("タスクを登録できませんでした。");
       await navigate('/tasks');

@@ -25,8 +25,6 @@ export function TaskList() {
         if (isMounted) setTaskCreatedUserName(response.data.user.username);
       })
       .catch();
-    // .catch((data) => {
-    // });
     return () => {
       isMounted = false;
     };
@@ -62,15 +60,7 @@ export function TaskList() {
   const [load, setLoad] = useState(false);
   function EditTaskButton() {
     if (String(taskCreatedUserId) === currentUserId) {
-      return (
-        <button
-          type="button"
-          disabled={load}
-          onClick={() => editTaskFunc(taskId, currentUserName)}
-        >
-          編集
-        </button>
-      );
+      return (<button type="button" disabled={load} onClick={() => editTaskFunc(taskId, currentUserName)}>編集</button>);
     }
     return null;
   }
@@ -83,11 +73,7 @@ export function TaskList() {
 
   function DeleteTaskButton() {
     if (String(taskCreatedUserId) === currentUserId) {
-      return (
-        <button type="button" onClick={() => deleteCheckFunc()}>
-          削除
-        </button>
-      );
+      return (<button type="button" onClick={() => deleteCheckFunc()}>削除</button>);
     }
     return null;
   }
@@ -99,8 +85,6 @@ export function TaskList() {
 
   const deleteTaskFunc = (taskId) => {
     deleteTask(taskId).then().catch();
-    // .catch((response) => {
-    // });
     setLoad(false);
     navigate(`/${taskCreatedUserName}`);
   };
@@ -129,12 +113,8 @@ export function TaskList() {
         <BackgroundDisAbledCover>
           <BackgroundDisAbled>
             <div>本当に削除しますか?</div>
-            <button type="button" onClick={() => deleteTaskFunc(taskId)}>
-              はい
-            </button>
-            <button type="button" onClick={() => unDeleteCheckFunc()}>
-              いいえ
-            </button>
+            <button type="button" onClick={() => deleteTaskFunc(taskId)}>はい</button>
+            <button type="button" onClick={() => unDeleteCheckFunc()}>いいえ</button>
           </BackgroundDisAbled>
         </BackgroundDisAbledCover>
       )}

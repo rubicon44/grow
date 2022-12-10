@@ -29,22 +29,13 @@ export function SignInForm() {
       <TitleWithBackArrowHeader>ログイン</TitleWithBackArrowHeader>
       <FormCover>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="email">
-            メール
+          <label htmlFor="email">メール
             <input name="email" type="email" placeholder="Email" />
           </label>
-          <label htmlFor="password">
-            パスワード
-            <input
-              name="password"
-              type="password"
-              placeholder="Password"
-              autoComplete="on"
-            />
+          <label htmlFor="password">パスワード
+            <input name="password" type="password" placeholder="Password" autoComplete="on" />
           </label>
-          <button type="submit" disabled={load}>
-            ログイン
-          </button>
+          <button type="submit" disabled={load}>ログイン</button>
         </form>
       </FormCover>
     </>

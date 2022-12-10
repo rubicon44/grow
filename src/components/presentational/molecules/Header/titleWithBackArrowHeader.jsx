@@ -15,7 +15,6 @@ export const TitleWithBackArrowHeader = ({ children }) => {
 const BaseTitleWithBackArrowHeader = styled.div`
   display: flex;
   width: 100%;
-
   > h2 {
     width: 100%;
     margin-right: 45px;

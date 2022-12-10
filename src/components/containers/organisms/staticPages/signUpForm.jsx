@@ -29,30 +29,19 @@ export function SignUpForm() {
       <TitleWithBackArrowHeader>会員登録</TitleWithBackArrowHeader>
       <FormCover>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="nickname">
-            ニックネーム
+          <label htmlFor="nickname">ニックネーム
             <input name="nickname" type="text" placeholder="NickName" />
           </label>
-          <label htmlFor="username">
-            ユーザーネーム
+          <label htmlFor="username">ユーザーネーム
             <input name="username" type="text" placeholder="UserName" />
           </label>
-          <label htmlFor="email">
-            メール
+          <label htmlFor="email">メール
             <input name="email" type="email" placeholder="Email" />
           </label>
-          <label htmlFor="password">
-            パスワード
-            <input
-              name="password"
-              type="password"
-              placeholder="Password"
-              autoComplete="on"
-            />
+          <label htmlFor="password">パスワード
+            <input name="password" type="password" placeholder="Password" autoComplete="on" />
           </label>
-          <button type="submit" disabled={load}>
-            会員登録
-          </button>
+          <button type="submit" disabled={load}>会員登録</button>
         </form>
       </FormCover>
     </>

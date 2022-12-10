@@ -34,8 +34,6 @@ export function TasksList() {
         }
       })
       .catch();
-    // .catch(() => {
-    // });
     return () => {
       isMounted = false;
     };

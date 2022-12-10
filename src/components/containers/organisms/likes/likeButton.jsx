@@ -7,7 +7,6 @@ import styled from 'styled-components';
 export function LikeButton(props) {
   const { currentUserId } = props;
   const { taskId } = props;
-
   const [likeCount, setLikeCount] = useState(0);
   const [likedUserId, setLikedUserId] = useState();
   const [likeId, setLikeId] = useState();
@@ -57,7 +56,6 @@ export function LikeButton(props) {
       setLikeCount(likeCount - 1);
     })
     .catch();
-
     return () => {
       isMounted = false;
     };
@@ -65,18 +63,17 @@ export function LikeButton(props) {
 
   return (
     <>
-      {currentUserId === likedUserId && taskId === currentTaskId
-        ?
+      {currentUserId === likedUserId && taskId === currentTaskId ? (
         <ThumbUpIconCover onClick={handleClickLikeDelete}>
           <ThumbUpIcon sx={{ color: pink[500] }} />
           {likeCount}
         </ThumbUpIconCover>
-        :
+      ) : (
         <ThumbUpIconCover onClick={handleClickLikePost}>
           <ThumbUpIcon />
           {likeCount}
         </ThumbUpIconCover>
-      }
+      )}
     </>
   );
 };

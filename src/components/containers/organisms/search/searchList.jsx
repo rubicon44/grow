@@ -25,8 +25,6 @@ export function SearchList() {
         if (isMounted) setSearchResultsTasks(response.data.results.tasks);
       })
       .catch();
-    // .catch(() => {
-    // });
     setLoad(false);
     return () => {
       isMounted = false;
@@ -50,9 +48,7 @@ export function SearchList() {
               <option value="partial">部分一致</option>
               <option value="perfect">完全一致</option>
             </select>
-            <button type="submit" disabled={load}>
-              検索
-            </button>
+            <button type="submit" disabled={load}>検索</button>
           </form>
         </FormCover>
         <ListCover>
@@ -61,20 +57,17 @@ export function SearchList() {
               <>
               {/* 下記の配列の出し分け方法だと、一度すべての配列を取得してから出し分けするので、データ量が多いと効率が悪いかも? */}
                 <List>
-                  <Link to={`/${user.username}`}>
-                    {user.nickname}
-                    (<span>{user.username}</span>)
-                  </Link>
+                  <Link to={`/${user.username}`}>{user.nickname}({user.username})</Link>
                 </List>
               </>
             ))
           )}
           {searchResultsTasks && (
+            // todo: 作成された順番に出力したい。
             searchResultsTasks.map((task) => (
               <>
               {/* 下記の配列の出し分け方法だと、一度すべての配列を取得してから出し分けするので、データ量が多いと効率が悪いかも? */}
-                <List>
-                  title:
+                <List>title:
                   {searchResultsUsers.map((user) => (
                     user.id == task.user_id && (
                       <Link to={`/${user.username}/tasks/${task.id}`}>
@@ -111,7 +104,6 @@ const List = styled.div`
   text-align: left;
   padding-bottom: 10px;
   border-bottom: 1px solid #ddd;
-
   &:not(:first-of-type) {
     margin-top: 10px;
   }

@@ -125,7 +125,6 @@ const PageWrapper = styled.div`
   max-width: 320px;
   min-height: 700px;
   background-color: #eeeff1;
-
   ${mediaquery.desktop`
     max-width: 1280px;
   `}

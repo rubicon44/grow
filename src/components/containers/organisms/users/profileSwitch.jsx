@@ -5,6 +5,7 @@ export function ProfileSwitch(props) {
   // todo: propsを変数に格納せずに取り出すのは、Formを適切に分割してから行う。
   const { currentUserId } = props;
   const { userBio } = props;
+  const { setUserBio } = props;
   const { userNickName } = props;
   const { setUserNickName } = props;
   const { userName } = props;
@@ -22,11 +23,7 @@ export function ProfileSwitch(props) {
         <ProfileHeader>
           {currentUserId === userId && (
             <BioChangeLinkCover>
-              <BioChangeLink
-                onClick={() => {
-                  setBioAble(false);
-                }}
-              >
+              <BioChangeLink onClick={() => { setBioAble(false); }}>
                 <span>プロフィールを編集</span>
               </BioChangeLink>
             </BioChangeLinkCover>
@@ -46,39 +43,30 @@ export function ProfileSwitch(props) {
         <FormCover>
           <form onSubmit={handleTextSubmit}>
             <FormTextAreaCover>
-              <label htmlFor="nickname">
-                ニックネーム
+              <label htmlFor="nickname">ニックネーム
                 <input
                   name="nickname"
-                  onChange={(e) => {
-                    setUserNickName(e.target.value);
-                  }}
+                  onChange={(e) => { setUserNickName(e.target.value); }}
                   placeholder="nickname"
                   cols="80"
                   rows="3"
                   defaultValue={userNickName}
                 />
               </label>
-              <label htmlFor="username">
-                ユーザーネーム
+              <label htmlFor="username">ユーザーネーム
                 <input
                   name="username"
-                  onChange={(e) => {
-                    setUserName(e.target.value);
-                  }}
+                  onChange={(e) => { setUserName(e.target.value); }}
                   placeholder="username"
                   cols="80"
                   rows="3"
                   defaultValue={userName}
                 />
               </label>
-              <label htmlFor="bio">
-                プロフィール
+              <label htmlFor="bio">プロフィール
                 <textarea
                   name="bio"
-                  onChange={(e) => {
-                    setUserBio(e.target.value);
-                  }}
+                  onChange={(e) => { setUserBio(e.target.value); }}
                   placeholder="bio"
                   cols="80"
                   rows="3"
@@ -87,17 +75,8 @@ export function ProfileSwitch(props) {
               </label>
             </FormTextAreaCover>
             <FormButtonCover>
-              <button
-                type="button"
-                onClick={() => {
-                  revertUserBio();
-                }}
-              >
-                閉じる
-              </button>
-              <button type="submit" disabled={load}>
-                保存
-              </button>
+              <button type="button" onClick={() => { revertUserBio(); }}>閉じる</button>
+              <button type="submit" disabled={load}>保存</button>
             </FormButtonCover>
           </form>
         </FormCover>
@@ -155,11 +134,9 @@ const FormCover = styled.div`
 
 const FormTextAreaCover = styled.div`
   margin-bottom: 10px;
-
   > label {
     display: block;
     margin-bottom: 10px;
-
     > textarea {
       min-height: 200px;
     }

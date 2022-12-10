@@ -22,8 +22,6 @@ export function FollowersList() {
         if (isMounted) setFollowers(response.data.followers);
       })
       .catch();
-    // .catch(() => {
-    // });
     return () => {
       isMounted = false;
     };
@@ -67,7 +65,6 @@ const UsersList = styled.div`
   text-align: left;
   padding-bottom: 10px;
   border-bottom: 1px solid #ddd;
-
   &:not(:first-of-type) {
     margin-top: 10px;
   }

@@ -38,22 +38,18 @@ export function NotificationsList() {
 
   const NotificaitonsLikeFunc = ({ notification, visitor }) => {
     return (
-      <div>
-        あなたの
-        <UserNickName to={`/${currentUserName}/tasks/${notification.task_id}`}>タスク</UserNickName>
-        が
-        <UserNickName to={`/${visitor.username}`}>{visitor.nickname}</UserNickName>
-        にいいねされました。
-      </div>
+      <>
+        あなたの<UserNickName to={`/${currentUserName}/tasks/${notification.task_id}`}>タスク</UserNickName>が
+        <UserNickName to={`/${visitor.username}`}>{visitor.nickname}</UserNickName>にいいねされました。
+      </>
     )
   }
 
   const NotificaitonsFollowFunc = ({ visitor }) => {
     return (
-      <div>
-        <UserNickName to={`/${visitor.username}`}>{visitor.nickname}</UserNickName>
-        さんにフォローされました。
-      </div>
+      <>
+        <UserNickName to={`/${visitor.username}`}>{visitor.nickname}</UserNickName>さんにフォローされました。
+      </>
     )
   }
 
@@ -63,22 +59,14 @@ export function NotificationsList() {
         {visitorsData.notifications.map((notification) => (
           <React.Fragment key={notification.id}>
             <>
-              {notification.action === "like" && (
-                uniqueLikeVisitors.map((visitor) => (
-                  String(notification.visitor_id) === String(visitor.id) && (
-                    <NotificaitonsLikeFunc key={visitor.id} notification={notification} visitor={visitor} />
-                  )
-                ))
-              )}
+              {notification.action === "like" && (uniqueLikeVisitors.map((visitor) => (
+                String(notification.visitor_id) === String(visitor.id) && (<NotificaitonsLikeFunc key={visitor.id} notification={notification} visitor={visitor} />)
+              )))}
             </>
             <>
-              {notification.action === "follow" && (
-                visitorsData.visitors.map((visitor) => (
-                  String(notification.visitor_id) === String(visitor.id) && (
-                    <NotificaitonsFollowFunc key={visitor.id} visitor={visitor} />
-                  )
-                ))
-              )}
+              {notification.action === "follow" && (visitorsData.visitors.map((visitor) => (
+                String(notification.visitor_id) === String(visitor.id) && (<NotificaitonsFollowFunc key={visitor.id} visitor={visitor} />)
+              )))}
             </>
           </React.Fragment>
         ))}
@@ -91,11 +79,7 @@ export function NotificationsList() {
       <TitleWithBackArrowHeader>通知一覧</TitleWithBackArrowHeader>
       {isLoading ? (
         <ListCover>
-          {visitorsData.notifications == null || visitorsData.notifications == '' ? (
-            <div>通知はありません。</div>
-          ) : (
-            <NotificationsListFunc />
-          )}
+          {visitorsData.notifications == null || visitorsData.notifications == '' ? (<div>通知はありません。</div>) : (<NotificationsListFunc />)}
         </ListCover>
       ) : (<>ロード中です...</>)}
     </>
@@ -112,11 +96,9 @@ const UsersList = styled.div`
   display: flex;
   flex-flow: column;
   text-align: left;
-
   &:not(:first-of-type) {
     margin-top: 10px;
   }
-
   > div {
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
@@ -125,7 +107,6 @@ const UsersList = styled.div`
 
 const UserNickName = styled(Link)`
   font-weight: bold;
-
   :hover {
     text-decoration: underline;
   }

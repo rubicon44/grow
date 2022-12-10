@@ -19,8 +19,6 @@ export function FollowButton(props) {
         if (isMounted) setFollowerId(String(followerId));
       })
       .catch();
-    // .catch((data) => {
-    // });
     return () => {
       isMounted = false;
     };
@@ -29,26 +27,14 @@ export function FollowButton(props) {
   const [usersFollowingId, setUsersFollowingId] = useState([]);
   const followFunc = () => {
     const relationships = { following_id: currentUserId, follower_id: followerId };
-    postRelationships(relationships)
-      .then((response) => {
-        // console.log(response.data);
-      })
-      .catch();
-    // .catch((data) => {
-    // });
+    postRelationships(relationships).then().catch();
     setFollowAble(false);
     setUsersFollowingId(followerId);
   };
 
   const unFollowFunc = () => {
     const relationships = { following_id: currentUserId, follower_id: followerId };
-    deleteRelationships(relationships)
-      .then((response) => {
-        // console.log(response.data);
-      })
-      .catch();
-    // .catch((data) => {
-    // });
+    deleteRelationships(relationships).then().catch();
     setFollowAble(true);
   };
 
@@ -62,8 +48,6 @@ export function FollowButton(props) {
         if (isMounted) setFollowings(response.data.followings);
       })
       .catch();
-    // .catch(() => {
-    // });
     return () => {
       isMounted = false;
     };
@@ -90,23 +74,12 @@ export function FollowButton(props) {
               <FollowChange>
                 <FollowChangeLinkCover>
                   {changeFollowButtonStyle === false ? (
-                    <FollowChangeLinkDone
-                      onMouseEnter={() => {
-                        setChangeFollowButtonStyle(true);
-                      }}
-                      >
+                    <FollowChangeLinkDone onMouseEnter={() => { setChangeFollowButtonStyle(true); }}>
                       <span>フォロー中</span>
                     </FollowChangeLinkDone>
                   )
                   : (
-                    <FollowChangeLinkDoneToUnFollow
-                      onMouseLeave={() => {
-                        setChangeFollowButtonStyle(false);
-                      }}
-                      onClick={() => {
-                        unFollowFunc();
-                      }}
-                      >
+                    <FollowChangeLinkDoneToUnFollow onMouseLeave={() => { setChangeFollowButtonStyle(false); }} onClick={() => { unFollowFunc(); }}>
                       <span>フォロー解除</span>
                     </FollowChangeLinkDoneToUnFollow>
                   )}
@@ -115,11 +88,7 @@ export function FollowButton(props) {
             ) : (
               <FollowChange>
                 <FollowChangeLinkCover>
-                  <FollowChangeLinkNone
-                    onClick={() => {
-                      followFunc();
-                    }}
-                  >
+                  <FollowChangeLinkNone onClick={() => { followFunc(); }}>
                     <span>フォロー</span>
                   </FollowChangeLinkNone>
                 </FollowChangeLinkCover>
@@ -129,11 +98,7 @@ export function FollowButton(props) {
         ) : (
           <FollowChange>
             <FollowChangeLinkCover>
-              <FollowChangeLinkNone
-                onClick={() => {
-                  followFunc();
-                }}
-              >
+              <FollowChangeLinkNone onClick={() => { followFunc(); }}>
                 <span>フォロー</span>
               </FollowChangeLinkNone>
             </FollowChangeLinkCover>

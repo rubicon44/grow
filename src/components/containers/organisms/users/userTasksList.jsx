@@ -127,7 +127,6 @@ export function UserTasksList() {
         setBioAble(true);
         setLoad(false);
       })
-      // .catch();
       .catch(errors => {
         if(errors.response.status === 401) {
           window.alert("認証できませんでした。");
@@ -146,7 +145,6 @@ export function UserTasksList() {
     updateUserFunc();
     navigate(`/signIn`);
     signout();
-    // setTimeout(() => signout(), 1000);
   };
 
   const revertUserNameFunc = (username) => {
@@ -158,8 +156,6 @@ export function UserTasksList() {
       setUserName(userName);
     })
     .catch();
-    // .catch((response) => {
-    // });
   }
 
   const unChangeUserNameFunc = () => {
@@ -195,8 +191,6 @@ export function UserTasksList() {
         setUserName(userName);
       })
       .catch();
-    // .catch((response) => {
-    // });
     setBioAble(true);
   };
 
@@ -210,12 +204,8 @@ export function UserTasksList() {
         <BackgroundDisAbledCover>
           <BackgroundDisAbled>
             <div>ユーザーIDの変更には際ログインが必要です。変更しますか？</div>
-            <button type="button" onClick={() => changeUserNameFunc()}>
-              はい
-            </button>
-            <button type="button" onClick={() => unChangeUserNameFunc()}>
-              いいえ
-            </button>
+            <button type="button" onClick={() => changeUserNameFunc()}>はい</button>
+            <button type="button" onClick={() => unChangeUserNameFunc()}>いいえ</button>
           </BackgroundDisAbled>
         </BackgroundDisAbledCover>
       )}
@@ -225,6 +215,7 @@ export function UserTasksList() {
         <ProfileSwitch
           currentUserId={String(currentUserId)}
           userBio={userBio}
+          setUserBio={setUserBio}
           userNickName={userNickName}
           setUserNickName={setUserNickName}
           userName={userName}
@@ -246,12 +237,7 @@ export function UserTasksList() {
         </RelationshipsCover>
       </ContentHeaderCover>
       <Content>
-        <NextGunttLink
-          type="button"
-          onClick={() => nextGunttFunc(currentUserId)}
-        >
-          ガントチャート
-        </NextGunttLink>
+        <NextGunttLink type="button" onClick={() => nextGunttFunc(currentUserId)}>ガントチャート</NextGunttLink>
 
         <>
           {userTasks.length === 0 ? (
@@ -283,6 +269,7 @@ export function UserTasksList() {
               <div>まだいいねはありません。</div>
             </ListCover>
           ) : (
+            // todo: 新しくいいねした順に表示したい。
             userLikedTasks.map((task) => (
               uniqueTaskCreatedUsers.map((user) => (
                 String(task.user_id) === String(user.id) && (
@@ -361,15 +348,12 @@ const RelationshipsCover = styled.div`
   align-items: center;
   width: 100%;
   margin-bottom: 30px;
-
   > a {
     cursor: pointer;
-
     &:hover {
       text-decoration: underline;
     }
   }
-
   > a:last-of-type {
     margin-left: 10px;
   }

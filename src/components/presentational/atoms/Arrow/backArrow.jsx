@@ -22,7 +22,6 @@ const BackArrowCover = styled.div`
   justify-content: center;
   min-width: 45px;
   height: 30px;
-
   > svg {
     cursor: pointer;
   }

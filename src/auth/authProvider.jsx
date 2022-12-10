@@ -55,8 +55,6 @@ export function AuthProvider({ children }) {
           await signin(email, password);
         })
         .catch();
-      // .catch((data) => {
-      // });
     } catch (error) {
       // alert(error);
       // alert('このメールアドレスはすでに登録されています。');
@@ -76,14 +74,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider
-      value={{
-        currentUserAuth,
-        signin,
-        signup,
-        signout,
-      }}
-    >
+    <AuthContext.Provider value={{ currentUserAuth, signin, signup, signout }}>
       {children}
     </AuthContext.Provider>
   );

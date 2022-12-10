@@ -21,11 +21,6 @@ export function Header() {
     right: false,
   });
 
-  let currentUserName;
-  if(localStorage.getItem('user')) {
-    currentUserName = currentUser().username;
-  }
-
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event &&
@@ -38,6 +33,7 @@ export function Header() {
     setState({ ...state, [anchor]: open });
   };
 
+  const currentUserName = localStorage.getItem('user') && currentUser().username;
   const headerLinks = [
     { url: '/top', text: 'Top' },
     { url: '/tasks', text: 'Home' },
@@ -64,11 +60,7 @@ export function Header() {
       <List>
         {headerLinks.map((headerLink) => (
           <Link to={headerLink.url} key={headerLink.url}>
-            <ListItem
-              button
-              key={headerLink.text}
-              className={clsx(classes.listCenter)}
-            >
+            <ListItem button key={headerLink.text} className={clsx(classes.listCenter)}>
               <ListItemText primary={headerLink.text} />
             </ListItem>
           </Link>
@@ -78,11 +70,7 @@ export function Header() {
       <List>
         {headerLinksForAuth.map((headerLink) => (
           <Link to={headerLink.url} key={headerLink.url}>
-            <ListItem
-              button
-              key={headerLink.text}
-              className={clsx(classes.listCenter)}
-            >
+            <ListItem button key={headerLink.text} className={clsx(classes.listCenter)}>
               <ListItemText primary={headerLink.text} />
             </ListItem>
           </Link>

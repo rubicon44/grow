@@ -9,11 +9,9 @@ export function TaskUpdateForm(props) {
   const navigate = useNavigate();
   const [load, setLoad] = useState(false);
   const updateTaskFunc = async (id, task) => {
-    // updateTask(id, task).then().catch();
     await updateTask(id, task)
-    .then((response) => {
-    })
-    .catch(async (response) => {
+    .then()
+    .catch(async () => {
       setLoad(false);
       window.alert("タスクを更新できませんでした。");
       await navigate('/tasks');

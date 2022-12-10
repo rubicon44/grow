@@ -21,7 +21,6 @@ const DangerButtonLink = styled(BaseLink)`
   border: none;
   border-radius: 50px;
   background-color: #ff444f;
-
   ${mediaquery.desktop`
     width: 260px;
     height: 60px;

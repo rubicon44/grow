@@ -270,11 +270,9 @@ const getItemSize = (index) => {
       if(index == 0) {
         return item0;
       }
-
       if(index == 1) {
         return item1;
       }
-
       if(index == 2) {
         return item2;
       }
@@ -289,7 +287,6 @@ useEffect(() => {
   const day = currentDate.getDate();
   const currentPosition = day * "32" - "32";
   document.getElementById("outer").scrollLeft = currentPosition;
-  // document.getElementById("outer").style.padding = "1px 0 0 0";
 }, [moveTocurrentPositionAble]);
 
 const Column = ({ index, style, data }) => {
@@ -335,56 +332,15 @@ const outerElementType = (props) => (
 const StickyListContext = createContext();
 StickyListContext.displayName = "StickyListContext";
 
-// const ItemWrapper = ({ data, index, style }) => {
-//   const { ItemRenderer, stickyIndices } = data;
-//   if (stickyIndices && stickyIndices.includes(index)) {
-//     return null;
-//   }
-//   return <ItemRenderer index={index} style={style} />;
-// };
-
-// const innerElementType = ({ children }) => (
-//   <StickyListContext.Consumer>
-//     <div id="inner">
-//       <div>aaa</div>
-//       {children}
-//     </div>
-//   </StickyListContext.Consumer>
-// );
-
-
-// const Row = ({ index, style }) => (
-//   <div className="row" style={style}>
-//     Row {index}
-//   </div>
-// );
-
-// const StickyRow = ({ style }) => (
-//   <Sticky style={style}>
-//     Sticky Row
-//   </Sticky>
-// );
-
 const innerElementType = forwardRef(({ children, ...rest }, ref) => (
   <StickyListContext.Consumer>
-    {() => (
-      <div ref={ref} {...rest}>
-        {/* <StickyRow
-          style={{ top: 0, left: 0, width: "100%", height: 35 }}
-        /> */}
-        {children}
-      </div>
-    )}
+    {() => (<div ref={ref} {...rest}>{children}</div>)}
   </StickyListContext.Consumer>
 ));
 
 const StickyList = ({ children, ...rest }) => (
-  // <StickyListContext.Provider value={{ children, stickyIndices }}>
   <StickyListContext.Provider>
-    {/* <List itemData={{ children, stickyIndices }} {...rest}> */}
-    <List {...rest}>
-      {children}
-    </List>
+    <List {...rest}>{children}</List>
   </StickyListContext.Provider>
 );
 
@@ -400,37 +356,11 @@ const Example = () => {
       itemCount={items.length}
       itemSize={(index) => (getItemSize(index))}
       width={920}
-
-      // height={150}
-      // innerElementType={innerElementType}
-      // itemCount={1000}
-      // itemSize={35}
-      // stickyIndices={[0, 1]}
-      // width={300}
     >
       {Column}
-      {/* {Row} */}
     </StickyList>
   )
 };
-
-// const Example = () => {
-//   return(
-//     <List
-//       outerElementType={outerElementType}
-//       innerElementType={innerElementType}
-//       layout="horizontal"
-//       direction="ltr"
-//       height={50 + 80 * userTasks.length}
-//       itemData={items}
-//       itemCount={items.length}
-//       itemSize={(index) => (getItemSize(index))}
-//       width={920}
-//     >
-//       {Column}
-//     </List>
-//   )
-// };
 
   return (
     <>
@@ -438,7 +368,7 @@ const Example = () => {
         <TitleWithBackArrowHeader>ガントチャート</TitleWithBackArrowHeader>
       </ContentHeaderCover>
 
-      <Content>
+      <div>
         <ArrowIconCover>
           <ArrowBackIosIcon onClick={handleBackToPreviousMonthClick}>前月へ</ArrowBackIosIcon>
           <ArrowForwardIosIcon onClick={handleForwardToNextMonthClick}>次月へ</ArrowForwardIosIcon>
@@ -474,7 +404,7 @@ const Example = () => {
             </CalenderTableCover>
           </CalenderTableCoverWrapper>
         </GunttContent>
-      </Content>
+      </div>
     </>
   );
 };
@@ -495,9 +425,6 @@ const ArrowIconCover = styled.div`
   justify-content: space-between;
 `;
 
-const Content = styled.div`
-`;
-
 const GunttContent = styled.div`
   display: flex;
   max-height: 450px;
@@ -506,10 +433,8 @@ const GunttContent = styled.div`
 
 const GunttTask = styled.table`
   border: 1px solid;
-
   > thead, tbody {
     border: 1px solid;
-
     > tr > th, td {
       border: 1px solid;
       box-sizing: border-box;
@@ -532,7 +457,6 @@ const GunttTaskList = styled.tbody`
 
 const CalenderTableCoverWrapper = styled.div`
   position: relative;
-
   ${mediaquery.desktop`
   width: 1500px;
 `}
@@ -544,29 +468,23 @@ const CalenderTableCover = styled.div`
 
 const CalenderTable = styled.table`
   position: relative;
-
   > thead, tbody {
     white-space: nowrap;
-
     > tr {
       border: 1px solid #ddd;
     }
   }
-
   > thead > tr {
     background: #7FCCE3;
   }
-
   > tbody {
     display: flex;
-
     > tr {
       display: flex;
       flex-wrap: wrap;
       flex-direction: column;
       width: 30px;
       border: 1px solid #ddd;
-
       > td:last-of-type {
         border-bottom: 1px solid #ddd;
       }
@@ -601,10 +519,3 @@ const YellowGreenCalenderTaskBar = styled(CalenderTaskBar)`
 const Outer = styled.div`
   padding: 1px 0 0 0;
 `;
-
-// const Sticky = styled.div`
-//   position: sticky;
-//   z-index: 2;
-//   display: flex;
-//   align-items: center;
-// `;
