@@ -10,7 +10,7 @@ export const TaskStatusSwitch = ({ taskStatus }) => {
     3: <TaskStatusDone>完了</TaskStatusDone>
   };
   const Component = componentMap[taskStatus];
-  return <Component />;
+  return Component;
 };
 
 const TaskStatusNot = styled.span`
