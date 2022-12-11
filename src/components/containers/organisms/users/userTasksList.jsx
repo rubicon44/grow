@@ -15,12 +15,21 @@ export const UserTasksList = () => {
   const { signout } = useContext(AuthContext);
   const { currentUserAuth } = useContext(AuthContext);
 
-  let currentUserId;
-  let currentUserName;
-  if(localStorage.getItem('user')) {
-    currentUserId = currentUser().id;
-    currentUserName = currentUser().username;
-  }
+  const currentUserId = () => {
+    if(localStorage.getItem('user')) {
+      const id = currentUser().id;
+      return id;
+    }
+    return null;
+  };
+
+  const currentUserName = () => {
+    if(localStorage.getItem('user')) {
+      const username = currentUser().username;
+      return username;
+    }
+    return null;
+  };
 
   const sortdOrder = (taskData) => {
     const list = taskData;
@@ -211,9 +220,9 @@ export const UserTasksList = () => {
       )}
       <ContentHeaderCover>
         <TitleWithBackArrowHeader>{userNickName}</TitleWithBackArrowHeader>
-        <FollowButton currentUserId={currentUserId} />
+        <FollowButton currentUserId={currentUserId()} />
         <ProfileSwitch
-          currentUserId={String(currentUserId)}
+          currentUserId={String(currentUserId())}
           userBio={userBio}
           setUserBio={setUserBio}
           userNickName={userNickName}
@@ -291,7 +300,7 @@ export const UserTasksList = () => {
           )}
         </>
       </Content>
-      {String(currentUserName) === String(userNameInUrl) && (
+      {String(currentUserName()) === String(userNameInUrl) && (
         <LogOutButtonCover>
           {currentUserAuth && <LogOutButton text="ログアウト" />}
         </LogOutButtonCover>

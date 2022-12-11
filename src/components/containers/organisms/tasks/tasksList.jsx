@@ -39,13 +39,21 @@ export const TasksList = () => {
     };
   }, []);
 
+  const currentUserId = () => {
+    if(localStorage.getItem('user')) {
+      const id = currentUser().id;
+      return id;
+    }
+    return null;
+  };
 
-  let currentUserId;
-  let currentUserName;
-  if(localStorage.getItem('user')) {
-    currentUserId = currentUser().id;
-    currentUserName = currentUser().username;
-  }
+  const currentUserName = () => {
+    if(localStorage.getItem('user')) {
+      const username = currentUser().username;
+      return username;
+    }
+    return null;
+  };
 
   return (
     <>
@@ -61,7 +69,7 @@ export const TasksList = () => {
             text={task.user.nickname}
           />
           <TaskStatusSwitch taskStatus={task.status} />
-          <LikeButton taskId={String(task.id)} currentUserId={String(currentUserId)} currentUserName={currentUserName} />
+          <LikeButton taskId={String(task.id)} currentUserId={String(currentUserId())} currentUserName={currentUserName()} />
         </ListCover>
       ))}
     </>
