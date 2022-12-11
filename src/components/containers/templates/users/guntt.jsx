@@ -5,13 +5,11 @@ import { Header } from '../../organisms/header';
 import { GunttChart } from '../../organisms/tasks/ganttChart';
 
 export const UserGunttTemplate = (props) => {
-  const { taskUser } = props;
-  const { userTasks } = props;
   return (
     <>
       <Header />
       <Main>
-        <GunttChart userTasks={userTasks} taskUser={taskUser} />
+        <GunttChart {...props} />
       </Main>
     </>
   );

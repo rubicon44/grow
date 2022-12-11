@@ -4,18 +4,13 @@ import styled from 'styled-components';
 
 export const Form = (props) => {
   // todo: propsを変数に格納せずに取り出すのは、Formを適切に分割してから行う。
-  const { handleTextSubmit } = props;
-  const { title } = props;
-  const { setTitle } = props;
-  const { content } = props;
-  const { setContent } = props;
-  const { status } = props;
-  const { setStatus } = props;
-  const { startDate } = props;
-  const { setStartDate } = props;
-  const { endDate } = props;
-  const { setEndDate } = props;
   const { load } = props;
+  const { handleTextSubmit } = props;
+  const { title, setTitle } = props;
+  const { content, setContent } = props;
+  const { status, setStatus } = props;
+  const { startDate, setStartDate } = props;
+  const { endDate, setEndDate } = props;
 
   const setTitleFunc = (e) => {
     setTitle(e.target.value);

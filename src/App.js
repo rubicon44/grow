@@ -25,7 +25,8 @@ import { UserShow } from './components/containers/pages/users/show';
 import { UserGuntt } from './components/containers/pages/users/guntt';
 import { UserFollowings } from './components/containers/pages/users/followings';
 import { UserFollowers } from './components/containers/pages/users/followers';
-import { UserNotifications } from './components/containers/pages/users/notifications';
+// 通知
+import { Notifications } from './components/containers/pages/notifications';
 // 検索
 import { SearchIndex } from './components/containers/pages/search';
 
@@ -97,7 +98,7 @@ export const App = () => {
               {/* Notifications */}
               <Route
                 path="/notifications"
-                element={<PrivateRoute element={<UserNotifications />} />}
+                element={<PrivateRoute element={<Notifications />} />}
               />
               {/* Searches */}
               <Route

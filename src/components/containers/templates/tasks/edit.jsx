@@ -5,27 +5,11 @@ import { Main } from '../main';
 import { TaskUpdateForm } from '../../organisms/tasks/updateForm';
 
 export const TaskEditTemplate = (props) => {
-  const { id } = props;
-  const { title } = props;
-  const { content } = props;
-  const { status } = props;
-  const { startDate } = props;
-  const { endDate } = props;
-  const { currentUserName } = props;
-
   return (
     <>
       <Header />
       <Main>
-        <TaskUpdateForm
-          id={id}
-          title={title}
-          content={content}
-          status={status}
-          startDate={startDate}
-          endDate={endDate}
-          currentUserName={currentUserName}
-        />
+        <TaskUpdateForm {...props}/>
       </Main>
     </>
   );

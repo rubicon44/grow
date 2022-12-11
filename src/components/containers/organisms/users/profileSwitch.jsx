@@ -4,18 +4,14 @@ import styled from 'styled-components';
 export const ProfileSwitch = (props) => {
   // todo: propsを変数に格納せずに取り出すのは、Formを適切に分割してから行う。
   const { currentUserId } = props;
-  const { userBio } = props;
-  const { setUserBio } = props;
-  const { userNickName } = props;
-  const { setUserNickName } = props;
-  const { userName } = props;
-  const { setUserName } = props;
   const { userId } = props;
-  const { bioAble } = props;
-  const { setBioAble } = props;
   const { load } = props;
   const { handleTextSubmit } = props;
   const { revertUserBio } = props;
+  const { userBio, setUserBio } = props;
+  const { userNickName, setUserNickName } = props;
+  const { userName, setUserName } = props;
+  const { bioAble, setBioAble } = props;
 
   const setBioAbleFunc = () => {
     setBioAble(false);
