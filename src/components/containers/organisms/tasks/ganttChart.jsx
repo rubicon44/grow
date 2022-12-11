@@ -48,6 +48,7 @@ export const GunttChart = (props) => {
   const currentDate = new Date();
   let year = currentDate.getFullYear();
 
+  // todo: Change procedural part to functional one.
   if(currentPositionNumber < 0) {
     year = year + currentPositionNumber;
   }
