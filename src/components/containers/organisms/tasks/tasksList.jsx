@@ -9,8 +9,8 @@ import { TaskStatusSwitch } from './taskStatusSwitch';
 import { LikeButton } from '../likes/likeButton';
 
 export const TasksList = () => {
-  const sortdOrder = (response) => {
-    const list = response.data;
+  const sortdOrder = (data) => {
+    const list = data;
     const dOrder = list.sort((a, b) => {
       if (a.id < b.id) {
         return 1;
@@ -29,7 +29,7 @@ export const TasksList = () => {
     await getTasks()
       .then((response) => {
         if (isMounted) {
-          const dOrderData = sortdOrder(response);
+          const dOrderData = sortdOrder(response.data);
           setTasks(dOrderData);
         }
       })

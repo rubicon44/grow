@@ -110,7 +110,7 @@ export const FollowButton = (props) => {
     );
   }
 
-  if(currentUserId !== followerId) {
+  if(String(currentUserId) !== String(followerId)) {
     return(
       <>
         {followAble === false ? (

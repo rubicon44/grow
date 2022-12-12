@@ -93,11 +93,21 @@ export const FollowButtonForUsersList = (props) => {
     );
   }
 
+  // console.log("currentUserId: " + currentUserId);
+  // console.log("userIdInURL: " + userId);
+
+  // console.log("usersFollowingId: " + usersFollowingId);
+  // console.log("followerId: " + followerId);
+
+  // todo: follow/unfollow buttonを整理する。
+  // 自分がフォローしていなければ「follow button」を表示
+  // 自分がすでにフォローしていれば、「unfollow button」を表示
+  // 自分のアカウントであれば、「何も表示しない」
   if(String(currentUserId) === String(userId)) {
     return(
       <>
         {followAble === false ? (
-          <>{String(usersFollowingId) === String(followerId) ? (<FollowChangeLinkDoneOrLinkDoneToUnFollowFunc />) : (<FollowChangeFunc />)}</>
+          <>{String(usersFollowingId) === String(followerId) ? (<FollowChangeLinkDoneOrLinkDoneToUnFollowFunc />) : (null)}</>
         ) : (<FollowChangeFunc />)}
       </>
     );
