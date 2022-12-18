@@ -6,9 +6,11 @@ import { getSearches } from '../../../../infra/api';
 
 export const SearchList = () => {
   const [load, setLoad] = useState(false);
-  const [searchResultsUsersForUser, setSearchResultsUsersForUser] = useState([]);
-  const [searchResultsUsers, setSearchResultsUsers] = useState([]);
-  const [searchResultsTasks, setSearchResultsTasks] = useState([]);
+  const [searchResults, setSearchResults] = useState({
+    users: [],
+    usersForUser: [],
+    tasks: [],
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,9 +22,11 @@ export const SearchList = () => {
     let isMounted = true;
     getSearches(searchData)
       .then((response) => {
-        if (isMounted) setSearchResultsUsersForUser(response.data.results.users_for_user);
-        if (isMounted) setSearchResultsUsers(response.data.results.users);
-        if (isMounted) setSearchResultsTasks(response.data.results.tasks);
+        if (isMounted) setSearchResults({
+          users: response.data.results.users,
+          usersForUser: response.data.results.users_for_user,
+          tasks: response.data.results.tasks,
+        });
       })
       .catch();
     setLoad(false);
@@ -52,31 +56,27 @@ export const SearchList = () => {
           </form>
         </FormCover>
         <ListCover>
-          {searchResultsUsersForUser && (
-            searchResultsUsersForUser.map((user) => (
-              <>
-              {/* 下記の配列の出し分け方法だと、一度すべての配列を取得してから出し分けするので、データ量が多いと効率が悪いかも? */}
-                <List>
-                  <Link to={`/${user.username}`}>{user.nickname}({user.username})</Link>
-                </List>
-              </>
+          {searchResults.usersForUser && (
+            // todo: 下記の配列の出し分け方法だと、一度すべての配列を取得してから出し分けするので、データ量が多いと効率が悪いかも?
+            searchResults.usersForUser.map((user) => (
+              <List key={user.id}>
+                <Link to={`/${user.username}`}>{user.nickname}({user.username})</Link>
+              </List>
             ))
           )}
-          {searchResultsTasks && (
+          {searchResults.tasks && (
             // todo: 作成された順番に出力したい。
-            searchResultsTasks.map((task) => (
-              <>
-              {/* 下記の配列の出し分け方法だと、一度すべての配列を取得してから出し分けするので、データ量が多いと効率が悪いかも? */}
-                <List>title:
-                  {searchResultsUsers.map((user) => (
-                    user.id == task.user_id && (
-                      <Link to={`/${user.username}/tasks/${task.id}`}>
-                        {task.title}<span>cotent:{task.content}</span>
-                      </Link>
-                    )
-                  ))}
-                </List>
-              </>
+            // todo: 下記の配列の出し分け方法だと、一度すべての配列を取得してから出し分けするので、データ量が多いと効率が悪いかも?
+            searchResults.tasks.map((task) => (
+              <List key={task.id}>title:
+                {searchResults.users.map((user) => (
+                  user.id == task.user_id && (
+                    <Link to={`/${user.username}/tasks/${task.id}`}>
+                      {task.title}<span>cotent:{task.content}</span>
+                    </Link>
+                  )
+                ))}
+              </List>
             ))
           )}
         </ListCover>
