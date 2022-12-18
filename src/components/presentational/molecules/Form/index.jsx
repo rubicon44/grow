@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+// todo: This Form is probably organisms, isn't it?
 export const Form = (props) => {
   // todo: propsを変数に格納せずに取り出すのは、Formを適切に分割してから行う。
   const { load } = props;
@@ -12,6 +13,7 @@ export const Form = (props) => {
   const { startDate, setStartDate } = props;
   const { endDate, setEndDate } = props;
 
+  // todo: 下記setState群はまとめるべきか?
   const setTitleFunc = (e) => {
     setTitle(e.target.value);
   }
