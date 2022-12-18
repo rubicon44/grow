@@ -13,16 +13,20 @@ export const TaskList = () => {
   const location = useLocation();
   const locationPathName = location.pathname.split('/');
   const currentTaskId = locationPathName[locationPathName.length - 1];
-  const [task, setTask] = useState([]);
-  const [taskCreatedUser, setTaskCreatedUser] = useState([]);
-  const [taskCreatedUserName, setTaskCreatedUserName] = useState();
+  const [taskData, setTaskData] = useState({
+    task: [],
+    taskCreatedUser: [],
+    taskCreatedUserName: null,
+  });
   useEffect(() => {
     let isMounted = true;
     getTask(currentTaskId)
       .then((response) => {
-        if (isMounted) setTask(response.data);
-        if (isMounted) setTaskCreatedUser(response.data.user);
-        if (isMounted) setTaskCreatedUserName(response.data.user.username);
+        if (isMounted) setTaskData({
+          task: response.data,
+          taskCreatedUser: response.data.user,
+          taskCreatedUserName: response.data.user.username,
+        });
       })
       .catch();
     return () => {
@@ -30,14 +34,14 @@ export const TaskList = () => {
     };
   }, [currentTaskId]);
 
-  const { id: taskId } = task;
-  const { title: taskTitle } = task;
-  const { content: taskContent } = task;
-  const { status: taskStatus } = task;
-  const { start_date: startDate } = task;
-  const { end_date: endDate } = task;
-  const { user_id: taskCreatedUserId } = task;
-  const { nickname: taskCreatedUserNickName } = taskCreatedUser;
+  const { id: taskId } = taskData.task;
+  const { title: taskTitle } = taskData.task;
+  const { content: taskContent } = taskData.task;
+  const { status: taskStatus } = taskData.task;
+  const { start_date: startDate } = taskData.task;
+  const { end_date: endDate } = taskData.task;
+  const { user_id: taskCreatedUserId } = taskData.task;
+  const { nickname: taskCreatedUserNickName } = taskData.taskCreatedUser;
 
   const currentUserId = currentUser().id;
   const currentUserName = currentUser().username;
@@ -86,7 +90,7 @@ export const TaskList = () => {
   const deleteTaskFunc = async () => {
     await deleteTask(taskId).then().catch();
     setLoad(false);
-    await navigate(`/${taskCreatedUserName}`);
+    await navigate(`/${taskData.taskCreatedUserName}`);
   };
 
   return (
@@ -95,9 +99,9 @@ export const TaskList = () => {
       <ListCover>
         <List
           title={taskTitle}
-          titleUrl={`/${taskCreatedUserName}/tasks/${String(task.id)}`}
+          titleUrl={`/${taskData.taskCreatedUserName}/tasks/${String(taskData.task.id)}`}
           content={taskContent}
-          url={`/${taskCreatedUserName}`}
+          url={`/${taskData.taskCreatedUserName}`}
           text={taskCreatedUserNickName}
         />
         <TaskStatusSwitch taskStatus={taskStatus} />
