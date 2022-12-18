@@ -87,7 +87,6 @@ export const GunttChart = (props) => {
       blockNumber++;
     }
     setCalenders(calenderData.calenders);
-
     return blockNumber;
   };
 
@@ -199,7 +198,6 @@ export const GunttChart = (props) => {
         }
       }
       top = top + 80;
-
       return style;
     });
     setStyles(styleData);
@@ -223,9 +221,11 @@ export const GunttChart = (props) => {
   // 仮想スクロール
   const items = calenders;
   const [itemCalenderWidthArray, setItemCalenderWidthArray] = useState([]);
-  const [item0, setItem0] = useState([]);
-  const [item1, setItem1] = useState([]);
-  const [item2, setItem2] = useState([]);
+  const [itemData0To2, setItemData0To2] = useState({
+    item0: [],
+    item1: [],
+    item2: [],
+  });
   useEffect(() => {
     items.map((item) => {
       let calenderWidth;
@@ -255,27 +255,29 @@ export const GunttChart = (props) => {
         itemCalenderWidthArray.pop();
       }
       setItemCalenderWidthArray(itemCalenderWidthArray);
-      setItem0(itemCalenderWidthArray[0]);
-      setItem1(itemCalenderWidthArray[1]);
-      setItem2(itemCalenderWidthArray[2]);
+      setItemData0To2({
+        item0: itemCalenderWidthArray[0],
+        item1: itemCalenderWidthArray[1],
+        item2: itemCalenderWidthArray[2],
+      });
     })
   }, [items]);
 
 const getItemSize = (index) => {
   // todo: 条件分岐をもっとわかりやすく修正する。
   // 最初はobject、setItemされた後はnumberが入っている(これが原因でエラーが起こっている模様)。
-  if(typeof(item0) === "number") {
+  if(typeof(itemData0To2.item0) === "number") {
     if(index >= 3) {
       return itemCalenderWidthArray[index];
     } else if(index < 3) {
       if(index == 0) {
-        return item0;
+        return itemData0To2.item0;
       }
       if(index == 1) {
-        return item1;
+        return itemData0To2.item1;
       }
       if(index == 2) {
-        return item2;
+        return itemData0To2.item2;
       }
     }
   }
