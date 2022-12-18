@@ -9,6 +9,7 @@ export const FollowButtonForUsersList = (props) => {
   const [followAble, setFollowAble] = useState(false);
   const [changeFollowButtonStyle, setChangeFollowButtonStyle] = useState(false);
   const [usersFollowingId, setUsersFollowingId] = useState([]);
+
   const followFunc = () => {
     const relationships = { following_id: currentUserId, follower_id: followerId };
     postRelationships(relationships).then().catch();
@@ -35,6 +36,21 @@ export const FollowButtonForUsersList = (props) => {
       isMounted = false;
     };
   }, [followAble]);
+
+  // todo: フォロ-関数が作動した際に下記stateを更新したい。
+  const [currentUserFollowings, setCurrentUserFollowings] = useState([]);
+  useEffect(() => {
+    let isMounted = true;
+    const user_id = currentUserId;
+    getFollowings(user_id)
+      .then((response) => {
+        if (isMounted) setCurrentUserFollowings(response.data.followings);
+      })
+      .catch();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // todo: ここのuseEffectは削減できそうな気がする(他の処理の中に書き込めるかも。)
   useEffect(() => {
@@ -93,24 +109,60 @@ export const FollowButtonForUsersList = (props) => {
     );
   }
 
-  // console.log("currentUserId: " + currentUserId);
-  // console.log("userIdInURL: " + userId);
+  // フォローボタン返却関数
+  const returnFollowButton = () => {
+    // todo: currentUserFollowingsの値を更新しなければいけない。
+    const xxx = currentUserFollowings.map((user) => {
+      if(String(user.id) === String(followerId)) {
+        return 0;
+      };
+      if(String(user.id) !== String(followerId)) {
+        return 1;
+      } else {
+        return null;
+      }
+    });
 
-  // console.log("usersFollowingId: " + usersFollowingId);
-  // console.log("followerId: " + followerId);
+    const set = new Set(xxx);
+    const newArr = [...set];
 
-  // todo: follow/unfollow buttonを整理する。
-  // 自分がフォローしていなければ「follow button」を表示
-  // 自分がすでにフォローしていれば、「unfollow button」を表示
-  // 自分のアカウントであれば、「何も表示しない」
+    const AAA = () => {
+      let nnn;
+      if(newArr.includes(0)) {
+        nnn = 0;
+      } else {
+        nnn = 1;
+      }
+
+      if(nnn === 0) {
+        return <FollowChangeLinkDoneOrLinkDoneToUnFollowFunc />
+      }
+      if (nnn === 1) {
+        // todo: ここでフォローされた後、上記の「nnn === 0」の処理が動いていない。
+        return <FollowChangeFunc />
+      } else {
+        return null;
+      }
+    }
+    return AAA();
+  };
+
   if(String(currentUserId) === String(userId)) {
     return(
       <>
         {followAble === false ? (
-          <>{String(usersFollowingId) === String(followerId) ? (<FollowChangeLinkDoneOrLinkDoneToUnFollowFunc />) : (null)}</>
+          <>
+            {String(usersFollowingId) === String(followerId) ? (<FollowChangeLinkDoneOrLinkDoneToUnFollowFunc />) : (<FollowChangeFunc />)}
+          </>
         ) : (<FollowChangeFunc />)}
       </>
     );
+  } else if (String(currentUserId) !== String(userId)){
+    // todo: このままだと、誤って2回フォローできてしまう(Reportのフォローボタンは正常。)。
+    if(String(currentUserId) === String(followerId)) {
+      return (null);
+    }
+    return followAble === false ? returnFollowButton() : <FollowChangeFunc />;
   } else {
     return null;
   }
