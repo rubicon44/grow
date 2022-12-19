@@ -92,7 +92,7 @@ export const LikeButton = (props) => {
         </ThumbUpIconCover>
       )}
     </>
-    ) : (null)
+    ) : (<ThumbUpIcon />)
   );
 };
 
