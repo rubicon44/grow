@@ -7,33 +7,8 @@ export const Form = (props) => {
   // todo: propsを変数に格納せずに取り出すのは、Formを適切に分割してから行う。
   const { load } = props;
   const { handleTextSubmit } = props;
-  const { title, setTitle } = props;
-  const { content, setContent } = props;
-  const { status, setStatus } = props;
-  const { startDate, setStartDate } = props;
-  const { endDate, setEndDate } = props;
-
-  // todo: 下記setState群はまとめるべきか?
-  const setTitleFunc = (e) => {
-    setTitle(e.target.value);
-  }
-
-  const setContentFunc = (e) => {
-    setContent(e.target.value);
-  }
-
-  const setStatusFunc = (e) => {
-    setStatus(Number(e.target.value));
-  }
-
-  const setStartDateFunc = (e) => {
-    setStartDate(e.target.value);
-  }
-
-  const setEndDateFunc = (e) => {
-    setEndDate(e.target.value);
-  }
-
+  const { title, content, status, startDate, endDate } = props;
+  const { inputTitleRef, inputContentRef, selectStatusRef, inputStartDateRef, inputEndDateRef } = props;
   return (
     <FormCover>
       <form onSubmit={handleTextSubmit}>
@@ -43,7 +18,7 @@ export const Form = (props) => {
               type="text"
               name="title"
               defaultValue={title}
-              onChange={setTitleFunc}
+              ref={inputTitleRef}
               placeholder="Title"
             />
           </label>
@@ -53,7 +28,7 @@ export const Form = (props) => {
             <textarea
               name="content"
               defaultValue={content}
-              onChange={setContentFunc}
+              ref={inputContentRef}
               placeholder="Content"
               cols="80"
               rows="3"
@@ -61,7 +36,7 @@ export const Form = (props) => {
           </label>
         </FormTextAreaCover>
         <FormInputCover>
-          <select value={status} onChange={setStatusFunc}>
+          <select defaultValue={status} ref={selectStatusRef}>
             <option value="0">未対応</option>
             <option value="1">処理中</option>
             <option value="2">処理済み</option>
@@ -74,7 +49,7 @@ export const Form = (props) => {
                 type="date"
                 name="startDate"
                 defaultValue={startDate}
-                onChange={setStartDateFunc}
+                ref={inputStartDateRef}
                 placeholder="StartDate"
               />
             </label>
@@ -85,7 +60,7 @@ export const Form = (props) => {
                 type="date"
                 name="endDate"
                 defaultValue={endDate}
-                onChange={setEndDateFunc}
+                ref={inputEndDateRef}
                 placeholder="EndDate"
               />
             </label>
@@ -96,7 +71,7 @@ export const Form = (props) => {
       </form>
     </FormCover>
   );
-}
+};
 
 const FormCover = styled.div`
   min-width: 260px;

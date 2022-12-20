@@ -4,7 +4,7 @@ import { pink } from '@mui/material/colors';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import styled from 'styled-components';
 
-export const LikeButton = (props) => {
+export const LikeButton = React.memo((props) => {
   const { currentUserId } = props;
   const { taskId } = props;
   const [isLoading, setIsLoading] = useState(false);
@@ -94,7 +94,7 @@ export const LikeButton = (props) => {
     </>
     ) : (<ThumbUpIcon />)
   );
-};
+});
 
 const ThumbUpIconCover = styled.span`
   cursor: pointer;

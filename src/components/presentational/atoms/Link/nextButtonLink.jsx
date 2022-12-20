@@ -6,7 +6,7 @@ import { BaseLink } from '../Link';
 
 export const NextButtonLink = ({ url, text }) => {
   return <DangerButtonLink url={url} >{text}</DangerButtonLink>;
-}
+};
 
 const DangerButtonLink = styled(BaseLink)`
   display: flex;

@@ -55,13 +55,15 @@ export const TasksList = () => {
     return null;
   };
 
+  const MemoList = React.memo(List);
+  // todo: Listのtitleとtextが再レンダリングされてしまう。コンポジションとpropsを同時に使用すると起こるのだろうか。調査が必要。
   return (
     <>
       <Title>タスク一覧</Title>
       <NextButtonLink text="タスク登録" url="/tasks/create" />
       {tasks.map((task) => (
         <ListCover key={task.id}>
-          <List
+          <MemoList
             title={task.title}
             titleUrl={`/${task.user.username}/tasks/${String(task.id)}`}
             content={task.content}

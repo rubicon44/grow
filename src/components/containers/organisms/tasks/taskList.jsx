@@ -93,11 +93,26 @@ export const TaskList = () => {
     await navigate(`/${taskData.taskCreatedUserName}`);
   };
 
-  return (
-    <>
-      <TitleWithBackArrowHeader>タスク詳細</TitleWithBackArrowHeader>
+  const MemoButtonCover = React.memo(() => {
+    return (
+      <ButtonCover>
+        <EditTaskButton />
+        <DeleteTaskButton />
+      </ButtonCover>
+    )
+  });
+
+  const MemoTitleWithBackArrowHeader = React.memo(() => {
+    return <TitleWithBackArrowHeader>タスク詳細</TitleWithBackArrowHeader>;
+  });
+
+  const MemoList = React.memo(List);
+  const TaskDetail = () => {
+    return (
+      <>
+      <MemoTitleWithBackArrowHeader />
       <ListCover>
-        <List
+        <MemoList
           title={taskTitle}
           titleUrl={`/${taskData.taskCreatedUserName}/tasks/${String(taskData.task.id)}`}
           content={taskContent}
@@ -108,11 +123,14 @@ export const TaskList = () => {
         <div>開始日:{startDate}</div>
         <div>終了日:{endDate}</div>
         <LikeButton taskId={String(taskId)} currentUserId={String(currentUserId)} />
-        <ButtonCover>
-          <EditTaskButton />
-          <DeleteTaskButton />
-        </ButtonCover>
+        <MemoButtonCover />
       </ListCover>
+      </>
+    )
+  };
+  return (
+    <>
+      <TaskDetail />
       {deleteCheckAble === true && (
         <BackgroundDisAbledCover>
           <BackgroundDisAbled>
@@ -124,7 +142,7 @@ export const TaskList = () => {
       )}
     </>
   );
-}
+};
 
 const ListCover = styled.div`
   position: relative;
