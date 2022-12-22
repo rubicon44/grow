@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { getNotifications } from '../../../../infra/api';
-import { currentUser } from '../../../../infra/currentUser';
-import { NotificationsLikeOrFollowSwitch } from './notificationsLikeOrFollowSwitch';
-import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
+import { getNotifications } from '../../../../../infra/api';
+import { currentUser } from '../../../../../infra/currentUser';
+import { FollowOrLikeSwitchOfNotifications } from '../notificationsList/followOrLikeSwitchOfNotifications';
+import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/titleWithBackArrowHeader';
 
-export const NotificationsList = () => {
+export const NotificationsLists = () => {
   const currentUserId = currentUser().id;
   const currentUserName = currentUser().username;
   const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +37,7 @@ export const NotificationsList = () => {
       <TitleWithBackArrowHeader>通知一覧</TitleWithBackArrowHeader>
       {isLoading ? (
         <ListCover>
-          {visitorsData.notifications == null || visitorsData.notifications == '' ? (<div>通知はありません。</div>) : (<NotificationsLikeOrFollowSwitch visitorsData={visitorsData} currentUserName={currentUserName} />)}
+          {visitorsData.notifications == null || visitorsData.notifications == '' ? (<div>通知はありません。</div>) : (<FollowOrLikeSwitchOfNotifications visitorsData={visitorsData} currentUserName={currentUserName} />)}
         </ListCover>
       ) : (<>ロード中です...</>)}
     </>
