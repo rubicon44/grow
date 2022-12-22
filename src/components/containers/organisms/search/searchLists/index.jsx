@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
-import { getSearches } from '../../../../infra/api';
+import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/titleWithBackArrowHeader';
+import { getSearches } from '../../../../../infra/api';
 
-export const SearchList = () => {
+export const SearchLists = () => {
   const [load, setLoad] = useState(false);
   const [searchResults, setSearchResults] = useState({
     users: [],
@@ -34,6 +34,11 @@ export const SearchList = () => {
       isMounted = false;
     };
   };
+
+  // todo: APIから重複したデータが返却されているため、APIのcontrollerで重複を取り除くロジックを書く。
+  const uniqueSearchDataUsers = searchResults.users && Array.from(
+    new Map(searchResults.users.map((user) => [user.id, user])).values()
+  );
 
   return (
     <>
@@ -69,9 +74,9 @@ export const SearchList = () => {
             // todo: 下記の配列の出し分け方法だと、一度すべての配列を取得してから出し分けするので、データ量が多いと効率が悪いかも?
             searchResults.tasks.map((task) => (
               <List key={task.id}>title:
-                {searchResults.users.map((user) => (
-                  user.id == task.user_id && (
-                    <Link to={`/${user.username}/tasks/${task.id}`}>
+                {uniqueSearchDataUsers.map((user) => (
+                  user.id === task.user_id && (
+                    <Link to={`/${user.username}/tasks/${task.id}`} key={user.username}>
                       {task.title}<span>cotent:{task.content}</span>
                     </Link>
                   )
