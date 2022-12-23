@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const Main = ({ children, className }) => {
   return <BaseMain className={className}>{children}</BaseMain>;
-}
+};
 
 const BaseMain = styled.main`
   position: relative;
