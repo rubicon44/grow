@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Header } from '../../organisms/header';
 import { Main } from '../main';
+import { Header } from '../../organisms/header';
 import { TaskUpdateForm } from '../../organisms/tasks/taskForm/updateForm';
 
 export const TaskEditTemplate = (props) => {

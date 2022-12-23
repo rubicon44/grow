@@ -1,34 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import styled from 'styled-components';
 import { signOut } from 'firebase/auth';
 import jwtDecode from 'jwt-decode';
-// スタイリング
+// Style
 import './assets/styles/reset.css';
 import { mediaquery } from './assets/styles/variable';
-// 認証用Context
+// Context for auth
+import { auth } from './infra/firebase';
 import { AuthProvider } from './auth/authProvider';
 import { PrivateRoute } from './auth/privateRoute';
-import { auth } from './infra/firebase';
-// staticPages
-import { NotFound } from './components/containers/pages/staticPages/notFound';
-import { Top } from './components/containers/pages/staticPages/top';
-// auth
+// Auth
 import { SignIn } from './components/containers/pages/auth/signIn';
 import { SignUp } from './components/containers/pages/auth/signUp';
-// タスク
+// Static pages
+import { NotFound } from './components/containers/pages/staticPages/notFound';
+import { Top } from './components/containers/pages/staticPages/top';
+// Tasks
 import { TaskIndex } from './components/containers/pages/tasks';
-import { TaskShow } from './components/containers/pages/tasks/show';
 import { TaskCreate } from './components/containers/pages/tasks/create';
 import { TaskEdit } from './components/containers/pages/tasks/edit';
-// ユーザー
-import { UserShow } from './components/containers/pages/users/show';
+import { TaskShow } from './components/containers/pages/tasks/show';
+// Users
 import { UserGuntt } from './components/containers/pages/users/guntt';
 import { UserFollowings } from './components/containers/pages/users/followings';
 import { UserFollowers } from './components/containers/pages/users/followers';
-// 通知
+import { UserShow } from './components/containers/pages/users/show';
+// Notifications
 import { Notifications } from './components/containers/pages/notifications';
-// 検索
+// Searches
 import { SearchIndex } from './components/containers/pages/search';
 
 export const App = () => {
@@ -54,13 +54,14 @@ export const App = () => {
         <AuthProvider>
           <Router>
             <Routes>
-              {/* top・サインイン・サインアップ・NotFound */}
+              {/* Auth */}
               <Route path="/" element={<Top />} />
               <Route path="/top" element={<Top />} />
+              <Route path="*" element={<NotFound />} />
+              {/* Static pages */}
               <Route path="/signIn" element={<SignIn />} />
               <Route path="/signUp" element={<SignUp />} />
-              <Route path="*" element={<NotFound />} />
-              {/* task */}
+              {/* Task */}
               <Route
                 path="/tasks"
                 element={<PrivateRoute element={<TaskIndex />} />}
@@ -73,12 +74,12 @@ export const App = () => {
                 path="/tasks/edit/:id"
                 element={<PrivateRoute element={<TaskEdit />} />}
               />
-              {/* user */}
+              {/* User */}
               <Route
                 path="/:username"
                 element={<PrivateRoute element={<UserShow />} />}
               />
-              {/* GunttChart */}
+              {/* Guntt chart */}
               <Route
                 path="/:username/guntt"
                 element={<PrivateRoute element={<UserGuntt />} />}

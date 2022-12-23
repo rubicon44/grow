@@ -1,6 +1,6 @@
 import React from 'react';
-import { Header } from '../../organisms/header';
 import { Main } from '../main';
+import { Header } from '../../organisms/header';
 import { NotificationsList } from '../../organisms/notifications/notificationsList';
 
 export const NotificationsTemplate = () => {

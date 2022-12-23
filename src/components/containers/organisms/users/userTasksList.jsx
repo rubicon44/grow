@@ -1,14 +1,14 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { AuthContext } from '../../../../auth/authProvider';
 import { getUser, updateUser } from '../../../../infra/api';
 import { currentUser } from '../../../../infra/currentUser';
-import { AuthContext } from '../../../../auth/authProvider';
 import { CheckThatReLoginWhenChangeUserId } from './checkThatReLoginWhenChangeUserId';
-import { UserTasksListContentHeader } from './userTasksListContentHeader';
 import { UserTasksListAlreadyPost } from './userTasksListAlreadyPost';
-import { UserTasksListNoLike } from './userTasksListNoLike';
+import { UserTasksListContentHeader } from './userTasksListContentHeader';
 import { UserTasksListAlreadyLike } from './userTasksListAlreadyLike';
+import { UserTasksListNoLike } from './userTasksListNoLike';
 import { UserTasksListNoPost } from './userTasksListNoPost';
 import { LogOutButton } from '../logOutButton';
 

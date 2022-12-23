@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { postRelationships, deleteRelationships, getFollowings } from '../../../../infra/api';
+import { deleteRelationships, getFollowings, postRelationships } from '../../../../infra/api';
 
 export const FollowButtonForUsersList = (props) => {
   const { currentUserId } = props;
