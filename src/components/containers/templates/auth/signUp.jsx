@@ -1,14 +1,14 @@
 import React from 'react';
 import { Header } from '../../organisms/header';
 import { Main } from '../main';
-import { SignInForm } from '../../organisms/staticPages/signInForm';
+import { SignUpForm } from '../../organisms/auth/signUpForm';
 
-export const SignInTemplate = () => {
+export const SignUpTemplate = () => {
   return (
     <>
       <Header />
       <Main>
-        <SignInForm />
+        <SignUpForm />
       </Main>
     </>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SignInTemplate } from '../../templates/staticPages/signIn';
+import { SignInTemplate } from '../../templates/auth/signIn';
 
 export const SignIn = () => {
   return <SignInTemplate />;

@@ -10,11 +10,12 @@ import { mediaquery } from './assets/styles/variable';
 import { AuthProvider } from './auth/authProvider';
 import { PrivateRoute } from './auth/privateRoute';
 import { auth } from './infra/firebase';
-// 認証前・サインイン・サインアップ・NotFound
-import { Top } from './components/containers/pages/staticPages/top';
-import { SignIn } from './components/containers/pages/staticPages/signIn';
-import { SignUp } from './components/containers/pages/staticPages/signUp';
+// staticPages
 import { NotFound } from './components/containers/pages/staticPages/notFound';
+import { Top } from './components/containers/pages/staticPages/top';
+// auth
+import { SignIn } from './components/containers/pages/auth/signIn';
+import { SignUp } from './components/containers/pages/auth/signUp';
 // タスク
 import { TaskIndex } from './components/containers/pages/tasks';
 import { TaskShow } from './components/containers/pages/tasks/show';
