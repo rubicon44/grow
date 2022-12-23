@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { getSearches } from '../../../../../infra/api';
 import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/titleWithBackArrowHeader';
 
-export const SearchLists = () => {
+export const SearchList = () => {
   const [load, setLoad] = useState(false);
   const [searchResults, setSearchResults] = useState({
     users: [],

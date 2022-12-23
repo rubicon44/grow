@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { FollowButton } from './followButton';
+import { FollowButton } from '../../userButton/followButton';
 import { ProfileSwitch } from './profileSwitch';
-import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
+import { TitleWithBackArrowHeader } from '../../../../../presentational/molecules/Header/titleWithBackArrowHeader';
 
-export const UserTasksListContentHeader = (props) => {
+export const ContentHeader = (props) => {
   const navigate = useNavigate();
   const { title } = props;
   const { currentUserId, load } = props;

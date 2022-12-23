@@ -1,30 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { getUser, postRelationships, deleteRelationships, getFollowings } from '../../../../infra/api';
+import { deleteRelationships, getFollowings, postRelationships } from '../../../../../../infra/api';
 
-export const FollowButton = (props) => {
-  const location = useLocation();
-  const locationPathName = location.pathname.split('/');
-  const userNameInUrl = locationPathName[locationPathName.length - 1];
+export const FollowButtonForUsersList = (props) => {
   const { currentUserId } = props;
+  const { userId } = props;
+  const { followerId } = props;
   const [followAble, setFollowAble] = useState(false);
   const [changeFollowButtonStyle, setChangeFollowButtonStyle] = useState(false);
-  const [followerId, setFollowerId] = useState([]);
-  useEffect(() => {
-    let isMounted = true;
-    getUser(userNameInUrl)
-      .then((response) => {
-        const followerId = response.data.user.id;
-        if (isMounted) setFollowerId(String(followerId));
-      })
-      .catch();
-    return () => {
-      isMounted = false;
-    };
-  }, [userNameInUrl]);
-
   const [usersFollowingId, setUsersFollowingId] = useState([]);
+
   const followFunc = () => {
     const relationships = { following_id: currentUserId, follower_id: followerId };
     postRelationships(relationships).then().catch();
@@ -38,11 +23,10 @@ export const FollowButton = (props) => {
     setFollowAble(true);
   };
 
-  // todo: ここのuseEffectは削減できそうな気がする
   const [followings, setFollowings] = useState([]);
   useEffect(() => {
     let isMounted = true;
-    const user_id = currentUserId;
+    const user_id = userId;
     getFollowings(user_id)
       .then((response) => {
         if (isMounted) setFollowings(response.data.followings);
@@ -53,6 +37,21 @@ export const FollowButton = (props) => {
     };
   }, [followAble]);
 
+  // todo: フォロ-関数が作動した際に下記stateを更新したい。
+  const [currentUserFollowings, setCurrentUserFollowings] = useState([]);
+  useEffect(() => {
+    let isMounted = true;
+    const user_id = currentUserId;
+    getFollowings(user_id)
+      .then((response) => {
+        if (isMounted) setCurrentUserFollowings(response.data.followings);
+      })
+      .catch();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   // todo: ここのuseEffectは削減できそうな気がする(他の処理の中に書き込めるかも。)
   useEffect(() => {
     followings.map((users) => {
@@ -62,7 +61,7 @@ export const FollowButton = (props) => {
         return null;
       }
     })
-  }, [followerId]);
+  }, [followings]);
 
   const setChangeFollowButtonStyleToTrueFunc = () => {
     setChangeFollowButtonStyle(true);
@@ -110,22 +109,67 @@ export const FollowButton = (props) => {
     );
   }
 
-  if(String(currentUserId) !== String(followerId)) {
+  // フォローボタン返却関数
+  const returnFollowButton = () => {
+    // todo: currentUserFollowingsの値を更新しなければいけない。
+    const xxx = currentUserFollowings.map((user) => {
+      if(String(user.id) === String(followerId)) {
+        return 0;
+      };
+      if(String(user.id) !== String(followerId)) {
+        return 1;
+      } else {
+        return null;
+      }
+    });
+
+    const set = new Set(xxx);
+    const newArr = [...set];
+
+    const AAA = () => {
+      let nnn;
+      if(newArr.includes(0)) {
+        nnn = 0;
+      } else {
+        nnn = 1;
+      }
+
+      if(nnn === 0) {
+        return <FollowChangeLinkDoneOrLinkDoneToUnFollowFunc />
+      }
+      if (nnn === 1) {
+        // todo: ここでフォローされた後、上記の「nnn === 0」の処理が動いていない。
+        return <FollowChangeFunc />
+      } else {
+        return null;
+      }
+    }
+    return AAA();
+  };
+
+  if(String(currentUserId) === String(userId)) {
     return(
       <>
         {followAble === false ? (
-          <>{String(usersFollowingId) === String(followerId) ? (<FollowChangeLinkDoneOrLinkDoneToUnFollowFunc />) : (<FollowChangeFunc />)}</>
+          <>
+            {String(usersFollowingId) === String(followerId) ? (<FollowChangeLinkDoneOrLinkDoneToUnFollowFunc />) : (<FollowChangeFunc />)}
+          </>
         ) : (<FollowChangeFunc />)}
       </>
     );
+  } else if (String(currentUserId) !== String(userId)){
+    // todo: このままだと、誤って2回フォローできてしまう(Reportのフォローボタンは正常。)。
+    if(String(currentUserId) === String(followerId)) {
+      return (null);
+    }
+    return followAble === false ? returnFollowButton() : <FollowChangeFunc />;
   } else {
     return null;
   }
 }
 
 const FollowChange = styled.div`
-  width: 100%;
-  margin-bottom: 30px;
+  margin-left: 30px;
 `;
 
 const FollowChangeLinkCover = styled.div`

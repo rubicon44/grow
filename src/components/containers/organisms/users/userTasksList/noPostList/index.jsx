@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const UserTasksListNoLike = ({ userData }) => {
+export const NoPostList = ({ userData }) => {
   return (
-    <ListCover key={userData.userLikedTasks}>
-      <div>まだいいねはありません。</div>
+    <ListCover key={userData.userTasks}>
+      <div>まだ投稿はありません。</div>
     </ListCover>
   )
 };

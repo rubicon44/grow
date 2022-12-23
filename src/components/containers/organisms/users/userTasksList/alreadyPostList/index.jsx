@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TaskStatusSwitch } from '../tasks/logic/taskStatusSwitch';
-import { List } from '../../../presentational/molecules/List';
+import { TaskStatusSwitch } from '../../../tasks/logic/taskStatusSwitch';
+import { List } from '../../../../../presentational/molecules/List';
 
-export const UserTasksListAlreadyPost = ({ userData }) => {
+export const AlreadyPostList = ({ userData }) => {
   return (
     userData.userTasks.map((task) => (
       <ListCoverWrapper key={task.id}>

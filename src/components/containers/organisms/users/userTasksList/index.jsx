@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { AuthContext } from '../../../../auth/authProvider';
-import { getUser, updateUser } from '../../../../infra/api';
-import { currentUser } from '../../../../infra/currentUser';
+import { AuthContext } from '../../../../../auth/authProvider';
+import { getUser, updateUser } from '../../../../../infra/api';
+import { currentUser } from '../../../../../infra/currentUser';
 import { CheckThatReLoginWhenChangeUserId } from './checkThatReLoginWhenChangeUserId';
-import { UserTasksListAlreadyPost } from './userTasksListAlreadyPost';
-import { UserTasksListContentHeader } from './userTasksListContentHeader';
-import { UserTasksListAlreadyLike } from './userTasksListAlreadyLike';
-import { UserTasksListNoLike } from './userTasksListNoLike';
-import { UserTasksListNoPost } from './userTasksListNoPost';
-import { LogOutButton } from '../logOutButton';
+import { AlreadyPostList } from './alreadyPostList';
+import { ContentHeader } from './contentHeader';
+import { AlreadyLikeList } from './alreadyLikeList';
+import { NoLikeList } from './noLikeList';
+import { NoPostList } from './noPostList';
+import { LogOutButton } from '../../logOutButton';
 
 export const UserTasksList = () => {
   const { signout } = useContext(AuthContext);
@@ -205,7 +205,7 @@ export const UserTasksList = () => {
   return (
     <>
       {changeUserNameCheckAble === true && (<CheckThatReLoginWhenChangeUserId changeUserNameFunc={changeUserNameFunc} unChangeUserNameFunc={unChangeUserNameFunc} />)}
-      <UserTasksListContentHeader
+      <ContentHeader
         title={userData.userNickName}
         currentUserId={String(currentUserId())}
         load={load}
@@ -219,11 +219,11 @@ export const UserTasksList = () => {
       <Content>
         <NextGunttLink type="button" onClick={nextGunttFunc}>ガントチャート</NextGunttLink>
         <>
-          {userData.userTasks.length === 0 ? (<UserTasksListNoPost userData={userData} />) : (<UserTasksListAlreadyPost userData={userData} />)}
+          {userData.userTasks.length === 0 ? (<NoPostList userData={userData} />) : (<AlreadyPostList userData={userData} />)}
         </>
         <>
           <LikedTask>いいねしたタスク</LikedTask>
-          {userData.userLikedTasks.length === 0 ? (<UserTasksListNoLike userData={userData} />) : (<UserTasksListAlreadyLike userData={userData} />)}
+          {userData.userLikedTasks.length === 0 ? (<NoLikeList userData={userData} />) : (<AlreadyLikeList userData={userData} />)}
         </>
       </Content>
 
