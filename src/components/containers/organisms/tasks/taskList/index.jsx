@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getTask } from '../../../../infra/api';
 import styled from 'styled-components';
-import { deleteTask } from '../../../../infra/api';
-import { currentUser } from '../../../../infra/currentUser';
-import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
-import { List } from '../../../presentational/molecules/List';
-import { TaskStatusSwitch } from './taskStatusSwitch';
-import { LikeButton } from '../likes/likeButton';
+import { getTask } from '../../../../../infra/api';
+import { deleteTask } from '../../../../../infra/api';
+import { currentUser } from '../../../../../infra/currentUser';
+import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/titleWithBackArrowHeader';
+import { List } from '../../../../presentational/molecules/List';
+import { TaskStatusSwitch } from '../logic/taskStatusSwitch';
+import { LikeButton } from '../../likes/likeButton';
 
 export const TaskList = () => {
   const location = useLocation();

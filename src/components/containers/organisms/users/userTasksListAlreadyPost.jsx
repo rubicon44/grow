@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { List } from '../../../presentational/molecules/List';
-import { TaskStatusSwitch } from '../tasks/taskStatusSwitch';
+import { TaskStatusSwitch } from '../tasks/logic/taskStatusSwitch';
 
 export const UserTasksListAlreadyPost = ({ userData }) => {
   return (

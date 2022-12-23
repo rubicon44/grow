@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef, createContext, forwardRef } from 'r
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
-import { mediaquery } from '../../../../assets/styles/variable';
+import { mediaquery } from '../../../../../assets/styles/variable';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/titleWithBackArrowHeader';
+import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/titleWithBackArrowHeader';
 import { TaskStatusSwitchText } from './taskStatusSwitchText';
 import { CalenderTableBodyColorSwitch } from './calenderTableBodyColorSwitch';
 import { VariableSizeList as List } from 'react-window';

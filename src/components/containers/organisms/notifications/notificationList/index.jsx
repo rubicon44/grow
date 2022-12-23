@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FollowNotifications } from './followNotifications';
-import { LikeNotifications } from './likeNotifications';
+import { FollowNotification } from './followNotification';
+import { LikeNotification } from './likeNotification';
 
-export const FollowOrLikeSwitchOfNotifications = ({ visitorsData, currentUserName }) => {
+export const NotificationList = ({ visitorsData, currentUserName }) => {
   const uniqueLikeVisitors = Array.from(
     new Map(visitorsData.likeVisitors.map((visitor) => [visitor.id, visitor])).values()
   );
@@ -13,12 +13,12 @@ export const FollowOrLikeSwitchOfNotifications = ({ visitorsData, currentUserNam
         <React.Fragment key={notification.id}>
           <>
             {notification.action === "like" && (uniqueLikeVisitors.map((visitor) => (
-              String(notification.visitor_id) === String(visitor.id) && (<LikeNotifications key={visitor.id} currentUserName={currentUserName} notification={notification} visitor={visitor} />)
+              String(notification.visitor_id) === String(visitor.id) && (<LikeNotification key={visitor.id} currentUserName={currentUserName} notification={notification} visitor={visitor} />)
             )))}
           </>
           <>
             {notification.action === "follow" && (visitorsData.visitors.map((visitor) => (
-              String(notification.visitor_id) === String(visitor.id) && (<FollowNotifications key={visitor.id} visitor={visitor} />)
+              String(notification.visitor_id) === String(visitor.id) && (<FollowNotification key={visitor.id} visitor={visitor} />)
             )))}
           </>
         </React.Fragment>

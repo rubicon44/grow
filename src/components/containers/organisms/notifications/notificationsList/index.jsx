@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { getNotifications } from '../../../../../infra/api';
 import { currentUser } from '../../../../../infra/currentUser';
-import { FollowOrLikeSwitchOfNotifications } from '../notificationsList/followOrLikeSwitchOfNotifications';
+import { NotificationList } from '../notificationList';
 import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/titleWithBackArrowHeader';
 
-export const NotificationsLists = () => {
+export const NotificationsList = () => {
   const currentUserId = currentUser().id;
   const currentUserName = currentUser().username;
   const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +37,7 @@ export const NotificationsLists = () => {
       <TitleWithBackArrowHeader>通知一覧</TitleWithBackArrowHeader>
       {isLoading ? (
         <ListCover>
-          {visitorsData.notifications == null || visitorsData.notifications == '' ? (<div>通知はありません。</div>) : (<FollowOrLikeSwitchOfNotifications visitorsData={visitorsData} currentUserName={currentUserName} />)}
+          {visitorsData.notifications == null || visitorsData.notifications == '' ? (<div>通知はありません。</div>) : (<NotificationList visitorsData={visitorsData} currentUserName={currentUserName} />)}
         </ListCover>
       ) : (<>ロード中です...</>)}
     </>

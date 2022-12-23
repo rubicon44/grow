@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const FollowNotifications = ({ visitor }) => {
+export const LikeNotification = ({ currentUserName, notification, visitor }) => {
   return (
     <UserNickNameCover>
-      <UserNickName to={`/${visitor.username}`}>{visitor.nickname}</UserNickName>さんにフォローされました。
+      あなたの<UserNickName to={`/${currentUserName}/tasks/${notification.task_id}`}>タスク</UserNickName>が<UserNickName to={`/${visitor.username}`}>{visitor.nickname}</UserNickName>にいいねされました。
     </UserNickNameCover>
   )
 }

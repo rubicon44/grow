@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Header } from '../../organisms/header';
 import { Main } from '../main';
-import { TaskUpdateForm } from '../../organisms/tasks/updateForm';
+import { TaskUpdateForm } from '../../organisms/tasks/taskForm/updateForm';
 
 export const TaskEditTemplate = (props) => {
   return (
@@ -13,7 +13,7 @@ export const TaskEditTemplate = (props) => {
       </Main>
     </>
   );
-}
+};
 
 TaskEditTemplate.defaultProps = {
   id: 0,

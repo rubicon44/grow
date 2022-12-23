@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { getTasks } from '../../../../infra/api';
-import { currentUser } from '../../../../infra/currentUser';
-import { Title } from '../../../presentational/atoms/Title';
-import { NextButtonLink } from '../../../presentational/atoms/Link/nextButtonLink';
-import { List } from '../../../presentational/molecules/List';
-import { TaskStatusSwitch } from './taskStatusSwitch';
-import { LikeButton } from '../likes/likeButton';
+import { getTasks } from '../../../../../infra/api';
+import { currentUser } from '../../../../../infra/currentUser';
+import { Title } from '../../../../presentational/atoms/Title';
+import { NextButtonLink } from '../../../../presentational/atoms/Link/nextButtonLink';
+import { List } from '../../../../presentational/molecules/List';
+import { TaskStatusSwitch } from '../logic/taskStatusSwitch';
+import { LikeButton } from '../../likes/likeButton';
 
 export const TasksList = () => {
   const sortdOrder = (data) => {
