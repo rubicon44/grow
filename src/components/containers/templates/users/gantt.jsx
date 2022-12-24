@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Header } from '../../organisms/header';
-import { GunttChart } from '../../organisms/tasks/ganttChart';
+import { GanttChart } from '../../organisms/tasks/ganttChart';
 
-export const UserGunttTemplate = (props) => {
+export const UserGanttTemplate = (props) => {
   return (
     <>
       <Header />
       <Main>
-        <GunttChart {...props} />
+        <GanttChart {...props} />
       </Main>
     </>
   );
@@ -20,12 +20,12 @@ const Main = styled.main`
   background-color: #f8f7f3;
 `;
 
-UserGunttTemplate.defaultProps = {
+UserGanttTemplate.defaultProps = {
   taskUser: {},
   userTasks: [],
 };
 
-UserGunttTemplate.propTypes = {
+UserGanttTemplate.propTypes = {
   taskUser: PropTypes.exact({
     id: PropTypes.number,
     nickname: PropTypes.string,

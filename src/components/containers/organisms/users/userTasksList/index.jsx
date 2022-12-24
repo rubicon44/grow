@@ -98,8 +98,8 @@ export const UserTasksList = () => {
   }, [userNameInUrl]);
 
   const navigate = useNavigate();
-  const nextGunttFunc = () => {
-    navigate(`/${userData.taskUser.username}/guntt`, {
+  const nextGanttFunc = () => {
+    navigate(`/${userData.taskUser.username}/gantt`, {
       state: {
         taskUser: userData.taskUser,
         userTasks: userData.userTasks,
@@ -217,7 +217,7 @@ export const UserTasksList = () => {
         setUserData={setUserData}
       />
       <Content>
-        <NextGunttLink type="button" onClick={nextGunttFunc}>ガントチャート</NextGunttLink>
+        <NextGanttLink type="button" onClick={nextGanttFunc}>ガントチャート</NextGanttLink>
         <>
           {userData.userTasks.length === 0 ? (<NoPostList userData={userData} />) : (<AlreadyPostList userData={userData} />)}
         </>
@@ -252,7 +252,7 @@ const LogOutButtonCover = styled.div`
   box-sizing: border-box;
 `;
 
-const NextGunttLink = styled.button`
+const NextGanttLink = styled.button`
   font-size: 22px;
   font-weight: bold;
   font-family: YuMincho;

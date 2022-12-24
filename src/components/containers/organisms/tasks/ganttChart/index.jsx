@@ -11,7 +11,7 @@ import { TaskStatusSwitchText } from './taskStatusSwitchText';
 import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
 
 // todo: useEffectが削減できるかどうか見直す(カレンダーの処理を切り出す必要有りかも？)
-export const GunttChart = (props) => {
+export const GanttChart = (props) => {
   const { taskUser } = props;
   const { userTasks } = props;
 
@@ -371,9 +371,9 @@ const Example = () => {
           <ArrowBackIosIcon onClick={handleBackToPreviousMonthClick}>前月へ</ArrowBackIosIcon>
           <ArrowForwardIosIcon onClick={handleForwardToNextMonthClick}>次月へ</ArrowForwardIosIcon>
         </ArrowIconCover>
-        <GunttContent>
-          <GunttTask>
-            <GunttTaskTitle>
+        <GanttContent>
+          <GanttTask>
+            <GanttTaskTitle>
               <tr>
                 <th>タスク</th>
                 <th>開始日</th>
@@ -381,8 +381,8 @@ const Example = () => {
                 <th>担当</th>
                 <th>進捗</th>
               </tr>
-            </GunttTaskTitle>
-            <GunttTaskList ref={elm}>
+            </GanttTaskTitle>
+            <GanttTaskList ref={elm}>
               {userTasks.map((task) => (
                 <tr key={task.id}>
                   <td>{task.title}</td>
@@ -394,14 +394,14 @@ const Example = () => {
                   </td>
                 </tr>
               ))}
-            </GunttTaskList>
-          </GunttTask>
+            </GanttTaskList>
+          </GanttTask>
           <CalenderTableCoverWrapper>
             <CalenderTableCover>
               <Example />
             </CalenderTableCover>
           </CalenderTableCoverWrapper>
-        </GunttContent>
+        </GanttContent>
       </div>
     </>
   );
@@ -423,13 +423,13 @@ const ArrowIconCover = styled.div`
   justify-content: space-between;
 `;
 
-const GunttContent = styled.div`
+const GanttContent = styled.div`
   display: flex;
   max-height: 450px;
   overflow: scroll;
 `;
 
-const GunttTask = styled.table`
+const GanttTask = styled.table`
   border: 1px solid;
   > thead, tbody {
     border: 1px solid;
@@ -440,14 +440,14 @@ const GunttTask = styled.table`
   }
 `;
 
-const GunttTaskTitle = styled.thead`
+const GanttTaskTitle = styled.thead`
   position: sticky;
   top: 0;
   height: 50px;
   background: #ed8077;
 `;
 
-const GunttTaskList = styled.tbody`
+const GanttTaskList = styled.tbody`
   > tr, td {
     height: 80px;
   }

@@ -22,7 +22,7 @@ import { TaskCreate } from './components/containers/pages/tasks/create';
 import { TaskEdit } from './components/containers/pages/tasks/edit';
 import { TaskShow } from './components/containers/pages/tasks/show';
 // Users
-import { UserGuntt } from './components/containers/pages/users/guntt';
+import { UserGantt } from './components/containers/pages/users/gantt';
 import { UserFollowings } from './components/containers/pages/users/followings';
 import { UserFollowers } from './components/containers/pages/users/followers';
 import { UserShow } from './components/containers/pages/users/show';
@@ -79,10 +79,10 @@ export const App = () => {
                 path="/:username"
                 element={<PrivateRoute element={<UserShow />} />}
               />
-              {/* Guntt chart */}
+              {/* Gantt chart */}
               <Route
-                path="/:username/guntt"
-                element={<PrivateRoute element={<UserGuntt />} />}
+                path="/:username/gantt"
+                element={<PrivateRoute element={<UserGantt />} />}
               />
               <Route
                 path="/:username/tasks/:id"
