@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { deleteTask } from '../../../../../infra/api';
 import { getTask } from '../../../../../infra/api';
 import { currentUser } from '../../../../../infra/currentUser';
-import { LikeButton } from '../../likes/LikeButton';
+import { LikeButton } from '../../Likes/LikeButton';
 import { TaskStatusSwitch } from '../logic/TaskStatusSwitch';
 import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
 import { List } from '../../../../presentational/molecules/List';

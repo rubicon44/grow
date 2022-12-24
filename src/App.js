@@ -11,25 +11,25 @@ import { auth } from './infra/firebase';
 import { AuthProvider } from './auth/authProvider';
 import { PrivateRoute } from './auth/privateRoute';
 // Auth
-import { SignIn } from './components/containers/pages/auth/signIn';
-import { SignUp } from './components/containers/pages/auth/signUp';
+import { SignIn } from './components/containers/pages/Auth/SignIn';
+import { SignUp } from './components/containers/pages/Auth/SignUp';
 // Static pages
-import { NotFound } from './components/containers/pages/staticPages/notFound';
-import { Top } from './components/containers/pages/staticPages/top';
+import { NotFound } from './components/containers/pages/StaticPages/NotFound';
+import { Top } from './components/containers/pages/StaticPages/Top';
 // Tasks
-import { TaskIndex } from './components/containers/pages/tasks';
-import { TaskCreate } from './components/containers/pages/tasks/create';
-import { TaskEdit } from './components/containers/pages/tasks/edit';
-import { TaskShow } from './components/containers/pages/tasks/show';
+import { TaskIndex } from './components/containers/pages/Tasks';
+import { TaskCreate } from './components/containers/pages/Tasks/TaskCreate';
+import { TaskEdit } from './components/containers/pages/Tasks/TaskEdit';
+import { TaskShow } from './components/containers/pages/Tasks/TaskShow';
 // Users
-import { UserGantt } from './components/containers/pages/users/gantt';
-import { UserFollowings } from './components/containers/pages/users/followings';
-import { UserFollowers } from './components/containers/pages/users/followers';
-import { UserShow } from './components/containers/pages/users/show';
+import { UserGantt } from './components/containers/pages/Users/UserGantt';
+import { UserFollowings } from './components/containers/pages/Users/UserFollowings';
+import { UserFollowers } from './components/containers/pages/Users/UserFollowers';
+import { UserShow } from './components/containers/pages/Users/UserShow';
 // Notifications
-import { Notifications } from './components/containers/pages/notifications';
+import { Notifications } from './components/containers/pages/Notifications';
 // Searches
-import { SearchIndex } from './components/containers/pages/search';
+import { SearchIndex } from './components/containers/pages/Search';
 
 export const App = () => {
   const [loading, setLoading] = useState(true);

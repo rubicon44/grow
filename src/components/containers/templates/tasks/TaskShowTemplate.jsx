@@ -1,14 +1,14 @@
 import React from 'react';
 import { Main } from '../Main';
 import { Header } from '../../organisms/Header';
-import { UserTasksList } from '../../organisms/users/UserTasksList';
+import { TaskList } from '../../organisms/Tasks/TaskList';
 
-export const UserShowTemplate = () => {
+export const TaskShowTemplate = () => {
   return (
     <>
       <Header />
       <Main>
-        <UserTasksList />
+        <TaskList />
       </Main>
     </>
   );

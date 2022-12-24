@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Main } from '../Main';
 import { Header } from '../../organisms/Header';
-import { TaskUpdateForm } from '../../organisms/tasks/TaskForm/UpdateForm';
+import { TaskUpdateForm } from '../../organisms/Tasks/TaskForm/UpdateForm';
 
 export const TaskEditTemplate = (props) => {
   return (

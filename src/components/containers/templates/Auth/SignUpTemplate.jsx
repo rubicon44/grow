@@ -1,14 +1,14 @@
 import React from 'react';
 import { Main } from '../Main';
 import { Header } from '../../organisms/Header';
-import { SignInForm } from '../../organisms/auth/SignInForm';
+import { SignUpForm } from '../../organisms/Auth/SignUpForm';
 
-export const SignInTemplate = () => {
+export const SignUpTemplate = () => {
   return (
     <>
       <Header />
       <Main>
-        <SignInForm />
+        <SignUpForm />
       </Main>
     </>
   );

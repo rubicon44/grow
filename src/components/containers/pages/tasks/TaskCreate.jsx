@@ -1,5 +1,5 @@
 import React from 'react';
-import { TaskCreateTemplate } from '../../templates/tasks/create';
+import { TaskCreateTemplate } from '../../templates/Tasks/TaskCreateTemplate';
 
 export const TaskCreate = () => {
   return <TaskCreateTemplate />;

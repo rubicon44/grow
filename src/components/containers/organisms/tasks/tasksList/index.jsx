@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { getTasks } from '../../../../../infra/api';
 import { currentUser } from '../../../../../infra/currentUser';
-import { LikeButton } from '../../likes/LikeButton';
+import { LikeButton } from '../../Likes/LikeButton';
 import { TaskStatusSwitch } from '../logic/TaskStatusSwitch';
 import { List } from '../../../../presentational/molecules/List';
 import { NextButtonLink } from '../../../../presentational/atoms/Link/NextButtonLink';
