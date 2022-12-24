@@ -8,7 +8,7 @@ import 'dayjs/locale/ja';
 import { mediaquery } from '../../../../../assets/styles/variable';
 import { CalenderTableBodyColorSwitch } from './calenderTableBodyColorSwitch';
 import { TaskStatusSwitchText } from './taskStatusSwitchText';
-import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/titleWithBackArrowHeader';
+import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
 
 // todo: useEffectが削減できるかどうか見直す(カレンダーの処理を切り出す必要有りかも？)
 export const GunttChart = (props) => {

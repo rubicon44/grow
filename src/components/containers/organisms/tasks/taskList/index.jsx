@@ -6,7 +6,7 @@ import { getTask } from '../../../../../infra/api';
 import { currentUser } from '../../../../../infra/currentUser';
 import { LikeButton } from '../../likes/likeButton';
 import { TaskStatusSwitch } from '../logic/taskStatusSwitch';
-import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/titleWithBackArrowHeader';
+import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
 import { List } from '../../../../presentational/molecules/List';
 
 export const TaskList = () => {

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
 import { Main } from '../../templates/main';
 import { Title } from '../../../presentational/atoms/Title';
-import { NextButtonLink } from '../../../presentational/atoms/Link/nextButtonLink';
+import { NextButtonLink } from '../../../presentational/atoms/Link/NextButtonLink';
 
 export const Top = () => {
   return (

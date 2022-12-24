@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { getFollowers } from '../../../../../infra/api';
 import { FollowButtonForUsersList } from '../userButton/followButtonForUsersList';
-import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/titleWithBackArrowHeader';
+import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const FollowersList = () => {
   const location = useLocation();

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FollowButton } from '../../userButton/followButton';
 import { ProfileSwitch } from './profileSwitch';
-import { TitleWithBackArrowHeader } from '../../../../../presentational/molecules/Header/titleWithBackArrowHeader';
+import { TitleWithBackArrowHeader } from '../../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const ContentHeader = (props) => {
   const navigate = useNavigate();

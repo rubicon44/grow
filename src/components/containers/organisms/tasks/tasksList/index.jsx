@@ -5,7 +5,7 @@ import { currentUser } from '../../../../../infra/currentUser';
 import { LikeButton } from '../../likes/likeButton';
 import { TaskStatusSwitch } from '../logic/taskStatusSwitch';
 import { List } from '../../../../presentational/molecules/List';
-import { NextButtonLink } from '../../../../presentational/atoms/Link/nextButtonLink';
+import { NextButtonLink } from '../../../../presentational/atoms/Link/NextButtonLink';
 import { Title } from '../../../../presentational/atoms/Title';
 
 export const TasksList = () => {
