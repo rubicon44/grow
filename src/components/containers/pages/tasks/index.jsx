@@ -1,6 +1,6 @@
 import React from 'react';
-import { TaskIndexTemplate } from '../../templates/Tasks';
+import { TasksTemplate } from '../../templates/Tasks/TasksTemplate';
 
-export const TaskIndex = () => {
-  return <TaskIndexTemplate />;
+export const Tasks = () => {
+  return <TasksTemplate />;
 }

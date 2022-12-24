@@ -3,7 +3,7 @@ import { Main } from '../Main';
 import { Header } from '../../organisms/Header';
 import { TasksList } from '../../organisms/Tasks/TasksList';
 
-export const TaskIndexTemplate = () => {
+export const TasksTemplate = () => {
   return (
     <>
       <Header />

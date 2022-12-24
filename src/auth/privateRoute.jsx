@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AuthContext } from './authProvider';
+import { AuthContext } from './AuthProvider';
 import { SignIn } from '../components/containers/pages/Auth/SignIn';
 
 export const PrivateRoute = ({ element: RouteComponent }) => {

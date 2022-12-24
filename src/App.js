@@ -8,8 +8,8 @@ import './assets/styles/reset.css';
 import { mediaquery } from './assets/styles/variable';
 // Context for auth
 import { auth } from './infra/firebase';
-import { AuthProvider } from './auth/authProvider';
-import { PrivateRoute } from './auth/privateRoute';
+import { AuthProvider } from './auth/AuthProvider';
+import { PrivateRoute } from './auth/PrivateRoute';
 // Auth
 import { SignIn } from './components/containers/pages/Auth/SignIn';
 import { SignUp } from './components/containers/pages/Auth/SignUp';
@@ -17,7 +17,7 @@ import { SignUp } from './components/containers/pages/Auth/SignUp';
 import { NotFound } from './components/containers/pages/StaticPages/NotFound';
 import { Top } from './components/containers/pages/StaticPages/Top';
 // Tasks
-import { TaskIndex } from './components/containers/pages/Tasks';
+import { Tasks } from './components/containers/pages/Tasks';
 import { TaskCreate } from './components/containers/pages/Tasks/TaskCreate';
 import { TaskEdit } from './components/containers/pages/Tasks/TaskEdit';
 import { TaskShow } from './components/containers/pages/Tasks/TaskShow';
@@ -29,7 +29,7 @@ import { UserShow } from './components/containers/pages/Users/UserShow';
 // Notifications
 import { Notifications } from './components/containers/pages/Notifications';
 // Searches
-import { SearchIndex } from './components/containers/pages/Search';
+import { Search } from './components/containers/pages/Search';
 
 export const App = () => {
   const [loading, setLoading] = useState(true);
@@ -64,7 +64,7 @@ export const App = () => {
               {/* Task */}
               <Route
                 path="/tasks"
-                element={<PrivateRoute element={<TaskIndex />} />}
+                element={<PrivateRoute element={<Tasks />} />}
               />
               <Route
                 path="/tasks/create"
@@ -105,7 +105,7 @@ export const App = () => {
               {/* Searches */}
               <Route
                 path="/search"
-                element={<PrivateRoute element={<SearchIndex />} />}
+                element={<PrivateRoute element={<Search />} />}
               />
             </Routes>
           </Router>

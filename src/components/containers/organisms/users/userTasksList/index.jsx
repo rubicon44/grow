@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { AuthContext } from '../../../../../auth/authProvider';
+import { AuthContext } from '../../../../../auth/AuthProvider';
 import { getUser, updateUser } from '../../../../../infra/api';
 import { currentUser } from '../../../../../infra/currentUser';
 import { CheckThatReLoginWhenChangeUserId } from './UserTasksCheckThatReLoginWhenChangeUserId';

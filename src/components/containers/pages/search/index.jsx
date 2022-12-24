@@ -1,6 +1,6 @@
 import React from 'react';
-import { SearchTemplate } from '../../templates/Search';
+import { SearchTemplate } from '../../templates/Search/SearchTemplate';
 
-export const SearchIndex = () => {
+export const Search = () => {
   return <SearchTemplate />;
 }

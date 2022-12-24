@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { AuthContext } from '../../../auth/authProvider';
+import { AuthContext } from '../../../auth/AuthProvider';
 import { Button } from '../../presentational/atoms/Button';
 
 export const LogOutButton = (props) => {
