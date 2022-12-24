@@ -29,7 +29,7 @@ import { UserShow } from './components/containers/pages/Users/UserShow';
 // Notifications
 import { Notifications } from './components/containers/pages/Notifications';
 // Searches
-import { Search } from './components/containers/pages/Search';
+import { Searches } from './components/containers/pages/Searches';
 
 export const App = () => {
   const [loading, setLoading] = useState(true);
@@ -104,8 +104,8 @@ export const App = () => {
               />
               {/* Searches */}
               <Route
-                path="/search"
-                element={<PrivateRoute element={<Search />} />}
+                path="/searches"
+                element={<PrivateRoute element={<Searches />} />}
               />
             </Routes>
           </Router>

@@ -40,7 +40,7 @@ export const Header = () => {
     { url: '/tasks/create', text: 'Post' },
     { url: `/${currentUserName}`, text: 'Report' },
     { url: `/notifications`, text: 'Notifications' },
-    { url: `/search`, text: 'Search' },
+    { url: `/searches`, text: 'Searches' },
   ];
 
   const headerLinksForAuth = [
