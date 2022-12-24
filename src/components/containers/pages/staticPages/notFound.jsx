@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
-import { Main } from '../../templates/main';
-import { Header } from '../../organisms/header';
+import { Main } from '../../templates/Main';
+import { Header } from '../../organisms/Header';
 import { Title } from '../../../presentational/atoms/Title';
 
 export const NotFound = () => {

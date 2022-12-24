@@ -1,7 +1,7 @@
 import React from 'react';
-import { Main } from '../main';
-import { Header } from '../../organisms/header';
-import { NotificationsList } from '../../organisms/notifications/notificationsList';
+import { Main } from '../Main';
+import { Header } from '../../organisms/Header';
+import { NotificationsList } from '../../organisms/notifications/NotificationsList';
 
 export const NotificationsTemplate = () => {
   return (

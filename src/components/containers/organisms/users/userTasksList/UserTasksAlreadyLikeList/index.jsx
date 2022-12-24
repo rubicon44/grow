@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TaskStatusSwitch } from '../../../tasks/logic/taskStatusSwitch';
+import { TaskStatusSwitch } from '../../../tasks/logic/TaskStatusSwitch';
 import { List } from '../../../../../presentational/molecules/List';
 
 export const AlreadyLikeList = ({ userData }) => {

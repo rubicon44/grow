@@ -1,7 +1,7 @@
 import React from 'react';
-import { Main } from '../main';
-import { Header } from '../../organisms/header';
-import { SignInForm } from '../../organisms/auth/signInForm';
+import { Main } from '../Main';
+import { Header } from '../../organisms/Header';
+import { SignInForm } from '../../organisms/auth/SignInForm';
 
 export const SignInTemplate = () => {
   return (

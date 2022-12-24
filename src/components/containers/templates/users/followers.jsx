@@ -1,7 +1,7 @@
 import React from 'react';
-import { Main } from '../main';
-import { Header } from '../../organisms/header';
-import { FollowersList } from '../../organisms/users/followersList';
+import { Main } from '../Main';
+import { Header } from '../../organisms/Header';
+import { FollowersList } from '../../organisms/users/FollowersList';
 
 export const UserFollowersTemplate = () => {
   return (

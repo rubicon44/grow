@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FollowNotification } from './followNotification';
-import { LikeNotification } from './likeNotification';
+import { FollowNotification } from './FollowNotification';
+import { LikeNotification } from './LikeNotification';
 
 export const NotificationList = ({ visitorsData, currentUserName }) => {
   const uniqueLikeVisitors = Array.from(

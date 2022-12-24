@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Header } from '../../organisms/header';
-import { GanttChart } from '../../organisms/tasks/ganttChart';
+import { Header } from '../../organisms/Header';
+import { GanttChart } from '../../organisms/tasks/GanttChart';
 
 export const UserGanttTemplate = (props) => {
   return (

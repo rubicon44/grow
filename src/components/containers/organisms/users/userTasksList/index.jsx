@@ -4,13 +4,13 @@ import styled from 'styled-components';
 import { AuthContext } from '../../../../../auth/authProvider';
 import { getUser, updateUser } from '../../../../../infra/api';
 import { currentUser } from '../../../../../infra/currentUser';
-import { CheckThatReLoginWhenChangeUserId } from './checkThatReLoginWhenChangeUserId';
-import { AlreadyPostList } from './alreadyPostList';
-import { ContentHeader } from './contentHeader';
-import { AlreadyLikeList } from './alreadyLikeList';
-import { NoLikeList } from './noLikeList';
-import { NoPostList } from './noPostList';
-import { LogOutButton } from '../../logOutButton';
+import { CheckThatReLoginWhenChangeUserId } from './UserTasksCheckThatReLoginWhenChangeUserId';
+import { AlreadyPostList } from './UserTasksAlreadyPostList';
+import { ContentHeader } from './UserTasksContentHeader';
+import { AlreadyLikeList } from './UserTasksAlreadyLikeList';
+import { NoLikeList } from './UserTasksNoLikeList';
+import { NoPostList } from './UserTasksNoPostList';
+import { LogOutButton } from '../../LogOutButton';
 
 export const UserTasksList = () => {
   const { signout } = useContext(AuthContext);

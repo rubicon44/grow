@@ -1,7 +1,7 @@
 import React from 'react';
-import { Main } from '../main';
-import { Header } from '../../organisms/header';
-import { TaskList } from '../../organisms/tasks/taskList';
+import { Main } from '../Main';
+import { Header } from '../../organisms/Header';
+import { TaskList } from '../../organisms/tasks/TaskList';
 
 export const TaskShowTemplate = () => {
   return (

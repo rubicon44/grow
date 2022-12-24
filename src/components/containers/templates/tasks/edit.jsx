@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Main } from '../main';
-import { Header } from '../../organisms/header';
-import { TaskUpdateForm } from '../../organisms/tasks/taskForm/updateForm';
+import { Main } from '../Main';
+import { Header } from '../../organisms/Header';
+import { TaskUpdateForm } from '../../organisms/tasks/TaskForm/UpdateForm';
 
 export const TaskEditTemplate = (props) => {
   return (

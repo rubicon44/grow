@@ -1,7 +1,7 @@
 import React from 'react';
-import { Main } from '../main';
-import { Header } from '../../organisms/header';
-import { UserTasksList } from '../../organisms/users/userTasksList';
+import { Main } from '../Main';
+import { Header } from '../../organisms/Header';
+import { UserTasksList } from '../../organisms/users/UserTasksList';
 
 export const UserShowTemplate = () => {
   return (

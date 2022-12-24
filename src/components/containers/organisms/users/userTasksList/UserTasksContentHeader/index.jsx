@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { FollowButton } from '../../userButton/followButton';
-import { ProfileSwitch } from './profileSwitch';
+import { FollowButton } from '../../UserButton/FollowButton';
+import { ProfileSwitch } from './ProfileSwitch';
 import { TitleWithBackArrowHeader } from '../../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const ContentHeader = (props) => {

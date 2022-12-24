@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { AuthContext } from '../../../../auth/authProvider';
-import { TitleWithBackArrowHeader } from '../../../presentational/molecules/Header/TitleWithBackArrowHeader';
+import { AuthContext } from '../../../../../auth/authProvider';
+import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const SignUpForm = () => {
   const navigate = useNavigate();

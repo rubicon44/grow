@@ -1,7 +1,7 @@
 import React from 'react';
-import { Main } from '../main';
-import { Header } from '../../organisms/header';
-import { TaskCreateForm } from '../../organisms/tasks/taskForm/createForm';
+import { Main } from '../Main';
+import { Header } from '../../organisms/Header';
+import { TaskCreateForm } from '../../organisms/tasks/TaskForm/CreateForm';
 
 export const TaskCreateTemplate = () => {
   return (
