@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TaskStatusSwitch } from '../../../Tasks/logic/TaskStatusSwitch';
-import { List } from '../../../../../presentational/molecules/List';
+import { TaskStatusSwitch } from 'components/containers/organisms/Tasks/logic/TaskStatusSwitch';
+import { List } from 'components/presentational/molecules/List';
 
-export const AlreadyLikeList = ({ userData }) => {
+export const UserTasksAlreadyLikeList = ({ userData }) => {
   const uniqueTaskCreatedUsers = Array.from(
     new Map(userData.taskCreatedUser.map((user) => [user.id, user])).values()
   );

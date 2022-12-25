@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BioEditLink } from './BioEditLink';
-import { ProfileSwitchForm } from './ProfileSwitchForm';
+import { BioEditLink } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader/ProfileSwitch/BioEditLink';
+import { ProfileSwitchForm } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader/ProfileSwitch/ProfileSwitchForm';
 
 export const ProfileSwitch = (props) => {
   const { currentUserId } = props;

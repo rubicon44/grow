@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const NoLikeList = ({ userData }) => {
+export const UserTasksNoLikeList = ({ userData }) => {
   return (
     <ListCover key={userData.userLikedTasks}>
       <div>まだいいねはありません。</div>

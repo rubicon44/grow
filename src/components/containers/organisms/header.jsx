@@ -10,7 +10,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import MenuIcon from '@material-ui/icons/Menu';
-import { currentUser } from '../../../infra/currentUser';
+import { currentUser } from 'infra/currentUser';
 
 export const Header = () => {
   const classes = useStyles();

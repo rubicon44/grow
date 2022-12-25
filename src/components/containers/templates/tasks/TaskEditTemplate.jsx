@@ -1,17 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Main } from '../Main';
-import { Header } from '../../organisms/Header';
-import { TaskUpdateForm } from '../../organisms/Tasks/TaskForm/UpdateForm';
+import { MainWithHeader } from 'components/containers/templates/MainWithHeader';
+import { TaskEditForm } from 'components/containers/organisms/Tasks/TaskForm/TaskEditForm';
 
 export const TaskEditTemplate = (props) => {
   return (
-    <>
-      <Header />
-      <Main>
-        <TaskUpdateForm {...props}/>
-      </Main>
-    </>
+    <MainWithHeader>
+      <TaskEditForm {...props}/>
+    </MainWithHeader>
   );
 };
 

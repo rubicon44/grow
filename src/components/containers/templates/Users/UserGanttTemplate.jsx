@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Header } from '../../organisms/Header';
-import { GanttChart } from '../../organisms/Tasks/GanttChart';
+import { Header } from 'components/containers/organisms/Header';
+import { TaskGanttChart } from 'components/containers/organisms/Tasks/TaskGanttChart';
 
 export const UserGanttTemplate = (props) => {
   return (
     <>
       <Header />
       <Main>
-        <GanttChart {...props} />
+        <TaskGanttChart {...props} />
       </Main>
     </>
   );

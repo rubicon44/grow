@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserShowTemplate } from '../../templates/Users/UserShowTemplate';
+import { UserShowTemplate } from 'components/containers/templates/Users/UserShowTemplate';
 
 export const UserShow = () => {
   return <UserShowTemplate />;

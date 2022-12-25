@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { mediaquery } from '../../../../../assets/styles/variable';
-import { BaseLink } from '../../Link';
+import { mediaquery } from 'assets/styles/variable';
+import { BaseLink } from 'components/presentational/atoms/Link/BaseLink';
 
 export const NextButtonLink = ({ url, text }) => {
   return <DangerButtonLink url={url} >{text}</DangerButtonLink>;

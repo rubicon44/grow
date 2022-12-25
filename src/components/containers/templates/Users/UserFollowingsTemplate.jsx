@@ -1,15 +1,11 @@
 import React from 'react';
-import { Main } from '../Main';
-import { Header } from '../../organisms/Header';
-import { FollowingsList } from '../../organisms/Users/FollowingsList';
+import { MainWithHeader } from 'components/containers/templates/MainWithHeader';
+import { FollowingsList } from 'components/containers/organisms/Users/FollowingsList';
 
 export const UserFollowingsTemplate = () => {
   return (
-    <>
-      <Header />
-      <Main>
-        <FollowingsList />
-      </Main>
-    </>
+    <MainWithHeader>
+      <FollowingsList />
+    </MainWithHeader>
   );
 }

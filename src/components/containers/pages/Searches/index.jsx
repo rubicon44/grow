@@ -1,5 +1,5 @@
 import React from 'react';
-import { SearchTemplate } from '../../templates/Searches/SearchTemplate';
+import { SearchTemplate } from 'components/containers/templates/Searches/SearchTemplate';
 
 export const Searches = () => {
   return <SearchTemplate />;

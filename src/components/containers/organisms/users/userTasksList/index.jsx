@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { AuthContext } from '../../../../../auth/AuthProvider';
-import { getUser, updateUser } from '../../../../../infra/api';
-import { currentUser } from '../../../../../infra/currentUser';
-import { CheckThatReLoginWhenChangeUserId } from './UserTasksCheckThatReLoginWhenChangeUserId';
-import { AlreadyPostList } from './UserTasksAlreadyPostList';
-import { ContentHeader } from './UserTasksContentHeader';
-import { AlreadyLikeList } from './UserTasksAlreadyLikeList';
-import { NoLikeList } from './UserTasksNoLikeList';
-import { NoPostList } from './UserTasksNoPostList';
-import { LogOutButton } from '../../LogOutButton';
+import { AuthContext } from 'auth/AuthProvider';
+import { getUser, updateUser } from 'infra/api';
+import { currentUser } from 'infra/currentUser';
+import { UserTasksCheckThatReLoginWhenChangeUserId } from 'components/containers/organisms/Users/UserTasksList/UserTasksCheckThatReLoginWhenChangeUserId';
+import { UserTasksAlreadyPostList } from 'components/containers/organisms/Users/UserTasksList/UserTasksAlreadyPostList';
+import { UserTasksAlreadyLikeList } from 'components/containers/organisms/Users/UserTasksList/UserTasksAlreadyLikeList';
+import { UserTasksContentHeader } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader';
+import { UserTasksNoLikeList } from 'components/containers/organisms/Users/UserTasksList/UserTasksNoLikeList';
+import { UserTasksNoPostList } from 'components/containers/organisms/Users/UserTasksList/UserTasksNoPostList';
+import { LogOutButton } from 'components/containers/organisms/LogOutButton';
 
 export const UserTasksList = () => {
   const { signout } = useContext(AuthContext);
@@ -204,8 +204,8 @@ export const UserTasksList = () => {
 
   return (
     <>
-      {changeUserNameCheckAble === true && (<CheckThatReLoginWhenChangeUserId changeUserNameFunc={changeUserNameFunc} unChangeUserNameFunc={unChangeUserNameFunc} />)}
-      <ContentHeader
+      {changeUserNameCheckAble === true && (<UserTasksCheckThatReLoginWhenChangeUserId changeUserNameFunc={changeUserNameFunc} unChangeUserNameFunc={unChangeUserNameFunc} />)}
+      <UserTasksContentHeader
         title={userData.userNickName}
         currentUserId={String(currentUserId())}
         load={load}
@@ -216,16 +216,16 @@ export const UserTasksList = () => {
         userData={userData}
         setUserData={setUserData}
       />
-      <Content>
+      <UserTasksContent>
         <NextGanttLink type="button" onClick={nextGanttFunc}>ガントチャート</NextGanttLink>
         <>
-          {userData.userTasks.length === 0 ? (<NoPostList userData={userData} />) : (<AlreadyPostList userData={userData} />)}
+          {userData.userTasks.length === 0 ? (<UserTasksNoPostList userData={userData} />) : (<UserTasksAlreadyPostList userData={userData} />)}
         </>
         <>
           <LikedTask>いいねしたタスク</LikedTask>
-          {userData.userLikedTasks.length === 0 ? (<NoLikeList userData={userData} />) : (<AlreadyLikeList userData={userData} />)}
+          {userData.userLikedTasks.length === 0 ? (<UserTasksNoLikeList userData={userData} />) : (<UserTasksAlreadyLikeList userData={userData} />)}
         </>
-      </Content>
+      </UserTasksContent>
 
       {String(currentUserName()) === String(userNameInUrl) && (
         <LogOutButtonCover>
@@ -236,7 +236,7 @@ export const UserTasksList = () => {
   );
 }
 
-const Content = styled.article`
+const UserTasksContent = styled.article`
   border-top: 1px solid #ddd;
   width: 100%;
 `;

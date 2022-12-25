@@ -1,15 +1,11 @@
 import React from 'react';
-import { Main } from '../Main';
-import { Header } from '../../organisms/Header';
-import { UserTasksList } from '../../organisms/Users/UserTasksList';
+import { MainWithHeader } from 'components/containers/templates/MainWithHeader';
+import { UserTasksList } from 'components/containers/organisms/Users/UserTasksList';
 
 export const UserShowTemplate = () => {
   return (
-    <>
-      <Header />
-      <Main>
-        <UserTasksList />
-      </Main>
-    </>
+    <MainWithHeader>
+      <UserTasksList />
+    </MainWithHeader>
   );
 }

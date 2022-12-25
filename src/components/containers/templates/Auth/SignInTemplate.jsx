@@ -1,15 +1,11 @@
 import React from 'react';
-import { Main } from '../Main';
-import { Header } from '../../organisms/Header';
-import { SignInForm } from '../../organisms/Auth/SignInForm';
+import { MainWithHeader } from 'components/containers/templates/MainWithHeader';
+import { SignInForm } from 'components/containers/organisms/Auth/SignInForm';
 
 export const SignInTemplate = () => {
   return (
-    <>
-      <Header />
-      <Main>
-        <SignInForm />
-      </Main>
-    </>
+    <MainWithHeader>
+      <SignInForm />
+    </MainWithHeader>
   );
 }

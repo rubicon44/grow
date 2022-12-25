@@ -5,13 +5,13 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
-import { mediaquery } from '../../../../../assets/styles/variable';
-import { CalenderTableBodyColorSwitch } from './CalenderTableBodyColorSwitch';
-import { TaskStatusSwitchText } from './TaskStatusSwitchText';
-import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
+import { mediaquery } from 'assets/styles/variable';
+import { CalenderTableBodyColorSwitch } from 'components/containers/organisms/Tasks/TaskGanttChart/CalenderTableBodyColorSwitch';
+import { TaskStatusSwitchText } from 'components/containers/organisms/Tasks/TaskGanttChart/TaskStatusSwitchText';
+import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
 // todo: useEffectが削減できるかどうか見直す(カレンダーの処理を切り出す必要有りかも？)
-export const GanttChart = (props) => {
+export const TaskGanttChart = (props) => {
   const { taskUser } = props;
   const { userTasks } = props;
 

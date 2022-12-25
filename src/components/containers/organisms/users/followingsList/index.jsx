@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { getFollowings } from '../../../../../infra/api';
-import { FollowButtonForUsersList } from '../UserButton/FollowButtonForUsersList';
-import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
+import { getFollowings } from 'infra/api';
+import { FollowButtonForUsersList } from 'components/containers/organisms/Users/UserButton/FollowButtonForUsersList';
+import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const FollowingsList = () => {
   const location = useLocation();

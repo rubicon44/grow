@@ -1,15 +1,11 @@
 import React from 'react';
-import { Main } from '../Main';
-import { Header } from '../../organisms/Header';
-import { NotificationsList } from '../../organisms/Notifications/NotificationsList';
+import { MainWithHeader } from 'components/containers/templates/MainWithHeader';
+import { NotificationsList } from 'components/containers/organisms/Notifications/NotificationsList';
 
 export const NotificationsTemplate = () => {
   return (
-    <>
-      <Header />
-      <Main>
-        <NotificationsList />
-      </Main>
-    </>
+    <MainWithHeader>
+      <NotificationsList />
+    </MainWithHeader>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const CheckThatReLoginWhenChangeUserId = ({ changeUserNameFunc, unChangeUserNameFunc}) => {
+export const UserTasksCheckThatReLoginWhenChangeUserId = ({ changeUserNameFunc, unChangeUserNameFunc}) => {
   return (
     <BackgroundDisAbledCover>
       <BackgroundDisAbled>

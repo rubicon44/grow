@@ -1,15 +1,11 @@
 import React from 'react';
-import { Main } from '../Main';
-import { Header } from '../../organisms/Header';
-import { SignUpForm } from '../../organisms/Auth/SignUpForm';
+import { MainWithHeader } from 'components/containers/templates/MainWithHeader';
+import { SignUpForm } from 'components/containers/organisms/Auth/SignUpForm';
 
 export const SignUpTemplate = () => {
   return (
-    <>
-      <Header />
-      <Main>
-        <SignUpForm />
-      </Main>
-    </>
+    <MainWithHeader>
+      <SignUpForm />
+    </MainWithHeader>
   );
 }

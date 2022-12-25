@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { getUser, postRelationships, deleteRelationships, getFollowings } from '../../../../../../infra/api';
+import { getUser, postRelationships, deleteRelationships, getFollowings } from 'infra/api';
 
 export const FollowButton = (props) => {
   const location = useLocation();

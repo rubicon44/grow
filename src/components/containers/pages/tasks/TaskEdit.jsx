@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { TaskEditTemplate } from '../../templates/Tasks/TaskEditTemplate';
+import { TaskEditTemplate } from 'components/containers/templates/Tasks/TaskEditTemplate';
 
 export const TaskEdit = () => {
   //todo: location.stateを使用するのは正しいのだろうか。

@@ -1,37 +1,29 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { updateTask } from '../../../../../../infra/api';
-import { Form } from '../../../../../presentational/molecules/Form';
-import { TitleWithBackArrowHeader } from '../../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
+import { postTasks } from 'infra/api';
+import { currentUid } from 'infra/firebase';
+import { Form } from 'components/presentational/molecules/Form';
+import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
-export const TaskUpdateForm = (props) => {
+export const TaskCreateForm = () => {
   const navigate = useNavigate();
   const [load, setLoad] = useState(false);
-  const updateTaskFunc = async (id, task) => {
-    await updateTask(id, task)
+  const postTasksFunc = async (task) => {
+    await postTasks(task)
     .then()
     .catch(async () => {
       setLoad(false);
-      window.alert("タスクを更新できませんでした。");
+      window.alert("タスクを登録できませんでした。");
       await navigate('/tasks');
     });
   };
 
-  const { title: taskTitle } = props;
-  const { content: taskContent } = props;
-  const { status: taskStatus } = props;
-  const { startDate: taskStartDate } = props;
-  const { endDate: taskEndDate } = props;
-  const { id } = props;
-  const { currentUserName } = props;
-  // todo: useStateを使用せずに定数を使用すると、フォーム更新時にinput要素に、更新前の定数の値が一瞬表示される。定数を使用することはできないのだろうか。
   const [taskData, setTaskData] = useState({
-    title: taskTitle,
-    content: taskContent,
-    status: taskStatus,
-    startDate: taskStartDate,
-    endDate: taskEndDate,
+    title: "",
+    content: "",
+    status: 0,
+    startDate: "",
+    endDate: "",
   });
   const title = taskData.title;
   const content = taskData.content;
@@ -53,7 +45,7 @@ export const TaskUpdateForm = (props) => {
     const status = Number(selectStatusRef.current.value);
     const startDate = inputStartDateRef.current.value;
     const endDate = inputEndDateRef.current.value;
-    const task = { title, content, status, start_date: startDate, end_date: endDate };
+    const task = { title, content, status, start_date: startDate, end_date: endDate, user_id: currentUid };
     setTaskData({
       title: title,
       content: content,
@@ -61,14 +53,14 @@ export const TaskUpdateForm = (props) => {
       startDate: startDate,
       endDate: endDate,
     });
-    await updateTaskFunc(id, task);
-    await navigate(`/${currentUserName}/tasks/${id}`);
+    await postTasksFunc(task);
+    await navigate('/tasks');
   };
 
   const MemoForm = React.memo(Form);
   return (
     <>
-      <TitleWithBackArrowHeader>編集</TitleWithBackArrowHeader>
+      <TitleWithBackArrowHeader>新規登録</TitleWithBackArrowHeader>
       <MemoForm
         load={load}
         title={title}
@@ -85,20 +77,4 @@ export const TaskUpdateForm = (props) => {
       />
     </>
   );
-};
-
-TaskUpdateForm.defaultProps = {
-  id: 0,
-  title: '',
-  content: '',
-  status: 0,
-  currentUserId: '',
-};
-
-TaskUpdateForm.propTypes = {
-  id: PropTypes.number,
-  title: PropTypes.string,
-  content: PropTypes.string,
-  status: PropTypes.number,
-  currentUserId: PropTypes.string,
-};
+}

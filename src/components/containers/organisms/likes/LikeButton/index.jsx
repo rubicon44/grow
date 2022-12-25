@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { pink } from '@mui/material/colors';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import styled from 'styled-components';
-import { postLikes, getLikes, deleteLike } from '../../../../../infra/api';
+import { postLikes, getLikes, deleteLike } from 'infra/api';
 
 export const LikeButton = React.memo((props) => {
   const { currentUserId } = props;

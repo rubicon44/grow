@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { mediaquery } from '../../../../assets/styles/variable';
-import { Main } from '../../templates/Main';
-import { Header } from '../../organisms/Header';
-import { Title } from '../../../presentational/atoms/Title';
+import { mediaquery } from 'assets/styles/variable';
+import { Main } from 'components/containers/templates/Main';
+import { Header } from 'components/containers/organisms/Header';
+import { Title } from 'components/presentational/atoms/Title';
 
 export const NotFound = () => {
   return (

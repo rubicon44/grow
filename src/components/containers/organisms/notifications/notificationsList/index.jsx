@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { getNotifications } from '../../../../../infra/api';
-import { currentUser } from '../../../../../infra/currentUser';
-import { NotificationList } from '../NotificationList';
-import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
+import { getNotifications } from 'infra/api';
+import { currentUser } from 'infra/currentUser';
+import { NotificationList } from 'components/containers/organisms/Notifications/NotificationList';
+import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const NotificationsList = () => {
   const currentUserId = currentUser().id;

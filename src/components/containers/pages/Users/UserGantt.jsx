@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { UserGanttTemplate } from '../../templates/Users/UserGanttTemplate';
+import { UserGanttTemplate } from 'components/containers/templates/Users/UserGanttTemplate';
 
 export const UserGantt = () => {
   // userShowページからなstateを流し込まれるだけでなく、ganttのpageで直接taskUser、userTasksをAPI取得した方が良い。
