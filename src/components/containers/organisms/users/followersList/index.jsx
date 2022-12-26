@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { getFollowers } from 'infra/api';
-import { FollowButtonForUsersList } from 'components/containers/organisms/Users/UserButton/FollowButtonForUsersList';
+import { FollowButtonForUsersListSwitch } from 'components/containers/organisms/Users/UserButton/FollowButtonForUsersListSwitch';
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const FollowersList = () => {
@@ -43,7 +43,7 @@ export const FollowersList = () => {
           {followers.map((follower) => (
             <UsersList key={follower.id}>
               <Link to={`/${follower.username}`}>{follower.nickname}</Link>
-              <FollowButtonForUsersList followerId={follower.id} currentUserId={currentUserId} userId={userId} />
+              <FollowButtonForUsersListSwitch followerId={follower.id} currentUserId={currentUserId} userId={userId} />
             </UsersList>
           ))}
         </ListCover>

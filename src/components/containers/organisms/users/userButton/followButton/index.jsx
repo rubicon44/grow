@@ -1,30 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
 import styled from 'styled-components';
-import { getUser, postRelationships, deleteRelationships, getFollowings } from 'infra/api';
+import { postRelationships } from 'infra/api';
 
-export const FollowButton = (props) => {
-  const location = useLocation();
-  const locationPathName = location.pathname.split('/');
-  const userNameInUrl = locationPathName[locationPathName.length - 1];
-  const { currentUserId } = props;
-  const [followAble, setFollowAble] = useState(false);
-  const [changeFollowButtonStyle, setChangeFollowButtonStyle] = useState(false);
-  const [followerId, setFollowerId] = useState([]);
-  useEffect(() => {
-    let isMounted = true;
-    getUser(userNameInUrl)
-      .then((response) => {
-        const followerId = response.data.user.id;
-        if (isMounted) setFollowerId(String(followerId));
-      })
-      .catch();
-    return () => {
-      isMounted = false;
-    };
-  }, [userNameInUrl]);
-
-  const [usersFollowingId, setUsersFollowingId] = useState([]);
+export const FollowButton = ({ currentUserId, followerId, setFollowAble, setUsersFollowingId }) => {
   const followFunc = () => {
     const relationships = { following_id: currentUserId, follower_id: followerId };
     postRelationships(relationships).then().catch();
@@ -32,96 +10,16 @@ export const FollowButton = (props) => {
     setUsersFollowingId(followerId);
   };
 
-  const unFollowFunc = () => {
-    const relationships = { following_id: currentUserId, follower_id: followerId };
-    deleteRelationships(relationships).then().catch();
-    setFollowAble(true);
-  };
-
-  // todo: ここのuseEffectは削減できそうな気がする
-  const [followings, setFollowings] = useState([]);
-  useEffect(() => {
-    let isMounted = true;
-    const user_id = currentUserId;
-    getFollowings(user_id)
-      .then((response) => {
-        if (isMounted) setFollowings(response.data.followings);
-      })
-      .catch();
-    return () => {
-      isMounted = false;
-    };
-  }, [followAble]);
-
-  // todo: ここのuseEffectは削減できそうな気がする(他の処理の中に書き込めるかも。)
-  useEffect(() => {
-    followings.map((users) => {
-      if(String(users.id) === String(followerId)) {
-        setUsersFollowingId(users.id);
-      } else {
-        return null;
-      }
-    })
-  }, [followerId]);
-
-  const setChangeFollowButtonStyleToTrueFunc = () => {
-    setChangeFollowButtonStyle(true);
-  }
-
-  const setChangeFollowButtonStyleToFalseFunc = () => {
-    setChangeFollowButtonStyle(false);
-  }
-
-  const FollowChangeLinkDoneFunc = () => {
-    return (
-      <FollowChangeLinkDone onMouseEnter={setChangeFollowButtonStyleToTrueFunc}>
-        <span>フォロー中</span>
-      </FollowChangeLinkDone>
-    );
-  }
-
-  const FollowChangeLinkDoneToUnFollowFunc = () => {
-    return (
-      <FollowChangeLinkDoneToUnFollow onMouseLeave={setChangeFollowButtonStyleToFalseFunc} onClick={unFollowFunc}>
-        <span>フォロー解除</span>
-      </FollowChangeLinkDoneToUnFollow>
-    );
-  }
-
-  const FollowChangeLinkDoneOrLinkDoneToUnFollowFunc = () => {
-    return (
-      <FollowChange>
-        <FollowChangeLinkCover>
-          {changeFollowButtonStyle === false ? (<FollowChangeLinkDoneFunc />) : (<FollowChangeLinkDoneToUnFollowFunc />)}
-        </FollowChangeLinkCover>
-      </FollowChange>
-    );
-  }
-
-  const FollowChangeFunc = () => {
-    return(
-      <FollowChange>
-        <FollowChangeLinkCover>
-          <FollowChangeLinkNone onClick={followFunc}>
-            <span>フォロー</span>
-          </FollowChangeLinkNone>
-        </FollowChangeLinkCover>
-      </FollowChange>
-    );
-  }
-
-  if(String(currentUserId) !== String(followerId)) {
-    return(
-      <>
-        {followAble === false ? (
-          <>{String(usersFollowingId) === String(followerId) ? (<FollowChangeLinkDoneOrLinkDoneToUnFollowFunc />) : (<FollowChangeFunc />)}</>
-        ) : (<FollowChangeFunc />)}
-      </>
-    );
-  } else {
-    return null;
-  }
-}
+  return (
+    <FollowChange>
+      <FollowChangeLinkCover>
+        <FollowChangeLinkNone onClick={followFunc}>
+          <span>フォロー</span>
+        </FollowChangeLinkNone>
+      </FollowChangeLinkCover>
+    </FollowChange>
+  );
+};
 
 const FollowChange = styled.div`
   width: 100%;
@@ -131,36 +29,6 @@ const FollowChange = styled.div`
 const FollowChangeLinkCover = styled.div`
   display: flex;
   justify-content: flex-end;
-`;
-
-const FollowChangeLinkDone = styled.a`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 36px;
-  width: 168px;
-  border: 1px solid black;
-  border-color: rgb(207, 217, 222);
-  border-radius: 9999px;
-  font-weight: bold;
-  background-color: rgba(0, 0, 0, 0);
-  cursor: pointer;
-`;
-
-const FollowChangeLinkDoneToUnFollow = styled.a`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 36px;
-  width: 168px;
-  border: 1px solid black;
-  border-color: rgb(253, 201, 206);
-  border-radius: 9999px;
-  font-weight: bold;
-  background-color: rgba(244, 33, 46, 0.1);
-  cursor: pointer;
 `;
 
 const FollowChangeLinkNone = styled.a`

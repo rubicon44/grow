@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { deleteRelationships, getFollowings, postRelationships } from 'infra/api';
 
-export const FollowButtonForUsersList = (props) => {
+// todo: 分割保留
+export const FollowButtonForUsersListSwitch = (props) => {
   const { currentUserId } = props;
   const { userId } = props;
   const { followerId } = props;
