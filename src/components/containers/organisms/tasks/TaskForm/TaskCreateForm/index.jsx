@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postTasks } from 'infra/api';
 import { currentUid } from 'infra/firebase';
-import { Form } from 'components/presentational/molecules/Form';
+import { TaskForm } from 'components/containers/organisms/Tasks/TaskForm';
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const TaskCreateForm = () => {
@@ -31,7 +31,7 @@ export const TaskCreateForm = () => {
   const startDate = taskData.startDate;
   const endDate = taskData.endDate;
   const inputTitleRef = useRef();
-  const inputContentRef = useRef();
+  const textAreaContentRef = useRef();
   const selectStatusRef = useRef();
   const inputStartDateRef = useRef();
   const inputEndDateRef = useRef();
@@ -41,7 +41,7 @@ export const TaskCreateForm = () => {
     e.persist();
     setLoad(true);
     const title = inputTitleRef.current.value;
-    const content = inputContentRef.current.value;
+    const content = textAreaContentRef.current.value;
     const status = Number(selectStatusRef.current.value);
     const startDate = inputStartDateRef.current.value;
     const endDate = inputEndDateRef.current.value;
@@ -57,11 +57,11 @@ export const TaskCreateForm = () => {
     await navigate('/tasks');
   };
 
-  const MemoForm = React.memo(Form);
+  const MemoTaskForm = React.memo(TaskForm);
   return (
     <>
       <TitleWithBackArrowHeader>新規登録</TitleWithBackArrowHeader>
-      <MemoForm
+      <MemoTaskForm
         load={load}
         title={title}
         content={content}
@@ -69,7 +69,7 @@ export const TaskCreateForm = () => {
         startDate={startDate}
         endDate={endDate}
         inputTitleRef={inputTitleRef}
-        inputContentRef={inputContentRef}
+        textAreaContentRef={textAreaContentRef}
         selectStatusRef={selectStatusRef}
         inputStartDateRef={inputStartDateRef}
         inputEndDateRef={inputEndDateRef}
@@ -77,4 +77,4 @@ export const TaskCreateForm = () => {
       />
     </>
   );
-}
+};

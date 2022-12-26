@@ -361,6 +361,7 @@ const Example = () => {
   )
 };
 
+  // todo: [未着手]コンポーネントの再利用
   return (
     <>
       <ContentHeaderCover>

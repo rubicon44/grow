@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { updateTask } from 'infra/api';
-import { Form } from 'components/presentational/molecules/Form';
+import { TaskForm } from 'components/containers/organisms/Tasks/TaskForm';
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const TaskEditForm = (props) => {
@@ -39,7 +39,7 @@ export const TaskEditForm = (props) => {
   const startDate = taskData.startDate;
   const endDate = taskData.endDate;
   const inputTitleRef = useRef();
-  const inputContentRef = useRef();
+  const textAreaContentRef = useRef();
   const selectStatusRef = useRef();
   const inputStartDateRef = useRef();
   const inputEndDateRef = useRef();
@@ -49,7 +49,7 @@ export const TaskEditForm = (props) => {
     e.persist();
     setLoad(true);
     const title = inputTitleRef.current.value;
-    const content = inputContentRef.current.value;
+    const content = textAreaContentRef.current.value;
     const status = Number(selectStatusRef.current.value);
     const startDate = inputStartDateRef.current.value;
     const endDate = inputEndDateRef.current.value;
@@ -65,11 +65,11 @@ export const TaskEditForm = (props) => {
     await navigate(`/${currentUserName}/tasks/${id}`);
   };
 
-  const MemoForm = React.memo(Form);
+  const MemoTaskForm = React.memo(TaskForm);
   return (
     <>
       <TitleWithBackArrowHeader>編集</TitleWithBackArrowHeader>
-      <MemoForm
+      <MemoTaskForm
         load={load}
         title={title}
         content={content}
@@ -77,7 +77,7 @@ export const TaskEditForm = (props) => {
         startDate={startDate}
         endDate={endDate}
         inputTitleRef={inputTitleRef}
-        inputContentRef={inputContentRef}
+        textAreaContentRef={textAreaContentRef}
         selectStatusRef={selectStatusRef}
         inputStartDateRef={inputStartDateRef}
         inputEndDateRef={inputEndDateRef}

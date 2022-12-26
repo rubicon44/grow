@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { AuthContext } from 'auth/AuthProvider';
+import { FormInput } from 'components/presentational/atoms/Input/FormInput';
+import { FormSubmitButton } from 'components/presentational/atoms/Button/FormSubmitButton';
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const SignUpForm = () => {
@@ -29,19 +31,42 @@ export const SignUpForm = () => {
       <TitleWithBackArrowHeader>会員登録</TitleWithBackArrowHeader>
       <FormCover>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="nickname">ニックネーム
-            <input name="nickname" type="text" placeholder="NickName" />
-          </label>
-          <label htmlFor="username">ユーザーネーム
-            <input name="username" type="text" placeholder="UserName" />
-          </label>
-          <label htmlFor="email">メール
-            <input name="email" type="email" placeholder="Email" />
-          </label>
-          <label htmlFor="password">パスワード
-            <input name="password" type="password" placeholder="Password" autoComplete="on" />
-          </label>
-          <button type="submit" disabled={load}>会員登録</button>
+          <FormInput
+            htmlFor="nickname"
+            type="text"
+            name="nickname"
+            placeholder="NickName"
+            autoComplete="on"
+          >
+            ニックネーム
+          </FormInput>
+          <FormInput
+            htmlFor="username"
+            type="text"
+            name="username"
+            placeholder="Username"
+            autoComplete="on"
+          >
+            ユーザーネーム
+          </FormInput>
+          <FormInput
+            htmlFor="email"
+            type="email"
+            name="email"
+            placeholder="Email"
+            autoComplete="on"
+          >
+            メール
+          </FormInput>
+          <FormInput
+            htmlFor="password"
+            type="password"
+            name="password"
+            placeholder="Password"
+          >
+            パスワード
+          </FormInput>
+          <FormSubmitButton load={load}>会員登録</FormSubmitButton>
         </form>
       </FormCover>
     </>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { getSearches } from 'infra/api';
+import { SearchForm } from 'components/containers/organisms/Searches/SearchForm';
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const SearchList = () => {
@@ -44,22 +45,7 @@ export const SearchList = () => {
     <>
       <TitleWithBackArrowHeader>検索一覧</TitleWithBackArrowHeader>
       <div>
-        <FormCover>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="contents">
-              <input name="contents" type="contents" placeholder="Contents" />
-            </label>
-            <select name="model">
-            <option value="user">User</option>
-              <option value="task">Task</option>
-            </select>
-            <select name="method">
-              <option value="partial">部分一致</option>
-              <option value="perfect">完全一致</option>
-            </select>
-            <button type="submit" disabled={load}>検索</button>
-          </form>
-        </FormCover>
+        <SearchForm handleSubmit={handleSubmit} load={load} />
         <ListCover>
           {searchResults.usersForUser && (
             // todo: 下記の配列の出し分け方法だと、一度すべての配列を取得してから出し分けするので、データ量が多いと効率が悪いかも?
@@ -88,18 +74,12 @@ export const SearchList = () => {
       </div>
     </>
   );
-}
+};
 
 const ListCover = styled.div`
   position: relative;
   min-width: 180px;
   margin-top: 30px;
-`;
-
-const FormCover = styled.div`
-  min-width: 260px;
-  padding: 0 10px;
-  text-align: left;
 `;
 
 const List = styled.div`
