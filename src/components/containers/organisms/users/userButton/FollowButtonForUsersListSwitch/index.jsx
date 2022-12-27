@@ -1,28 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { deleteRelationships, getFollowings, postRelationships } from 'infra/api';
+import { getFollowings } from 'infra/api';
+import { FollowButton } from 'components/containers/organisms/Users/UserButton/FollowButton';
+import { FollowingOrUnFollowButtonSwitch } from 'components/containers/organisms/Users/UserButton/FollowingOrUnFollowButtonSwitch';
 
-// todo: 分割保留
 export const FollowButtonForUsersListSwitch = (props) => {
   const { currentUserId } = props;
   const { userId } = props;
   const { followerId } = props;
   const [followAble, setFollowAble] = useState(false);
-  const [changeFollowButtonStyle, setChangeFollowButtonStyle] = useState(false);
   const [usersFollowingId, setUsersFollowingId] = useState([]);
-
-  const followFunc = () => {
-    const relationships = { following_id: currentUserId, follower_id: followerId };
-    postRelationships(relationships).then().catch();
-    setFollowAble(false);
-    setUsersFollowingId(followerId);
-  };
-
-  const unFollowFunc = () => {
-    const relationships = { following_id: currentUserId, follower_id: followerId };
-    deleteRelationships(relationships).then().catch();
-    setFollowAble(true);
-  };
 
   const [followings, setFollowings] = useState([]);
   useEffect(() => {
@@ -38,8 +24,8 @@ export const FollowButtonForUsersListSwitch = (props) => {
     };
   }, [followAble]);
 
-  // todo: フォロ-関数が作動した際に下記stateを更新したい。
   const [currentUserFollowings, setCurrentUserFollowings] = useState([]);
+  const [followCheck, setFollowCheck] = useState(false);
   useEffect(() => {
     let isMounted = true;
     const user_id = currentUserId;
@@ -51,7 +37,7 @@ export const FollowButtonForUsersListSwitch = (props) => {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [followCheck]);
 
   // todo: ここのuseEffectは削減できそうな気がする(他の処理の中に書き込めるかも。)
   useEffect(() => {
@@ -64,88 +50,47 @@ export const FollowButtonForUsersListSwitch = (props) => {
     })
   }, [followings]);
 
-  const setChangeFollowButtonStyleToTrueFunc = () => {
-    setChangeFollowButtonStyle(true);
-  }
-
-  const setChangeFollowButtonStyleToFalseFunc = () => {
-    setChangeFollowButtonStyle(false);
-  }
-
-  const FollowChangeLinkDoneFunc = () => {
-    return (
-      <FollowChangeLinkDone onMouseEnter={setChangeFollowButtonStyleToTrueFunc}>
-        <span>フォロー中</span>
-      </FollowChangeLinkDone>
-    );
-  }
-
-  const FollowChangeLinkDoneToUnFollowFunc = () => {
-    return (
-      <FollowChangeLinkDoneToUnFollow onMouseLeave={setChangeFollowButtonStyleToFalseFunc} onClick={unFollowFunc}>
-        <span>フォロー解除</span>
-      </FollowChangeLinkDoneToUnFollow>
-    );
-  }
-
-  const FollowChangeLinkDoneOrLinkDoneToUnFollowFunc = () => {
-    return (
-      <FollowChange>
-        <FollowChangeLinkCover>
-          {changeFollowButtonStyle === false ? (<FollowChangeLinkDoneFunc />) : (<FollowChangeLinkDoneToUnFollowFunc />)}
-        </FollowChangeLinkCover>
-      </FollowChange>
-    );
-  }
-
-  const FollowChangeFunc = () => {
-    return(
-      <FollowChange>
-        <FollowChangeLinkCover>
-          <FollowChangeLinkNone onClick={followFunc}>
-            <span>フォロー</span>
-          </FollowChangeLinkNone>
-        </FollowChangeLinkCover>
-      </FollowChange>
-    );
-  }
-
   // フォローボタン返却関数
-  const returnFollowButton = () => {
-    // todo: currentUserFollowingsの値を更新しなければいけない。
-    const xxx = currentUserFollowings.map((user) => {
+  // todo: 当関数内の変数名の修正、ロジックのリファクタリングを行う。
+  const returnFollowingOrUnFollowButtonSwitchFunc = () => {
+    const isFollowing = currentUserFollowings.map((user) => {
       if(String(user.id) === String(followerId)) {
-        return 0;
+        // todo: oと1で基準を作るのは、初見の人にとってわかりづらい。もっとわかりやすい「フォローしているか」「フォローしていないか」で判定する方が良い。
+        return 1;
       };
       if(String(user.id) !== String(followerId)) {
-        return 1;
+        return 0;
       } else {
         return null;
       }
     });
 
-    const set = new Set(xxx);
+    // todo: もっと処理を整理できそう
+    const set = new Set(isFollowing);
     const newArr = [...set];
+    let nnn;
+    if(newArr.includes(1)) {
+      nnn = 1;
+    } else {
+      nnn = 0;
+    };
 
-    const AAA = () => {
-      let nnn;
-      if(newArr.includes(0)) {
-        nnn = 0;
-      } else {
-        nnn = 1;
-      }
-
-      if(nnn === 0) {
-        return <FollowChangeLinkDoneOrLinkDoneToUnFollowFunc />
-      }
-      if (nnn === 1) {
-        // todo: ここでフォローされた後、上記の「nnn === 0」の処理が動いていない。
-        return <FollowChangeFunc />
-      } else {
-        return null;
-      }
-    }
-    return AAA();
+    if(nnn === 1) {
+      return <FollowingOrUnFollowButtonSwitch currentUserId={currentUserId} followerId={followerId} setFollowAble={setFollowAble} />
+    };
+    if (nnn === 0) {
+      return (
+        <FollowButton
+          currentUserId={currentUserId}
+          followerId={followerId}
+          setFollowAble={setFollowAble}
+          setUsersFollowingId={setUsersFollowingId}
+          setFollowCheck={setFollowCheck}
+        />
+      )
+    } else {
+      return null;
+    };
   };
 
   if(String(currentUserId) === String(userId)) {
@@ -153,73 +98,41 @@ export const FollowButtonForUsersListSwitch = (props) => {
       <>
         {followAble === false ? (
           <>
-            {String(usersFollowingId) === String(followerId) ? (<FollowChangeLinkDoneOrLinkDoneToUnFollowFunc />) : (<FollowChangeFunc />)}
+            {String(usersFollowingId) === String(followerId) ? (<FollowingOrUnFollowButtonSwitch currentUserId={currentUserId} followerId={followerId} setFollowAble={setFollowAble} />) :
+            (
+              <FollowButton
+                currentUserId={currentUserId}
+                followerId={followerId}
+                setFollowAble={setFollowAble}
+                setUsersFollowingId={setUsersFollowingId}
+              />
+            )}
           </>
-        ) : (<FollowChangeFunc />)}
+        ) : (
+          <FollowButton
+            currentUserId={currentUserId}
+            followerId={followerId}
+            setFollowAble={setFollowAble}
+            setUsersFollowingId={setUsersFollowingId}
+          />
+        )}
       </>
     );
   } else if (String(currentUserId) !== String(userId)){
-    // todo: このままだと、誤って2回フォローできてしまう(Reportのフォローボタンは正常。)。
+    // 自身をフォローできないようにする
     if(String(currentUserId) === String(followerId)) {
       return (null);
     }
-    return followAble === false ? returnFollowButton() : <FollowChangeFunc />;
+    return followAble === false ? returnFollowingOrUnFollowButtonSwitchFunc() :
+    (
+      <FollowButton
+        currentUserId={currentUserId}
+        followerId={followerId}
+        setFollowAble={setFollowAble}
+        setUsersFollowingId={setUsersFollowingId}
+      />
+    );
   } else {
     return null;
   }
-}
-
-const FollowChange = styled.div`
-  margin-left: 30px;
-`;
-
-const FollowChangeLinkCover = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;
-
-const FollowChangeLinkDone = styled.a`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 36px;
-  width: 168px;
-  border: 1px solid black;
-  border-color: rgb(207, 217, 222);
-  border-radius: 9999px;
-  font-weight: bold;
-  background-color: rgba(0, 0, 0, 0);
-  cursor: pointer;
-`;
-
-const FollowChangeLinkDoneToUnFollow = styled.a`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 36px;
-  width: 168px;
-  border: 1px solid black;
-  border-color: rgb(253, 201, 206);
-  border-radius: 9999px;
-  font-weight: bold;
-  background-color: rgba(244, 33, 46, 0.1);
-  cursor: pointer;
-`;
-
-const FollowChangeLinkNone = styled.a`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 36px;
-  width: 168px;
-  border: 1px solid black;
-  border-color: rgb(207, 217, 222);
-  border-radius: 9999px;
-  color: #fff;
-  font-weight: bold;
-  background-color: rgb(15, 20, 25);
-  cursor: pointer;
-`;
+};
