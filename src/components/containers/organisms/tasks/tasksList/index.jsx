@@ -4,7 +4,7 @@ import { LikeButton } from 'components/containers/organisms/Likes/LikeButton';
 import { TaskStatusSwitch } from 'components/containers/organisms/Tasks/logic/TaskStatusSwitch';
 import { List } from 'components/presentational/molecules/List';
 
-export const TasksList = ({ tasks, currentUserId, currentUserName }) => {
+export const TasksList = ({ currentUserId, currentUserName, tasks }) => {
   return (
     tasks.map((task) => (
       <ListCover key={task.id}>
