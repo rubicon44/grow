@@ -10,13 +10,12 @@ import { TasksList } from 'components/containers/organisms/Tasks/TasksList';
 export const TasksListContainer = () => {
   const currentUserId = useCurrentUserId();
   const currentUserName = useCurrentUserName();
-  const tasks = useTasks();
-  const sortedDescendingOrderTasks = useSortDescendingOrder(tasks);
+  const tasks = useSortDescendingOrder(useTasks());
   return (
     <>
       <Title>タスク一覧</Title>
       <NextButtonLink text="タスク登録" url="/tasks/create" />
-      <TasksList currentUserId={currentUserId} currentUserName={currentUserName} tasks={sortedDescendingOrderTasks}  />
+      <TasksList currentUserId={currentUserId} currentUserName={currentUserName} tasks={tasks}  />
     </>
   );
 }
