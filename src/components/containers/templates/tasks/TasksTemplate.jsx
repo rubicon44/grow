@@ -1,11 +1,11 @@
 import React from 'react';
 import { MainWithHeader } from 'components/containers/templates/MainWithHeader';
-import { TasksList } from 'components/containers/organisms/Tasks/TasksList';
+import { TasksListContainer } from 'components/containers/organisms/Tasks/TasksList/TasksListContainer';
 
 export const TasksTemplate = () => {
   return (
     <MainWithHeader>
-      <TasksList />
+      <TasksListContainer />
     </MainWithHeader>
   );
 }
