@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useCurrentTaskId } from 'hooks/useCurrentTaskId';
 import { getTask } from 'infra/api';
 
 export const useTaskData = () => {
-  const location = useLocation();
-  const locationPathName = location.pathname.split('/');
-  const currentTaskId = locationPathName[locationPathName.length - 1];
+  const currentTaskId = useCurrentTaskId();
   const [taskData, setTaskData] = useState({
     task: [],
     taskCreatedUser: [],
