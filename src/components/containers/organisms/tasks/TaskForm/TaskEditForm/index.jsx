@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { memo, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { updateTask } from 'infra/api';
@@ -65,7 +65,7 @@ export const TaskEditForm = (props) => {
     await navigate(`/${currentUserName}/tasks/${id}`);
   };
 
-  const MemoTaskForm = React.memo(TaskForm);
+  const MemoTaskForm = memo(TaskForm);
   return (
     <>
       <TitleWithBackArrowHeader>編集</TitleWithBackArrowHeader>

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { memo, useState, useEffect } from 'react';
 import { pink } from '@mui/material/colors';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import styled from 'styled-components';
 import { postLikes, getLikes, deleteLike } from 'infra/api';
 
-export const LikeButton = React.memo((props) => {
+export const LikeButton = memo((props) => {
   const { currentUserId } = props;
   const { taskId } = props;
   const [isLoading, setIsLoading] = useState(false);

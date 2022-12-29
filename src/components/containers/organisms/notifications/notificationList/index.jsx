@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 import styled from 'styled-components';
 import { FollowNotification } from 'components/containers/organisms/Notifications/NotificationList/FollowNotification';
 import { LikeNotification } from 'components/containers/organisms/Notifications/NotificationList/LikeNotification';
@@ -10,7 +10,7 @@ export const NotificationList = ({ visitorsData, currentUserName }) => {
   return (
     <UsersList>
       {visitorsData.notifications.map((notification) => (
-        <React.Fragment key={notification.id}>
+        <Fragment key={notification.id}>
           <>
             {notification.action === "like" && (uniqueLikeVisitors.map((visitor) => (
               String(notification.visitor_id) === String(visitor.id) && (<LikeNotification key={visitor.id} currentUserName={currentUserName} notification={notification} visitor={visitor} />)
@@ -21,10 +21,10 @@ export const NotificationList = ({ visitorsData, currentUserName }) => {
               String(notification.visitor_id) === String(visitor.id) && (<FollowNotification key={visitor.id} visitor={visitor} />)
             )))}
           </>
-        </React.Fragment>
+        </Fragment>
       ))}
     </UsersList>
-  )
+  );
 }
 
 const UsersList = styled.div`

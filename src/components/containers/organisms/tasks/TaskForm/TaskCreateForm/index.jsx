@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { memo, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postTasks } from 'infra/api';
 import { currentUid } from 'infra/firebase';
@@ -57,7 +57,7 @@ export const TaskCreateForm = () => {
     await navigate('/tasks');
   };
 
-  const MemoTaskForm = React.memo(TaskForm);
+  const MemoTaskForm = memo(TaskForm);
   return (
     <>
       <TitleWithBackArrowHeader>新規登録</TitleWithBackArrowHeader>

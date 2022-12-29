@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from 'auth/AuthProvider';
 import { SignIn } from 'components/containers/pages/Auth/SignIn';
 

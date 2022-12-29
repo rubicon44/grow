@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { LikeButton } from 'components/containers/organisms/Likes/LikeButton';
 import { TaskDeleteButton } from 'components/containers/organisms/Tasks/TaskButton/TaskDeleteButton';

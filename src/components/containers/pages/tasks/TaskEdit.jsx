@@ -1,4 +1,3 @@
-import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { TaskEditTemplate } from 'components/containers/templates/Tasks/TaskEditTemplate';
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import styled from 'styled-components';
@@ -84,7 +84,7 @@ export const Header = () => {
       <Logo to="/tasks">Grow</Logo>
       <HeaderMenuGroup>
         {['top'].map((anchor) => (
-          <React.Fragment key={anchor}>
+          <Fragment key={anchor}>
             <IconButton onClick={toggleDrawer(anchor, true)}>
               <MenuIcon />
             </IconButton>
@@ -96,7 +96,7 @@ export const Header = () => {
             >
               {list(anchor)}
             </SwipeableDrawer>
-          </React.Fragment>
+          </Fragment>
         ))}
       </HeaderMenuGroup>
     </HeaderCover>

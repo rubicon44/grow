@@ -1,4 +1,3 @@
-import React from 'react';
 import { MainWithHeader } from 'components/containers/templates/MainWithHeader';
 import { SignInForm } from 'components/containers/organisms/Auth/SignInForm';
 

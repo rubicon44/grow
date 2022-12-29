@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, createContext, forwardRef } from 'react';
+import { useState, useEffect, useRef, createContext, forwardRef } from 'react';
 import { VariableSizeList as List } from 'react-window';
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';

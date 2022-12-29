@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { BioEditLink } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader/ProfileSwitch/BioEditLink';
 import { ProfileSwitchForm } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader/ProfileSwitch/ProfileSwitchForm';

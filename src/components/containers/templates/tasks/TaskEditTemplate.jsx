@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { MainWithHeader } from 'components/containers/templates/MainWithHeader';
 import { TaskEditForm } from 'components/containers/organisms/Tasks/TaskForm/TaskEditForm';

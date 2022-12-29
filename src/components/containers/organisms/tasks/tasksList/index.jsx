@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { LikeButton } from 'components/containers/organisms/Likes/LikeButton';
 import { TaskStatusSwitch } from 'components/containers/organisms/Tasks/logic/TaskStatusSwitch';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { memo, useState } from 'react';
 import { useCurrentUserId } from 'hooks/useCurrentUserId';
 import { useCurrentUserName } from 'hooks/useCurrentUserName';
 import { useTaskData } from 'hooks/useTaskData';
@@ -15,11 +15,11 @@ export const TaskListContainer = () => {
   const [load, setLoad] = useState(false);
   const [deleteCheckAble, setDeleteCheckAble] = useState(false);
 
-  const MemoTitleWithBackArrowHeader = React.memo(() => {
+  const MemoTitleWithBackArrowHeader = memo(() => {
     return <TitleWithBackArrowHeader>タスク詳細</TitleWithBackArrowHeader>;
   });
 
-  const MemoTaskList = React.memo(TaskList);
+  const MemoTaskList = memo(TaskList);
   return (
     <>
       <MemoTitleWithBackArrowHeader />

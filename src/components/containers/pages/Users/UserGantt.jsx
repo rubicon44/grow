@@ -1,4 +1,3 @@
-import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { UserGanttTemplate } from 'components/containers/templates/Users/UserGanttTemplate';
 

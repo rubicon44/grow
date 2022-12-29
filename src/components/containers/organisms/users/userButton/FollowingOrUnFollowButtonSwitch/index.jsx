@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { FollowingButton } from 'components/containers/organisms/Users/UserButton/FollowingButton';
 import { UnFollowButton} from 'components/containers/organisms/Users/UserButton/UnFollowButton';

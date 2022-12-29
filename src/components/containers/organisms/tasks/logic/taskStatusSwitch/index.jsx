@@ -1,8 +1,8 @@
-import React from 'react';
+import { memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-export const TaskStatusSwitch = React.memo(({ taskStatus }) => {
+export const TaskStatusSwitch = memo(({ taskStatus }) => {
   const componentMap = {
     0: <TaskStatusNot>未対応</TaskStatusNot>,
     1: <TaskStatusProcess>処理中</TaskStatusProcess>,

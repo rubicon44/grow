@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { useCurrentUserId } from 'hooks/useCurrentUserId';
 import { useCurrentUserName } from 'hooks/useCurrentUserName';

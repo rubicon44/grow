@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { FormInput } from 'components/presentational/atoms/Input/FormInput';
 import { FormSubmitButton } from 'components/presentational/atoms/Button/FormSubmitButton';

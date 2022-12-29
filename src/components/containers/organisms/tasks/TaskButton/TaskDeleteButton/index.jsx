@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const TaskDeleteButton = ({ setLoad, setDeleteCheckAble, taskCreatedUserId, currentUserId }) => {
   const deleteCheckFunc = () => {
     setLoad(true);

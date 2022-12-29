@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 export const FormTextArea = ({ children, textAreaRef, htmlFor, name, defaultValue, placeholder }) => {

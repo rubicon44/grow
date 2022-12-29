@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 export const FormInput = ({ children, inputRef, htmlFor, type, name, defaultValue, placeholder, autoComplete }) => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getFollowings } from 'infra/api';
 import { FollowButton } from 'components/containers/organisms/Users/UserButton/FollowButton';
 import { FollowingOrUnFollowButtonSwitch } from 'components/containers/organisms/Users/UserButton/FollowingOrUnFollowButtonSwitch';
