@@ -1,16 +1,14 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { mediaquery } from '../../../../assets/styles/variable';
-import { Main } from '../../templates/main';
+import { Main } from '../../templates/Main';
 import { Title } from '../../../presentational/atoms/Title';
-import { NextButtonLink } from '../../../presentational/atoms/Link/nextButtonLink';
+import { NextButtonLink } from '../../../presentational/atoms/Link/NextButtonLink';
 
-export function Top() {
+export const Top = () => {
   return (
     <TopMain>
       <TopTitle>Grow</TopTitle>
-      <NextButtonLink text="タスク一覧" url="/tasks" />
       <NextButtonLink text="会員登録" url="/signUp" />
       <LinkText to="/signIn">ログイン</LinkText>
     </TopMain>
@@ -27,7 +25,6 @@ const TopTitle = styled(Title)`
   width: 288px;
   font-weight: 600;
   line-height: 130.2%;
-
   ${mediaquery.desktop`
     width: 100%;
     font-size: 46px;

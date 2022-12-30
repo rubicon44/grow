@@ -1,41 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import styled from 'styled-components';
 import { signOut } from 'firebase/auth';
 import jwtDecode from 'jwt-decode';
-// スタイリング
-import './assets/styles/reset.css';
-import { mediaquery } from './assets/styles/variable';
-// 認証用Context
-import { AuthProvider } from './auth/authProvider';
-import { PrivateRoute } from './auth/privateRoute';
-import { auth } from './infra/firebase';
-// 認証前・サインイン・サインアップ・NotFound
-import { Top } from './components/containers/pages/staticPages/top';
-import { SignIn } from './components/containers/pages/staticPages/signIn';
-import { SignUp } from './components/containers/pages/staticPages/signUp';
-import { NotFound } from './components/containers/pages/staticPages/notFound';
-// タスク
-import { TaskIndex } from './components/containers/pages/tasks';
-import { TaskShow } from './components/containers/pages/tasks/show';
-import { TaskCreate } from './components/containers/pages/tasks/create';
-import { TaskEdit } from './components/containers/pages/tasks/edit';
-// ユーザー
-import { UserShow } from './components/containers/pages/users/show';
-import { UserGuntt } from './components/containers/pages/users/guntt';
-import { UserFollowings } from './components/containers/pages/users/followings';
-import { UserFollowers } from './components/containers/pages/users/followers';
-import { UserNotifications } from './components/containers/pages/users/notifications';
-// 検索
-import { SearchIndex } from './components/containers/pages/search';
+// Style
+import 'assets/styles/reset.css';
+import { mediaquery } from 'assets/styles/variable';
+// Context for auth
+import { auth } from 'infra/firebase';
+import { AuthProvider } from 'auth/AuthProvider';
+import { PrivateRoute } from 'auth/PrivateRoute';
+// Auth
+import { SignIn } from 'components/containers/pages/Auth/SignIn';
+import { SignUp } from 'components/containers/pages/Auth/SignUp';
+// Static pages
+import { NotFound } from 'components/containers/pages/StaticPages/NotFound';
+import { Top } from 'components/containers/pages/StaticPages/Top';
+// Tasks
+import { Tasks } from 'components/containers/pages/Tasks';
+import { TaskCreate } from 'components/containers/pages/Tasks/TaskCreate';
+import { TaskEdit } from 'components/containers/pages/Tasks/TaskEdit';
+import { TaskShow } from 'components/containers/pages/Tasks/TaskShow';
+// Users
+import { UserGantt } from 'components/containers/pages/Users/UserGantt';
+import { UserFollowings } from 'components/containers/pages/Users/UserFollowings';
+import { UserFollowers } from 'components/containers/pages/Users/UserFollowers';
+import { UserShow } from 'components/containers/pages/Users/UserShow';
+// Notifications
+import { Notifications } from 'components/containers/pages/Notifications';
+// Searches
+import { Searches } from 'components/containers/pages/Searches';
 
-export function App() {
+export const App = () => {
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     // setTimeout(() => setLoading(false), 1000)
     setLoading(false);
-
     if (
       localStorage.getItem('token') === '' ||
       localStorage.getItem('token') === null ||
@@ -54,67 +54,58 @@ export function App() {
         <AuthProvider>
           <Router>
             <Routes>
-              {/* top・サインイン・サインアップ・NotFound */}
-              <Route exact path="/" element={<Top />} />
-              <Route exact path="/top" element={<Top />} />
-              <Route exact path="/signIn" element={<SignIn />} />
-              <Route exact path="/signUp" element={<SignUp />} />
-              <Route exact path="*" element={<NotFound />} />
-              {/* task */}
+              {/* Auth */}
+              <Route path="/" element={<Top />} />
+              <Route path="/top" element={<Top />} />
+              <Route path="*" element={<NotFound />} />
+              {/* Static pages */}
+              <Route path="/signIn" element={<SignIn />} />
+              <Route path="/signUp" element={<SignUp />} />
+              {/* Task */}
               <Route
-                exact
                 path="/tasks"
-                element={<PrivateRoute element={<TaskIndex />} />}
+                element={<PrivateRoute element={<Tasks />} />}
               />
               <Route
-                exact
                 path="/tasks/create"
                 element={<PrivateRoute element={<TaskCreate />} />}
               />
               <Route
-                exact
                 path="/tasks/edit/:id"
                 element={<PrivateRoute element={<TaskEdit />} />}
               />
-              {/* user */}
+              {/* User */}
               <Route
-                exact
                 path="/:username"
                 element={<PrivateRoute element={<UserShow />} />}
               />
-              {/* GunttChart */}
+              {/* Gantt chart */}
               <Route
-                exact
-                path="/:username/guntt"
-                element={<PrivateRoute element={<UserGuntt />} />}
+                path="/:username/gantt"
+                element={<PrivateRoute element={<UserGantt />} />}
               />
               <Route
-                exact
                 path="/:username/tasks/:id"
                 element={<PrivateRoute element={<TaskShow />} />}
               />
               {/* Relationships */}
               <Route
-                exact
                 path="/:username/followings"
                 element={<PrivateRoute element={<UserFollowings />} />}
               />
               <Route
-                exact
                 path="/:username/followers"
                 element={<PrivateRoute element={<UserFollowers />} />}
               />
               {/* Notifications */}
               <Route
-                exact
                 path="/notifications"
-                element={<PrivateRoute element={<UserNotifications />} />}
+                element={<PrivateRoute element={<Notifications />} />}
               />
               {/* Searches */}
               <Route
-                exact
-                path="/search"
-                element={<PrivateRoute element={<SearchIndex />} />}
+                path="/searches"
+                element={<PrivateRoute element={<Searches />} />}
               />
             </Routes>
           </Router>
@@ -137,7 +128,6 @@ const PageWrapper = styled.div`
   max-width: 320px;
   min-height: 700px;
   background-color: #eeeff1;
-
   ${mediaquery.desktop`
     max-width: 1280px;
   `}

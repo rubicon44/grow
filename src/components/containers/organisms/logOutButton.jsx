@@ -1,21 +1,21 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { AuthContext } from '../../../auth/authProvider';
-import { Button } from '../../presentational/atoms/Button';
+import { AuthContext } from 'auth/AuthProvider';
+import { Button } from 'components/presentational/atoms/Button';
 
-export function LogOutButton(props) {
+export const LogOutButton = (props) => {
+  const navigate = useNavigate();
   const { signout } = useContext(AuthContext);
   const { text } = props;
-  return (
-    <DangerButton
-      onClick={() => {
-        signout();
-      }}
-    >
-      {text}
-    </DangerButton>
-  );
+
+  const signoutFunc = async () => {
+    await navigate('/');
+    await signout();
+  }
+
+  return (<DangerButton onClick={signoutFunc}>{text}</DangerButton>);
 }
 
 // const DangerButton = styled(props => <Button {...props} />)`

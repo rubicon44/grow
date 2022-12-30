@@ -1,23 +1,14 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { BaseLink } from '../../atoms/Link';
+import { BaseLink } from 'components/presentational/atoms/Link/BaseLink';
 
-export function List(props) {
-  const { title } = props;
-  const { titleUrl } = props;
-  const { content } = props;
-  const { url } = props;
-  const { text } = props;
+export const List = ({ title, titleUrl, content, url, text }) => {
   return (
     <BaseList>
-      <dt>
-        <Link to={titleUrl}>{title}</Link>
-      </dt>
+      <dt><Link to={titleUrl}>{title}</Link></dt>
       <dd>{content}</dd>
-      <CreatedUserCover>
-        作成者:
+      <CreatedUserCover>作成者:
         <BaseLink url={url}>{text}</BaseLink>
       </CreatedUserCover>
     </BaseList>
@@ -29,11 +20,9 @@ const BaseList = styled.dl`
   max-width: 180px;
   margin-top: 15px;
   text-align: left;
-
   > dt {
     font-weight: bold;
   }
-
   > dd {
     min-height: 100px;
     margin: 10px 0 5px;

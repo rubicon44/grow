@@ -1,11 +1,10 @@
-import React from 'react';
 import styled from 'styled-components';
-import { mediaquery } from '../../../../assets/styles/variable';
-import { Header } from '../../organisms/header';
-import { Main } from '../../templates/main';
-import { Title } from '../../../presentational/atoms/Title';
+import { mediaquery } from 'assets/styles/variable';
+import { Main } from 'components/containers/templates/Main';
+import { Header } from 'components/containers/organisms/Header';
+import { Title } from 'components/presentational/atoms/Title';
 
-export function NotFound() {
+export const NotFound = () => {
   return (
     <>
       <Header />
@@ -20,7 +19,6 @@ const NotFoundTitle = styled(Title)`
   width: 288px;
   font-weight: 600;
   line-height: 130.2%;
-
   ${mediaquery.desktop`
     width: 100%;
     font-size: 46px;

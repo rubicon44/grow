@@ -1,32 +1,34 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth';
-import { auth } from '../infra/firebase';
-import { signUp, signIn } from '../infra/api';
+import axios from 'axios';
+import { auth } from 'infra/firebase';
+import { signUp, signIn } from 'infra/api';
 
 export const AuthContext = createContext();
-export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState(null);
+export const AuthProvider = ({ children }) => {
+  const [currentUserAuth, setCurrentUserAuth] = useState(null);
   const signin = async (email, password) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       await auth.currentUser
         .getIdToken(/* forceRefresh */ true)
-        .then((idToken) => {
-          signIn(idToken)
-            .then(async (response) => {
+        .then(async (idToken) => {
+          await signIn(idToken)
+            .then((response) => {
               const { token, user } = response.data;
-              if (token) await localStorage.setItem('token', token);
-              if (user) {
-                await localStorage.setItem('user', JSON.stringify(user));
-              }
-              await window.location.reload();
+              if (token) localStorage.setItem('token', token);
+              if (user) localStorage.setItem('user', JSON.stringify(user));
+
+              axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
+              const tokenAuth = localStorage.getItem('token');
+              axios.defaults.headers.common.Authorization = tokenAuth;
             })
-            .catch(async () => {
+            .catch(() => {
               // alert(response);
               // alert('このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。');
               signOut(auth);
@@ -39,7 +41,7 @@ export function AuthProvider({ children }) {
 
   const signup = async (nickname, username, email, password) => {
     try {
-      createUserWithEmailAndPassword(auth, email, password)
+      await createUserWithEmailAndPassword(auth, email, password)
         .then(async (userCredential) => {
           const firebaseId = userCredential.user.uid;
           const user = { nickname, username, email, firebaseId };
@@ -53,8 +55,6 @@ export function AuthProvider({ children }) {
           await signin(email, password);
         })
         .catch();
-      // .catch((data) => {
-      // });
     } catch (error) {
       // alert(error);
       // alert('このメールアドレスはすでに登録されています。');
@@ -70,18 +70,11 @@ export function AuthProvider({ children }) {
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, setCurrentUser);
+    onAuthStateChanged(auth, setCurrentUserAuth);
   }, []);
 
   return (
-    <AuthContext.Provider
-      value={{
-        currentUser,
-        signin,
-        signup,
-        signout,
-      }}
-    >
+    <AuthContext.Provider value={{ currentUserAuth, signin, signup, signout }}>
       {children}
     </AuthContext.Provider>
   );

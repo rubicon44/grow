@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import IconButton from '@material-ui/core/IconButton';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import MenuIcon from '@material-ui/icons/Menu';
-import { getCurrentUser } from '../../../infra/api';
+import { currentUser } from 'infra/currentUser';
 
-export function Header() {
+export const Header = () => {
   const classes = useStyles();
   const [state, setState] = useState({
     top: false,
@@ -20,25 +20,6 @@ export function Header() {
     bottom: false,
     right: false,
   });
-
-  const [userId, setUserId] = useState([]);
-  const [userName, setUserName] = useState([]);
-  useEffect(() => {
-    let isMounted = true;
-    getCurrentUser()
-      .then((response) => {
-        const userId = response.data.user.id;
-        const userName = response.data.user.username;
-        if (isMounted) setUserId(userId);
-        if (isMounted) setUserName(userName);
-      })
-      .catch();
-    // .catch((data) => {
-    // });
-    return () => {
-      isMounted = false;
-    };
-  }, [userId]);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -52,13 +33,14 @@ export function Header() {
     setState({ ...state, [anchor]: open });
   };
 
+  const currentUserName = localStorage.getItem('user') && currentUser().username;
   const headerLinks = [
     { url: '/top', text: 'Top' },
     { url: '/tasks', text: 'Home' },
     { url: '/tasks/create', text: 'Post' },
-    { url: `/${userName}`, text: 'Report' },
+    { url: `/${currentUserName}`, text: 'Report' },
     { url: `/notifications`, text: 'Notifications' },
-    { url: `/search`, text: 'Search' },
+    { url: `/searches`, text: 'Searches' },
   ];
 
   const headerLinksForAuth = [
@@ -78,11 +60,7 @@ export function Header() {
       <List>
         {headerLinks.map((headerLink) => (
           <Link to={headerLink.url} key={headerLink.url}>
-            <ListItem
-              button
-              key={headerLink.text}
-              className={clsx(classes.listCenter)}
-            >
+            <ListItem button key={headerLink.text} className={clsx(classes.listCenter)}>
               <ListItemText primary={headerLink.text} />
             </ListItem>
           </Link>
@@ -92,11 +70,7 @@ export function Header() {
       <List>
         {headerLinksForAuth.map((headerLink) => (
           <Link to={headerLink.url} key={headerLink.url}>
-            <ListItem
-              button
-              key={headerLink.text}
-              className={clsx(classes.listCenter)}
-            >
+            <ListItem button key={headerLink.text} className={clsx(classes.listCenter)}>
               <ListItemText primary={headerLink.text} />
             </ListItem>
           </Link>
@@ -110,7 +84,7 @@ export function Header() {
       <Logo to="/tasks">Grow</Logo>
       <HeaderMenuGroup>
         {['top'].map((anchor) => (
-          <React.Fragment key={anchor}>
+          <Fragment key={anchor}>
             <IconButton onClick={toggleDrawer(anchor, true)}>
               <MenuIcon />
             </IconButton>
@@ -122,7 +96,7 @@ export function Header() {
             >
               {list(anchor)}
             </SwipeableDrawer>
-          </React.Fragment>
+          </Fragment>
         ))}
       </HeaderMenuGroup>
     </HeaderCover>
