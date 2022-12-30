@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { LikeButton } from 'components/containers/organisms/Likes/LikeButton';
+import { LikeOrUnLikeButtonSwitchContainer } from 'components/containers/organisms/Likes/LikeOrUnLikeButtonSwitch/LikeOrUnLikeButtonSwitchContainer';
 import { TaskStatusSwitch } from 'components/containers/organisms/Tasks/logic/TaskStatusSwitch';
 import { List } from 'components/presentational/molecules/List';
 
-export const TasksList = ({ currentUserId, currentUserName, tasks }) => {
+export const TasksList = ({ currentUserId, tasks }) => {
   return (
     tasks.map((task) => (
       <ListCover key={task.id}>
@@ -15,7 +15,7 @@ export const TasksList = ({ currentUserId, currentUserName, tasks }) => {
           text={task.user.nickname}
         />
         <TaskStatusSwitch taskStatus={task.status} />
-        <LikeButton taskId={String(task.id)} currentUserId={String(currentUserId)} currentUserName={currentUserName} />
+        <LikeOrUnLikeButtonSwitchContainer taskId={String(task.id)} currentUserId={String(currentUserId)} />
       </ListCover>
     ))
   );

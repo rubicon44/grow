@@ -19,11 +19,10 @@ export const TaskListContainer = () => {
     return <TitleWithBackArrowHeader>タスク詳細</TitleWithBackArrowHeader>;
   });
 
-  const MemoTaskList = memo(TaskList);
   return (
     <>
       <MemoTitleWithBackArrowHeader />
-      <MemoTaskList
+      <TaskList
         currentUserId={currentUserId}
         currentUserName={currentUserName}
         deleteCheckAble={deleteCheckAble}

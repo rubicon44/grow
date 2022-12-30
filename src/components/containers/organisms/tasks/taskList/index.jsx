@@ -1,11 +1,12 @@
+import { memo } from 'react';
 import styled from 'styled-components';
-import { LikeButton } from 'components/containers/organisms/Likes/LikeButton';
+import { LikeOrUnLikeButtonSwitchContainer } from 'components/containers/organisms/Likes/LikeOrUnLikeButtonSwitch/LikeOrUnLikeButtonSwitchContainer';
 import { TaskDeleteButton } from 'components/containers/organisms/Tasks/TaskButton/TaskDeleteButton';
 import { TaskEditButton } from 'components/containers/organisms/Tasks/TaskButton/TaskEditButton';
 import { TaskStatusSwitch } from 'components/containers/organisms/Tasks/logic/TaskStatusSwitch';
 import { List } from 'components/presentational/molecules/List';
 
-export const TaskList = ({ currentUserId, currentUserName, deleteCheckAble, load, setDeleteCheckAble, setLoad, taskData }) => {
+export const TaskList = memo(({ currentUserId, currentUserName, deleteCheckAble, load, setDeleteCheckAble, setLoad, taskData }) => {
   const { id: taskId } = taskData.task;
   const { title: taskTitle } = taskData.task;
   const { content: taskContent } = taskData.task;
@@ -27,7 +28,7 @@ export const TaskList = ({ currentUserId, currentUserName, deleteCheckAble, load
       <TaskStatusSwitch taskStatus={taskStatus} />
       <div>開始日:{startDate}</div>
       <div>終了日:{endDate}</div>
-      <LikeButton taskId={String(taskId)} currentUserId={String(currentUserId)} />
+      <LikeOrUnLikeButtonSwitchContainer taskId={String(taskId)} currentUserId={String(currentUserId)} />
       <ButtonCover>
         <TaskEditButton
           deleteCheckAble={deleteCheckAble}
@@ -52,7 +53,7 @@ export const TaskList = ({ currentUserId, currentUserName, deleteCheckAble, load
       </ButtonCover>
     </ListCover>
   );
-};
+});
 
 const ListCover = styled.div`
   position: relative;

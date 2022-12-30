@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { useCurrentUserId } from 'hooks/useCurrentUserId';
-import { useCurrentUserName } from 'hooks/useCurrentUserName';
 import { useSortDescendingOrder } from 'hooks/useSortDescendingOrder';
 import { useTasks } from 'hooks/useTasks';
 import { NextButtonLink } from 'components/presentational/atoms/Link/NextButtonLink';
@@ -9,13 +8,12 @@ import { TasksList } from 'components/containers/organisms/Tasks/TasksList';
 
 export const TasksListContainer = () => {
   const currentUserId = useCurrentUserId();
-  const currentUserName = useCurrentUserName();
   const tasks = useSortDescendingOrder(useTasks());
   return (
     <>
       <Title>タスク一覧</Title>
       <NextButtonLink text="タスク登録" url="/tasks/create" />
-      <TasksList currentUserId={currentUserId} currentUserName={currentUserName} tasks={tasks}  />
+      <TasksList currentUserId={currentUserId} tasks={tasks}  />
     </>
   );
 }
