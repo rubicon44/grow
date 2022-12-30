@@ -16,10 +16,4 @@ export const TasksListContainer = () => {
       <TasksList currentUserId={currentUserId} tasks={tasks}  />
     </>
   );
-}
-
-const ListCover = styled.div`
-  position: relative;
-  min-width: 180px;
-  margin-top: 30px;
-`;
+};
