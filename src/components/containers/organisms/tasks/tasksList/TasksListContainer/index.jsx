@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import { useCurrentUserId } from 'hooks/useCurrentUserId';
 import { useSortDescendingOrder } from 'hooks/useSortDescendingOrder';
 import { useTasks } from 'hooks/useTasks';
