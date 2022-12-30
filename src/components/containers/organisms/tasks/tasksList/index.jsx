@@ -19,7 +19,7 @@ export const TasksList = ({ currentUserId, tasks }) => {
       </ListCover>
     ))
   );
-}
+};
 
 const ListCover = styled.div`
   position: relative;
