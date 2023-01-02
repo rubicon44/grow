@@ -5,7 +5,7 @@ export const FormInput = ({ children, inputRef, htmlFor, type, name, defaultValu
     <FormInputCover>
       <label htmlFor={htmlFor}>
         {children}
-        <input
+        <Input
           type={type}
           name={name}
           defaultValue={defaultValue}
@@ -27,3 +27,7 @@ const FormInputCover = styled.div`
     }
   }
 `;
+
+const Input = styled.input`
+  height: 30px;
+`

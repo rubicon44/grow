@@ -12,22 +12,44 @@ export const SearchForm = ({ handleSubmit, load }) => {
           name="contents"
           placeholder="Contents"
         />
-        <select name="model">
-          <option value="user">User</option>
-          <option value="task">Task</option>
-        </select>
-        <select name="method">
-          <option value="partial">部分一致</option>
-          <option value="perfect">完全一致</option>
-        </select>
-        <FormSubmitButton load={load}>検索</FormSubmitButton>
+        <SelectWithFormSubmitButton>
+          <SelectCover>
+            <Select name="model">
+              <option value="user">User</option>
+              <option value="task">Task</option>
+            </Select>
+            <Select name="method">
+              <option value="partial">部分一致</option>
+              <option value="perfect">完全一致</option>
+            </Select>
+          </SelectCover>
+          <FormSubmitButtonCover>
+            <FormSubmitButton load={load}>検索</FormSubmitButton>
+          </FormSubmitButtonCover>
+        </SelectWithFormSubmitButton>
       </form>
     </SearchFormCover>
   );
 };
 
+const FormSubmitButtonCover = styled.div`
+  margin-left: auto;
+`;
+
 const SearchFormCover = styled.div`
-  min-width: 260px;
-  padding: 0 10px;
   text-align: left;
 `;
+
+const Select = styled.select`
+  height: 27px;
+`
+
+const SelectCover = styled.div`
+  > select:not(:first-of-type) {
+    margin-left: 5px;
+  }
+`
+
+const SelectWithFormSubmitButton = styled.div`
+  display: flex;
+`
