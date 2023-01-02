@@ -2,8 +2,10 @@ import { memo } from 'react';
 import styled from 'styled-components';
 import { LikeOrUnLikeButtonSwitchContainer } from 'components/containers/organisms/Likes/LikeOrUnLikeButtonSwitch/LikeOrUnLikeButtonSwitchContainer';
 import { TaskDeleteButton } from 'components/containers/organisms/Tasks/TaskButton/TaskDeleteButton';
+import { TaskDeleteOrUnDeleteButtonSwitch } from 'components/containers/organisms/Tasks/TaskButton/TaskDeleteOrUnDeleteButtonSwitch';
 import { TaskEditButton } from 'components/containers/organisms/Tasks/TaskButton/TaskEditButton';
 import { TaskStatusSwitch } from 'components/containers/organisms/Tasks/logic/TaskStatusSwitch';
+import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 import { List } from 'components/presentational/molecules/List';
 
 export const TaskList = memo(({ currentUserId, currentUserName, deleteCheckAble, load, setDeleteCheckAble, setLoad, taskData }) => {
@@ -15,43 +17,58 @@ export const TaskList = memo(({ currentUserId, currentUserName, deleteCheckAble,
   const { end_date: endDate } = taskData.task;
   const { user_id: taskCreatedUserId } = taskData.task;
   const { nickname: taskCreatedUserNickName } = taskData.taskCreatedUser;
+  const { username: taskCreatedUserName } = taskData.taskCreatedUser;
+
+  const MemoTitleWithBackArrowHeader = memo(() => {
+    return <TitleWithBackArrowHeader>タスク詳細</TitleWithBackArrowHeader>;
+  });
 
   return (
-    <ListCover>
-      <List
-        title={taskTitle}
-        titleUrl={`/${taskData.taskCreatedUserName}/tasks/${String(taskData.task.id)}`}
-        content={taskContent}
-        url={`/${taskData.taskCreatedUserName}`}
-        text={taskCreatedUserNickName}
+    <>
+      <MemoTitleWithBackArrowHeader />
+      <ListCover>
+        <List
+          title={taskTitle}
+          titleUrl={`/${taskData.taskCreatedUserName}/tasks/${String(taskData.task.id)}`}
+          content={taskContent}
+          url={`/${taskData.taskCreatedUserName}`}
+          text={taskCreatedUserNickName}
+        />
+        <TaskStatusSwitch taskStatus={taskStatus} />
+        <div>開始日:{startDate}</div>
+        <div>終了日:{endDate}</div>
+        <LikeOrUnLikeButtonSwitchContainer taskId={String(taskId)} currentUserId={String(currentUserId)} />
+        <ButtonCover>
+          <TaskEditButton
+            deleteCheckAble={deleteCheckAble}
+            setDeleteCheckAble={setDeleteCheckAble}
+            currentUserId={currentUserId}
+            currentUserName={currentUserName}
+            endDate={endDate}
+            load={load}
+            taskContent={taskContent}
+            taskCreatedUserId={taskCreatedUserId}
+            taskId={taskId}
+            taskStatus={taskStatus}
+            taskTitle={taskTitle}
+            startDate={startDate}
+          />
+          <TaskDeleteButton
+            currentUserId={currentUserId}
+            setDeleteCheckAble={setDeleteCheckAble}
+            setLoad={setLoad}
+            taskCreatedUserId={taskCreatedUserId}
+          />
+        </ButtonCover>
+      </ListCover>
+      <TaskDeleteOrUnDeleteButtonSwitch
+        deleteCheckAble={deleteCheckAble}
+        setLoad={setLoad}
+        setDeleteCheckAble={setDeleteCheckAble}
+        taskId={taskId}
+        taskCreatedUserName={taskCreatedUserName}
       />
-      <TaskStatusSwitch taskStatus={taskStatus} />
-      <div>開始日:{startDate}</div>
-      <div>終了日:{endDate}</div>
-      <LikeOrUnLikeButtonSwitchContainer taskId={String(taskId)} currentUserId={String(currentUserId)} />
-      <ButtonCover>
-        <TaskEditButton
-          deleteCheckAble={deleteCheckAble}
-          setDeleteCheckAble={setDeleteCheckAble}
-          currentUserId={currentUserId}
-          currentUserName={currentUserName}
-          endDate={endDate}
-          load={load}
-          taskContent={taskContent}
-          taskCreatedUserId={taskCreatedUserId}
-          taskId={taskId}
-          taskStatus={taskStatus}
-          taskTitle={taskTitle}
-          startDate={startDate}
-        />
-        <TaskDeleteButton
-          currentUserId={currentUserId}
-          setDeleteCheckAble={setDeleteCheckAble}
-          setLoad={setLoad}
-          taskCreatedUserId={taskCreatedUserId}
-        />
-      </ButtonCover>
-    </ListCover>
+    </>
   );
 });
 
