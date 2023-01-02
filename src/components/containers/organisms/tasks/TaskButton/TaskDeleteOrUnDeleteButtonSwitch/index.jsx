@@ -1,28 +1,15 @@
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { deleteTask } from 'infra/api';
+import { TaskDeleteButton } from 'components/containers/organisms/Tasks/TaskButton/TaskDeleteButton';
+import { TaskUnDeleteButton } from 'components/containers/organisms/Tasks/TaskButton/TaskUnDeleteButton';
 
-// todo: Task以外の「削除しますか」ボタンにも応用可能(as molecules.)
-export const TaskDeleteOrUnDeleteButtonSwitch = ({ deleteCheckAble, setLoad, setDeleteCheckAble, taskId, taskCreatedUserName }) => {
-  const unDeleteCheckFunc = () => {
-    setLoad(false);
-    setDeleteCheckAble(false);
-  };
-
-  const navigate = useNavigate();
-  const deleteTaskFunc = async () => {
-    await deleteTask(taskId).then().catch();
-    setLoad(false);
-    await navigate(`/${taskCreatedUserName}`);
-  };
-
+export const TaskDeleteOrUnDeleteButtonSwitch = ({ deleteCheckAble, deleteTaskFunc, unDeleteCheckFunc }) => {
   return (
     deleteCheckAble === true && (
       <BackgroundDisAbledCover>
         <BackgroundDisAbled>
           <div>本当に削除しますか?</div>
-          <button type="button" onClick={deleteTaskFunc}>はい</button>
-          <button type="button" onClick={unDeleteCheckFunc}>いいえ</button>
+          <TaskDeleteButton deleteTaskFunc={deleteTaskFunc} />
+          <TaskUnDeleteButton unDeleteCheckFunc={unDeleteCheckFunc} />
         </BackgroundDisAbled>
       </BackgroundDisAbledCover>
     )

@@ -1,14 +1,14 @@
 import { memo } from 'react';
 import styled from 'styled-components';
 import { LikeOrUnLikeButtonSwitchContainer } from 'components/containers/organisms/Likes/LikeOrUnLikeButtonSwitch/LikeOrUnLikeButtonSwitchContainer';
-import { TaskDeleteButton } from 'components/containers/organisms/Tasks/TaskButton/TaskDeleteButton';
+import { TaskDeleteCheckButton } from 'components/containers/organisms/Tasks/TaskButton/TaskDeleteCheckButton';
 import { TaskDeleteOrUnDeleteButtonSwitch } from 'components/containers/organisms/Tasks/TaskButton/TaskDeleteOrUnDeleteButtonSwitch';
 import { TaskEditButton } from 'components/containers/organisms/Tasks/TaskButton/TaskEditButton';
 import { TaskStatusSwitch } from 'components/containers/organisms/Tasks/logic/TaskStatusSwitch';
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 import { List } from 'components/presentational/molecules/List';
 
-export const TaskList = memo(({ currentUserId, currentUserName, deleteCheckAble, load, setDeleteCheckAble, setLoad, taskData }) => {
+export const TaskList = ({ currentUserId, deleteCheckAble, deleteCheckFunc, deleteTaskFunc, load, nextEditTaskFunc, taskData, unDeleteCheckFunc }) => {
   const { id: taskId } = taskData.task;
   const { title: taskTitle } = taskData.task;
   const { content: taskContent } = taskData.task;
@@ -29,9 +29,9 @@ export const TaskList = memo(({ currentUserId, currentUserName, deleteCheckAble,
       <ListCover>
         <List
           title={taskTitle}
-          titleUrl={`/${taskData.taskCreatedUserName}/tasks/${String(taskData.task.id)}`}
+          titleUrl={`/${taskCreatedUserName}/tasks/${String(taskData.task.id)}`}
           content={taskContent}
-          url={`/${taskData.taskCreatedUserName}`}
+          url={`/${taskCreatedUserName}`}
           text={taskCreatedUserNickName}
         />
         <TaskStatusSwitch taskStatus={taskStatus} />
@@ -40,37 +40,26 @@ export const TaskList = memo(({ currentUserId, currentUserName, deleteCheckAble,
         <LikeOrUnLikeButtonSwitchContainer taskId={String(taskId)} currentUserId={String(currentUserId)} />
         <ButtonCover>
           <TaskEditButton
-            deleteCheckAble={deleteCheckAble}
-            setDeleteCheckAble={setDeleteCheckAble}
             currentUserId={currentUserId}
-            currentUserName={currentUserName}
-            endDate={endDate}
             load={load}
-            taskContent={taskContent}
+            nextEditTaskFunc={nextEditTaskFunc}
             taskCreatedUserId={taskCreatedUserId}
-            taskId={taskId}
-            taskStatus={taskStatus}
-            taskTitle={taskTitle}
-            startDate={startDate}
           />
-          <TaskDeleteButton
+          <TaskDeleteCheckButton
             currentUserId={currentUserId}
-            setDeleteCheckAble={setDeleteCheckAble}
-            setLoad={setLoad}
+            deleteCheckFunc={deleteCheckFunc}
             taskCreatedUserId={taskCreatedUserId}
           />
         </ButtonCover>
       </ListCover>
       <TaskDeleteOrUnDeleteButtonSwitch
         deleteCheckAble={deleteCheckAble}
-        setLoad={setLoad}
-        setDeleteCheckAble={setDeleteCheckAble}
-        taskId={taskId}
-        taskCreatedUserName={taskCreatedUserName}
+        deleteTaskFunc={deleteTaskFunc}
+        unDeleteCheckFunc={unDeleteCheckFunc}
       />
     </>
   );
-});
+};
 
 const ListCover = styled.div`
   position: relative;
