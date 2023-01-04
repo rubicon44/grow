@@ -1,10 +1,12 @@
 import { useCurrentUserId } from 'hooks/useCurrentUserId';
 import { useTaskData } from 'hooks/useTaskData';
+import { useTaskEditAndDelete } from 'hooks/useTaskEditAndDelete';
 import { TaskList } from 'components/containers/organisms/Tasks/TaskList';
 
 export const TaskListContainer = () => {
   const currentUserId = useCurrentUserId();
-  const [taskData, { deleteCheckAble, deleteCheckFunc, deleteTaskFunc, load, nextEditTaskFunc, unDeleteCheckFunc }] = useTaskData();
+  const taskData = useTaskData();
+  const { deleteCheckAble, deleteCheckFunc, deleteTaskFunc, nextEditTaskFunc, load, unDeleteCheckFunc } = useTaskEditAndDelete();
 
   return <TaskList
            currentUserId={currentUserId}

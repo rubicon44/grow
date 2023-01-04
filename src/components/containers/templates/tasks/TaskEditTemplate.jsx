@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import { MainWithHeader } from 'components/containers/templates/MainWithHeader';
-import { TaskEditForm } from 'components/containers/organisms/Tasks/TaskForm/TaskEditForm';
+import { TaskEditFormContainer } from 'components/containers/organisms/Tasks/TaskForm/TaskEditForm/TaskEditFormContainer';
 
 export const TaskEditTemplate = (props) => {
   return (
     <MainWithHeader>
-      <TaskEditForm {...props}/>
+      <TaskEditFormContainer {...props}/>
     </MainWithHeader>
   );
 };
