@@ -1,31 +1,9 @@
-import { useContext, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { AuthContext } from 'auth/AuthProvider';
 import { FormInput } from 'components/presentational/atoms/Input/FormInput';
 import { FormSubmitButton } from 'components/presentational/atoms/Button/FormSubmitButton';
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
-export const SignInForm = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { signin } = useContext(AuthContext);
-  const [load, setLoad] = useState(false);
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoad(true);
-    const { email, password } = e.target.elements;
-    await signin(email.value, password.value);
-    setLoad(false);
-    const locationPathName = location.pathname.split('/');
-    const tasksText = locationPathName[locationPathName.length - 1];
-    if(tasksText === "tasks") {
-      window.location.reload();
-    } else {
-      await navigate('/tasks');
-    }
-  };
-
+export const SignInForm = ({ handleSubmit, load }) => {
   return (
     <>
       <TitleWithBackArrowHeader>ログイン</TitleWithBackArrowHeader>
@@ -53,7 +31,7 @@ export const SignInForm = () => {
       </FormCover>
     </>
   );
-}
+};
 
 const FormCover = styled.div`
   min-width: 260px;
