@@ -13,9 +13,9 @@ export const LogOutButton = (props) => {
   const signoutFunc = async () => {
     await navigate('/');
     await signout();
-  }
+  };
 
-  return (<DangerButton onClick={signoutFunc}>{text}</DangerButton>);
+  return <DangerButton onClick={signoutFunc}>{text}</DangerButton>;
 }
 
 // const DangerButton = styled(props => <Button {...props} />)`

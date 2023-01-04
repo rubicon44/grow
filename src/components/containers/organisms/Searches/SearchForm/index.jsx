@@ -42,14 +42,14 @@ const SearchFormCover = styled.div`
 
 const Select = styled.select`
   height: 27px;
-`
+`;
 
 const SelectCover = styled.div`
   > select:not(:first-of-type) {
     margin-left: 5px;
   }
-`
+`;
 
 const SelectWithFormSubmitButton = styled.div`
   display: flex;
-`
+`;

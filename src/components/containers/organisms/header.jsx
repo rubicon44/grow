@@ -101,7 +101,7 @@ export const Header = () => {
       </HeaderMenuGroup>
     </HeaderCover>
   );
-}
+};
 
 const HeaderCover = styled.div`
   display: flex;

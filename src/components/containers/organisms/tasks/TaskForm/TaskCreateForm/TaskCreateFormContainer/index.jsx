@@ -3,14 +3,10 @@ import { TaskCreateForm } from 'components/containers/organisms/Tasks/TaskForm/T
 
 export const TaskCreateFormContainer = () => {
   const [taskData, { handleTextSubmit, inputRef, load }] = useTaskCreate();
-  return (
-    <>
-      <TaskCreateForm
-        handleTextSubmit={handleTextSubmit}
-        inputRef={inputRef}
-        load={load}
-        taskData={taskData}
-      />
-    </>
-  );
+  return <TaskCreateForm
+           handleTextSubmit={handleTextSubmit}
+           inputRef={inputRef}
+           load={load}
+           taskData={taskData}
+         />;
 };
