@@ -55,5 +55,5 @@ export const useTaskEdit = (id, taskDataTask) => {
     await navigate(`/${currentUserName}/tasks/${id}`);
   };
 
-  return [taskData, { handleTextSubmit, inputRef, load }];
+  return { taskData, handleTextSubmit, inputRef, load };
 };

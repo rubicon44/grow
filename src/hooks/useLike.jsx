@@ -75,5 +75,5 @@ export const useLike = (taskId) => {
     };
   };
 
-  return [likeData, { currentTaskId, isLoading, handleClickLikeDelete, handleClickLikePost }];
+  return { likeData, currentTaskId, isLoading, handleClickLikeDelete, handleClickLikePost };
 };

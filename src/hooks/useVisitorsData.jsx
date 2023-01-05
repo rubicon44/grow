@@ -28,5 +28,5 @@ export const useVisitorsData = () => {
     };
   }, [currentUserId]);
 
-  return [visitorsData, { isLoading }];
+  return { visitorsData, isLoading };
 };
