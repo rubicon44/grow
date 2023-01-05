@@ -49,6 +49,5 @@ export const useTaskEditAndDelete = () => {
     setLoad(false);
     setDeleteCheckAble(false);
   };
-
   return { deleteCheckAble, deleteCheckFunc, deleteTaskFunc, nextEditTaskFunc, load, unDeleteCheckFunc };
 };

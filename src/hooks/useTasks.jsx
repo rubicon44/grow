@@ -9,13 +9,12 @@ export const useTasks = () => {
       .then((response) => {
         if (isMounted) {
           setTasks(response.data);
-        }
+        };
       })
       .catch();
     return () => {
       isMounted = false;
     };
   }, []);
-
   return tasks;
 };

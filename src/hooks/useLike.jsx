@@ -74,6 +74,5 @@ export const useLike = (taskId) => {
       isMounted = false;
     };
   };
-
   return { likeData, currentTaskId, isLoading, handleClickLikeDelete, handleClickLikePost };
 };

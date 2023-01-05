@@ -54,6 +54,5 @@ export const useTaskCreate = () => {
     await postTasksFunc(task);
     await navigate('/tasks');
   };
-
   return { taskData, handleTextSubmit, inputRef, load };
 };

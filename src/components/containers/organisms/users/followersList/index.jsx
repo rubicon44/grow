@@ -1,31 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { getFollowers } from 'infra/api';
 import { FollowButtonForUsersListSwitch } from 'components/containers/organisms/Users/UserButton/FollowButtonForUsersListSwitch';
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
-export const FollowersList = () => {
-  const location = useLocation();
-  const { userId } = location.state;
-  const currentUserDataText = localStorage.getItem('user');
-  const currentUserData = JSON.parse(currentUserDataText);
-  const currentUserId = String(currentUserData.id);
-  const [followers, setFollowers] = useState([]);
-
-  useEffect(() => {
-    let isMounted = true;
-    const user_id = userId;
-    getFollowers(user_id)
-      .then((response) => {
-        if (isMounted) setFollowers(response.data.followers);
-      })
-      .catch();
-    return () => {
-      isMounted = false;
-    };
-  }, [userId]);
-
+export const FollowersList = ({ followers, currentUserId, userId }) => {
   if (followers == null || followers == '') {
     return (
       <>
@@ -34,7 +12,7 @@ export const FollowersList = () => {
           <div>フォロワーはいません。</div>
         </ListCover>
       </>
-    )
+    );
   } else {
     return (
       <>
@@ -49,8 +27,8 @@ export const FollowersList = () => {
         </ListCover>
       </>
     );
-  }
-}
+  };
+};
 
 const ListCover = styled.div`
   position: relative;

@@ -1,10 +1,10 @@
 import { MainWithHeader } from 'components/containers/templates/MainWithHeader';
-import { FollowersList } from 'components/containers/organisms/Users/FollowersList';
+import { FollowersListContainer } from 'components/containers/organisms/Users/FollowersList/FollowersListContainer';
 
 export const UserFollowersTemplate = () => {
   return (
     <MainWithHeader>
-      <FollowersList />
+      <FollowersListContainer />
     </MainWithHeader>
   );
-}
+};

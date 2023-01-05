@@ -27,6 +27,5 @@ export const useVisitorsData = () => {
       isMounted = false;
     };
   }, [currentUserId]);
-
   return { visitorsData, isLoading };
 };

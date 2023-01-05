@@ -24,6 +24,5 @@ export const useTaskData = () => {
       isMounted = false;
     };
   }, [currentTaskId]);
-
   return taskData;
 };

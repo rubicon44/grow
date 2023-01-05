@@ -19,7 +19,7 @@ export const useSignUpForm = () => {
       window.location.reload();
     } else {
       await navigate('/tasks');
-    }
+    };
   };
   return { handleSubmit, load };
 };

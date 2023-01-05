@@ -19,7 +19,7 @@ export const useSignInForm = () => {
       window.location.reload();
     } else {
       await navigate('/tasks');
-    }
+    };
   };
   return { handleSubmit, load };
 };

@@ -4,6 +4,6 @@ export const useCurrentUserName = () => {
   if(localStorage.getItem('user')) {
     const username = currentUser().username;
     return username;
-  }
+  };
   return null;
 };

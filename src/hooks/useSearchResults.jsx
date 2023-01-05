@@ -39,7 +39,7 @@ export const useSearchResults = () => {
     if(tasks) {
       tasks.forEach(task => {
         TasksAndUsersMap[task.id] = { ...task, user: taskUsers.find(user => user.id === task.user_id) }
-      })
+      });
     };
     const TasksAndUsersMapArray = Object.values(TasksAndUsersMap);
     return TasksAndUsersMapArray;
@@ -47,6 +47,5 @@ export const useSearchResults = () => {
 
   const searchResultTasks = TasksAndUsersMapArray();
   const searchResultUsers = searchResults.users;
-
   return { handleSubmit, load, searchResultTasks, searchResultUsers };
 };
