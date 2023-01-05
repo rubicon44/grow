@@ -55,21 +55,23 @@ export const FollowButtonSwitch = (props) => {
     return(
       <>
         {followAble === false ? (
-          <>{String(usersFollowingId) === String(followerId) ? (<FollowingOrUnFollowButtonSwitch currentUserId={currentUserId} followerId={followerId} setFollowAble={setFollowAble} />) : (
+          <>
+            {String(usersFollowingId) === String(followerId) ? (<FollowingOrUnFollowButtonSwitch currentUserId={currentUserId} followerId={followerId} setFollowAble={setFollowAble} />) : (
+            <FollowButton
+              currentUserId={currentUserId}
+              followerId={followerId}
+              setFollowAble={setFollowAble}
+              setUsersFollowingId={setUsersFollowingId}
+            />
+          )}
+          </>
+        ) : (
           <FollowButton
             currentUserId={currentUserId}
             followerId={followerId}
             setFollowAble={setFollowAble}
             setUsersFollowingId={setUsersFollowingId}
           />
-          )}</>
-        ) : (
-        <FollowButton
-          currentUserId={currentUserId}
-          followerId={followerId}
-          setFollowAble={setFollowAble}
-          setUsersFollowingId={setUsersFollowingId}
-        />
         )}
       </>
     );

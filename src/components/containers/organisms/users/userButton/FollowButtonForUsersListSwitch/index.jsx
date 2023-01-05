@@ -32,6 +32,7 @@ export const FollowButtonForUsersListSwitch = (props) => {
     getFollowings(user_id)
       .then((response) => {
         if (isMounted) setCurrentUserFollowings(response.data.followings);
+        if (isMounted) setFollowCheck(false);
       })
       .catch();
     return () => {
@@ -76,7 +77,7 @@ export const FollowButtonForUsersListSwitch = (props) => {
     };
 
     if(nnn === 1) {
-      return <FollowingOrUnFollowButtonSwitch currentUserId={currentUserId} followerId={followerId} setFollowAble={setFollowAble} />
+      return <FollowingOrUnFollowButtonSwitch currentUserId={currentUserId} followerId={followerId} setFollowAble={setFollowAble} />;
     };
     if (nnn === 0) {
       return (
@@ -87,7 +88,7 @@ export const FollowButtonForUsersListSwitch = (props) => {
           setUsersFollowingId={setUsersFollowingId}
           setFollowCheck={setFollowCheck}
         />
-      )
+      );
     } else {
       return null;
     };
