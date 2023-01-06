@@ -10,7 +10,7 @@ import { UserTasksAlreadyLikeList } from 'components/containers/organisms/Users/
 import { UserTasksContentHeader } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader';
 import { UserTasksNoLikeList } from 'components/containers/organisms/Users/UserTasksList/UserTasksNoLikeList';
 import { UserTasksNoPostList } from 'components/containers/organisms/Users/UserTasksList/UserTasksNoPostList';
-import { LogOutButton } from 'components/containers/organisms/LogOutButton';
+import { LogOutButtonContainer } from 'components/containers/organisms/common/LogOutButton/LogOutButtonContainer';
 
 export const UserTasksList = () => {
   const { signout } = useContext(AuthContext);
@@ -229,7 +229,7 @@ export const UserTasksList = () => {
 
       {String(currentUserName()) === String(userNameInUrl) && (
         <LogOutButtonCover>
-          {currentUserAuth && <LogOutButton text="ログアウト" />}
+          {currentUserAuth && <LogOutButtonContainer text="ログアウト" />}
         </LogOutButtonCover>
       )}
     </>
