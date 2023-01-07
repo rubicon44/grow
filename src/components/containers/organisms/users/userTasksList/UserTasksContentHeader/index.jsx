@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FollowButtonSwitch } from 'components/containers/organisms/Users/UserButton/FollowButtonSwitch';
-import { ProfileSwitch } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader/ProfileSwitch';
+import { ProfileChange } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader/ProfileChange';
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const UserTasksContentHeader = (props) => {
@@ -32,7 +32,7 @@ export const UserTasksContentHeader = (props) => {
     <ContentHeaderCover>
       <TitleWithBackArrowHeader>{title}</TitleWithBackArrowHeader>
       <FollowButtonSwitch currentUserId={currentUserId} />
-      <ProfileSwitch
+      <ProfileChange
         currentUserId={currentUserId}
         load={load}
         handleTextSubmit={handleTextSubmit}

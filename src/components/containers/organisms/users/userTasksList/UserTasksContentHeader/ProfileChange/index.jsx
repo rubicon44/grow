@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { BioEditLink } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader/ProfileSwitch/BioEditLink';
-import { ProfileSwitchForm } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader/ProfileSwitch/ProfileSwitchForm';
+import { ProfileChangeLink } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader/ProfileChange/ProfileChangeLink';
+import { ProfileChangeForm } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader/ProfileChange/ProfileChangeForm';
 
-export const ProfileSwitch = (props) => {
+export const ProfileChange = (props) => {
   const { currentUserId } = props;
   const { bioAble, setBioAble } = props;
   const { userId, userNickName, userName, userBio } = props.userData;
@@ -15,7 +15,7 @@ export const ProfileSwitch = (props) => {
     return (
       <Profile>
         <div>
-          {currentUserId === userId && (<BioEditLink setBioAbleFunc={setBioAbleFunc} />)}
+          {currentUserId === userId && (<ProfileChangeLink setBioAbleFunc={setBioAbleFunc} />)}
         </div>
         <ProfileContent>
           <UserNickName>{userNickName}</UserNickName>
@@ -27,7 +27,7 @@ export const ProfileSwitch = (props) => {
   }
   return (
     <>
-      {currentUserId === userId && (<ProfileSwitchForm {...props} />)}
+      {currentUserId === userId && (<ProfileChangeForm {...props} />)}
     </>
   );
 }

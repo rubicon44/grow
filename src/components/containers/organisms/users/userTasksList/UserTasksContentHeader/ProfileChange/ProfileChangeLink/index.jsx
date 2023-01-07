@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-export const BioEditLink = ({ setBioAbleFunc }) => {
+export const ProfileChangeLink = ({ setBioAbleFunc }) => {
   return (
     <BioChangeLinkCover>
       <BioChangeLink onClick={setBioAbleFunc}>
         <span>プロフィールを編集</span>
       </BioChangeLink>
     </BioChangeLinkCover>
-  )
+  );
 };
 
 const BioChangeLinkCover = styled.div`

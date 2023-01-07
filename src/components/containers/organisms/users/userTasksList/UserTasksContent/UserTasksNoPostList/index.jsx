@@ -5,7 +5,7 @@ export const UserTasksNoPostList = ({ userData }) => {
     <ListCover key={userData.userTasks}>
       <div>まだ投稿はありません。</div>
     </ListCover>
-  )
+  );
 };
 
 const ListCover = styled.div`

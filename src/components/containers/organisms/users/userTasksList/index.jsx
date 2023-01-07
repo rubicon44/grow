@@ -4,30 +4,18 @@ import styled from 'styled-components';
 import { AuthContext } from 'auth/AuthProvider';
 import { getUser, updateUser } from 'infra/api';
 import { currentUser } from 'infra/currentUser';
-import { UserTasksCheckThatReLoginWhenChangeUserId } from 'components/containers/organisms/Users/UserTasksList/UserTasksCheckThatReLoginWhenChangeUserId';
-import { UserTasksAlreadyPostList } from 'components/containers/organisms/Users/UserTasksList/UserTasksAlreadyPostList';
-import { UserTasksAlreadyLikeList } from 'components/containers/organisms/Users/UserTasksList/UserTasksAlreadyLikeList';
+import { LogOutButtonSwitch } from 'components/containers/organisms/Users/UserTasksList/LogOutButtonSwitch';
+import { UserTasksCheckReLoginWhenChangedUserId } from 'components/containers/organisms/Users/UserTasksList/UserTasksCheckReLoginWhenChangedUserId';
+import { UserTasksContent } from 'components/containers/organisms/Users/UserTasksList/UserTasksContent';
 import { UserTasksContentHeader } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader';
-import { UserTasksNoLikeList } from 'components/containers/organisms/Users/UserTasksList/UserTasksNoLikeList';
-import { UserTasksNoPostList } from 'components/containers/organisms/Users/UserTasksList/UserTasksNoPostList';
-import { LogOutButtonContainer } from 'components/containers/organisms/common/LogOutButton/LogOutButtonContainer';
 
 export const UserTasksList = () => {
   const { signout } = useContext(AuthContext);
-  const { currentUserAuth } = useContext(AuthContext);
 
   const currentUserId = () => {
     if(localStorage.getItem('user')) {
       const id = currentUser().id;
       return id;
-    }
-    return null;
-  };
-
-  const currentUserName = () => {
-    if(localStorage.getItem('user')) {
-      const username = currentUser().username;
-      return username;
     }
     return null;
   };
@@ -98,15 +86,6 @@ export const UserTasksList = () => {
   }, [userNameInUrl]);
 
   const navigate = useNavigate();
-  const nextGanttFunc = () => {
-    navigate(`/${userData.taskUser.username}/gantt`, {
-      state: {
-        taskUser: userData.taskUser,
-        userTasks: userData.userTasks,
-      },
-    });
-  };
-
   const [bioAble, setBioAble] = useState(true);
   const [load, setLoad] = useState(false);
   const updateUserFunc = () => {
@@ -204,7 +183,7 @@ export const UserTasksList = () => {
 
   return (
     <>
-      {changeUserNameCheckAble === true && (<UserTasksCheckThatReLoginWhenChangeUserId changeUserNameFunc={changeUserNameFunc} unChangeUserNameFunc={unChangeUserNameFunc} />)}
+      {changeUserNameCheckAble === true && (<UserTasksCheckReLoginWhenChangedUserId changeUserNameFunc={changeUserNameFunc} unChangeUserNameFunc={unChangeUserNameFunc} />)}
       <UserTasksContentHeader
         title={userData.userNickName}
         currentUserId={String(currentUserId())}
@@ -216,55 +195,8 @@ export const UserTasksList = () => {
         userData={userData}
         setUserData={setUserData}
       />
-      <UserTasksContent>
-        <NextGanttLink type="button" onClick={nextGanttFunc}>ガントチャート</NextGanttLink>
-        <>
-          {userData.userTasks.length === 0 ? (<UserTasksNoPostList userData={userData} />) : (<UserTasksAlreadyPostList userData={userData} />)}
-        </>
-        <>
-          <LikedTask>いいねしたタスク</LikedTask>
-          {userData.userLikedTasks.length === 0 ? (<UserTasksNoLikeList userData={userData} />) : (<UserTasksAlreadyLikeList userData={userData} />)}
-        </>
-      </UserTasksContent>
-
-      {String(currentUserName()) === String(userNameInUrl) && (
-        <LogOutButtonCover>
-          {currentUserAuth && <LogOutButtonContainer text="ログアウト" />}
-        </LogOutButtonCover>
-      )}
+      <UserTasksContent />
+      <LogOutButtonSwitch userNameInUrl={userNameInUrl} />
     </>
   );
-}
-
-const UserTasksContent = styled.article`
-  border-top: 1px solid #ddd;
-  width: 100%;
-`;
-
-const LogOutButtonCover = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  border-top: 1px solid #000;
-  box-sizing: border-box;
-`;
-
-const NextGanttLink = styled.button`
-  font-size: 22px;
-  font-weight: bold;
-  font-family: YuMincho;
-  color: #ff444f;
-  text-decoraiton: none;
-`;
-
-const LikedTask = styled.div`
-  margin: 30px 0;
-  padding-top: 30px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: red;
-  border-top: 1px solid #ddd;
-`;
+};

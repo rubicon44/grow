@@ -5,7 +5,7 @@ export const UserTasksNoLikeList = ({ userData }) => {
     <ListCover key={userData.userLikedTasks}>
       <div>まだいいねはありません。</div>
     </ListCover>
-  )
+  );
 };
 
 const ListCover = styled.div`

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ProfileSwitchForm = (props) => {
+export const ProfileChangeForm = (props) => {
   const { load } = props;
   const { handleTextSubmit } = props;
   const { revertUserBio } = props;
@@ -75,7 +75,7 @@ export const ProfileSwitchForm = (props) => {
         </FormButtonCover>
       </form>
     </FormCover>
-  )
+  );
 };
 
 const FormCover = styled.div`

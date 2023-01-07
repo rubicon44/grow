@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const UserTasksCheckThatReLoginWhenChangeUserId = ({ changeUserNameFunc, unChangeUserNameFunc}) => {
+export const UserTasksCheckReLoginWhenChangedUserId = ({ changeUserNameFunc, unChangeUserNameFunc}) => {
   return (
     <BackgroundDisAbledCover>
       <BackgroundDisAbled>
@@ -9,7 +9,7 @@ export const UserTasksCheckThatReLoginWhenChangeUserId = ({ changeUserNameFunc, 
         <button type="button" onClick={unChangeUserNameFunc}>いいえ</button>
       </BackgroundDisAbled>
     </BackgroundDisAbledCover>
-  )
+  );
 };
 
 const BackgroundDisAbledCover = styled.div`
