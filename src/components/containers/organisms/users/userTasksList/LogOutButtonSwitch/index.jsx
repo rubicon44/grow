@@ -1,23 +1,9 @@
-
-import { useContext } from 'react';
 import styled from 'styled-components';
-import { AuthContext } from 'auth/AuthProvider';
-import { currentUser } from 'infra/currentUser';
 import { LogOutButtonContainer } from 'components/containers/organisms/common/LogOutButton/LogOutButtonContainer';
 
-export const LogOutButtonSwitch = ({ userNameInUrl }) => {
-  const { currentUserAuth } = useContext(AuthContext);
-
-  const currentUserName = () => {
-    if(localStorage.getItem('user')) {
-      const username = currentUser().username;
-      return username;
-    }
-    return null;
-  };
-
+export const LogOutButtonSwitch = ({ currentUserAuth, currentUserName, userNameInUrl }) => {
   return (
-    String(currentUserName()) === String(userNameInUrl) && (
+    String(currentUserName) === String(userNameInUrl) && (
       <LogOutButtonCover>
         {currentUserAuth && <LogOutButtonContainer text="ログアウト" />}
       </LogOutButtonCover>

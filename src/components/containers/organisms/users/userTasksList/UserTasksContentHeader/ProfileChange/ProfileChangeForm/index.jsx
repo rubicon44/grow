@@ -3,34 +3,9 @@ import styled from 'styled-components';
 export const ProfileChangeForm = (props) => {
   const { load } = props;
   const { handleTextSubmit } = props;
-  const { revertUserBio } = props;
-  const { userData, setUserData } = props;
+  const { userData } = props;
   const { userNickName, userName, userBio } = userData;
-
-  const setUserNickNameFunc = (e) => {
-    setUserData((prevState) => ({
-      ...prevState,
-      userNickName: e.target.value,
-    }));
-  }
-
-  const setUserNameFunc = (e) => {
-    setUserData((prevState) => ({
-      ...prevState,
-      userName: e.target.value,
-    }));
-  }
-
-  const setUserBioFunc = (e) => {
-    setUserData((prevState) => ({
-      ...prevState,
-      userBio: e.target.value,
-    }));
-  }
-
-  const revertUserBioFunc = () => {
-    revertUserBio();
-  }
+  const { revertUserBioFunc, setUserBioFunc, setUserNameFunc, setUserNickNameFunc } = props;
 
   // todo: [未着手]コンポーネントの再利用
   return (

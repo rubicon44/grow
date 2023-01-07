@@ -1,10 +1,10 @@
 import { MainWithHeader } from 'components/containers/templates/MainWithHeader';
-import { UserTasksList } from 'components/containers/organisms/Users/UserTasksList';
+import { UserTasksListContainer } from 'components/containers/organisms/Users/UserTasksList/UserTasksListContainer';
 
 export const UserShowTemplate = () => {
   return (
     <MainWithHeader>
-      <UserTasksList />
+      <UserTasksListContainer />
     </MainWithHeader>
   );
 }

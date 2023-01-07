@@ -1,32 +1,16 @@
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FollowButtonSwitch } from 'components/containers/organisms/Users/UserButton/FollowButtonSwitch';
 import { ProfileChange } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader/ProfileChange';
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const UserTasksContentHeader = (props) => {
-  const navigate = useNavigate();
   const { title } = props;
   const { currentUserId, load } = props;
-  const { handleTextSubmit, revertUserBio } = props;
-  const { bioAble, setBioAble } = props;
-  const { userData, setUserData } = props;
-
-  const nextFollowingsFunc = () => {
-    navigate(`/${userData.taskUser.username}/followings`, {
-      state: {
-        userId: userData.taskUser.id,
-      },
-    });
-  };
-
-  const nextFollowersFunc = () => {
-    navigate(`/${userData.taskUser.username}/followers`, {
-      state: {
-        userId: userData.taskUser.id,
-      },
-    });
-  };
+  const { handleTextSubmit } = props;
+  const { bioAble } = props;
+  const { userData } = props;
+  const { nextFollowersFunc, nextFollowingsFunc } = props;
+  const { revertUserBioFunc, setBioAbleFunc, setUserBioFunc, setUserNameFunc, setUserNickNameFunc } = props;
 
   return (
     <ContentHeaderCover>
@@ -36,11 +20,13 @@ export const UserTasksContentHeader = (props) => {
         currentUserId={currentUserId}
         load={load}
         handleTextSubmit={handleTextSubmit}
-        revertUserBio={revertUserBio}
         bioAble={bioAble}
-        setBioAble={setBioAble}
         userData={userData}
-        setUserData={setUserData}
+        revertUserBioFunc={revertUserBioFunc}
+        setBioAbleFunc={setBioAbleFunc}
+        setUserBioFunc={setUserBioFunc}
+        setUserNameFunc={setUserNameFunc}
+        setUserNickNameFunc={setUserNickNameFunc}
       />
       <RelationshipsCover>
         <a onClick={nextFollowingsFunc}>
