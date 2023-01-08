@@ -12,8 +12,7 @@ export const useUserTasksData = () => {
   const [userData, setUserData] = useState({
     taskUser: [],
     userTasks: [],
-    userLikedTasks: [],
-    taskCreatedUser: [],
+    likedTasksWithUser: [],
     userBio: [],
     userNickName: [],
     userName: [],
@@ -27,9 +26,9 @@ export const useUserTasksData = () => {
       .then((response) => {
         const taskUser = response.data.user;
         const taskData = taskUser.tasks;
+        const likedTasksWithUser = response.data.liked_tasks_with_user;
         const dOrderTaskData = useSortDescendingOrder(taskData);
-        const dOrderlikedTaskData = useSortDescendingOrder(taskUser.like_tasks);
-        const taskCreatedUser = response.data.task_created_user;
+        const dOrderlikedTaskData = likedTasksWithUser;
         const userBio = response.data.user.bio;
         const userNickName = response.data.user.nickname;
         const userName = response.data.user.username;
@@ -38,9 +37,7 @@ export const useUserTasksData = () => {
         if (isMounted) setUserData({
           taskUser: taskUser,
           userTasks: dOrderTaskData,
-          // todo: dOrderlikedTaskDataでは、一度取り消したいいねを復活させると、いいねしたタスクが先頭にこない。おそらくAPI側の問題。
-          userLikedTasks: dOrderlikedTaskData,
-          taskCreatedUser: taskCreatedUser,
+          likedTasksWithUser: dOrderlikedTaskData,
           userBio: userBio,
           userNickName: userNickName,
           userName: userName,
@@ -208,5 +205,8 @@ export const useUserTasksData = () => {
     });
   };
 
-  return { bioAble, changeUserNameCheckAble, changeUserNameFunc, handleTextSubmit, load, nextFollowersFunc, nextFollowingsFunc, nextGanttFunc, revertUserBioFunc, setBioAbleFunc, setUserBioFunc, setUserNameFunc, setUserNickNameFunc, unChangeUserNameFunc, userData, userNameInUrl };
+  // UserTasksAlreadyLikeList
+  const likedTasksWithUser = userData.likedTasksWithUser;
+
+  return { bioAble, changeUserNameCheckAble, changeUserNameFunc, handleTextSubmit, load, nextFollowersFunc, nextFollowingsFunc, nextGanttFunc, revertUserBioFunc, setBioAbleFunc, setUserBioFunc, setUserNameFunc, setUserNickNameFunc, unChangeUserNameFunc, userData, likedTasksWithUser, userNameInUrl };
 };

@@ -4,7 +4,7 @@ import { UserTasksAlreadyLikeList } from 'components/containers/organisms/Users/
 import { UserTasksNoLikeList } from 'components/containers/organisms/Users/UserTasksList/UserTasksContent/UserTasksNoLikeList';
 import { UserTasksNoPostList } from 'components/containers/organisms/Users/UserTasksList/UserTasksContent/UserTasksNoPostList';
 
-export const UserTasksContent = ({ nextGanttFunc, userData }) => {
+export const UserTasksContent = ({ nextGanttFunc, userData, likedTasksWithUser }) => {
   return (
     <UserTasksContentCover>
       <NextGanttLink type="button" onClick={nextGanttFunc}>ガントチャート</NextGanttLink>
@@ -13,7 +13,7 @@ export const UserTasksContent = ({ nextGanttFunc, userData }) => {
       </>
       <>
         <LikedTask>いいねしたタスク</LikedTask>
-        {userData.userLikedTasks.length === 0 ? (<UserTasksNoLikeList userData={userData} />) : (<UserTasksAlreadyLikeList userData={userData} />)}
+        {userData.likedTasksWithUser.length === 0 ? (<UserTasksNoLikeList userData={userData} />) : (<UserTasksAlreadyLikeList likedTasksWithUser={likedTasksWithUser} />)}
       </>
     </UserTasksContentCover>
   );
