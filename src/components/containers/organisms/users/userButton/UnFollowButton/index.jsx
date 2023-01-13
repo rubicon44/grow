@@ -1,17 +1,6 @@
 import styled from 'styled-components';
-import { deleteRelationships } from 'infra/api';
 
-export const UnFollowButton = ({ currentUserId, followerId, setFollowAble, setChangeFollowButtonStyle }) => {
-  const setChangeFollowButtonStyleToFalseFunc = () => {
-    setChangeFollowButtonStyle(false);
-  };
-
-  const unFollowFunc = () => {
-    const relationships = { following_id: currentUserId, follower_id: followerId };
-    deleteRelationships(relationships).then().catch();
-    setFollowAble(true);
-  };
-
+export const UnFollowButton = ({ setChangeFollowButtonStyleToFalseFunc, unFollowFunc }) => {
   return (
     <FollowChangeLinkDoneToUnFollow onMouseLeave={setChangeFollowButtonStyleToFalseFunc} onClick={unFollowFunc}>
       <span>フォロー解除</span>

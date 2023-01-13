@@ -1,22 +1,18 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import { FollowingButton } from 'components/containers/organisms/Users/UserButton/FollowingButton';
 import { UnFollowButton} from 'components/containers/organisms/Users/UserButton/UnFollowButton';
 
-export const FollowingOrUnFollowButtonSwitch = ({ currentUserId, followerId, setFollowAble }) => {
-  const [changeFollowButtonStyle, setChangeFollowButtonStyle] = useState(false);
+export const FollowingOrUnFollowButtonSwitch = ({ changeFollowButtonStyle, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc }) => {
   return (
     <FollowChange>
       <FollowChangeLinkCover>
-        {changeFollowButtonStyle === false ? (
-        <FollowingButton setChangeFollowButtonStyle={setChangeFollowButtonStyle} />
-        ) : (
-        <UnFollowButton
-          currentUserId={currentUserId}
-          followerId={followerId}
-          setFollowAble={setFollowAble}
-          setChangeFollowButtonStyle={setChangeFollowButtonStyle}
+        {changeFollowButtonStyle ? (
+          <UnFollowButton
+          setChangeFollowButtonStyleToFalseFunc={setChangeFollowButtonStyleToFalseFunc}
+          unFollowFunc={unFollowFunc}
         />
+        ) : (
+          <FollowingButton setChangeFollowButtonStyleToTrueFunc={setChangeFollowButtonStyleToTrueFunc} />
         )}
       </FollowChangeLinkCover>
     </FollowChange>

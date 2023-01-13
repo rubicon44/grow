@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FollowButtonSwitch } from 'components/containers/organisms/Users/UserButton/FollowButtonSwitch';
+import { FollowButtonSwitchContainer } from 'components/containers/organisms/Users/UserButton/FollowButtonSwitch/FollowButtonSwitchContainer';
 import { ProfileChange } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader/ProfileChange';
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
@@ -15,7 +15,7 @@ export const UserTasksContentHeader = (props) => {
   return (
     <ContentHeaderCover>
       <TitleWithBackArrowHeader>{title}</TitleWithBackArrowHeader>
-      <FollowButtonSwitch currentUserId={currentUserId} />
+      <FollowButtonSwitchContainer />
       <ProfileChange
         currentUserId={currentUserId}
         load={load}

@@ -152,7 +152,7 @@ export const useUserTasksData = () => {
   const nextFollowersFunc = () => {
     navigate(`/${userData.taskUser.username}/followers`, {
       state: {
-        userId: userData.taskUser.id,
+        username: userData.taskUser.username,
       },
     });
   };
@@ -160,7 +160,7 @@ export const useUserTasksData = () => {
   const nextFollowingsFunc = () => {
     navigate(`/${userData.taskUser.username}/followings`, {
       state: {
-        userId: userData.taskUser.id,
+        username: userData.taskUser.username,
       },
     });
   };

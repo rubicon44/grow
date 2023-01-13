@@ -1,17 +1,6 @@
 import styled from 'styled-components';
-import { postRelationships } from 'infra/api';
 
-export const FollowButton = ({ currentUserId, followerId, setFollowAble, setUsersFollowingId, setFollowCheck }) => {
-  const followFunc = () => {
-    const relationships = { following_id: currentUserId, follower_id: followerId };
-    postRelationships(relationships).then().catch();
-    setFollowAble(false);
-    setUsersFollowingId(followerId);
-    if(setFollowCheck) {
-      setFollowCheck(true);
-    };
-  };
-
+export const FollowButton = ({ followFunc }) => {
   return (
     <FollowChange>
       <FollowChangeLinkCover>

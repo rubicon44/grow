@@ -2,6 +2,6 @@ import { FollowingsList } from 'components/containers/organisms/Users/Followings
 import { useFollowings } from 'hooks/useFollowings';
 
 export const FollowingsListContainer = () => {
-  const { followings, currentUserId, userId } = useFollowings();
-  return <FollowingsList followings={followings} currentUserId={currentUserId} userId={userId} />;
+  const { followings, currentUserId, username } = useFollowings();
+  return <FollowingsList followings={followings} currentUserId={currentUserId} username={username} />;
 };

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FollowButtonForUsersListSwitch } from 'components/containers/organisms/Users/UserButton/FollowButtonForUsersListSwitch';
+import { FollowButtonForUsersListSwitchContainer } from 'components/containers/organisms/Users/UserButton/FollowButtonForUsersListSwitch/FollowButtonForUsersListSwitchContainer';
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
-export const FollowersList = ({ followers, currentUserId, userId }) => {
+export const FollowersList = ({ followers, currentUserId, username }) => {
   if (followers == null || followers == '') {
     return (
       <>
@@ -21,7 +21,7 @@ export const FollowersList = ({ followers, currentUserId, userId }) => {
           {followers.map((follower) => (
             <UsersList key={follower.id}>
               <Link to={`/${follower.username}`}>{follower.nickname}</Link>
-              <FollowButtonForUsersListSwitch followerId={follower.id} currentUserId={currentUserId} userId={userId} />
+              <FollowButtonForUsersListSwitchContainer followerId={follower.id} currentUserId={currentUserId} username={username} />
             </UsersList>
           ))}
         </ListCover>

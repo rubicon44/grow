@@ -1,18 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useCurrentUserId } from 'hooks/useCurrentUserId';
 import { getFollowers } from 'infra/api';
 
 export const useFollowers = () => {
   const location = useLocation();
-  const { userId } = location.state;
-  const currentUserDataText = localStorage.getItem('user');
-  const currentUserData = JSON.parse(currentUserDataText);
-  const currentUserId = String(currentUserData.id);
+  const { username } = location.state;
+  const currentUserId = useCurrentUserId();
   const [followers, setFollowers] = useState([]);
   useEffect(() => {
     let isMounted = true;
-    const user_id = userId;
-    getFollowers(user_id)
+    getFollowers(username)
       .then((response) => {
         if (isMounted) setFollowers(response.data.followers);
       })
@@ -20,6 +18,6 @@ export const useFollowers = () => {
     return () => {
       isMounted = false;
     };
-  }, [userId]);
-  return { followers, currentUserId, userId };
+  }, []);
+  return { followers, currentUserId, username };
 };
