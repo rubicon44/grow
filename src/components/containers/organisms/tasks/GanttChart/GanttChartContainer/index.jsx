@@ -1,9 +1,9 @@
-import { useGantChart } from 'hooks/useGantChart';
+import { useGanttChart } from 'hooks/useGanttChart';
 import { GanttChart } from 'components/containers/organisms/Tasks/GanttChart';
 
 export const GanttChartContainer = (props) => {
   const { taskUser, userTasks } = props;
-  const { calenderBodyHeight, calenders, elm, elmOfCalenderTableCover, getItemSize, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, handleScrollToCurrentDate, styles } = useGantChart(userTasks);
+  const { calenderBodyHeight, calenders, elm, elmOfCalenderTableCover, getItemSize, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, handleScrollToCurrentDate, styles } = useGanttChart(userTasks);
   return (
     <GanttChart
       calenderBodyHeight={calenderBodyHeight}

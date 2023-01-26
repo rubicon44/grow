@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTaskBars } from 'hooks/useTaskBars';
 
-export const useGantChart = (userTasks) => {
+export const useGanttChart = (userTasks) => {
   const { calenders, currentPositionNumber, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, preCurrentPositionNumber, setCurrentPositionNumber, setPreCurrentPositionNumber, styles } = useTaskBars(userTasks);
   // todo: calendersが2回出力される。
   // console.log(calenders);
