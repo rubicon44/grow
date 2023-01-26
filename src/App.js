@@ -113,7 +113,7 @@ export const App = () => {
       </PageWrapper>
     </Wrapper>
   );
-}
+};
 
 const Wrapper = styled.div`
   position: relative;
