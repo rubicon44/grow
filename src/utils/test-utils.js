@@ -9,8 +9,8 @@ const AllTheProviders = ({children}) => {
         {children}
       </Router>
     </AuthProvider>
-  )
-}
+  );
+};
 
 const customRender = (ui, options) =>
   render(ui, {wrapper: AllTheProviders, ...options})

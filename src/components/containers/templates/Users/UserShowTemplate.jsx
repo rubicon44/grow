@@ -7,4 +7,4 @@ export const UserShowTemplate = () => {
       <UserTasksListContainer />
     </MainWithHeader>
   );
-}
+};

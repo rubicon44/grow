@@ -7,4 +7,4 @@ export const TasksTemplate = () => {
       <TasksListContainer />
     </MainWithHeader>
   );
-}
+};

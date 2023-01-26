@@ -2,4 +2,4 @@ import { NotificationsTemplate } from 'components/containers/templates/Notificat
 
 export const Notifications = () => {
   return <NotificationsTemplate />;
-}
+};

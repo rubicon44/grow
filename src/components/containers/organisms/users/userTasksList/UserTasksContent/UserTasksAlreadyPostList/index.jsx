@@ -18,7 +18,7 @@ export const UserTasksAlreadyPostList = ({ userData }) => {
         </ListCover>
       </ListCoverWrapper>
     ))
-  )
+  );
 };
 
 const ListCoverWrapper = styled.div`

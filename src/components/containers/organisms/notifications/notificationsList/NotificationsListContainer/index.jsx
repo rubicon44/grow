@@ -5,6 +5,5 @@ import { NotificationsList } from 'components/containers/organisms/Notifications
 export const NotificationsListContainer = () => {
   const currentUserName = useCurrentUserName();
   const { visitorsData, isLoading } = useVisitorsData();
-
   return <NotificationsList currentUserName={currentUserName} isLoading={isLoading} visitorsData={visitorsData} />;
 };

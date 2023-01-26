@@ -13,7 +13,7 @@ export const BackArrow = () => {
       <ArrowBackIosIcon onClick={handleBackArrowClick} />
     </BackArrowCover>
   );
-}
+};
 
 const BackArrowCover = styled.div`
   display: flex;

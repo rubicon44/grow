@@ -8,7 +8,6 @@ import { TaskFormSelect } from 'components/containers/organisms/Tasks/TaskForm/u
 export const TaskForm = ({ handleTextSubmit, inputRef, load, taskData }) => {
   const { title, content, status, startDate, endDate } = taskData.task;
   const { inputTitleRef, textAreaContentRef, selectStatusRef, inputStartDateRef, inputEndDateRef } = inputRef;
-
   return (
     <TaskFormCover>
       <form onSubmit={handleTextSubmit}>

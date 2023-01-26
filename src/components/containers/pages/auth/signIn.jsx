@@ -2,4 +2,4 @@ import { SignInTemplate } from 'components/containers/templates/Auth/SignInTempl
 
 export const SignIn = () => {
   return <SignInTemplate />;
-}
+};

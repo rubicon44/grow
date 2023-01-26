@@ -6,4 +6,4 @@ export const TaskEdit = () => {
   const { task: taskDataTask } = location.state.taskData;
 
   return <TaskEditTemplate taskDataTask={taskDataTask} />;
-}
+};

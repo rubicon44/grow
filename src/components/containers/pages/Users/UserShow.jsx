@@ -2,4 +2,4 @@ import { UserShowTemplate } from 'components/containers/templates/Users/UserShow
 
 export const UserShow = () => {
   return <UserShowTemplate />;
-}
+};

@@ -11,7 +11,6 @@ export const UserTasksContentHeader = (props) => {
   const { userData } = props;
   const { nextFollowersFunc, nextFollowingsFunc } = props;
   const { revertUserBioFunc, setBioAbleFunc, setUserBioFunc, setUserNameFunc, setUserNickNameFunc } = props;
-
   return (
     <ContentHeaderCover>
       <TitleWithBackArrowHeader>{title}</TitleWithBackArrowHeader>
@@ -37,7 +36,7 @@ export const UserTasksContentHeader = (props) => {
         </a>
       </RelationshipsCover>
     </ContentHeaderCover>
-  )
+  );
 };
 
 const ContentHeaderCover = styled.div`

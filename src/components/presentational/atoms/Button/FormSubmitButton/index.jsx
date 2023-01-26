@@ -5,7 +5,7 @@ export const FormSubmitButton = ({ load, children }) => {
     <FormButtonCover>
       <Button type="submit" disabled={load}>{children}</Button>
     </FormButtonCover>
-  )
+  );
 };
 
 const Button = styled.button`

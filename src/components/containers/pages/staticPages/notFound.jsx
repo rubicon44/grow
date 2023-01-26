@@ -13,7 +13,7 @@ export const NotFound = () => {
       </Main>
     </>
   );
-}
+};
 
 const NotFoundTitle = styled(Title)`
   width: 288px;

@@ -22,7 +22,6 @@ export const TaskList = ({ currentUserId, deleteCheckAble, deleteCheckFunc, dele
   const MemoTitleWithBackArrowHeader = memo(() => {
     return <TitleWithBackArrowHeader>タスク詳細</TitleWithBackArrowHeader>;
   });
-
   return (
     <>
       <MemoTitleWithBackArrowHeader />

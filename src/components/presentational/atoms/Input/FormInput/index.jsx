@@ -15,7 +15,7 @@ export const FormInput = ({ children, inputRef, htmlFor, type, name, defaultValu
         />
       </label>
     </FormInputCover>
-  )
+  );
 };
 
 const FormInputCover = styled.div`

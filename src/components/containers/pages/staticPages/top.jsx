@@ -13,7 +13,7 @@ export const Top = () => {
       <LinkText to="/signIn">ログイン</LinkText>
     </TopMain>
   );
-}
+};
 
 const TopMain = styled(Main)`
   > a:not(:first-of-type) {

@@ -2,4 +2,4 @@ import { UserFollowingsTemplate } from 'components/containers/templates/Users/Us
 
 export const UserFollowings = () => {
   return <UserFollowingsTemplate />;
-}
+};
