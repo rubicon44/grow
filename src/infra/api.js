@@ -105,18 +105,16 @@ export const deleteRelationships = (params) =>
     params,
   });
 
-export const getFollowings = (params) =>
+export const getFollowings = (username) =>
   axios({
     method: 'get',
-    url: `/users/${params}/followings`,
-    params,
+    url: `/${username}/followings`,
   });
 
-export const getFollowers = (params) =>
+export const getFollowers = (username) =>
   axios({
     method: 'get',
-    url: `/users/${params}/followers`,
-    params,
+    url: `/${username}/followers`,
   });
 
 // notifications

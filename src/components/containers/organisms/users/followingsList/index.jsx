@@ -1,31 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { getFollowings } from 'infra/api';
-import { FollowButtonForUsersListSwitch } from 'components/containers/organisms/Users/UserButton/FollowButtonForUsersListSwitch';
+import { FollowButtonForUsersListSwitchContainer } from 'components/containers/organisms/Users/UserButton/FollowButtonForUsersListSwitch/FollowButtonForUsersListSwitchContainer';
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
-export const FollowingsList = () => {
-  const location = useLocation();
-  const { userId } = location.state;
-  const currentUserDataText = localStorage.getItem('user');
-  const currentUserData = JSON.parse(currentUserDataText);
-  const currentUserId = String(currentUserData.id);
-  const [followings, setFollowings] = useState([]);
-
-  useEffect(() => {
-    let isMounted = true;
-    const user_id = userId;
-    getFollowings(user_id)
-      .then((response) => {
-        if (isMounted) setFollowings(response.data.followings);
-      })
-      .catch();
-    return () => {
-      isMounted = false;
-    };
-  }, [userId]);
-
+export const FollowingsList = ({ followings, currentUserId, username }) => {
   if (followings == null || followings == '') {
     return (
       <>
@@ -34,7 +12,7 @@ export const FollowingsList = () => {
           <div>フォローしているユーザーはいません。</div>
         </ListCover>
       </>
-    )
+    );
   } else {
     return (
       <>
@@ -43,14 +21,14 @@ export const FollowingsList = () => {
           {followings.map((following) => (
             <UsersList key={following.id}>
               <Link to={`/${following.username}`}>{following.nickname}</Link>
-              <FollowButtonForUsersListSwitch followerId={following.id} currentUserId={currentUserId} userId={userId} />
+              <FollowButtonForUsersListSwitchContainer followerId={following.id} currentUserId={currentUserId} username={username} />
             </UsersList>
           ))}
         </ListCover>
       </>
     );
-  }
-}
+  };
+};
 
 const ListCover = styled.div`
   position: relative;

@@ -1,10 +1,10 @@
 import { MainWithHeader } from 'components/containers/templates/MainWithHeader';
-import { SearchList } from 'components/containers/organisms/Searches/SearchList';
+import { SearchListContainer } from 'components/containers/organisms/Searches/SearchList/SearchListContainer';
 
 export const SearchTemplate = () => {
   return (
     <MainWithHeader>
-      <SearchList />
+      <SearchListContainer />
     </MainWithHeader>
   );
-}
+};

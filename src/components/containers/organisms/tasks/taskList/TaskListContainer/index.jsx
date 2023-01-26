@@ -1,43 +1,21 @@
-import { memo, useState } from 'react';
 import { useCurrentUserId } from 'hooks/useCurrentUserId';
-import { useCurrentUserName } from 'hooks/useCurrentUserName';
 import { useTaskData } from 'hooks/useTaskData';
-import { TaskDeleteOrUnDeleteButtonSwitch } from 'components/containers/organisms/Tasks/TaskButton/TaskDeleteOrUnDeleteButtonSwitch';
+import { useTaskEditAndDelete } from 'hooks/useTaskEditAndDelete';
 import { TaskList } from 'components/containers/organisms/Tasks/TaskList';
-import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const TaskListContainer = () => {
   const currentUserId = useCurrentUserId();
-  const currentUserName = useCurrentUserName();
   const taskData = useTaskData();
-  const { id: taskId } = taskData.task;
-  const { username: taskCreatedUserName } = taskData.taskCreatedUser;
-  const [load, setLoad] = useState(false);
-  const [deleteCheckAble, setDeleteCheckAble] = useState(false);
+  const { deleteCheckAble, deleteCheckFunc, deleteTaskFunc, nextEditTaskFunc, load, unDeleteCheckFunc } = useTaskEditAndDelete();
 
-  const MemoTitleWithBackArrowHeader = memo(() => {
-    return <TitleWithBackArrowHeader>タスク詳細</TitleWithBackArrowHeader>;
-  });
-
-  return (
-    <>
-      <MemoTitleWithBackArrowHeader />
-      <TaskList
-        currentUserId={currentUserId}
-        currentUserName={currentUserName}
-        deleteCheckAble={deleteCheckAble}
-        load={load}
-        setDeleteCheckAble={setDeleteCheckAble}
-        setLoad={setLoad}
-        taskData={taskData}
-      />
-      <TaskDeleteOrUnDeleteButtonSwitch
-        deleteCheckAble={deleteCheckAble}
-        setLoad={setLoad}
-        setDeleteCheckAble={setDeleteCheckAble}
-        taskId={taskId}
-        taskCreatedUserName={taskCreatedUserName}
-      />
-    </>
-  );
+  return <TaskList
+           currentUserId={currentUserId}
+           deleteCheckAble={deleteCheckAble}
+           deleteCheckFunc={deleteCheckFunc}
+           deleteTaskFunc={deleteTaskFunc}
+           load={load}
+           nextEditTaskFunc={nextEditTaskFunc}
+           taskData={taskData}
+           unDeleteCheckFunc={unDeleteCheckFunc}
+         />;
 };

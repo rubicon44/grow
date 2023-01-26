@@ -8,6 +8,6 @@ export const currentUser = () => {
     currentUserId = String(currentUserData.id);
     currentUserName = String(currentUserData.username);
     returnCurrentUserData = { id: currentUserId, username: currentUserName };
-  }
+  };
   return returnCurrentUserData;
-}
+};

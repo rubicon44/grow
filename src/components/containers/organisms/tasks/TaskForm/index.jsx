@@ -5,11 +5,9 @@ import { FormSubmitButton } from 'components/presentational/atoms/Button/FormSub
 import { FormTextArea } from 'components/presentational/atoms/TextArea/FormTextArea';
 import { TaskFormSelect } from 'components/containers/organisms/Tasks/TaskForm/ui/TaskFormSelect';
 
-export const TaskForm = (props) => {
-  const { load } = props;
-  const { handleTextSubmit } = props;
-  const { title, content, status, startDate, endDate } = props;
-  const { inputTitleRef, textAreaContentRef, selectStatusRef, inputStartDateRef, inputEndDateRef } = props;
+export const TaskForm = ({ handleTextSubmit, inputRef, load, taskData }) => {
+  const { title, content, status, startDate, endDate } = taskData.task;
+  const { inputTitleRef, textAreaContentRef, selectStatusRef, inputStartDateRef, inputEndDateRef } = inputRef;
   return (
     <TaskFormCover>
       <form onSubmit={handleTextSubmit}>

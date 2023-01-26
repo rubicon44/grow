@@ -2,4 +2,4 @@ import { SignUpTemplate } from 'components/containers/templates/Auth/SignUpTempl
 
 export const SignUp = () => {
   return <SignUpTemplate />;
-}
+};

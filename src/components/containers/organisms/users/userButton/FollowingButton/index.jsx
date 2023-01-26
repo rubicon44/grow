@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-export const FollowingButton = ({ setChangeFollowButtonStyle }) => {
-  const setChangeFollowButtonStyleToTrueFunc = () => {
-    setChangeFollowButtonStyle(true);
-  };
-
+export const FollowingButton = ({ setChangeFollowButtonStyleToTrueFunc }) => {
   return (
     <FollowChangeLinkDone onMouseEnter={setChangeFollowButtonStyleToTrueFunc}>
       <span>フォロー中</span>

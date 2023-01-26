@@ -1,18 +1,18 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Header } from 'components/containers/organisms/Header';
-import { TaskGanttChart } from 'components/containers/organisms/Tasks/TaskGanttChart';
+import { HeaderContainer } from 'components/containers/organisms/common/Header/HeaderContainer';
+import { GanttChartContainer } from 'components/containers/organisms/Tasks/GanttChart/GanttChartContainer';
 
 export const UserGanttTemplate = (props) => {
   return (
     <>
-      <Header />
+      <HeaderContainer />
       <Main>
-        <TaskGanttChart {...props} />
+        <GanttChartContainer {...props} />
       </Main>
     </>
   );
-}
+};
 
 const Main = styled.main`
   text-align: center;

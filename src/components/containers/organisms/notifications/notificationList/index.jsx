@@ -25,7 +25,7 @@ export const NotificationList = ({ visitorsData, currentUserName }) => {
       ))}
     </UsersList>
   );
-}
+};
 
 const UsersList = styled.div`
   display: flex;

@@ -2,4 +2,4 @@ import { TasksTemplate } from 'components/containers/templates/Tasks/TasksTempla
 
 export const Tasks = () => {
   return <TasksTemplate />;
-}
+};

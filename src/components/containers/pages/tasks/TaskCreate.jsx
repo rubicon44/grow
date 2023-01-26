@@ -2,4 +2,4 @@ import { TaskCreateTemplate } from 'components/containers/templates/Tasks/TaskCr
 
 export const TaskCreate = () => {
   return <TaskCreateTemplate />;
-}
+};

@@ -13,7 +13,7 @@ export const List = ({ title, titleUrl, content, url, text }) => {
       </CreatedUserCover>
     </BaseList>
   );
-}
+};
 
 const BaseList = styled.dl`
   min-width: 180px;

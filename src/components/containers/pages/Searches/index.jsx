@@ -2,4 +2,4 @@ import { SearchTemplate } from 'components/containers/templates/Searches/SearchT
 
 export const Searches = () => {
   return <SearchTemplate />;
-}
+};

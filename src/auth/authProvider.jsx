@@ -31,11 +31,13 @@ export const AuthProvider = ({ children }) => {
             .catch(() => {
               // alert(response);
               // alert('このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。');
+              window.alert("このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。");
               signOut(auth);
             });
         });
     } catch (error) {
       // alert(error);
+      window.alert("このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。");
     }
   };
 

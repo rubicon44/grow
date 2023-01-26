@@ -1,10 +1,10 @@
 import { MainWithHeader } from 'components/containers/templates/MainWithHeader';
-import { SignInForm } from 'components/containers/organisms/Auth/SignInForm';
+import { SignInFormContainer } from 'components/containers/organisms/Auth/SignInForm/SignInFormContainer';
 
 export const SignInTemplate = () => {
   return (
     <MainWithHeader>
-      <SignInForm />
+      <SignInFormContainer />
     </MainWithHeader>
   );
-}
+};

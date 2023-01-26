@@ -1,10 +1,10 @@
 import { MainWithHeader } from 'components/containers/templates/MainWithHeader';
-import { TaskCreateForm } from 'components/containers/organisms/Tasks/TaskForm/TaskCreateForm';
+import { TaskCreateFormContainer } from 'components/containers/organisms/Tasks/TaskForm/TaskCreateForm/TaskCreateFormContainer';
 
 export const TaskCreateTemplate = () => {
   return (
     <MainWithHeader>
-      <TaskCreateForm />
+      <TaskCreateFormContainer />
     </MainWithHeader>
   );
 };

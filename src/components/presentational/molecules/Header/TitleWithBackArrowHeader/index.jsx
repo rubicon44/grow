@@ -9,7 +9,7 @@ export const TitleWithBackArrowHeader = memo(({ children }) => {
       <BackArrow />
       <Title>{children}</Title>
     </BaseTitleWithBackArrowHeader>
-  )
+  );
 });
 
 const BaseTitleWithBackArrowHeader = styled.div`

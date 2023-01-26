@@ -10,7 +10,7 @@ export const TaskFormSelect = ({ selectRef, defaultValue }) => {
         <option value="3">完了</option>
       </select>
     </TaskFormSelectCover>
-  )
+  );
 };
 
 const TaskFormSelectCover = styled.div`

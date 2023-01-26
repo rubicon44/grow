@@ -6,13 +6,13 @@ export const FollowNotification = ({ visitor }) => {
     <UserNickNameCover>
       <UserNickName to={`/${visitor.username}`}>{visitor.nickname}</UserNickName>さんにフォローされました。
     </UserNickNameCover>
-  )
-}
+  );
+};
 
 const UserNickNameCover = styled.div`
   padding: 10px 0;
   border-bottom: 1px solid #ddd;
-`
+`;
 
 const UserNickName = styled(Link)`
   font-weight: bold;

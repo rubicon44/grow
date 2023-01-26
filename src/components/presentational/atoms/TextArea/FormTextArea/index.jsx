@@ -15,7 +15,7 @@ export const FormTextArea = ({ children, textAreaRef, htmlFor, name, defaultValu
         />
       </label>
     </FormTextAreaCover>
-  )
+  );
 };
 
 const FormTextAreaCover = styled.div`
