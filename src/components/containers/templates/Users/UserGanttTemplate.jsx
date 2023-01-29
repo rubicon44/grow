@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { HeaderContainer } from 'components/containers/organisms/common/Header/HeaderContainer';
+import { HeaderContainer } from 'components/containers/organisms/Common/Header/HeaderContainer';
 import { GanttChartContainer } from 'components/containers/organisms/Tasks/GanttChart/GanttChartContainer';
 
 export const UserGanttTemplate = (props) => {

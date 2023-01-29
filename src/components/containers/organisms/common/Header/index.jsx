@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { HeaderMenu } from 'components/containers/organisms/common/Header/HeaderMenu';
+import { HeaderMenu } from 'components/containers/organisms/Common/Header/HeaderMenu';
 
 export const Header = ({ headerLinks, headerLinksForAuth, state, toggleDrawer }) => {
   return (

@@ -1,5 +1,5 @@
 import { useHeader } from 'hooks/useHeader';
-import { Header } from 'components/containers/organisms/common/Header';
+import { Header } from 'components/containers/organisms/Common/Header';
 
 export const HeaderContainer = () => {
   const { headerLinks, headerLinksForAuth, state, toggleDrawer } = useHeader();

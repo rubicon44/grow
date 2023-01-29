@@ -1,5 +1,5 @@
 import { useSignOut } from 'hooks/useSignOut';
-import { LogOutButton } from 'components/containers/organisms/common/LogOutButton';
+import { LogOutButton } from 'components/containers/organisms/Common/LogOutButton';
 
 export const LogOutButtonContainer = ({ text }) => {
   const { signoutFunc } = useSignOut();
