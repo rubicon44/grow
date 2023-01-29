@@ -2,6 +2,7 @@ version: '3'
 services:
   front:
     build: .
+    platform: linux/amd64
     volumes:
       - .:/grow
       - node_modules:/grow/node_modules
