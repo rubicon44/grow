@@ -1,11 +1,10 @@
 import { useSortDescendingOrder } from 'hooks/useSortDescendingOrder';
-import { getTasks } from 'infra/api';
-import { useApiQuery } from 'infra/api/hooks/useApiQuery';
+import { useTasks } from 'hooks/useTasks';
 import { TasksList } from 'components/containers/organisms/Tasks/TasksList';
 
 export const TasksListContainer = () => {
-  const { data, loading } = useApiQuery('tasks', getTasks);
-  const tasks = useSortDescendingOrder(data.data);
+  const { tasksData, loading } = useTasks();
+  const tasks = useSortDescendingOrder(tasksData);
   if(loading) return <div>Loading...</div>;
   return <TasksList tasks={tasks} />;
 };
