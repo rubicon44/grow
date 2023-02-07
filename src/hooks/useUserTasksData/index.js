@@ -9,6 +9,11 @@ export const useUserTasksData = () => {
   const location = useLocation();
   const locationPathName = location.pathname.split('/');
   const userNameInUrl = locationPathName[locationPathName.length - 1];
+  const navigate = useNavigate();
+  const [bioAble, setBioAble] = useState(true);
+  const [changeUserNameCheckAble, setChangeUserNameCheckAble] = useState(false);
+  const [checkUserNameChange, setCheckUserNameChange] = useState(false);
+  const [load, setLoad] = useState(false);
   const [userData, setUserData] = useState({
     taskUser: [],
     userTasks: [],
@@ -44,16 +49,13 @@ export const useUserTasksData = () => {
           userId: String(userId),
           userNameDefault: userNameDefault,
         });
+        if (isMounted) setCheckUserNameChange(false);
       })
       .catch();
     return () => {
       isMounted = false;
     };
-  }, [userNameInUrl]);
-
-  const navigate = useNavigate();
-  const [bioAble, setBioAble] = useState(true);
-  const [load, setLoad] = useState(false);
+  }, [checkUserNameChange, userNameInUrl]);
 
   const updateUserFunc = () => {
     const username = userData.userNameDefault;
@@ -71,13 +73,14 @@ export const useUserTasksData = () => {
         }));
         setBioAble(true);
         setLoad(false);
+        setCheckUserNameChange(true);
       })
       .catch(errors => {
         if(errors.response.status === 401) {
           window.alert("認証できませんでした。");
         } else {
           window.alert("このusernameはすでに登録されています。");
-        }
+        };
         setUserData((prevState) => ({
           ...prevState,
           userName: userData.userNameDefault,
@@ -86,7 +89,6 @@ export const useUserTasksData = () => {
       });
   };
 
-  const [changeUserNameCheckAble, setChangeUserNameCheckAble] = useState(false);
   const changeUserNameFunc = () => {
     setLoad(false);
     setChangeUserNameCheckAble(false);
@@ -107,7 +109,7 @@ export const useUserTasksData = () => {
       }));
     })
     .catch();
-  }
+  };
 
   const unChangeUserNameFunc = () => {
     setLoad(false);
@@ -127,7 +129,7 @@ export const useUserTasksData = () => {
       updateUserFunc(username, user);
     } else {
       setChangeUserNameCheckAble(true);
-    }
+    };
   };
 
   const revertUserBio = () => {
