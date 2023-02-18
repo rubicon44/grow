@@ -3,8 +3,10 @@ import { useTasks } from 'hooks/useTasks';
 import { TasksList } from 'components/containers/organisms/Tasks/TasksList';
 
 export const TasksListContainer = () => {
-  const { tasksData, loading } = useTasks();
+  const { tasksData, error, loading } = useTasks();
   const tasks = useSortDescendingOrder(tasksData);
-  if(loading) return <div>Loading...</div>;
+
+  if (error) throw error;
+  if (loading) return <>Loading...</>;
   return <TasksList tasks={tasks} />;
 };

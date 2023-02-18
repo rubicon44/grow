@@ -33,6 +33,14 @@ import { Notifications } from 'components/containers/pages/Notifications';
 import { Searches } from 'components/containers/pages/Searches';
 
 const queryClient = new QueryClient();
+// const queryClient = new QueryClient({
+//   defaultOptions: {
+//     queries: {
+//       suspense: true,
+//     },
+//   },
+// });
+
 export const App = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {

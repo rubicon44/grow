@@ -1,0 +1,32 @@
+import React from 'react';
+import { NextButtonLink } from 'components/presentational/atoms/Link/NextButtonLink';
+
+export class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { error: null };
+  };
+
+  static getDerivedStateFromError(error) {
+    return { error };
+  };
+
+  componentDidCatch(error, errorInfo) {
+    console.error(error, errorInfo);
+  };
+
+  render() {
+    if (this.state.error) {
+      // return <h1>An error has occurred: {this.state.error.message}</h1>;
+      console.error(this.state.error);
+      return (
+        <>
+          <div>エラーが発生しました。</div>
+          <NextButtonLink text="トップページに戻る" url="/top" />
+        </>
+      );
+    }
+
+    return this.props.children;
+  };
+};
