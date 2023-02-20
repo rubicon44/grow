@@ -5,7 +5,7 @@ import { getNotifications } from 'infra/api';
 export const useNotificationsData = () => {
   const currentUserId = useCurrentUserId();
   const [isLoading, setIsLoading] = useState(false);
-  const [visitorsData, setVisitorsData] = useState({
+  const [notificationsData, setNotificationsData] = useState({
     notifications: [],
     visitors: [],
     likeVisitors: [],
@@ -15,7 +15,7 @@ export const useNotificationsData = () => {
     const user = { user_id: currentUserId };
     getNotifications(user)
       .then((response) => {
-        if (isMounted) setVisitorsData({
+        if (isMounted) setNotificationsData({
           notifications: response.data.notifications,
           visitors: response.data.follow_visitors,
           likeVisitors: response.data.like_visitors,
@@ -27,5 +27,5 @@ export const useNotificationsData = () => {
       isMounted = false;
     };
   }, [currentUserId]);
-  return { visitorsData, isLoading };
+  return { notificationsData, isLoading };
 };

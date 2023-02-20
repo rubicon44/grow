@@ -2,13 +2,13 @@ import styled from 'styled-components';
 import { NotificationList } from 'components/containers/organisms/Notifications/NotificationList';
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
-export const NotificationsList = ({ currentUserName, isLoading, visitorsData }) => {
+export const NotificationsList = ({ currentUserName, isLoading, notificationsData }) => {
   return (
     <>
       <TitleWithBackArrowHeader>通知一覧</TitleWithBackArrowHeader>
       { isLoading ?
         <ListCover>
-          {visitorsData.notifications == null || visitorsData.notifications == '' ? (<div>通知はありません。</div>) : (<NotificationList visitorsData={visitorsData} currentUserName={currentUserName} />)}
+          {notificationsData.notifications == null || notificationsData.notifications == '' ? (<div>通知はありません。</div>) : (<NotificationList notificationsData={notificationsData} currentUserName={currentUserName} />)}
         </ListCover>
         : <>ロード中です...</>
       }
