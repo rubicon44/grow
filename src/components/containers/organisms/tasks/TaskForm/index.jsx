@@ -5,15 +5,15 @@ import { FormSubmitButton } from 'components/presentational/atoms/Button/FormSub
 import { FormTextArea } from 'components/presentational/atoms/TextArea/FormTextArea';
 import { TaskFormSelect } from 'components/containers/organisms/Tasks/TaskForm/ui/TaskFormSelect';
 
-export const TaskForm = ({ handleTextSubmit, inputRef, isButtonDisabled, taskData }) => {
+export const TaskForm = ({ handleTextSubmit, inputRefs, isButtonDisabled, taskData }) => {
   const { title, content, status, startDate, endDate } = taskData.task;
-  const { inputTitleRef, textAreaContentRef, selectStatusRef, inputStartDateRef, inputEndDateRef } = inputRef;
+  const { titleRef, contentRef, statusRef, startDateRef, endDateRef } = inputRefs;
   return (
     <TaskFormCover>
       <form onSubmit={handleTextSubmit}>
         <FormInput
           defaultValue={title}
-          inputRef={inputTitleRef}
+          inputRef={titleRef}
           htmlFor="title"
           type="text"
           name="title"
@@ -23,7 +23,7 @@ export const TaskForm = ({ handleTextSubmit, inputRef, isButtonDisabled, taskDat
         </FormInput>
         <FormTextArea
           defaultValue={content}
-          textAreaRef={textAreaContentRef}
+          textAreaRef={contentRef}
           htmlFor="content"
           name="content"
           placeholder="Content"
@@ -32,11 +32,11 @@ export const TaskForm = ({ handleTextSubmit, inputRef, isButtonDisabled, taskDat
         </FormTextArea>
         <TaskFormSelect
           defaultValue={status}
-          selectRef={selectStatusRef}
+          selectRef={statusRef}
         />
         <FormInput
           defaultValue={startDate}
-          inputRef={inputStartDateRef}
+          inputRef={startDateRef}
           htmlFor="startDate"
           type="date"
           name="startDate"
@@ -46,7 +46,7 @@ export const TaskForm = ({ handleTextSubmit, inputRef, isButtonDisabled, taskDat
         </FormInput>
         <FormInput
           defaultValue={endDate}
-          inputRef={inputEndDateRef}
+          inputRef={endDateRef}
           htmlFor="endDate"
           type="date"
           name="endDate"

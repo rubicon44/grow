@@ -2,10 +2,10 @@ import { useTaskCreate } from 'hooks/useTaskCreate';
 import { TaskCreateForm } from 'components/containers/organisms/Tasks/TaskForm/TaskCreateForm';
 
 export const TaskCreateFormContainer = () => {
-  const { handleTextSubmit, inputRef, isButtonDisabled, taskData } = useTaskCreate();
+  const { handleTextSubmit, inputRefs, isButtonDisabled, taskData } = useTaskCreate();
   return <TaskCreateForm
            handleTextSubmit={handleTextSubmit}
-           inputRef={inputRef}
+           inputRefs={inputRefs}
            isButtonDisabled={isButtonDisabled}
            taskData={taskData}
          />;
