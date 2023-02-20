@@ -1,9 +1,9 @@
 import { useCurrentUserName } from 'hooks/useCurrentUserName';
-import { useVisitorsData } from 'hooks/useVisitorsData';
+import { useNotificationsData } from 'hooks/useNotificationsData';
 import { NotificationsList } from 'components/containers/organisms/Notifications/NotificationsList';
 
 export const NotificationsListContainer = () => {
   const currentUserName = useCurrentUserName();
-  const { visitorsData, isLoading } = useVisitorsData();
+  const { visitorsData, isLoading } = useNotificationsData();
   return <NotificationsList currentUserName={currentUserName} isLoading={isLoading} visitorsData={visitorsData} />;
 };

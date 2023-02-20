@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useCurrentUserId } from 'hooks/useCurrentUserId';
 import { getNotifications } from 'infra/api';
 
-export const useVisitorsData = () => {
+export const useNotificationsData = () => {
   const currentUserId = useCurrentUserId();
   const [isLoading, setIsLoading] = useState(false);
   const [visitorsData, setVisitorsData] = useState({
