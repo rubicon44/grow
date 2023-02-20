@@ -6,9 +6,11 @@ import { postTasks } from 'infra/api';
 export const useTaskCreate = () => {
   const navigateToTasks = useNavigate();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const postTasksFunc = async (task) => {
     try {
+      setLoading(true);
       await postTasks(task);
       navigateToTasks('/tasks');
     } catch (error) {
@@ -27,7 +29,9 @@ export const useTaskCreate = () => {
         // その他のエラー
         window.alert(`エラーが発生しました。しばらく時間をおいて再度お試しください。`);
       };
-    }
+    } finally {
+      setLoading(false);
+    };
   };
 
   const [taskData, setTaskData] = useState({
@@ -74,5 +78,5 @@ export const useTaskCreate = () => {
     setTaskData({ task });
     await postTasksFunc(task);
   };
-  return { handleTextSubmit, inputRefs, isButtonDisabled, taskData };
+  return { handleTextSubmit, inputRefs, isButtonDisabled, loading, taskData };
 };
