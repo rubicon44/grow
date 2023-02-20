@@ -5,12 +5,12 @@ import { updateTask } from 'infra/api';
 
 export const useTaskEdit = (id, taskDataTask) => {
   const navigate = useNavigate();
-  const [load, setLoad] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const updateTaskFunc = async (id, task) => {
     await updateTask(id, task)
     .then()
     .catch(async () => {
-      setLoad(false);
+      setIsButtonDisabled(false);
       window.alert("タスクを更新できませんでした。");
       await navigate('/tasks');
     });
@@ -35,7 +35,7 @@ export const useTaskEdit = (id, taskDataTask) => {
   const handleTextSubmit = async (e) => {
     e.preventDefault();
     e.persist();
-    setLoad(true);
+    setIsButtonDisabled(true);
     const title = inputTitleRef.current.value;
     const content = textAreaContentRef.current.value;
     const status = Number(selectStatusRef.current.value);
@@ -54,5 +54,5 @@ export const useTaskEdit = (id, taskDataTask) => {
     await updateTaskFunc(id, task);
     await navigate(`/${currentUserName}/tasks/${id}`);
   };
-  return { taskData, handleTextSubmit, inputRef, load };
+  return { taskData, handleTextSubmit, inputRef, isButtonDisabled };
 };

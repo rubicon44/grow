@@ -5,7 +5,7 @@ import { UserTasksContentHeader } from 'components/containers/organisms/Users/Us
 
 export const UserTasksList = (props) => {
   const { currentUserId } = props;
-  const { bioAble, changeUserNameCheckAble, changeUserNameFunc, handleTextSubmit, load, nextFollowersFunc, nextFollowingsFunc, nextGanttFunc, revertUserBioFunc, setBioAbleFunc, setUserBioFunc, setUserNameFunc, setUserNickNameFunc, unChangeUserNameFunc, userData, likedTasksWithUser, userNameInUrl } = props;
+  const { bioAble, changeUserNameCheckAble, changeUserNameFunc, handleTextSubmit, isButtonDisabled, nextFollowersFunc, nextFollowingsFunc, nextGanttFunc, revertUserBioFunc, setBioAbleFunc, setUserBioFunc, setUserNameFunc, setUserNickNameFunc, unChangeUserNameFunc, userData, likedTasksWithUser, userNameInUrl } = props;
   return (
     <>
       {changeUserNameCheckAble === true && (<UserTasksCheckReLoginWhenChangedUserId changeUserNameFunc={changeUserNameFunc} unChangeUserNameFunc={unChangeUserNameFunc} />)}
@@ -13,7 +13,7 @@ export const UserTasksList = (props) => {
         bioAble={bioAble}
         currentUserId={String(currentUserId)}
         handleTextSubmit={handleTextSubmit}
-        load={load}
+        isButtonDisabled={isButtonDisabled}
         nextFollowersFunc={nextFollowersFunc}
         nextFollowingsFunc={nextFollowingsFunc}
         revertUserBioFunc={revertUserBioFunc}

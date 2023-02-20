@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { getSearches } from 'infra/api';
 
 export const useSearchResults = () => {
-  const [load, setLoad] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [searchResults, setSearchResults] = useState({
     users: [],
     taskUsers: [],
@@ -11,7 +11,7 @@ export const useSearchResults = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoad(true);
+    setIsButtonDisabled(true);
     const { model } = e.target.elements;
     const { contents } = e.target.elements;
     const { method } = e.target.elements;
@@ -26,7 +26,7 @@ export const useSearchResults = () => {
         });
       })
       .catch();
-    setLoad(false);
+      setIsButtonDisabled(false);
     return () => {
       isMounted = false;
     };
@@ -47,5 +47,5 @@ export const useSearchResults = () => {
 
   const searchResultTasks = TasksAndUsersMapArray();
   const searchResultUsers = searchResults.users;
-  return { handleSubmit, load, searchResultTasks, searchResultUsers };
+  return { handleSubmit, isButtonDisabled, searchResultTasks, searchResultUsers };
 };

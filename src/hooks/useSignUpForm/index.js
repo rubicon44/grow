@@ -6,13 +6,13 @@ export const useSignUpForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { signup } = useContext(AuthContext);
-  const [load, setLoad] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoad(true);
+    setIsButtonDisabled(true);
     const { nickname, username, email, password } = e.target.elements;
     await signup(nickname.value, username.value, email.value, password.value);
-    setLoad(false);
+    setIsButtonDisabled(false);
     const locationPathName = location.pathname.split('/');
     const tasksText = locationPathName[locationPathName.length - 1];
     if(tasksText === "tasks") {
@@ -21,5 +21,5 @@ export const useSignUpForm = () => {
       await navigate('/tasks');
     };
   };
-  return { handleSubmit, load };
+  return { handleSubmit, isButtonDisabled };
 };

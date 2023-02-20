@@ -4,7 +4,7 @@ import { UserTasksList } from 'components/containers/organisms/Users/UserTasksLi
 
 export const UserTasksListContainer = () => {
   const currentUserId = useCurrentUserId();
-  const { bioAble, changeUserNameCheckAble, changeUserNameFunc, handleTextSubmit, load, nextFollowersFunc, nextFollowingsFunc, nextGanttFunc, revertUserBioFunc, setBioAbleFunc, setUserBioFunc, setUserNameFunc, setUserNickNameFunc, unChangeUserNameFunc, userData, likedTasksWithUser, userNameInUrl } = useUserTasksData();
+  const { bioAble, changeUserNameCheckAble, changeUserNameFunc, handleTextSubmit, isButtonDisabled, nextFollowersFunc, nextFollowingsFunc, nextGanttFunc, revertUserBioFunc, setBioAbleFunc, setUserBioFunc, setUserNameFunc, setUserNickNameFunc, unChangeUserNameFunc, userData, likedTasksWithUser, userNameInUrl } = useUserTasksData();
   return (
     <UserTasksList
       bioAble={bioAble}
@@ -12,7 +12,8 @@ export const UserTasksListContainer = () => {
       changeUserNameFunc={changeUserNameFunc}
       currentUserId={currentUserId}
       handleTextSubmit={handleTextSubmit}
-      load={load}
+      isButtonDisabled={isButtonDisabled}
+      likedTasksWithUser={likedTasksWithUser}
       nextFollowersFunc={nextFollowersFunc}
       nextFollowingsFunc={nextFollowingsFunc}
       nextGanttFunc={nextGanttFunc}
@@ -23,7 +24,6 @@ export const UserTasksListContainer = () => {
       setUserNickNameFunc={setUserNickNameFunc}
       unChangeUserNameFunc={unChangeUserNameFunc}
       userData={userData}
-      likedTasksWithUser={likedTasksWithUser}
       userNameInUrl={userNameInUrl}
      />
   );

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ProfileChangeForm = (props) => {
-  const { load } = props;
+  const { isButtonDisabled } = props;
   const { handleTextSubmit } = props;
   const { userData } = props;
   const { userNickName, userName, userBio } = userData;
@@ -46,7 +46,7 @@ export const ProfileChangeForm = (props) => {
         <FormButtonCover>
           <button type="button" onClick={revertUserBioFunc}>閉じる</button>
           {/* todo: 保存に合わせて、プロフィールの「自身が作成したタスク」「自身がいいねしたタスク」のニックネームを変更したい(現状、reloadすると変更される)。 */}
-          <button type="submit" disabled={load}>保存</button>
+          <button type="submit" disabled={isButtonDisabled}>保存</button>
         </FormButtonCover>
       </form>
     </FormCover>

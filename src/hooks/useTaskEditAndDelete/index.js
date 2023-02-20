@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTaskData } from 'hooks/useTaskData';
 import { deleteTask } from 'infra/api';
 
-export const useTaskEditAndDelete = () => {
-  const taskData = useTaskData();
+export const useTaskEditAndDelete = (taskData) => {
   const { id: taskId } = taskData.task;
   const { title: taskTitle } = taskData.task;
   const { content: taskContent } = taskData.task;
@@ -31,23 +29,43 @@ export const useTaskEditAndDelete = () => {
     });
   };
 
-  const [load, setLoad] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [deleteCheckAble, setDeleteCheckAble] = useState(false);
 
   const deleteCheckFunc = () => {
-    setLoad(true);
+    setIsButtonDisabled(true);
     setDeleteCheckAble(true);
   };
 
   const deleteTaskFunc = async () => {
-    await deleteTask(taskId).then().catch();
-    setLoad(false);
-    await navigate(`/${taskCreatedUserName}`);
+    setIsButtonDisabled(true);
+    try {
+      await deleteTask(taskId);
+      navigate(`/${taskCreatedUserName}`, {
+        state: {
+          showPopup: true,
+        },
+      });
+    } catch (error) {
+      console.error('Error deleting task', error);
+      window.confirm('システムエラーにより削除できませんでした。');
+    } finally {
+      setIsButtonDisabled(false);
+      setDeleteCheckAble(false);
+    };
   };
 
   const unDeleteCheckFunc = () => {
-    setLoad(false);
+    setIsButtonDisabled(false);
     setDeleteCheckAble(false);
   };
-  return { deleteCheckAble, deleteCheckFunc, deleteTaskFunc, nextEditTaskFunc, load, unDeleteCheckFunc };
+
+  return {
+    deleteCheckAble,
+    deleteCheckFunc,
+    deleteTaskFunc,
+    nextEditTaskFunc,
+    isButtonDisabled,
+    unDeleteCheckFunc
+  };
 };

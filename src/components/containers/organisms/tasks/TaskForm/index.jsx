@@ -5,7 +5,7 @@ import { FormSubmitButton } from 'components/presentational/atoms/Button/FormSub
 import { FormTextArea } from 'components/presentational/atoms/TextArea/FormTextArea';
 import { TaskFormSelect } from 'components/containers/organisms/Tasks/TaskForm/ui/TaskFormSelect';
 
-export const TaskForm = ({ handleTextSubmit, inputRef, load, taskData }) => {
+export const TaskForm = ({ handleTextSubmit, inputRef, isButtonDisabled, taskData }) => {
   const { title, content, status, startDate, endDate } = taskData.task;
   const { inputTitleRef, textAreaContentRef, selectStatusRef, inputStartDateRef, inputEndDateRef } = inputRef;
   return (
@@ -54,7 +54,7 @@ export const TaskForm = ({ handleTextSubmit, inputRef, load, taskData }) => {
         >
           終了日:
         </FormInput>
-        <FormSubmitButton load={load}>{!title ? '作成' : '更新'}</FormSubmitButton>
+        <FormSubmitButton isButtonDisabled={isButtonDisabled}>{!title ? '作成' : '更新'}</FormSubmitButton>
       </form>
     </TaskFormCover>
   );

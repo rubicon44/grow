@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { TaskForm } from 'components/containers/organisms/Tasks/TaskForm';
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
-export const TaskCreateForm = ({ handleTextSubmit, inputRef, load, taskData }) => {
+export const TaskCreateForm = ({ handleTextSubmit, inputRef, isButtonDisabled, taskData }) => {
   const MemoTaskForm = memo(TaskForm);
   return (
     <>
@@ -10,7 +10,7 @@ export const TaskCreateForm = ({ handleTextSubmit, inputRef, load, taskData }) =
       <MemoTaskForm
         handleTextSubmit={handleTextSubmit}
         inputRef={inputRef}
-        load={load}
+        isButtonDisabled={isButtonDisabled}
         taskData={taskData}
       />
     </>

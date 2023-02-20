@@ -5,15 +5,17 @@ import { TaskList } from 'components/containers/organisms/Tasks/TaskList';
 
 export const TaskListContainer = () => {
   const currentUserId = useCurrentUserId();
-  const taskData = useTaskData();
-  const { deleteCheckAble, deleteCheckFunc, deleteTaskFunc, nextEditTaskFunc, load, unDeleteCheckFunc } = useTaskEditAndDelete();
+  const { loading, error, taskData } = useTaskData();
+  const { deleteCheckAble, deleteCheckFunc, deleteTaskFunc, isButtonDisabled, nextEditTaskFunc, unDeleteCheckFunc } = useTaskEditAndDelete(taskData);
 
+  if (error) throw error;
+  if (loading) return <>Loading...</>;
   return <TaskList
            currentUserId={currentUserId}
            deleteCheckAble={deleteCheckAble}
            deleteCheckFunc={deleteCheckFunc}
            deleteTaskFunc={deleteTaskFunc}
-           load={load}
+           isButtonDisabled={isButtonDisabled}
            nextEditTaskFunc={nextEditTaskFunc}
            taskData={taskData}
            unDeleteCheckFunc={unDeleteCheckFunc}

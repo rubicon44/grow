@@ -5,7 +5,7 @@ import { TitleWithBackArrowHeader } from 'components/presentational/molecules/He
 
 export const UserTasksContentHeader = (props) => {
   const { title } = props;
-  const { currentUserId, load } = props;
+  const { currentUserId, isButtonDisabled } = props;
   const { handleTextSubmit } = props;
   const { bioAble } = props;
   const { userData } = props;
@@ -16,16 +16,16 @@ export const UserTasksContentHeader = (props) => {
       <TitleWithBackArrowHeader>{title}</TitleWithBackArrowHeader>
       <FollowButtonSwitchContainer />
       <ProfileChange
-        currentUserId={currentUserId}
-        load={load}
-        handleTextSubmit={handleTextSubmit}
         bioAble={bioAble}
-        userData={userData}
+        currentUserId={currentUserId}
+        handleTextSubmit={handleTextSubmit}
+        isButtonDisabled={isButtonDisabled}
         revertUserBioFunc={revertUserBioFunc}
         setBioAbleFunc={setBioAbleFunc}
         setUserBioFunc={setUserBioFunc}
         setUserNameFunc={setUserNameFunc}
         setUserNickNameFunc={setUserNickNameFunc}
+        userData={userData}
       />
       <RelationshipsCover>
         <a onClick={nextFollowingsFunc}>

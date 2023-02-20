@@ -13,7 +13,7 @@ export const useUserTasksData = () => {
   const [bioAble, setBioAble] = useState(true);
   const [changeUserNameCheckAble, setChangeUserNameCheckAble] = useState(false);
   const [checkUserNameChange, setCheckUserNameChange] = useState(false);
-  const [load, setLoad] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [userData, setUserData] = useState({
     taskUser: [],
     userTasks: [],
@@ -72,7 +72,7 @@ export const useUserTasksData = () => {
           userName: userName,
         }));
         setBioAble(true);
-        setLoad(false);
+        setIsButtonDisabled(false);
         setCheckUserNameChange(true);
       })
       .catch(errors => {
@@ -85,12 +85,12 @@ export const useUserTasksData = () => {
           ...prevState,
           userName: userData.userNameDefault,
         }));
-        setLoad(false);
+        setIsButtonDisabled(false);
       });
   };
 
   const changeUserNameFunc = () => {
-    setLoad(false);
+    setIsButtonDisabled(false);
     setChangeUserNameCheckAble(false);
     updateUserFunc();
     navigate(`/signIn`);
@@ -112,7 +112,7 @@ export const useUserTasksData = () => {
   };
 
   const unChangeUserNameFunc = () => {
-    setLoad(false);
+    setIsButtonDisabled(false);
     const username = userData.userNameDefault;
     revertUserNameFunc(username);
     setChangeUserNameCheckAble(false);
@@ -122,7 +122,7 @@ export const useUserTasksData = () => {
   const handleTextSubmit = (e) => {
     e.preventDefault();
     e.persist();
-    setLoad(true);
+    setIsButtonDisabled(true);
     const username = userData.userNameDefault;
     const user = { nickname: userData.userNickName, username: userData.userName, bio: userData.userBio };
     if(username === userData.userName) {
@@ -210,5 +210,5 @@ export const useUserTasksData = () => {
   // UserTasksAlreadyLikeList
   const likedTasksWithUser = userData.likedTasksWithUser;
 
-  return { bioAble, changeUserNameCheckAble, changeUserNameFunc, handleTextSubmit, load, nextFollowersFunc, nextFollowingsFunc, nextGanttFunc, revertUserBioFunc, setBioAbleFunc, setUserBioFunc, setUserNameFunc, setUserNickNameFunc, unChangeUserNameFunc, userData, likedTasksWithUser, userNameInUrl };
+  return { bioAble, changeUserNameCheckAble, changeUserNameFunc, handleTextSubmit, isButtonDisabled, nextFollowersFunc, nextFollowingsFunc, nextGanttFunc, revertUserBioFunc, setBioAbleFunc, setUserBioFunc, setUserNameFunc, setUserNickNameFunc, unChangeUserNameFunc, userData, likedTasksWithUser, userNameInUrl };
 };

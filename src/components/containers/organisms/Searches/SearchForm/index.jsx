@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { FormInput } from 'components/presentational/atoms/Input/FormInput';
 import { FormSubmitButton } from 'components/presentational/atoms/Button/FormSubmitButton';
 
-export const SearchForm = ({ handleSubmit, load }) => {
+export const SearchForm = ({ handleSubmit, isButtonDisabled }) => {
   return (
     <SearchFormCover>
       <form onSubmit={handleSubmit}>
@@ -24,7 +24,7 @@ export const SearchForm = ({ handleSubmit, load }) => {
             </Select>
           </SelectCover>
           <FormSubmitButtonCover>
-            <FormSubmitButton load={load}>検索</FormSubmitButton>
+            <FormSubmitButton isButtonDisabled={isButtonDisabled}>検索</FormSubmitButton>
           </FormSubmitButtonCover>
         </SelectWithFormSubmitButton>
       </form>

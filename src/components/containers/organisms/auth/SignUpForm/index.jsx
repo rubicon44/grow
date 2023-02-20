@@ -3,7 +3,7 @@ import { FormInput } from 'components/presentational/atoms/Input/FormInput';
 import { FormSubmitButton } from 'components/presentational/atoms/Button/FormSubmitButton';
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
-export const SignUpForm = ({ handleSubmit, load }) => {
+export const SignUpForm = ({ handleSubmit, isButtonDisabled }) => {
   return (
     <>
       <TitleWithBackArrowHeader>会員登録</TitleWithBackArrowHeader>
@@ -44,7 +44,7 @@ export const SignUpForm = ({ handleSubmit, load }) => {
           >
             パスワード
           </FormInput>
-          <FormSubmitButton load={load}>会員登録</FormSubmitButton>
+          <FormSubmitButton isButtonDisabled={isButtonDisabled}>会員登録</FormSubmitButton>
         </form>
       </FormCover>
     </>

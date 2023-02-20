@@ -2,30 +2,37 @@ import { useEffect, useState } from 'react';
 import { useCurrentTaskId } from 'hooks/useCurrentTaskId';
 import { getTask } from 'infra/api';
 
-// todo: wannna change name of usetaskData to useTask.
-// todo: task内のjsonを変更する(例: { taskData, taskCreatedUser, taskCreatedUserName })。
-// →taskの内部にtaskDataを入れ込む形(要検討)。
 export const useTaskData = () => {
   const currentTaskId = useCurrentTaskId();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [taskData, setTaskData] = useState({
-    task: [],
-    taskCreatedUser: [],
-    taskCreatedUserName: null,
+    task: { id: '', title: '', content: '', status: '', start_date: '', end_date: '' },
+    taskCreatedUser: '',
+    taskCreatedUserName: '',
   });
+
   useEffect(() => {
-    let isMounted = true;
-    getTask(currentTaskId)
-      .then((response) => {
-        if (isMounted) setTaskData({
-          task: response.data,
-          taskCreatedUser: response.data.user,
-          taskCreatedUserName: response.data.user.username,
+    const fetchTaskData = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await getTask(currentTaskId);
+        const task = response.data;
+        setTaskData({
+          task: task,
+          taskCreatedUser: task.user,
+          taskCreatedUserName: task.user.username,
         });
-      })
-      .catch();
-    return () => {
-      isMounted = false;
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      };
     };
+    fetchTaskData();
   }, [currentTaskId]);
-  return taskData;
+
+  return { loading, error, taskData };
 };

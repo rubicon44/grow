@@ -8,7 +8,7 @@ import { TaskStatusSwitch } from 'components/containers/organisms/Tasks/logic/Ta
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 import { List } from 'components/presentational/molecules/List';
 
-export const TaskList = ({ currentUserId, deleteCheckAble, deleteCheckFunc, deleteTaskFunc, load, nextEditTaskFunc, taskData, unDeleteCheckFunc }) => {
+export const TaskList = ({ currentUserId, deleteCheckAble, deleteCheckFunc, deleteTaskFunc, isButtonDisabled, nextEditTaskFunc, taskData, unDeleteCheckFunc }) => {
   const { id: taskId } = taskData.task;
   const { title: taskTitle } = taskData.task;
   const { content: taskContent } = taskData.task;
@@ -40,7 +40,7 @@ export const TaskList = ({ currentUserId, deleteCheckAble, deleteCheckFunc, dele
         <ButtonCover>
           <TaskEditButton
             currentUserId={currentUserId}
-            load={load}
+            isButtonDisabled={isButtonDisabled}
             nextEditTaskFunc={nextEditTaskFunc}
             taskCreatedUserId={taskCreatedUserId}
           />

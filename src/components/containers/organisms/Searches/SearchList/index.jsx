@@ -4,12 +4,12 @@ import { SearchTasksList } from 'components/containers/organisms/Searches/Search
 import { SearchUsersList } from 'components/containers/organisms/Searches/SearchList/SearchUsersList';
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
-export const SearchList = ({ sortDescendingOrderUsers, sortDescendingOrderTasks, load, handleSubmit }) => {
+export const SearchList = ({ handleSubmit, isButtonDisabled, sortDescendingOrderUsers, sortDescendingOrderTasks }) => {
   return (
     <>
       <TitleWithBackArrowHeader>検索一覧</TitleWithBackArrowHeader>
       <SerchListContent>
-        <SearchForm handleSubmit={handleSubmit} load={load} />
+        <SearchForm handleSubmit={handleSubmit} isButtonDisabled={isButtonDisabled} />
         <ListCover>
           <SearchTasksList sortDescendingOrderTasks={sortDescendingOrderTasks} />
           <SearchUsersList sortDescendingOrderUsers={sortDescendingOrderUsers} />

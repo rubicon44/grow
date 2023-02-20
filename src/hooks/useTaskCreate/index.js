@@ -5,12 +5,12 @@ import { postTasks } from 'infra/api';
 
 export const useTaskCreate = () => {
   const navigate = useNavigate();
-  const [load, setLoad] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const postTasksFunc = async (task) => {
     await postTasks(task)
     .then()
     .catch(async () => {
-      setLoad(false);
+      setIsButtonDisabled(false);
       window.alert("タスクを登録できませんでした。");
       await navigate('/tasks');
     });
@@ -35,7 +35,7 @@ export const useTaskCreate = () => {
   const handleTextSubmit = async (e) => {
     e.preventDefault();
     e.persist();
-    setLoad(true);
+    setIsButtonDisabled(true);
     const title = inputTitleRef.current.value;
     const content = textAreaContentRef.current.value;
     const status = Number(selectStatusRef.current.value);
@@ -54,5 +54,5 @@ export const useTaskCreate = () => {
     await postTasksFunc(task);
     await navigate('/tasks');
   };
-  return { taskData, handleTextSubmit, inputRef, load };
+  return { taskData, handleTextSubmit, inputRef, isButtonDisabled };
 };
