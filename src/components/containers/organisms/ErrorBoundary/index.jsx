@@ -22,7 +22,7 @@ export class ErrorBoundary extends React.Component {
       return (
         <>
           <div>エラーが発生しました。</div>
-          <NextButtonLink text="トップページに戻る" url="/top" />
+          <NextButtonLink text="タスク一覧に戻る" url="/tasks" />
         </>
       );
     }
