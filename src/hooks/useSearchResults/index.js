@@ -1,13 +1,35 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { getSearches } from 'infra/api';
 
 export const useSearchResults = () => {
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [searchResults, setSearchResults] = useState({
-    users: [],
     taskUsers: [],
     tasks: [],
+    users: [],
   });
+
+  const fetchSearchesData = async (searchData) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await getSearches(searchData)
+      const searchResults = response.data;
+      setSearchResults({
+        taskUsers: searchResults.results.task_users,
+        tasks: searchResults.results.tasks,
+        users: searchResults.results.users,
+      });
+    } catch (error) {
+      setError(error);
+      console.error(`検索中にエラーが発生しました。: `, error);
+    } finally {
+      setLoading(false);
+      setIsButtonDisabled(false);
+    };
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,36 +38,28 @@ export const useSearchResults = () => {
     const { contents } = e.target.elements;
     const { method } = e.target.elements;
     const searchData = { model: model.value, contents: contents.value, method: method.value };
-    let isMounted = true;
-    getSearches(searchData)
-      .then((response) => {
-        if (isMounted) setSearchResults({
-          users: response.data.results.users,
-          taskUsers: response.data.results.task_users,
-          tasks: response.data.results.tasks,
-        });
-      })
-      .catch();
-      setIsButtonDisabled(false);
-    return () => {
-      isMounted = false;
-    };
+
+    fetchSearchesData(searchData);
   };
 
-  const TasksAndUsersMapArray = () => {
+  const TasksAndUsersMapArray = useMemo(() => {
     const tasks = searchResults.tasks;
     const taskUsers = searchResults.taskUsers;
     const TasksAndUsersMap = {};
-    if(tasks) {
-      tasks.forEach(task => {
-        TasksAndUsersMap[task.id] = { ...task, user: taskUsers.find(user => user.id === task.user_id) }
+
+    if (tasks) {
+      tasks.forEach((task) => {
+        const user = taskUsers[task.user_id];
+        TasksAndUsersMap[task.id] = { ...task, user };
       });
     };
-    const TasksAndUsersMapArray = Object.values(TasksAndUsersMap);
-    return TasksAndUsersMapArray;
-  };
 
-  const searchResultTasks = TasksAndUsersMapArray();
+    return Object.values(TasksAndUsersMap);
+  }, [searchResults.tasks, searchResults.taskUsers]);
+
+  // todo: Fix re-rendering in searchResultTasks later.
+  const searchResultTasks = TasksAndUsersMapArray;
   const searchResultUsers = searchResults.users;
-  return { handleSubmit, isButtonDisabled, searchResultTasks, searchResultUsers };
+
+  return { error, handleSubmit, isButtonDisabled, loading, searchResultTasks, searchResultUsers };
 };
