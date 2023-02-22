@@ -1,10 +1,12 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCurrentUserName } from 'hooks/useCurrentUserName';
+import { useGetErrorMessage } from 'hooks/useGetErrorMessage';
 import { updateTask } from 'infra/api';
 
 export const useTaskEdit = (taskDataTask) => {
   const navigateToUserTask = useNavigate();
+  const { getErrorMessage } = useGetErrorMessage();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [editing, setEditing] = useState(false);
   const { id: taskId, title: taskTitle, content: taskContent, status: taskStatus, start_date: taskStartDate, end_date: taskEndDate } = taskDataTask;
@@ -13,41 +15,19 @@ export const useTaskEdit = (taskDataTask) => {
     try {
       setEditing(true);
       await updateTask(taskId, task)
-    } catch (error) {
-      console.error(`タスクの編集中にエラーが発生しました。: ` + error);
-      let errorMessage = `タスクを編集できませんでした。しばらく時間をおいて再度お試しください。`;
-      if (error instanceof ReferenceError) {
-        errorMessage = `タスクを編集できませんでした。しばらく時間をおいて再度お試しください。`;
-      } else if (error.response) {
-        const status = error.response.status;
-        switch (status) {
-          case 404:
-            errorMessage = `選択したタスクが見つかりませんでした。タスクが削除された可能性があります。`;
-            break;
-          case 403:
-            errorMessage = `タスクを編集する権限がありません。`;
-            break;
-          case 400:
-            errorMessage = `タスクを編集できませんでした。不正なリクエストが送信されました。`;
-            break;
-          default:
-            errorMessage = `タスクを編集できませんでした。サーバーエラーが発生しました。`;
-            break;
-        };
-      } else if (error.request) {
-        errorMessage = `タスクを編集できませんでした。ネットワークに接続されていない可能性があります。`;
-      } else {
-        errorMessage = `タスクを編集できませんでした。しばらく時間をおいて再度お試しください。`;
-      };
-      window.alert(errorMessage);
-    } finally {
-      setEditing(false);
-      setIsButtonDisabled(false);
       navigateToUserTask(`/${currentUserName}/tasks/${taskId}`, {
         state: {
           showPopup: true,
         },
       });
+    } catch (error) {
+      console.error(`タスクの編集中にエラーが発生しました。: `, error);
+      const verbForErrorMessage = `タスク`;
+      const objectForErrorMessage = `編集`;
+      getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
+    } finally {
+      setEditing(false);
+      setIsButtonDisabled(false);
     };
   };
 
