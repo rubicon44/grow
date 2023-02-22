@@ -23,7 +23,7 @@ export const useTaskDelete = (taskData) => {
     try {
       setDeleting(true);
       await deleteTask(taskId);
-      // todo: showPopupがtrueか否かをここで判断しているのは正しいのか？使いづらくない？ここのstateを送る作業を忘れがち。
+      // todo: Consider using useContext instead of useNavigate to show Popup.
       navigateToUser(`/${taskCreatedUserName}`, {
         state: {
           showPopup: true,
