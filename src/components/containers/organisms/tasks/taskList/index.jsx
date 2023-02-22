@@ -7,23 +7,18 @@ import { TaskEditButton } from 'components/containers/organisms/Tasks/TaskButton
 import { TaskStatusSwitch } from 'components/containers/organisms/Tasks/logic/TaskStatusSwitch';
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 import { List } from 'components/presentational/molecules/List';
+import { Popup } from 'components/presentational/atoms/Popup';
 
-export const TaskList = ({ currentUserId, deleteCheckAble, deleteCheckFunc, deleteTaskFunc, isButtonDisabled, nextEditTaskFunc, taskData, unDeleteCheckFunc }) => {
-  const { id: taskId } = taskData.task;
-  const { title: taskTitle } = taskData.task;
-  const { content: taskContent } = taskData.task;
-  const { status: taskStatus } = taskData.task;
-  const { start_date: startDate } = taskData.task;
-  const { end_date: endDate } = taskData.task;
-  const { user_id: taskCreatedUserId } = taskData.task;
-  const { nickname: taskCreatedUserNickName } = taskData.taskCreatedUser;
-  const { username: taskCreatedUserName } = taskData.taskCreatedUser;
+export const TaskList = ({ currentUserId, deleteCheckAble, deleteCheckFunc, deleteTaskFunc, isButtonDisabled, navigateToEditTask, showPopup, taskData, unDeleteCheckFunc }) => {
+  const { nickname: taskCreatedUserNickName, username: taskCreatedUserName } = taskData.taskCreatedUser;
+  const { id: taskId, title: taskTitle, content: taskContent, status: taskStatus, start_date: taskStartDate, end_date: taskEndDate, user_id: taskCreatedUserId } = taskData.task;
 
   const MemoTitleWithBackArrowHeader = memo(() => {
     return <TitleWithBackArrowHeader>タスク詳細</TitleWithBackArrowHeader>;
   });
   return (
     <>
+      <Popup message="タスクが正常に更新されました。" duration={3000} showPopup={showPopup} />
       <MemoTitleWithBackArrowHeader />
       <ListCover>
         <List
@@ -34,14 +29,14 @@ export const TaskList = ({ currentUserId, deleteCheckAble, deleteCheckFunc, dele
           text={taskCreatedUserNickName}
         />
         <TaskStatusSwitch taskStatus={taskStatus} />
-        <div>開始日:{startDate}</div>
-        <div>終了日:{endDate}</div>
+        <div>開始日:{taskStartDate}</div>
+        <div>終了日:{taskEndDate}</div>
         <LikeOrUnLikeButtonSwitchContainer taskId={String(taskId)} currentUserId={String(currentUserId)} />
         <ButtonCover>
           <TaskEditButton
             currentUserId={currentUserId}
             isButtonDisabled={isButtonDisabled}
-            nextEditTaskFunc={nextEditTaskFunc}
+            navigateToEditTask={navigateToEditTask}
             taskCreatedUserId={taskCreatedUserId}
           />
           <TaskDeleteCheckButton

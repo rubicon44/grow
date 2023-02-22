@@ -6,31 +6,47 @@ import { postTasks } from 'infra/api';
 export const useTaskCreate = () => {
   const navigateToTasks = useNavigate();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [creating, setCreating] = useState(false);
 
   const postTasksFunc = async (task) => {
     try {
-      setLoading(true);
+      setCreating(true);
       await postTasks(task);
-      navigateToTasks('/tasks');
     } catch (error) {
-      setIsButtonDisabled(false);
-      console.error(`エラーが発生しました。: ` + error);
+      console.error(`タスクの登録中にエラーが発生しました。: ` + error);
+      let errorMessage = `タスクを登録できませんでした。しばらく時間をおいて再度お試しください。`;
       if (error instanceof ReferenceError) {
-        window.alert(`タスクを登録できませんでした。しばらく時間をおいて再度お試しください。`);
+        errorMessage = `タスクを登録できませんでした。しばらく時間をおいて再度お試しください。`;
       } else if (error.response) {
-        // HTTPステータスコードのエラー
-        // const { status, data } = error.response;
-        window.alert(`タスクを登録できませんでした。しばらく時間をおいて再度お試しください。`);
+        const status = error.response.status;
+        switch (status) {
+          case 404:
+            errorMessage = `選択したタスクが見つかりませんでした。タスクが削除された可能性があります。`;
+            break;
+          case 403:
+            errorMessage = `タスクを登録する権限がありません。`;
+            break;
+          case 400:
+            errorMessage = `タスクを登録できませんでした。不正なリクエストが送信されました。`;
+            break;
+          default:
+            errorMessage = `タスクを登録できませんでした。サーバーエラーが発生しました。`;
+            break;
+        };
       } else if (error.request) {
-        // ネットワークエラー
-        window.alert(`タスクを登録できませんでした。ネットワークに接続されていない可能性があります。`);
+        errorMessage = `タスクを登録できませんでした。ネットワークに接続されていない可能性があります。`;
       } else {
-        // その他のエラー
-        window.alert(`エラーが発生しました。しばらく時間をおいて再度お試しください。`);
+        errorMessage = `タスクを登録できませんでした。しばらく時間をおいて再度お試しください。`;
       };
+      window.alert(errorMessage);
     } finally {
-      setLoading(false);
+      setCreating(false);
+      setIsButtonDisabled(false);
+      navigateToTasks('/tasks', {
+        state: {
+          showPopup: true,
+        },
+      });
     };
   };
 
@@ -78,5 +94,12 @@ export const useTaskCreate = () => {
     setTaskData({ task });
     await postTasksFunc(task);
   };
-  return { handleTextSubmit, inputRefs, isButtonDisabled, loading, taskData };
+
+  return {
+    creating,
+    handleTextSubmit,
+    inputRefs,
+    isButtonDisabled,
+    taskData
+  };
 };

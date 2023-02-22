@@ -20,6 +20,7 @@ const BaseList = styled.dl`
   max-width: 180px;
   margin-top: 15px;
   text-align: left;
+  word-wrap: break-word;
   > dt {
     font-weight: bold;
   }

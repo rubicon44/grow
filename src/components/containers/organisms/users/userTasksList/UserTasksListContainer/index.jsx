@@ -1,8 +1,10 @@
 import { useCurrentUserId } from 'hooks/useCurrentUserId';
+import { useShowPopup } from 'hooks/useShowPopup';
 import { useUserTasksData } from 'hooks/useUserTasksData';
 import { UserTasksList } from 'components/containers/organisms/Users/UserTasksList';
 
 export const UserTasksListContainer = () => {
+  const { showPopup } = useShowPopup();
   const currentUserId = useCurrentUserId();
   const { bioAble, changeUserNameCheckAble, changeUserNameFunc, handleTextSubmit, isButtonDisabled, nextFollowersFunc, nextFollowingsFunc, nextGanttFunc, revertUserBioFunc, setBioAbleFunc, setUserBioFunc, setUserNameFunc, setUserNickNameFunc, unChangeUserNameFunc, userData, likedTasksWithUser, userNameInUrl } = useUserTasksData();
   return (
@@ -22,6 +24,7 @@ export const UserTasksListContainer = () => {
       setUserBioFunc={setUserBioFunc}
       setUserNameFunc={setUserNameFunc}
       setUserNickNameFunc={setUserNickNameFunc}
+      showPopup={showPopup}
       unChangeUserNameFunc={unChangeUserNameFunc}
       userData={userData}
       userNameInUrl={userNameInUrl}
