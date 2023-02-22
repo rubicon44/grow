@@ -5,14 +5,18 @@ import { LikeOrUnLikeButtonSwitch } from 'components/containers/organisms/Likes/
 
 export const LikeOrUnLikeButtonSwitchContainer = memo(({ taskId }) => {
   const currentUserId = useCurrentUserId();
-  const { likeData, currentTaskId, isLoading, handleClickLikeDelete, handleClickLikePost } = useLike(taskId);
+  const { currentTaskId, error, handleClickLikeDelete, handleClickLikePost, likeData, loading } = useLike(taskId);
+
+  if (error) return <>Error...</>;
+  if (loading) return <>Loading...</>;
   return <LikeOrUnLikeButtonSwitch
            currentTaskId={currentTaskId}
+           error={error}
            currentUserId={currentUserId}
            handleClickLikeDelete={handleClickLikeDelete}
            handleClickLikePost={handleClickLikePost}
-           isLoading={isLoading}
            likeData={likeData}
+           loading={loading}
            taskId={taskId}
          />;
 });
