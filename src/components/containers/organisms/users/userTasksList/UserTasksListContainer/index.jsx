@@ -1,29 +1,40 @@
 import { useCurrentUserId } from 'hooks/useCurrentUserId';
-import { useUserTasksData } from 'hooks/useUserTasksData';
+import { useMoveToFollowers } from 'hooks/useMoveToFollowers';
+import { useMoveToFollowings } from 'hooks/useMoveToFollowings';
+import { useMoveToGanttChart } from 'hooks/useMoveToGanttChart';
+import { useShowPopup } from 'hooks/useShowPopup';
+import { useUserData } from 'hooks/useUserData';
+import { useUserEdit } from 'hooks/useUserEdit';
 import { UserTasksList } from 'components/containers/organisms/Users/UserTasksList';
 
 export const UserTasksListContainer = () => {
+  const { showPopup } = useShowPopup();
   const currentUserId = useCurrentUserId();
-  const { bioAble, changeUserNameCheckAble, changeUserNameFunc, handleTextSubmit, load, nextFollowersFunc, nextFollowingsFunc, nextGanttFunc, revertUserBioFunc, setBioAbleFunc, setUserBioFunc, setUserNameFunc, setUserNickNameFunc, unChangeUserNameFunc, userData, likedTasksWithUser, userNameInUrl } = useUserTasksData();
+  const { error, loading, setCheckUserNameChange, setUserData, userData, userNameInUrl } = useUserData();
+  const { bioAble, changeUserNameCheckAble, changeUserNameFunc, editing, handleTextSubmit, inputRefs, isButtonDisabled, revertUserBioFunc, setBioAbleFunc } = useUserEdit(setCheckUserNameChange, setUserData, userData);
+  const { moveToFollowers } = useMoveToFollowers(userData);
+  const { moveToFollowings } = useMoveToFollowings(userData);
+  const { moveToGanttChart } = useMoveToGanttChart(userData);
+
   return (
     <UserTasksList
       bioAble={bioAble}
       changeUserNameCheckAble={changeUserNameCheckAble}
       changeUserNameFunc={changeUserNameFunc}
       currentUserId={currentUserId}
+      editing={editing}
+      error={error}
       handleTextSubmit={handleTextSubmit}
-      load={load}
-      nextFollowersFunc={nextFollowersFunc}
-      nextFollowingsFunc={nextFollowingsFunc}
-      nextGanttFunc={nextGanttFunc}
+      inputRefs={inputRefs}
+      isButtonDisabled={isButtonDisabled}
+      loading={loading}
+      moveToFollowers={moveToFollowers}
+      moveToFollowings={moveToFollowings}
+      moveToGanttChart={moveToGanttChart}
       revertUserBioFunc={revertUserBioFunc}
       setBioAbleFunc={setBioAbleFunc}
-      setUserBioFunc={setUserBioFunc}
-      setUserNameFunc={setUserNameFunc}
-      setUserNickNameFunc={setUserNickNameFunc}
-      unChangeUserNameFunc={unChangeUserNameFunc}
+      showPopup={showPopup}
       userData={userData}
-      likedTasksWithUser={likedTasksWithUser}
       userNameInUrl={userNameInUrl}
      />
   );

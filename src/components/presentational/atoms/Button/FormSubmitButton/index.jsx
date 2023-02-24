@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export const FormSubmitButton = ({ load, children }) => {
+export const FormSubmitButton = ({ children, isButtonDisabled }) => {
   return (
     <FormButtonCover>
-      <Button type="submit" disabled={load}>{children}</Button>
+      <Button type="submit" disabled={isButtonDisabled}>{children}</Button>
     </FormButtonCover>
   );
 };

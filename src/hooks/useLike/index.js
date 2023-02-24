@@ -5,74 +5,89 @@ import { deleteLike, getLikes, postLikes } from 'infra/api';
 export const useLike = (taskId) => {
   const currentUserId = useCurrentUserId();
   const [currentTaskId, setCurrentTaskId] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [likeData, setLikeData] = useState({
     likeCount: 0,
-    likedUserId: 0,
     likeId: 0,
+    likedUserId: 0,
   });
 
-  useEffect(() => {
-    let isMounted = true;
-    const like = { task_id: taskId, current_user_id: currentUserId };
-    getLikes(like)
-      .then((response) => {
-        if (isMounted) setLikeData({
-          likeCount: response.data.like_count,
-          likedUserId: String(response.data.liked_user_id),
-          likeId: String(response.data.like_id),
-        });
-        if (isMounted) setCurrentTaskId(String(response.data.task_id));
-        if (isMounted) setIsLoading(true);
-      })
-      .catch();
-    return () => {
-      isMounted = false;
+  const fetchLikeData = async () => {
+    setLoading(true);
+    setError(null);
+    const like = { current_user_id: currentUserId, task_id: taskId };
+    try {
+      const response = await getLikes(like);
+      const likeData = response.data;
+      setLikeData({
+        likeCount: likeData.like_count,
+        likeId: String(likeData.like_id),
+        likedUserId: String(likeData.liked_user_id),
+      });
+      setCurrentTaskId(String(likeData.task_id));
+    } catch (error) {
+      setError(error);
+      console.error(`いいねの取得中にエラーが発生しました。: `, error);
+    } finally {
+      setLoading(false);
     };
+  };
+
+  useEffect(() => {
+    fetchLikeData();
   }, [currentUserId, taskId]);
 
   const handleClickLikeDelete = () => {
-    let isMounted = true;
-    const like = { task_id: taskId, current_user_id: currentUserId, like_id: likeData.likeId };
-    deleteLike(like)
-    .then((response) => {
-      if (isMounted) setLikeData({
-        likeCount: response.data.like_count,
-        likedUserId: String(response.data.liked_user_id),
-        likeId: String(response.data.like_id),
-      });
-      if (isMounted) setCurrentTaskId('');
-      setLikeData((prevState) => ({
-        ...prevState,
-        likeCount: likeData.likeCount - 1,
-      }));
-    })
-    .catch();
-    return () => {
-      isMounted = false;
+    const deleteLikeData = async () => {
+      setLoading(true);
+      setError(null);
+      const like = { current_user_id: currentUserId, like_id: likeData.likeId, task_id: taskId };
+      try {
+        const response = await deleteLike(like);
+        const likeData = response.data;
+        setLikeData(prevState => {
+          const newLikeData = { ...prevState };
+          newLikeData.likeCount = likeData.likeCount - 1;
+          return newLikeData;
+        });
+        // todo: Consider using state-management-library or useContext or data-fetching-library instead of using API call twice for updating data.
+        await fetchLikeData();
+        setCurrentTaskId('');
+      } catch (error) {
+        setError('いいねの削除中にエラーが発生しました。');
+        console.error(`いいねの削除中にエラーが発生しました。: `, error);
+      } finally {
+        setLoading(false);
+      };
     };
+    deleteLikeData();
   };
 
   const handleClickLikePost = () => {
-    let isMounted = true;
-    const like = { task_id: taskId, current_user_id: currentUserId };
-    postLikes(like)
-    .then((response) => {
-      if (isMounted) setLikeData({
-        likeCount: response.data.like_count,
-        likedUserId: String(response.data.liked_user_id),
-        likeId: String(response.data.like_id),
-      });
-      if (isMounted) setCurrentTaskId(String(response.data.task_id));
-      setLikeData((prevState) => ({
-        ...prevState,
-        likeCount: likeData.likeCount + 1,
-      }));
-    })
-    .catch();
-    return () => {
-      isMounted = false;
+    const postLikeData = async () => {
+      setLoading(true);
+      setError(null);
+      const like = { current_user_id: currentUserId, task_id: taskId };
+      try {
+        const response = await postLikes(like);
+        const likeData = response.data;
+        setLikeData((prevState) => ({
+          ...prevState,
+          likeCount: likeData.likeCount,
+        }));
+        // todo: Consider using state-management-library or useContext or data-fetching-library instead of using API call twice for updating data.
+        await fetchLikeData();
+        setCurrentTaskId(String(likeData.task_id));
+      } catch (error) {
+        setError('いいねの登録中にエラーが発生しました。');
+        console.error(`いいねの登録中にエラーが発生しました。: `, error);
+      } finally {
+        setLoading(false);
+      };
     };
+    postLikeData();
   };
-  return { likeData, currentTaskId, isLoading, handleClickLikeDelete, handleClickLikePost };
+
+  return { currentTaskId, error, handleClickLikeDelete, handleClickLikePost, likeData, loading };
 };

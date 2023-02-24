@@ -3,14 +3,16 @@ import { LikeOrUnLikeButtonSwitchContainer } from 'components/containers/organis
 import { TaskStatusSwitch } from 'components/containers/organisms/Tasks/logic/TaskStatusSwitch';
 import { List } from 'components/presentational/molecules/List';
 import { NextButtonLink } from 'components/presentational/atoms/Link/NextButtonLink';
+import { Popup } from 'components/presentational/atoms/Popup';
 import { Title } from 'components/presentational/atoms/Title';
 
-export const TasksList = ({ currentUserId, tasks }) => {
+export const TasksList = ({ currentUserId, showPopup, tasks }) => {
   return (
     <>
+      <Popup message="タスクが正常に作成されました。" duration={3000} showPopup={showPopup} />
       <Title>タスク一覧</Title>
       <NextButtonLink text="タスク登録" url="/tasks/create" />
-      {tasks.map((task) => (
+      {tasks?.map((task) => (
         <ListCover key={task.id}>
           <List
             title={task.title}

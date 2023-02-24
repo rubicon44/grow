@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useCurrentUserId } from 'hooks/useCurrentUserId';
 import { useCurrentUserName } from 'hooks/useCurrentUserName';
+import { useUserNameInUrl } from 'hooks/useUserNameInUrl';
 import { deleteRelationships, getFollowings, getUser, postRelationships } from 'infra/api';
 
 export const useFollowAndUnFollow = () => {
-  const location = useLocation();
-  const locationPathName = location.pathname.split('/');
-  const userNameInUrl = locationPathName[locationPathName.length - 1];
+  const { userNameInUrl } = useUserNameInUrl();
   const currentUserId = useCurrentUserId();
 
   const [isFollowing, setIsFollowing] = useState(false);

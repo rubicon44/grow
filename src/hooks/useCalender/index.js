@@ -53,6 +53,7 @@ export const useCalender = () => {
   const calenderDataFunc = () => {
     const year = currentDisplayYearFunc();
     const currentDate = currentDateFunc();
+    // todo: 1月のカレンダー表示が消えている。1月のカレンダーを表示するとともに、「useGanttChart」の「scrollToCurrentDate」において、カレンダーの先頭月(1月)内で移動してしまう問題を解決したい(カレンダーが1月から12月まで表示されており、現在2月の場合、2月内で移動したいが、現状1月内で移動してしまう)。
     const month = currentDate.getMonth() + 1;
     const currentYear = currentDate.getFullYear();
     const lastMonth = new Date(currentYear, (12 - 1)).getMonth() + 1;
@@ -97,6 +98,8 @@ export const useCalender = () => {
   useEffect(() => {
     getCalendar();
   }, [year]);
+
+  console.log(calenderData);
 
   return { calenderData, calenders, currentPositionNumber, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, preCurrentPositionNumber, setCurrentPositionNumber, setPreCurrentPositionNumber, year };
 };

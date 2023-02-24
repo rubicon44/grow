@@ -1,20 +1,28 @@
 import { useCurrentUserId } from 'hooks/useCurrentUserId';
+import { useMoveToEditTask } from 'hooks/useMoveToEditTask';
+import { useShowPopup } from 'hooks/useShowPopup';
 import { useTaskData } from 'hooks/useTaskData';
-import { useTaskEditAndDelete } from 'hooks/useTaskEditAndDelete';
+import { useTaskDelete } from 'hooks/useTaskDelete';
 import { TaskList } from 'components/containers/organisms/Tasks/TaskList';
 
 export const TaskListContainer = () => {
+  const { showPopup } = useShowPopup();
   const currentUserId = useCurrentUserId();
-  const taskData = useTaskData();
-  const { deleteCheckAble, deleteCheckFunc, deleteTaskFunc, nextEditTaskFunc, load, unDeleteCheckFunc } = useTaskEditAndDelete();
+  const { loading, error, taskData } = useTaskData();
+  const { deleteCheckAble, deleteCheckFunc, deleteTaskFunc, deleting, isButtonDisabled, unDeleteCheckFunc } = useTaskDelete(taskData);
+  const { moveToEditTask } = useMoveToEditTask(taskData);
 
+  if (error) throw error;
+  if (loading) return <>Loading...</>;
+  if (deleting) return <>Deleting...</>;
   return <TaskList
            currentUserId={currentUserId}
            deleteCheckAble={deleteCheckAble}
            deleteCheckFunc={deleteCheckFunc}
            deleteTaskFunc={deleteTaskFunc}
-           load={load}
-           nextEditTaskFunc={nextEditTaskFunc}
+           isButtonDisabled={isButtonDisabled}
+           moveToEditTask={moveToEditTask}
+           showPopup={showPopup}
            taskData={taskData}
            unDeleteCheckFunc={unDeleteCheckFunc}
          />;

@@ -1,28 +1,43 @@
 import { useEffect, useState } from 'react';
 import { useCurrentTaskId } from 'hooks/useCurrentTaskId';
+import { useGetErrorMessage } from 'hooks/useGetErrorMessage';
 import { getTask } from 'infra/api';
 
 export const useTaskData = () => {
   const currentTaskId = useCurrentTaskId();
+  const { getErrorMessage } = useGetErrorMessage();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [taskData, setTaskData] = useState({
-    task: [],
-    taskCreatedUser: [],
-    taskCreatedUserName: null,
+    task: { id: '', title: '', content: '', status: '', start_date: '', end_date: '' },
+    taskCreatedUser: '',
+    taskCreatedUserName: '',
   });
+
   useEffect(() => {
-    let isMounted = true;
-    getTask(currentTaskId)
-      .then((response) => {
-        if (isMounted) setTaskData({
-          task: response.data,
-          taskCreatedUser: response.data.user,
-          taskCreatedUserName: response.data.user.username,
+    const fetchTaskData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await getTask(currentTaskId);
+        const task = response.data;
+        setTaskData({
+          task: task,
+          taskCreatedUser: task.user,
+          taskCreatedUserName: task.user.username,
         });
-      })
-      .catch();
-    return () => {
-      isMounted = false;
+      } catch (error) {
+        setError(error);
+        console.error(`タスクの取得中にエラーが発生しました。: `, error);
+        const verbForErrorMessage = `タスク`;
+        const objectForErrorMessage = `取得`;
+        getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
+      } finally {
+        setLoading(false);
+      };
     };
+    fetchTaskData();
   }, [currentTaskId]);
-  return taskData;
+
+  return { loading, error, taskData };
 };

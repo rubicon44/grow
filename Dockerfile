@@ -1,29 +1,28 @@
-FROM node:16
-# FROM node:16-alpine
+FROM node:18.13.0-alpine
+# FROM node:16.13.0-alpine
 
-RUN apt-get update \
-    && apt-get install -y wget gnupg \
-    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
-    && apt-get update \
-    && apt-get install -y google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf libxss1 \
-      --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache \
+    git \
+    g++ \
+    make \
+    python3
+
+ENV PUPPETEER_SKIP_DOWNLOAD=true
 
 RUN mkdir /grow
 ENV FRONT_ROOT /grow
 WORKDIR $FRONT_ROOT
 
-COPY ./package.json $FRONT_ROOT/package.json
-COPY ./node_modules $FRONT_ROOT/node_modules
+COPY package.json $FRONT_ROOT/package.json
+COPY node_modules $FRONT_ROOT/node_modules
 # COPY ./package-lock.json $FRONT_ROOT/package-lock.json
-# COPY ./yarn.lock $FRONT_ROOT/yarn.lock
+COPY yarn.lock $FRONT_ROOT/yarn.lock
 
 RUN npm install -g n && yarn install --timeout=60000000
 RUN npm install -g create-react-app
 # RUN npm install -g firebase-tools
-RUN npm install --silent
-RUN npm install --save dotenv
+# RUN npm install --silent
+# RUN npm install --save dotenv
 # RUN npm install --save firebase react-router react-router-dom styled-components axios dotenv
 
 ADD . $FRONT_ROOT
