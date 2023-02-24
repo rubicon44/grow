@@ -9,7 +9,7 @@ import { TitleWithBackArrowHeader } from 'components/presentational/molecules/He
 import { List } from 'components/presentational/molecules/List';
 import { Popup } from 'components/presentational/atoms/Popup';
 
-export const TaskList = ({ currentUserId, deleteCheckAble, deleteCheckFunc, deleteTaskFunc, isButtonDisabled, navigateToEditTask, showPopup, taskData, unDeleteCheckFunc }) => {
+export const TaskList = ({ currentUserId, deleteCheckAble, deleteCheckFunc, deleteTaskFunc, isButtonDisabled, moveToEditTask, showPopup, taskData, unDeleteCheckFunc }) => {
   const { nickname: taskCreatedUserNickName, username: taskCreatedUserName } = taskData.taskCreatedUser;
   const { id: taskId, title: taskTitle, content: taskContent, status: taskStatus, start_date: taskStartDate, end_date: taskEndDate, user_id: taskCreatedUserId } = taskData.task;
 
@@ -36,7 +36,7 @@ export const TaskList = ({ currentUserId, deleteCheckAble, deleteCheckFunc, dele
           <TaskEditButton
             currentUserId={currentUserId}
             isButtonDisabled={isButtonDisabled}
-            navigateToEditTask={navigateToEditTask}
+            moveToEditTask={moveToEditTask}
             taskCreatedUserId={taskCreatedUserId}
           />
           <TaskDeleteCheckButton

@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { TaskStatusSwitch } from 'components/containers/organisms/Tasks/logic/TaskStatusSwitch';
 import { List } from 'components/presentational/molecules/List';
 
-export const UserTasksAlreadyLikeList = ({ likedTasksWithUser }) => {
+export const UserTasksAlreadyLikeList = ({ userData }) => {
   return (
-    likedTasksWithUser.map((data) => (
+    userData.likedTasksWithUser.map((data) => (
       <ListCoverWrapper key={data.task.id}>
         <ListCover>
           <List

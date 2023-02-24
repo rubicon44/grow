@@ -1,5 +1,5 @@
 import { useCurrentUserId } from 'hooks/useCurrentUserId';
-import { useNavigateToEditTask } from 'hooks/useNavigateToEditTask';
+import { useMoveToEditTask } from 'hooks/useMoveToEditTask';
 import { useShowPopup } from 'hooks/useShowPopup';
 import { useTaskData } from 'hooks/useTaskData';
 import { useTaskDelete } from 'hooks/useTaskDelete';
@@ -10,7 +10,7 @@ export const TaskListContainer = () => {
   const currentUserId = useCurrentUserId();
   const { loading, error, taskData } = useTaskData();
   const { deleteCheckAble, deleteCheckFunc, deleteTaskFunc, deleting, isButtonDisabled, unDeleteCheckFunc } = useTaskDelete(taskData);
-  const { navigateToEditTask } = useNavigateToEditTask(taskData);
+  const { moveToEditTask } = useMoveToEditTask(taskData);
 
   if (error) throw error;
   if (loading) return <>Loading...</>;
@@ -21,7 +21,7 @@ export const TaskListContainer = () => {
            deleteCheckFunc={deleteCheckFunc}
            deleteTaskFunc={deleteTaskFunc}
            isButtonDisabled={isButtonDisabled}
-           navigateToEditTask={navigateToEditTask}
+           moveToEditTask={moveToEditTask}
            showPopup={showPopup}
            taskData={taskData}
            unDeleteCheckFunc={unDeleteCheckFunc}

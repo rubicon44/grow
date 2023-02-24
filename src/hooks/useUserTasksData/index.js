@@ -1,18 +1,22 @@
-import { useContext, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from 'auth/AuthProvider';
+import { useGetErrorMessage } from 'hooks/useGetErrorMessage';
 import { useSortDescendingOrder } from 'hooks/useSortDescendingOrder';
+import { useUserNameInUrl } from 'hooks/useUserNameInUrl';
 import { getUser, updateUser } from 'infra/api';
 
 export const useUserTasksData = () => {
+  const navigateToSignIn = useNavigate();
   const { signout } = useContext(AuthContext);
-  const location = useLocation();
-  const locationPathName = location.pathname.split('/');
-  const userNameInUrl = locationPathName[locationPathName.length - 1];
-  const navigate = useNavigate();
+  const { userNameInUrl } = useUserNameInUrl();
+  const { getErrorMessage } = useGetErrorMessage();
   const [bioAble, setBioAble] = useState(true);
   const [changeUserNameCheckAble, setChangeUserNameCheckAble] = useState(false);
   const [checkUserNameChange, setCheckUserNameChange] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [userData, setUserData] = useState({
     taskUser: [],
@@ -22,193 +26,142 @@ export const useUserTasksData = () => {
     userNickName: [],
     userName: [],
     userId: [],
-    userNameDefault: [],
   });
 
   useEffect(() => {
-    let isMounted = true;
-    getUser(userNameInUrl)
-      .then((response) => {
-        const taskUser = response.data.user;
-        const taskData = taskUser.tasks;
-        const likedTasksWithUser = response.data.liked_tasks_with_user;
-        const dOrderTaskData = useSortDescendingOrder(taskData);
-        const dOrderlikedTaskData = likedTasksWithUser;
-        const userBio = response.data.user.bio;
-        const userNickName = response.data.user.nickname;
-        const userName = response.data.user.username;
-        const userId = response.data.user.id;
-        const userNameDefault = response.data.user.username;
-        if (isMounted) setUserData({
-          taskUser: taskUser,
-          userTasks: dOrderTaskData,
-          likedTasksWithUser: dOrderlikedTaskData,
-          userBio: userBio,
-          userNickName: userNickName,
-          userName: userName,
-          userId: String(userId),
-          userNameDefault: userNameDefault,
+    const fetchUserData = async (userNameInUrl) => {
+      setLoading(true);
+      setError(null);
+      try {
+        // todo: エラーの際、他ユーザーをフォローできてしまうかも。
+        const response = await getUser(userNameInUrl)
+        const userData = response.data;
+        const user = userData.user
+        const taskData = user.tasks;
+        setUserData({
+          taskUser: user,
+          userTasks: useSortDescendingOrder(taskData),
+          // todo: liked_tasks_with_userがuserDataに格納されていることを知るには、propsTypes等が役に立つ？
+          likedTasksWithUser: userData.liked_tasks_with_user,
+          userBio: user.bio,
+          userNickName: user.nickname,
+          userName: user.username,
+          userId: String(user.id),
         });
-        if (isMounted) setCheckUserNameChange(false);
-      })
-      .catch();
-    return () => {
-      isMounted = false;
+        setCheckUserNameChange(false);
+      } catch (error) {
+        setError(error);
+        console.error(`ユーザーデータの取得中にエラーが発生しました。: `, error);
+        const verbForErrorMessage = `ユーザーデータ`;
+        const objectForErrorMessage = `取得`;
+        getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
+      } finally {
+        setLoading(false);
+      };
     };
+
+    fetchUserData(userNameInUrl);
+
   }, [checkUserNameChange, userNameInUrl]);
 
-  const updateUserFunc = () => {
-    const username = userData.userNameDefault;
-    const user = { nickname: userData.userNickName, username: userData.userName, bio: userData.userBio };
-    updateUser(username, user)
-      .then((response) => {
-        const userBio = response.data.user.bio;
-        const userNickName = response.data.user.nickname;
-        const userName = response.data.user.username;
-        setUserData((prevState) => ({
-          ...prevState,
-          userBio: userBio,
-          userNickName: userNickName,
-          userName: userName,
-        }));
-        setBioAble(true);
-        setIsButtonDisabled(false);
-        setCheckUserNameChange(true);
-      })
-      .catch(errors => {
-        if(errors.response.status === 401) {
-          window.alert("認証できませんでした。");
-        } else {
-          window.alert("このusernameはすでに登録されています。");
-        };
-        setUserData((prevState) => ({
-          ...prevState,
-          userName: userData.userNameDefault,
-        }));
-        setIsButtonDisabled(false);
-      });
-  };
+  const nicknameRef = useRef();
+  const usernameRef = useRef();
+  const bioRef = useRef();
+  const inputRefs = { nicknameRef, usernameRef, bioRef };
 
-  const changeUserNameFunc = () => {
-    setIsButtonDisabled(false);
-    setChangeUserNameCheckAble(false);
-    updateUserFunc();
-    navigate(`/signIn`);
-    signout();
-  };
+  const updateUserFunc = async (defaultUsername, user) => {
+    try {
+      setEditing(true);
+      const response = await updateUser(defaultUsername, user);
+      const userData = response.data.user;
 
-  const revertUserNameFunc = (username) => {
-    getUser(username)
-    .then((response) => {
-      const userNickName = response.data.user.nickname;
-      const userName = response.data.user.username;
       setUserData((prevState) => ({
         ...prevState,
-        userNickName: userNickName,
-        userName: userName,
+        userBio: userData.bio,
+        userNickName: userData.nickname,
+        userName: userData.username,
       }));
-    })
-    .catch();
+      setBioAble(true);
+      setIsButtonDisabled(false);
+      setCheckUserNameChange(true);
+
+      if (changeUserNameCheckAble) {
+        navigateToSignIn(`/signIn`);
+        await signout();
+      };
+    } catch (error) {
+      console.error(`ユーザーデータの編集中にエラーが発生しました。: `, error);
+      const verbForErrorMessage = `ユーザーデータ`;
+      const objectForErrorMessage = `編集`;
+      getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
+    } finally {
+      setEditing(false);
+      setIsButtonDisabled(false);
+    };
   };
 
-  const unChangeUserNameFunc = () => {
+  const changeUserNameFunc = async () => {
+    const defaultUsername = userData.userName;
+    const nickname = nicknameRef.current.value;
+    const username = usernameRef.current.value;
+    const bio = bioRef.current.value;
+    const user = {
+      nickname: nickname,
+      username: username,
+      bio: bio
+    };
+
     setIsButtonDisabled(false);
-    const username = userData.userNameDefault;
-    revertUserNameFunc(username);
     setChangeUserNameCheckAble(false);
-    setBioAble(true);
+
+    await updateUserFunc(defaultUsername, user);
   };
 
   const handleTextSubmit = (e) => {
     e.preventDefault();
     e.persist();
     setIsButtonDisabled(true);
-    const username = userData.userNameDefault;
-    const user = { nickname: userData.userNickName, username: userData.userName, bio: userData.userBio };
-    if(username === userData.userName) {
-      updateUserFunc(username, user);
+
+    const defaultUsername = userData.userName;
+    const nickname = nicknameRef.current.value;
+    const username = usernameRef.current.value;
+    const bio = bioRef.current.value;
+    const user = {
+      nickname: nickname,
+      username: username,
+      bio: bio
+    };
+
+    if(defaultUsername === username) {
+      updateUserFunc(defaultUsername, user);
     } else {
       setChangeUserNameCheckAble(true);
     };
   };
 
-  const revertUserBio = () => {
-    const username = userData.userNameDefault;
-    getUser(username)
-      .then((response) => {
-        const userBio = response.data.user.bio;
-        const userNickName = response.data.user.nickname;
-        const userName = response.data.user.username;
-        setUserData((prevState) => ({
-          ...prevState,
-          userBio: userBio,
-          userNickName: userNickName,
-          userName: userName,
-        }));
-      })
-      .catch();
+  const revertUserBioFunc = () => {
+    setIsButtonDisabled(false);
+    setChangeUserNameCheckAble(false);
     setBioAble(true);
-  };
-
-  // UserTasksContentHeader
-  const nextFollowersFunc = () => {
-    navigate(`/${userData.taskUser.username}/followers`, {
-      state: {
-        username: userData.taskUser.username,
-      },
-    });
-  };
-
-  const nextFollowingsFunc = () => {
-    navigate(`/${userData.taskUser.username}/followings`, {
-      state: {
-        username: userData.taskUser.username,
-      },
-    });
   };
 
   const setBioAbleFunc = () => {
     setBioAble(false);
   };
 
-  // ProfileChangeForm
-  const revertUserBioFunc = () => {
-    revertUserBio();
+  return {
+    bioAble,
+    changeUserNameCheckAble,
+    changeUserNameFunc,
+    editing,
+    error,
+    handleTextSubmit,
+    inputRefs,
+    isButtonDisabled,
+    loading,
+    revertUserBioFunc,
+    setBioAbleFunc,
+    userData,
+    userNameInUrl
   };
-
-  const setUserBioFunc = (e) => {
-    setUserData((prevState) => ({
-      ...prevState,
-      userBio: e.target.value,
-    }));
-  };
-
-  const setUserNameFunc = (e) => {
-    setUserData((prevState) => ({
-      ...prevState,
-      userName: e.target.value,
-    }));
-  };
-
-  const setUserNickNameFunc = (e) => {
-    setUserData((prevState) => ({
-      ...prevState,
-      userNickName: e.target.value,
-    }));
-  };
-
-  // UserTasksContent
-  const nextGanttFunc = () => {
-    navigate(`/${userData.taskUser.username}/gantt`, {
-      state: {
-        taskUser: userData.taskUser,
-        userTasks: userData.userTasks,
-      },
-    });
-  };
-
-  // UserTasksAlreadyLikeList
-  const likedTasksWithUser = userData.likedTasksWithUser;
-
-  return { bioAble, changeUserNameCheckAble, changeUserNameFunc, handleTextSubmit, isButtonDisabled, nextFollowersFunc, nextFollowingsFunc, nextGanttFunc, revertUserBioFunc, setBioAbleFunc, setUserBioFunc, setUserNameFunc, setUserNickNameFunc, unChangeUserNameFunc, userData, likedTasksWithUser, userNameInUrl };
 };

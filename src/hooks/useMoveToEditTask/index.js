@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 
-export const useNavigateToEditTask = (taskData) => {
+export const useMoveToEditTask = (taskData) => {
   // todo: Consider whether I should use TaskEdit or EditTask name in Task's components later.
   const navigateToTaskEdit = useNavigate();
-  const navigateToEditTask = () => {
+  const moveToEditTask = () => {
     if (!taskData.task) {
       console.error('taskData.task is undefined.');
       return;
@@ -30,6 +30,6 @@ export const useNavigateToEditTask = (taskData) => {
   };
 
   return {
-    navigateToEditTask,
+    moveToEditTask,
   };
 };

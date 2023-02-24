@@ -1,4 +1,7 @@
 import { useCurrentUserId } from 'hooks/useCurrentUserId';
+import { useMoveToFollowers } from 'hooks/useMoveToFollowers';
+import { useMoveToFollowings } from 'hooks/useMoveToFollowings';
+import { useMoveToGanttChart } from 'hooks/useMoveToGanttChart';
 import { useShowPopup } from 'hooks/useShowPopup';
 import { useUserTasksData } from 'hooks/useUserTasksData';
 import { UserTasksList } from 'components/containers/organisms/Users/UserTasksList';
@@ -6,26 +9,29 @@ import { UserTasksList } from 'components/containers/organisms/Users/UserTasksLi
 export const UserTasksListContainer = () => {
   const { showPopup } = useShowPopup();
   const currentUserId = useCurrentUserId();
-  const { bioAble, changeUserNameCheckAble, changeUserNameFunc, handleTextSubmit, isButtonDisabled, nextFollowersFunc, nextFollowingsFunc, nextGanttFunc, revertUserBioFunc, setBioAbleFunc, setUserBioFunc, setUserNameFunc, setUserNickNameFunc, unChangeUserNameFunc, userData, likedTasksWithUser, userNameInUrl } = useUserTasksData();
+  const { bioAble, changeUserNameCheckAble, changeUserNameFunc, editing, error, handleTextSubmit, inputRefs, isButtonDisabled, loading, revertUserBioFunc, setBioAbleFunc, userData, userNameInUrl } = useUserTasksData();
+  const { moveToFollowers } = useMoveToFollowers(userData);
+  const { moveToFollowings } = useMoveToFollowings(userData);
+  const { moveToGanttChart } = useMoveToGanttChart(userData);
+
   return (
     <UserTasksList
       bioAble={bioAble}
       changeUserNameCheckAble={changeUserNameCheckAble}
       changeUserNameFunc={changeUserNameFunc}
       currentUserId={currentUserId}
+      editing={editing}
+      error={error}
       handleTextSubmit={handleTextSubmit}
+      inputRefs={inputRefs}
       isButtonDisabled={isButtonDisabled}
-      likedTasksWithUser={likedTasksWithUser}
-      nextFollowersFunc={nextFollowersFunc}
-      nextFollowingsFunc={nextFollowingsFunc}
-      nextGanttFunc={nextGanttFunc}
+      loading={loading}
+      moveToFollowers={moveToFollowers}
+      moveToFollowings={moveToFollowings}
+      moveToGanttChart={moveToGanttChart}
       revertUserBioFunc={revertUserBioFunc}
       setBioAbleFunc={setBioAbleFunc}
-      setUserBioFunc={setUserBioFunc}
-      setUserNameFunc={setUserNameFunc}
-      setUserNickNameFunc={setUserNickNameFunc}
       showPopup={showPopup}
-      unChangeUserNameFunc={unChangeUserNameFunc}
       userData={userData}
       userNameInUrl={userNameInUrl}
      />

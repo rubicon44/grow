@@ -6,31 +6,34 @@ import { Popup } from 'components/presentational/atoms/Popup';
 
 export const UserTasksList = (props) => {
   const { currentUserId } = props;
-  const { bioAble, changeUserNameCheckAble, changeUserNameFunc, handleTextSubmit, isButtonDisabled, nextFollowersFunc, nextFollowingsFunc, nextGanttFunc, revertUserBioFunc, setBioAbleFunc, setUserBioFunc, setUserNameFunc, setUserNickNameFunc, unChangeUserNameFunc, userData, likedTasksWithUser, userNameInUrl } = props;
+  const { bioAble, changeUserNameCheckAble, changeUserNameFunc, editing, error, handleTextSubmit, inputRefs, isButtonDisabled, loading, revertUserBioFunc, setBioAbleFunc, userData, userNameInUrl } = props;
+  const { moveToFollowers, moveToFollowings, moveToGanttChart } = props;
   const { showPopup } = props;
+
   return (
     <>
       <Popup message="タスクが正常に削除されました。" duration={3000} showPopup={showPopup} />
-      {changeUserNameCheckAble === true && (<UserTasksCheckReLoginWhenChangedUserId changeUserNameFunc={changeUserNameFunc} unChangeUserNameFunc={unChangeUserNameFunc} />)}
+      {changeUserNameCheckAble === true && (<UserTasksCheckReLoginWhenChangedUserId changeUserNameFunc={changeUserNameFunc} revertUserBioFunc={revertUserBioFunc} />)}
       <UserTasksContentHeader
         bioAble={bioAble}
         currentUserId={String(currentUserId)}
+        editing={editing}
+        error={error}
         handleTextSubmit={handleTextSubmit}
+        inputRefs={inputRefs}
         isButtonDisabled={isButtonDisabled}
-        nextFollowersFunc={nextFollowersFunc}
-        nextFollowingsFunc={nextFollowingsFunc}
+        loading={loading}
+        moveToFollowers={moveToFollowers}
+        moveToFollowings={moveToFollowings}
         revertUserBioFunc={revertUserBioFunc}
         setBioAbleFunc={setBioAbleFunc}
-        setUserBioFunc={setUserBioFunc}
-        setUserNameFunc={setUserNameFunc}
-        setUserNickNameFunc={setUserNickNameFunc}
-        title={userData.userNickName}
         userData={userData}
       />
       <UserTasksContent
-        nextGanttFunc={nextGanttFunc}
+        error={error}
+        loading={loading}
+        moveToGanttChart={moveToGanttChart}
         userData={userData}
-        likedTasksWithUser={likedTasksWithUser}
       />
       <LogOutButtonSwitchContainer userNameInUrl={userNameInUrl} />
     </>

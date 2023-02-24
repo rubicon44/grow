@@ -1,37 +1,35 @@
 import styled from 'styled-components';
 import { FollowButtonSwitchContainer } from 'components/containers/organisms/Users/UserButton/FollowButtonSwitch/FollowButtonSwitchContainer';
-import { ProfileChange } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader/ProfileChange';
+import { ProfileChangeContainer } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader/ProfileChange/ProfileChangeContainer';
 import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const UserTasksContentHeader = (props) => {
-  const { title } = props;
-  const { currentUserId, isButtonDisabled } = props;
-  const { handleTextSubmit } = props;
-  const { bioAble } = props;
-  const { userData } = props;
-  const { nextFollowersFunc, nextFollowingsFunc } = props;
-  const { revertUserBioFunc, setBioAbleFunc, setUserBioFunc, setUserNameFunc, setUserNickNameFunc } = props;
+  const { currentUserId } = props;
+  const { bioAble, editing, error, handleTextSubmit, inputRefs, isButtonDisabled, loading, revertUserBioFunc, setBioAbleFunc, userData } = props;
+  const { moveToFollowers, moveToFollowings } = props;
+
   return (
     <ContentHeaderCover>
-      <TitleWithBackArrowHeader>{title}</TitleWithBackArrowHeader>
+      <TitleWithBackArrowHeader>{userData.userNickName}</TitleWithBackArrowHeader>
       <FollowButtonSwitchContainer />
-      <ProfileChange
+      <ProfileChangeContainer
         bioAble={bioAble}
         currentUserId={currentUserId}
+        editing={editing}
+        error={error}
         handleTextSubmit={handleTextSubmit}
+        inputRefs={inputRefs}
         isButtonDisabled={isButtonDisabled}
+        loading={loading}
         revertUserBioFunc={revertUserBioFunc}
         setBioAbleFunc={setBioAbleFunc}
-        setUserBioFunc={setUserBioFunc}
-        setUserNameFunc={setUserNameFunc}
-        setUserNickNameFunc={setUserNickNameFunc}
         userData={userData}
       />
       <RelationshipsCover>
-        <a onClick={nextFollowingsFunc}>
+        <a onClick={moveToFollowings}>
           <span>フォロー中</span>
         </a>
-        <a onClick={nextFollowersFunc}>
+        <a onClick={moveToFollowers}>
           <span>フォロワー</span>
         </a>
       </RelationshipsCover>
