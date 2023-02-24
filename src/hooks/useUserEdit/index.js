@@ -1,69 +1,18 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from 'auth/AuthProvider';
 import { useGetErrorMessage } from 'hooks/useGetErrorMessage';
-import { useSortDescendingOrder } from 'hooks/useSortDescendingOrder';
-import { useUserNameInUrl } from 'hooks/useUserNameInUrl';
-import { getUser, updateUser } from 'infra/api';
+import { updateUser } from 'infra/api';
 
-export const useUserTasksData = () => {
+// todo: Keep the following code within 100 lines later.
+export const useUserEdit = (setCheckUserNameChange, setUserData, userData) => {
   const navigateToSignIn = useNavigate();
   const { signout } = useContext(AuthContext);
-  const { userNameInUrl } = useUserNameInUrl();
   const { getErrorMessage } = useGetErrorMessage();
   const [bioAble, setBioAble] = useState(true);
   const [changeUserNameCheckAble, setChangeUserNameCheckAble] = useState(false);
-  const [checkUserNameChange, setCheckUserNameChange] = useState(false);
   const [editing, setEditing] = useState(false);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-  const [userData, setUserData] = useState({
-    taskUser: [],
-    userTasks: [],
-    likedTasksWithUser: [],
-    userBio: [],
-    userNickName: [],
-    userName: [],
-    userId: [],
-  });
-
-  useEffect(() => {
-    const fetchUserData = async (userNameInUrl) => {
-      setLoading(true);
-      setError(null);
-      try {
-        // todo: エラーの際、他ユーザーをフォローできてしまうかも。
-        const response = await getUser(userNameInUrl)
-        const userData = response.data;
-        const user = userData.user
-        const taskData = user.tasks;
-        setUserData({
-          taskUser: user,
-          userTasks: useSortDescendingOrder(taskData),
-          // todo: liked_tasks_with_userがuserDataに格納されていることを知るには、propsTypes等が役に立つ？
-          likedTasksWithUser: userData.liked_tasks_with_user,
-          userBio: user.bio,
-          userNickName: user.nickname,
-          userName: user.username,
-          userId: String(user.id),
-        });
-        setCheckUserNameChange(false);
-      } catch (error) {
-        setError(error);
-        console.error(`ユーザーデータの取得中にエラーが発生しました。: `, error);
-        const verbForErrorMessage = `ユーザーデータ`;
-        const objectForErrorMessage = `取得`;
-        getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
-      } finally {
-        setLoading(false);
-      };
-    };
-
-    fetchUserData(userNameInUrl);
-
-  }, [checkUserNameChange, userNameInUrl]);
-
   const nicknameRef = useRef();
   const usernameRef = useRef();
   const bioRef = useRef();
@@ -82,7 +31,6 @@ export const useUserTasksData = () => {
         userName: userData.username,
       }));
       setBioAble(true);
-      setIsButtonDisabled(false);
       setCheckUserNameChange(true);
 
       if (changeUserNameCheckAble) {
@@ -111,15 +59,12 @@ export const useUserTasksData = () => {
       bio: bio
     };
 
-    setIsButtonDisabled(false);
     setChangeUserNameCheckAble(false);
-
     await updateUserFunc(defaultUsername, user);
   };
 
   const handleTextSubmit = (e) => {
     e.preventDefault();
-    e.persist();
     setIsButtonDisabled(true);
 
     const defaultUsername = userData.userName;
@@ -154,14 +99,10 @@ export const useUserTasksData = () => {
     changeUserNameCheckAble,
     changeUserNameFunc,
     editing,
-    error,
     handleTextSubmit,
     inputRefs,
     isButtonDisabled,
-    loading,
     revertUserBioFunc,
     setBioAbleFunc,
-    userData,
-    userNameInUrl
   };
 };
