@@ -36,5 +36,11 @@ export const useFollowings = () => {
     fetchFollowings(username);
   }, [username]);
 
-  return { currentUserId, error, followings, loading, username };
+  return {
+    currentUserId,
+    error,
+    followings,
+    loading,
+    username
+  };
 };
