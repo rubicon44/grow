@@ -9,9 +9,10 @@ export const useFollowers = () => {
   const { username } = location.state;
   const currentUserId = useCurrentUserId();
   const { getErrorMessage } = useGetErrorMessage();
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [followers, setFollowers] = useState([]);
+
   useEffect(() => {
     const fetchFollowers = async () => {
       setLoading(true);
