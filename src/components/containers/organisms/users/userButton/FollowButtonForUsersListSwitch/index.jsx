@@ -4,7 +4,7 @@ import { FollowOrFollowingOrUnFollowButtonSwitch } from 'components/containers/o
 
 export const FollowButtonForUsersListSwitch = (props) => {
   const { currentUserName, username } = props;
-  const { currentUserId, followerId } = props;
+  const { currentUserId, userIdToFollowOrUnFollow } = props;
   const { changeFollowButtonStyle, followFunc, isFollowing, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc } = props;
 
   // ログイン中ユーザーと閲覧対象のユーザーが一緒の時
@@ -23,7 +23,7 @@ export const FollowButtonForUsersListSwitch = (props) => {
     );
   } else {
     // ログイン中ユーザーと閲覧対象のユーザーが違う時
-    if(String(currentUserId) === String(followerId)) {
+    if(String(currentUserId) === String(userIdToFollowOrUnFollow)) {
       return (null);
     };
 

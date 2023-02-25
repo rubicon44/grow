@@ -1,48 +1,30 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useCurrentUserId } from 'hooks/useCurrentUserId';
 import { useCurrentUserName } from 'hooks/useCurrentUserName';
-import { useUserNameInUrl } from 'hooks/useUserNameInUrl';
-import { deleteRelationships, getFollowings, getUser, postRelationships } from 'infra/api';
+import { deleteRelationships, getFollowings, postRelationships } from 'infra/api';
 
-export const useFollowAndUnFollow = () => {
-  const { userNameInUrl } = useUserNameInUrl();
+export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
   const currentUserId = useCurrentUserId();
-
+  const currentUserName = useCurrentUserName();
   const [isFollowing, setIsFollowing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [followerId, setFollowerId] = useState([]);
-  useEffect(() => {
-    let isMounted = true;
-    getUser(userNameInUrl)
-      .then((response) => {
-        const followerId = response.data.user.id;
-        if (isMounted) setFollowerId(followerId);
-        if (isMounted) setIsLoading(true);
-      })
-      .catch();
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
+  const [changeFollowButtonStyle, setChangeFollowButtonStyle] = useState(false);
   const [currentUserFollowings, setCurrentUserFollowings] = useState([]);
-  const currentUserName = useCurrentUserName();
+
   useEffect(() => {
     let isMounted = true;
     const username = currentUserName;
     getFollowings(username)
       .then((response) => {
         if (isMounted) setCurrentUserFollowings(response.data.followings);
+        if (isMounted) setIsLoading(true);
       })
-      .catch((error) => {
-        alert(error)
-      });
+      .catch();
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [currentUserName, userIdToFollowOrUnFollow]);
 
-  const [changeFollowButtonStyle, setChangeFollowButtonStyle] = useState(false);
   const setChangeFollowButtonStyleToTrueFunc = () => {
     setChangeFollowButtonStyle(true);
   };
@@ -53,7 +35,7 @@ export const useFollowAndUnFollow = () => {
 
   const followFunc = async () => {
     try {
-      const relationships = { following_id: currentUserId, follower_id: followerId };
+      const relationships = { following_id: currentUserId, follower_id: userIdToFollowOrUnFollow };
       await postRelationships(relationships).then(
         res => {
           setIsFollowing(true);
@@ -66,7 +48,7 @@ export const useFollowAndUnFollow = () => {
 
   const unFollowFunc = async () => {
     try {
-      const relationships = { following_id: currentUserId, follower_id: followerId };
+      const relationships = { following_id: currentUserId, follower_id: userIdToFollowOrUnFollow };
       await deleteRelationships(relationships).then(
         res => {
           setIsFollowing(false);
@@ -79,24 +61,26 @@ export const useFollowAndUnFollow = () => {
 
   useEffect(() => {
     if (currentUserFollowings.length > 0) {
-      const isFollowing = currentUserFollowings.find(following => following.id === followerId);
-      if (isFollowing) {
+      const following = currentUserFollowings.find(following => following.id === Number(userIdToFollowOrUnFollow));
+      if (following) {
         setIsFollowing(true);
       } else {
         setIsFollowing(false);
-      }
+      };
     }
-  }, [currentUserFollowings, followerId]);
+  }, [currentUserFollowings, userIdToFollowOrUnFollow]);
 
   return {
     changeFollowButtonStyle,
+    currentUserFollowings,
+    currentUserName,
     currentUserId,
-    followerId,
     followFunc,
     isFollowing,
     isLoading,
     setChangeFollowButtonStyleToFalseFunc,
     setChangeFollowButtonStyleToTrueFunc,
-    unFollowFunc
+    setCurrentUserFollowings,
+    unFollowFunc,
   };
 };

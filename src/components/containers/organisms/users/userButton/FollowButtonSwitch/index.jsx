@@ -1,8 +1,9 @@
 import { FollowButton } from 'components/containers/organisms/Users/UserButton/FollowButton';
 import { FollowingOrUnFollowButtonSwitch } from 'components/containers/organisms/Users/UserButton/FollowingOrUnFollowButtonSwitch';
 
-export const FollowButtonSwitch = ({ changeFollowButtonStyle, currentUserId, followerId, followFunc, isFollowing, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc }) => {
-  if(String(currentUserId) === String(followerId)) {
+export const FollowButtonSwitch = ({ changeFollowButtonStyle, currentUserId, followFunc, isFollowing, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc, userIdToFollowOrUnFollow }) => {
+  // console.log(isFollowing);
+  if(String(currentUserId) === String(userIdToFollowOrUnFollow)) {
     return null;
   } else {
     return(

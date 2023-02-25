@@ -10,7 +10,7 @@ export const UserFollowers = ({ currentUserId, followers, username }) => {
       followers.map((follower) => (
         <UserListItem key={follower.id}>
           <Link to={`/${follower.username}`}>{follower.nickname}</Link>
-          <FollowButtonForUsersListSwitchContainer followerId={follower.id} currentUserId={currentUserId} username={username} />
+          <FollowButtonForUsersListSwitchContainer currentUserId={currentUserId} userIdToFollowOrUnFollow={follower.id} username={username} />
         </UserListItem>
       ))
     ) : (
