@@ -8,9 +8,9 @@ export const FollowingOrUnFollowButtonSwitch = ({ changeFollowButtonStyle, setCh
       <FollowChangeLinkCover>
         {changeFollowButtonStyle ? (
           <UnFollowButton
-          setChangeFollowButtonStyleToFalseFunc={setChangeFollowButtonStyleToFalseFunc}
-          unFollowFunc={unFollowFunc}
-        />
+            setChangeFollowButtonStyleToFalseFunc={setChangeFollowButtonStyleToFalseFunc}
+            unFollowFunc={unFollowFunc}
+          />
         ) : (
           <FollowingButton setChangeFollowButtonStyleToTrueFunc={setChangeFollowButtonStyleToTrueFunc} />
         )}

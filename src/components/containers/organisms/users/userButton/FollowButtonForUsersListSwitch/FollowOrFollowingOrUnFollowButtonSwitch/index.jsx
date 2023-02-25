@@ -3,16 +3,14 @@ import { FollowingOrUnFollowButtonSwitch } from 'components/containers/organisms
 
 export const FollowOrFollowingOrUnFollowButtonSwitch = (props) => {
   const { changeFollowButtonStyle, followFunc, isFollowing, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc } = props;
+
+  if (!isFollowing) return <FollowButton followFunc={followFunc} />;
   return (
-    isFollowing ? (
-      <FollowingOrUnFollowButtonSwitch
-        changeFollowButtonStyle={changeFollowButtonStyle}
-        setChangeFollowButtonStyleToFalseFunc={setChangeFollowButtonStyleToFalseFunc}
-        setChangeFollowButtonStyleToTrueFunc={setChangeFollowButtonStyleToTrueFunc}
-        unFollowFunc={unFollowFunc}
-      />
-    ) : (
-      <FollowButton followFunc={followFunc} />
-    )
+    <FollowingOrUnFollowButtonSwitch
+      changeFollowButtonStyle={changeFollowButtonStyle}
+      setChangeFollowButtonStyleToFalseFunc={setChangeFollowButtonStyleToFalseFunc}
+      setChangeFollowButtonStyleToTrueFunc={setChangeFollowButtonStyleToTrueFunc}
+      unFollowFunc={unFollowFunc}
+    />
   );
 };

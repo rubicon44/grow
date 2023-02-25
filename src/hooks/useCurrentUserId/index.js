@@ -1,9 +1,10 @@
 import { currentUser } from 'infra/currentUser';
 
 export const useCurrentUserId = () => {
-  if(localStorage.getItem('user')) {
+  const user = localStorage.getItem('user');
+  if (user) {
     const id = currentUser().id;
     return id;
-  };
+  }
   return null;
 };
