@@ -1,29 +1,44 @@
 import { useEffect, useState } from 'react';
 import { useCurrentUserId } from 'hooks/useCurrentUserId';
 import { useCurrentUserName } from 'hooks/useCurrentUserName';
+import { useGetErrorMessage } from 'hooks/useGetErrorMessage';
 import { deleteRelationships, getFollowings, postRelationships } from 'infra/api';
 
 export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
   const currentUserId = useCurrentUserId();
   const currentUserName = useCurrentUserName();
-  const [isFollowing, setIsFollowing] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const { getErrorMessage } = useGetErrorMessage();
+  const [error, setError] = useState(null);
+  const [creating, setCreating] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [changeFollowButtonStyle, setChangeFollowButtonStyle] = useState(false);
   const [currentUserFollowings, setCurrentUserFollowings] = useState([]);
+  const [isFollowing, setIsFollowing] = useState(false);
 
   useEffect(() => {
-    let isMounted = true;
-    const username = currentUserName;
-    getFollowings(username)
-      .then((response) => {
-        if (isMounted) setCurrentUserFollowings(response.data.followings);
-        if (isMounted) setIsLoading(true);
-      })
-      .catch();
-    return () => {
-      isMounted = false;
+    const fetchFollowings = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await getFollowings(username);
+        const followingsData = response.data;
+        setCurrentUserFollowings(followingsData.followings);
+      } catch (error) {
+        setError(error);
+        console.error(`ユーザー情報の取得中にエラーが発生しました。: `, error);
+        const verbForErrorMessage = `ユーザー情報`;
+        const objectForErrorMessage = `取得`;
+        getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
+      } finally {
+        setLoading(false);
+      };
     };
-  }, [currentUserName, userIdToFollowOrUnFollow]);
+
+    const username = currentUserName;
+    fetchFollowings(username);
+  }, [currentUserName]);
 
   const setChangeFollowButtonStyleToTrueFunc = () => {
     setChangeFollowButtonStyle(true);
@@ -35,28 +50,34 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
 
   const followFunc = async () => {
     try {
+      setCreating(true);
       const relationships = { following_id: currentUserId, follower_id: userIdToFollowOrUnFollow };
-      await postRelationships(relationships).then(
-        res => {
-          setIsFollowing(true);
-        }
-      ).catch();
-    } catch (err) {
-      console.error(err);
-    }
+      await postRelationships(relationships);
+      setIsFollowing(true);
+    } catch (error) {
+      console.error(`ユーザーのフォロー中にエラーが発生しました。: `, error);
+      const verbForErrorMessage = `ユーザー`;
+      const objectForErrorMessage = `フォロー`;
+      getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
+    } finally {
+      setCreating(false);
+    };
   };
 
   const unFollowFunc = async () => {
     try {
+      setDeleting(true);
       const relationships = { following_id: currentUserId, follower_id: userIdToFollowOrUnFollow };
-      await deleteRelationships(relationships).then(
-        res => {
-          setIsFollowing(false);
-        }
-      ).catch();
-    } catch (err) {
-      console.error(err);
-    }
+      await deleteRelationships(relationships);
+      setIsFollowing(false);
+    } catch (error) {
+      console.error(`フォローの解除中にエラーが発生しました。: `, error);
+      const verbForErrorMessage = `フォロー`;
+      const objectForErrorMessage = `解除`;
+      getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
+    } finally {
+      setDeleting(false);
+    };
   };
 
   useEffect(() => {
@@ -72,15 +93,16 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
 
   return {
     changeFollowButtonStyle,
-    currentUserFollowings,
+    creating,
     currentUserName,
     currentUserId,
+    deleting,
+    error,
     followFunc,
+    loading,
     isFollowing,
-    isLoading,
     setChangeFollowButtonStyleToFalseFunc,
     setChangeFollowButtonStyleToTrueFunc,
-    setCurrentUserFollowings,
     unFollowFunc,
   };
 };

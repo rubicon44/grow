@@ -20,6 +20,8 @@ export const UserFollowings = ({ currentUserId, followings, username }) => {
 };
 
 const NoUserFollowings = styled.div`
+  height: 70px;
+  width: 200px;
   margin-top: 15px;
   text-align: left;
 `;
@@ -28,7 +30,8 @@ const UserListItem = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  min-width: 180px;
+  height: 70px;
+  width: 200px;
   margin-top: 15px;
   border-bottom: 1px solid #ddd;
   text-align: left;
