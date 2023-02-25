@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useCurrentUserId } from 'hooks/useCurrentUserId';
 import { useGetErrorMessage } from 'hooks/useGetErrorMessage';
 import { getFollowings } from 'infra/api';
 
 export const useFollowings = () => {
   const location = useLocation();
   const { username } = location.state;
-  const currentUserId = useCurrentUserId();
   const { getErrorMessage } = useGetErrorMessage();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -37,7 +35,6 @@ export const useFollowings = () => {
   }, [username]);
 
   return {
-    currentUserId,
     error,
     followings,
     loading,

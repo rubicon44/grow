@@ -88,5 +88,15 @@ export const useFollowAndUnFollow = () => {
     }
   }, [currentUserFollowings, followerId]);
 
-  return { changeFollowButtonStyle, currentUserId, followerId, followFunc, isFollowing, isLoading, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc };
+  return {
+    changeFollowButtonStyle,
+    currentUserId,
+    followerId,
+    followFunc,
+    isFollowing,
+    isLoading,
+    setChangeFollowButtonStyleToFalseFunc,
+    setChangeFollowButtonStyleToTrueFunc,
+    unFollowFunc
+  };
 };
