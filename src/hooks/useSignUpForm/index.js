@@ -1,13 +1,10 @@
 import { useContext, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from 'auth/AuthProvider';
 import { useGetErrorMessage } from 'hooks/useGetErrorMessage';
 
 export const useSignUpForm = () => {
   const navigateToTasks = useNavigate();
-  const location = useLocation();
-  const locationPathName = location.pathname.split('/');
-  const tasksText = locationPathName[locationPathName.length - 1];
   const { signup } = useContext(AuthContext);
   const { getErrorMessage } = useGetErrorMessage();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -17,14 +14,9 @@ export const useSignUpForm = () => {
     setIsButtonDisabled(true);
 
     try {
+      await navigateToTasks('/tasks');
       const { nickname, username, email, password } = e.target.elements;
       await signup(nickname.value, username.value, email.value, password.value);
-
-      if(tasksText === "tasks") {
-        window.location.reload();
-      } else {
-        await navigateToTasks('/tasks');
-      };
     } catch (error) {
       console.error(`ユーザーのサインアップ中にエラーが発生しました。: `, error);
       const verbForErrorMessage = `ユーザー`;

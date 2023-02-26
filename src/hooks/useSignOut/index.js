@@ -10,8 +10,8 @@ export const useSignOut = () => {
 
   const handleSignout = async () => {
     try {
-      await signout();
       await navigateToTop('/');
+      await signout();
     } catch (error) {
       console.error(`ユーザーのログアウト中にエラーが発生しました。: `, error);
       const verbForErrorMessage = `ユーザー`;
