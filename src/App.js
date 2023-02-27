@@ -9,8 +9,8 @@ import 'assets/styles/reset.css';
 import { mediaquery } from 'assets/styles/variable';
 // Context for auth
 import { auth } from 'infra/firebase';
-import { AuthProvider } from '../auth/AuthProvider';
-import { PrivateRoute } from '../auth/PrivateRoute';
+import { AuthProvider } from 'auth/AuthProvider';
+import { PrivateRoute } from 'auth/PrivateRoute';
 // Auth
 import { SignIn } from 'components/containers/pages/Auth/SignIn';
 import { SignUp } from 'components/containers/pages/Auth/SignUp';
