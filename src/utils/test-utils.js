@@ -1,6 +1,6 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import { AuthProvider } from '../auth/AuthProvider';
+import { AuthProvider } from 'auth/AuthProvider';
 
 const AllTheProviders = ({children}) => {
   return (
