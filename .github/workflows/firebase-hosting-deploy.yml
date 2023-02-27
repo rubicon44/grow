@@ -16,9 +16,7 @@ jobs:
       - name: Build
         env:
           NODE_PATH: src
-        run: |
-          npm run build
-          sed -i 's#"baseUrl": "./src"#"baseUrl": "."#g' build/static/js/*.js
+          run: GENERATE_SOURCEMAP=false npm run build
         env:
           REACT_APP_FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY }}
           REACT_APP_FIREBASE_AUTH_DOMAIN: ${{ secrets.REACT_APP_FIREBASE_AUTH_DOMAIN }}
