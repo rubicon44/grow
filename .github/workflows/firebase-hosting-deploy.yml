@@ -15,7 +15,7 @@ jobs:
         run: npm install --legacy-peer-deps
       - name: Build
         run: |
-          cp src/jsconfig.json build/
+          cp jsconfig.json build/
           cd build/
           GENERATE_SOURCEMAP=false npm run build
         env:
