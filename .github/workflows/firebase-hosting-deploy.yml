@@ -14,6 +14,8 @@ jobs:
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
       - name: Build
+        env:
+          NODE_PATH: src
         run: |
           npm run build
           sed -i 's#"baseUrl": "./src"#"baseUrl": "."#g' build/static/js/*.js
