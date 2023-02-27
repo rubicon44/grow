@@ -13,9 +13,8 @@ jobs:
         uses: actions/checkout@master
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
-      - name: Set up environment variables
-        run: |
-          export JS_CONFIG=$(cat jsconfig.json)
+      - name: Create jsconfig.json
+        run: echo '{"compilerOptions": {"baseUrl": "src"}, "include": ["src"]}' > jsconfig.json
       - name: Build
         run: npm run build
         env:
