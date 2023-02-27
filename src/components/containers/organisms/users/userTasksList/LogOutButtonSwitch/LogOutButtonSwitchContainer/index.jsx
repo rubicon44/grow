@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { AuthContext } from 'auth/AuthProvider';
+import { AuthContext } from '../auth/AuthProvider';
 import { useCurrentUserName } from 'hooks/useCurrentUserName';
 import { LogOutButtonSwitch } from 'components/containers/organisms/Users/UserTasksList/LogOutButtonSwitch';
 
