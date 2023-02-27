@@ -25,6 +25,7 @@ jobs:
           REACT_APP_FIREBASE_APP_ID: ${{ secrets.REACT_APP_FIREBASE_APP_ID }}
           REACT_APP_FIREBASE_MEASUREMENT_ID: ${{ secrets.REACT_APP_FIREBASE_MEASUREMENT_ID }}
           REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+          NODE_PATH: src/
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
