@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from 'auth/AuthProvider';
+import { AuthContext } from '../auth/AuthProvider';
 import { useGetErrorMessage } from 'hooks/useGetErrorMessage';
 
 export const useSignUpForm = () => {
