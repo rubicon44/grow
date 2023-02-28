@@ -1,4 +1,4 @@
-import { SearchListSwitch } from 'components/containers/organisms/Searches/SearchList/SearchListSwitch';
+import { SearchListSwitch } from '../SearchListSwitch';
 
 export const SearchListSwitchContainer = ({ error, loading, sortDescendingOrderTasks, sortDescendingOrderUsers }) => {
   if (error) return <>Error...</>;

@@ -1,4 +1,4 @@
-import { NotificationListWrapper } from 'components/containers/organisms/Notifications/NotificationList/NotificationListWrapper';
+import { NotificationListWrapper } from '../NotificationListWrapper';
 
 export const NotificationListWrapperContainer = ({ currentUserName, error, loading, notificationsData }) => {
 

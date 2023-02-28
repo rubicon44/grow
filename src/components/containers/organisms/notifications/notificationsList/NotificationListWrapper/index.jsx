@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NotificationList } from 'components/containers/organisms/Notifications/NotificationList';
+import { NotificationList } from './NotificationList';
 
 export const NotificationListWrapper = ({ currentUserName, notificationsData }) => {
   const { likeVisitors } = notificationsData;

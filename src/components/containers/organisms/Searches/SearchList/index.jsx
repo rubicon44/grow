@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { SearchForm } from 'components/containers/organisms/Searches/SearchForm';
-import { SearchListSwitchContainer } from 'components/containers/organisms/Searches/SearchList/SearchListSwitch/SearchListSwitchContainer';
-import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
+import { SearchForm } from './SearchForm';
+import { SearchListSwitchContainer } from './SearchListSwitchContainer';
+import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const SearchList = ({ error, handleSubmit, isButtonDisabled, loading, sortDescendingOrderTasks, sortDescendingOrderUsers }) => {
   return (

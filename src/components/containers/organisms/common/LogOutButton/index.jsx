@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Button } from 'components/presentational/atoms/Button';
+import { Button } from '../../../../presentational/atoms/Button/index';
 
 export const LogOutButton = ({ handleSignout, text }) => {
   return <DangerButton onClick={handleSignout}>{text}</DangerButton>;

@@ -1,6 +1,6 @@
-import { useCurrentUserName } from 'hooks/useCurrentUserName';
-import { useNotificationsData } from 'hooks/useNotificationsData';
-import { NotificationsList } from 'components/containers/organisms/Notifications/NotificationsList';
+import { useCurrentUserName } from '../../../../../hooks/useCurrentUserName';
+import { useNotificationsData } from '../../../../../hooks/useNotificationsData';
+import { NotificationsList } from '../NotificationsList';
 
 export const NotificationsListContainer = () => {
   const currentUserName = useCurrentUserName();

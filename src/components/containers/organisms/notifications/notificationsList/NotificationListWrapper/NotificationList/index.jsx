@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import styled from 'styled-components';
-import { FollowNotification } from 'components/containers/organisms/Notifications/NotificationList/FollowNotification';
-import { LikeNotification } from 'components/containers/organisms/Notifications/NotificationList/LikeNotification';
+import { FollowNotification } from './FollowNotification';
+import { LikeNotification } from './LikeNotification';
 
 export const NotificationList = ({ notificationsData, currentUserName }) => {
   const { notifications, visitors, likeVisitors } = notificationsData;

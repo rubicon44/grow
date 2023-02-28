@@ -1,7 +1,7 @@
 import { memo } from 'react';
-import { useCurrentUserId } from 'hooks/useCurrentUserId';
-import { useLike } from 'hooks/useLike';
-import { LikeOrUnLikeButtonSwitch } from 'components/containers/organisms/Likes/LikeOrUnLikeButtonSwitch';
+import { useCurrentUserId } from '../../../../../hooks/useCurrentUserId';
+import { useLike } from '../../../../../hooks/useLike';
+import { LikeOrUnLikeButtonSwitch } from '../LikeOrUnLikeButtonSwitch';
 
 export const LikeOrUnLikeButtonSwitchContainer = memo(({ taskId }) => {
   const currentUserId = useCurrentUserId();
