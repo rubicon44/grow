@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGetErrorMessage } from 'hooks/useGetErrorMessage';
-import { deleteTask } from 'infra/api';
+import { useGetErrorMessage } from '../useGetErrorMessage';
+import { deleteTask } from '../../infra/api';
 
 export const useTaskDelete = (taskData) => {
   const { id: taskId } = taskData.task;

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useCurrentUserId } from 'hooks/useCurrentUserId';
-import { useCurrentUserName } from 'hooks/useCurrentUserName';
-import { useGetErrorMessage } from 'hooks/useGetErrorMessage';
-import { deleteRelationships, getFollowings, postRelationships } from 'infra/api';
+import { useCurrentUserId } from '../useCurrentUserId';
+import { useCurrentUserName } from '../useCurrentUserName';
+import { useGetErrorMessage } from '../useGetErrorMessage';
+import { deleteRelationships, getFollowings, postRelationships } from '../../infra/api';
 
 export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
   const currentUserId = useCurrentUserId();

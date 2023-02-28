@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useGetErrorMessage } from 'hooks/useGetErrorMessage';
-import { useSortDescendingOrder } from 'hooks/useSortDescendingOrder';
-import { useUserNameInUrl } from 'hooks/useUserNameInUrl';
-import { getUser } from 'infra/api';
+import { useGetErrorMessage } from '../useGetErrorMessage';
+import { useSortDescendingOrder } from '../useSortDescendingOrder';
+import { useUserNameInUrl } from '../useUserNameInUrl';
+import { getUser } from '../../infra/api';
 
 export const useUserData = () => {
   const { userNameInUrl } = useUserNameInUrl();

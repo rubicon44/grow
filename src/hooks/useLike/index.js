@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useCurrentUserId } from 'hooks/useCurrentUserId';
-import { deleteLike, getLikes, postLikes } from 'infra/api';
+import { useCurrentUserId } from '../useCurrentUserId';
+import { deleteLike, getLikes, postLikes } from '../../infra/api';
 
 export const useLike = (taskId) => {
   const currentUserId = useCurrentUserId();

@@ -1,8 +1,8 @@
 import { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from 'auth/AuthProvider';
-import { useGetErrorMessage } from 'hooks/useGetErrorMessage';
-import { updateUser } from 'infra/api';
+import { AuthContext } from '../../auth/AuthProvider';
+import { useGetErrorMessage } from '../useGetErrorMessage';
+import { updateUser } from '../../infra/api';
 
 // todo: Keep the following code within 100 lines later.
 export const useUserEdit = (setCheckUserNameChange, setUserData, userData) => {

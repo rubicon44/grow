@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGetErrorMessage } from 'hooks/useGetErrorMessage';
-import { currentUid } from 'infra/firebase';
-import { postTasks } from 'infra/api';
+import { useGetErrorMessage } from '../useGetErrorMessage';
+import { currentUid } from '../../infra/firebase';
+import { postTasks } from '../../infra/api';
 
 export const useTaskCreate = () => {
   const navigateToTasks = useNavigate();

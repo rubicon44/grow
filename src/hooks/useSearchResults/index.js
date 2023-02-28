@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { getSearches } from 'infra/api';
+import { getSearches } from '../../infra/api';
 
 export const useSearchResults = () => {
   const [error, setError] = useState(null);

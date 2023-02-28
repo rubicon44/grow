@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useGetErrorMessage } from 'hooks/useGetErrorMessage';
-import { getFollowers } from 'infra/api';
+import { useGetErrorMessage } from '../useGetErrorMessage';
+import { getFollowers } from '../../infra/api';
 
 export const useFollowers = () => {
   const location = useLocation();

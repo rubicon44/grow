@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useTaskBars } from 'hooks/useTaskBars';
+import { useTaskBars } from '../useTaskBars';
 
 export const useGanttChart = (userTasks) => {
   const { calenders, currentPositionNumber, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, preCurrentPositionNumber, setCurrentPositionNumber, setPreCurrentPositionNumber, styles } = useTaskBars(userTasks);
