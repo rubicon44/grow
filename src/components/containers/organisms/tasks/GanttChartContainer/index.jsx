@@ -1,5 +1,5 @@
-import { useGanttChart } from 'hooks/useGanttChart';
-import { GanttChart } from 'components/containers/organisms/Tasks/GanttChart';
+import { useGanttChart } from '../../../../../hooks/useGanttChart';
+import { GanttChart } from '../GanttChart';
 
 export const GanttChartContainer = (props) => {
   const { taskUser, userTasks } = props;

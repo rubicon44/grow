@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TaskStatusSwitchText } from 'components/containers/organisms/Tasks/GanttChart/TaskStatusSwitchText';
+import { TaskStatusSwitchText } from '../../TaskStatusSwitchText';
 
 export const GanttChartTaskTable = ({ elm, taskUser, userTasks }) => {
   return (

@@ -1,9 +1,9 @@
-import { useCurrentUserId } from 'hooks/useCurrentUserId';
-import { useMoveToEditTask } from 'hooks/useMoveToEditTask';
-import { useShowPopup } from 'hooks/useShowPopup';
-import { useTaskData } from 'hooks/useTaskData';
-import { useTaskDelete } from 'hooks/useTaskDelete';
-import { TaskList } from 'components/containers/organisms/Tasks/TaskList';
+import { useCurrentUserId } from '../../../../../hooks/useCurrentUserId';
+import { useMoveToEditTask } from '../../../../../hooks/useMoveToEditTask';
+import { useShowPopup } from '../../../../../hooks/useShowPopup';
+import { useTaskData } from '../../../../../hooks/useTaskData';
+import { useTaskDelete } from '../../../../../hooks/useTaskDelete';
+import { TaskList } from '../TaskList';
 
 export const TaskListContainer = () => {
   const { showPopup } = useShowPopup();

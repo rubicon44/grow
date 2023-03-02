@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { LikeOrUnLikeButtonSwitchContainer } from 'components/containers/organisms/Likes/LikeOrUnLikeButtonSwitch/LikeOrUnLikeButtonSwitchContainer';
-import { TaskStatusSwitch } from 'components/containers/organisms/Tasks/logic/TaskStatusSwitch';
-import { List } from 'components/presentational/molecules/List';
-import { NextButtonLink } from 'components/presentational/atoms/Link/NextButtonLink';
-import { Popup } from 'components/presentational/atoms/Popup';
-import { Title } from 'components/presentational/atoms/Title';
+import { LikeOrUnLikeButtonSwitchContainer } from '../../Likes/LikeOrUnLikeButtonSwitchContainer';
+import { TaskStatusSwitch } from '../logic/TaskStatusSwitch';
+import { List } from '../../../../presentational/molecules/List';
+import { NextButtonLink } from '../../../../presentational/atoms/Link/NextButtonLink';
+import { Popup } from '../../../../presentational/atoms/Popup';
+import { Title } from '../../../../presentational/atoms/Title';
 
 export const TasksList = ({ currentUserId, showPopup, tasks }) => {
   return (

@@ -1,5 +1,5 @@
-import { useTaskEdit } from 'hooks/useTaskEdit';
-import { TaskEditForm } from 'components/containers/organisms/Tasks/TaskForm/TaskEditForm';
+import { useTaskEdit } from '../../../../../../hooks/useTaskEdit';
+import { TaskEditForm } from '../TaskEditForm';
 
 export const TaskEditFormContainer = ({ taskDataTask }) => {
   const { editing, handleTextSubmit, inputRefs, isButtonDisabled, taskData } = useTaskEdit(taskDataTask);

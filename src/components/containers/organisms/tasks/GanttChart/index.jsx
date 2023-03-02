@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { GanttChartContent } from 'components/containers/organisms/Tasks/GanttChart/GanttChartContent';
-import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
+import { GanttChartContent } from './GanttChartContent';
+import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const GanttChart = (props) => {
   const { calenderBodyHeight, calenders, elm, elmOfCalenderTableCover, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, handleScrollToCurrentDate, styles } = props;
