@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import styled from 'styled-components';
-import { BackArrow } from 'components/presentational/atoms/Arrow/BackArrow';
-import { Title } from 'components/presentational/atoms/Title';
+import { BackArrow } from '../../../atoms/Arrow/BackArrow';
+import { Title } from '../../../atoms/Title';
 
 export const TitleWithBackArrowHeader = memo(({ children }) => {
   return (
