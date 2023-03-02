@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { FollowButtonSwitchContainer } from 'components/containers/organisms/Users/UserButton/FollowButtonSwitch/FollowButtonSwitchContainer';
-import { ProfileChangeContainer } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader/ProfileChange/ProfileChangeContainer';
-import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
+import { FollowButtonSwitchContainer } from '../../UserButton/FollowButtonSwitchContainer';
+import { ProfileChangeContainer } from './ProfileChangeContainer';
+import { TitleWithBackArrowHeader } from '../../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const UserTasksContentHeader = (props) => {
   const { currentUserId } = props;

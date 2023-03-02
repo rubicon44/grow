@@ -1,4 +1,4 @@
-import { currentUser } from 'infra/currentUser';
+import { currentUser } from '../../infra/currentUser';
 
 export const useCurrentUserId = () => {
   const user = localStorage.getItem('user');

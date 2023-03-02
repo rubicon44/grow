@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
 import styled from 'styled-components';
-import { CalenderTableBodyColorSwitch } from 'components/containers/organisms/Tasks/GanttChart/CalenderTableBodyColorSwitch';
-import { CalenderTableBodyColorSwitchForTBody } from 'components/containers/organisms/Tasks/GanttChart/CalenderTableBodyColorSwitchForTBody';
-import { GunttChartTaskBar } from 'components/containers/organisms/Tasks/GanttChart/GanttChartContent/GanttChartCalenderTableWithTaskBar/GunttChartTaskBar';
+import { CalenderTableBodyColorSwitch } from '../../CalenderTableBodyColorSwitch';
+import { CalenderTableBodyColorSwitchForTBody } from '../../CalenderTableBodyColorSwitchForTBody';
+import { GunttChartTaskBar } from './GunttChartTaskBar';
 
 export const GanttChartCalenderTableWithTaskBar = ({ calenderBodyHeight, calenders, styles }) => {
   return (

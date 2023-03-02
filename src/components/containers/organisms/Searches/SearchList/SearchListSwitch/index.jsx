@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { SearchTasksList } from 'components/containers/organisms/Searches/SearchList/SearchListSwitch/SearchTasksList';
-import { SearchUsersList } from 'components/containers/organisms/Searches/SearchList/SearchListSwitch/SearchUsersList';
+import { SearchTasksList } from './SearchTasksList';
+import { SearchUsersList } from './SearchUsersList';
 
 export const SearchListSwitch = ({ sortDescendingOrderUsers, sortDescendingOrderTasks }) => {
   return (

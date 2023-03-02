@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from 'auth/AuthProvider';
-import { useGetErrorMessage } from 'hooks/useGetErrorMessage';
+import { AuthContext } from '../../auth/AuthProvider';
+import { useGetErrorMessage } from '../useGetErrorMessage';
 
 export const useSignUpForm = () => {
   const navigateToTasks = useNavigate();

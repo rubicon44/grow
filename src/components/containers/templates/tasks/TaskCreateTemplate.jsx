@@ -1,5 +1,5 @@
-import { MainWithHeader } from 'components/containers/templates/MainWithHeader';
-import { TaskCreateFormContainer } from 'components/containers/organisms/Tasks/TaskForm/TaskCreateForm/TaskCreateFormContainer';
+import { MainWithHeader } from '../MainWithHeader';
+import { TaskCreateFormContainer } from '../../organisms/Tasks/TaskForm/TaskCreateFormContainer';
 
 export const TaskCreateTemplate = () => {
   return (

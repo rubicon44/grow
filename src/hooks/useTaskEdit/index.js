@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCurrentUserName } from 'hooks/useCurrentUserName';
-import { useGetErrorMessage } from 'hooks/useGetErrorMessage';
-import { updateTask } from 'infra/api';
+import { useCurrentUserName } from '../useCurrentUserName';
+import { useGetErrorMessage } from '../useGetErrorMessage';
+import { updateTask } from '../../infra/api';
 
 export const useTaskEdit = (taskDataTask) => {
   const navigateToUserTask = useNavigate();

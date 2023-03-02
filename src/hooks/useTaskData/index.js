@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useCurrentTaskId } from 'hooks/useCurrentTaskId';
-import { useGetErrorMessage } from 'hooks/useGetErrorMessage';
-import { getTask } from 'infra/api';
+import { useCurrentTaskId } from '../useCurrentTaskId';
+import { useGetErrorMessage } from '../useGetErrorMessage';
+import { getTask } from '../../infra/api';
 
 export const useTaskData = () => {
   const currentTaskId = useCurrentTaskId();

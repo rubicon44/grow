@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useCurrentUserName } from 'hooks/useCurrentUserName';
+import { useCurrentUserName } from '../useCurrentUserName';
 
 export const useHeader = () => {
   const currentUserName = useCurrentUserName();

@@ -5,32 +5,32 @@ import { signOut } from 'firebase/auth';
 import jwtDecode from 'jwt-decode';
 import { QueryClient, QueryClientProvider } from 'react-query';
 // Style
-import 'assets/styles/reset.css';
-import { mediaquery } from 'assets/styles/variable';
+import './assets/styles/reset.css';
+import { mediaquery } from './assets/styles/variable';
 // Context for auth
-import { auth } from 'infra/firebase';
-import { AuthProvider } from 'auth/AuthProvider';
-import { PrivateRoute } from 'auth/PrivateRoute';
+import { auth } from './infra/firebase';
+import { AuthProvider } from './auth/AuthProvider';
+import { PrivateRoute } from './auth/PrivateRoute';
 // Auth
-import { SignIn } from 'components/containers/pages/Auth/SignIn';
-import { SignUp } from 'components/containers/pages/Auth/SignUp';
+import { SignIn } from './components/containers/pages/Auth/SignIn';
+import { SignUp } from './components/containers/pages/Auth/SignUp';
 // Static pages
-import { NotFound } from 'components/containers/pages/StaticPages/NotFound';
-import { Top } from 'components/containers/pages/StaticPages/Top';
+import { NotFound } from './components/containers/pages/StaticPages/NotFound';
+import { Top } from './components/containers/pages/StaticPages/Top';
 // Tasks
-import { Tasks } from 'components/containers/pages/Tasks';
-import { TaskCreate } from 'components/containers/pages/Tasks/TaskCreate';
-import { TaskEdit } from 'components/containers/pages/Tasks/TaskEdit';
-import { TaskShow } from 'components/containers/pages/Tasks/TaskShow';
+import { Tasks } from './components/containers/pages/Tasks';
+import { TaskCreate } from './components/containers/pages/Tasks/TaskCreate';
+import { TaskEdit } from './components/containers/pages/Tasks/TaskEdit';
+import { TaskShow } from './components/containers/pages/Tasks/TaskShow';
 // Users
-import { UserGantt } from 'components/containers/pages/Users/UserGantt';
-import { UserFollowings } from 'components/containers/pages/Users/UserFollowings';
-import { UserFollowers } from 'components/containers/pages/Users/UserFollowers';
-import { UserShow } from 'components/containers/pages/Users/UserShow';
+import { UserGantt } from './components/containers/pages/Users/UserGantt';
+import { UserFollowings } from './components/containers/pages/Users/UserFollowings';
+import { UserFollowers } from './components/containers/pages/Users/UserFollowers';
+import { UserShow } from './components/containers/pages/Users/UserShow';
 // Notifications
-import { Notifications } from 'components/containers/pages/Notifications';
+import { Notifications } from './components/containers/pages/Notifications';
 // Searches
-import { Searches } from 'components/containers/pages/Searches';
+import { Searches } from './components/containers/pages/Searches';
 
 const queryClient = new QueryClient();
 // const queryClient = new QueryClient({

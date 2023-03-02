@@ -1,5 +1,5 @@
-import { MainWithHeader } from 'components/containers/templates/MainWithHeader';
-import { UserFollowingsListContainer } from 'components/containers/organisms/Users/UserFollowingsListContainer';
+import { MainWithHeader } from '../MainWithHeader';
+import { UserFollowingsListContainer } from '../../organisms/Users/UserFollowingsListContainer';
 
 export const UserFollowingsTemplate = () => {
   return (

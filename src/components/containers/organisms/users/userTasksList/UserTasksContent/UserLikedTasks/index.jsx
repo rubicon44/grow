@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { UserTasksAlreadyLikeList } from 'components/containers/organisms/Users/UserTasksList/UserTasksContent/UserTasksAlreadyLikeList';
-import { UserTasksNoLikeList } from 'components/containers/organisms/Users/UserTasksList/UserTasksContent/UserTasksNoLikeList';
+import { UserTasksAlreadyLikeList } from '../UserTasksAlreadyLikeList';
+import { UserTasksNoLikeList } from '../UserTasksNoLikeList';
 
 export const UserLikedTasks = ({ userData }) => {
   return (

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useCurrentUserId } from 'hooks/useCurrentUserId';
-import { useGetErrorMessage } from 'hooks/useGetErrorMessage';
-import { getNotifications } from 'infra/api';
+import { useCurrentUserId } from '../useCurrentUserId';
+import { useGetErrorMessage } from '../useGetErrorMessage';
+import { getNotifications } from '../../infra/api';
 
 export const useNotificationsData = () => {
   const currentUserId = useCurrentUserId();

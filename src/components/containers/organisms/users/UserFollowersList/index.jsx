@@ -1,5 +1,5 @@
-import { UserFollowersContainer } from 'components/containers/organisms/Users/UserFollowersList/UserFollowersContainer';
-import { TitleWithBackArrowHeader } from 'components/presentational/molecules/Header/TitleWithBackArrowHeader';
+import { UserFollowersContainer } from './UserFollowersContainer';
+import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const UserFollowersList = ({ currentUserId, error, followers, loading, username }) => {
   return (

@@ -1,5 +1,5 @@
-import { LikeButton } from 'components/containers/organisms/Likes/LikeButton';
-import { UnLikeButton } from 'components/containers/organisms/Likes/LikeButton/UnLikeButton';
+import { LikeButton } from './LikeButton';
+import { UnLikeButton } from './UnLikeButton';
 
 export const LikeOrUnLikeButtonSwitch = ({ currentUserId, currentTaskId, handleClickLikeDelete, handleClickLikePost, likeData, taskId }) => {
   return (

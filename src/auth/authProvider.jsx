@@ -6,8 +6,8 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import axios from 'axios';
-import { auth } from 'infra/firebase';
-import { signUp, signIn } from 'infra/api';
+import { auth } from '../infra/firebase';
+import { signUp, signIn } from '../infra/api';
 
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {

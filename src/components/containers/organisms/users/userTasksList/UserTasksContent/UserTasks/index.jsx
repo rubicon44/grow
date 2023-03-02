@@ -1,5 +1,5 @@
-import { UserTasksAlreadyPostList } from 'components/containers/organisms/Users/UserTasksList/UserTasksContent/UserTasksAlreadyPostList';
-import { UserTasksNoPostList } from 'components/containers/organisms/Users/UserTasksList/UserTasksContent/UserTasksNoPostList';
+import { UserTasksAlreadyPostList } from '../UserTasksAlreadyPostList';
+import { UserTasksNoPostList } from '../UserTasksNoPostList';
 
 export const UserTasks = ({ userData }) => {
   return (

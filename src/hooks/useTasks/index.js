@@ -1,6 +1,6 @@
-import { useGetErrorMessage } from 'hooks/useGetErrorMessage';
-import { getTasks } from 'infra/api';
-import { useApiQuery } from 'infra/api/hooks/useApiQuery';
+import { useGetErrorMessage } from '../useGetErrorMessage';
+import { getTasks } from '../../infra/api';
+import { useApiQuery } from '../../infra/api/hooks/useApiQuery';
 
 export const useTasks = () => {
   const { data, error, loading } = useApiQuery('tasks', getTasks);

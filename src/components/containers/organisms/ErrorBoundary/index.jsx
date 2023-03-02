@@ -1,5 +1,5 @@
 import React from 'react';
-import { NextButtonLink } from 'components/presentational/atoms/Link/NextButtonLink';
+import { NextButtonLink } from '../../../presentational/atoms/Link/NextButtonLink';
 
 export class ErrorBoundary extends React.Component {
   constructor(props) {

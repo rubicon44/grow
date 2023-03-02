@@ -1,4 +1,4 @@
-import { UserFollowingsTemplate } from 'components/containers/templates/Users/UserFollowingsTemplate';
+import { UserFollowingsTemplate } from '../../templates/Users/UserFollowingsTemplate';
 
 export const UserFollowings = () => {
   return <UserFollowingsTemplate />;

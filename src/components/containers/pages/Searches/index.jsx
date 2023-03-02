@@ -1,4 +1,4 @@
-import { SearchTemplate } from 'components/containers/templates/Searches/SearchTemplate';
+import { SearchTemplate } from '../../templates/Searches/SearchTemplate';
 
 export const Searches = () => {
   return <SearchTemplate />;
