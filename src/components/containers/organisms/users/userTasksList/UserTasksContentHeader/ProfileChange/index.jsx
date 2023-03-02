@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { ProfileChangeLink } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader/ProfileChange/ProfileChangeLink';
-import { ProfileChangeForm } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader/ProfileChange/ProfileChangeForm';
+import { ProfileChangeLink } from './ProfileChangeLink';
+import { ProfileChangeForm } from './ProfileChangeForm';
 
 export const ProfileChange = (props) => {
   const { currentUserId } = props;

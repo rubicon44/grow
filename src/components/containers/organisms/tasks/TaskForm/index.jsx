@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { FormInput } from 'components/presentational/atoms/Input/FormInput';
-import { FormSubmitButton } from 'components/presentational/atoms/Button/FormSubmitButton';
-import { FormTextArea } from 'components/presentational/atoms/TextArea/FormTextArea';
-import { TaskFormSelect } from 'components/containers/organisms/Tasks/TaskForm/ui/TaskFormSelect';
+import { FormInput } from '../../../../presentational/atoms/Input/FormInput';
+import { FormSubmitButton } from '../../../../presentational/atoms/Button/FormSubmitButton';
+import { FormTextArea } from '../../../../presentational/atoms/TextArea/FormTextArea';
+import { TaskFormSelect } from './ui/TaskFormSelect';
 
 export const TaskForm = ({ handleTextSubmit, inputRefs, isButtonDisabled, taskData }) => {
   const { title, content, status, startDate, endDate } = taskData.task;

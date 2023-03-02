@@ -1,8 +1,8 @@
-import { LogOutButtonSwitchContainer } from 'components/containers/organisms/Users/UserTasksList/LogOutButtonSwitch/LogOutButtonSwitchContainer';
-import { UserTasksCheckReLoginWhenChangedUserId } from 'components/containers/organisms/Users/UserTasksList/UserTasksCheckReLoginWhenChangedUserId';
-import { UserTasksContent } from 'components/containers/organisms/Users/UserTasksList/UserTasksContent';
-import { UserTasksContentHeader } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader';
-import { Popup } from 'components/presentational/atoms/Popup';
+import { LogOutButtonSwitchContainer } from './LogOutButtonSwitchContainer';
+import { UserTasksCheckReLoginWhenChangedUserId } from './UserTasksCheckReLoginWhenChangedUserId';
+import { UserTasksContent } from './UserTasksContent';
+import { UserTasksContentHeader } from './UserTasksContentHeader';
+import { Popup } from '../../../../presentational/atoms/Popup';
 
 export const UserTasksList = (props) => {
   const { currentUserId } = props;

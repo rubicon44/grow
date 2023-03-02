@@ -1,26 +1,27 @@
 import styled from 'styled-components';
-import { useFollowAndUnFollow } from 'hooks/useFollowAndUnFollow';
-import { FollowButtonForUsersListSwitch } from 'components/containers/organisms/Users/UserButton/FollowButtonForUsersListSwitch';
+import { useFollowAndUnFollow } from '../../../../../../hooks/useFollowAndUnFollow';
+import { useUserData } from '../../../../../../hooks/useUserData';
+import { FollowButtonSwitch } from '../FollowButtonSwitch';
 
-export const FollowButtonForUsersListSwitchContainer = ({ userIdToFollowOrUnFollow, username }) => {
-  const { changeFollowButtonStyle, creating, currentUserId, currentUserName, deleting, error, followFunc, loading, isFollowing, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc } = useFollowAndUnFollow(userIdToFollowOrUnFollow);
+export const FollowButtonSwitchContainer = () => {
+  const { userData } = useUserData();
+  const userIdToFollowOrUnFollow = userData.userId;
+  const { changeFollowButtonStyle, creating, currentUserId, deleting, error, followFunc, loading, isFollowing, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc } = useFollowAndUnFollow(userIdToFollowOrUnFollow);
 
   if (error) return <>Error...</>;
   if (creating) return <WaitingButton>Creating...</WaitingButton>;
   if (deleting) return <WaitingButton>Deleting...</WaitingButton>;
   if (loading) return <WaitingButton>Loading...</WaitingButton>;
   return (
-    <FollowButtonForUsersListSwitch
+    <FollowButtonSwitch
       changeFollowButtonStyle={changeFollowButtonStyle}
       currentUserId={currentUserId}
-      currentUserName={currentUserName}
       followFunc={followFunc}
       isFollowing={isFollowing}
       setChangeFollowButtonStyleToFalseFunc={setChangeFollowButtonStyleToFalseFunc}
       setChangeFollowButtonStyleToTrueFunc={setChangeFollowButtonStyleToTrueFunc}
       unFollowFunc={unFollowFunc}
       userIdToFollowOrUnFollow={userIdToFollowOrUnFollow}
-      username={username}
     />
   );
 };

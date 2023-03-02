@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { LogOutButtonContainer } from 'components/containers/organisms/Common/LogOutButton/LogOutButtonContainer';
+import { LogOutButtonContainer } from '../../../Common/LogOutButtonContainer';
 
 export const LogOutButtonSwitch = ({ currentUserAuth, currentUserName, userNameInUrl }) => {
   return (

@@ -1,4 +1,4 @@
-import { ProfileChange } from 'components/containers/organisms/Users/UserTasksList/UserTasksContentHeader/ProfileChange';
+import { ProfileChange } from '../ProfileChange';
 
 export const ProfileChangeContainer = (props) => {
   const { editing, error, loading } = props;

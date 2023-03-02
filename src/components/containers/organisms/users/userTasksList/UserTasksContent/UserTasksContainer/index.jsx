@@ -1,4 +1,4 @@
-import { UserTasks } from 'components/containers/organisms/Users/UserTasksList/UserTasksContent/UserTasks';
+import { UserTasks } from '../UserTasks';
 
 export const UserTasksContainer = ({ error, loading, userData }) => {
   if (error) return <>Error...</>;

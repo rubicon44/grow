@@ -1,4 +1,4 @@
-import { UserFollowers } from 'components/containers/organisms/Users/UserFollowersList/UserFollowers';
+import { UserFollowers } from '../UserFollowers';
 
 export const UserFollowersContainer = ({ currentUserId, error, followers, loading, username }) => {
   if (error) return <>Error...</>;

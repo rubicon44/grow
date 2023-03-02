@@ -1,6 +1,6 @@
-import { useCurrentUserId } from 'hooks/useCurrentUserId';
-import { UserFollowingsList } from 'components/containers/organisms/Users/UserFollowingsList';
-import { useFollowings } from 'hooks/useFollowings';
+import { useCurrentUserId } from '../../../../../hooks/useCurrentUserId';
+import { useFollowings } from '../../../../../hooks/useFollowings';
+import { UserFollowingsList } from '../UserFollowingsList';
 
 export const UserFollowingsListContainer = () => {
   const currentUserId = useCurrentUserId();

@@ -1,11 +1,11 @@
-import { useCurrentUserId } from 'hooks/useCurrentUserId';
-import { useMoveToFollowers } from 'hooks/useMoveToFollowers';
-import { useMoveToFollowings } from 'hooks/useMoveToFollowings';
-import { useMoveToGanttChart } from 'hooks/useMoveToGanttChart';
-import { useShowPopup } from 'hooks/useShowPopup';
-import { useUserData } from 'hooks/useUserData';
-import { useUserEdit } from 'hooks/useUserEdit';
-import { UserTasksList } from 'components/containers/organisms/Users/UserTasksList';
+import { useCurrentUserId } from '../../../../../hooks/useCurrentUserId';
+import { useMoveToFollowers } from '../../../../../hooks/useMoveToFollowers';
+import { useMoveToFollowings } from '../../../../../hooks/useMoveToFollowings';
+import { useMoveToGanttChart } from '../../../../../hooks/useMoveToGanttChart';
+import { useShowPopup } from '../../../../../hooks/useShowPopup';
+import { useUserData } from '../../../../../hooks/useUserData';
+import { useUserEdit } from '../../../../../hooks/useUserEdit';
+import { UserTasksList } from '../UserTasksList';
 
 export const UserTasksListContainer = () => {
   const { showPopup } = useShowPopup();

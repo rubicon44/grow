@@ -1,5 +1,5 @@
-import { FollowButton } from 'components/containers/organisms/Users/UserButton/FollowButton';
-import { FollowingOrUnFollowButtonSwitch } from 'components/containers/organisms/Users/UserButton/FollowingOrUnFollowButtonSwitch';
+import { FollowButton } from '../../FollowButton';
+import { FollowingOrUnFollowButtonSwitch } from '../../FollowingOrUnFollowButtonSwitch';
 
 export const FollowOrFollowingOrUnFollowButtonSwitch = (props) => {
   const { changeFollowButtonStyle, followFunc, isFollowing, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc } = props;
