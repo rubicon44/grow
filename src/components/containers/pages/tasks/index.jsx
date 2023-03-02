@@ -1,5 +1,5 @@
-import { ErrorBoundary } from 'components/containers/organisms/ErrorBoundary';
-import { TasksTemplate } from 'components/containers/templates/Tasks/TasksTemplate';
+import { ErrorBoundary } from '../../organisms/ErrorBoundary';
+import { TasksTemplate } from '../../templates/Tasks/TasksTemplate';
 
 export const Tasks = () => {
   return (

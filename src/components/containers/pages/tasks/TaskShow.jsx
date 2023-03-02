@@ -1,5 +1,5 @@
-import { ErrorBoundary } from 'components/containers/organisms/ErrorBoundary';
-import { TaskShowTemplate } from 'components/containers/templates/Tasks/TaskShowTemplate';
+import { ErrorBoundary } from '../../organisms/ErrorBoundary';
+import { TaskShowTemplate } from '../../templates/Tasks/TaskShowTemplate';
 
 export const TaskShow = () => {
   return (
