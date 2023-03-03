@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
 
 export const BackArrow = () => {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ export const BackArrow = () => {
 
   return (
     <BackArrowCover>
-      <ArrowBackIosIcon onClick={handleBackArrowClick} />
+      <ArrowBackIosOutlinedIcon onClick={handleBackArrowClick} />
     </BackArrowCover>
   );
 };
