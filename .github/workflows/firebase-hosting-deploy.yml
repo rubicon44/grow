@@ -5,12 +5,24 @@ on:
       - master
 
 jobs:
-  build:
-    name: Build
+  job-1:
+    name: Run job1
     runs-on: ubuntu-latest
     steps:
-    - uses: vishnudxb/cancel-workflow@v1.2
-      with:
-        repo: octocat/hello-world
-        workflow_id: ${{ github.run_id }}
-        access_token: ${{ github.token }}
+    - name: Cancel workflow
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        # GitHub API endpoint for cancelling a workflow run
+        api_endpoint="https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/cancel"
+
+        # Send a POST request to the API endpoint to cancel the workflow run
+        response=$(curl -X POST -sSL -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" $api_endpoint)
+
+        # Check the response status code to ensure that the workflow run was cancelled
+        status=$(echo $response | jq -r .status)
+        if [[ $status != "queued" && $status != "in_progress" ]]; then
+          echo "Failed to cancel the workflow run."
+          echo $response | jq .
+          exit 1
+        fi
