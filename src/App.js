@@ -18,7 +18,7 @@ import { SignUp } from './components/containers/pages/Auth/SignUp';
 import { NotFound } from './components/containers/pages/StaticPages/NotFound';
 import { Top } from './components/containers/pages/StaticPages/Top';
 // Tasks
-import { Tasks } from './components/containers/pages/Tasks';
+import { Tasks } from './components/containers/pages/Tasks/index';
 import { TaskCreate } from './components/containers/pages/Tasks/TaskCreate';
 import { TaskEdit } from './components/containers/pages/Tasks/TaskEdit';
 import { TaskShow } from './components/containers/pages/Tasks/TaskShow';
