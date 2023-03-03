@@ -11,12 +11,16 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
+      - name: Remove Dependencies
+        run: |
+          rm -rf node_modules
+          rm -f yarn.lock
+          yarn cache clean
       - name: Install Dependencies
         run: yarn install
       - name: Build
         run: yarn build
         env:
-          NODE_PATH: ./src
           REACT_APP_FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY }}
           REACT_APP_FIREBASE_AUTH_DOMAIN: ${{ secrets.REACT_APP_FIREBASE_AUTH_DOMAIN }}
           REACT_APP_FIREBASE_DATABASE_URL: ${{ secrets.REACT_APP_FIREBASE_DATABASE_URL }}
