@@ -1,4 +1,3 @@
-# Test
 name: Build and Deploy
 on:
   push:
