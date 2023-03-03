@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { mediaquery } from '../../../../../../assets/styles/variable';
 import { GanttChartCalenderTableWithTaskBar } from '../GanttChartContent/GanttChartCalenderTableWithTaskBar';
 import { GanttChartTaskTable } from '../GanttChartContent/GanttChartTaskTable';
@@ -12,7 +12,7 @@ export const GanttChartContent = (props) => {
     <>
       <button onClick={handleScrollToCurrentDate}>今日の日付に移動</button>
       <ArrowIconsCover>
-        <ArrowBackIosIcon onClick={handleBackToPreviousMonthClick}>前月へ</ArrowBackIosIcon>
+        <ArrowBackIosOutlinedIcon onClick={handleBackToPreviousMonthClick}>前月へ</ArrowBackIosOutlinedIcon>
         <ArrowForwardIosIcon onClick={handleForwardToNextMonthClick}>次月へ</ArrowForwardIosIcon>
       </ArrowIconsCover>
       <GanttChartTaskAndCalenderTables id="outer">
