@@ -12,13 +12,13 @@ import { auth } from './infra/firebase';
 import { AuthProvider } from './auth/AuthProvider';
 import { PrivateRoute } from './auth/PrivateRoute';
 // Auth
-import { SignIn } from './components/containers/pages/Auth/SignIn/index';
-import { SignUp } from './components/containers/pages/Auth/SignUp/index';
+import { SignIn } from './components/containers/pages/Auth/SignIn/index.jsx';
+import { SignUp } from './components/containers/pages/Auth/SignUp/index.jsx';
 // Static pages
-import { NotFound } from './components/containers/pages/StaticPages/NotFound/index';
-import { Top } from './components/containers/pages/StaticPages/Top/index';
+import { NotFound } from './components/containers/pages/StaticPages/NotFound/index.jsx';
+import { Top } from './components/containers/pages/StaticPages/Top/index.jsx';
 // Tasks
-import { Tasks } from './components/containers/pages/Tasks/index';
+import { Tasks } from './components/containers/pages/Tasks/index.jsx';
 import { TaskCreate } from './components/containers/pages/Tasks/TaskCreate';
 import { TaskEdit } from './components/containers/pages/Tasks/TaskEdit';
 import { TaskShow } from './components/containers/pages/Tasks/TaskShow';
@@ -28,9 +28,9 @@ import { UserFollowings } from './components/containers/pages/Users/UserFollowin
 import { UserFollowers } from './components/containers/pages/Users/UserFollowers';
 import { UserShow } from './components/containers/pages/Users/UserShow';
 // Notifications
-import { Notifications } from './components/containers/pages/Notifications/index';
+import { Notifications } from './components/containers/pages/Notifications/index.jsx';
 // Searches
-import { Searches } from './components/containers/pages/Searches/index';
+import { Searches } from './components/containers/pages/Searches/index.jsx';
 
 const queryClient = new QueryClient();
 // const queryClient = new QueryClient({
