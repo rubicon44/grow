@@ -12,11 +12,11 @@ import { auth } from './infra/firebase';
 import { AuthProvider } from './auth/AuthProvider';
 import { PrivateRoute } from './auth/PrivateRoute';
 // Auth
-import { SignIn } from './components/containers/pages/Auth/SignIn';
-import { SignUp } from './components/containers/pages/Auth/SignUp';
+import { SignIn } from './components/containers/pages/Auth/SignIn/index';
+import { SignUp } from './components/containers/pages/Auth/SignUp/index';
 // Static pages
-import { NotFound } from './components/containers/pages/StaticPages/NotFound';
-import { Top } from './components/containers/pages/StaticPages/Top';
+import { NotFound } from './components/containers/pages/StaticPages/NotFound/index';
+import { Top } from './components/containers/pages/StaticPages/Top/index';
 // Tasks
 import { Tasks } from './components/containers/pages/Tasks/index';
 import { TaskCreate } from './components/containers/pages/Tasks/TaskCreate';
