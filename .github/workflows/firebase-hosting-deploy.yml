@@ -1,28 +1,20 @@
-name: Build and Deploy
+name: Cancel Workflow
+
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
 
 jobs:
-  job-1:
-    name: Run job1
+  cancel:
     runs-on: ubuntu-latest
     steps:
-    - name: Cancel workflow
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Get Workflow Runs
+      id: get_runs
       run: |
-        # GitHub API endpoint for cancelling a workflow run
-        api_endpoint="https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/cancel"
+        echo "::set-output name=runs::$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/actions/runs?status=queued" | jq -r '.workflow_runs[].id')"
 
-        # Send a POST request to the API endpoint to cancel the workflow run
-        response=$(curl -X POST -sSL -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" $api_endpoint)
-
-        # Check the response status code to ensure that the workflow run was cancelled
-        status=$(echo $response | jq -r .status)
-        if [[ $status != "queued" && $status != "in_progress" ]]; then
-          echo "Failed to cancel the workflow run."
-          echo $response | jq .
-          exit 1
-        fi
+    - name: Cancel Workflow Runs
+      if: steps.get_runs.outputs.runs != ''
+      run: |
+        for run_id in $(echo "${{ steps.get_runs.outputs.runs }}"); do
+          curl -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/actions/runs/${run_id}/cancel"
+        done
