@@ -28,9 +28,9 @@ import { UserFollowings } from './components/containers/pages/Users/UserFollowin
 import { UserFollowers } from './components/containers/pages/Users/UserFollowers';
 import { UserShow } from './components/containers/pages/Users/UserShow';
 // Notifications
-import { Notifications } from './components/containers/pages/Notifications';
+import { Notifications } from './components/containers/pages/Notifications/index';
 // Searches
-import { Searches } from './components/containers/pages/Searches';
+import { Searches } from './components/containers/pages/Searches/index';
 
 const queryClient = new QueryClient();
 // const queryClient = new QueryClient({
