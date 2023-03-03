@@ -8,8 +8,8 @@
         "react-app/jest",
         // "plugin:react/recommended",
         "airbnb",
-        "plugin:import/errors",
-        "plugin:import/warnings",
+        // "plugin:import/errors",
+        // "plugin:import/warnings",
         "prettier"
     ],
     "parserOptions": {
