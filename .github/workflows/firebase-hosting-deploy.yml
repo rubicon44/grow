@@ -12,10 +12,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
       - name: Install Dependencies
-        run: rm -rf node_modules
         run: npm install
-      - name: Clean cache
-        run: npm cache clean --force
       - name: Build
         run: npm run build
         env:
