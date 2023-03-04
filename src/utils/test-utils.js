@@ -1,19 +1,19 @@
-import { BrowserRouter as Router } from 'react-router-dom';
-import { render } from '@testing-library/react';
-import { AuthProvider } from 'auth/AuthProvider';
+// import { BrowserRouter as Router } from 'react-router-dom';
+// import { render } from '@testing-library/react';
+// import { AuthProvider } from '../auth/AuthProvider';
 
-const AllTheProviders = ({children}) => {
-  return (
-    <AuthProvider>
-      <Router>
-        {children}
-      </Router>
-    </AuthProvider>
-  );
-};
+// const AllTheProviders = ({children}) => {
+//   return (
+//     <AuthProvider>
+//       <Router>
+//         {children}
+//       </Router>
+//     </AuthProvider>
+//   );
+// };
 
-const customRender = (ui, options) =>
-  render(ui, {wrapper: AllTheProviders, ...options})
+// const customRender = (ui, options) =>
+//   render(ui, {wrapper: AllTheProviders, ...options})
 
-export * from '@testing-library/react';
-export { customRender as render };
+// export * from '@testing-library/react';
+// export { customRender as render };
