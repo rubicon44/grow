@@ -1,4 +1,4 @@
-import { UserFollowings } from '../userFollowings';
+import { UserFollowings } from '../UserFollowings';
 
 export const UserFollowingsContainer = ({ currentUserId, error, followings, loading, username }) => {
   if (error) return <>Error...</>;

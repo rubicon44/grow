@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { TaskEditTemplate } from '../../templates/tasks/taskEditTemplate';
+import { TaskEditTemplate } from '../../templates/tasks/TaskEditTemplate';
 
 export const TaskEdit = () => {
   const location = useLocation();

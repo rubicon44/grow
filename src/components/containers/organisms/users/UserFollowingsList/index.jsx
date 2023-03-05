@@ -1,5 +1,5 @@
-import { UserFollowingsContainer } from './userFollowingsContainer';
-import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/header/titleWithBackArrowHeader';
+import { UserFollowingsContainer } from './UserFollowingsContainer';
+import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const UserFollowingsList = ({ currentUserId, error, followings, loading, username }) => {
   return (

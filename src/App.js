@@ -19,14 +19,14 @@ import { NotFound } from './components/containers/pages/staticPages/notFound';
 import { Top } from './components/containers/pages/staticPages/top';
 // Tasks
 import { Tasks } from './components/containers/pages/tasks/tasks';
-import { TaskCreate } from './components/containers/pages/tasks/taskCreate';
-import { TaskEdit } from './components/containers/pages/tasks/taskEdit';
-import { TaskShow } from './components/containers/pages/tasks/taskShow';
+import { TaskCreate } from './components/containers/pages/tasks/TaskCreate';
+import { TaskEdit } from './components/containers/pages/tasks/TaskEdit';
+import { TaskShow } from './components/containers/pages/tasks/TaskShow';
 // Users
-import { UserGantt } from './components/containers/pages/users/userGantt';
-import { UserFollowings } from './components/containers/pages/users/userFollowings';
-import { UserFollowers } from './components/containers/pages/users/userFollowers';
-import { UserShow } from './components/containers/pages/users/userShow';
+import { UserGantt } from './components/containers/pages/Users/UserGantt';
+import { UserFollowings } from './components/containers/pages/Users/UserFollowings';
+import { UserFollowers } from './components/containers/pages/Users/UserFollowers';
+import { UserShow } from './components/containers/pages/Users/UserShow';
 // Notifications
 import { Notifications } from './components/containers/pages/notifications/notifications';
 // Searches

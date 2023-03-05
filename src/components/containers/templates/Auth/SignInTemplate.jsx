@@ -1,5 +1,5 @@
-import { MainWithHeader } from '../mainWithHeader';
-import { SignInFormContainer } from '../../organisms/auth/signInFormContainer';
+import { MainWithHeader } from '../MainWithHeader';
+import { SignInFormContainer } from '../../organisms/auth/SignInFormContainer';
 
 export const SignInTemplate = () => {
   return (

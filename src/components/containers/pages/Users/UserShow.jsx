@@ -1,4 +1,4 @@
-import { UserShowTemplate } from '../../templates/users/userShowTemplate';
+import { UserShowTemplate } from '../../templates/Users/UserShowTemplate';
 
 export const UserShow = () => {
   return <UserShowTemplate />;

@@ -1,5 +1,5 @@
-import { UserTasksAlreadyPostList } from '../userTasksAlreadyPostList';
-import { UserTasksNoPostList } from '../userTasksNoPostList';
+import { UserTasksAlreadyPostList } from '../UserTasksAlreadyPostList';
+import { UserTasksNoPostList } from '../UserTasksNoPostList';
 
 export const UserTasks = ({ userData }) => {
   return (

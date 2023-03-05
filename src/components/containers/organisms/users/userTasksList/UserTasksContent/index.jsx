@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { UserTasksContainer } from './userTasksContainer';
-import { UserLikedTasks } from './userLikedTasks';
+import { UserTasksContainer } from './UserTasksContainer';
+import { UserLikedTasks } from './UserLikedTasks';
 
 export const UserTasksContent = ({ error, loading, moveToGanttChart, userData }) => {
   return (

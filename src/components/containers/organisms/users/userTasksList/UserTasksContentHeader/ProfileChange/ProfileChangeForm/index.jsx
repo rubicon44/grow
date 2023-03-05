@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { FormButton } from '../../../../../../../presentational/atoms/button/formButton';
-import { FormInput } from '../../../../../../../presentational/atoms/input/formInput';
-import { FormSubmitButton } from '../../../../../../../presentational/atoms/button/formSubmitButton';
-import { FormTextArea } from '../../../../../../../presentational/atoms/textArea/formTextArea';
+import { FormButton } from '../../../../../../../presentational/atoms/Button/FormButton';
+import { FormInput } from '../../../../../../../presentational/atoms/Input/FormInput';
+import { FormSubmitButton } from '../../../../../../../presentational/atoms/Button/FormSubmitButton';
+import { FormTextArea } from '../../../../../../../presentational/atoms/TextArea/FormTextArea';
 
 export const ProfileChangeForm = (props) => {
   const { userNickName, userName, userBio } = props.userData;

@@ -1,4 +1,4 @@
-import { NotificationListWrapper } from '../notificationListWrapper';
+import { NotificationListWrapper } from '../NotificationListWrapper';
 
 export const NotificationListWrapperContainer = ({ currentUserName, error, loading, notificationsData }) => {
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { TaskStatusSwitch } from '../../../../tasks/logic/taskStatusSwitch';
-import { List } from '../../../../../../presentational/molecules/list';
+import { List } from '../../../../../../presentational/molecules/List';
 
 export const UserTasksAlreadyPostList = ({ userData }) => {
   return (

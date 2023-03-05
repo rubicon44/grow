@@ -1,5 +1,5 @@
 import { useSignInForm } from '../../../../../hooks/useSignInForm';
-import { SignInForm } from '../signInForm';
+import { SignInForm } from '../SignInForm';
 
 export const SignInFormContainer = () => {
   const { handleSubmit, isButtonDisabled, signing } = useSignInForm();
