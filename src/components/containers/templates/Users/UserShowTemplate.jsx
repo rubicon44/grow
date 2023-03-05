@@ -1,4 +1,4 @@
-import { MainWithHeader } from '../MainWithHeader';
+import { MainWithHeader } from '../mainWithHeader';
 import { UserTasksListContainer } from '../../organisms/users/UserTasksListContainer';
 
 export const UserShowTemplate = () => {
