@@ -10,18 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
-      - name: Remove Dependencies
-        run: |
-          rm -rf node_modules
-          rm -f yarn.lock
-          yarn cache clean
-      - name: Delete `grow` Directory
-        run: rm -rf grow
+        uses: actions/checkout@master
       - name: Install Dependencies
         run: yarn install
-      - name: Change Directory to `src`
-        run: cd src
+      - name: Output Folder Structure
+        run: ls -R
+        working-directory: ./src
       - name: Build
         run: yarn build
         env:
