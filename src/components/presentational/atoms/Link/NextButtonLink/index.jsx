@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { mediaquery } from '../../../../../assets/styles/variable';
-import { BaseLink } from '../baseLink';
+import { BaseLink } from '../BaseLink';
 
 export const NextButtonLink = ({ url, text }) => {
   return <DangerButtonLink url={url} >{text}</DangerButtonLink>;

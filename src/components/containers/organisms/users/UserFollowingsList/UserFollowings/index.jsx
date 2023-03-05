@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FollowButtonForUsersListSwitchContainer } from '../../userButton/followButtonForUsersListSwitchContainer';
+import { FollowButtonForUsersListSwitchContainer } from '../../userButton/FollowButtonForUsersListSwitchContainer';
 
 export const UserFollowings = ({ currentUserId, followings, username }) => {
   const hasFollowings = Array.isArray(followings) && followings.length > 0;

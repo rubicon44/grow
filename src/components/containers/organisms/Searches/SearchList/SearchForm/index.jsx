@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { FormInput } from '../../../../../presentational/atoms/input/formInput';
-import { FormSubmitButton } from '../../../../../presentational/atoms/button/formSubmitButton';
+import { FormInput } from '../../../../../presentational/atoms/Input/FormInput';
+import { FormSubmitButton } from '../../../../../presentational/atoms/Button/FormSubmitButton';
 
 export const SearchForm = ({ handleSubmit, isButtonDisabled }) => {
   return (

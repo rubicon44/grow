@@ -1,5 +1,5 @@
 import { FollowButton } from '../followButton';
-import { FollowingOrUnFollowButtonSwitch } from '../followingOrUnFollowButtonSwitch';
+import { FollowingOrUnFollowButtonSwitch } from '../FollowingOrUnFollowButtonSwitch';
 
 export const FollowButtonSwitch = ({ changeFollowButtonStyle, currentUserId, followFunc, isFollowing, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc, userIdToFollowOrUnFollow }) => {
   if (String(currentUserId) === String(userIdToFollowOrUnFollow)) return null;

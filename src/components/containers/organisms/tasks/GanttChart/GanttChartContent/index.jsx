@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { mediaquery } from '../../../../../../assets/styles/variable';
-import { GanttChartCalenderTableWithTaskBar } from './ganttChartCalenderTableWithTaskBar';
-import { GanttChartTaskTable } from './ganttChartTaskTable';
+import { GanttChartCalenderTableWithTaskBar } from './GanttChartCalenderTableWithTaskBar';
+import { GanttChartTaskTable } from './GanttChartTaskTable';
 
 export const GanttChartContent = (props) => {
   const { calenderBodyHeight, calenders, elm, elmOfCalenderTableCover, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, handleScrollToCurrentDate, styles } = props;

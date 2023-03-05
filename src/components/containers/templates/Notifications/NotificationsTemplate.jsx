@@ -1,5 +1,5 @@
-import { MainWithHeader } from '../mainWithHeader';
-import { NotificationsListContainer } from '../../organisms/notifications/notificationsListContainer';
+import { MainWithHeader } from '../MainWithHeader';
+import { NotificationsListContainer } from '../../organisms/notifications/NotificationsListContainer';
 
 export const NotificationsTemplate = () => {
   return (

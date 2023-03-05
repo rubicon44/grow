@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useFollowAndUnFollow } from '../../../../../../hooks/useFollowAndUnFollow';
-import { FollowButtonForUsersListSwitch } from '../followButtonForUsersListSwitch';
+import { FollowButtonForUsersListSwitch } from '../FollowButtonForUsersListSwitch';
 
 export const FollowButtonForUsersListSwitchContainer = ({ userIdToFollowOrUnFollow, username }) => {
   const { changeFollowButtonStyle, creating, currentUserId, currentUserName, deleting, error, followFunc, loading, isFollowing, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc } = useFollowAndUnFollow(userIdToFollowOrUnFollow);
