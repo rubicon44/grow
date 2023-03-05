@@ -17,7 +17,7 @@ jobs:
           rm -f yarn.lock
           yarn cache clean
       - name: Install Dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
       - name: Build
         run: yarn build
         env:
@@ -31,7 +31,7 @@ jobs:
           REACT_APP_FIREBASE_MEASUREMENT_ID: ${{ secrets.REACT_APP_FIREBASE_MEASUREMENT_ID }}
           REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
       - name: Archive Production Artifact
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v2
         with:
           name: build
           path: build
@@ -41,11 +41,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
       - name: Install firebase-tools
         run: npm install -g firebase-tools
       - name: Download Artifact
-        uses: actions/download-artifact@master
+        uses: actions/download-artifact@v2
         with:
           name: build
           path: build
