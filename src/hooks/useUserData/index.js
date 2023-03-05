@@ -20,6 +20,8 @@ export const useUserData = () => {
     userId: [],
   });
 
+  const sortedData = useSortDescendingOrder(userData.userTasks);
+
   useEffect(() => {
     const handleSuccess = (userData) => {
       const user = userData.user
@@ -28,7 +30,7 @@ export const useUserData = () => {
 
       setUserData({
         taskUser: user,
-        userTasks: useSortDescendingOrder(taskData),
+        userTasks: taskData,
         // todo: liked_tasks_with_userがuserDataに格納されていることを知るには、propsTypes等が役に立つ？
         likedTasksWithUser: liked_tasks_with_user,
         userBio: user.bio,
@@ -65,14 +67,14 @@ export const useUserData = () => {
 
     fetchUserData(userNameInUrl);
 
-  }, [checkUserNameChange, userNameInUrl]);
+  }, [checkUserNameChange, userNameInUrl, getErrorMessage]);
 
   return {
     error,
     loading,
     setCheckUserNameChange,
     setUserData,
-    userData,
+    userData: { ...userData, userTasks: sortedData },
     userNameInUrl
   };
 };

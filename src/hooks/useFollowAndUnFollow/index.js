@@ -38,7 +38,7 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
 
     const username = currentUserName;
     fetchFollowings(username);
-  }, [currentUserName]);
+  }, [currentUserName, getErrorMessage]);
 
   const setChangeFollowButtonStyleToTrueFunc = () => {
     setChangeFollowButtonStyle(true);

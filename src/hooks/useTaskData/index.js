@@ -37,7 +37,7 @@ export const useTaskData = () => {
       };
     };
     fetchTaskData();
-  }, [currentTaskId]);
+  }, [currentTaskId, getErrorMessage]);
 
   return { loading, error, taskData };
 };

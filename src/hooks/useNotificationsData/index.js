@@ -36,11 +36,11 @@ export const useNotificationsData = () => {
       setLoading(false);
     };
     // todo: Consider about array of dependencies of useCallback later.
-  }, [currentUserId, getNotifications]);
+  }, [currentUserId, getErrorMessage]);
 
   useEffect(() => {
     fetchNotifications();
-  }, []);
+  }, [fetchNotifications]);
 
   return { error, loading, notificationsData };
 };

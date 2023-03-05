@@ -32,7 +32,7 @@ export const useFollowers = () => {
     };
 
     fetchFollowers(username);
-  }, [username]);
+  }, [username, getErrorMessage]);
 
   return {
     error,
