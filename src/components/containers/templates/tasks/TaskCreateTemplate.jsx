@@ -1,4 +1,4 @@
-import { MainWithHeader } from '../MainWithHeader';
+import { MainWithHeader } from '../mainWithHeader';
 import { TaskCreateFormContainer } from '../../organisms/tasks/TaskForm/TaskCreateFormContainer';
 
 export const TaskCreateTemplate = () => {

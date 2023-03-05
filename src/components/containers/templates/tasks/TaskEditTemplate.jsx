@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { MainWithHeader } from '../MainWithHeader';
+import { MainWithHeader } from '../mainWithHeader';
 import { TaskEditFormContainer } from '../../organisms/tasks/TaskForm/TaskEditFormContainer';
 
 export const TaskEditTemplate = (props) => {
