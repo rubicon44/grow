@@ -1,4 +1,4 @@
-import { ProfileChange } from '../ProfileChange';
+import { ProfileChange } from '../profileChange';
 
 export const ProfileChangeContainer = (props) => {
   const { editing, error, loading } = props;

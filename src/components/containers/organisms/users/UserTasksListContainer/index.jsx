@@ -5,7 +5,7 @@ import { useMoveToGanttChart } from '../../../../../hooks/useMoveToGanttChart';
 import { useShowPopup } from '../../../../../hooks/useShowPopup';
 import { useUserData } from '../../../../../hooks/useUserData';
 import { useUserEdit } from '../../../../../hooks/useUserEdit';
-import { UserTasksList } from '../UserTasksList';
+import { UserTasksList } from '../userTasksList';
 
 export const UserTasksListContainer = () => {
   const { showPopup } = useShowPopup();

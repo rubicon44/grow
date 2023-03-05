@@ -1,6 +1,6 @@
 import { useSearchResults } from '../../../../../hooks/useSearchResults';
 import { useSortDescendingOrder } from '../../../../../hooks/useSortDescendingOrder';
-import { SearchList } from '../SearchList';
+import { SearchList } from '../searchList';
 
 export const SearchListContainer = () => {
   const { error, handleSubmit, isButtonDisabled, loading, searchResultTasks, searchResultUsers } = useSearchResults();

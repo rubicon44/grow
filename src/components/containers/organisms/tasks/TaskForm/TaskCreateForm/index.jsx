@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import { TaskForm } from '../../TaskForm';
-import { TitleWithBackArrowHeader } from '../../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
+import { TaskForm } from '..';
+import { TitleWithBackArrowHeader } from '../../../../../presentational/molecules/header/titleWithBackArrowHeader';
 
 export const TaskCreateForm = ({ handleTextSubmit, inputRefs, isButtonDisabled, taskData }) => {
   const MemoTaskForm = memo(TaskForm);

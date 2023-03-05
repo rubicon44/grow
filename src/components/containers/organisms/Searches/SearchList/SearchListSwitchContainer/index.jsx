@@ -1,4 +1,4 @@
-import { SearchListSwitch } from '../SearchListSwitch';
+import { SearchListSwitch } from '../searchListSwitch';
 
 export const SearchListSwitchContainer = ({ error, loading, sortDescendingOrderTasks, sortDescendingOrderUsers }) => {
   if (error) return <>Error...</>;

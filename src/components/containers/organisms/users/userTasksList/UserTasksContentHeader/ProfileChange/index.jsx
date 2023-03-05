@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { ProfileChangeLink } from './ProfileChangeLink';
-import { ProfileChangeForm } from './ProfileChangeForm';
+import { ProfileChangeLink } from './profileChangeLink';
+import { ProfileChangeForm } from './profileChangeForm';
 
 export const ProfileChange = (props) => {
   const { currentUserId } = props;

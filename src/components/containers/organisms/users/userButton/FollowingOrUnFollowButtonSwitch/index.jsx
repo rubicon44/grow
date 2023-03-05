@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { FollowingButton } from '../FollowingButton';
-import { UnFollowButton} from '../UnFollowButton';
+import { FollowingButton } from '../followingButton';
+import { UnFollowButton} from '../unFollowButton';
 
 export const FollowingOrUnFollowButtonSwitch = ({ changeFollowButtonStyle, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc }) => {
   return (

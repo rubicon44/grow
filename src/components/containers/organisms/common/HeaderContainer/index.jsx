@@ -1,5 +1,5 @@
 import { useHeader } from '../../../../../hooks/useHeader';
-import { Header } from '../Header';
+import { Header } from '../header';
 
 export const HeaderContainer = () => {
   const { headerLinks, headerLinksForAuth, state, toggleDrawer } = useHeader();

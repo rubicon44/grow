@@ -1,5 +1,5 @@
-import { LikeButton } from './LikeButton';
-import { UnLikeButton } from './UnLikeButton';
+import { LikeButton } from './likeButton';
+import { UnLikeButton } from './unLikeButton';
 
 export const LikeOrUnLikeButtonSwitch = ({ currentUserId, currentTaskId, handleClickLikeDelete, handleClickLikePost, likeData, taskId }) => {
   return (

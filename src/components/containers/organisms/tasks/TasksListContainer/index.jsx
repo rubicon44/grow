@@ -1,7 +1,7 @@
 import { useShowPopup } from '../../../../../hooks/useShowPopup';
 import { useSortDescendingOrder } from '../../../../../hooks/useSortDescendingOrder';
 import { useTasks } from '../../../../../hooks/useTasks';
-import { TasksList } from '../TasksList';
+import { TasksList } from '../tasksList';
 
 export const TasksListContainer = () => {
   const { showPopup } = useShowPopup();

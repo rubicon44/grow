@@ -1,5 +1,5 @@
 import { useTaskEdit } from '../../../../../../hooks/useTaskEdit';
-import { TaskEditForm } from '../TaskEditForm';
+import { TaskEditForm } from '../taskEditForm';
 
 export const TaskEditFormContainer = ({ taskDataTask }) => {
   const { editing, handleTextSubmit, inputRefs, isButtonDisabled, taskData } = useTaskEdit(taskDataTask);

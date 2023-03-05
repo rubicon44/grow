@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { FormInput } from '../../../../presentational/atoms/Input/FormInput';
-import { FormSubmitButton } from '../../../../presentational/atoms/Button/FormSubmitButton';
-import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
+import { FormInput } from '../../../../presentational/atoms/input/formInput';
+import { FormSubmitButton } from '../../../../presentational/atoms/button/formSubmitButton';
+import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/header/titleWithBackArrowHeader';
 
 export const SignInForm = ({ handleSubmit, isButtonDisabled }) => {
   return (

@@ -1,5 +1,5 @@
-import { MainWithHeader } from '../MainWithHeader';
-import { SignUpFormContainer } from '../../organisms/Auth/SignUpFormContainer';
+import { MainWithHeader } from '../mainWithHeader';
+import { SignUpFormContainer } from '../../organisms/auth/signUpFormContainer';
 
 export const SignUpTemplate = () => {
   return (

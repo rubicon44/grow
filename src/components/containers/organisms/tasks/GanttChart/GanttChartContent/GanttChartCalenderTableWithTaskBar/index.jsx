@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
 import styled from 'styled-components';
-import { CalenderTableBodyColorSwitch } from '../../CalenderTableBodyColorSwitch';
-import { CalenderTableBodyColorSwitchForTBody } from '../../CalenderTableBodyColorSwitchForTBody';
-import { GunttChartTaskBar } from './GunttChartTaskBar';
+import { CalenderTableBodyColorSwitch } from '../../calenderTableBodyColorSwitch';
+import { CalenderTableBodyColorSwitchForTBody } from '../../calenderTableBodyColorSwitchForTBody';
+import { GunttChartTaskBar } from './gunttChartTaskBar';
 
 export const GanttChartCalenderTableWithTaskBar = ({ calenderBodyHeight, calenders, styles }) => {
   return (

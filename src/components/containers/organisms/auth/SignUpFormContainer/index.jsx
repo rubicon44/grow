@@ -1,5 +1,5 @@
 import { useSignUpForm } from '../../../../../hooks/useSignUpForm';
-import { SignUpForm } from '../SignUpForm';
+import { SignUpForm } from '../signUpForm';
 
 export const SignUpFormContainer = () => {
   const { handleSubmit, isButtonDisabled, signuping } = useSignUpForm();

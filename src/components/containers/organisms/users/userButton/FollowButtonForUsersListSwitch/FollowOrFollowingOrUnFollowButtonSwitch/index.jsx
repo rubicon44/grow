@@ -1,5 +1,5 @@
-import { FollowButton } from '../../FollowButton';
-import { FollowingOrUnFollowButtonSwitch } from '../../FollowingOrUnFollowButtonSwitch';
+import { FollowButton } from '../../followButton';
+import { FollowingOrUnFollowButtonSwitch } from '../../followingOrUnFollowButtonSwitch';
 
 export const FollowOrFollowingOrUnFollowButtonSwitch = (props) => {
   const { changeFollowButtonStyle, followFunc, isFollowing, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc } = props;

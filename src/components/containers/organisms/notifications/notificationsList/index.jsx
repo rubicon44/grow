@@ -1,5 +1,5 @@
-import { NotificationListWrapperContainer } from './NotificationListWrapperContainer';
-import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
+import { NotificationListWrapperContainer } from './notificationListWrapperContainer';
+import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/header/titleWithBackArrowHeader';
 
 export const NotificationsList = ({ currentUserName, error, loading, notificationsData }) => {
   return (

@@ -12,25 +12,25 @@ import { auth } from './infra/firebase';
 import { AuthProvider } from './auth/AuthProvider';
 import { PrivateRoute } from './auth/PrivateRoute';
 // Auth
-import { SignIn } from './components/containers/pages/Auth/SignIn';
-import { SignUp } from './components/containers/pages/Auth/SignUp';
+import { SignIn } from './components/containers/pages/auth/signIn';
+import { SignUp } from './components/containers/pages/auth/signUp';
 // Static pages
-import { NotFound } from './components/containers/pages/StaticPages/NotFound';
-import { Top } from './components/containers/pages/StaticPages/Top';
+import { NotFound } from './components/containers/pages/staticPages/notFound';
+import { Top } from './components/containers/pages/staticPages/top';
 // Tasks
 import { Tasks } from './components/containers/pages/tasks';
-import { TaskCreate } from './components/containers/pages/tasks/TaskCreate';
-import { TaskEdit } from './components/containers/pages/tasks/TaskEdit';
-import { TaskShow } from './components/containers/pages/tasks/TaskShow';
+import { TaskCreate } from './components/containers/pages/tasks/taskCreate';
+import { TaskEdit } from './components/containers/pages/tasks/taskEdit';
+import { TaskShow } from './components/containers/pages/tasks/taskShow';
 // Users
-import { UserGantt } from './components/containers/pages/Users/UserGantt';
-import { UserFollowings } from './components/containers/pages/Users/UserFollowings';
-import { UserFollowers } from './components/containers/pages/Users/UserFollowers';
-import { UserShow } from './components/containers/pages/Users/UserShow';
+import { UserGantt } from './components/containers/pages/users/userGantt';
+import { UserFollowings } from './components/containers/pages/users/userFollowings';
+import { UserFollowers } from './components/containers/pages/users/userFollowers';
+import { UserShow } from './components/containers/pages/users/userShow';
 // Notifications
-import { Notifications } from './components/containers/pages/Notifications';
+import { Notifications } from './components/containers/pages/notifications';
 // Searches
-import { Searches } from './components/containers/pages/Searches';
+import { Searches } from './components/containers/pages/searches';
 
 const queryClient = new QueryClient();
 // const queryClient = new QueryClient({
