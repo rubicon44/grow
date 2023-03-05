@@ -1,4 +1,4 @@
-import { MainWithHeader } from '../MainWithHeader';
+import { MainWithHeader } from '../mainWithHeader';
 import { SearchListContainer } from '../../organisms/Searches/SearchListContainer';
 
 export const SearchTemplate = () => {
