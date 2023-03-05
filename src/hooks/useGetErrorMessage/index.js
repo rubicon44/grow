@@ -1,5 +1,7 @@
+import { useMemo } from 'react';
+
 export const useGetErrorMessage = () => {
-  const getErrorMessage = (error, verbForErrorMessage, objectForErrorMessage) => {
+  const getErrorMessage = useMemo(() => (error, verbForErrorMessage, objectForErrorMessage) => {
     let errorMessage = `${verbForErrorMessage}を${objectForErrorMessage}できませんでした。しばらく時間をおいて再度お試しください。`;
     if (error instanceof ReferenceError) {
       errorMessage = `${verbForErrorMessage}を${objectForErrorMessage}できませんでした。しばらく時間をおいて再度お試しください。`;
@@ -25,7 +27,7 @@ export const useGetErrorMessage = () => {
       errorMessage = `${verbForErrorMessage}を${objectForErrorMessage}できませんでした。しばらく時間をおいて再度お試しください。`;
     };
     window.alert(errorMessage);
-  };
+  }, []);
 
   return { getErrorMessage };
 };

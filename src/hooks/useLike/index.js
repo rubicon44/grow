@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useCurrentUserId } from '../useCurrentUserId';
 import { deleteLike, getLikes, postLikes } from '../../infra/api';
 
@@ -13,7 +13,7 @@ export const useLike = (taskId) => {
     likedUserId: 0,
   });
 
-  const fetchLikeData = async () => {
+  const fetchLikeData = useCallback(async () => {
     setLoading(true);
     setError(null);
     const like = { current_user_id: currentUserId, task_id: taskId };
@@ -32,11 +32,11 @@ export const useLike = (taskId) => {
     } finally {
       setLoading(false);
     };
-  };
+  }, [currentUserId, taskId]);
 
   useEffect(() => {
     fetchLikeData();
-  }, [currentUserId, taskId]);
+  }, [fetchLikeData]);
 
   const handleClickLikeDelete = () => {
     const deleteLikeData = async () => {

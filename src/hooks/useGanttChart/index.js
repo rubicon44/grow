@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTaskBars } from '../useTaskBars';
 
 export const useGanttChart = (userTasks) => {
@@ -13,12 +13,12 @@ export const useGanttChart = (userTasks) => {
     setCalenderBodyHeight(taskListBodyHeight);
   };
 
-  const scrollToCurrentDate = () => {
+  const scrollToCurrentDate = useCallback(() => {
     const currentDate = new Date();
     const day = currentDate.getDate();
-    const currentPosition = day * "32" - "32";
+    const currentPosition = day * 32 - 32;
     document.getElementById("outer").scrollLeft = currentPosition;
-  };
+  }, []);
 
   const handleScrollToCurrentDate = () => {
     scrollToCurrentDate();
@@ -26,7 +26,7 @@ export const useGanttChart = (userTasks) => {
     setPreCurrentPositionNumber(0);
   };
 
-  const scrollToStartOrEndPosition = () => {
+  const scrollToStartOrEndPosition = useCallback(() => {
     if (currentPositionNumber < preCurrentPositionNumber) {
       const totalWidth = calenders.reduce((acc, calender) => {
         return acc + calender.calender * 32;
@@ -36,7 +36,7 @@ export const useGanttChart = (userTasks) => {
     } else if (currentPositionNumber > preCurrentPositionNumber) {
       document.getElementById("outer").scrollLeft = 0;
     };
-  };
+  }, [calenders, currentPositionNumber, preCurrentPositionNumber]);
 
   const [scrollToCurrentDateAble, setScrollToCurrentDateAble] = useState(false);
   useEffect(() => {
@@ -46,13 +46,13 @@ export const useGanttChart = (userTasks) => {
 
   useEffect(() => {
     scrollToCurrentDate();
-  }, [scrollToCurrentDateAble]);
+  }, [scrollToCurrentDateAble, scrollToCurrentDate]);
 
   const years = calenders.map(calender => calender.year);
   const uniqueYears = Array.from(new Set(years));
   useEffect(() => {
     scrollToStartOrEndPosition();
-  }, [uniqueYears, currentPositionNumber, preCurrentPositionNumber]);
+  }, [uniqueYears, currentPositionNumber, preCurrentPositionNumber, scrollToStartOrEndPosition]);
 
   return { calenderBodyHeight, calenders, elm, elmOfCalenderTableCover, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, handleScrollToCurrentDate, styles };
 };

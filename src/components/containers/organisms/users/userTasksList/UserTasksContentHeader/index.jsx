@@ -26,12 +26,8 @@ export const UserTasksContentHeader = (props) => {
         userData={userData}
       />
       <RelationshipsCover>
-        <a onClick={moveToFollowings}>
-          <span>フォロー中</span>
-        </a>
-        <a onClick={moveToFollowers}>
-          <span>フォロワー</span>
-        </a>
+        <p onClick={moveToFollowings}>フォロー中</p>
+        <p onClick={moveToFollowers}>フォロワー</p>
       </RelationshipsCover>
     </ContentHeaderCover>
   );
@@ -49,16 +45,17 @@ const ContentHeaderCover = styled.div`
 
 const RelationshipsCover = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
   width: 100%;
   margin-bottom: 30px;
-  > a {
+  > p {
     cursor: pointer;
     &:hover {
       text-decoration: underline;
     }
   }
-  > a:last-of-type {
-    margin-left: 10px;
+  > p:last-of-type {
+    margin-left: 35px;
   }
 `;
