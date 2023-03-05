@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../../../../../auth/AuthProvider';
 import { useCurrentUserName } from '../../../../../../hooks/useCurrentUserName';
-import { LogOutButtonSwitch } from '../LogOutButtonSwitch';
+import { LogOutButtonSwitch } from '../logOutButtonSwitch';
 
 export const LogOutButtonSwitchContainer = ({ userNameInUrl }) => {
   const { currentUserAuth } = useContext(AuthContext);

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { BaseLink } from '../../atoms/Link/BaseLink';
+import { BaseLink } from '../../atoms/link/baseLink';
 
 export const List = ({ title, titleUrl, content, url, text }) => {
   return (

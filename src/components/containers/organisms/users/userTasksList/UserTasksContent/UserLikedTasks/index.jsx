@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { UserTasksAlreadyLikeList } from '../UserTasksAlreadyLikeList';
-import { UserTasksNoLikeList } from '../UserTasksNoLikeList';
+import { UserTasksAlreadyLikeList } from '../userTasksAlreadyLikeList';
+import { UserTasksNoLikeList } from '../userTasksNoLikeList';
 
 export const UserLikedTasks = ({ userData }) => {
   return (

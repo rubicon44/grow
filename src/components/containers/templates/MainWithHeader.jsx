@@ -1,5 +1,5 @@
-import { HeaderContainer } from '../organisms/Common/HeaderContainer';
-import { Main } from './Main';
+import { HeaderContainer } from '../organisms/common/headerContainer';
+import { Main } from './main';
 
 export const MainWithHeader = ({ children }) => {
   return (

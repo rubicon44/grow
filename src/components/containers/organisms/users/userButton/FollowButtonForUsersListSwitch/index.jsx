@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { FollowButton } from '../FollowButton';
-import { FollowingOrUnFollowButtonSwitch } from '../FollowingOrUnFollowButtonSwitch';
-import { FollowOrFollowingOrUnFollowButtonSwitch } from './FollowOrFollowingOrUnFollowButtonSwitch';
+import { FollowButton } from '../followButton';
+import { FollowingOrUnFollowButtonSwitch } from '../followingOrUnFollowButtonSwitch';
+import { FollowOrFollowingOrUnFollowButtonSwitch } from './followOrFollowingOrUnFollowButtonSwitch';
 
 export const FollowButtonForUsersListSwitch = (props) => {
   const { changeFollowButtonStyle, currentUserName, currentUserId, followFunc, isFollowing, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc, username, userIdToFollowOrUnFollow } = props;

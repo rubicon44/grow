@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { MainWithHeader } from '../MainWithHeader';
-import { TaskEditFormContainer } from '../../organisms/Tasks/TaskForm/TaskEditFormContainer';
+import { MainWithHeader } from '../mainWithHeader';
+import { TaskEditFormContainer } from '../../organisms/tasks/taskForm/taskEditFormContainer';
 
 export const TaskEditTemplate = (props) => {
   return (

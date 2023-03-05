@@ -1,13 +1,13 @@
 import { memo } from 'react';
 import styled from 'styled-components';
-import { LikeOrUnLikeButtonSwitchContainer } from '../../Likes/LikeOrUnLikeButtonSwitchContainer';
-import { TaskDeleteCheckButton } from '../TaskButton/TaskDeleteCheckButton';
-import { TaskDeleteOrUnDeleteButtonSwitch } from '../TaskButton/TaskDeleteOrUnDeleteButtonSwitch';
-import { TaskEditButton } from '../TaskButton/TaskEditButton';
-import { TaskStatusSwitch } from '../logic/TaskStatusSwitch';
-import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
-import { List } from '../../../../presentational/molecules/List';
-import { Popup } from '../../../../presentational/atoms/Popup';
+import { LikeOrUnLikeButtonSwitchContainer } from '../../likes/likeOrUnLikeButtonSwitchContainer';
+import { TaskDeleteCheckButton } from '../taskButton/taskDeleteCheckButton';
+import { TaskDeleteOrUnDeleteButtonSwitch } from '../taskButton/taskDeleteOrUnDeleteButtonSwitch';
+import { TaskEditButton } from '../taskButton/taskEditButton';
+import { TaskStatusSwitch } from '../logic/taskStatusSwitch';
+import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/header/titleWithBackArrowHeader';
+import { List } from '../../../../presentational/molecules/list';
+import { Popup } from '../../../../presentational/atoms/popup';
 
 export const TaskList = ({ currentUserId, deleteCheckAble, deleteCheckFunc, deleteTaskFunc, isButtonDisabled, moveToEditTask, showPopup, taskData, unDeleteCheckFunc }) => {
   const { nickname: taskCreatedUserNickName, username: taskCreatedUserName } = taskData.taskCreatedUser;

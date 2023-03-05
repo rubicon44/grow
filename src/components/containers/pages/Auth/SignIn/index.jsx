@@ -1,4 +1,4 @@
-import { SignInTemplate } from '../../../templates/Auth/SignInTemplate';
+import { SignInTemplate } from '../../../templates/auth/signInTemplate';
 
 export const SignIn = () => {
   return <SignInTemplate />;
