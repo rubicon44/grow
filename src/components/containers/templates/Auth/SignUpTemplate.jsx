@@ -1,4 +1,4 @@
-import { MainWithHeader } from '../mainWithHeader';
+import { MainWithHeader } from '../MainWithHeader';
 import { SignUpFormContainer } from '../../organisms/auth/SignUpFormContainer';
 
 export const SignUpTemplate = () => {
