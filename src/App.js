@@ -18,7 +18,7 @@ import { SignUp } from './components/containers/pages/auth/signUp';
 import { NotFound } from './components/containers/pages/staticPages/notFound';
 import { Top } from './components/containers/pages/staticPages/top';
 // Tasks
-import { Tasks } from './components/containers/pages/tasks';
+import { Tasks } from './components/containers/pages/tasks/tasks';
 import { TaskCreate } from './components/containers/pages/tasks/taskCreate';
 import { TaskEdit } from './components/containers/pages/tasks/taskEdit';
 import { TaskShow } from './components/containers/pages/tasks/taskShow';
@@ -28,9 +28,9 @@ import { UserFollowings } from './components/containers/pages/users/userFollowin
 import { UserFollowers } from './components/containers/pages/users/userFollowers';
 import { UserShow } from './components/containers/pages/users/userShow';
 // Notifications
-import { Notifications } from './components/containers/pages/notifications';
+import { Notifications } from './components/containers/pages/notifications/notifications';
 // Searches
-import { Searches } from './components/containers/pages/searches';
+import { Searches } from './components/containers/pages/searches/searches';
 
 const queryClient = new QueryClient();
 // const queryClient = new QueryClient({
