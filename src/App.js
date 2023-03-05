@@ -18,10 +18,10 @@ import { SignUp } from './components/containers/pages/Auth/SignUp';
 import { NotFound } from './components/containers/pages/StaticPages/NotFound';
 import { Top } from './components/containers/pages/StaticPages/Top';
 // Tasks
-import { Tasks } from './components/containers/pages/Tasks';
-import { TaskCreate } from './components/containers/pages/Tasks/TaskCreate';
-import { TaskEdit } from './components/containers/pages/Tasks/TaskEdit';
-import { TaskShow } from './components/containers/pages/Tasks/TaskShow';
+import { Tasks } from './components/containers/pages/tasks';
+import { TaskCreate } from './components/containers/pages/tasks/TaskCreate';
+import { TaskEdit } from './components/containers/pages/tasks/TaskEdit';
+import { TaskShow } from './components/containers/pages/tasks/TaskShow';
 // Users
 import { UserGantt } from './components/containers/pages/Users/UserGantt';
 import { UserFollowings } from './components/containers/pages/Users/UserFollowings';
