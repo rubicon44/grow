@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { TaskDeleteButton } from '../taskDeleteButton';
-import { TaskUnDeleteButton } from '../taskUnDeleteButton';
+import { TaskDeleteButton } from '../TaskDeleteButton';
+import { TaskUnDeleteButton } from '../TaskUnDeleteButton';
 
 export const TaskDeleteOrUnDeleteButtonSwitch = ({ deleteCheckAble, deleteTaskFunc, unDeleteCheckFunc }) => {
   return (

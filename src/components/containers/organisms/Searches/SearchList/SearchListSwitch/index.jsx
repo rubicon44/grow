@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { SearchTasksList } from './searchTasksList';
-import { SearchUsersList } from './searchUsersList';
+import { SearchTasksList } from './SearchTasksList';
+import { SearchUsersList } from './SearchUsersList';
 
 export const SearchListSwitch = ({ sortDescendingOrderUsers, sortDescendingOrderTasks }) => {
   return (

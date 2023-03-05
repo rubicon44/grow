@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useFollowAndUnFollow } from '../../../../../../hooks/useFollowAndUnFollow';
 import { useUserData } from '../../../../../../hooks/useUserData';
-import { FollowButtonSwitch } from '../followButtonSwitch';
+import { FollowButtonSwitch } from '../FollowButtonSwitch';
 
 export const FollowButtonSwitchContainer = () => {
   const { userData } = useUserData();

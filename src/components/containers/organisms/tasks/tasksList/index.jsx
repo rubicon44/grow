@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { LikeOrUnLikeButtonSwitchContainer } from '../../likes/likeOrUnLikeButtonSwitchContainer';
+import { LikeOrUnLikeButtonSwitchContainer } from '../../likes/LikeOrUnLikeButtonSwitchContainer';
 import { TaskStatusSwitch } from '../logic/taskStatusSwitch';
-import { List } from '../../../../presentational/molecules/list';
-import { NextButtonLink } from '../../../../presentational/atoms/link/nextButtonLink';
-import { Popup } from '../../../../presentational/atoms/popup';
-import { Title } from '../../../../presentational/atoms/title';
+import { List } from '../../../../presentational/molecules/List';
+import { NextButtonLink } from '../../../../presentational/atoms/Link/NextButtonLink';
+import { Popup } from '../../../../presentational/atoms/Popup';
+import { Title } from '../../../../presentational/atoms/Title';
 
 export const TasksList = ({ currentUserId, showPopup, tasks }) => {
   return (

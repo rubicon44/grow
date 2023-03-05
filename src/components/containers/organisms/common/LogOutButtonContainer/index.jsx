@@ -1,5 +1,5 @@
 import { useSignOut } from '../../../../../hooks/useSignOut';
-import { LogOutButton } from '../logOutButton';
+import { LogOutButton } from '../LogOutButton';
 
 export const LogOutButtonContainer = ({ text }) => {
   const { handleSignout } = useSignOut();

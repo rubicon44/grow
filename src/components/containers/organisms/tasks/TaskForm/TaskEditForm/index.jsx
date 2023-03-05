@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { TaskForm } from '..';
-import { TitleWithBackArrowHeader } from '../../../../../presentational/molecules/header/titleWithBackArrowHeader';
+import { TitleWithBackArrowHeader } from '../../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
 
 export const TaskEditForm = ({ handleTextSubmit, inputRefs, isButtonDisabled, taskData }) => {
   return (
