@@ -1,4 +1,4 @@
-import { MainWithHeader } from '../mainWithHeader';
+import { MainWithHeader } from '../MainWithHeader';
 import { UserFollowingsListContainer } from '../../organisms/users/UserFollowingsListContainer';
 
 export const UserFollowingsTemplate = () => {

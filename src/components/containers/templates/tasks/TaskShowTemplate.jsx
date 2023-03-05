@@ -1,4 +1,4 @@
-import { MainWithHeader } from '../mainWithHeader';
+import { MainWithHeader } from '../MainWithHeader';
 import { TaskListContainer } from '../../organisms/tasks/TaskListContainer';
 
 export const TaskShowTemplate = () => {
