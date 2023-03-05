@@ -19,7 +19,7 @@ jobs:
       - name: Install Dependencies
         run: yarn install
       - name: Build
-        run: yarn build
+        run: GENERATE_SOURCEMAP=false yarn build
         env:
           REACT_APP_FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY }}
           REACT_APP_FIREBASE_AUTH_DOMAIN: ${{ secrets.REACT_APP_FIREBASE_AUTH_DOMAIN }}
