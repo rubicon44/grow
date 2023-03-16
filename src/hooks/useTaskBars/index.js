@@ -132,6 +132,7 @@ export const useTaskBars = (userTasks) => {
 
   useEffect(() => {
     taskBars(userTasks);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [year]);
 
   return { calenders, currentPositionNumber, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, preCurrentPositionNumber, setCurrentPositionNumber, setPreCurrentPositionNumber, styles };
