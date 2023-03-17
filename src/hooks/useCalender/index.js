@@ -97,6 +97,7 @@ export const useCalender = () => {
   const year = currentDisplayYearFunc();
   useEffect(() => {
     getCalendar();
+    // 無限ループを防ぐため、getCalender()をuseEffectの依存関係に含めない。
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [year]);
 
