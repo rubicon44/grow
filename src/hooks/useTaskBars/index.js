@@ -132,6 +132,7 @@ export const useTaskBars = (userTasks) => {
 
   useEffect(() => {
     taskBars(userTasks);
+    // 無限ループを防ぐため、taskBars()をuseEffectの依存関係に含めない。
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [year]);
 
