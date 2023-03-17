@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
 
 export const useCalender = () => {
-  const getDays = (year, month, blockNumber) => {
+  const getDays = useCallback((year, month, blockNumber) => {
     const dayOfWeek = ['日', '月', '火', '水', '木', '金', '土'];
     let days = [];
     let date = dayjs(`${year}-${month}-01`);
@@ -20,7 +20,7 @@ export const useCalender = () => {
       blockNumber++;
     };
     return days;
-  };
+  }, []);
 
   const [currentPositionNumber, setCurrentPositionNumber] = useState(0);
   const [preCurrentPositionNumber, setPreCurrentPositionNumber] = useState(0);
@@ -36,21 +36,21 @@ export const useCalender = () => {
     };
   };
 
-  const currentDateFunc = () => {
+  const currentDateFunc = useCallback(() => {
     const currentDate = new Date();
     return currentDate;
-  };
+  }, []);
 
-  const currentDisplayYearFunc = () => {
+  const currentDisplayYearFunc = useCallback(() => {
     const currentDate = currentDateFunc();
     let year = currentDate.getFullYear();
     if(currentPositionNumber < 0) {
       year = year + currentPositionNumber;
     };
     return year;
-  };
+  }, [currentDateFunc, currentPositionNumber]);
 
-  const calenderDataFunc = () => {
+  const calenderDataFunc = useCallback(() => {
     const year = currentDisplayYearFunc();
     const currentDate = currentDateFunc();
     // todo: 1月のカレンダー表示が消えている。1月のカレンダーを表示するとともに、「useGanttChart」の「scrollToCurrentDate」において、カレンダーの先頭月(1月)内で移動してしまう問題を解決したい(カレンダーが1月から12月まで表示されており、現在2月の場合、2月内で移動したいが、現状1月内で移動してしまう)。
@@ -65,11 +65,11 @@ export const useCalender = () => {
       calenders:[],
     };
     return calenderData;
-  };
+  }, [currentDateFunc, currentDisplayYearFunc]);
 
   const [calenders, setCalenders] = useState([]);
   const calenderData = calenderDataFunc();
-  const getCalendar = () => {
+  const getCalendar = useCallback(() => {
     let blockNumber = 0;
     let days;
     let startMonth = dayjs(calenderData.startMonth);
@@ -92,14 +92,13 @@ export const useCalender = () => {
     };
     setCalenders(calenderData.calenders);
     return blockNumber;
-  };
+  }, [calenderData, getDays]);
 
   const year = currentDisplayYearFunc();
   useEffect(() => {
     getCalendar();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [year]);
-
-  console.log(calenderData);
 
   return { calenderData, calenders, currentPositionNumber, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, preCurrentPositionNumber, setCurrentPositionNumber, setPreCurrentPositionNumber, year };
 };
