@@ -1,7 +1,8 @@
 import axios from 'axios';
 // import { currentUser } from 'infra/currentUser';
 
-axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
+// axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 const tokenAuth = localStorage.getItem('token');
 axios.defaults.headers.common.Authorization = tokenAuth;
 
