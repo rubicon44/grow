@@ -61,14 +61,14 @@ export const signIn = (idToken) =>
 //   });
 
 export const getUser = (params) =>
-  axios({
+  api({
     method: 'get',
     url: `/${params}`,
     params: { currentUser: true },
   });
 
 export const updateUser = (params, data) =>
-  axios({
+  api({
     method: 'put',
     url: `/${params}`,
     data,
@@ -76,29 +76,29 @@ export const updateUser = (params, data) =>
 
 // tasks
 export const getTasks = (params) =>
-  axios({
+  api({
     method: 'get',
     url: '/tasks',
     params,
   });
 
-export const postTasks = (params) => axios.post('/tasks', params);
+export const postTasks = (params) => api.post('/tasks', params);
 
 export const getTask = (params) =>
-  axios({
+  api({
     method: 'get',
     url: `/tasks/${params}`,
   });
 
 export const updateTask = (params, data) =>
-  axios({
+  api({
     method: 'put',
     url: `/tasks/${params}`,
     data,
   });
 
 export const deleteTask = (params) =>
-  axios({
+  api({
     method: 'delete',
     url: `/tasks/${params}`,
     params,
@@ -106,21 +106,21 @@ export const deleteTask = (params) =>
 
 // likes
 export const postLikes = (params) =>
-  axios({
+  api({
     method: 'post',
     url: `/tasks/${params.task_id}/likes`,
     params,
   });
 
 export const getLikes = (params) =>
-  axios({
+  api({
     method: 'get',
     url: `/tasks/${params.task_id}/likes`,
     params,
   });
 
 export const deleteLike = (params) =>
-  axios({
+  api({
     method: 'delete',
     url: `/tasks/${params.task_id}/likes/${params.like_id}`,
     params,
@@ -128,34 +128,34 @@ export const deleteLike = (params) =>
 
 // relationships
 export const postRelationships = (params) =>
-  axios({
+  api({
     method: 'post',
     url: `/users/${params.following_id}/relationships`,
     params,
   });
 
 export const deleteRelationships = (params) =>
-  axios({
+  api({
     method: 'delete',
     url: `/users/${params.following_id}/relationships`,
     params,
   });
 
 export const getFollowings = (username) =>
-  axios({
+  api({
     method: 'get',
     url: `/${username}/followings`,
   });
 
 export const getFollowers = (username) =>
-  axios({
+  api({
     method: 'get',
     url: `/${username}/followers`,
   });
 
 // notifications
 export const getNotifications = (params) =>
-  axios({
+  api({
     method: 'get',
     url: `/notifications`,
     params,
@@ -163,7 +163,7 @@ export const getNotifications = (params) =>
 
 // searches
 export const getSearches = (params) =>
-  axios({
+  api({
     method: 'get',
     url: `/searches`,
     params,
