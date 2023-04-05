@@ -4,53 +4,22 @@ import axios from 'axios';
 // import { currentUser } from 'infra/currentUser';
 
 // axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+axios.defaults.headers.common['Content-Type'] = 'application/json';
+axios.defaults.withCredentials = true;
+const tokenAuth = localStorage.getItem('token');
+axios.defaults.headers.common.Authorization = tokenAuth;
 
-const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
-  headers: {
-    'Content-Type': 'application/json',
-    Authorization: localStorage.getItem('token'),
-  },
-  withCredentials: true,
-});
-
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.response && error.response.status === 401) {
-      // 401エラーの場合、ログインページにリダイレクトするなどの処理を行う
-    }
-    return Promise.reject(error);
-  },
-);
-
-export const signUp = (params) => api.post('/users', params);
+export const signUp = (params) => axios.post('/users', params);
 
 export const signIn = (idToken) =>
-  api({
+  axios({
     method: 'post',
     url: '/users/sign_in',
     headers: {
       idToken,
     },
   });
-
-// axios.defaults.baseURL = process.env.REACT_APP_API_URL;
-// axios.defaults.headers.common['Content-Type'] = 'application/json';
-// axios.defaults.withCredentials = true;
-// const tokenAuth = localStorage.getItem('token');
-// axios.defaults.headers.common.Authorization = tokenAuth;
-
-// export const signUp = (params) => axios.post('/users', params);
-
-// export const signIn = (idToken) =>
-//   axios({
-//     method: 'post',
-//     url: '/users/sign_in',
-//     headers: {
-//       idToken,
-//     },
-//   });
 
 // users
 // export const getCurrentUser = () =>
@@ -61,14 +30,14 @@ export const signIn = (idToken) =>
 //   });
 
 export const getUser = (params) =>
-  api({
+  axios({
     method: 'get',
     url: `/${params}`,
     params: { currentUser: true },
   });
 
 export const updateUser = (params, data) =>
-  api({
+  axios({
     method: 'put',
     url: `/${params}`,
     data,
@@ -76,29 +45,29 @@ export const updateUser = (params, data) =>
 
 // tasks
 export const getTasks = (params) =>
-  api({
+  axios({
     method: 'get',
     url: '/tasks',
     params,
   });
 
-export const postTasks = (params) => api.post('/tasks', params);
+export const postTasks = (params) => axios.post('/tasks', params);
 
 export const getTask = (params) =>
-  api({
+  axios({
     method: 'get',
     url: `/tasks/${params}`,
   });
 
 export const updateTask = (params, data) =>
-  api({
+  axios({
     method: 'put',
     url: `/tasks/${params}`,
     data,
   });
 
 export const deleteTask = (params) =>
-  api({
+  axios({
     method: 'delete',
     url: `/tasks/${params}`,
     params,
@@ -106,21 +75,21 @@ export const deleteTask = (params) =>
 
 // likes
 export const postLikes = (params) =>
-  api({
+  axios({
     method: 'post',
     url: `/tasks/${params.task_id}/likes`,
     params,
   });
 
 export const getLikes = (params) =>
-  api({
+  axios({
     method: 'get',
     url: `/tasks/${params.task_id}/likes`,
     params,
   });
 
 export const deleteLike = (params) =>
-  api({
+  axios({
     method: 'delete',
     url: `/tasks/${params.task_id}/likes/${params.like_id}`,
     params,
@@ -128,34 +97,34 @@ export const deleteLike = (params) =>
 
 // relationships
 export const postRelationships = (params) =>
-  api({
+  axios({
     method: 'post',
     url: `/users/${params.following_id}/relationships`,
     params,
   });
 
 export const deleteRelationships = (params) =>
-  api({
+  axios({
     method: 'delete',
     url: `/users/${params.following_id}/relationships`,
     params,
   });
 
 export const getFollowings = (username) =>
-  api({
+  axios({
     method: 'get',
     url: `/${username}/followings`,
   });
 
 export const getFollowers = (username) =>
-  api({
+  axios({
     method: 'get',
     url: `/${username}/followers`,
   });
 
 // notifications
 export const getNotifications = (params) =>
-  api({
+  axios({
     method: 'get',
     url: `/notifications`,
     params,
@@ -163,7 +132,7 @@ export const getNotifications = (params) =>
 
 // searches
 export const getSearches = (params) =>
-  api({
+  axios({
     method: 'get',
     url: `/searches`,
     params,
