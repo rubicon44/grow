@@ -4,22 +4,53 @@ import axios from 'axios';
 // import { currentUser } from 'infra/currentUser';
 
 // axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
-axios.defaults.baseURL = process.env.REACT_APP_API_URL;
-axios.defaults.headers.common['Content-Type'] = 'application/json';
-axios.defaults.withCredentials = true;
-const tokenAuth = localStorage.getItem('token');
-axios.defaults.headers.common.Authorization = tokenAuth;
 
-export const signUp = (params) => axios.post('/users', params);
+const api = axios.create({
+  baseURL: process.env.REACT_APP_API_URL,
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: localStorage.getItem('token'),
+  },
+  withCredentials: true,
+});
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      // 401エラーの場合、ログインページにリダイレクトするなどの処理を行う
+    }
+    return Promise.reject(error);
+  },
+);
+
+export const signUp = (params) => api.post('/users', params);
 
 export const signIn = (idToken) =>
-  axios({
+  api({
     method: 'post',
     url: '/users/sign_in',
     headers: {
       idToken,
     },
   });
+
+// axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+// axios.defaults.headers.common['Content-Type'] = 'application/json';
+// axios.defaults.withCredentials = true;
+// const tokenAuth = localStorage.getItem('token');
+// axios.defaults.headers.common.Authorization = tokenAuth;
+
+// export const signUp = (params) => axios.post('/users', params);
+
+// export const signIn = (idToken) =>
+//   axios({
+//     method: 'post',
+//     url: '/users/sign_in',
+//     headers: {
+//       idToken,
+//     },
+//   });
 
 // users
 // export const getCurrentUser = () =>
