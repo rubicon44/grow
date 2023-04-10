@@ -14,10 +14,10 @@ export const useUserData = () => {
     taskUser: [],
     userTasks: [],
     likedTasksWithUser: [],
-    userBio: [],
-    userNickName: [],
-    userName: [],
-    userId: [],
+    userBio: "",
+    userNickName: "",
+    userName: "",
+    userId: "",
   });
 
   const sortedData = useSortDescendingOrder(userData.userTasks);

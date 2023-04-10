@@ -1,8 +1,4 @@
-// test
-
 import axios from 'axios';
-// import { currentUser } from 'infra/currentUser';
-
 // axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.headers.common['Content-Type'] = 'application/json';
@@ -20,14 +16,6 @@ export const signIn = (idToken) =>
       idToken,
     },
   });
-
-// users
-// export const getCurrentUser = () =>
-//   axios({
-//     method: 'get',
-//     url: `/${currentUser().username}`,
-//     params: { currentUser: true },
-//   });
 
 export const getUser = (params) =>
   axios({

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const FollowingButton = ({ setChangeFollowButtonStyleToTrueFunc }) => {
@@ -6,6 +7,10 @@ export const FollowingButton = ({ setChangeFollowButtonStyleToTrueFunc }) => {
       <span>フォロー中</span>
     </FollowChangeLinkDone>
   );
+};
+
+FollowingButton.propTypes = {
+  setChangeFollowButtonStyleToTrueFunc: PropTypes.func.isRequired,
 };
 
 const FollowChangeLinkDone = styled.a`
