@@ -13,7 +13,7 @@ export const UserTasksList = (props) => {
 
   return (
     <>
-      <Popup message="タスクが正常に削除されました。" duration={3000} showPopup={showPopup} />
+      <Popup message="タスクが正常に削除されました。" showPopup={showPopup} />
       {changeUserNameCheckAble === true && (<UserTasksCheckReLoginWhenChangedUserId changeUserNameFunc={changeUserNameFunc} revertUserBioFunc={revertUserBioFunc} />)}
       <UserTasksContentHeader
         bioAble={bioAble}

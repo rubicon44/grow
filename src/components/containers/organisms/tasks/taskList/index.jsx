@@ -18,7 +18,7 @@ export const TaskList = ({ currentUserId, deleteCheckAble, deleteCheckFunc, dele
   });
   return (
     <>
-      <Popup message="タスクが正常に更新されました。" duration={3000} showPopup={showPopup} />
+      <Popup message="タスクが正常に更新されました。" showPopup={showPopup} />
       <MemoTitleWithBackArrowHeader />
       <ListCover>
         <List

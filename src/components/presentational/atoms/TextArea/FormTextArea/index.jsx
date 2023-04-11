@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const FormTextArea = ({ children, textAreaRef, htmlFor, name, defaultValue, placeholder }) => {
@@ -16,6 +17,15 @@ export const FormTextArea = ({ children, textAreaRef, htmlFor, name, defaultValu
       </label>
     </FormTextAreaCover>
   );
+};
+
+FormTextArea.propTypes = {
+  children: PropTypes.node,
+  defaultValue: PropTypes.string.isRequired,
+  htmlFor: PropTypes.string.isRequired,
+  textAreaRef: PropTypes.object,
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
 };
 
 const FormTextAreaCover = styled.div`

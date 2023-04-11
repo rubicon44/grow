@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FormInput } from '../../../../presentational/atoms/Input/FormInput';
 import { FormSubmitButton } from '../../../../presentational/atoms/Button/FormSubmitButton';

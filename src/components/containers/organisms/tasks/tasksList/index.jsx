@@ -9,7 +9,7 @@ import { Title } from '../../../../presentational/atoms/Title';
 export const TasksList = ({ currentUserId, showPopup, tasks }) => {
   return (
     <>
-      <Popup message="タスクが正常に作成されました。" duration={3000} showPopup={showPopup} />
+      <Popup message="タスクが正常に作成されました。" showPopup={showPopup} />
       <Title>タスク一覧</Title>
       <NextButtonLink text="タスク登録" url="/tasks/create" />
       {tasks?.map((task) => (

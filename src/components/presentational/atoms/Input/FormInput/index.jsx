@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const FormInput = ({ children, inputRef, htmlFor, type, name, defaultValue, placeholder, autoComplete }) => {
@@ -16,6 +17,17 @@ export const FormInput = ({ children, inputRef, htmlFor, type, name, defaultValu
       </label>
     </FormInputCover>
   );
+};
+
+FormInput.propTypes = {
+  autoComplete: PropTypes.string,
+  children: PropTypes.node,
+  defaultValue: PropTypes.string,
+  htmlFor: PropTypes.string.isRequired,
+  inputRef: PropTypes.object,
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 const FormInputCover = styled.div`
