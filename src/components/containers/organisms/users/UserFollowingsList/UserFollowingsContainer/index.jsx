@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { UserFollowings } from '../UserFollowings';
 
 export const UserFollowingsContainer = ({ currentUserId, error, followings, loading, username }) => {
@@ -8,4 +9,16 @@ export const UserFollowingsContainer = ({ currentUserId, error, followings, load
            followings={followings}
            username={username}
          />;
+};
+
+UserFollowingsContainer.propTypes = {
+  currentUserId: PropTypes.string.isRequired,
+  error: PropTypes.bool,
+  followings: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    nickname: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+  })),
+  loading: PropTypes.bool,
+  username: PropTypes.string.isRequired,
 };
