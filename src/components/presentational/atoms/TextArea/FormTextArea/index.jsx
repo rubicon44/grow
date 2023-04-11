@@ -23,9 +23,9 @@ FormTextArea.propTypes = {
   children: PropTypes.node,
   defaultValue: PropTypes.string.isRequired,
   htmlFor: PropTypes.string.isRequired,
-  textAreaRef: PropTypes.object,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
+  textAreaRef: PropTypes.object,
 };
 
 const FormTextAreaCover = styled.div`
