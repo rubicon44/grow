@@ -11,7 +11,7 @@ export const useUserData = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState({
-    taskUser: [],
+    taskUser: {},
     userTasks: [],
     likedTasksWithUser: [],
     userBio: "",

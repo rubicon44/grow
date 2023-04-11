@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { UserTasksAlreadyLikeList } from '../UserTasksAlreadyLikeList';
 import { UserTasksNoLikeList } from '../UserTasksNoLikeList';
@@ -13,6 +14,54 @@ export const UserLikedTasks = ({ userData }) => {
       )}
     </>
   );
+};
+
+UserLikedTasks.propTypes = {
+  userData: PropTypes.shape({
+    taskUser: PropTypes.shape({
+      bio: PropTypes.string,
+      id: PropTypes.number,
+      nickname: PropTypes.string,
+      tasks: PropTypes.arrayOf(
+        PropTypes.shape({
+          content: PropTypes.string,
+          created_at: PropTypes.string,
+          id: PropTypes.number,
+          status: PropTypes.number,
+          title: PropTypes.string,
+          updated_at: PropTypes.string,
+          user_id: PropTypes.number,
+        })
+      ),
+      username: PropTypes.string,
+    }),
+    userTasks: PropTypes.arrayOf(
+      PropTypes.shape({
+        content: PropTypes.string,
+        created_at: PropTypes.string,
+        id: PropTypes.number,
+        status: PropTypes.number,
+        title: PropTypes.string,
+        updated_at: PropTypes.string,
+        user_id: PropTypes.number,
+      })
+    ).isRequired,
+    likedTasksWithUser: PropTypes.arrayOf(
+      PropTypes.shape({
+        content: PropTypes.string,
+        created_at: PropTypes.string,
+        id: PropTypes.number,
+        status: PropTypes.number,
+        title: PropTypes.string,
+        updated_at: PropTypes.string,
+        user_id: PropTypes.number,
+      })
+    ),
+    userBio: PropTypes.string,
+    userNickName: PropTypes.string.isRequired,
+    userName: PropTypes.string.isRequired,
+    userId: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 const LikedTask = styled.div`
