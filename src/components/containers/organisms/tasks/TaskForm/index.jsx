@@ -66,32 +66,32 @@ const TaskFormCover = styled.div`
   text-align: left;
 `;
 
-TaskForm.defaultProps = {
-  handleTextSubmit: () => {},
-  title: '',
-  setTitle: () => {},
-  content: '',
-  setContent: () => {},
-  status: 0,
-  setStatus: () => {},
-  startDate: '',
-  setStartDate: () => {},
-  endDate: 0,
-  setEndDate: () => {},
-  load: false,
-};
+// TaskForm.defaultProps = {
+//   handleTextSubmit: () => {},
+//   title: '',
+//   setTitle: () => {},
+//   content: '',
+//   setContent: () => {},
+//   status: 0,
+//   setStatus: () => {},
+//   startDate: '',
+//   setStartDate: () => {},
+//   endDate: 0,
+//   setEndDate: () => {},
+//   load: false,
+// };
 
-TaskForm.propTypes = {
-  handleTextSubmit: PropTypes.func,
-  title: PropTypes.string,
-  setTitle: PropTypes.func,
-  content: PropTypes.string,
-  setContent: PropTypes.func,
-  status: PropTypes.number,
-  setStatus: PropTypes.func,
-  startDate: PropTypes.string,
-  setStartDate: PropTypes.func,
-  endDate: PropTypes.string,
-  setEndDate: PropTypes.func,
-  load: PropTypes.bool,
-};
+// TaskForm.propTypes = {
+//   handleTextSubmit: PropTypes.func,
+//   title: PropTypes.string,
+//   setTitle: PropTypes.func,
+//   content: PropTypes.string,
+//   setContent: PropTypes.func,
+//   status: PropTypes.number,
+//   setStatus: PropTypes.func,
+//   startDate: PropTypes.string,
+//   setStartDate: PropTypes.func,
+//   endDate: PropTypes.string,
+//   setEndDate: PropTypes.func,
+//   load: PropTypes.bool,
+// };
