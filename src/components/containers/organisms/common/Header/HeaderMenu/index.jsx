@@ -1,9 +1,10 @@
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Divider , IconButton , List , ListItem , ListItemText , SwipeableDrawer } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
-export const HeaderMenu = ({ headerLinks, headerLinksForAuth, state, toggleDrawer }) => {
+export const HeaderMenu = ({ drawerStatus, headerLinks, headerLinksForAuth, toggleDrawer }) => {
   // todo: ログイン後とログイン前で、「headerLinks」と「headerLinksForAuth」を切り替える。
   const headerMenuList = (anchor) => (
     <div
@@ -41,7 +42,7 @@ export const HeaderMenu = ({ headerLinks, headerLinksForAuth, state, toggleDrawe
         </IconButton>
         <SwipeableDrawer
           anchor={anchor}
-          open={state[anchor]}
+          open={drawerStatus[anchor]}
           onClose={toggleDrawer(anchor, false)}
           onOpen={toggleDrawer(anchor, true)}
         >
@@ -50,4 +51,22 @@ export const HeaderMenu = ({ headerLinks, headerLinksForAuth, state, toggleDrawe
       </Fragment>
     ))
   );
+};
+
+HeaderMenu.propTypes = {
+  drawerStatus: PropTypes.shape({
+    top: PropTypes.bool.isRequired,
+    left: PropTypes.bool,
+    bottom: PropTypes.bool,
+    right: PropTypes.bool,
+  }),
+  headerLinks: PropTypes.arrayOf(PropTypes.shape({
+    text: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  })),
+  headerLinksForAuth: PropTypes.arrayOf(PropTypes.shape({
+    text: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  })),
+  toggleDrawer: PropTypes.func.isRequired,
 };

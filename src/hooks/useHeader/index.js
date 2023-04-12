@@ -3,7 +3,7 @@ import { useCurrentUserName } from '../useCurrentUserName';
 
 export const useHeader = () => {
   const currentUserName = useCurrentUserName();
-  const [state, setState] = useState({
+  const [drawerStatus, setDrawerStatus] = useState({
     top: false,
     left: false,
     bottom: false,
@@ -32,8 +32,8 @@ export const useHeader = () => {
     ) {
       return;
     };
-    setState({ ...state, [anchor]: open });
+    setDrawerStatus({ ...drawerStatus, [anchor]: open });
   };
 
-  return { headerLinks, headerLinksForAuth, state, toggleDrawer };
+  return { headerLinks, headerLinksForAuth, drawerStatus, toggleDrawer };
 };
