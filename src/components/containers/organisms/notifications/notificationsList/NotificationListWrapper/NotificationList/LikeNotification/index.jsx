@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const LikeNotification = ({ currentUserName, notification, visitor }) => {
@@ -7,6 +8,31 @@ export const LikeNotification = ({ currentUserName, notification, visitor }) => 
       あなたの<UserNickName to={`/${currentUserName}/tasks/${notification.task_id}`}>タスク</UserNickName>が<UserNickName to={`/${visitor.username}`}>{visitor.nickname}</UserNickName>にいいねされました。
     </UserNickNameCover>
   );
+};
+
+LikeNotification.propTypes = {
+  currentUserName: PropTypes.string.isRequired,
+  notification: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    task_id: PropTypes.number.isRequired,
+    visited_id: PropTypes.number.isRequired,
+    visitor_id: PropTypes.number.isRequired,
+    action: PropTypes.string.isRequired,
+    checked: PropTypes.bool.isRequired,
+    created_at: PropTypes.string.isRequired,
+    updated_at: PropTypes.string.isRequired,
+  }).isRequired,
+  visitor: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    firebase_id: PropTypes.string.isRequired,
+    bio: PropTypes.string,
+    email: PropTypes.string.isRequired,
+    nickname: PropTypes.string.isRequired,
+    paswword_digest: PropTypes.string,
+    username: PropTypes.string.isRequired,
+    created_at: PropTypes.string.isRequired,
+    updated_at: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 const UserNickNameCover = styled.div`
