@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { auth } from '../../infra/firebase';
 import { signUp, signIn } from '../../infra/api';
 
@@ -80,4 +81,8 @@ export const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
+};
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
