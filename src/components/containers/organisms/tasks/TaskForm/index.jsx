@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FormInput } from '../../../../presentational/atoms/Input/FormInput';
 import { FormSubmitButton } from '../../../../presentational/atoms/Button/FormSubmitButton';
@@ -60,38 +60,29 @@ export const TaskForm = ({ handleTextSubmit, inputRefs, isButtonDisabled, taskDa
   );
 };
 
+TaskForm.propTypes = {
+  handleTextSubmit: PropTypes.func.isRequired,
+  inputRefs: PropTypes.shape({
+    contentRef: PropTypes.object.isRequired,
+    endDateRef: PropTypes.object.isRequired,
+    startDateRef: PropTypes.object.isRequired,
+    statusRef: PropTypes.object.isRequired,
+    titleRef: PropTypes.object.isRequired,
+  }).isRequired,
+  isButtonDisabled: PropTypes.bool.isRequired,
+  taskData: PropTypes.shape({
+    task: PropTypes.shape({
+      content: PropTypes.string,
+      endDate: PropTypes.string.isRequired,
+      startDate: PropTypes.string.isRequired,
+      status: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
+
 const TaskFormCover = styled.div`
   min-width: 260px;
   padding: 0 10px;
   text-align: left;
 `;
-
-// TaskForm.defaultProps = {
-//   handleTextSubmit: () => {},
-//   title: '',
-//   setTitle: () => {},
-//   content: '',
-//   setContent: () => {},
-//   status: 0,
-//   setStatus: () => {},
-//   startDate: '',
-//   setStartDate: () => {},
-//   endDate: 0,
-//   setEndDate: () => {},
-//   load: false,
-// };
-
-// TaskForm.propTypes = {
-//   handleTextSubmit: PropTypes.func,
-//   title: PropTypes.string,
-//   setTitle: PropTypes.func,
-//   content: PropTypes.string,
-//   setContent: PropTypes.func,
-//   status: PropTypes.number,
-//   setStatus: PropTypes.func,
-//   startDate: PropTypes.string,
-//   setStartDate: PropTypes.func,
-//   endDate: PropTypes.string,
-//   setEndDate: PropTypes.func,
-//   load: PropTypes.bool,
-// };

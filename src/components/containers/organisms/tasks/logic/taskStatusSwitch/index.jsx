@@ -13,6 +13,10 @@ export const TaskStatusSwitch = memo(({ taskStatus }) => {
   return Component;
 });
 
+TaskStatusSwitch.propTypes = {
+  taskStatus: PropTypes.number.isRequired,
+};
+
 const TaskStatusNot = styled.span`
   position: absolute;
   top: 0;
@@ -66,11 +70,3 @@ const TaskStatusDone = styled.span`
   color: #fff;
   background: #a1af2f;
 `;
-
-TaskStatusSwitch.defaultProps = {
-  taskStatus: 0,
-};
-
-TaskStatusSwitch.propTypes = {
-  taskStatus: PropTypes.number,
-};

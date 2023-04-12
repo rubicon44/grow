@@ -65,25 +65,7 @@ UserTasksList.propTypes = {
       email: PropTypes.string,
       nickname: PropTypes.string,
       password_digest: PropTypes.string,
-      tasks: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.number,
-          user_id: PropTypes.number,
-          content: PropTypes.string,
-          end_date: PropTypes.string,
-          start_date: PropTypes.string,
-          status: PropTypes.number,
-          title: PropTypes.string,
-          created_at: PropTypes.string,
-          updated_at: PropTypes.string,
-        })
-      ),
-      username: PropTypes.string,
-      created_at: PropTypes.string,
-      updated_at: PropTypes.string,
-    }),
-    userTasks: PropTypes.arrayOf(
-      PropTypes.shape({
+      tasks: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number,
         user_id: PropTypes.number,
         content: PropTypes.string,
@@ -93,8 +75,22 @@ UserTasksList.propTypes = {
         title: PropTypes.string,
         created_at: PropTypes.string,
         updated_at: PropTypes.string,
-      })
-    ).isRequired,
+      })),
+      username: PropTypes.string,
+      created_at: PropTypes.string,
+      updated_at: PropTypes.string,
+    }),
+    userTasks: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      user_id: PropTypes.number,
+      content: PropTypes.string,
+      end_date: PropTypes.string,
+      start_date: PropTypes.string,
+      status: PropTypes.number,
+      title: PropTypes.string,
+      created_at: PropTypes.string,
+      updated_at: PropTypes.string,
+    })).isRequired,
     likedTasksWithUser: PropTypes.arrayOf(PropTypes.shape({
       task: PropTypes.shape({
         id: PropTypes.number,

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { LikeOrUnLikeButtonSwitchContainer } from '../../likes/LikeOrUnLikeButtonSwitchContainer';
 import { TaskStatusSwitch } from '../logic/taskStatusSwitch';
@@ -27,6 +28,17 @@ export const TasksList = ({ showPopup, tasks }) => {
       ))}
     </>
   );
+};
+
+TasksList.propTypes = {
+  showPopup: PropTypes.bool.isRequired,
+  tasks: PropTypes.arrayOf(PropTypes.shape({
+    content: PropTypes.string,
+    endDate: PropTypes.string,
+    startDate: PropTypes.string,
+    status: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 const ListCover = styled.div`

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const TaskFormSelect = ({ selectRef, defaultValue }) => {
@@ -11,6 +12,11 @@ export const TaskFormSelect = ({ selectRef, defaultValue }) => {
       </select>
     </TaskFormSelectCover>
   );
+};
+
+TaskFormSelect.propTypes = {
+  selectRef: PropTypes.object.isRequired,
+  defaultValue: PropTypes.number.isRequired,
 };
 
 const TaskFormSelectCover = styled.div`

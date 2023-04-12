@@ -12,7 +12,7 @@ export const TaskEditTemplate = ({ taskDataTask }) => {
 
 TaskEditTemplate.propTypes = {
   taskDataTask: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     status: PropTypes.number.isRequired,

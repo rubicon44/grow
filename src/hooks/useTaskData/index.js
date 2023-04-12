@@ -21,6 +21,9 @@ export const useTaskData = () => {
       try {
         const response = await getTask(currentTaskId);
         const task = response.data;
+        // todo: 型変換の適切性を検証
+        task.id = task.id.toString();
+        task.user_id = task.user_id.toString();
         setTaskData({
           task: task,
           taskCreatedUser: task.user,
