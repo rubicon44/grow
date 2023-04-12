@@ -22,8 +22,8 @@ export const useLike = (taskId) => {
       const likeData = response.data;
       setLikeData({
         likeCount: likeData.like_count,
-        likeId: String(likeData.like_id),
-        likedUserId: String(likeData.liked_user_id),
+        likeId: likeData.like_id,
+        likedUserId: likeData.liked_user_id,
       });
       setCurrentTaskId(String(likeData.task_id));
     } catch (error) {

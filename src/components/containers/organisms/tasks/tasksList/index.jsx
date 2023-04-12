@@ -6,7 +6,7 @@ import { NextButtonLink } from '../../../../presentational/atoms/Link/NextButton
 import { Popup } from '../../../../presentational/atoms/Popup';
 import { Title } from '../../../../presentational/atoms/Title';
 
-export const TasksList = ({ currentUserId, showPopup, tasks }) => {
+export const TasksList = ({ showPopup, tasks }) => {
   return (
     <>
       <Popup message="タスクが正常に作成されました。" showPopup={showPopup} />
@@ -22,7 +22,7 @@ export const TasksList = ({ currentUserId, showPopup, tasks }) => {
             text={task.user.nickname}
           />
           <TaskStatusSwitch taskStatus={task.status} />
-          <LikeOrUnLikeButtonSwitchContainer taskId={String(task.id)} currentUserId={String(currentUserId)} />
+          <LikeOrUnLikeButtonSwitchContainer taskId={String(task.id)} />
         </ListCover>
       ))}
     </>

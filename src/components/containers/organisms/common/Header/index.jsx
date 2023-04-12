@@ -20,15 +20,15 @@ Header.propTypes = {
     left: PropTypes.bool,
     bottom: PropTypes.bool,
     right: PropTypes.bool,
-  }),
+  }).isRequired,
   headerLinks: PropTypes.arrayOf(PropTypes.shape({
     text: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
-  })),
+  })).isRequired,
   headerLinksForAuth: PropTypes.arrayOf(PropTypes.shape({
     text: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
-  })),
+  })).isRequired,
   toggleDrawer: PropTypes.func.isRequired,
 };
 
