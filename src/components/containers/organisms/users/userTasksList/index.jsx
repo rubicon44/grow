@@ -10,7 +10,6 @@ export const UserTasksList = (props) => {
   const { bioAble, changeUserNameCheckAble, changeUserNameFunc, editing, error, handleTextSubmit, inputRefs, isButtonDisabled, loading, revertUserBioFunc, setBioAbleFunc, userData, userNameInUrl } = props;
   const { moveToFollowers, moveToFollowings, moveToGanttChart } = props;
   const { showPopup } = props;
-
   return (
     <>
       <Popup message="タスクが正常に削除されました。" showPopup={showPopup} />
@@ -60,44 +59,66 @@ UserTasksList.propTypes = {
   showPopup: PropTypes.bool.isRequired,
   userData: PropTypes.shape({
     taskUser: PropTypes.shape({
-      bio: PropTypes.string,
       id: PropTypes.number,
+      firebase_id: PropTypes.string,
+      bio: PropTypes.string,
+      email: PropTypes.string,
       nickname: PropTypes.string,
+      password_digest: PropTypes.string,
       tasks: PropTypes.arrayOf(
         PropTypes.shape({
-          content: PropTypes.string,
-          created_at: PropTypes.string,
           id: PropTypes.number,
+          user_id: PropTypes.number,
+          content: PropTypes.string,
+          end_date: PropTypes.string,
+          start_date: PropTypes.string,
           status: PropTypes.number,
           title: PropTypes.string,
+          created_at: PropTypes.string,
           updated_at: PropTypes.string,
-          user_id: PropTypes.number,
         })
       ),
       username: PropTypes.string,
+      created_at: PropTypes.string,
+      updated_at: PropTypes.string,
     }),
     userTasks: PropTypes.arrayOf(
       PropTypes.shape({
-        content: PropTypes.string,
-        created_at: PropTypes.string,
         id: PropTypes.number,
+        user_id: PropTypes.number,
+        content: PropTypes.string,
+        end_date: PropTypes.string,
+        start_date: PropTypes.string,
         status: PropTypes.number,
         title: PropTypes.string,
+        created_at: PropTypes.string,
         updated_at: PropTypes.string,
-        user_id: PropTypes.number,
       })
     ).isRequired,
-    likedTasksWithUser: PropTypes.arrayOf(
-      PropTypes.shape({
-        content: PropTypes.string,
-        created_at: PropTypes.string,
+    likedTasksWithUser: PropTypes.arrayOf(PropTypes.shape({
+      task: PropTypes.shape({
         id: PropTypes.number,
+        user_id: PropTypes.number,
+        content: PropTypes.string,
+        end_date: PropTypes.string,
+        start_date: PropTypes.string,
         status: PropTypes.number,
         title: PropTypes.string,
+        created_at: PropTypes.string,
         updated_at: PropTypes.string,
-        user_id: PropTypes.number,
-      })
-    ),
+      }),
+      user: PropTypes.shape({
+        id: PropTypes.number,
+        firebase_id: PropTypes.string,
+        bio: PropTypes.string,
+        email: PropTypes.string,
+        nickname: PropTypes.string,
+        password_digest: PropTypes.string,
+        username: PropTypes.string,
+        created_at: PropTypes.string,
+        updated_at: PropTypes.string,
+      }),
+    })),
     userBio: PropTypes.string,
     userNickName: PropTypes.string.isRequired,
     userName: PropTypes.string.isRequired,

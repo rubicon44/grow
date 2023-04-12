@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FormInput } from '../../../../../presentational/atoms/Input/FormInput';
 import { FormSubmitButton } from '../../../../../presentational/atoms/Button/FormSubmitButton';
@@ -30,6 +31,11 @@ export const SearchForm = ({ handleSubmit, isButtonDisabled }) => {
       </form>
     </SearchFormCover>
   );
+};
+
+SearchForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  isButtonDisabled: PropTypes.bool.isRequired,
 };
 
 const FormSubmitButtonCover = styled.div`
