@@ -6,6 +6,6 @@ export const TaskDeleteCheckButton = ({ currentUserId, deleteCheckFunc, taskCrea
 
 TaskDeleteCheckButton.propTypes = {
   currentUserId: PropTypes.string.isRequired,
-  deleteTaskFunc: PropTypes.func,
+  deleteCheckFunc: PropTypes.func.isRequired,
   taskCreatedUserId: PropTypes.string.isRequired,
 };

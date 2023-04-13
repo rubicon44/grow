@@ -58,7 +58,6 @@ export const deleteTask = (params) =>
   axios({
     method: 'delete',
     url: `/tasks/${params}`,
-    params,
   });
 
 // likes

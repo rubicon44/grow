@@ -10,7 +10,7 @@ export const useTaskData = () => {
   const [error, setError] = useState(null);
   const [taskData, setTaskData] = useState({
     task: { id: '', title: '', content: '', status: '', start_date: '', end_date: '' },
-    taskCreatedUser: '',
+    taskCreatedUser: {},
     taskCreatedUserName: '',
   });
 
