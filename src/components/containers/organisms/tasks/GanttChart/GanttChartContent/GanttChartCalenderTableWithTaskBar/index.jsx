@@ -2,7 +2,6 @@ import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { CalenderTableBodyColorSwitch } from '../../CalenderTableBodyColorSwitch';
-import { CalenderTableBodyColorSwitchForTBody } from '../../CalenderTableBodyColorSwitchForTBody';
 import { GunttChartTaskBar } from './GunttChartTaskBar';
 
 export const GanttChartCalenderTableWithTaskBar = ({ calenderBodyHeight, calenders, styles }) => {
@@ -10,20 +9,14 @@ export const GanttChartCalenderTableWithTaskBar = ({ calenderBodyHeight, calende
     calenders.map((calender) => (
       <Fragment key={calender.date}>
         <GanttChartCalenderTable>
-          <GanttChartCalenderTableHead>
+          <thead>
             <tr>
               <th>{calender.date}</th>
             </tr>
-            <GanttChartCalenderTableHeadDateCover>
-              {calender.days.map((days) => (
-                <CalenderTableBodyColorSwitch key={days.blockNumber} days={days} />
-              ))}
-            </GanttChartCalenderTableHeadDateCover>
-          </GanttChartCalenderTableHead>
-          {/* todo: 表示のためだけのHTMLのため削除予定。 */}
-          <tbody style={{height: calenderBodyHeight + 'px'}}>
+          </thead>
+          <tbody style={{height: calenderBodyHeight + 32 + 'px'}}>
             {calender.days.map((days) => (
-              <CalenderTableBodyColorSwitchForTBody key={days.blockNumber} days={days} />
+              <CalenderTableBodyColorSwitch key={days.blockNumber} days={days} />
             ))}
           </tbody>
         </GanttChartCalenderTable>
@@ -76,16 +69,4 @@ const GanttChartCalenderTable = styled.table`
       }
     }
   }
-`;
-
-const GanttChartCalenderTableHead = styled.thead`
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 10;
-`;
-
-
-const GanttChartCalenderTableHeadDateCover = styled.div`
-  display: flex;
 `;
