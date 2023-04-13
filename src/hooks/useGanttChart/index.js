@@ -5,7 +5,7 @@ export const useGanttChart = (userTasks) => {
   const { calenders, currentPositionNumber, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, preCurrentPositionNumber, setCurrentPositionNumber, setPreCurrentPositionNumber, styles } = useTaskBars(userTasks);
   const elm = useRef(null);
   const elmOfCalenderTableCover = useRef(null);
-  const [calenderBodyHeight, setCalenderBodyHeight] = useState();
+  const [calenderBodyHeight, setCalenderBodyHeight] = useState(0);
   const updateCalenderBodyHeight = () => {
     const taskListBodyHeight = elm.current.getBoundingClientRect().height;
     setCalenderBodyHeight(taskListBodyHeight);

@@ -11,10 +11,6 @@ export const TaskStatusSwitchText = ({ taskStatus }) => {
   return Component;
 };
 
-TaskStatusSwitchText.defaultProps = {
-  taskStatus: 0,
-};
-
 TaskStatusSwitchText.propTypes = {
-  taskStatus: PropTypes.number,
+  taskStatus: PropTypes.number.isRequired,
 };

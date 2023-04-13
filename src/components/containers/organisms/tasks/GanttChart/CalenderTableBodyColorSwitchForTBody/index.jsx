@@ -1,5 +1,7 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+// todo: 表示のためだけのHTMLのため削除予定。
 export const CalenderTableBodyColorSwitchForTBody = ({ days }) => {
   if(days.dayOfWeek !== "土" && days.dayOfWeek !== "日") {
     return (
@@ -25,6 +27,12 @@ export const CalenderTableBodyColorSwitchForTBody = ({ days }) => {
   } else {
     return null;
   };
+};
+
+CalenderTableBodyColorSwitchForTBody.propTypes = {
+  blockNumber: PropTypes.number,
+  day: PropTypes.number,
+  dayOfWeek: PropTypes.string,
 };
 
 const ColoredBlueDayOfWeek = styled.tr`
