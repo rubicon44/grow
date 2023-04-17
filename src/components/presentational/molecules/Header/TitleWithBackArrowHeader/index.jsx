@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { BackArrow } from '../../../atoms/Arrow/BackArrow';
 import { Title } from '../../../atoms/Title';
@@ -11,6 +12,10 @@ export const TitleWithBackArrowHeader = memo(({ children }) => {
     </BaseTitleWithBackArrowHeader>
   );
 });
+
+TitleWithBackArrowHeader.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 const BaseTitleWithBackArrowHeader = styled.div`
   display: flex;

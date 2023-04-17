@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NextButtonLink } from '../../../presentational/atoms/Link/NextButtonLink';
 
 export class ErrorBoundary extends React.Component {
@@ -29,4 +30,11 @@ export class ErrorBoundary extends React.Component {
 
     return this.props.children;
   };
+};
+
+ErrorBoundary.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
 };

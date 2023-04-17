@@ -6,15 +6,12 @@ export const Title = memo(({ children, className }) => {
   return <BaseTitle className={className}>{children}</BaseTitle>;
 });
 
+Title.propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+};
+
 const BaseTitle = styled.h2`
   font-size: 36px;
   font-family: YuMincho;
 `;
-
-Title.defaultProps = {
-  title: '',
-};
-
-Title.propTypes = {
-  title: PropTypes.string,
-};

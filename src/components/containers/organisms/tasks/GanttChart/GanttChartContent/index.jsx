@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -33,6 +34,78 @@ export const GanttChartContent = (props) => {
       </GanttChartTaskAndCalenderTables>
     </>
   );
+};
+
+GanttChartContent.propTypes = {
+  calenderBodyHeight: PropTypes.number.isRequired,
+  calenders: PropTypes.arrayOf(PropTypes.exact({
+    calender: PropTypes.number.isRequired,
+    date: PropTypes.string.isRequired,
+    days: PropTypes.arrayOf(PropTypes.exact({
+      blockNumber: PropTypes.number.isRequired,
+      day: PropTypes.number.isRequired,
+      dayOfWeek: PropTypes.string.isRequired,
+    })),
+    month: PropTypes.number.isRequired,
+    startBlockNumber: PropTypes.number.isRequired,
+    year: PropTypes.number.isRequired,
+  })).isRequired,
+  elm: PropTypes.object.isRequired,
+  elmOfCalenderTableCover: PropTypes.object.isRequired,
+  handleBackToPreviousMonthClick: PropTypes.func.isRequired,
+  handleForwardToNextMonthClick: PropTypes.func.isRequired,
+  handleScrollToCurrentDate: PropTypes.func.isRequired,
+  styles: PropTypes.arrayOf(PropTypes.exact({
+    id: PropTypes.string.isRequired,
+    left: PropTypes.string.isRequired,
+    taskStatus: PropTypes.number.isRequired,
+    top: PropTypes.string.isRequired,
+    width: PropTypes.string.isRequired,
+  })).isRequired,
+  taskUser: PropTypes.exact({
+    id: PropTypes.number.isRequired,
+    firebase_id: PropTypes.string,
+    bio: PropTypes.string,
+    email: PropTypes.string.isRequired,
+    like_tasks: PropTypes.arrayOf(PropTypes.exact({
+      id: PropTypes.number.isRequired,
+      user_id: PropTypes.number.isRequired,
+      content: PropTypes.string.isRequired,
+      end_date: PropTypes.string.isRequired,
+      start_date: PropTypes.string.isRequired,
+      status: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      created_at: PropTypes.string.isRequired,
+      updated_at: PropTypes.string.isRequired,
+    })).isRequired,
+    nickname: PropTypes.string.isRequired,
+    password_digest: PropTypes.string,
+    tasks: PropTypes.arrayOf(PropTypes.exact({
+      id: PropTypes.number.isRequired,
+      user_id: PropTypes.number.isRequired,
+      content: PropTypes.string.isRequired,
+      end_date: PropTypes.string.isRequired,
+      start_date: PropTypes.string.isRequired,
+      status: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      created_at: PropTypes.string.isRequired,
+      updated_at: PropTypes.string.isRequired,
+    })).isRequired,
+    username: PropTypes.string.isRequired,
+    created_at: PropTypes.string.isRequired,
+    updated_at: PropTypes.string.isRequired,
+  }),
+  userTasks: PropTypes.arrayOf(PropTypes.exact({
+    id: PropTypes.number.isRequired,
+    user_id: PropTypes.number.isRequired,
+    content: PropTypes.string.isRequired,
+    end_date: PropTypes.string.isRequired,
+    start_date: PropTypes.string.isRequired,
+    status: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    created_at: PropTypes.string.isRequired,
+    updated_at: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 const ArrowIconsCover = styled.div`

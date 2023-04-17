@@ -1,12 +1,26 @@
+import PropTypes from 'prop-types';
 import { LikeButton } from './LikeButton';
 import { UnLikeButton } from './UnLikeButton';
 
-export const LikeOrUnLikeButtonSwitch = ({ currentUserId, currentTaskId, handleClickLikeDelete, handleClickLikePost, likeData, taskId }) => {
+export const LikeOrUnLikeButtonSwitch = ({ currentTaskId, currentUserId, handleClickLikeDelete, handleClickLikePost, likeData, taskId }) => {
   return (
-    currentUserId === likeData.likedUserId && currentTaskId === taskId ? (
+    currentUserId === String(likeData.likedUserId) && currentTaskId === taskId ? (
       <UnLikeButton handleClickLikeDelete={handleClickLikeDelete} likeData={likeData} />
     ) : (
       <LikeButton handleClickLikePost={handleClickLikePost} likeData={likeData} />
     )
   );
+};
+
+LikeOrUnLikeButtonSwitch.propTypes = {
+  currentTaskId: PropTypes.string,
+  currentUserId: PropTypes.string.isRequired,
+  handleClickLikeDelete: PropTypes.func.isRequired,
+  handleClickLikePost: PropTypes.func.isRequired,
+  likeData: PropTypes.shape({
+    likeCount: PropTypes.number.isRequired,
+    likeId: PropTypes.number,
+    likedUserId: PropTypes.number,
+  }).isRequired,
+  taskId: PropTypes.string.isRequired,
 };

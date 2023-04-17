@@ -58,8 +58,8 @@ export const useSearchResults = () => {
   }, [searchResults.tasks, searchResults.taskUsers]);
 
   // todo: Fix re-rendering in searchResultTasks later.
-  const searchResultTasks = TasksAndUsersMapArray;
-  const searchResultUsers = searchResults.users;
+  const searchResultTasks = TasksAndUsersMapArray || [];
+  const searchResultUsers = searchResults.users || [];
 
   return { error, handleSubmit, isButtonDisabled, loading, searchResultTasks, searchResultUsers };
 };

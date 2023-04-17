@@ -1,7 +1,13 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const Main = ({ children, className }) => {
   return <BaseMain className={className}>{children}</BaseMain>;
+};
+
+Main.propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
 };
 
 const BaseMain = styled.main`

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { TaskDeleteButton } from '../TaskDeleteButton';
 import { TaskUnDeleteButton } from '../TaskUnDeleteButton';
@@ -14,6 +15,12 @@ export const TaskDeleteOrUnDeleteButtonSwitch = ({ deleteCheckAble, deleteTaskFu
       </BackgroundDisAbledCover>
     )
   );
+};
+
+TaskDeleteOrUnDeleteButtonSwitch.propTypes = {
+  deleteCheckAble: PropTypes.bool.isRequired,
+  deleteTaskFunc: PropTypes.func.isRequired,
+  unDeleteCheckFunc: PropTypes.func.isRequired,
 };
 
 const BackgroundDisAbledCover = styled.div`

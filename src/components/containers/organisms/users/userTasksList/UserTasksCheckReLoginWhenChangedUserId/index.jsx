@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const UserTasksCheckReLoginWhenChangedUserId = ({ changeUserNameFunc, revertUserBioFunc}) => {
@@ -10,6 +11,11 @@ export const UserTasksCheckReLoginWhenChangedUserId = ({ changeUserNameFunc, rev
       </BackgroundDisAbled>
     </BackgroundDisAbledCover>
   );
+};
+
+UserTasksCheckReLoginWhenChangedUserId.propTypes = {
+  changeUserNameFunc: PropTypes.func.isRequired,
+  revertUserBioFunc: PropTypes.func.isRequired,
 };
 
 const BackgroundDisAbledCover = styled.div`

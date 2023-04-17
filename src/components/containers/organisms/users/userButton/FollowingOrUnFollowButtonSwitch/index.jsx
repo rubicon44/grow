@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FollowingButton } from '../FollowingButton';
 import { UnFollowButton} from '../UnFollowButton';
@@ -17,6 +18,13 @@ export const FollowingOrUnFollowButtonSwitch = ({ changeFollowButtonStyle, setCh
       </FollowChangeLinkCover>
     </FollowChange>
   );
+};
+
+FollowingOrUnFollowButtonSwitch.propTypes = {
+  changeFollowButtonStyle: PropTypes.bool.isRequired,
+  setChangeFollowButtonStyleToFalseFunc: PropTypes.func.isRequired,
+  setChangeFollowButtonStyleToTrueFunc: PropTypes.func.isRequired,
+  unFollowFunc: PropTypes.func.isRequired,
 };
 
 const FollowChange = styled.div`

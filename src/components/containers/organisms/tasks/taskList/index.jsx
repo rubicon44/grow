@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { LikeOrUnLikeButtonSwitchContainer } from '../../likes/LikeOrUnLikeButtonSwitchContainer';
 import { TaskDeleteCheckButton } from '../TaskButton/TaskDeleteCheckButton';
@@ -18,7 +19,7 @@ export const TaskList = ({ currentUserId, deleteCheckAble, deleteCheckFunc, dele
   });
   return (
     <>
-      <Popup message="タスクが正常に更新されました。" duration={3000} showPopup={showPopup} />
+      <Popup message="タスクが正常に更新されました。" showPopup={showPopup} />
       <MemoTitleWithBackArrowHeader />
       <ListCover>
         <List
@@ -53,6 +54,26 @@ export const TaskList = ({ currentUserId, deleteCheckAble, deleteCheckFunc, dele
       />
     </>
   );
+};
+
+TaskList.propTypes = {
+  currentUserId: PropTypes.string.isRequired,
+  deleteCheckAble: PropTypes.bool.isRequired,
+  deleteCheckFunc: PropTypes.func.isRequired,
+  deleteTaskFunc: PropTypes.func.isRequired,
+  isButtonDisabled: PropTypes.bool.isRequired,
+  moveToEditTask: PropTypes.func.isRequired,
+  showPopup: PropTypes.bool.isRequired,
+  taskData: PropTypes.shape({
+    task: PropTypes.shape({
+      content: PropTypes.string,
+      endDate: PropTypes.string,
+      startDate: PropTypes.string,
+      status: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+  unDeleteCheckFunc: PropTypes.func.isRequired,
 };
 
 const ListCover = styled.div`

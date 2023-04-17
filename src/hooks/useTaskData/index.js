@@ -10,7 +10,7 @@ export const useTaskData = () => {
   const [error, setError] = useState(null);
   const [taskData, setTaskData] = useState({
     task: { id: '', title: '', content: '', status: '', start_date: '', end_date: '' },
-    taskCreatedUser: '',
+    taskCreatedUser: {},
     taskCreatedUserName: '',
   });
 
@@ -21,6 +21,9 @@ export const useTaskData = () => {
       try {
         const response = await getTask(currentTaskId);
         const task = response.data;
+        // todo: 型変換の適切性を検証
+        task.id = task.id.toString();
+        task.user_id = task.user_id.toString();
         setTaskData({
           task: task,
           taskCreatedUser: task.user,

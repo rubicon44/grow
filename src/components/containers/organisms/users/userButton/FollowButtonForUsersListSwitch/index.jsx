@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { FollowButton } from '../followButton';
 import { FollowingOrUnFollowButtonSwitch } from '../FollowingOrUnFollowButtonSwitch';
 import { FollowOrFollowingOrUnFollowButtonSwitch } from './FollowOrFollowingOrUnFollowButtonSwitch';
@@ -48,4 +49,17 @@ export const FollowButtonForUsersListSwitch = (props) => {
       unFollowFunc={unFollowFunc}
     />
   );
+};
+
+FollowButtonForUsersListSwitch.propTypes = {
+  changeFollowButtonStyle: PropTypes.bool.isRequired,
+  currentUserName: PropTypes.string.isRequired,
+  currentUserId: PropTypes.string.isRequired,
+  followFunc: PropTypes.func.isRequired,
+  isFollowing: PropTypes.bool.isRequired,
+  setChangeFollowButtonStyleToFalseFunc: PropTypes.func.isRequired,
+  setChangeFollowButtonStyleToTrueFunc: PropTypes.func.isRequired,
+  unFollowFunc: PropTypes.func.isRequired,
+  username: PropTypes.string.isRequired,
+  userIdToFollowOrUnFollow: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object]).isRequired,
 };

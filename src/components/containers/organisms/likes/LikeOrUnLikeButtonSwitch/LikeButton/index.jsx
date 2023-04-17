@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import PropTypes from 'prop-types';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import styled from 'styled-components';
 
@@ -10,6 +11,15 @@ export const LikeButton = memo(({ handleClickLikePost, likeData }) => {
     </ThumbUpIconCover>
   );
 });
+
+LikeButton.propTypes = {
+  handleClickLikePost: PropTypes.func.isRequired,
+  likeData: PropTypes.shape({
+    likeCount: PropTypes.number.isRequired,
+    likeId: PropTypes.number,
+    likedUserId: PropTypes.number,
+  }).isRequired,
+};
 
 const ThumbUpIconCover = styled.span`
   cursor: pointer;

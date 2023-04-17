@@ -28,6 +28,12 @@ export const CalenderTableBodyColorSwitch = ({ days }) => {
   };
 };
 
+CalenderTableBodyColorSwitch.propTypes = {
+  blockNumber: PropTypes.number.isRequired,
+  day: PropTypes.number.isRequired,
+  dayOfWeek: PropTypes.string.isRequired,
+};
+
 const ColoredBlueDayOfWeek = styled.tr`
   display: flex;
   flex-direction: column;

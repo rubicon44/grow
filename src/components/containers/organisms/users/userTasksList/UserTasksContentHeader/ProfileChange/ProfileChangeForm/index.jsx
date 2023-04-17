@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FormButton } from '../../../../../../../presentational/atoms/Button/FormButton';
 import { FormInput } from '../../../../../../../presentational/atoms/Input/FormInput';
@@ -49,6 +50,62 @@ export const ProfileChangeForm = (props) => {
       </form>
     </FormCover>
   );
+};
+
+ProfileChangeForm.propTypes = {
+  handleTextSubmit: PropTypes.func.isRequired,
+  inputRefs: PropTypes.shape({
+    bioRef: PropTypes.object.isRequired,
+    nicknameRef: PropTypes.object.isRequired,
+    usernameRef: PropTypes.object.isRequired,
+  }).isRequired,
+  isButtonDisabled: PropTypes.bool.isRequired,
+  revertUserBioFunc: PropTypes.func.isRequired,
+  userData: PropTypes.shape({
+    taskUser: PropTypes.shape({
+      bio: PropTypes.string,
+      id: PropTypes.number,
+      nickname: PropTypes.string,
+      tasks: PropTypes.arrayOf(
+        PropTypes.shape({
+          content: PropTypes.string,
+          created_at: PropTypes.string,
+          id: PropTypes.number,
+          status: PropTypes.number,
+          title: PropTypes.string,
+          updated_at: PropTypes.string,
+          user_id: PropTypes.number,
+        })
+      ),
+      username: PropTypes.string,
+    }),
+    userTasks: PropTypes.arrayOf(
+      PropTypes.shape({
+        content: PropTypes.string,
+        created_at: PropTypes.string,
+        id: PropTypes.number,
+        status: PropTypes.number,
+        title: PropTypes.string,
+        updated_at: PropTypes.string,
+        user_id: PropTypes.number,
+      })
+    ).isRequired,
+    likedTasksWithUser: PropTypes.arrayOf(
+      PropTypes.shape({
+        content: PropTypes.string,
+        created_at: PropTypes.string,
+        id: PropTypes.number,
+        status: PropTypes.number,
+        title: PropTypes.string,
+        updated_at: PropTypes.string,
+        user_id: PropTypes.number,
+      })
+    ),
+    userBio: PropTypes.string,
+    userNickName: PropTypes.string.isRequired,
+    userName: PropTypes.string.isRequired,
+    userId: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 const FormCover = styled.div`

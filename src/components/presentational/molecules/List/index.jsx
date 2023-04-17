@@ -15,6 +15,14 @@ export const List = ({ title, titleUrl, content, url, text }) => {
   );
 };
 
+List.propTypes = {
+  content: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  titleUrl: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+};
+
 const BaseList = styled.dl`
   min-width: 180px;
   max-width: 180px;
@@ -38,19 +46,3 @@ const CreatedUserCover = styled.div`
   justify-content: end;
   align-items: center;
 `;
-
-List.defaultProps = {
-  title: '',
-  titleUrl: '',
-  content: '',
-  url: '',
-  text: '',
-};
-
-List.propTypes = {
-  title: PropTypes.string,
-  titleUrl: PropTypes.string,
-  content: PropTypes.string,
-  url: PropTypes.string,
-  text: PropTypes.string,
-};

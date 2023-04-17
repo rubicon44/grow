@@ -3,8 +3,13 @@ import styled from 'styled-components';
 import { mediaquery } from '../../../../../assets/styles/variable';
 import { BaseLink } from '../BaseLink';
 
-export const NextButtonLink = ({ url, text }) => {
+export const NextButtonLink = ({ text, url }) => {
   return <DangerButtonLink url={url} >{text}</DangerButtonLink>;
+};
+
+NextButtonLink.propTypes = {
+  text: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
 };
 
 const DangerButtonLink = styled(BaseLink)`
@@ -27,13 +32,3 @@ const DangerButtonLink = styled(BaseLink)`
     line-height: 36px;
   `}
 `;
-
-NextButtonLink.defaultProps = {
-  url: '',
-  text: '',
-};
-
-NextButtonLink.propTypes = {
-  url: PropTypes.string,
-  text: PropTypes.string,
-};

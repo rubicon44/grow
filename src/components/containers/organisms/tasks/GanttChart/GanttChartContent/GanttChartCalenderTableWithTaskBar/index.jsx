@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { CalenderTableBodyColorSwitch } from '../../CalenderTableBodyColorSwitch';
-import { CalenderTableBodyColorSwitchForTBody } from '../../CalenderTableBodyColorSwitchForTBody';
 import { GunttChartTaskBar } from './GunttChartTaskBar';
 
 export const GanttChartCalenderTableWithTaskBar = ({ calenderBodyHeight, calenders, styles }) => {
@@ -9,19 +9,14 @@ export const GanttChartCalenderTableWithTaskBar = ({ calenderBodyHeight, calende
     calenders.map((calender) => (
       <Fragment key={calender.date}>
         <GanttChartCalenderTable>
-          <GanttChartCalenderTableHead>
+          <thead>
             <tr>
               <th>{calender.date}</th>
             </tr>
-            <GanttChartCalenderTableHeadDateCover>
-              {calender.days.map((days) => (
-                <CalenderTableBodyColorSwitch key={days.blockNumber} days={days} />
-              ))}
-            </GanttChartCalenderTableHeadDateCover>
-          </GanttChartCalenderTableHead>
-          <tbody style={{height: calenderBodyHeight + 'px'}}>
+          </thead>
+          <tbody style={{height: calenderBodyHeight + 32 + 'px'}}>
             {calender.days.map((days) => (
-              <CalenderTableBodyColorSwitchForTBody key={days.blockNumber} days={days} />
+              <CalenderTableBodyColorSwitch key={days.blockNumber} days={days} />
             ))}
           </tbody>
         </GanttChartCalenderTable>
@@ -29,6 +24,29 @@ export const GanttChartCalenderTableWithTaskBar = ({ calenderBodyHeight, calende
       </Fragment>
     ))
   );
+};
+
+GanttChartCalenderTableWithTaskBar.propTypes = {
+  calenderBodyHeight: PropTypes.number.isRequired,
+  calenders: PropTypes.arrayOf(PropTypes.exact({
+    calender: PropTypes.number.isRequired,
+    date: PropTypes.string.isRequired,
+    days: PropTypes.arrayOf(PropTypes.exact({
+      blockNumber: PropTypes.number.isRequired,
+      day: PropTypes.number.isRequired,
+      dayOfWeek: PropTypes.string.isRequired,
+    })),
+    month: PropTypes.number.isRequired,
+    startBlockNumber: PropTypes.number.isRequired,
+    year: PropTypes.number.isRequired,
+  })).isRequired,
+  styles: PropTypes.arrayOf(PropTypes.exact({
+    id: PropTypes.string.isRequired,
+    left: PropTypes.string.isRequired,
+    taskStatus: PropTypes.number.isRequired,
+    top: PropTypes.string.isRequired,
+    width: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 const GanttChartCalenderTable = styled.table`
@@ -51,16 +69,4 @@ const GanttChartCalenderTable = styled.table`
       }
     }
   }
-`;
-
-const GanttChartCalenderTableHead = styled.thead`
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 10;
-`;
-
-
-const GanttChartCalenderTableHeadDateCover = styled.div`
-  display: flex;
 `;

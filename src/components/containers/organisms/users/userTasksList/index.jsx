@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { LogOutButtonSwitchContainer } from './LogOutButtonSwitchContainer';
 import { UserTasksCheckReLoginWhenChangedUserId } from './UserTasksCheckReLoginWhenChangedUserId';
 import { UserTasksContent } from './UserTasksContent';
@@ -9,10 +10,9 @@ export const UserTasksList = (props) => {
   const { bioAble, changeUserNameCheckAble, changeUserNameFunc, editing, error, handleTextSubmit, inputRefs, isButtonDisabled, loading, revertUserBioFunc, setBioAbleFunc, userData, userNameInUrl } = props;
   const { moveToFollowers, moveToFollowings, moveToGanttChart } = props;
   const { showPopup } = props;
-
   return (
     <>
-      <Popup message="タスクが正常に削除されました。" duration={3000} showPopup={showPopup} />
+      <Popup message="タスクが正常に削除されました。" showPopup={showPopup} />
       {changeUserNameCheckAble === true && (<UserTasksCheckReLoginWhenChangedUserId changeUserNameFunc={changeUserNameFunc} revertUserBioFunc={revertUserBioFunc} />)}
       <UserTasksContentHeader
         bioAble={bioAble}
@@ -38,4 +38,87 @@ export const UserTasksList = (props) => {
       <LogOutButtonSwitchContainer userNameInUrl={userNameInUrl} />
     </>
   );
+};
+
+UserTasksList.propTypes = {
+  bioAble: PropTypes.bool.isRequired,
+  changeUserNameCheckAble: PropTypes.bool.isRequired,
+  changeUserNameFunc: PropTypes.func.isRequired,
+  currentUserId: PropTypes.string.isRequired,
+  editing: PropTypes.bool,
+  error: PropTypes.bool,
+  handleTextSubmit: PropTypes.func.isRequired,
+  inputRefs: PropTypes.object.isRequired,
+  isButtonDisabled: PropTypes.bool.isRequired,
+  loading: PropTypes.bool,
+  moveToFollowers: PropTypes.func.isRequired,
+  moveToFollowings: PropTypes.func.isRequired,
+  moveToGanttChart: PropTypes.func.isRequired,
+  revertUserBioFunc: PropTypes.func.isRequired,
+  setBioAbleFunc: PropTypes.func.isRequired,
+  showPopup: PropTypes.bool.isRequired,
+  userData: PropTypes.shape({
+    taskUser: PropTypes.shape({
+      id: PropTypes.number,
+      firebase_id: PropTypes.string,
+      bio: PropTypes.string,
+      email: PropTypes.string,
+      nickname: PropTypes.string,
+      password_digest: PropTypes.string,
+      tasks: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        user_id: PropTypes.number,
+        content: PropTypes.string,
+        end_date: PropTypes.string,
+        start_date: PropTypes.string,
+        status: PropTypes.number,
+        title: PropTypes.string,
+        created_at: PropTypes.string,
+        updated_at: PropTypes.string,
+      })),
+      username: PropTypes.string,
+      created_at: PropTypes.string,
+      updated_at: PropTypes.string,
+    }),
+    userTasks: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      user_id: PropTypes.number,
+      content: PropTypes.string,
+      end_date: PropTypes.string,
+      start_date: PropTypes.string,
+      status: PropTypes.number,
+      title: PropTypes.string,
+      created_at: PropTypes.string,
+      updated_at: PropTypes.string,
+    })).isRequired,
+    likedTasksWithUser: PropTypes.arrayOf(PropTypes.shape({
+      task: PropTypes.shape({
+        id: PropTypes.number,
+        user_id: PropTypes.number,
+        content: PropTypes.string,
+        end_date: PropTypes.string,
+        start_date: PropTypes.string,
+        status: PropTypes.number,
+        title: PropTypes.string,
+        created_at: PropTypes.string,
+        updated_at: PropTypes.string,
+      }),
+      user: PropTypes.shape({
+        id: PropTypes.number,
+        firebase_id: PropTypes.string,
+        bio: PropTypes.string,
+        email: PropTypes.string,
+        nickname: PropTypes.string,
+        password_digest: PropTypes.string,
+        username: PropTypes.string,
+        created_at: PropTypes.string,
+        updated_at: PropTypes.string,
+      }),
+    })),
+    userBio: PropTypes.string,
+    userNickName: PropTypes.string.isRequired,
+    userName: PropTypes.string.isRequired,
+    userId: PropTypes.string.isRequired,
+  }).isRequired,
+  userNameInUrl: PropTypes.string.isRequired,
 };

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FollowButtonForUsersListSwitchContainer } from '../../userButton/FollowButtonForUsersListSwitchContainer';
 
@@ -14,6 +15,16 @@ export const UserFollowers = ({ currentUserId, followers, username }) => {
       </UserListItem>
     ))
   );
+};
+
+UserFollowers.propTypes = {
+  currentUserId: PropTypes.string.isRequired,
+  followers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    nickname: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+  })).isRequired,
+  username: PropTypes.string.isRequired,
 };
 
 const NoUserFollowers = styled.div`
