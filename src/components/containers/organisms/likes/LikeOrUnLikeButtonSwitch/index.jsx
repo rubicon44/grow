@@ -4,7 +4,7 @@ import { UnLikeButton } from './UnLikeButton';
 
 export const LikeOrUnLikeButtonSwitch = ({ currentTaskId, currentUserId, handleClickLikeDelete, handleClickLikePost, likeData, taskId }) => {
   return (
-    currentUserId === String(likeData.likedUserId) && currentTaskId === taskId ? (
+    currentUserId === String(likeData.likedUserId) && currentTaskId === String(taskId) ? (
       <UnLikeButton handleClickLikeDelete={handleClickLikeDelete} likeData={likeData} />
     ) : (
       <LikeButton handleClickLikePost={handleClickLikePost} likeData={likeData} />
