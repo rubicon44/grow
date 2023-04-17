@@ -19,8 +19,6 @@ LikeNotification.propTypes = {
     visitor_id: PropTypes.number.isRequired,
     action: PropTypes.string.isRequired,
     checked: PropTypes.bool.isRequired,
-    created_at: PropTypes.string.isRequired,
-    updated_at: PropTypes.string.isRequired,
   }).isRequired,
   visitor: PropTypes.shape({
     id: PropTypes.number.isRequired,
@@ -30,8 +28,6 @@ LikeNotification.propTypes = {
     nickname: PropTypes.string.isRequired,
     paswword_digest: PropTypes.string,
     username: PropTypes.string.isRequired,
-    created_at: PropTypes.string.isRequired,
-    updated_at: PropTypes.string.isRequired,
   }).isRequired,
 };
 

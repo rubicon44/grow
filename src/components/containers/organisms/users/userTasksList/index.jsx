@@ -64,7 +64,6 @@ UserTasksList.propTypes = {
       bio: PropTypes.string,
       email: PropTypes.string,
       nickname: PropTypes.string,
-      password_digest: PropTypes.string,
       tasks: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number,
         user_id: PropTypes.number,
@@ -73,12 +72,8 @@ UserTasksList.propTypes = {
         start_date: PropTypes.string,
         status: PropTypes.number,
         title: PropTypes.string,
-        created_at: PropTypes.string,
-        updated_at: PropTypes.string,
       })),
       username: PropTypes.string,
-      created_at: PropTypes.string,
-      updated_at: PropTypes.string,
     }),
     userTasks: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number,
@@ -88,8 +83,6 @@ UserTasksList.propTypes = {
       start_date: PropTypes.string,
       status: PropTypes.number,
       title: PropTypes.string,
-      created_at: PropTypes.string,
-      updated_at: PropTypes.string,
     })).isRequired,
     likedTasksWithUser: PropTypes.arrayOf(PropTypes.shape({
       task: PropTypes.shape({
@@ -100,8 +93,6 @@ UserTasksList.propTypes = {
         start_date: PropTypes.string,
         status: PropTypes.number,
         title: PropTypes.string,
-        created_at: PropTypes.string,
-        updated_at: PropTypes.string,
       }),
       user: PropTypes.shape({
         id: PropTypes.number,
@@ -109,10 +100,7 @@ UserTasksList.propTypes = {
         bio: PropTypes.string,
         email: PropTypes.string,
         nickname: PropTypes.string,
-        password_digest: PropTypes.string,
         username: PropTypes.string,
-        created_at: PropTypes.string,
-        updated_at: PropTypes.string,
       }),
     })),
     userBio: PropTypes.string,

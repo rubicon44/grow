@@ -21,10 +21,7 @@ SearchUsersList.propTypes = {
     bio: PropTypes.string,
     email: PropTypes.string,
     nickname: PropTypes.string,
-    password_digest: PropTypes.string,
     username: PropTypes.string,
-    created_at: PropTypes.string,
-    updated_at: PropTypes.string,
   })).isRequired,
 };
 

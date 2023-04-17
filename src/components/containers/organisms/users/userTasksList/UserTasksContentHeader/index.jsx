@@ -58,37 +58,31 @@ UserTasksContentHeader.propTypes = {
       nickname: PropTypes.string,
       tasks: PropTypes.arrayOf(
         PropTypes.shape({
-          content: PropTypes.string,
-          created_at: PropTypes.string,
           id: PropTypes.number,
+          user_id: PropTypes.number,
+          content: PropTypes.string,
           status: PropTypes.number,
           title: PropTypes.string,
-          updated_at: PropTypes.string,
-          user_id: PropTypes.number,
         })
       ),
       username: PropTypes.string,
     }),
     userTasks: PropTypes.arrayOf(
       PropTypes.shape({
-        content: PropTypes.string,
-        created_at: PropTypes.string,
         id: PropTypes.number,
+        user_id: PropTypes.number,
+        content: PropTypes.string,
         status: PropTypes.number,
         title: PropTypes.string,
-        updated_at: PropTypes.string,
-        user_id: PropTypes.number,
       })
     ).isRequired,
     likedTasksWithUser: PropTypes.arrayOf(
       PropTypes.shape({
-        content: PropTypes.string,
-        created_at: PropTypes.string,
         id: PropTypes.number,
+        user_id: PropTypes.number,
+        content: PropTypes.string,
         status: PropTypes.number,
         title: PropTypes.string,
-        updated_at: PropTypes.string,
-        user_id: PropTypes.number,
       })
     ),
     userBio: PropTypes.string,

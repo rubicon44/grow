@@ -75,11 +75,8 @@ GanttChartContent.propTypes = {
       start_date: PropTypes.string.isRequired,
       status: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-      created_at: PropTypes.string.isRequired,
-      updated_at: PropTypes.string.isRequired,
     })).isRequired,
     nickname: PropTypes.string.isRequired,
-    password_digest: PropTypes.string,
     tasks: PropTypes.arrayOf(PropTypes.exact({
       id: PropTypes.number.isRequired,
       user_id: PropTypes.number.isRequired,
@@ -88,12 +85,8 @@ GanttChartContent.propTypes = {
       start_date: PropTypes.string.isRequired,
       status: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-      created_at: PropTypes.string.isRequired,
-      updated_at: PropTypes.string.isRequired,
     })).isRequired,
     username: PropTypes.string.isRequired,
-    created_at: PropTypes.string.isRequired,
-    updated_at: PropTypes.string.isRequired,
   }),
   userTasks: PropTypes.arrayOf(PropTypes.exact({
     id: PropTypes.number.isRequired,
@@ -103,8 +96,6 @@ GanttChartContent.propTypes = {
     start_date: PropTypes.string.isRequired,
     status: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    created_at: PropTypes.string.isRequired,
-    updated_at: PropTypes.string.isRequired,
   })).isRequired,
 };
 
