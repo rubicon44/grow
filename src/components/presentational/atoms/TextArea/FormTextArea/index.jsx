@@ -21,7 +21,7 @@ export const FormTextArea = ({ children, textAreaRef, htmlFor, name, defaultValu
 
 FormTextArea.propTypes = {
   children: PropTypes.node,
-  defaultValue: PropTypes.string.isRequired,
+  defaultValue: PropTypes.string,
   htmlFor: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
