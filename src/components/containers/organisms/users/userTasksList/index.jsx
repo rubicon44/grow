@@ -84,7 +84,7 @@ UserTasksList.propTypes = {
       status: PropTypes.number,
       title: PropTypes.string,
     })).isRequired,
-    likedTasksWithUser: PropTypes.arrayOf(PropTypes.shape({
+    likedTasks: PropTypes.arrayOf(PropTypes.shape({
       task: PropTypes.shape({
         id: PropTypes.number,
         user_id: PropTypes.number,
@@ -93,14 +93,6 @@ UserTasksList.propTypes = {
         start_date: PropTypes.string,
         status: PropTypes.number,
         title: PropTypes.string,
-      }),
-      user: PropTypes.shape({
-        id: PropTypes.number,
-        firebase_id: PropTypes.string,
-        bio: PropTypes.string,
-        email: PropTypes.string,
-        nickname: PropTypes.string,
-        username: PropTypes.string,
       }),
     })),
     userBio: PropTypes.string,

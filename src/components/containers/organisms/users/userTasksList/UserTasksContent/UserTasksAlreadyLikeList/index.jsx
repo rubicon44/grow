@@ -5,15 +5,16 @@ import { List } from '../../../../../../presentational/molecules/List';
 
 export const UserTasksAlreadyLikeList = ({ userData }) => {
   return (
-    userData.likedTasksWithUser.map((data) => (
+    userData.likedTasks.map((data) => (
       <ListCoverWrapper key={data.task.id}>
         <ListCover>
           <List
             title={data.task.title}
-            titleUrl={`/${String(data.user.username)}/tasks/${String(data.task.id)}`}
+            // todo: userDataとdata内のプロパティ名(userName、task)を統一する。
+            titleUrl={`/${String(userData.userName)}/tasks/${String(data.task.id)}`}
             content={data.task.content}
-            url={`/${data.user.username}`}
-            text={data.user.nickname}
+            url={`/${userData.userName}`}
+            text={userData.userNickName}
           />
           <TaskStatusSwitch taskStatus={data.task.status} />
         </ListCover>
@@ -33,15 +34,17 @@ UserTasksAlreadyLikeList.propTypes = {
         title: PropTypes.string,
       })
     ),
-    likedTasksWithUser: PropTypes.arrayOf(
-      PropTypes.shape({
+    likedTasks: PropTypes.arrayOf(PropTypes.shape({
+      task: PropTypes.shape({
         id: PropTypes.number,
         user_id: PropTypes.number,
         content: PropTypes.string,
+        end_date: PropTypes.string,
+        start_date: PropTypes.string,
         status: PropTypes.number,
         title: PropTypes.string,
-      })
-    ),
+      }),
+    })),
     userBio: PropTypes.string,
     userNickName: PropTypes.string,
     userName: PropTypes.string.isRequired,

@@ -13,7 +13,7 @@ export const useUserData = () => {
   const [userData, setUserData] = useState({
     taskUser: {},
     userTasks: [],
-    likedTasksWithUser: [],
+    likedTasks: [],
     userBio: "",
     userNickName: "",
     userName: "",
@@ -26,12 +26,12 @@ export const useUserData = () => {
     const handleSuccess = (userData) => {
       const user = userData.user
       const taskData = user.tasks;
-      const liked_tasks_with_user = userData.liked_tasks_with_user;
+      const liked_tasks = userData.liked_tasks;
 
       setUserData({
         taskUser: user,
         userTasks: taskData,
-        likedTasksWithUser: liked_tasks_with_user,
+        likedTasks: liked_tasks,
         userBio: user.bio,
         userNickName: user.nickname,
         userName: user.username,

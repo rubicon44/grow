@@ -49,15 +49,17 @@ ProfileChangeContainer.propTypes = {
         title: PropTypes.string,
       })
     ).isRequired,
-    likedTasksWithUser: PropTypes.arrayOf(
-      PropTypes.shape({
+    likedTasks: PropTypes.arrayOf(PropTypes.shape({
+      task: PropTypes.shape({
         id: PropTypes.number,
         user_id: PropTypes.number,
         content: PropTypes.string,
+        end_date: PropTypes.string,
+        start_date: PropTypes.string,
         status: PropTypes.number,
         title: PropTypes.string,
-      })
-    ),
+      }),
+    })),
     userBio: PropTypes.string,
     userNickName: PropTypes.string.isRequired,
     userName: PropTypes.string.isRequired,
