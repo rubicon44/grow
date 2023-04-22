@@ -31,7 +31,6 @@ export const useUserData = () => {
       setUserData({
         taskUser: user,
         userTasks: taskData,
-        // todo: liked_tasks_with_userがuserDataに格納されていることを知るには、propsTypes等が役に立つ？
         likedTasksWithUser: liked_tasks_with_user,
         userBio: user.bio,
         userNickName: user.nickname,
