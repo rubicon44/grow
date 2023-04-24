@@ -24,7 +24,7 @@ export const TaskList = ({ currentUserId, deleteCheckAble, deleteCheckFunc, dele
       <ListCover>
         <List
           title={taskTitle}
-          titleUrl={`/${taskCreatedUserName}/tasks/${String(taskData.task.id)}`}
+          titleUrl={`/${taskCreatedUserName}/tasks/${String(taskId)}`}
           content={taskContent}
           url={`/${taskCreatedUserName}`}
           text={taskCreatedUserNickName}
