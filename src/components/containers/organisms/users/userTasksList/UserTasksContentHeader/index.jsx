@@ -12,7 +12,7 @@ export const UserTasksContentHeader = (props) => {
   return (
     <ContentHeaderCover>
       <TitleWithBackArrowHeader>{userData.userNickName}</TitleWithBackArrowHeader>
-      <FollowButtonSwitchContainer />
+      <FollowButtonSwitchContainer userIdToFollowOrUnFollow={userData.userId} />
       <ProfileChangeContainer
         bioAble={bioAble}
         currentUserId={currentUserId}
