@@ -10,7 +10,7 @@ export const UserTasksAlreadyLikeList = ({ userData }) => {
         <ListCover>
           <List
             title={data.task.title}
-            // todo: userDataとdata内のプロパティ名(userName、task)を統一する。
+            // todo: userDataとdata内のプロパティ名(userName、task)を統一する。。
             titleUrl={`/${String(userData.userName)}/tasks/${String(data.task.id)}`}
             content={data.task.content}
             url={`/${userData.userName}`}

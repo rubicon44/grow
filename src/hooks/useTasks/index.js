@@ -16,6 +16,6 @@ export const useTasks = () => {
   return {
     error,
     loading,
-    tasksData: data.data,
+    tasksData: data?.data?.tasks || [],
   };
 };

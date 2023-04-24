@@ -15,8 +15,15 @@ export const useApiQuery = (queryKey, apiFetchFn) => {
     };
   };
 
-  return {
-    data: data || [],
-    loading: isLoading,
-  };
+  if (data !== undefined && data.length !== 0) {
+    return {
+      data: data,
+      loading: isLoading,
+    };
+  } else {
+    return {
+      data: [],
+      loading: isLoading,
+    };
+  }
 };
