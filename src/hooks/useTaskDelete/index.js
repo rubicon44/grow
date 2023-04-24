@@ -4,8 +4,6 @@ import { useGetErrorMessage } from '../useGetErrorMessage';
 import { deleteTask } from '../../infra/api';
 
 export const useTaskDelete = (taskData) => {
-  const { id: taskId } = taskData.task;
-  const { username: taskCreatedUserName } = taskData.taskCreatedUser;
   const navigateToUser = useNavigate();
   const { getErrorMessage } = useGetErrorMessage();
 
@@ -22,6 +20,8 @@ export const useTaskDelete = (taskData) => {
     setIsButtonDisabled(true);
     try {
       setDeleting(true);
+      const { id: taskId } = taskData.task;
+      const { username: taskCreatedUserName } = taskData.task.user;
       await deleteTask(taskId);
       // todo: Consider using useContext instead of useNavigate to show Popup.
       navigateToUser(`/${taskCreatedUserName}`, {

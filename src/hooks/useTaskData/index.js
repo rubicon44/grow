@@ -10,8 +10,6 @@ export const useTaskData = () => {
   const [error, setError] = useState(null);
   const [taskData, setTaskData] = useState({
     task: { id: '', title: '', content: '', status: '', start_date: '', end_date: '' },
-    taskCreatedUser: {},
-    taskCreatedUserName: '',
   });
 
   useEffect(() => {
@@ -24,11 +22,7 @@ export const useTaskData = () => {
         // todo: 型変換の適切性を検証
         task.id = task.id.toString();
         task.user_id = task.user_id.toString();
-        setTaskData({
-          task: task,
-          taskCreatedUser: task.user,
-          taskCreatedUserName: task.user.username,
-        });
+        setTaskData({ task: task });
       } catch (error) {
         setError(error);
         console.error(`タスクの取得中にエラーが発生しました。: `, error);
