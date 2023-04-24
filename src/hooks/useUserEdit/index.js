@@ -22,7 +22,7 @@ export const useUserEdit = (setCheckUserNameChange, setUserData, userData) => {
     try {
       setEditing(true);
       const response = await updateUser(defaultUsername, user);
-      const userData = response.data.user;
+      const userData = response.data;
 
       setUserData((prevState) => ({
         ...prevState,

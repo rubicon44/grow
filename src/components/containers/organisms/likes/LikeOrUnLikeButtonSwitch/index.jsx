@@ -14,7 +14,7 @@ export const LikeOrUnLikeButtonSwitch = ({ currentTaskId, currentUserId, handleC
 
 LikeOrUnLikeButtonSwitch.propTypes = {
   currentTaskId: PropTypes.string,
-  currentUserId: PropTypes.string.isRequired,
+  currentUserId: PropTypes.string,
   handleClickLikeDelete: PropTypes.func.isRequired,
   handleClickLikePost: PropTypes.func.isRequired,
   likeData: PropTypes.shape({

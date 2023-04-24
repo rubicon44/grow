@@ -6,7 +6,7 @@ axios.defaults.withCredentials = true;
 const tokenAuth = localStorage.getItem('token');
 axios.defaults.headers.common.Authorization = tokenAuth;
 
-export const signUp = (params) => axios.post('/users', params);
+export const signUp = (params) => axios.post('/v1/users', params);
 
 export const signIn = (idToken) =>
   axios({
