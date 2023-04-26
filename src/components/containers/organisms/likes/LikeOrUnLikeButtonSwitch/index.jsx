@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import { LikeButton } from './LikeButton';
 import { UnLikeButton } from './UnLikeButton';
 
-export const LikeOrUnLikeButtonSwitch = ({ currentTaskId, currentUserId, handleClickLikeDelete, handleClickLikePost, likeData, taskId }) => {
+export const LikeOrUnLikeButtonSwitch = ({ currentTaskId, getLikedUserIdFunc, handleClickLikeDelete, handleClickLikePost, likeData, taskId }) => {
   return (
-    currentUserId === String(likeData.likedUserId) && currentTaskId === String(taskId) ? (
+    getLikedUserIdFunc() && String(currentTaskId) === String(taskId) ? (
       <UnLikeButton handleClickLikeDelete={handleClickLikeDelete} likeData={likeData} />
     ) : (
       <LikeButton handleClickLikePost={handleClickLikePost} likeData={likeData} />
@@ -14,13 +14,16 @@ export const LikeOrUnLikeButtonSwitch = ({ currentTaskId, currentUserId, handleC
 
 LikeOrUnLikeButtonSwitch.propTypes = {
   currentTaskId: PropTypes.string,
-  currentUserId: PropTypes.string,
+  getLikedUserIdFunc: PropTypes.func.isRequired,
   handleClickLikeDelete: PropTypes.func.isRequired,
   handleClickLikePost: PropTypes.func.isRequired,
   likeData: PropTypes.shape({
     likeCount: PropTypes.number.isRequired,
-    likeId: PropTypes.number,
-    likedUserId: PropTypes.number,
+    likes: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      liked_user_id: PropTypes.number.isRequired,
+      task_id: PropTypes.number.isRequired,
+    })).isRequired,
   }).isRequired,
   taskId: PropTypes.string.isRequired,
 };

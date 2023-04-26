@@ -9,8 +9,7 @@ export const useLike = (taskId) => {
   const [loading, setLoading] = useState(false);
   const [likeData, setLikeData] = useState({
     likeCount: 0,
-    likeId: 0,
-    likedUserId: 0,
+    likes: [],
   });
 
   const fetchLikeData = useCallback(async () => {
@@ -22,10 +21,9 @@ export const useLike = (taskId) => {
       const likeData = response.data;
       setLikeData({
         likeCount: likeData.like_count,
-        likeId: likeData.like_id,
-        likedUserId: likeData.liked_user_id,
+        likes: likeData.likes,
       });
-      setCurrentTaskId(String(likeData.task_id));
+      setCurrentTaskId(taskId);
     } catch (error) {
       setError(error);
       console.error(`いいねの取得中にエラーが発生しました。: `, error);
@@ -33,6 +31,17 @@ export const useLike = (taskId) => {
       setLoading(false);
     };
   }, [currentUserId, taskId]);
+
+  // タスクをいいね済か判定する(LikeOrUnLikeButtonSwitchで使用)。
+  const getLikedUserIdFunc = useCallback(() => {
+    const filterLikesByUserId = (likes, userId) => {
+      const filteredLikes = likes.filter((like) => String(like.liked_user_id) === String(userId));
+      const likedUserId = filteredLikes.map((like) => like.liked_user_id);
+      return likedUserId.length > 0 ? likedUserId[0] : null;
+    }
+    const likedUserId = filterLikesByUserId(likeData.likes, currentUserId);
+    return likedUserId;
+  }, [currentUserId, likeData.likes]);
 
   useEffect(() => {
     fetchLikeData();
@@ -42,7 +51,7 @@ export const useLike = (taskId) => {
     const deleteLikeData = async () => {
       setLoading(true);
       setError(null);
-      const like = { current_user_id: currentUserId, like_id: likeData.likeId, task_id: taskId };
+      const like = { current_user_id: currentUserId, id: likeData.likes.id, task_id: taskId };
       try {
         const response = await deleteLike(like);
         const likeData = response.data;
@@ -78,7 +87,7 @@ export const useLike = (taskId) => {
         }));
         // todo: Consider using state-management-library or useContext or data-fetching-library instead of using API call twice for updating data.
         await fetchLikeData();
-        setCurrentTaskId(String(likeData.task_id));
+        setCurrentTaskId(taskId);
       } catch (error) {
         setError('いいねの登録中にエラーが発生しました。');
         console.error(`いいねの登録中にエラーが発生しました。: `, error);
@@ -89,5 +98,5 @@ export const useLike = (taskId) => {
     postLikeData();
   };
 
-  return { currentTaskId, error, handleClickLikeDelete, handleClickLikePost, likeData, loading };
+  return { currentTaskId, error, getLikedUserIdFunc, handleClickLikeDelete, handleClickLikePost, likeData, loading };
 };

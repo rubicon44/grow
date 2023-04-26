@@ -78,7 +78,7 @@ export const getLikes = (params) =>
 export const deleteLike = (params) =>
   axios({
     method: 'delete',
-    url: `/v1/tasks/${params.task_id}/likes/${params.like_id}`,
+    url: `/v1/tasks/${params.task_id}/likes/${params.id}`,
     params,
   });
 
