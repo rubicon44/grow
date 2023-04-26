@@ -23,8 +23,8 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
 
       try {
         const response = await getFollowings(username);
-        const followingsData = response.data;
-        setCurrentUserFollowings(followingsData.followings);
+        const followingsData = response.data.followings;
+        setCurrentUserFollowings(followingsData);
       } catch (error) {
         setError(error);
         console.error(`ユーザー情報の取得中にエラーが発生しました。: `, error);
