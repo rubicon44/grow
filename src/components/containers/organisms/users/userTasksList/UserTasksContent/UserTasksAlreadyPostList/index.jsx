@@ -25,7 +25,6 @@ export const UserTasksAlreadyPostList = ({ userData }) => {
 UserTasksAlreadyPostList.propTypes = {
   userData: PropTypes.shape({
     id: PropTypes.number,
-    firebase_id: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string,
     likedTasks: PropTypes.arrayOf(PropTypes.shape({

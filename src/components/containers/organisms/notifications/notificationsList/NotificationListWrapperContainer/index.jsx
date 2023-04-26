@@ -1,10 +1,8 @@
 import PropTypes from 'prop-types';
 import { NotificationListWrapper } from '../NotificationListWrapper';
 
-export const NotificationListWrapperContainer = ({ currentUserName, error, loading, notificationsData }) => {
-
-  if (error) return <>Error...</>;
-  if (loading) return <>Loading...</>;
+// todo: 削除予定コンポーネント(ただpropsを渡しているだけのため。)。
+export const NotificationListWrapperContainer = ({ currentUserName, notificationsData }) => {
   return <NotificationListWrapper
            currentUserName={currentUserName}
            notificationsData={notificationsData}
@@ -13,12 +11,17 @@ export const NotificationListWrapperContainer = ({ currentUserName, error, loadi
 
 NotificationListWrapperContainer.propTypes = {
   currentUserName: PropTypes.string.isRequired,
-  error: PropTypes.bool,
-  loading: PropTypes.bool,
   notificationsData: PropTypes.shape({
+    followVisitors: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      bio: PropTypes.string,
+      email: PropTypes.string.isRequired,
+      nickname: PropTypes.string.isRequired,
+      paswword_digest: PropTypes.string,
+      username: PropTypes.string.isRequired,
+    })).isRequired,
     likeVisitors: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
-      firebase_id: PropTypes.string.isRequired,
       bio: PropTypes.string,
       email: PropTypes.string.isRequired,
       nickname: PropTypes.string.isRequired,
@@ -33,14 +36,5 @@ NotificationListWrapperContainer.propTypes = {
       action: PropTypes.string.isRequired,
       checked: PropTypes.bool.isRequired,
     })).isRequired,
-    visitors: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      firebase_id: PropTypes.string.isRequired,
-      bio: PropTypes.string,
-      email: PropTypes.string.isRequired,
-      nickname: PropTypes.string.isRequired,
-      paswword_digest: PropTypes.string,
-      username: PropTypes.string.isRequired,
-    })).isRequired,
-  }),
+  }).isRequired,
 };

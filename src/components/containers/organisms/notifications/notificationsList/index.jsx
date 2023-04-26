@@ -2,14 +2,12 @@ import PropTypes from 'prop-types';
 import { NotificationListWrapperContainer } from './NotificationListWrapperContainer';
 import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
 
-export const NotificationsList = ({ currentUserName, error, loading, notificationsData }) => {
+export const NotificationsList = ({ currentUserName, notificationsData }) => {
   return (
     <>
       <TitleWithBackArrowHeader>通知一覧</TitleWithBackArrowHeader>
       <NotificationListWrapperContainer
-        error={error}
         currentUserName={currentUserName}
-        loading={loading}
         notificationsData={notificationsData}
       />
     </>
@@ -18,12 +16,17 @@ export const NotificationsList = ({ currentUserName, error, loading, notificatio
 
 NotificationsList.propTypes = {
   currentUserName: PropTypes.string.isRequired,
-  error: PropTypes.bool,
-  loading: PropTypes.bool,
   notificationsData: PropTypes.shape({
+    followVisitors: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      bio: PropTypes.string,
+      email: PropTypes.string.isRequired,
+      nickname: PropTypes.string.isRequired,
+      paswword_digest: PropTypes.string,
+      username: PropTypes.string.isRequired,
+    })).isRequired,
     likeVisitors: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
-      firebase_id: PropTypes.string.isRequired,
       bio: PropTypes.string,
       email: PropTypes.string.isRequired,
       nickname: PropTypes.string.isRequired,
@@ -38,14 +41,5 @@ NotificationsList.propTypes = {
       action: PropTypes.string.isRequired,
       checked: PropTypes.bool.isRequired,
     })).isRequired,
-    visitors: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      firebase_id: PropTypes.string.isRequired,
-      bio: PropTypes.string,
-      email: PropTypes.string.isRequired,
-      nickname: PropTypes.string.isRequired,
-      paswword_digest: PropTypes.string,
-      username: PropTypes.string.isRequired,
-    })).isRequired,
-  }),
+  }).isRequired,
 };

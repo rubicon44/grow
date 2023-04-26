@@ -25,7 +25,6 @@ SearchTasksList.propTypes = {
     title: PropTypes.string,
     user: PropTypes.shape({
       id: PropTypes.number,
-      firebase_id: PropTypes.string,
       bio: PropTypes.string,
       email: PropTypes.string,
       nickname: PropTypes.string,

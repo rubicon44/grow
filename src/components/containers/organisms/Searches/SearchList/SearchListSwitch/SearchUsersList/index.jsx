@@ -17,7 +17,6 @@ export const SearchUsersList = ({ users }) => {
 SearchUsersList.propTypes = {
   users: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
-    firebase_id: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string,
     nickname: PropTypes.string,

@@ -4,6 +4,8 @@ import { NotificationList } from './NotificationList';
 
 export const NotificationListWrapper = ({ currentUserName, notificationsData }) => {
   const { likeVisitors } = notificationsData;
+  // todo: useNotificationsDataへ移動予定(全関連ロジックのカスタムHooksへの移動による可読性向上のため。)。
+  // todo: & 再利用化予定
   const uniqueLikeVisitors = Array.from(new Map(likeVisitors.map((visitor) => [visitor.id, visitor])).values());
 
   if (!uniqueLikeVisitors || uniqueLikeVisitors.length === 0) {
@@ -24,9 +26,16 @@ export const NotificationListWrapper = ({ currentUserName, notificationsData }) 
 NotificationListWrapper.propTypes = {
   currentUserName: PropTypes.string.isRequired,
   notificationsData: PropTypes.shape({
+    followVisitors: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      bio: PropTypes.string,
+      email: PropTypes.string.isRequired,
+      nickname: PropTypes.string.isRequired,
+      paswword_digest: PropTypes.string,
+      username: PropTypes.string.isRequired,
+    })).isRequired,
     likeVisitors: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
-      firebase_id: PropTypes.string.isRequired,
       bio: PropTypes.string,
       email: PropTypes.string.isRequired,
       nickname: PropTypes.string.isRequired,
@@ -41,16 +50,7 @@ NotificationListWrapper.propTypes = {
       action: PropTypes.string.isRequired,
       checked: PropTypes.bool.isRequired,
     })).isRequired,
-    visitors: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      firebase_id: PropTypes.string.isRequired,
-      bio: PropTypes.string,
-      email: PropTypes.string.isRequired,
-      nickname: PropTypes.string.isRequired,
-      paswword_digest: PropTypes.string,
-      username: PropTypes.string.isRequired,
-    })).isRequired,
-  }),
+  }).isRequired,
 };
 
 const ListCover = styled.div`

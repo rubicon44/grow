@@ -55,7 +55,6 @@ GanttChart.propTypes = {
   })).isRequired,
   user: PropTypes.exact({
     id: PropTypes.number.isRequired,
-    firebase_id: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string.isRequired,
     likedTasks: PropTypes.arrayOf(PropTypes.exact({

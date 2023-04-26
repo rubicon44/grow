@@ -22,7 +22,6 @@ LikeNotification.propTypes = {
   }).isRequired,
   visitor: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    firebase_id: PropTypes.string.isRequired,
     bio: PropTypes.string,
     email: PropTypes.string.isRequired,
     nickname: PropTypes.string.isRequired,

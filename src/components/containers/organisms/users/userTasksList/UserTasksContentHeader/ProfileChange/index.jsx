@@ -44,7 +44,6 @@ ProfileChange.propTypes = {
   setBioAbleFunc: PropTypes.func.isRequired,
   userData: PropTypes.shape({
     id: PropTypes.number,
-    firebase_id: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string,
     likedTasks: PropTypes.arrayOf(PropTypes.shape({

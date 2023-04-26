@@ -34,7 +34,6 @@ SearchList.propTypes = {
     title: PropTypes.string,
     user: PropTypes.shape({
       id: PropTypes.number,
-      firebase_id: PropTypes.string,
       bio: PropTypes.string,
       email: PropTypes.string,
       nickname: PropTypes.string,
@@ -43,7 +42,6 @@ SearchList.propTypes = {
   })).isRequired,
   users: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
-    firebase_id: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string,
     nickname: PropTypes.string,

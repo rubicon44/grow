@@ -12,7 +12,6 @@ UserTasksContainer.propTypes = {
   loading: PropTypes.bool,
   userData: PropTypes.shape({
     id: PropTypes.number,
-    firebase_id: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string,
     likedTasks: PropTypes.arrayOf(PropTypes.shape({
