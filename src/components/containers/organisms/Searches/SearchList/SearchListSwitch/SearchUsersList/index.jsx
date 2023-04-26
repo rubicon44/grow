@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-export const SearchUsersList = ({ sortDescendingOrderUsers }) => {
+export const SearchUsersList = ({ users }) => {
   return (
-    sortDescendingOrderUsers && (
-      sortDescendingOrderUsers.map((user) => (
+    users && (
+      users.map((user) => (
         <List key={user.id}>
           <Link to={`/${user.username}`}>{user.nickname}({user.username})</Link>
         </List>
@@ -15,7 +15,7 @@ export const SearchUsersList = ({ sortDescendingOrderUsers }) => {
 };
 
 SearchUsersList.propTypes = {
-  sortDescendingOrderUsers: PropTypes.arrayOf(PropTypes.shape({
+  users: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     firebase_id: PropTypes.string,
     bio: PropTypes.string,

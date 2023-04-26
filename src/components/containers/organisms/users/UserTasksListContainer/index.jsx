@@ -12,11 +12,14 @@ export const UserTasksListContainer = () => {
   const currentUserId = useCurrentUserId();
   const { error, loading, setCheckUserNameChange, setUserData, userData, userNameInUrl } = useUserData();
   const { bioAble, changeUserNameCheckAble, changeUserNameFunc, editing, handleTextSubmit, inputRefs, isButtonDisabled, revertUserBioFunc, setBioAbleFunc } = useUserEdit(setCheckUserNameChange, setUserData, userData);
-  // todo: useMoveTo~は、API通信用のHooksと見間違える可能性があるため、名称変更した方が良い。
+  // todo: useMoveTo~は、API通信用のHooksと見間違える可能性があるため、名称変更した方が良い？
   const { moveToFollowers } = useMoveToFollowers(userData);
   const { moveToFollowings } = useMoveToFollowings(userData);
   const { moveToGanttChart } = useMoveToGanttChart(userData);
 
+  if (error) return <>Error...</>;
+  if (loading) return <>Loading...</>;
+  if (editing) return <>Editing...</>;
   return (
     <UserTasksList
       bioAble={bioAble}

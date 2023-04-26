@@ -8,11 +8,10 @@ export const UserTasksContentHeader = (props) => {
   const { currentUserId } = props;
   const { bioAble, editing, error, handleTextSubmit, inputRefs, isButtonDisabled, loading, revertUserBioFunc, setBioAbleFunc, userData } = props;
   const { moveToFollowers, moveToFollowings } = props;
-
   return (
     <ContentHeaderCover>
-      <TitleWithBackArrowHeader>{userData.userNickName}</TitleWithBackArrowHeader>
-      <FollowButtonSwitchContainer userIdToFollowOrUnFollow={userData.userId} />
+      <TitleWithBackArrowHeader>{userData.nickname}</TitleWithBackArrowHeader>
+      <FollowButtonSwitchContainer userIdToFollowOrUnFollow={userData.id} />
       <ProfileChangeContainer
         bioAble={bioAble}
         currentUserId={currentUserId}
@@ -52,45 +51,30 @@ UserTasksContentHeader.propTypes = {
   revertUserBioFunc: PropTypes.func.isRequired,
   setBioAbleFunc: PropTypes.func.isRequired,
   userData: PropTypes.shape({
-    taskUser: PropTypes.shape({
-      bio: PropTypes.string,
-      id: PropTypes.number,
-      nickname: PropTypes.string,
-      tasks: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.number,
-          user_id: PropTypes.number,
-          content: PropTypes.string,
-          status: PropTypes.number,
-          title: PropTypes.string,
-        })
-      ),
-      username: PropTypes.string,
-    }),
-    userTasks: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        user_id: PropTypes.number,
-        content: PropTypes.string,
-        status: PropTypes.number,
-        title: PropTypes.string,
-      })
-    ).isRequired,
+    id: PropTypes.number,
+    firebase_id: PropTypes.string,
+    bio: PropTypes.string,
+    email: PropTypes.string,
     likedTasks: PropTypes.arrayOf(PropTypes.shape({
-      task: PropTypes.shape({
-        id: PropTypes.number,
-        user_id: PropTypes.number,
-        content: PropTypes.string,
-        end_date: PropTypes.string,
-        start_date: PropTypes.string,
-        status: PropTypes.number,
-        title: PropTypes.string,
-      }),
+      id: PropTypes.number,
+      user_id: PropTypes.number,
+      content: PropTypes.string,
+      end_date: PropTypes.string,
+      start_date: PropTypes.string,
+      status: PropTypes.number,
+      title: PropTypes.string,
     })),
-    userBio: PropTypes.string,
-    userNickName: PropTypes.string.isRequired,
-    userName: PropTypes.string.isRequired,
-    userId: PropTypes.string.isRequired,
+    nickname: PropTypes.string,
+    tasks: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      user_id: PropTypes.number,
+      content: PropTypes.string,
+      end_date: PropTypes.string,
+      start_date: PropTypes.string,
+      status: PropTypes.number,
+      title: PropTypes.string,
+    })),
+    username: PropTypes.string,
   }).isRequired,
 };
 

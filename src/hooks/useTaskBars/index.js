@@ -3,8 +3,8 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
 import { useCalender } from '../useCalender';
 
-export const useTaskBars = (userTasks) => {
-  const { calenderData, calenders, currentPositionNumber, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, preCurrentPositionNumber, setCurrentPositionNumber, setPreCurrentPositionNumber, year } = useCalender();
+export const useTaskBars = (tasks, loading) => {
+  const { calenderData, calenders, currentPositionNumber, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, preCurrentPositionNumber, setCurrentPositionNumber, setPreCurrentPositionNumber } = useCalender();
 
   const addMonths = (startYear, startMonth, addMonthCount) => {
     return new Date(startYear, startMonth + addMonthCount - 1);
@@ -96,9 +96,9 @@ export const useTaskBars = (userTasks) => {
   (startYear === endYear && startMonth === endMonth) ? endDay - startDay + 1 : daysInBetween + remainingStartMonthDays + endDay;
 
   const [styles, setStyles] = useState([]);
-  const taskBars = (userTasks) => {
+  const taskBars = (tasks) => {
     const start_date = dayjs(calenderData.startMonth);
-    const styleData = userTasks.map((task, index) => {
+    const styleData = tasks.map((task, index) => {
       if(task.start_date && task.end_date) {
         const taskStartDate = getTaskStartDate(task.start_date.split( /[-|]/ ));
         const taskEndDate = getTaskEndDate(task.end_date.split( /[-|]/ ));
@@ -130,11 +130,12 @@ export const useTaskBars = (userTasks) => {
     setStyles(styleData);
   };
 
+  // todo1: loading以外に良い方法はないか検討。
   useEffect(() => {
-    taskBars(userTasks);
+    taskBars(tasks);
     // 無限ループを防ぐため、taskBars()をuseEffectの依存関係に含めない。
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [year]);
+  }, [loading]);
 
   return { calenders, currentPositionNumber, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, preCurrentPositionNumber, setCurrentPositionNumber, setPreCurrentPositionNumber, styles };
 };

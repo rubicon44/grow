@@ -1,14 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTaskBars } from '../useTaskBars';
 
-export const useGanttChart = (userTasks) => {
-  const { calenders, currentPositionNumber, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, preCurrentPositionNumber, setCurrentPositionNumber, setPreCurrentPositionNumber, styles } = useTaskBars(userTasks);
+export const useGanttChart = (tasks, loading) => {
+  const { calenders, currentPositionNumber, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, preCurrentPositionNumber, setCurrentPositionNumber, setPreCurrentPositionNumber, styles } = useTaskBars(tasks, loading);
   const elm = useRef(null);
   const elmOfCalenderTableCover = useRef(null);
   const [calenderBodyHeight, setCalenderBodyHeight] = useState(0);
   const updateCalenderBodyHeight = () => {
-    const taskListBodyHeight = elm.current.getBoundingClientRect().height;
-    setCalenderBodyHeight(taskListBodyHeight);
+    if (elm.current !== null) {
+      const taskListBodyHeight = elm.current.getBoundingClientRect().height;
+      setCalenderBodyHeight(taskListBodyHeight);
+    }
   };
 
   const scrollToCurrentDate = useCallback((calenders) => {
@@ -33,7 +35,9 @@ export const useGanttChart = (userTasks) => {
     const currentPosition = (currentDay * CELL_WIDTH - CELL_WIDTH) + (totalDaysBeforeCurrentMonth * CELL_WIDTH) - (daysInCurrentMonth * CELL_WIDTH);
 
     const outerElement = document.getElementById("outer");
-    outerElement.scrollLeft = currentPosition;
+    if (outerElement) {
+      outerElement.scrollLeft = currentPosition;
+    }
   }, []);
 
   const handleScrollToCurrentDate = () => {
@@ -54,15 +58,10 @@ export const useGanttChart = (userTasks) => {
     };
   }, [calenders, currentPositionNumber, preCurrentPositionNumber]);
 
-  const [scrollToCurrentDateAble, setScrollToCurrentDateAble] = useState(false);
   useEffect(() => {
     updateCalenderBodyHeight();
-    setScrollToCurrentDateAble(true);
-  }, []);
-
-  useEffect(() => {
     scrollToCurrentDate(calenders);
-  }, [scrollToCurrentDateAble, scrollToCurrentDate]);
+  }, [updateCalenderBodyHeight]);
 
   const years = calenders.map(calender => calender.year);
   const uniqueYears = Array.from(new Set(years));

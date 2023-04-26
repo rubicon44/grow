@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { getSearches } from '../../infra/api';
 
 export const useSearchResults = () => {
@@ -6,7 +6,6 @@ export const useSearchResults = () => {
   const [loading, setLoading] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [searchResults, setSearchResults] = useState({
-    taskUsers: [],
     tasks: [],
     users: [],
   });
@@ -18,9 +17,8 @@ export const useSearchResults = () => {
       const response = await getSearches(searchData)
       const searchResults = response.data;
       setSearchResults({
-        taskUsers: searchResults.results.task_users,
-        tasks: searchResults.results.tasks,
-        users: searchResults.results.users,
+        tasks: searchResults.tasks,
+        users: searchResults.users,
       });
     } catch (error) {
       setError(error);
@@ -38,28 +36,15 @@ export const useSearchResults = () => {
     const { contents } = e.target.elements;
     const { method } = e.target.elements;
     const searchData = { model: model.value, contents: contents.value, method: method.value };
-
     fetchSearchesData(searchData);
   };
 
-  const TasksAndUsersMapArray = useMemo(() => {
-    const tasks = searchResults.tasks;
-    const taskUsers = searchResults.taskUsers;
-    const TasksAndUsersMap = {};
-
-    if (tasks) {
-      tasks.forEach((task) => {
-        const user = taskUsers[task.user_id];
-        TasksAndUsersMap[task.id] = { ...task, user };
-      });
-    };
-
-    return Object.values(TasksAndUsersMap);
-  }, [searchResults.tasks, searchResults.taskUsers]);
-
-  // todo: Fix re-rendering in searchResultTasks later.
-  const searchResultTasks = TasksAndUsersMapArray || [];
-  const searchResultUsers = searchResults.users || [];
-
-  return { error, handleSubmit, isButtonDisabled, loading, searchResultTasks, searchResultUsers };
+  return {
+    error,
+    handleSubmit,
+    isButtonDisabled,
+    loading,
+    searchResultTasks: searchResults.tasks || [],
+    searchResultUsers: searchResults.users || [],
+  };
 };

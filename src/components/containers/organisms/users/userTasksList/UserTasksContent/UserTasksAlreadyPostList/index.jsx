@@ -5,15 +5,15 @@ import { List } from '../../../../../../presentational/molecules/List';
 
 export const UserTasksAlreadyPostList = ({ userData }) => {
   return (
-    userData.userTasks.map((task) => (
+    userData.tasks.map((task) => (
       <ListCoverWrapper key={task.id}>
         <ListCover>
           <List
             title={task.title}
-            titleUrl={`/${String(userData.taskUser.username)}/tasks/${String(task.id)}`}
+            titleUrl={`/${String(userData.username)}/tasks/${String(task.id)}`}
             content={task.content}
-            url={`/${userData.taskUser.username}`}
-            text={userData.taskUser.nickname}
+            url={`/${userData.username}`}
+            text={userData.nickname}
           />
           <TaskStatusSwitch taskStatus={task.status} />
         </ListCover>
@@ -24,30 +24,30 @@ export const UserTasksAlreadyPostList = ({ userData }) => {
 
 UserTasksAlreadyPostList.propTypes = {
   userData: PropTypes.shape({
-    userTasks: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        user_id: PropTypes.number,
-        content: PropTypes.string,
-        status: PropTypes.number,
-        title: PropTypes.string,
-      })
-    ),
+    id: PropTypes.number,
+    firebase_id: PropTypes.string,
+    bio: PropTypes.string,
+    email: PropTypes.string,
     likedTasks: PropTypes.arrayOf(PropTypes.shape({
-      task: PropTypes.shape({
-        id: PropTypes.number,
-        user_id: PropTypes.number,
-        content: PropTypes.string,
-        end_date: PropTypes.string,
-        start_date: PropTypes.string,
-        status: PropTypes.number,
-        title: PropTypes.string,
-      }),
+      id: PropTypes.number,
+      user_id: PropTypes.number,
+      content: PropTypes.string,
+      end_date: PropTypes.string,
+      start_date: PropTypes.string,
+      status: PropTypes.number,
+      title: PropTypes.string,
     })),
-    userBio: PropTypes.string,
-    userNickName: PropTypes.string,
-    userName: PropTypes.string.isRequired,
-    userId: PropTypes.string.isRequired,
+    nickname: PropTypes.string,
+    tasks: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      user_id: PropTypes.number,
+      content: PropTypes.string,
+      end_date: PropTypes.string,
+      start_date: PropTypes.string,
+      status: PropTypes.number,
+      title: PropTypes.string,
+    })),
+    username: PropTypes.string,
   }).isRequired,
 };
 

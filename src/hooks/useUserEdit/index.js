@@ -26,9 +26,9 @@ export const useUserEdit = (setCheckUserNameChange, setUserData, userData) => {
 
       setUserData((prevState) => ({
         ...prevState,
-        userBio: userData.bio,
-        userNickName: userData.nickname,
-        userName: userData.username,
+        bio: userData.bio,
+        nickname: userData.nickname,
+        username: userData.username,
       }));
       setBioAble(true);
       setCheckUserNameChange(true);
@@ -49,7 +49,7 @@ export const useUserEdit = (setCheckUserNameChange, setUserData, userData) => {
   };
 
   const changeUserNameFunc = async () => {
-    const defaultUsername = userData.userName;
+    const defaultUsername = userData.username;
     const nickname = nicknameRef.current.value;
     const username = usernameRef.current.value;
     const bio = bioRef.current.value;
@@ -67,7 +67,7 @@ export const useUserEdit = (setCheckUserNameChange, setUserData, userData) => {
     e.preventDefault();
     setIsButtonDisabled(true);
 
-    const defaultUsername = userData.userName;
+    const defaultUsername = userData.username;
     const nickname = nicknameRef.current.value;
     const username = usernameRef.current.value;
     const bio = bioRef.current.value;

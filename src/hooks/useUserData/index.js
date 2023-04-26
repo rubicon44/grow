@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useGetErrorMessage } from '../useGetErrorMessage';
-import { useSortDescendingOrder } from '../useSortDescendingOrder';
 import { useUserNameInUrl } from '../useUserNameInUrl';
 import { getUser } from '../../infra/api';
 
@@ -10,33 +9,14 @@ export const useUserData = () => {
   const [checkUserNameChange, setCheckUserNameChange] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [userData, setUserData] = useState({
-    taskUser: {},
-    userTasks: [],
-    likedTasks: [],
-    userBio: "",
-    userNickName: "",
-    userName: "",
-    userId: "",
-  });
-
-  const sortedData = useSortDescendingOrder(userData.userTasks);
+  const [userData, setUserData] = useState();
 
   useEffect(() => {
     const handleSuccess = (userData) => {
-      const user = userData.user
-      const taskData = user.tasks;
-      const liked_tasks = userData.liked_tasks;
-
-      setUserData({
-        taskUser: user,
-        userTasks: taskData,
-        likedTasks: liked_tasks,
-        userBio: user.bio,
-        userNickName: user.nickname,
-        userName: user.username,
-        userId: String(user.id),
-      });
+      // todo: Consider a way to change snake-case to camel-case.
+      const { liked_tasks, ...newUserData } = userData;
+      const newDataWithLikedTasksKey = { ...newUserData, likedTasks: liked_tasks };
+      setUserData(newDataWithLikedTasksKey);
     };
 
     const handleError = (error) => {
@@ -65,7 +45,6 @@ export const useUserData = () => {
     };
 
     fetchUserData(userNameInUrl);
-
   }, [checkUserNameChange, userNameInUrl, getErrorMessage]);
 
   return {
@@ -73,7 +52,7 @@ export const useUserData = () => {
     loading,
     setCheckUserNameChange,
     setUserData,
-    userData: { ...userData, userTasks: sortedData },
+    userData,
     userNameInUrl
   };
 };

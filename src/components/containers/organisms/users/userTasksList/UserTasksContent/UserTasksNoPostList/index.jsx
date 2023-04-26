@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const UserTasksNoPostList = ({ userData }) => {
   return (
-    <ListCover key={userData.userTasks}>
+    <ListCover key={userData.tasks}>
       <div>まだ投稿はありません。</div>
     </ListCover>
   );
@@ -11,30 +11,30 @@ export const UserTasksNoPostList = ({ userData }) => {
 
 UserTasksNoPostList.propTypes = {
   userData: PropTypes.shape({
-    userTasks: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        user_id: PropTypes.number,
-        content: PropTypes.string,
-        status: PropTypes.number,
-        title: PropTypes.string,
-      })
-    ),
+    id: PropTypes.number,
+    firebase_id: PropTypes.string,
+    bio: PropTypes.string,
+    email: PropTypes.string,
     likedTasks: PropTypes.arrayOf(PropTypes.shape({
-      task: PropTypes.shape({
-        id: PropTypes.number,
-        user_id: PropTypes.number,
-        content: PropTypes.string,
-        end_date: PropTypes.string,
-        start_date: PropTypes.string,
-        status: PropTypes.number,
-        title: PropTypes.string,
-      }),
+      id: PropTypes.number,
+      user_id: PropTypes.number,
+      content: PropTypes.string,
+      end_date: PropTypes.string,
+      start_date: PropTypes.string,
+      status: PropTypes.number,
+      title: PropTypes.string,
     })),
-    userBio: PropTypes.string,
-    userNickName: PropTypes.string,
-    userName: PropTypes.string.isRequired,
-    userId: PropTypes.string.isRequired,
+    nickname: PropTypes.string,
+    tasks: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      user_id: PropTypes.number,
+      content: PropTypes.string,
+      end_date: PropTypes.string,
+      start_date: PropTypes.string,
+      status: PropTypes.number,
+      title: PropTypes.string,
+    })),
+    username: PropTypes.string,
   }).isRequired,
 };
 

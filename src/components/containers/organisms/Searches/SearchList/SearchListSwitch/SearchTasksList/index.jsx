@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-export const SearchTasksList = ({ sortDescendingOrderTasks }) => {
+export const SearchTasksList = ({ tasks }) => {
   return (
-    sortDescendingOrderTasks && (
-      sortDescendingOrderTasks.map((task) => (
+    tasks && (
+      tasks.map((task) => (
         <List key={task.id}>title:
           <Link to={`/${task.user.username}/tasks/${task.id}`} key={task.id}>
             {task.title}<span>cotent:{task.content}</span>
@@ -17,7 +17,7 @@ export const SearchTasksList = ({ sortDescendingOrderTasks }) => {
 };
 
 SearchTasksList.propTypes = {
-  sortDescendingOrderTasks: PropTypes.arrayOf(PropTypes.shape({
+  tasks: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     user_id: PropTypes.number,
     content: PropTypes.string,

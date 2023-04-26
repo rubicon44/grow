@@ -36,7 +36,7 @@ const WaitingButton = ({ children }) => {
 };
 
 FollowButtonSwitchContainer.propTypes = {
-  userIdToFollowOrUnFollow: PropTypes.string.isRequired,
+  userIdToFollowOrUnFollow: PropTypes.number.isRequired,
 };
 
 const FollowChange = styled.div`

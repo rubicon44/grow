@@ -8,7 +8,7 @@ import { GanttChartTaskTable } from './GanttChartTaskTable';
 
 export const GanttChartContent = (props) => {
   const { calenderBodyHeight, calenders, elm, elmOfCalenderTableCover, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, handleScrollToCurrentDate, styles } = props;
-  const { taskUser, userTasks } = props;
+  const { user, tasks } = props;
   return (
     <>
       <button onClick={handleScrollToCurrentDate}>今日の日付に移動</button>
@@ -20,8 +20,8 @@ export const GanttChartContent = (props) => {
         <GanttChartTaskTableCover>
           <GanttChartTaskTable
             elm={elm}
-            taskUser={taskUser}
-            userTasks={userTasks}
+            user={user}
+            tasks={tasks}
           />
         </GanttChartTaskTableCover>
         <GanttChartCalenderTableWithTaskBarCover ref={elmOfCalenderTableCover}>
@@ -62,12 +62,12 @@ GanttChartContent.propTypes = {
     top: PropTypes.string.isRequired,
     width: PropTypes.string.isRequired,
   })).isRequired,
-  taskUser: PropTypes.exact({
+  user: PropTypes.exact({
     id: PropTypes.number.isRequired,
     firebase_id: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string.isRequired,
-    like_tasks: PropTypes.arrayOf(PropTypes.exact({
+    likedTasks: PropTypes.arrayOf(PropTypes.exact({
       id: PropTypes.number.isRequired,
       user_id: PropTypes.number.isRequired,
       content: PropTypes.string.isRequired,
@@ -88,7 +88,7 @@ GanttChartContent.propTypes = {
     })).isRequired,
     username: PropTypes.string.isRequired,
   }),
-  userTasks: PropTypes.arrayOf(PropTypes.exact({
+  tasks: PropTypes.arrayOf(PropTypes.exact({
     id: PropTypes.number.isRequired,
     user_id: PropTypes.number.isRequired,
     content: PropTypes.string.isRequired,

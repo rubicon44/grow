@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { TaskStatusSwitchText } from '../../TaskStatusSwitchText';
 
-export const GanttChartTaskTable = ({ elm, taskUser, userTasks }) => {
+export const GanttChartTaskTable = ({ elm, user, tasks }) => {
   return (
     <>
       <GanttChartTaskTitle>
@@ -15,12 +15,12 @@ export const GanttChartTaskTable = ({ elm, taskUser, userTasks }) => {
         </tr>
       </GanttChartTaskTitle>
       <GanttChartTaskList ref={elm}>
-        {userTasks.map((task) => (
+        {tasks.map((task) => (
           <tr key={task.id}>
             <td>{task.title}</td>
             <td>{task.start_date}</td>
             <td>{task.end_date}</td>
-            <td>{taskUser.nickname}</td>
+            <td>{user.nickname}</td>
             <td>
               <TaskStatusSwitchText taskStatus={task.status} />
             </td>
@@ -33,12 +33,12 @@ export const GanttChartTaskTable = ({ elm, taskUser, userTasks }) => {
 
 GanttChartTaskTable.propTypes = {
   elm: PropTypes.object.isRequired,
-  taskUser: PropTypes.exact({
+  user: PropTypes.exact({
     id: PropTypes.number.isRequired,
     firebase_id: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string.isRequired,
-    like_tasks: PropTypes.arrayOf(PropTypes.exact({
+    likedTasks: PropTypes.arrayOf(PropTypes.exact({
       id: PropTypes.number.isRequired,
       user_id: PropTypes.number.isRequired,
       content: PropTypes.string.isRequired,
@@ -59,7 +59,7 @@ GanttChartTaskTable.propTypes = {
     })).isRequired,
     username: PropTypes.string.isRequired,
   }),
-  userTasks: PropTypes.arrayOf(PropTypes.exact({
+  tasks: PropTypes.arrayOf(PropTypes.exact({
     id: PropTypes.number.isRequired,
     user_id: PropTypes.number.isRequired,
     content: PropTypes.string.isRequired,
