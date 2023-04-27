@@ -18,7 +18,7 @@ export const useNotificationsData = () => {
     const fetchNotifications = async () => {
       setLoading(true);
       setError(null);
-      const user = { user_id: currentUserId };
+      const user = { userId: currentUserId };
       try {
         const response = await getNotifications(user)
         const notificationsData = response.data;

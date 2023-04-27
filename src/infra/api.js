@@ -1,4 +1,6 @@
 import axios from 'axios';
+import camelcaseKeys from 'camelcase-keys';
+import snakecaseKeys from 'snakecase-keys';
 // axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.headers.common['Content-Type'] = 'application/json';
@@ -37,22 +39,22 @@ export const getTasks = (params) =>
     method: 'get',
     url: '/v1/tasks',
     params,
-  });
+  }).then((response) => camelcaseKeys(response, {deep: true}));
 
-export const postTasks = (params) => axios.post('/v1/tasks', params);
+export const postTasks = (params) => axios.post('/v1/tasks', snakecaseKeys(params));
 
 export const getTask = (params) =>
   axios({
     method: 'get',
     url: `/v1/tasks/${params}`,
-  });
+  }).then((response) => camelcaseKeys(response, {deep: true}));
 
 export const updateTask = (params, data) =>
   axios({
     method: 'put',
     url: `/v1/tasks/${params}`,
     data,
-  });
+  }).then((response) => camelcaseKeys(response, {deep: true}));
 
 export const deleteTask = (params) =>
   axios({

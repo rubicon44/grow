@@ -9,21 +9,13 @@ export const useMoveToEditTask = (taskData) => {
       return;
     };
 
-    const { id, title, content, status, start_date: startDate, end_date: endDate } = taskData.task;
-
+    const { id, title, content, status, startDate, endDate } = taskData.task;
     // todo: Change snake_case to camelCase later.
     // todo: Consider whether I should remove nest of task in taskData state later.
     navigateToTaskEdit(`/tasks/edit/${id}`, {
       state: {
         taskData: {
-          task: {
-            id,
-            title,
-            content,
-            status,
-            start_date: startDate,
-            end_date: endDate,
-          }
+          task: { id, title, content, status, startDate, endDate }
         }
       },
     });

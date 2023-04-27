@@ -15,7 +15,7 @@ export const SearchListSwitch = ({ tasks, users }) => {
 SearchListSwitch.propTypes = {
   tasks: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
-    user_id: PropTypes.number,
+    userId: PropTypes.number,
     content: PropTypes.string,
     status: PropTypes.number,
     title: PropTypes.string,

@@ -25,9 +25,7 @@ export const useTaskDelete = (taskData) => {
       await deleteTask(taskId);
       // todo: Consider using useContext instead of useNavigate to show Popup.
       navigateToUser(`/${taskCreatedUserName}`, {
-        state: {
-          showPopup: true,
-        },
+        state: { showPopup: true },
       });
     } catch (error) {
       console.error(`タスクの削除中にエラーが発生しました。: `, error);

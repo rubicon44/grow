@@ -9,16 +9,14 @@ export const useTaskEdit = (taskDataTask) => {
   const { getErrorMessage } = useGetErrorMessage();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [editing, setEditing] = useState(false);
-  const { id: taskId, title: taskTitle, content: taskContent, status: taskStatus, start_date: taskStartDate, end_date: taskEndDate } = taskDataTask;
+  const { id: taskId, title: taskTitle, content: taskContent, status: taskStatus, startDate: taskStartDate, endDate: taskEndDate } = taskDataTask;
 
   const updateTaskFunc = async (taskId, task) => {
     try {
       setEditing(true);
       await updateTask(taskId, task);
       navigateToUserTask(`/${currentUserName}/tasks/${taskId}`, {
-        state: {
-          showPopup: true,
-        },
+        state: { showPopup: true },
       });
     } catch (error) {
       console.error(`タスクの編集中にエラーが発生しました。: `, error);
@@ -57,7 +55,7 @@ export const useTaskEdit = (taskDataTask) => {
     const status = Number(statusRef.current.value);
     const startDate = startDateRef.current.value;
     const endDate = endDateRef.current.value;
-    const task = { title, content, status, start_date: startDate, end_date: endDate };
+    const task = { title, content, status, startDate: startDate, endDate: endDate };
     setTaskData({ task });
     await updateTaskFunc(taskId, task);
   };

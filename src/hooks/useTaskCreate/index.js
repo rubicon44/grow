@@ -15,9 +15,7 @@ export const useTaskCreate = () => {
       setCreating(true);
       await postTasks(task);
       navigateToTasks('/tasks', {
-        state: {
-          showPopup: true,
-        },
+        state: { showPopup: true },
       });
     } catch (error) {
       console.error(`タスクの登録中にエラーが発生しました。: `, error);
@@ -31,13 +29,7 @@ export const useTaskCreate = () => {
   };
 
   const [taskData, setTaskData] = useState({
-    task: {
-      title: "",
-      content: "",
-      status: 0,
-      startDate: "",
-      endDate: "",
-    }
+    task: { title: "", content: "", status: 0, startDate: "", endDate: "" }
   });
   const titleRef = useRef();
   const contentRef = useRef();
@@ -62,15 +54,7 @@ export const useTaskCreate = () => {
       return;
     };
 
-    const task = {
-      title,
-      content,
-      status,
-      start_date: startDate,
-      end_date: endDate,
-      user_id: currentUid
-    };
-
+    const task = { title, content, status, startDate, endDate, userId: currentUid };
     setTaskData({ task });
     await postTasksFunc(task);
   };

@@ -16,7 +16,7 @@ TaskEditTemplate.propTypes = {
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     status: PropTypes.number.isRequired,
-    start_date: PropTypes.string.isRequired,
-    end_date: PropTypes.string.isRequired,
+    startDate: PropTypes.string.isRequired,
+    endDate: PropTypes.string.isRequired,
   }).isRequired,
 };

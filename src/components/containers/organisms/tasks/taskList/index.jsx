@@ -12,7 +12,7 @@ import { Popup } from '../../../../presentational/atoms/Popup';
 
 export const TaskList = ({ currentUserId, deleteCheckAble, deleteCheckFunc, deleteTaskFunc, isButtonDisabled, moveToEditTask, showPopup, taskData, unDeleteCheckFunc }) => {
   const { nickname: taskCreatedUserNickName, username: taskCreatedUserName } = taskData.task.user;
-  const { id: taskId, title: taskTitle, content: taskContent, status: taskStatus, start_date: taskStartDate, end_date: taskEndDate, user_id: taskCreatedUserId } = taskData.task;
+  const { id: taskId, title: taskTitle, content: taskContent, status: taskStatus, startDate: taskStartDate, endDate: taskEndDate, userId: taskCreatedUserId } = taskData.task;
 
   const MemoTitleWithBackArrowHeader = memo(() => {
     return <TitleWithBackArrowHeader>タスク詳細</TitleWithBackArrowHeader>;

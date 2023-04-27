@@ -15,7 +15,7 @@ SearchListSwitchContainer.propTypes = {
   loading: PropTypes.bool,
   tasks: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
-    user_id: PropTypes.number,
+    userId: PropTypes.number,
     content: PropTypes.string,
     status: PropTypes.number,
     title: PropTypes.string,
