@@ -14,7 +14,7 @@ export const useTaskEdit = (taskDataTask) => {
   const updateTaskFunc = async (taskId, task) => {
     try {
       setEditing(true);
-      await updateTask(taskId, task)
+      await updateTask(taskId, task);
       navigateToUserTask(`/${currentUserName}/tasks/${taskId}`, {
         state: {
           showPopup: true,

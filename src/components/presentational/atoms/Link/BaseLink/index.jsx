@@ -6,7 +6,7 @@ export const BaseLink = ({ children, className, url }) => {
 };
 
 BaseLink.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   className: PropTypes.string,
   url: PropTypes.string.isRequired,
 };
