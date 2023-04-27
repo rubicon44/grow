@@ -18,10 +18,10 @@ export const NotificationList = ({ notificationsData, currentUserName }) => {
       {notifications.map((notification) => (
         <Fragment key={notification.id}>
           {notification.action === "like" && (uniqueLikeVisitors.map((visitor) => (
-            String(notification.visitor_id) === String(visitor.id) && (<LikeNotification key={visitor.id} currentUserName={currentUserName} notification={notification} visitor={visitor} />)
+            String(notification.visitorId) === String(visitor.id) && (<LikeNotification key={visitor.id} currentUserName={currentUserName} notification={notification} visitor={visitor} />)
           )))}
           {notification.action === "follow" && (followVisitors.map((visitor) => (
-            String(notification.visitor_id) === String(visitor.id) && (<FollowNotification key={visitor.id} visitor={visitor} />)
+            String(notification.visitorId) === String(visitor.id) && (<FollowNotification key={visitor.id} visitor={visitor} />)
           )))}
         </Fragment>
       ))}
@@ -37,7 +37,6 @@ NotificationList.propTypes = {
       bio: PropTypes.string,
       email: PropTypes.string.isRequired,
       nickname: PropTypes.string.isRequired,
-      paswword_digest: PropTypes.string,
       username: PropTypes.string.isRequired,
     })).isRequired,
     likeVisitors: PropTypes.arrayOf(PropTypes.shape({
@@ -45,14 +44,13 @@ NotificationList.propTypes = {
       bio: PropTypes.string,
       email: PropTypes.string.isRequired,
       nickname: PropTypes.string.isRequired,
-      paswword_digest: PropTypes.string,
       username: PropTypes.string.isRequired,
     })).isRequired,
     notifications: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
-      task_id: PropTypes.number,
-      visited_id: PropTypes.number.isRequired,
-      visitor_id: PropTypes.number.isRequired,
+      taskId: PropTypes.number,
+      visitedId: PropTypes.number.isRequired,
+      visitorId: PropTypes.number.isRequired,
       action: PropTypes.string.isRequired,
       checked: PropTypes.bool.isRequired,
     })).isRequired,

@@ -21,8 +21,8 @@ LikeOrUnLikeButtonSwitch.propTypes = {
     likeCount: PropTypes.number.isRequired,
     likes: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
-      liked_user_id: PropTypes.number.isRequired,
-      task_id: PropTypes.number.isRequired,
+      likedUserId: PropTypes.number.isRequired,
+      taskId: PropTypes.number.isRequired,
     })).isRequired,
   }).isRequired,
   taskId: PropTypes.string.isRequired,

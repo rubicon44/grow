@@ -23,8 +23,8 @@ export const useNotificationsData = () => {
         const response = await getNotifications(user)
         const notificationsData = response.data;
         setNotificationsData({
-          followVisitors: notificationsData.follow_visitors,
-          likeVisitors: notificationsData.like_visitors,
+          followVisitors: notificationsData.followVisitors,
+          likeVisitors: notificationsData.likeVisitors,
           notifications: notificationsData.notifications,
         });
       } catch (error) {

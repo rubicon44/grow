@@ -51,7 +51,7 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
   const followFunc = async () => {
     try {
       setCreating(true);
-      const relationships = { following_id: currentUserId, follower_id: userIdToFollowOrUnFollow };
+      const relationships = { followingId: currentUserId, followerId: userIdToFollowOrUnFollow };
       await postRelationships(relationships);
       setIsFollowing(true);
     } catch (error) {
@@ -67,7 +67,7 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
   const unFollowFunc = async () => {
     try {
       setDeleting(true);
-      const relationships = { following_id: currentUserId, follower_id: userIdToFollowOrUnFollow };
+      const relationships = { followingId: currentUserId, followerId: userIdToFollowOrUnFollow };
       await deleteRelationships(relationships);
       setIsFollowing(false);
     } catch (error) {

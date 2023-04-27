@@ -14,8 +14,8 @@ export const useUserData = () => {
   useEffect(() => {
     const handleSuccess = (userData) => {
       // todo: Consider a way to change snake-case to camel-case.
-      const { liked_tasks, ...newUserData } = userData;
-      const newDataWithLikedTasksKey = { ...newUserData, likedTasks: liked_tasks };
+      const { likedTasks, ...newUserData } = userData;
+      const newDataWithLikedTasksKey = { ...newUserData, likedTasks: likedTasks };
       setUserData(newDataWithLikedTasksKey);
     };
 

@@ -15,12 +15,12 @@ export const useLike = (taskId) => {
   const fetchLikeData = useCallback(async () => {
     setLoading(true);
     setError(null);
-    const like = { current_user_id: currentUserId, task_id: taskId };
+    const like = { currentUserId: currentUserId, taskId: taskId };
     try {
       const response = await getLikes(like);
       const likeData = response.data;
       setLikeData({
-        likeCount: likeData.like_count,
+        likeCount: likeData.likeCount,
         likes: likeData.likes,
       });
       setCurrentTaskId(taskId);
@@ -35,8 +35,8 @@ export const useLike = (taskId) => {
   // タスクをいいね済か判定する(LikeOrUnLikeButtonSwitchで使用)。
   const getLikedUserIdFunc = useCallback(() => {
     const filterLikesByUserId = (likes, userId) => {
-      const filteredLikes = likes.filter((like) => String(like.liked_user_id) === String(userId));
-      const likedUserId = filteredLikes.map((like) => like.liked_user_id);
+      const filteredLikes = likes.filter((like) => String(like.likedUserId) === String(userId));
+      const likedUserId = filteredLikes.map((like) => like.likedUserId);
       return likedUserId.length > 0 ? likedUserId[0] : null;
     }
     const likedUserId = filterLikesByUserId(likeData.likes, currentUserId);
@@ -51,7 +51,7 @@ export const useLike = (taskId) => {
     const deleteLikeData = async () => {
       setLoading(true);
       setError(null);
-      const like = { current_user_id: currentUserId, id: likeData.likes.id, task_id: taskId };
+      const like = { currentUserId: currentUserId, id: likeData.likes.id, taskId: taskId };
       try {
         const response = await deleteLike(like);
         const likeData = response.data;
@@ -77,7 +77,7 @@ export const useLike = (taskId) => {
     const postLikeData = async () => {
       setLoading(true);
       setError(null);
-      const like = { current_user_id: currentUserId, task_id: taskId };
+      const like = { currentUserId: currentUserId, taskId: taskId };
       try {
         const response = await postLikes(like);
         const likeData = response.data;

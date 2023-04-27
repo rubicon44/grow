@@ -18,8 +18,8 @@ export const GanttChartTaskTable = ({ elm, user, tasks }) => {
         {tasks.map((task) => (
           <tr key={task.id}>
             <td>{task.title}</td>
-            <td>{task.start_date}</td>
-            <td>{task.end_date}</td>
+            <td>{task.startDate}</td>
+            <td>{task.endDate}</td>
             <td>{user.nickname}</td>
             <td>
               <TaskStatusSwitchText taskStatus={task.status} />

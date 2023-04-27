@@ -16,7 +16,6 @@ FollowNotification.propTypes = {
     bio: PropTypes.string,
     email: PropTypes.string.isRequired,
     nickname: PropTypes.string.isRequired,
-    paswword_digest: PropTypes.string,
     username: PropTypes.string.isRequired,
   }).isRequired,
 };
