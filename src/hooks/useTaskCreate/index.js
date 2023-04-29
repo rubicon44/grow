@@ -48,8 +48,8 @@ export const useTaskCreate = () => {
     const startDate = startDateRef.current.value;
     const endDate = endDateRef.current.value;
 
-    if (!title || !content) {
-      window.alert('タイトルとコンテンツを入力してください。');
+    if (!title) {
+      window.alert('タイトルを入力してください。');
       setIsButtonDisabled(false);
       return;
     };
