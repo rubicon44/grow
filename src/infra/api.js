@@ -54,10 +54,12 @@ export const updateTask = (params, data) =>
     data: snakecaseKeys(data),
   }).then((response) => camelcaseKeys(response, {deep: true}));
 
-export const deleteTask = (params) =>
+// todo: dataに具体性を持たせる。
+export const deleteTask = (params, data) =>
   axios({
     method: 'delete',
     url: `/v1/tasks/${params}`,
+    data: snakecaseKeys(data),
   });
 
 // likes

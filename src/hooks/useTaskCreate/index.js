@@ -1,11 +1,12 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCurrentUserId } from '../useCurrentUserId';
 import { useGetErrorMessage } from '../useGetErrorMessage';
-import { currentUid } from '../../infra/firebase';
 import { postTasks } from '../../infra/api';
 
 export const useTaskCreate = () => {
   const navigateToTasks = useNavigate();
+  const currentUserId = useCurrentUserId();
   const { getErrorMessage } = useGetErrorMessage();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [creating, setCreating] = useState(false);
@@ -54,7 +55,7 @@ export const useTaskCreate = () => {
       return;
     };
 
-    const task = { title, content, status, startDate, endDate, userId: currentUid };
+    const task = { title, content, status, startDate, endDate, userId: currentUserId };
     setTaskData({ task });
     await postTasksFunc(task);
   };

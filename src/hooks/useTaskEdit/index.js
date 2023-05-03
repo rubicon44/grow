@@ -1,20 +1,22 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCurrentUserId } from '../useCurrentUserId';
 import { useCurrentUserName } from '../useCurrentUserName';
 import { useGetErrorMessage } from '../useGetErrorMessage';
 import { updateTask } from '../../infra/api';
 
 export const useTaskEdit = (taskDataTask) => {
   const navigateToUserTask = useNavigate();
+  const currentUserId = useCurrentUserId();
   const { getErrorMessage } = useGetErrorMessage();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [editing, setEditing] = useState(false);
   const { id: taskId, title: taskTitle, content: taskContent, status: taskStatus, startDate: taskStartDate, endDate: taskEndDate } = taskDataTask;
 
-  const updateTaskFunc = async (taskId, task) => {
+  const updateTaskFunc = async (taskId, task, currentUserId) => {
     try {
       setEditing(true);
-      await updateTask(taskId, task);
+      await updateTask(taskId, { ...task, currentUserId: Number(currentUserId) });
       navigateToUserTask(`/${currentUserName}/tasks/${taskId}`, {
         state: { showPopup: true },
       });
@@ -57,7 +59,7 @@ export const useTaskEdit = (taskDataTask) => {
     const endDate = endDateRef.current.value;
     const task = { title, content, status, startDate: startDate, endDate: endDate };
     setTaskData({ task });
-    await updateTaskFunc(taskId, task);
+    await updateTaskFunc(taskId, task, currentUserId);
   };
 
   return {

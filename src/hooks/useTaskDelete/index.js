@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCurrentUserId } from '../useCurrentUserId';
 import { useGetErrorMessage } from '../useGetErrorMessage';
 import { deleteTask } from '../../infra/api';
 
 export const useTaskDelete = (taskData) => {
   const navigateToUser = useNavigate();
+  const currentUserId = useCurrentUserId();
   const { getErrorMessage } = useGetErrorMessage();
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -22,7 +24,7 @@ export const useTaskDelete = (taskData) => {
       setDeleting(true);
       const { id: taskId } = taskData.task;
       const { username: taskCreatedUserName } = taskData.task.user;
-      await deleteTask(taskId);
+      await deleteTask(taskId, { currentUserId: Number(currentUserId) });
       // todo: Consider using useContext instead of useNavigate to show Popup.
       navigateToUser(`/${taskCreatedUserName}`, {
         state: { showPopup: true },
