@@ -58,7 +58,7 @@ export const useTaskEdit = (taskDataTask) => {
     const startDate = startDateRef.current.value;
     const endDate = endDateRef.current.value;
 
-    if (endDate < startDate) {
+    if ((endDate && startDate) && endDate < startDate) {
       window.alert('開始日には、終了日よりも前の日付を設定してください。');
       setIsButtonDisabled(false);
       return;

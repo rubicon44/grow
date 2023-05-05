@@ -55,6 +55,12 @@ export const useTaskCreate = () => {
       return;
     };
 
+    if ((endDate && startDate) && endDate < startDate) {
+      window.alert('開始日には、終了日よりも前の日付を設定してください。');
+      setIsButtonDisabled(false);
+      return;
+    };
+
     const task = { title, content, status, startDate, endDate, userId: currentUserId };
     setTaskData({ task });
     await postTasksFunc(task);
