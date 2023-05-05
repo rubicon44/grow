@@ -18,7 +18,7 @@ export const ProfileChange = (props) => {
         </div>
         <ProfileContent>
           <UserNickName>{nickname}</UserNickName>
-          <UserNickName>{username}</UserNickName>
+          <UserNickName>@{username}</UserNickName>
           <Bio>{bio}</Bio>
         </ProfileContent>
       </Profile>
