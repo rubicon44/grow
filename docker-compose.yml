@@ -5,9 +5,8 @@ services:
     volumes:
       - .:/grow
       - node_modules:/grow/node_modules
-    command: sh -c "yarn start"
     ports:
-     - "3001:3000"
+      - "3001:3000"
     tty: true
 
 volumes:

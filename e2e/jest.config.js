@@ -3,6 +3,6 @@ module.exports = {
   globals: {
     URL: "http://localhost:3000"
   },
-  preset: 'jest-puppeteer',
+  // preset: 'jest-puppeteer',
   verbose: true,
 }
