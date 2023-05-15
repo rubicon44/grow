@@ -99,5 +99,5 @@ export const useCalender = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [year]);
 
-  return { calenderData, calenders, currentPositionNumber, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, preCurrentPositionNumber, setCurrentPositionNumber, setPreCurrentPositionNumber, year };
+  return { calenderData, calenders, currentPositionNumber, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, preCurrentPositionNumber, setCurrentPositionNumber, setPreCurrentPositionNumber };
 };

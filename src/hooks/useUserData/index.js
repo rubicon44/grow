@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useGetErrorMessage } from '../useGetErrorMessage';
-import { useSortDescendingOrder } from '../useSortDescendingOrder';
 import { useUserNameInUrl } from '../useUserNameInUrl';
 import { getUser } from '../../infra/api';
 
@@ -10,34 +9,14 @@ export const useUserData = () => {
   const [checkUserNameChange, setCheckUserNameChange] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [userData, setUserData] = useState({
-    taskUser: {},
-    userTasks: [],
-    likedTasksWithUser: [],
-    userBio: "",
-    userNickName: "",
-    userName: "",
-    userId: "",
-  });
-
-  const sortedData = useSortDescendingOrder(userData.userTasks);
+  const [userData, setUserData] = useState();
 
   useEffect(() => {
     const handleSuccess = (userData) => {
-      const user = userData.user
-      const taskData = user.tasks;
-      const liked_tasks_with_user = userData.liked_tasks_with_user;
-
-      setUserData({
-        taskUser: user,
-        userTasks: taskData,
-        // todo: liked_tasks_with_userがuserDataに格納されていることを知るには、propsTypes等が役に立つ？
-        likedTasksWithUser: liked_tasks_with_user,
-        userBio: user.bio,
-        userNickName: user.nickname,
-        userName: user.username,
-        userId: String(user.id),
-      });
+      // todo: Consider a way to change snake-case to camel-case.
+      const { likedTasks, ...newUserData } = userData;
+      const newDataWithLikedTasksKey = { ...newUserData, likedTasks: likedTasks };
+      setUserData(newDataWithLikedTasksKey);
     };
 
     const handleError = (error) => {
@@ -66,7 +45,6 @@ export const useUserData = () => {
     };
 
     fetchUserData(userNameInUrl);
-
   }, [checkUserNameChange, userNameInUrl, getErrorMessage]);
 
   return {
@@ -74,7 +52,7 @@ export const useUserData = () => {
     loading,
     setCheckUserNameChange,
     setUserData,
-    userData: { ...userData, userTasks: sortedData },
+    userData,
     userNameInUrl
   };
 };

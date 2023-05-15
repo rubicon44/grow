@@ -13,19 +13,23 @@ export const TasksList = ({ showPopup, tasks }) => {
       <Popup message="タスクが正常に作成されました。" showPopup={showPopup} />
       <Title>タスク一覧</Title>
       <NextButtonLink text="タスク登録" url="/tasks/create" />
-      {tasks?.map((task) => (
-        <ListCover key={task.id}>
-          <List
-            title={task.title}
-            titleUrl={`/${task.user.username}/tasks/${String(task.id)}`}
-            content={task.content}
-            url={`/${task.user.username}`}
-            text={task.user.nickname}
-          />
-          <TaskStatusSwitch taskStatus={task.status} />
-          <LikeOrUnLikeButtonSwitchContainer taskId={String(task.id)} />
-        </ListCover>
-      ))}
+      {tasks?.map((task) => {
+        const { id: taskId, title: taskTitle, content: taskContent, status: taskStatus } = task;
+        const { username, nickname } = task.user;
+        return (
+          <ListCover key={taskId}>
+            <List
+              title={taskTitle}
+              titleUrl={`/${username}/tasks/${String(taskId)}`}
+              content={taskContent}
+              url={`/${username}`}
+              text={nickname}
+            />
+            <TaskStatusSwitch taskStatus={taskStatus} />
+            <LikeOrUnLikeButtonSwitchContainer taskId={String(taskId)} />
+          </ListCover>
+        );
+      })}
     </>
   );
 };

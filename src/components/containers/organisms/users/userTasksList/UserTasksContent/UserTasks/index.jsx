@@ -4,7 +4,7 @@ import { UserTasksNoPostList } from '../UserTasksNoPostList';
 
 export const UserTasks = ({ userData }) => {
   return (
-    userData.userTasks.length === 0 ? (
+    userData.tasks.length === 0 ? (
       <UserTasksNoPostList userData={userData} />
     ) : (
       <UserTasksAlreadyPostList userData={userData} />
@@ -14,31 +14,28 @@ export const UserTasks = ({ userData }) => {
 
 UserTasks.propTypes = {
   userData: PropTypes.shape({
-    userTasks: PropTypes.arrayOf(
-      PropTypes.shape({
-        content: PropTypes.string,
-        created_at: PropTypes.string,
-        id: PropTypes.number,
-        status: PropTypes.number,
-        title: PropTypes.string,
-        updated_at: PropTypes.string,
-        user_id: PropTypes.number,
-      })
-    ),
-    likedTasksWithUser: PropTypes.arrayOf(
-      PropTypes.shape({
-        content: PropTypes.string,
-        created_at: PropTypes.string,
-        id: PropTypes.number,
-        status: PropTypes.number,
-        title: PropTypes.string,
-        updated_at: PropTypes.string,
-        user_id: PropTypes.number,
-      })
-    ),
-    userBio: PropTypes.string,
-    userNickName: PropTypes.string,
-    userName: PropTypes.string.isRequired,
-    userId: PropTypes.string.isRequired,
+    id: PropTypes.number,
+    bio: PropTypes.string,
+    email: PropTypes.string,
+    likedTasks: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      userId: PropTypes.number,
+      content: PropTypes.string,
+      endDate: PropTypes.string,
+      startDate: PropTypes.string,
+      status: PropTypes.number,
+      title: PropTypes.string,
+    })),
+    nickname: PropTypes.string,
+    tasks: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      userId: PropTypes.number,
+      content: PropTypes.string,
+      endDate: PropTypes.string,
+      startDate: PropTypes.string,
+      status: PropTypes.number,
+      title: PropTypes.string,
+    })),
+    username: PropTypes.string,
   }).isRequired,
 };

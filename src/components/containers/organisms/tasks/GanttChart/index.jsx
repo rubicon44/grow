@@ -5,7 +5,7 @@ import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/H
 
 export const GanttChart = (props) => {
   const { calenderBodyHeight, calenders, elm, elmOfCalenderTableCover, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, handleScrollToCurrentDate, styles } = props;
-  const { taskUser, userTasks } = props;
+  const { user, tasks } = props;
   return (
     <>
       <GanttChartHeader>
@@ -20,8 +20,8 @@ export const GanttChart = (props) => {
         handleForwardToNextMonthClick={handleForwardToNextMonthClick}
         handleScrollToCurrentDate={handleScrollToCurrentDate}
         styles={styles}
-        taskUser={taskUser}
-        userTasks={userTasks}
+        user={user}
+        tasks={tasks}
       />
     </>
   );
@@ -53,49 +53,39 @@ GanttChart.propTypes = {
     top: PropTypes.string.isRequired,
     width: PropTypes.string.isRequired,
   })).isRequired,
-  taskUser: PropTypes.exact({
+  user: PropTypes.exact({
     id: PropTypes.number.isRequired,
-    firebase_id: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string.isRequired,
-    like_tasks: PropTypes.arrayOf(PropTypes.exact({
+    likedTasks: PropTypes.arrayOf(PropTypes.exact({
       id: PropTypes.number.isRequired,
-      user_id: PropTypes.number.isRequired,
+      userId: PropTypes.number.isRequired,
       content: PropTypes.string.isRequired,
-      end_date: PropTypes.string.isRequired,
-      start_date: PropTypes.string.isRequired,
+      endDate: PropTypes.string.isRequired,
+      startDate: PropTypes.string.isRequired,
       status: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-      created_at: PropTypes.string.isRequired,
-      updated_at: PropTypes.string.isRequired,
     })).isRequired,
     nickname: PropTypes.string.isRequired,
-    password_digest: PropTypes.string,
     tasks: PropTypes.arrayOf(PropTypes.exact({
       id: PropTypes.number.isRequired,
-      user_id: PropTypes.number.isRequired,
+      userId: PropTypes.number.isRequired,
       content: PropTypes.string.isRequired,
-      end_date: PropTypes.string.isRequired,
-      start_date: PropTypes.string.isRequired,
+      endDate: PropTypes.string.isRequired,
+      startDate: PropTypes.string.isRequired,
       status: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-      created_at: PropTypes.string.isRequired,
-      updated_at: PropTypes.string.isRequired,
     })).isRequired,
     username: PropTypes.string.isRequired,
-    created_at: PropTypes.string.isRequired,
-    updated_at: PropTypes.string.isRequired,
   }),
-  userTasks: PropTypes.arrayOf(PropTypes.exact({
+  tasks: PropTypes.arrayOf(PropTypes.exact({
     id: PropTypes.number.isRequired,
-    user_id: PropTypes.number.isRequired,
+    userId: PropTypes.number.isRequired,
     content: PropTypes.string.isRequired,
-    end_date: PropTypes.string.isRequired,
-    start_date: PropTypes.string.isRequired,
+    endDate: PropTypes.string.isRequired,
+    startDate: PropTypes.string.isRequired,
     status: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    created_at: PropTypes.string.isRequired,
-    updated_at: PropTypes.string.isRequired,
   })).isRequired,
 };
 

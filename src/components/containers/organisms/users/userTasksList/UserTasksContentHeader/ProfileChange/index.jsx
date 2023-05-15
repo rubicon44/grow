@@ -3,27 +3,28 @@ import styled from 'styled-components';
 import { ProfileChangeLink } from './ProfileChangeLink';
 import { ProfileChangeForm } from './ProfileChangeForm';
 
+// todo: プロフィール編集の際の「コンテンツが何度もレンダリングされる現象」を解決する(おそらくif statementの問題。)。
 export const ProfileChange = (props) => {
   const { currentUserId } = props;
   const { bioAble } = props;
-  const { userId, userNickName, userName, userBio } = props.userData;
+  const { id, nickname, username, bio } = props.userData;
   const { setBioAbleFunc } = props;
 
   if (bioAble === true) {
     return (
       <Profile>
         <div>
-          {currentUserId === userId && (<ProfileChangeLink setBioAbleFunc={setBioAbleFunc} />)}
+          {String(currentUserId) === String(id) && (<ProfileChangeLink setBioAbleFunc={setBioAbleFunc} />)}
         </div>
         <ProfileContent>
-          <UserNickName>{userNickName}</UserNickName>
-          <UserNickName>{userName}</UserNickName>
-          <Bio>{userBio}</Bio>
+          <UserNickName>{nickname}</UserNickName>
+          <UserNickName>@{username}</UserNickName>
+          <Bio>{bio}</Bio>
         </ProfileContent>
       </Profile>
     );
   };
-  return ( currentUserId === userId && (<ProfileChangeForm {...props} />) );
+  return ( String(currentUserId) === String(id) && (<ProfileChangeForm {...props} />) );
 };
 
 ProfileChange.propTypes = {
@@ -42,49 +43,29 @@ ProfileChange.propTypes = {
   revertUserBioFunc: PropTypes.func.isRequired,
   setBioAbleFunc: PropTypes.func.isRequired,
   userData: PropTypes.shape({
-    taskUser: PropTypes.shape({
-      bio: PropTypes.string,
+    id: PropTypes.number,
+    bio: PropTypes.string,
+    email: PropTypes.string,
+    likedTasks: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number,
-      nickname: PropTypes.string,
-      tasks: PropTypes.arrayOf(
-        PropTypes.shape({
-          content: PropTypes.string,
-          created_at: PropTypes.string,
-          id: PropTypes.number,
-          status: PropTypes.number,
-          title: PropTypes.string,
-          updated_at: PropTypes.string,
-          user_id: PropTypes.number,
-        })
-      ),
-      username: PropTypes.string,
-    }),
-    userTasks: PropTypes.arrayOf(
-      PropTypes.shape({
-        content: PropTypes.string,
-        created_at: PropTypes.string,
-        id: PropTypes.number,
-        status: PropTypes.number,
-        title: PropTypes.string,
-        updated_at: PropTypes.string,
-        user_id: PropTypes.number,
-      })
-    ).isRequired,
-    likedTasksWithUser: PropTypes.arrayOf(
-      PropTypes.shape({
-        content: PropTypes.string,
-        created_at: PropTypes.string,
-        id: PropTypes.number,
-        status: PropTypes.number,
-        title: PropTypes.string,
-        updated_at: PropTypes.string,
-        user_id: PropTypes.number,
-      })
-    ),
-    userBio: PropTypes.string,
-    userNickName: PropTypes.string.isRequired,
-    userName: PropTypes.string.isRequired,
-    userId: PropTypes.string.isRequired,
+      userId: PropTypes.number,
+      content: PropTypes.string,
+      endDate: PropTypes.string,
+      startDate: PropTypes.string,
+      status: PropTypes.number,
+      title: PropTypes.string,
+    })),
+    nickname: PropTypes.string,
+    tasks: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      userId: PropTypes.number,
+      content: PropTypes.string,
+      endDate: PropTypes.string,
+      startDate: PropTypes.string,
+      status: PropTypes.number,
+      title: PropTypes.string,
+    })),
+    username: PropTypes.string,
   }).isRequired,
 };
 

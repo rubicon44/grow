@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-export const SearchTasksList = ({ sortDescendingOrderTasks }) => {
+export const SearchTasksList = ({ tasks }) => {
   return (
-    sortDescendingOrderTasks && (
-      sortDescendingOrderTasks.map((task) => (
+    tasks && (
+      tasks.map((task) => (
         <List key={task.id}>title:
           <Link to={`/${task.user.username}/tasks/${task.id}`} key={task.id}>
             {task.title}<span>cotent:{task.content}</span>
@@ -17,25 +17,19 @@ export const SearchTasksList = ({ sortDescendingOrderTasks }) => {
 };
 
 SearchTasksList.propTypes = {
-  sortDescendingOrderTasks: PropTypes.arrayOf(PropTypes.shape({
+  tasks: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
-    user_id: PropTypes.number,
+    userId: PropTypes.number,
     content: PropTypes.string,
     status: PropTypes.number,
     title: PropTypes.string,
     user: PropTypes.shape({
       id: PropTypes.number,
-      firebase_id: PropTypes.string,
       bio: PropTypes.string,
       email: PropTypes.string,
       nickname: PropTypes.string,
-      password_digest: PropTypes.string,
       username: PropTypes.string,
-      created_at: PropTypes.string,
-      updated_at: PropTypes.string,
     }),
-    created_at: PropTypes.string,
-    updated_at: PropTypes.string,
   })).isRequired,
 };
 

@@ -3,8 +3,8 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ja';
 import { useCalender } from '../useCalender';
 
-export const useTaskBars = (userTasks) => {
-  const { calenderData, calenders, currentPositionNumber, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, preCurrentPositionNumber, setCurrentPositionNumber, setPreCurrentPositionNumber, year } = useCalender();
+export const useTaskBars = (tasks, loading) => {
+  const { calenderData, calenders, currentPositionNumber, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, preCurrentPositionNumber, setCurrentPositionNumber, setPreCurrentPositionNumber } = useCalender();
 
   const addMonths = (startYear, startMonth, addMonthCount) => {
     return new Date(startYear, startMonth + addMonthCount - 1);
@@ -23,10 +23,10 @@ export const useTaskBars = (userTasks) => {
     return date;
   };
 
-  const getTaskBarStyle = (calenderDataBlockSize, currentDisplayedTaskBar, index, start_date, taskStartDateForStyle, taskStatusForStyle) => {
+  const getTaskBarStyle = (calenderDataBlockSize, currentDisplayedTaskBar, index, startDate, taskStartDateForStyle, taskStatusForStyle) => {
     const top = 75 + index * 80;
-    const date_from = dayjs(taskStartDateForStyle);
-    const start = date_from.diff(start_date, 'days');
+    const dateFrom = dayjs(taskStartDateForStyle);
+    const start = dateFrom.diff(startDate, 'days');
     const left = start * calenderDataBlockSize;
     const width = currentDisplayedTaskBar;
     const uniqueId = Math.random().toString();
@@ -96,12 +96,12 @@ export const useTaskBars = (userTasks) => {
   (startYear === endYear && startMonth === endMonth) ? endDay - startDay + 1 : daysInBetween + remainingStartMonthDays + endDay;
 
   const [styles, setStyles] = useState([]);
-  const taskBars = (userTasks) => {
-    const start_date = dayjs(calenderData.startMonth);
-    const styleData = userTasks.map((task, index) => {
-      if(task.start_date && task.end_date) {
-        const taskStartDate = getTaskStartDate(task.start_date.split( /[-|]/ ));
-        const taskEndDate = getTaskEndDate(task.end_date.split( /[-|]/ ));
+  const taskBars = (tasks) => {
+    const startDate = dayjs(calenderData.startMonth);
+    const styleData = tasks.map((task, index) => {
+      if(task.startDate && task.endDate) {
+        const taskStartDate = getTaskStartDate(task.startDate.split( /[-|]/ ));
+        const taskEndDate = getTaskEndDate(task.endDate.split( /[-|]/ ));
         const calenderEndDate = getCalenderEndDate(calenderData.endMonth.split( /[-|]/ ));
         const { taskStartYear, taskStartMonth, taskStartDay } = taskStartDate;
         const { taskEndYear, taskEndMonth, taskEndDay } = taskEndDate;
@@ -120,9 +120,9 @@ export const useTaskBars = (userTasks) => {
         const termDay = getTermDay(lastDayInCurrentCalender, lastDayInTaskBar);
         const calenderDataBlockSize = calenderData.blockSize
         const currentDisplayedTaskBar = getCurrentDisplayedTaskBar(allDaysInTask, calenderDataBlockSize, termDay);
-        const taskStartDateForStyle = task.start_date;
+        const taskStartDateForStyle = task.startDate;
         const taskStatusForStyle = task.status;
-        const style = getTaskBarStyle(calenderDataBlockSize, currentDisplayedTaskBar, index, start_date, taskStartDateForStyle, taskStatusForStyle);
+        const style = getTaskBarStyle(calenderDataBlockSize, currentDisplayedTaskBar, index, startDate, taskStartDateForStyle, taskStatusForStyle);
         return style;
       };
       return null;
@@ -130,11 +130,12 @@ export const useTaskBars = (userTasks) => {
     setStyles(styleData);
   };
 
+  // todo1: loading以外に良い方法はないか検討。
   useEffect(() => {
-    taskBars(userTasks);
+    taskBars(tasks);
     // 無限ループを防ぐため、taskBars()をuseEffectの依存関係に含めない。
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [year]);
+  }, [loading]);
 
   return { calenders, currentPositionNumber, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, preCurrentPositionNumber, setCurrentPositionNumber, setPreCurrentPositionNumber, styles };
 };

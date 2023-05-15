@@ -18,8 +18,8 @@ export const useFollowings = () => {
 
       try {
         const response = await getFollowings(username);
-        const followingsData = response.data;
-        setFollowings(followingsData.followings);
+        const followingsData = response.data.followings;
+        setFollowings(followingsData);
       } catch (error) {
         setError(error);
         console.error(`フォロワー中のユーザーの取得中にエラーが発生しました。: `, error);

@@ -6,7 +6,7 @@ import { FormSubmitButton } from '../../../../../../../presentational/atoms/Butt
 import { FormTextArea } from '../../../../../../../presentational/atoms/TextArea/FormTextArea';
 
 export const ProfileChangeForm = (props) => {
-  const { userNickName, userName, userBio } = props.userData;
+  const { nickname, username, bio } = props.userData;
   const { inputRefs } = props;
   const { bioRef, nicknameRef, usernameRef } = inputRefs;
   const { handleTextSubmit, isButtonDisabled, revertUserBioFunc } = props;
@@ -15,7 +15,7 @@ export const ProfileChangeForm = (props) => {
     <FormCover>
       <form onSubmit={handleTextSubmit}>
         <FormInput
-          defaultValue={userNickName}
+          defaultValue={nickname}
           inputRef={nicknameRef}
           htmlFor="nickname"
           type="text"
@@ -25,7 +25,7 @@ export const ProfileChangeForm = (props) => {
           ニックネーム:
         </FormInput>
         <FormInput
-          defaultValue={userName}
+          defaultValue={username}
           inputRef={usernameRef}
           htmlFor="username"
           type="text"
@@ -35,7 +35,7 @@ export const ProfileChangeForm = (props) => {
           ユーザーネーム:
         </FormInput>
         <FormTextArea
-          defaultValue={userBio}
+          defaultValue={bio}
           textAreaRef={bioRef}
           htmlFor="bio"
           name="bio"
@@ -62,49 +62,29 @@ ProfileChangeForm.propTypes = {
   isButtonDisabled: PropTypes.bool.isRequired,
   revertUserBioFunc: PropTypes.func.isRequired,
   userData: PropTypes.shape({
-    taskUser: PropTypes.shape({
-      bio: PropTypes.string,
+    id: PropTypes.number,
+    bio: PropTypes.string,
+    email: PropTypes.string,
+    likedTasks: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number,
-      nickname: PropTypes.string,
-      tasks: PropTypes.arrayOf(
-        PropTypes.shape({
-          content: PropTypes.string,
-          created_at: PropTypes.string,
-          id: PropTypes.number,
-          status: PropTypes.number,
-          title: PropTypes.string,
-          updated_at: PropTypes.string,
-          user_id: PropTypes.number,
-        })
-      ),
-      username: PropTypes.string,
-    }),
-    userTasks: PropTypes.arrayOf(
-      PropTypes.shape({
-        content: PropTypes.string,
-        created_at: PropTypes.string,
-        id: PropTypes.number,
-        status: PropTypes.number,
-        title: PropTypes.string,
-        updated_at: PropTypes.string,
-        user_id: PropTypes.number,
-      })
-    ).isRequired,
-    likedTasksWithUser: PropTypes.arrayOf(
-      PropTypes.shape({
-        content: PropTypes.string,
-        created_at: PropTypes.string,
-        id: PropTypes.number,
-        status: PropTypes.number,
-        title: PropTypes.string,
-        updated_at: PropTypes.string,
-        user_id: PropTypes.number,
-      })
-    ),
-    userBio: PropTypes.string,
-    userNickName: PropTypes.string.isRequired,
-    userName: PropTypes.string.isRequired,
-    userId: PropTypes.string.isRequired,
+      userId: PropTypes.number,
+      content: PropTypes.string,
+      endDate: PropTypes.string,
+      startDate: PropTypes.string,
+      status: PropTypes.number,
+      title: PropTypes.string,
+    })),
+    nickname: PropTypes.string,
+    tasks: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      userId: PropTypes.number,
+      content: PropTypes.string,
+      endDate: PropTypes.string,
+      startDate: PropTypes.string,
+      status: PropTypes.number,
+      title: PropTypes.string,
+    })),
+    username: PropTypes.string,
   }).isRequired,
 };
 

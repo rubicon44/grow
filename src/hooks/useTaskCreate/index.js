@@ -1,11 +1,12 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCurrentUserId } from '../useCurrentUserId';
 import { useGetErrorMessage } from '../useGetErrorMessage';
-import { currentUid } from '../../infra/firebase';
 import { postTasks } from '../../infra/api';
 
 export const useTaskCreate = () => {
   const navigateToTasks = useNavigate();
+  const currentUserId = useCurrentUserId();
   const { getErrorMessage } = useGetErrorMessage();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [creating, setCreating] = useState(false);
@@ -15,9 +16,7 @@ export const useTaskCreate = () => {
       setCreating(true);
       await postTasks(task);
       navigateToTasks('/tasks', {
-        state: {
-          showPopup: true,
-        },
+        state: { showPopup: true },
       });
     } catch (error) {
       console.error(`タスクの登録中にエラーが発生しました。: `, error);
@@ -31,13 +30,7 @@ export const useTaskCreate = () => {
   };
 
   const [taskData, setTaskData] = useState({
-    task: {
-      title: "",
-      content: "",
-      status: 0,
-      startDate: "",
-      endDate: "",
-    }
+    task: { title: "", content: "", status: 0, startDate: "", endDate: "" }
   });
   const titleRef = useRef();
   const contentRef = useRef();
@@ -56,21 +49,19 @@ export const useTaskCreate = () => {
     const startDate = startDateRef.current.value;
     const endDate = endDateRef.current.value;
 
-    if (!title || !content) {
-      window.alert('タイトルとコンテンツを入力してください。');
+    if (!title) {
+      window.alert('タイトルを入力してください。');
       setIsButtonDisabled(false);
       return;
     };
 
-    const task = {
-      title,
-      content,
-      status,
-      start_date: startDate,
-      end_date: endDate,
-      user_id: currentUid
+    if ((endDate && startDate) && endDate < startDate) {
+      window.alert('開始日には、終了日よりも前の日付を設定してください。');
+      setIsButtonDisabled(false);
+      return;
     };
 
+    const task = { title, content, status, startDate, endDate, userId: currentUserId };
     setTaskData({ task });
     await postTasksFunc(task);
   };

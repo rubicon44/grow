@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 export const useMoveToFollowings = (userData) => {
   const navigateToFollowings = useNavigate();
   const moveToFollowings = () => {
-    navigateToFollowings(`/${userData.taskUser.username}/followings`, {
+    navigateToFollowings(`/${userData.username}/followings`, {
       state: {
-        username: userData.taskUser.username,
+        username: userData.username,
       },
     });
   };

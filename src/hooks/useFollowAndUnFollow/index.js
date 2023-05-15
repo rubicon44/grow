@@ -23,8 +23,8 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
 
       try {
         const response = await getFollowings(username);
-        const followingsData = response.data;
-        setCurrentUserFollowings(followingsData.followings);
+        const followingsData = response.data.followings;
+        setCurrentUserFollowings(followingsData);
       } catch (error) {
         setError(error);
         console.error(`ユーザー情報の取得中にエラーが発生しました。: `, error);
@@ -51,7 +51,7 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
   const followFunc = async () => {
     try {
       setCreating(true);
-      const relationships = { following_id: currentUserId, follower_id: userIdToFollowOrUnFollow };
+      const relationships = { followingId: currentUserId, followerId: userIdToFollowOrUnFollow };
       await postRelationships(relationships);
       setIsFollowing(true);
     } catch (error) {
@@ -67,7 +67,7 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
   const unFollowFunc = async () => {
     try {
       setDeleting(true);
-      const relationships = { following_id: currentUserId, follower_id: userIdToFollowOrUnFollow };
+      const relationships = { followingId: currentUserId, followerId: userIdToFollowOrUnFollow };
       await deleteRelationships(relationships);
       setIsFollowing(false);
     } catch (error) {

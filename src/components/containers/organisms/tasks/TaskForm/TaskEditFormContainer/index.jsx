@@ -17,8 +17,8 @@ TaskEditFormContainer.propTypes = {
   taskDataTask: PropTypes.shape({
     id: PropTypes.string.isRequired,
     content: PropTypes.string,
-    end_date: PropTypes.string.isRequired,
-    start_date: PropTypes.string.isRequired,
+    endDate: PropTypes.string.isRequired,
+    startDate: PropTypes.string.isRequired,
     status: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
   }).isRequired,

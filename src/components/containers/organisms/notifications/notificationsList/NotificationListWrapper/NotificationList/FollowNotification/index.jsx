@@ -13,14 +13,10 @@ export const FollowNotification = ({ visitor }) => {
 FollowNotification.propTypes = {
   visitor: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    firebase_id: PropTypes.string.isRequired,
     bio: PropTypes.string,
     email: PropTypes.string.isRequired,
     nickname: PropTypes.string.isRequired,
-    paswword_digest: PropTypes.string,
     username: PropTypes.string.isRequired,
-    created_at: PropTypes.string.isRequired,
-    updated_at: PropTypes.string.isRequired,
   }).isRequired,
 };
 

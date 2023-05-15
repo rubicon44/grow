@@ -17,8 +17,11 @@ UnLikeButton.propTypes = {
   handleClickLikeDelete: PropTypes.func.isRequired,
   likeData: PropTypes.shape({
     likeCount: PropTypes.number.isRequired,
-    likeId: PropTypes.number,
-    likedUserId: PropTypes.number,
+    likes: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      likedUserId: PropTypes.number.isRequired,
+      taskId: PropTypes.number.isRequired,
+    })).isRequired,
   }).isRequired,
 };
 

@@ -17,7 +17,7 @@ export const List = ({ title, titleUrl, content, url, text }) => {
 
 List.propTypes = {
   content: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   title: PropTypes.string.isRequired,
   titleUrl: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,

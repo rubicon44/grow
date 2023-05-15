@@ -7,7 +7,7 @@ export const UserLikedTasks = ({ userData }) => {
   return (
     <>
       <LikedTask>いいねしたタスク</LikedTask>
-      {userData.likedTasksWithUser.length === 0 ? (
+      {userData.likedTasks.length === 0 ? (
         <UserTasksNoLikeList userData={userData} />
       ) : (
         <UserTasksAlreadyLikeList userData={userData} />
@@ -18,49 +18,29 @@ export const UserLikedTasks = ({ userData }) => {
 
 UserLikedTasks.propTypes = {
   userData: PropTypes.shape({
-    taskUser: PropTypes.shape({
-      bio: PropTypes.string,
+    id: PropTypes.number,
+    bio: PropTypes.string,
+    email: PropTypes.string,
+    likedTasks: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number,
-      nickname: PropTypes.string,
-      tasks: PropTypes.arrayOf(
-        PropTypes.shape({
-          content: PropTypes.string,
-          created_at: PropTypes.string,
-          id: PropTypes.number,
-          status: PropTypes.number,
-          title: PropTypes.string,
-          updated_at: PropTypes.string,
-          user_id: PropTypes.number,
-        })
-      ),
-      username: PropTypes.string,
-    }),
-    userTasks: PropTypes.arrayOf(
-      PropTypes.shape({
-        content: PropTypes.string,
-        created_at: PropTypes.string,
-        id: PropTypes.number,
-        status: PropTypes.number,
-        title: PropTypes.string,
-        updated_at: PropTypes.string,
-        user_id: PropTypes.number,
-      })
-    ).isRequired,
-    likedTasksWithUser: PropTypes.arrayOf(
-      PropTypes.shape({
-        content: PropTypes.string,
-        created_at: PropTypes.string,
-        id: PropTypes.number,
-        status: PropTypes.number,
-        title: PropTypes.string,
-        updated_at: PropTypes.string,
-        user_id: PropTypes.number,
-      })
-    ),
-    userBio: PropTypes.string,
-    userNickName: PropTypes.string.isRequired,
-    userName: PropTypes.string.isRequired,
-    userId: PropTypes.string.isRequired,
+      userId: PropTypes.number,
+      content: PropTypes.string,
+      endDate: PropTypes.string,
+      startDate: PropTypes.string,
+      status: PropTypes.number,
+      title: PropTypes.string,
+    })),
+    nickname: PropTypes.string,
+    tasks: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      userId: PropTypes.number,
+      content: PropTypes.string,
+      endDate: PropTypes.string,
+      startDate: PropTypes.string,
+      status: PropTypes.number,
+      title: PropTypes.string,
+    })),
+    username: PropTypes.string,
   }).isRequired,
 };
 

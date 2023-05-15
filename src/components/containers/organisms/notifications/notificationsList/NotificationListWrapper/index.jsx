@@ -4,6 +4,8 @@ import { NotificationList } from './NotificationList';
 
 export const NotificationListWrapper = ({ currentUserName, notificationsData }) => {
   const { likeVisitors } = notificationsData;
+  // todo: useNotificationsDataへ移動予定(全関連ロジックのカスタムHooksへの移動による可読性向上のため。)。
+  // todo: & 再利用化予定
   const uniqueLikeVisitors = Array.from(new Map(likeVisitors.map((visitor) => [visitor.id, visitor])).values());
 
   if (!uniqueLikeVisitors || uniqueLikeVisitors.length === 0) {
@@ -24,39 +26,29 @@ export const NotificationListWrapper = ({ currentUserName, notificationsData }) 
 NotificationListWrapper.propTypes = {
   currentUserName: PropTypes.string.isRequired,
   notificationsData: PropTypes.shape({
-    likeVisitors: PropTypes.arrayOf(PropTypes.shape({
+    followVisitors: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
-      firebase_id: PropTypes.string.isRequired,
       bio: PropTypes.string,
       email: PropTypes.string.isRequired,
       nickname: PropTypes.string.isRequired,
-      paswword_digest: PropTypes.string,
       username: PropTypes.string.isRequired,
-      created_at: PropTypes.string.isRequired,
-      updated_at: PropTypes.string.isRequired,
+    })).isRequired,
+    likeVisitors: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      bio: PropTypes.string,
+      email: PropTypes.string.isRequired,
+      nickname: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired,
     })).isRequired,
     notifications: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
-      task_id: PropTypes.number,
-      visited_id: PropTypes.number.isRequired,
-      visitor_id: PropTypes.number.isRequired,
+      taskId: PropTypes.number,
+      visitedId: PropTypes.number.isRequired,
+      visitorId: PropTypes.number.isRequired,
       action: PropTypes.string.isRequired,
       checked: PropTypes.bool.isRequired,
-      created_at: PropTypes.string.isRequired,
-      updated_at: PropTypes.string.isRequired,
     })).isRequired,
-    visitors: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      firebase_id: PropTypes.string.isRequired,
-      bio: PropTypes.string,
-      email: PropTypes.string.isRequired,
-      nickname: PropTypes.string.isRequired,
-      paswword_digest: PropTypes.string,
-      username: PropTypes.string.isRequired,
-      created_at: PropTypes.string.isRequired,
-      updated_at: PropTypes.string.isRequired,
-    })).isRequired,
-  }),
+  }).isRequired,
 };
 
 const ListCover = styled.div`

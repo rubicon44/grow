@@ -1,13 +1,10 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useFollowAndUnFollow } from '../../../../../../hooks/useFollowAndUnFollow';
-import { useUserData } from '../../../../../../hooks/useUserData';
 import { FollowButtonSwitch } from '../FollowButtonSwitch';
 
-export const FollowButtonSwitchContainer = () => {
-  const { userData } = useUserData();
-  const userIdToFollowOrUnFollow = userData.userId;
+export const FollowButtonSwitchContainer = ({ userIdToFollowOrUnFollow }) => {
   const { changeFollowButtonStyle, creating, currentUserId, deleting, error, followFunc, loading, isFollowing, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc } = useFollowAndUnFollow(userIdToFollowOrUnFollow);
-
   if (error) return <>Error...</>;
   if (creating) return <WaitingButton>Creating...</WaitingButton>;
   if (deleting) return <WaitingButton>Deleting...</WaitingButton>;
@@ -38,6 +35,9 @@ const WaitingButton = ({ children }) => {
   );
 };
 
+FollowButtonSwitchContainer.propTypes = {
+  userIdToFollowOrUnFollow: PropTypes.number.isRequired,
+};
 
 const FollowChange = styled.div`
   width: 100%;

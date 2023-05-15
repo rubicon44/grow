@@ -1,24 +1,24 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCurrentUserId } from '../useCurrentUserId';
 import { useCurrentUserName } from '../useCurrentUserName';
 import { useGetErrorMessage } from '../useGetErrorMessage';
 import { updateTask } from '../../infra/api';
 
 export const useTaskEdit = (taskDataTask) => {
   const navigateToUserTask = useNavigate();
+  const currentUserId = useCurrentUserId();
   const { getErrorMessage } = useGetErrorMessage();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [editing, setEditing] = useState(false);
-  const { id: taskId, title: taskTitle, content: taskContent, status: taskStatus, start_date: taskStartDate, end_date: taskEndDate } = taskDataTask;
+  const { id: taskId, title: taskTitle, content: taskContent, status: taskStatus, startDate: taskStartDate, endDate: taskEndDate } = taskDataTask;
 
-  const updateTaskFunc = async (taskId, task) => {
+  const updateTaskFunc = async (taskId, task, currentUserId) => {
     try {
       setEditing(true);
-      await updateTask(taskId, task)
+      await updateTask(taskId, { ...task, currentUserId: Number(currentUserId) });
       navigateToUserTask(`/${currentUserName}/tasks/${taskId}`, {
-        state: {
-          showPopup: true,
-        },
+        state: { showPopup: true },
       });
     } catch (error) {
       console.error(`タスクの編集中にエラーが発生しました。: `, error);
@@ -57,9 +57,16 @@ export const useTaskEdit = (taskDataTask) => {
     const status = Number(statusRef.current.value);
     const startDate = startDateRef.current.value;
     const endDate = endDateRef.current.value;
-    const task = { title, content, status, start_date: startDate, end_date: endDate };
+
+    if ((endDate && startDate) && endDate < startDate) {
+      window.alert('開始日には、終了日よりも前の日付を設定してください。');
+      setIsButtonDisabled(false);
+      return;
+    };
+
+    const task = { title, content, status, startDate: startDate, endDate: endDate };
     setTaskData({ task });
-    await updateTaskFunc(taskId, task);
+    await updateTaskFunc(taskId, task, currentUserId);
   };
 
   return {

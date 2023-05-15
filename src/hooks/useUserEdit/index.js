@@ -1,6 +1,7 @@
 import { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../auth/AuthProvider';
+import { useCurrentUserId } from '../useCurrentUserId';
 import { useGetErrorMessage } from '../useGetErrorMessage';
 import { updateUser } from '../../infra/api';
 
@@ -8,6 +9,7 @@ import { updateUser } from '../../infra/api';
 export const useUserEdit = (setCheckUserNameChange, setUserData, userData) => {
   const navigateToSignIn = useNavigate();
   const { signout } = useContext(AuthContext);
+  const currentUserId = useCurrentUserId();
   const { getErrorMessage } = useGetErrorMessage();
   const [bioAble, setBioAble] = useState(true);
   const [changeUserNameCheckAble, setChangeUserNameCheckAble] = useState(false);
@@ -18,17 +20,17 @@ export const useUserEdit = (setCheckUserNameChange, setUserData, userData) => {
   const bioRef = useRef();
   const inputRefs = { nicknameRef, usernameRef, bioRef };
 
-  const updateUserFunc = async (defaultUsername, user) => {
+  const updateUserFunc = async (defaultUsername, user, currentUserId) => {
     try {
       setEditing(true);
-      const response = await updateUser(defaultUsername, user);
-      const userData = response.data.user;
+      const response = await updateUser(defaultUsername, { user, currentUserId: Number(currentUserId) });
+      const userData = response.data;
 
       setUserData((prevState) => ({
         ...prevState,
-        userBio: userData.bio,
-        userNickName: userData.nickname,
-        userName: userData.username,
+        bio: userData.bio,
+        nickname: userData.nickname,
+        username: userData.username,
       }));
       setBioAble(true);
       setCheckUserNameChange(true);
@@ -49,7 +51,7 @@ export const useUserEdit = (setCheckUserNameChange, setUserData, userData) => {
   };
 
   const changeUserNameFunc = async () => {
-    const defaultUsername = userData.userName;
+    const defaultUsername = userData.username;
     const nickname = nicknameRef.current.value;
     const username = usernameRef.current.value;
     const bio = bioRef.current.value;
@@ -60,14 +62,14 @@ export const useUserEdit = (setCheckUserNameChange, setUserData, userData) => {
     };
 
     setChangeUserNameCheckAble(false);
-    await updateUserFunc(defaultUsername, user);
+    await updateUserFunc(defaultUsername, user, currentUserId);
   };
 
   const handleTextSubmit = (e) => {
     e.preventDefault();
     setIsButtonDisabled(true);
 
-    const defaultUsername = userData.userName;
+    const defaultUsername = userData.username;
     const nickname = nicknameRef.current.value;
     const username = usernameRef.current.value;
     const bio = bioRef.current.value;
@@ -78,7 +80,7 @@ export const useUserEdit = (setCheckUserNameChange, setUserData, userData) => {
     };
 
     if(defaultUsername === username) {
-      updateUserFunc(defaultUsername, user);
+      updateUserFunc(defaultUsername, user, currentUserId);
     } else {
       setChangeUserNameCheckAble(true);
     };

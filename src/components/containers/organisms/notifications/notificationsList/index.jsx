@@ -2,14 +2,12 @@ import PropTypes from 'prop-types';
 import { NotificationListWrapperContainer } from './NotificationListWrapperContainer';
 import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
 
-export const NotificationsList = ({ currentUserName, error, loading, notificationsData }) => {
+export const NotificationsList = ({ currentUserName, notificationsData }) => {
   return (
     <>
       <TitleWithBackArrowHeader>通知一覧</TitleWithBackArrowHeader>
       <NotificationListWrapperContainer
-        error={error}
         currentUserName={currentUserName}
-        loading={loading}
         notificationsData={notificationsData}
       />
     </>
@@ -18,40 +16,28 @@ export const NotificationsList = ({ currentUserName, error, loading, notificatio
 
 NotificationsList.propTypes = {
   currentUserName: PropTypes.string.isRequired,
-  error: PropTypes.bool,
-  loading: PropTypes.bool,
   notificationsData: PropTypes.shape({
-    likeVisitors: PropTypes.arrayOf(PropTypes.shape({
+    followVisitors: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
-      firebase_id: PropTypes.string.isRequired,
       bio: PropTypes.string,
       email: PropTypes.string.isRequired,
       nickname: PropTypes.string.isRequired,
-      paswword_digest: PropTypes.string,
       username: PropTypes.string.isRequired,
-      created_at: PropTypes.string.isRequired,
-      updated_at: PropTypes.string.isRequired,
+    })).isRequired,
+    likeVisitors: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      bio: PropTypes.string,
+      email: PropTypes.string.isRequired,
+      nickname: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired,
     })).isRequired,
     notifications: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
-      task_id: PropTypes.number,
-      visited_id: PropTypes.number.isRequired,
-      visitor_id: PropTypes.number.isRequired,
+      taskId: PropTypes.number,
+      visitedId: PropTypes.number.isRequired,
+      visitorId: PropTypes.number.isRequired,
       action: PropTypes.string.isRequired,
       checked: PropTypes.bool.isRequired,
-      created_at: PropTypes.string.isRequired,
-      updated_at: PropTypes.string.isRequired,
     })).isRequired,
-    visitors: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      firebase_id: PropTypes.string.isRequired,
-      bio: PropTypes.string,
-      email: PropTypes.string.isRequired,
-      nickname: PropTypes.string.isRequired,
-      paswword_digest: PropTypes.string,
-      username: PropTypes.string.isRequired,
-      created_at: PropTypes.string.isRequired,
-      updated_at: PropTypes.string.isRequired,
-    })).isRequired,
-  }),
+  }).isRequired,
 };

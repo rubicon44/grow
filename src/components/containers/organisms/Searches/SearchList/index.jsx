@@ -4,7 +4,7 @@ import { SearchForm } from './SearchForm';
 import { SearchListSwitchContainer } from './SearchListSwitchContainer';
 import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
 
-export const SearchList = ({ error, handleSubmit, isButtonDisabled, loading, sortDescendingOrderTasks, sortDescendingOrderUsers }) => {
+export const SearchList = ({ error, handleSubmit, isButtonDisabled, loading, tasks, users }) => {
   return (
     <>
       <TitleWithBackArrowHeader>検索一覧</TitleWithBackArrowHeader>
@@ -13,8 +13,8 @@ export const SearchList = ({ error, handleSubmit, isButtonDisabled, loading, sor
         <SearchListSwitchContainer
           error={error}
           loading={loading}
-          sortDescendingOrderTasks={sortDescendingOrderTasks}
-          sortDescendingOrderUsers={sortDescendingOrderUsers}
+          tasks={tasks}
+          users={users}
         />
       </SerchListContent>
     </>
@@ -26,36 +26,26 @@ SearchList.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   isButtonDisabled: PropTypes.bool.isRequired,
   loading: PropTypes.bool,
-  sortDescendingOrderTasks: PropTypes.arrayOf(PropTypes.shape({
+  tasks: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
-    user_id: PropTypes.number,
+    userId: PropTypes.number,
     content: PropTypes.string,
     status: PropTypes.number,
     title: PropTypes.string,
     user: PropTypes.shape({
       id: PropTypes.number,
-      firebase_id: PropTypes.string,
       bio: PropTypes.string,
       email: PropTypes.string,
       nickname: PropTypes.string,
-      password_digest: PropTypes.string,
       username: PropTypes.string,
-      created_at: PropTypes.string,
-      updated_at: PropTypes.string,
     }),
-    created_at: PropTypes.string,
-    updated_at: PropTypes.string,
   })).isRequired,
-  sortDescendingOrderUsers: PropTypes.arrayOf(PropTypes.shape({
+  users: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
-    firebase_id: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string,
     nickname: PropTypes.string,
-    password_digest: PropTypes.string,
     username: PropTypes.string,
-    created_at: PropTypes.string,
-    updated_at: PropTypes.string,
   })).isRequired,
 };
 
