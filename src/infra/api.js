@@ -12,9 +12,10 @@ axios.defaults.headers.common.Authorization = tokenAuth;
 const setCSRFToken = async () => {
   try {
     const response = await axios.get('/v1/csrf_token');
-    const csrfToken = response.data.csrf_token;
+    const csrfToken = response.data.csrf_token.value;
     if (csrfToken) {
       axios.defaults.headers.common['X-CSRF-Token'] = csrfToken;
+      axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
       return csrfToken
     }
   } catch (error) {
@@ -59,6 +60,7 @@ export const getTasks = async (params) => {
     method: 'get',
     url: '/v1/tasks',
     params: snakecaseKeys(params),
+    header: { }
   }).then((response) => camelcaseKeys(response, {deep: true}))
 };
 

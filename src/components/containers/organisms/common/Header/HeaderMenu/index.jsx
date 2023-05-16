@@ -14,7 +14,7 @@ export const HeaderMenu = ({ drawerStatus, headerLinks, headerLinksForAuth, togg
     >
       <List>
         {headerLinks.map((headerLink) => (
-          <Link to={headerLink.url} key={headerLink.url}>
+          <Link to={`/${headerLink.url}`} key={headerLink.url}>
             <ListItem button key={headerLink.text} sx={{ textAlign: 'center' }}>
               <ListItemText primary={headerLink.text} />
             </ListItem>
@@ -24,7 +24,7 @@ export const HeaderMenu = ({ drawerStatus, headerLinks, headerLinksForAuth, togg
       <Divider />
       <List>
         {headerLinksForAuth.map((headerLink) => (
-          <Link to={headerLink.url} key={headerLink.url}>
+          <Link to={`/${headerLink.url}`} key={headerLink.url}>
             <ListItem button key={headerLink.text} sx={{ textAlign: 'center' }}>
               <ListItemText primary={headerLink.text} />
             </ListItem>
