@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { signOut } from 'firebase/auth';
+import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import { QueryClient, QueryClientProvider } from 'react-query';
 // Style
@@ -46,11 +47,9 @@ export const App = () => {
   useEffect(() => {
     // setTimeout(() => setLoading(false), 1000)
     setLoading(false);
-    if (
-      localStorage.getItem('token') === '' ||
-      localStorage.getItem('token') === null ||
-      Date.now() >= jwtDecode(localStorage.getItem('token')).exp * 1000
-    ) {
+    const token = Cookies.get('token');
+    if (!token || token === '' || Date.now() >= jwtDecode(token).exp * 1000) {
+      Cookies.remove('token');
       signOut(auth);
     }
   }, []);

@@ -1,9 +1,11 @@
 import { currentUser } from '../../infra/currentUser';
+import Cookies from 'js-cookie';
 
 export const useCurrentUserName = () => {
-  if(localStorage.getItem('user')) {
+  const user = Cookies.get('user');
+  if (user) {
     const username = currentUser().username;
     return username;
-  };
+  }
   return null;
 };

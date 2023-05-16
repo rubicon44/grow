@@ -16,6 +16,7 @@
     "firebase": "^9.6.8",
     "firebase-tools": "^11.24.0",
     "immutability-helper": "^3.1.1",
+    "js-cookie": "^3.0.5",
     "jwt-decode": "^3.1.2",
     "prop-types": "^15.7.2",
     "react": "^18.2.0",

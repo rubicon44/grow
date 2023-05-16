@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import PropTypes from 'prop-types';
 import { auth } from '../../infra/firebase';
 import { signUp, signIn } from '../../infra/api';
@@ -22,11 +23,11 @@ export const AuthProvider = ({ children }) => {
           await signIn(idToken)
             .then((response) => {
               const { token, user } = response.data;
-              if (token) localStorage.setItem('token', token);
-              if (user) localStorage.setItem('user', JSON.stringify(user));
+              if (token) Cookies.set('token', token);
+              if (user) Cookies.set('user', JSON.stringify(user));
 
               axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
-              const tokenAuth = localStorage.getItem('token');
+              const tokenAuth = Cookies.get('token');
               axios.defaults.headers.common.Authorization = tokenAuth;
             })
             .catch(() => {
@@ -67,8 +68,8 @@ export const AuthProvider = ({ children }) => {
 
   const signout = async () => {
     await signOut(auth);
-    localStorage.setItem('token', '');
-    localStorage.setItem('user', '');
+    Cookies.remove('token');
+    Cookies.remove('user');
     window.location.reload();
   };
 
