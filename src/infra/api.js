@@ -9,6 +9,7 @@ axios.defaults.withCredentials = true;
 const tokenAuth = Cookies.get('token');
 axios.defaults.headers.common.Authorization = tokenAuth;
 
+// todo: 1種類のリクエストを複数回呼び出す時(getLikes, getFollowings, etc.)、csrf_tokenの検証エラーが発生
 const setCSRFToken = async () => {
   try {
     const response = await axios.get('/v1/csrf_token');
@@ -16,6 +17,7 @@ const setCSRFToken = async () => {
     const csrfToken = response.data.csrf_token;
     if (csrfToken) {
       axios.defaults.headers.common['X-CSRF-Token'] = csrfToken;
+      return csrfToken
     }
   } catch (error) {
     console.error('Failed to get CSRF token:', error);
