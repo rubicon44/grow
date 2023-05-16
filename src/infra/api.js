@@ -9,11 +9,9 @@ axios.defaults.withCredentials = true;
 const tokenAuth = Cookies.get('token');
 axios.defaults.headers.common.Authorization = tokenAuth;
 
-// todo: 1種類のリクエストを複数回呼び出す時(getLikes, getFollowings, etc.)、csrf_tokenの検証エラーが発生
 const setCSRFToken = async () => {
   try {
     const response = await axios.get('/v1/csrf_token');
-    // const csrfToken = response.data.csrf_token.token;
     const csrfToken = response.data.csrf_token;
     if (csrfToken) {
       axios.defaults.headers.common['X-CSRF-Token'] = csrfToken;
@@ -40,7 +38,6 @@ export const signIn = async (idToken) => {
 };
 
 export const getUser = async (params) => {
-  await setCSRFToken();
   return axios({
     method: 'get',
     url: `/v1/${params}`,
@@ -58,7 +55,6 @@ export const updateUser = async (params, data) => {
 };
 
 export const getTasks = async (params) => {
-  await setCSRFToken();
   return axios({
     method: 'get',
     url: '/v1/tasks',
@@ -72,7 +68,6 @@ export const postTasks = async (params) => {
 };
 
 export const getTask = async (params) => {
-  await setCSRFToken();
   return axios({
     method: 'get',
     url: `/v1/tasks/${params}`,
@@ -109,7 +104,6 @@ export const postLikes = async (params) => {
 };
 
 export const getLikes = async (params) => {
-  await setCSRFToken();
   return axios({
     method: 'get',
     url: `/v1/tasks/${params.taskId}/likes`,
@@ -146,7 +140,6 @@ export const deleteRelationships = async (params) => {
 };
 
 export const getFollowings = async (username) => {
-  await setCSRFToken();
   return axios({
     method: 'get',
     url: `/v1/${username}/followings`,
@@ -154,7 +147,6 @@ export const getFollowings = async (username) => {
 };
 
 export const getFollowers = async (username) => {
-  await setCSRFToken();
   return axios({
     method: 'get',
     url: `/v1/${username}/followers`,
@@ -163,7 +155,6 @@ export const getFollowers = async (username) => {
 
 // notifications
 export const getNotifications = async (params) => {
-  await setCSRFToken();
   return axios({
     method: 'get',
     url: `/v1/notifications`,
@@ -173,7 +164,6 @@ export const getNotifications = async (params) => {
 
 // searches
 export const getSearches = async (params) => {
-  await setCSRFToken();
   return axios({
     method: 'get',
     url: `/v1/searches`,
