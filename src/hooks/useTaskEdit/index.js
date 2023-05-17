@@ -3,12 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { useCurrentUserId } from '../useCurrentUserId';
 import { useCurrentUserName } from '../useCurrentUserName';
 import { useGetErrorMessage } from '../useGetErrorMessage';
+import { useInputSanitization } from '../useInputSanitization';
+import { useInputValidation } from '../useInputValidation';
 import { updateTask } from '../../infra/api';
 
 export const useTaskEdit = (taskDataTask) => {
   const navigateToUserTask = useNavigate();
   const currentUserId = useCurrentUserId();
   const { getErrorMessage } = useGetErrorMessage();
+  const { sanitizeInput } = useInputSanitization();
+  const { validateInput, validateTask } = useInputValidation();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [editing, setEditing] = useState(false);
   const { id: taskId, title: taskTitle, content: taskContent, status: taskStatus, startDate: taskStartDate, endDate: taskEndDate } = taskDataTask;
@@ -52,11 +56,21 @@ export const useTaskEdit = (taskDataTask) => {
     e.preventDefault();
     e.persist();
     setIsButtonDisabled(true);
-    const title = titleRef.current.value;
-    const content = contentRef.current.value;
+
+    const title = sanitizeInput(titleRef.current.value, { trim: true, ALLOWED_TAGS: [] });
+    const content = sanitizeInput(contentRef.current.value);
     const status = Number(statusRef.current.value);
     const startDate = startDateRef.current.value;
     const endDate = endDateRef.current.value;
+
+    if (
+      !validateInput(title, 'タイトル', { maxLength: 255, nullFalse: false }) ||
+      !validateInput(content, 'コンテンツ', { maxLength: 5000 }) ||
+      !validateTask(startDate, endDate)
+    ) {
+      setIsButtonDisabled(false);
+      return;
+    }
 
     if ((endDate && startDate) && endDate < startDate) {
       window.alert('開始日には、終了日よりも前の日付を設定してください。');

@@ -2,12 +2,16 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCurrentUserId } from '../useCurrentUserId';
 import { useGetErrorMessage } from '../useGetErrorMessage';
+import { useInputSanitization } from '../useInputSanitization';
+import { useInputValidation } from '../useInputValidation';
 import { postTasks } from '../../infra/api';
 
 export const useTaskCreate = () => {
   const navigateToTasks = useNavigate();
   const currentUserId = useCurrentUserId();
   const { getErrorMessage } = useGetErrorMessage();
+  const { sanitizeInput } = useInputSanitization();
+  const { validateInput, validateTask } = useInputValidation();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [creating, setCreating] = useState(false);
 
@@ -43,17 +47,20 @@ export const useTaskCreate = () => {
     e.preventDefault();
     setIsButtonDisabled(true);
 
-    const title = titleRef.current.value;
-    const content = contentRef.current.value;
+    const title = sanitizeInput(titleRef.current.value, { trim: true, ALLOWED_TAGS: [] });
+    const content = sanitizeInput(contentRef.current.value);
     const status = Number(statusRef.current.value);
     const startDate = startDateRef.current.value;
     const endDate = endDateRef.current.value;
 
-    if (!title) {
-      window.alert('タイトルを入力してください。');
+    if (
+      !validateInput(title, 'タイトル', { maxLength: 255, nullFalse: false }) ||
+      !validateInput(content, 'コンテンツ', { maxLength: 5000 }) ||
+      !validateTask(startDate, endDate)
+    ) {
       setIsButtonDisabled(false);
       return;
-    };
+    }
 
     if ((endDate && startDate) && endDate < startDate) {
       window.alert('開始日には、終了日よりも前の日付を設定してください。');

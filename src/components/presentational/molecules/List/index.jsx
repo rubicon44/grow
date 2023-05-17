@@ -8,7 +8,7 @@ export const List = ({ title, titleUrl, content, url, text }) => {
   // const userInputText1 = `javascript: console.log(document.cookie)`;
   return (
     <BaseList>
-      <dt><Link to={`/${titleUrl}`}>{title}</Link></dt>
+      <dt><Link to={titleUrl}>{title}</Link></dt>
       {/* <dt><Link to={userInputText1}>{title}</Link></dt> */}
       <dd>{content}</dd>
       <CreatedUserCover>作成者:

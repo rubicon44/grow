@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { getSearches } from '../../infra/api';
+import { useInputSanitization } from '../useInputSanitization';
 
 export const useSearchResults = () => {
+  const { sanitizeInput } = useInputSanitization();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -32,10 +34,10 @@ export const useSearchResults = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsButtonDisabled(true);
-    const { model } = e.target.elements;
-    const { contents } = e.target.elements;
-    const { method } = e.target.elements;
-    const searchData = { model: model.value, contents: contents.value, method: method.value };
+    const model = sanitizeInput(e.target.elements.model.value);
+    const contents = sanitizeInput(e.target.elements.contents.value, { trim: true, ALLOWED_TAGS: [] });
+    const method = sanitizeInput(e.target.elements.method.value);
+    const searchData = { model: model, contents: contents, method: method };
     fetchSearchesData(searchData);
   };
 

@@ -31,14 +31,11 @@ export const AuthProvider = ({ children }) => {
               axios.defaults.headers.common.Authorization = tokenAuth;
             })
             .catch(() => {
-              // alert(response);
-              // alert('このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。');
               window.alert("このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。");
               signOut(auth);
             });
         });
     } catch (error) {
-      // alert(error);
       window.alert("このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。");
     }
   };
@@ -50,18 +47,10 @@ export const AuthProvider = ({ children }) => {
           const firebaseId = userCredential.user.uid;
           const user = { nickname, username, email, firebaseId };
           await signUp(user).then().catch();
-          // .then((response) => {
-          //   // todo:APIからユーザーオブジェクトのみが返却されるので、ポップアップでも出す？（ユーザーが作成されました！）
-          //   // もしくはエラーの場合のみ出力（取り扱いにルールを設ける）
-          // })
-          // .catch((data) => {
-          // });
           await signin(email, password);
         })
         .catch();
     } catch (error) {
-      // alert(error);
-      // alert('このメールアドレスはすでに登録されています。');
       signOut(auth);
     }
   };
