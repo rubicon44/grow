@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 // todo: アニメーションをつけて、popup表示をもっと目立たせたい。
 export const Popup = ({ message, showPopup }) => {
+  // todo: state位置検証
   const [visible, setVisible] = useState(true);
 
   const closePopup = () => {

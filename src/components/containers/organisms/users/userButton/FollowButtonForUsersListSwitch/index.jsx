@@ -6,6 +6,7 @@ import { FollowOrFollowingOrUnFollowButtonSwitch } from './FollowOrFollowingOrUn
 
 export const FollowButtonForUsersListSwitch = (props) => {
   const { changeFollowButtonStyle, currentUserName, currentUserId, followFunc, isFollowing, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc, username, userIdToFollowOrUnFollow } = props;
+  // todo: state位置検証
   const [showFollowingOrUnfollowButton, setShowFollowingOrUnfollowButton] = useState(false);
 
   const handleButtonClick = async () => {

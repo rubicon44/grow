@@ -13,6 +13,7 @@ import { signUp, signIn } from '../../infra/api';
 
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
+  // todo: state位置検証
   const [currentUserAuth, setCurrentUserAuth] = useState(null);
   const signin = async (email, password) => {
     try {
