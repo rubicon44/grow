@@ -86,7 +86,7 @@ export const useCalender = () => {
       const startMonthFormat = startMonth.format();
       startMonth = dayjs(`${startMonthFormat}`).add(1, "months");
       blockNumber = days[days.length - 1].blockNumber;
-      blockNumber += 1
+      blockNumber += 1;
     }
     setCalenders(newCalenders);
     return blockNumber;
