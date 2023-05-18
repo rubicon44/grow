@@ -57,9 +57,9 @@ export const ProfileChangeForm = (props) => {
 ProfileChangeForm.propTypes = {
   handleTextSubmit: PropTypes.func.isRequired,
   inputRefs: PropTypes.shape({
-    bioRef: PropTypes.object.isRequired,
-    nicknameRef: PropTypes.object.isRequired,
-    usernameRef: PropTypes.object.isRequired,
+    bioRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
+    nicknameRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
+    usernameRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
   }).isRequired,
   isButtonDisabled: PropTypes.bool.isRequired,
   revertUserBioFunc: PropTypes.func.isRequired,

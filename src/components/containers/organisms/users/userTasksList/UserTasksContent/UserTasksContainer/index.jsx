@@ -7,6 +7,11 @@ export const UserTasksContainer = ({ error, loading, userData }) => {
   return <UserTasks userData={userData} />;
 };
 
+UserTasksContainer.defaultProps = {
+  error: false,
+  loading: false,
+};
+
 UserTasksContainer.propTypes = {
   error: PropTypes.bool,
   loading: PropTypes.bool,

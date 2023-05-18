@@ -9,8 +9,8 @@ export const LikeOrUnLikeButtonSwitch = ({
   handleClickLikePost,
   likeData,
   taskId,
-}) => {
-  return getLikedUserIdFunc() && String(currentTaskId) === String(taskId) ? (
+}) =>
+  getLikedUserIdFunc() && String(currentTaskId) === String(taskId) ? (
     <UnLikeButton
       handleClickLikeDelete={handleClickLikeDelete}
       likeData={likeData}
@@ -18,6 +18,9 @@ export const LikeOrUnLikeButtonSwitch = ({
   ) : (
     <LikeButton handleClickLikePost={handleClickLikePost} likeData={likeData} />
   );
+
+LikeOrUnLikeButtonSwitch.defaultProps = {
+  currentTaskId: "",
 };
 
 LikeOrUnLikeButtonSwitch.propTypes = {

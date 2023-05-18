@@ -21,6 +21,11 @@ export const UserFollowersList = ({
   </>
 );
 
+UserFollowersList.defaultProps = {
+  error: false,
+  loading: false,
+};
+
 UserFollowersList.propTypes = {
   currentUserId: PropTypes.string.isRequired,
   error: PropTypes.bool,

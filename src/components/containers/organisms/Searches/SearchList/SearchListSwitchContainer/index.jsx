@@ -7,6 +7,11 @@ export const SearchListSwitchContainer = ({ error, loading, tasks, users }) => {
   return <SearchListSwitch tasks={tasks} users={users} />;
 };
 
+SearchListSwitchContainer.defaultProps = {
+  error: false,
+  loading: false,
+};
+
 SearchListSwitchContainer.propTypes = {
   error: PropTypes.bool,
   loading: PropTypes.bool,

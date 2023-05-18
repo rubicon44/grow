@@ -93,6 +93,13 @@ TaskList.propTypes = {
       startDate: PropTypes.string,
       status: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
+      user: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        bio: PropTypes.string.isRequired,
+        email: PropTypes.string.isRequired,
+        nickname: PropTypes.string.isRequired,
+        username: PropTypes.string.isRequired,
+      }),
     }).isRequired,
   }).isRequired,
   unDeleteCheckFunc: PropTypes.func.isRequired,

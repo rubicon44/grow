@@ -18,6 +18,11 @@ export const UserTasksContent = ({
   </UserTasksContentCover>
 );
 
+UserTasksContent.defaultProps = {
+  error: false,
+  loading: false,
+};
+
 UserTasksContent.propTypes = {
   error: PropTypes.bool,
   loading: PropTypes.bool,

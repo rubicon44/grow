@@ -31,6 +31,11 @@ export const ProfileChange = (props) => {
   );
 };
 
+ProfileChange.defaultProps = {
+  error: false,
+  loading: false,
+};
+
 ProfileChange.propTypes = {
   bioAble: PropTypes.bool.isRequired,
   currentUserId: PropTypes.string.isRequired,
@@ -38,9 +43,9 @@ ProfileChange.propTypes = {
   error: PropTypes.bool,
   handleTextSubmit: PropTypes.func.isRequired,
   inputRefs: PropTypes.shape({
-    bioRef: PropTypes.object.isRequired,
-    nicknameRef: PropTypes.object.isRequired,
-    usernameRef: PropTypes.object.isRequired,
+    bioRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
+    nicknameRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
+    usernameRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
   }).isRequired,
   isButtonDisabled: PropTypes.bool.isRequired,
   loading: PropTypes.bool,

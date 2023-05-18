@@ -29,8 +29,12 @@ export const GanttChartTaskTable = ({ elm, user, tasks }) => (
   </>
 );
 
+GanttChartTaskTable.defaultProps = {
+  user: {},
+};
+
 GanttChartTaskTable.propTypes = {
-  elm: PropTypes.object.isRequired,
+  elm: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
   user: PropTypes.exact({
     id: PropTypes.number.isRequired,
     bio: PropTypes.string,

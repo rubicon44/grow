@@ -29,6 +29,11 @@ export const SearchList = ({
   </>
 );
 
+SearchList.defaultProps = {
+  error: false,
+  loading: false,
+};
+
 SearchList.propTypes = {
   error: PropTypes.bool,
   handleSubmit: PropTypes.func.isRequired,

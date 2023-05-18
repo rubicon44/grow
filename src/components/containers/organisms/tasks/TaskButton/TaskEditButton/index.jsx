@@ -5,13 +5,13 @@ export const TaskEditButton = ({
   isButtonDisabled,
   moveToEditTask,
   taskCreatedUserId,
-}) => {
-  return String(taskCreatedUserId) === String(currentUserId) ? (
+}) => (
+  String(taskCreatedUserId) === String(currentUserId) ? (
     <button type="button" disabled={isButtonDisabled} onClick={moveToEditTask}>
       編集
     </button>
-  ) : null;
-};
+  ) : null
+);
 
 TaskEditButton.propTypes = {
   currentUserId: PropTypes.string.isRequired,

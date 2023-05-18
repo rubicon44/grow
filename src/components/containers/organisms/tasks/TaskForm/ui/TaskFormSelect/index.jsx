@@ -13,7 +13,7 @@ export const TaskFormSelect = ({ selectRef, defaultValue }) => (
 );
 
 TaskFormSelect.propTypes = {
-  selectRef: PropTypes.object.isRequired,
+  selectRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
   defaultValue: PropTypes.number.isRequired,
 };
 

@@ -16,6 +16,10 @@ export const TaskEditFormContainer = ({ taskDataTask }) => {
   );
 };
 
+TaskEditFormContainer.defaultProps = {
+  taskData: {},
+};
+
 TaskEditFormContainer.propTypes = {
   taskDataTask: PropTypes.shape({
     id: PropTypes.string.isRequired,

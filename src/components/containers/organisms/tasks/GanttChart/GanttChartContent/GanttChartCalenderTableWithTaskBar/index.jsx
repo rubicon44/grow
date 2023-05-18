@@ -8,8 +8,8 @@ export const GanttChartCalenderTableWithTaskBar = ({
   calenderBodyHeight,
   calenders,
   styles,
-}) => {
-  return calenders.map((calender) => (
+}) => (
+  calenders.map((calender) => (
     <Fragment key={calender.date}>
       <GanttChartCalenderTable>
         <thead>
@@ -17,7 +17,7 @@ export const GanttChartCalenderTableWithTaskBar = ({
             <th>{calender.date}</th>
           </tr>
         </thead>
-        <tbody style={{ height: calenderBodyHeight + 32 + "px" }}>
+        <tbody style={{ height: `${calenderBodyHeight + 32}px` }}>
           {calender.days.map((days) => (
             <CalenderTableBodyColorSwitch key={days.blockNumber} days={days} />
           ))}
@@ -25,8 +25,8 @@ export const GanttChartCalenderTableWithTaskBar = ({
       </GanttChartCalenderTable>
       <GunttChartTaskBar styles={styles} />
     </Fragment>
-  ));
-};
+  ))
+);
 
 GanttChartCalenderTableWithTaskBar.propTypes = {
   calenderBodyHeight: PropTypes.number.isRequired,

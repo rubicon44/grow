@@ -15,7 +15,7 @@ export const LogOutButtonSwitch = ({
 );
 
 LogOutButtonSwitch.propTypes = {
-  currentUserAuth: PropTypes.object.isRequired,
+  currentUserAuth: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
   currentUserName: PropTypes.string.isRequired,
   userNameInUrl: PropTypes.string.isRequired,
 };

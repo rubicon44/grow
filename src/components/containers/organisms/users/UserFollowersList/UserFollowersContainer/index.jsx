@@ -19,6 +19,11 @@ export const UserFollowersContainer = ({
   );
 };
 
+UserFollowersContainer.defaultProps = {
+  error: false,
+  loading: false,
+};
+
 UserFollowersContainer.propTypes = {
   currentUserId: PropTypes.string.isRequired,
   error: PropTypes.bool,

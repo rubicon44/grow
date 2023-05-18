@@ -59,6 +59,11 @@ export const UserTasksList = (props) => {
   );
 };
 
+UserTasksList.defaultProps = {
+  error: false,
+  loading: false,
+};
+
 UserTasksList.propTypes = {
   bioAble: PropTypes.bool.isRequired,
   changeUserNameCheckAble: PropTypes.bool.isRequired,
@@ -67,7 +72,7 @@ UserTasksList.propTypes = {
   editing: PropTypes.bool,
   error: PropTypes.bool,
   handleTextSubmit: PropTypes.func.isRequired,
-  inputRefs: PropTypes.object.isRequired,
+  inputRefs: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
   isButtonDisabled: PropTypes.bool.isRequired,
   loading: PropTypes.bool,
   moveToFollowers: PropTypes.func.isRequired,

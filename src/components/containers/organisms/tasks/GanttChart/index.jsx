@@ -54,8 +54,8 @@ GanttChart.propTypes = {
       year: PropTypes.number.isRequired,
     })
   ).isRequired,
-  elm: PropTypes.object.isRequired,
-  elmOfCalenderTableCover: PropTypes.object.isRequired,
+  elm: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
+  elmOfCalenderTableCover: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
   handleBackToPreviousMonthClick: PropTypes.func.isRequired,
   handleForwardToNextMonthClick: PropTypes.func.isRequired,
   handleScrollToCurrentDate: PropTypes.func.isRequired,

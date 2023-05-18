@@ -9,23 +9,23 @@ export const CalenderTableBodyColorSwitch = ({ days }) => {
         <td>{days.day}</td>
       </ColoredDayOfWeek>
     );
-  } else if (days.dayOfWeek === "土") {
+  }
+
+  if (days.dayOfWeek === "土") {
     return (
       <ColoredBlueDayOfWeek key={days.blockNumber}>
         <td>{days.dayOfWeek}</td>
         <td>{days.day}</td>
       </ColoredBlueDayOfWeek>
     );
-  } else if (days.dayOfWeek === "日") {
-    return (
-      <ColoredRedDayOfWeek key={days.blockNumber}>
-        <td>{days.dayOfWeek}</td>
-        <td>{days.day}</td>
-      </ColoredRedDayOfWeek>
-    );
-  } else {
-    return null;
   }
+
+  return (
+    <ColoredRedDayOfWeek key={days.blockNumber}>
+      <td>{days.dayOfWeek}</td>
+      <td>{days.day}</td>
+    </ColoredRedDayOfWeek>
+  );
 };
 
 CalenderTableBodyColorSwitch.propTypes = {
