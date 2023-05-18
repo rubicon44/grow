@@ -2,34 +2,32 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { TaskStatusSwitchText } from "../../TaskStatusSwitchText";
 
-export const GanttChartTaskTable = ({ elm, user, tasks }) => {
-  return (
-    <>
-      <GanttChartTaskTitle>
-        <tr>
-          <th>タスク</th>
-          <th>開始日</th>
-          <th>終了日</th>
-          <th>担当</th>
-          <th>進捗</th>
+export const GanttChartTaskTable = ({ elm, user, tasks }) => (
+  <>
+    <GanttChartTaskTitle>
+      <tr>
+        <th>タスク</th>
+        <th>開始日</th>
+        <th>終了日</th>
+        <th>担当</th>
+        <th>進捗</th>
+      </tr>
+    </GanttChartTaskTitle>
+    <GanttChartTaskList ref={elm}>
+      {tasks.map((task) => (
+        <tr key={task.id}>
+          <td>{task.title}</td>
+          <td>{task.startDate}</td>
+          <td>{task.endDate}</td>
+          <td>{user.nickname}</td>
+          <td>
+            <TaskStatusSwitchText taskStatus={task.status} />
+          </td>
         </tr>
-      </GanttChartTaskTitle>
-      <GanttChartTaskList ref={elm}>
-        {tasks.map((task) => (
-          <tr key={task.id}>
-            <td>{task.title}</td>
-            <td>{task.startDate}</td>
-            <td>{task.endDate}</td>
-            <td>{user.nickname}</td>
-            <td>
-              <TaskStatusSwitchText taskStatus={task.status} />
-            </td>
-          </tr>
-        ))}
-      </GanttChartTaskList>
-    </>
-  );
-};
+      ))}
+    </GanttChartTaskList>
+  </>
+);
 
 GanttChartTaskTable.propTypes = {
   elm: PropTypes.object.isRequired,

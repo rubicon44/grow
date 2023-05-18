@@ -2,16 +2,14 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-export const FollowNotification = ({ visitor }) => {
-  return (
-    <UserNickNameCover>
-      <UserNickName to={`/${visitor.username}`}>
-        {visitor.nickname}
-      </UserNickName>
-      さんにフォローされました。
-    </UserNickNameCover>
-  );
-};
+export const FollowNotification = ({ visitor }) => (
+  <UserNickNameCover>
+    <UserNickName to={`/${visitor.username}`}>
+      {visitor.nickname}
+    </UserNickName>
+    さんにフォローされました。
+  </UserNickNameCover>
+);
 
 FollowNotification.propTypes = {
   visitor: PropTypes.shape({

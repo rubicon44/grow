@@ -1,13 +1,11 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-export const UserTasksNoLikeList = ({ userData }) => {
-  return (
-    <ListCover key={userData.likedTasks}>
-      <div>まだいいねはありません。</div>
-    </ListCover>
-  );
-};
+export const UserTasksNoLikeList = ({ userData }) => (
+  <ListCover key={userData.likedTasks}>
+    <div>まだいいねはありません。</div>
+  </ListCover>
+);
 
 UserTasksNoLikeList.propTypes = {
   userData: PropTypes.shape({

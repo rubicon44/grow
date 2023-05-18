@@ -1,15 +1,13 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-export const FormButton = ({ children, handleClick }) => {
-  return (
-    <FormButtonCover>
-      <Button type="button" onClick={handleClick}>
-        {children}
-      </Button>
-    </FormButtonCover>
-  );
-};
+export const FormButton = ({ children, handleClick }) => (
+  <FormButtonCover>
+    <Button type="button" onClick={handleClick}>
+      {children}
+    </Button>
+  </FormButtonCover>
+);
 
 FormButton.propTypes = {
   children: PropTypes.node.isRequired,

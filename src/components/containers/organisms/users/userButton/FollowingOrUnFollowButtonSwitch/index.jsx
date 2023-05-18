@@ -8,28 +8,26 @@ export const FollowingOrUnFollowButtonSwitch = ({
   setChangeFollowButtonStyleToFalseFunc,
   setChangeFollowButtonStyleToTrueFunc,
   unFollowFunc,
-}) => {
-  return (
-    <FollowChange>
-      <FollowChangeLinkCover>
-        {changeFollowButtonStyle ? (
-          <UnFollowButton
-            setChangeFollowButtonStyleToFalseFunc={
-              setChangeFollowButtonStyleToFalseFunc
-            }
-            unFollowFunc={unFollowFunc}
-          />
-        ) : (
-          <FollowingButton
-            setChangeFollowButtonStyleToTrueFunc={
-              setChangeFollowButtonStyleToTrueFunc
-            }
-          />
-        )}
-      </FollowChangeLinkCover>
-    </FollowChange>
-  );
-};
+}) => (
+  <FollowChange>
+    <FollowChangeLinkCover>
+      {changeFollowButtonStyle ? (
+        <UnFollowButton
+          setChangeFollowButtonStyleToFalseFunc={
+            setChangeFollowButtonStyleToFalseFunc
+          }
+          unFollowFunc={unFollowFunc}
+        />
+      ) : (
+        <FollowingButton
+          setChangeFollowButtonStyleToTrueFunc={
+            setChangeFollowButtonStyleToTrueFunc
+          }
+        />
+      )}
+    </FollowChangeLinkCover>
+  </FollowChange>
+);
 
 FollowingOrUnFollowButtonSwitch.propTypes = {
   changeFollowButtonStyle: PropTypes.bool.isRequired,

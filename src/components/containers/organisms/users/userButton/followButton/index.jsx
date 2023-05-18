@@ -1,17 +1,15 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-export const FollowButton = ({ followFunc }) => {
-  return (
-    <FollowChange>
-      <FollowChangeLinkCover>
-        <FollowChangeLinkNone onClick={followFunc}>
-          <span>フォロー</span>
-        </FollowChangeLinkNone>
-      </FollowChangeLinkCover>
-    </FollowChange>
-  );
-};
+export const FollowButton = ({ followFunc }) => (
+  <FollowChange>
+    <FollowChangeLinkCover>
+      <FollowChangeLinkNone onClick={followFunc}>
+        <span>フォロー</span>
+      </FollowChangeLinkNone>
+    </FollowChangeLinkCover>
+  </FollowChange>
+);
 
 FollowButton.propTypes = {
   followFunc: PropTypes.func.isRequired,

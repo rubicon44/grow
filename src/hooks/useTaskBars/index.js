@@ -15,9 +15,8 @@ export const useTaskBars = (tasks, loading) => {
     setPreCurrentPositionNumber,
   } = useCalender();
 
-  const addMonths = (startYear, startMonth, addMonthCount) => {
-    return new Date(startYear, startMonth + addMonthCount - 1);
-  };
+  const addMonths = (startYear, startMonth, addMonthCount) =>
+    new Date(startYear, startMonth + addMonthCount - 1);
 
   const getCurrentDisplayedTaskBar = (
     allDaysInTask,
@@ -89,24 +88,21 @@ export const useTaskBars = (tasks, loading) => {
       const termDay =
         (lastDayInTaskBar - lastDayInCurrentCalender) / (1000 * 60 * 60 * 24);
       return termDay;
-    } else {
-      const termDay = 0;
-      return termDay;
     }
+    const termDay = 0;
+    return termDay;
   };
 
-  const monthsBetween = (startYear, startMonth, endYear, endMonth) => {
+  const monthsBetween = (startYear, startMonth, endYear, endMonth) =>
     // return (12 - Ma + 1) + (12 - (12 - Mb)) + (Yb - Ya - 1) * 12;
-    return 12 - startMonth + 1 + endMonth + (endYear - startYear - 1) * 12;
-  };
+    12 - startMonth + 1 + endMonth + (endYear - startYear - 1) * 12;
 
-  const remainingDaysFromStart = (startday, EndOfMonth) => {
-    return EndOfMonth - startday + 1;
-  };
+  const remainingDaysFromStart = (startday, EndOfMonth) =>
+    EndOfMonth - startday + 1;
 
   const totalDaysBetween = (startYear, startMonth, totalMonths) => {
     let totalDays = 0;
-    for (let i = 1; i <= totalMonths - 2; i++) {
+    for (let i = 1; i <= totalMonths - 2; i += 1) {
       const yearMonth = addMonths(startYear, startMonth, i);
       const year = yearMonth.getFullYear();
       const month = yearMonth.getMonth() + 1;

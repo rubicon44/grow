@@ -1,13 +1,11 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-export const UserTasksNoPostList = ({ userData }) => {
-  return (
-    <ListCover key={userData.tasks}>
-      <div>まだ投稿はありません。</div>
-    </ListCover>
-  );
-};
+export const UserTasksNoPostList = ({ userData }) => (
+  <ListCover key={userData.tasks}>
+    <div>まだ投稿はありません。</div>
+  </ListCover>
+);
 
 UserTasksNoPostList.propTypes = {
   userData: PropTypes.shape({

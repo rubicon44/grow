@@ -2,17 +2,15 @@ import PropTypes from "prop-types";
 import { NotificationListWrapperContainer } from "./NotificationListWrapperContainer";
 import { TitleWithBackArrowHeader } from "../../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
-export const NotificationsList = ({ currentUserName, notificationsData }) => {
-  return (
-    <>
-      <TitleWithBackArrowHeader>通知一覧</TitleWithBackArrowHeader>
-      <NotificationListWrapperContainer
-        currentUserName={currentUserName}
-        notificationsData={notificationsData}
-      />
-    </>
-  );
-};
+export const NotificationsList = ({ currentUserName, notificationsData }) => (
+  <>
+    <TitleWithBackArrowHeader>通知一覧</TitleWithBackArrowHeader>
+    <NotificationListWrapperContainer
+      currentUserName={currentUserName}
+      notificationsData={notificationsData}
+    />
+  </>
+);
 
 NotificationsList.propTypes = {
   currentUserName: PropTypes.string.isRequired,

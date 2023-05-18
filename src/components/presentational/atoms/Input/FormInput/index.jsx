@@ -10,23 +10,21 @@ export const FormInput = ({
   defaultValue,
   placeholder,
   autoComplete,
-}) => {
-  return (
-    <FormInputCover>
-      <label htmlFor={htmlFor}>
-        {children}
-        <Input
-          type={type}
-          name={name}
-          defaultValue={defaultValue}
-          ref={inputRef}
-          placeholder={placeholder}
-          autoComplete={autoComplete}
-        />
-      </label>
-    </FormInputCover>
-  );
-};
+}) => (
+  <FormInputCover>
+    <label htmlFor={htmlFor}>
+      {children}
+      <Input
+        type={type}
+        name={name}
+        defaultValue={defaultValue}
+        ref={inputRef}
+        placeholder={placeholder}
+        autoComplete={autoComplete}
+      />
+    </label>
+  </FormInputCover>
+);
 
 FormInput.propTypes = {
   autoComplete: PropTypes.string,

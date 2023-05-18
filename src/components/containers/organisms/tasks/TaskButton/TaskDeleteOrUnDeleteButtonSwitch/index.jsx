@@ -7,19 +7,17 @@ export const TaskDeleteOrUnDeleteButtonSwitch = ({
   deleteCheckAble,
   deleteTaskFunc,
   unDeleteCheckFunc,
-}) => {
-  return (
-    deleteCheckAble === true && (
-      <BackgroundDisAbledCover>
-        <BackgroundDisAbled>
-          <div>本当に削除しますか?</div>
-          <TaskDeleteButton deleteTaskFunc={deleteTaskFunc} />
-          <TaskUnDeleteButton unDeleteCheckFunc={unDeleteCheckFunc} />
-        </BackgroundDisAbled>
-      </BackgroundDisAbledCover>
-    )
-  );
-};
+}) => (
+  deleteCheckAble === true && (
+    <BackgroundDisAbledCover>
+      <BackgroundDisAbled>
+        <div>本当に削除しますか?</div>
+        <TaskDeleteButton deleteTaskFunc={deleteTaskFunc} />
+        <TaskUnDeleteButton unDeleteCheckFunc={unDeleteCheckFunc} />
+      </BackgroundDisAbled>
+    </BackgroundDisAbledCover>
+  )
+);
 
 TaskDeleteOrUnDeleteButtonSwitch.propTypes = {
   deleteCheckAble: PropTypes.bool.isRequired,

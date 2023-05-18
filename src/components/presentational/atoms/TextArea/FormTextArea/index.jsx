@@ -8,23 +8,21 @@ export const FormTextArea = ({
   name,
   defaultValue,
   placeholder,
-}) => {
-  return (
-    <FormTextAreaCover>
-      <label htmlFor={htmlFor}>
-        {children}
-        <textarea
-          name={name}
-          defaultValue={defaultValue}
-          ref={textAreaRef}
-          placeholder={placeholder}
-          cols="80"
-          rows="3"
-        />
-      </label>
-    </FormTextAreaCover>
-  );
-};
+}) => (
+  <FormTextAreaCover>
+    <label htmlFor={htmlFor}>
+      {children}
+      <textarea
+        name={name}
+        defaultValue={defaultValue}
+        ref={textAreaRef}
+        placeholder={placeholder}
+        cols="80"
+        rows="3"
+      />
+    </label>
+  </FormTextAreaCover>
+);
 
 FormTextArea.propTypes = {
   children: PropTypes.node,

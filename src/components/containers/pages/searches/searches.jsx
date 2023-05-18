@@ -1,5 +1,4 @@
 import { SearchTemplate } from "../../templates/Searches/SearchTemplate";
 
-export const Searches = () => {
-  return <SearchTemplate />;
-};
+export const Searches = () =>
+  <SearchTemplate />;

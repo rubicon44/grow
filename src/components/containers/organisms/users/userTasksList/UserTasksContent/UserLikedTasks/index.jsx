@@ -3,18 +3,16 @@ import styled from "styled-components";
 import { UserTasksAlreadyLikeList } from "../UserTasksAlreadyLikeList";
 import { UserTasksNoLikeList } from "../UserTasksNoLikeList";
 
-export const UserLikedTasks = ({ userData }) => {
-  return (
-    <>
-      <LikedTask>いいねしたタスク</LikedTask>
-      {userData.likedTasks.length === 0 ? (
-        <UserTasksNoLikeList userData={userData} />
-      ) : (
-        <UserTasksAlreadyLikeList userData={userData} />
-      )}
-    </>
-  );
-};
+export const UserLikedTasks = ({ userData }) => (
+  <>
+    <LikedTask>いいねしたタスク</LikedTask>
+    {userData.likedTasks.length === 0 ? (
+      <UserTasksNoLikeList userData={userData} />
+    ) : (
+      <UserTasksAlreadyLikeList userData={userData} />
+    )}
+  </>
+);
 
 UserLikedTasks.propTypes = {
   userData: PropTypes.shape({

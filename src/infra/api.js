@@ -38,13 +38,12 @@ export const signIn = async (idToken) => {
   });
 };
 
-export const getUser = async (params) => {
-  return axios({
+export const getUser = async (params) =>
+  axios({
     method: "get",
     url: `/v1/${params}`,
     params: { currentUser: true },
   }).then((response) => camelcaseKeys(response, { deep: true }));
-};
 
 export const updateUser = async (params, data) => {
   await setCSRFToken();
@@ -55,26 +54,24 @@ export const updateUser = async (params, data) => {
   }).then((response) => camelcaseKeys(response, { deep: true }));
 };
 
-export const getTasks = async (params) => {
-  return axios({
+export const getTasks = async (params) =>
+  axios({
     method: "get",
     url: "/v1/tasks",
     params: snakecaseKeys(params),
     header: {},
   }).then((response) => camelcaseKeys(response, { deep: true }));
-};
 
 export const postTasks = async (params) => {
   await setCSRFToken();
   return axios.post("/v1/tasks", snakecaseKeys(params));
 };
 
-export const getTask = async (params) => {
-  return axios({
+export const getTask = async (params) =>
+  axios({
     method: "get",
     url: `/v1/tasks/${params}`,
   }).then((response) => camelcaseKeys(response, { deep: true }));
-};
 
 export const updateTask = async (params, data) => {
   await setCSRFToken();
@@ -105,13 +102,12 @@ export const postLikes = async (params) => {
   });
 };
 
-export const getLikes = async (params) => {
-  return axios({
+export const getLikes = async (params) =>
+  axios({
     method: "get",
     url: `/v1/tasks/${params.taskId}/likes`,
     params: snakecaseKeys(params),
   }).then((response) => camelcaseKeys(response, { deep: true }));
-};
 
 export const deleteLike = async (params) => {
   await setCSRFToken();
@@ -141,34 +137,30 @@ export const deleteRelationships = async (params) => {
   }).then((response) => camelcaseKeys(response, { deep: true }));
 };
 
-export const getFollowings = async (username) => {
-  return axios({
+export const getFollowings = async (username) =>
+  axios({
     method: "get",
     url: `/v1/${username}/followings`,
   }).then((response) => camelcaseKeys(response, { deep: true }));
-};
 
-export const getFollowers = async (username) => {
-  return axios({
+export const getFollowers = async (username) =>
+  axios({
     method: "get",
     url: `/v1/${username}/followers`,
   }).then((response) => camelcaseKeys(response, { deep: true }));
-};
 
 // notifications
-export const getNotifications = async (params) => {
-  return axios({
+export const getNotifications = async (params) =>
+  axios({
     method: "get",
     url: `/v1/notifications`,
     params: snakecaseKeys(params),
   }).then((response) => camelcaseKeys(response, { deep: true }));
-};
 
 // searches
-export const getSearches = async (params) => {
-  return axios({
+export const getSearches = async (params) =>
+  axios({
     method: "get",
     url: `/v1/searches`,
     params: snakecaseKeys(params),
   }).then((response) => camelcaseKeys(response, { deep: true }));
-};

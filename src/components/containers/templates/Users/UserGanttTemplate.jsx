@@ -2,16 +2,14 @@ import styled from "styled-components";
 import { HeaderContainer } from "../../organisms/common/HeaderContainer";
 import { GanttChartContainer } from "../../organisms/tasks/GanttChartContainer";
 
-export const UserGanttTemplate = () => {
-  return (
-    <>
-      <HeaderContainer />
-      <Main>
-        <GanttChartContainer />
-      </Main>
-    </>
-  );
-};
+export const UserGanttTemplate = () => (
+  <>
+    <HeaderContainer />
+    <Main>
+      <GanttChartContainer />
+    </Main>
+  </>
+);
 
 const Main = styled.main`
   text-align: center;

@@ -11,25 +11,23 @@ export const SearchList = ({
   loading,
   tasks,
   users,
-}) => {
-  return (
-    <>
-      <TitleWithBackArrowHeader>検索一覧</TitleWithBackArrowHeader>
-      <SerchListContent>
-        <SearchForm
-          handleSubmit={handleSubmit}
-          isButtonDisabled={isButtonDisabled}
-        />
-        <SearchListSwitchContainer
-          error={error}
-          loading={loading}
-          tasks={tasks}
-          users={users}
-        />
-      </SerchListContent>
-    </>
-  );
-};
+}) => (
+  <>
+    <TitleWithBackArrowHeader>検索一覧</TitleWithBackArrowHeader>
+    <SerchListContent>
+      <SearchForm
+        handleSubmit={handleSubmit}
+        isButtonDisabled={isButtonDisabled}
+      />
+      <SearchListSwitchContainer
+        error={error}
+        loading={loading}
+        tasks={tasks}
+        users={users}
+      />
+    </SerchListContent>
+  </>
+);
 
 SearchList.propTypes = {
   error: PropTypes.bool,

@@ -6,21 +6,19 @@ export const LikeNotification = ({
   currentUserName,
   notification,
   visitor,
-}) => {
-  return (
-    <UserNickNameCover>
-      あなたの
-      <UserNickName to={`/${currentUserName}/tasks/${notification.taskId}`}>
-        タスク
-      </UserNickName>
-      が
-      <UserNickName to={`/${visitor.username}`}>
-        {visitor.nickname}
-      </UserNickName>
-      にいいねされました。
-    </UserNickNameCover>
-  );
-};
+}) => (
+  <UserNickNameCover>
+    あなたの
+    <UserNickName to={`/${currentUserName}/tasks/${notification.taskId}`}>
+      タスク
+    </UserNickName>
+    が
+    <UserNickName to={`/${visitor.username}`}>
+      {visitor.nickname}
+    </UserNickName>
+    にいいねされました。
+  </UserNickNameCover>
+);
 
 LikeNotification.propTypes = {
   currentUserName: PropTypes.string.isRequired,

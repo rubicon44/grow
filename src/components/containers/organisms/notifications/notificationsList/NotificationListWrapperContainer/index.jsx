@@ -5,14 +5,12 @@ import { NotificationListWrapper } from "../NotificationListWrapper";
 export const NotificationListWrapperContainer = ({
   currentUserName,
   notificationsData,
-}) => {
-  return (
-    <NotificationListWrapper
-      currentUserName={currentUserName}
-      notificationsData={notificationsData}
-    />
-  );
-};
+}) => (
+  <NotificationListWrapper
+    currentUserName={currentUserName}
+    notificationsData={notificationsData}
+  />
+);
 
 NotificationListWrapperContainer.propTypes = {
   currentUserName: PropTypes.string.isRequired,

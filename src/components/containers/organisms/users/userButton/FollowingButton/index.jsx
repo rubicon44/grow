@@ -1,13 +1,11 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-export const FollowingButton = ({ setChangeFollowButtonStyleToTrueFunc }) => {
-  return (
-    <FollowChangeLinkDone onMouseEnter={setChangeFollowButtonStyleToTrueFunc}>
-      <span>フォロー中</span>
-    </FollowChangeLinkDone>
-  );
-};
+export const FollowingButton = ({ setChangeFollowButtonStyleToTrueFunc }) => (
+  <FollowChangeLinkDone onMouseEnter={setChangeFollowButtonStyleToTrueFunc}>
+    <span>フォロー中</span>
+  </FollowChangeLinkDone>
+);
 
 FollowingButton.propTypes = {
   setChangeFollowButtonStyleToTrueFunc: PropTypes.func.isRequired,

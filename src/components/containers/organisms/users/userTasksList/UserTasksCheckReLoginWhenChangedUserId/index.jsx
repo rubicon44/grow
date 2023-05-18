@@ -4,21 +4,19 @@ import styled from "styled-components";
 export const UserTasksCheckReLoginWhenChangedUserId = ({
   changeUserNameFunc,
   revertUserBioFunc,
-}) => {
-  return (
-    <BackgroundDisAbledCover>
-      <BackgroundDisAbled>
-        <div>ユーザーIDの変更には際ログインが必要です。変更しますか？</div>
-        <button type="button" onClick={changeUserNameFunc}>
-          はい
-        </button>
-        <button type="button" onClick={revertUserBioFunc}>
-          いいえ
-        </button>
-      </BackgroundDisAbled>
-    </BackgroundDisAbledCover>
-  );
-};
+}) => (
+  <BackgroundDisAbledCover>
+    <BackgroundDisAbled>
+      <div>ユーザーIDの変更には際ログインが必要です。変更しますか？</div>
+      <button type="button" onClick={changeUserNameFunc}>
+        はい
+      </button>
+      <button type="button" onClick={revertUserBioFunc}>
+        いいえ
+      </button>
+    </BackgroundDisAbled>
+  </BackgroundDisAbledCover>
+);
 
 UserTasksCheckReLoginWhenChangedUserId.propTypes = {
   changeUserNameFunc: PropTypes.func.isRequired,

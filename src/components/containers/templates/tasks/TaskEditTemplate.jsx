@@ -2,13 +2,11 @@ import PropTypes from "prop-types";
 import { MainWithHeader } from "../MainWithHeader";
 import { TaskEditFormContainer } from "../../organisms/tasks/TaskForm/TaskEditFormContainer";
 
-export const TaskEditTemplate = ({ taskDataTask }) => {
-  return (
-    <MainWithHeader>
-      <TaskEditFormContainer taskDataTask={taskDataTask} />
-    </MainWithHeader>
-  );
-};
+export const TaskEditTemplate = ({ taskDataTask }) => (
+  <MainWithHeader>
+    <TaskEditFormContainer taskDataTask={taskDataTask} />
+  </MainWithHeader>
+);
 
 TaskEditTemplate.propTypes = {
   taskDataTask: PropTypes.shape({

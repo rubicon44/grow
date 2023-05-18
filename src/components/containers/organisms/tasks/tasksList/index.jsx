@@ -7,37 +7,35 @@ import { NextButtonLink } from "../../../../presentational/atoms/Link/NextButton
 import { Popup } from "../../../../presentational/atoms/Popup";
 import { Title } from "../../../../presentational/atoms/Title";
 
-export const TasksList = ({ showPopup, tasks }) => {
-  return (
-    <>
-      <Popup message="タスクが正常に作成されました。" showPopup={showPopup} />
-      <Title>タスク一覧</Title>
-      <NextButtonLink text="タスク登録" url="/tasks/create" />
-      {tasks?.map((task) => {
-        const {
-          id: taskId,
-          title: taskTitle,
-          content: taskContent,
-          status: taskStatus,
-        } = task;
-        const { username, nickname } = task.user;
-        return (
-          <ListCover key={taskId}>
-            <List
-              title={taskTitle}
-              titleUrl={`/${username}/tasks/${String(taskId)}`}
-              content={taskContent}
-              url={`/${username}`}
-              text={nickname}
-            />
-            <TaskStatusSwitch taskStatus={taskStatus} />
-            <LikeOrUnLikeButtonSwitchContainer taskId={String(taskId)} />
-          </ListCover>
-        );
-      })}
-    </>
-  );
-};
+export const TasksList = ({ showPopup, tasks }) => (
+  <>
+    <Popup message="タスクが正常に作成されました。" showPopup={showPopup} />
+    <Title>タスク一覧</Title>
+    <NextButtonLink text="タスク登録" url="/tasks/create" />
+    {tasks?.map((task) => {
+      const {
+        id: taskId,
+        title: taskTitle,
+        content: taskContent,
+        status: taskStatus,
+      } = task;
+      const { username, nickname } = task.user;
+      return (
+        <ListCover key={taskId}>
+          <List
+            title={taskTitle}
+            titleUrl={`/${username}/tasks/${String(taskId)}`}
+            content={taskContent}
+            url={`/${username}`}
+            text={nickname}
+          />
+          <TaskStatusSwitch taskStatus={taskStatus} />
+          <LikeOrUnLikeButtonSwitchContainer taskId={String(taskId)} />
+        </ListCover>
+      );
+    })}
+  </>
+);
 
 TasksList.propTypes = {
   showPopup: PropTypes.bool.isRequired,

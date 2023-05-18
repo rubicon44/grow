@@ -1,5 +1,4 @@
 import { SignInTemplate } from "../../templates/Auth/SignInTemplate";
 
-export const SignIn = () => {
-  return <SignInTemplate />;
-};
+export const SignIn = () =>
+  <SignInTemplate />;

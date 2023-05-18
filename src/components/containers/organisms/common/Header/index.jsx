@@ -8,21 +8,19 @@ export const Header = ({
   headerLinks,
   headerLinksForAuth,
   toggleDrawer,
-}) => {
-  return (
-    <HeaderCover>
-      <Logo to="/tasks">Grow</Logo>
-      <HeaderMenuGroup>
-        <HeaderMenu
-          headerLinks={headerLinks}
-          headerLinksForAuth={headerLinksForAuth}
-          drawerStatus={drawerStatus}
-          toggleDrawer={toggleDrawer}
-        />
-      </HeaderMenuGroup>
-    </HeaderCover>
-  );
-};
+}) => (
+  <HeaderCover>
+    <Logo to="/tasks">Grow</Logo>
+    <HeaderMenuGroup>
+      <HeaderMenu
+        headerLinks={headerLinks}
+        headerLinksForAuth={headerLinksForAuth}
+        drawerStatus={drawerStatus}
+        toggleDrawer={toggleDrawer}
+      />
+    </HeaderMenuGroup>
+  </HeaderCover>
+);
 
 Header.propTypes = {
   drawerStatus: PropTypes.shape({

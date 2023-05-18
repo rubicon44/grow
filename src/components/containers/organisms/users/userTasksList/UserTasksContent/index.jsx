@@ -8,17 +8,15 @@ export const UserTasksContent = ({
   loading,
   moveToGanttChart,
   userData,
-}) => {
-  return (
-    <UserTasksContentCover>
-      <NextGanttLink type="button" onClick={moveToGanttChart}>
-        ガントチャート
-      </NextGanttLink>
-      <UserTasksContainer error={error} laoding={loading} userData={userData} />
-      <UserLikedTasks userData={userData} />
-    </UserTasksContentCover>
-  );
-};
+}) => (
+  <UserTasksContentCover>
+    <NextGanttLink type="button" onClick={moveToGanttChart}>
+      ガントチャート
+    </NextGanttLink>
+    <UserTasksContainer error={error} laoding={loading} userData={userData} />
+    <UserLikedTasks userData={userData} />
+  </UserTasksContentCover>
+);
 
 UserTasksContent.propTypes = {
   error: PropTypes.bool,

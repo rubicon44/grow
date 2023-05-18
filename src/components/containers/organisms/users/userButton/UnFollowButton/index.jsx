@@ -4,16 +4,14 @@ import styled from "styled-components";
 export const UnFollowButton = ({
   setChangeFollowButtonStyleToFalseFunc,
   unFollowFunc,
-}) => {
-  return (
-    <FollowChangeLinkDoneToUnFollow
-      onMouseLeave={setChangeFollowButtonStyleToFalseFunc}
-      onClick={unFollowFunc}
-    >
-      <span>フォロー解除</span>
-    </FollowChangeLinkDoneToUnFollow>
-  );
-};
+}) => (
+  <FollowChangeLinkDoneToUnFollow
+    onMouseLeave={setChangeFollowButtonStyleToFalseFunc}
+    onClick={unFollowFunc}
+  >
+    <span>フォロー解除</span>
+  </FollowChangeLinkDoneToUnFollow>
+);
 
 UnFollowButton.propTypes = {
   setChangeFollowButtonStyleToFalseFunc: PropTypes.func.isRequired,

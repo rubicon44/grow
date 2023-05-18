@@ -17,9 +17,11 @@ export class ErrorBoundary extends React.Component {
   }
 
   render() {
-    if (this.state.error) {
+    const { error } = this.state;
+    const { children } = this.props;
+    if (error) {
       // return <h1>An error has occurred: {this.state.error.message}</h1>;
-      console.error(this.state.error);
+      console.error(error);
       return (
         <>
           <div>エラーが発生しました。</div>
@@ -28,7 +30,7 @@ export class ErrorBoundary extends React.Component {
       );
     }
 
-    return this.props.children;
+    return children;
   }
 }
 

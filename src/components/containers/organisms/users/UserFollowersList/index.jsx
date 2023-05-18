@@ -8,20 +8,18 @@ export const UserFollowersList = ({
   followers,
   loading,
   username,
-}) => {
-  return (
-    <>
-      <TitleWithBackArrowHeader>フォロワー</TitleWithBackArrowHeader>
-      <UserFollowersContainer
-        currentUserId={currentUserId}
-        error={error}
-        followers={followers}
-        loading={loading}
-        username={username}
-      />
-    </>
-  );
-};
+}) => (
+  <>
+    <TitleWithBackArrowHeader>フォロワー</TitleWithBackArrowHeader>
+    <UserFollowersContainer
+      currentUserId={currentUserId}
+      error={error}
+      followers={followers}
+      loading={loading}
+      username={username}
+    />
+  </>
+);
 
 UserFollowersList.propTypes = {
   currentUserId: PropTypes.string.isRequired,

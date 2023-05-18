@@ -1,15 +1,13 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-export const ProfileChangeLink = ({ setBioAbleFunc }) => {
-  return (
-    <BioChangeLinkCover>
-      <BioChangeLink onClick={setBioAbleFunc}>
-        <span>プロフィールを編集</span>
-      </BioChangeLink>
-    </BioChangeLinkCover>
-  );
-};
+export const ProfileChangeLink = ({ setBioAbleFunc }) => (
+  <BioChangeLinkCover>
+    <BioChangeLink onClick={setBioAbleFunc}>
+      <span>プロフィールを編集</span>
+    </BioChangeLink>
+  </BioChangeLinkCover>
+);
 
 ProfileChangeLink.propTypes = {
   setBioAbleFunc: PropTypes.func.isRequired,

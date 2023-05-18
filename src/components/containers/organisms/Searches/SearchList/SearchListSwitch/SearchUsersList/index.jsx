@@ -2,18 +2,16 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-export const SearchUsersList = ({ users }) => {
-  return (
-    users &&
-    users.map((user) => (
-      <List key={user.id}>
-        <Link to={`/${user.username}`}>
-          {user.nickname}({user.username})
-        </Link>
-      </List>
-    ))
-  );
-};
+export const SearchUsersList = ({ users }) => (
+  users &&
+  users.map((user) => (
+    <List key={user.id}>
+      <Link to={`/${user.username}`}>
+        {user.nickname}({user.username})
+      </Link>
+    </List>
+  ))
+);
 
 SearchUsersList.propTypes = {
   users: PropTypes.arrayOf(

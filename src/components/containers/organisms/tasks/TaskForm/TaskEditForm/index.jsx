@@ -7,19 +7,17 @@ export const TaskEditForm = ({
   inputRefs,
   isButtonDisabled,
   taskData,
-}) => {
-  return (
-    <>
-      <TitleWithBackArrowHeader>編集</TitleWithBackArrowHeader>
-      <TaskForm
-        handleTextSubmit={handleTextSubmit}
-        inputRefs={inputRefs}
-        isButtonDisabled={isButtonDisabled}
-        taskData={taskData}
-      />
-    </>
-  );
-};
+}) => (
+  <>
+    <TitleWithBackArrowHeader>編集</TitleWithBackArrowHeader>
+    <TaskForm
+      handleTextSubmit={handleTextSubmit}
+      inputRefs={inputRefs}
+      isButtonDisabled={isButtonDisabled}
+      taskData={taskData}
+    />
+  </>
+);
 
 TaskEditForm.propTypes = {
   handleTextSubmit: PropTypes.func.isRequired,

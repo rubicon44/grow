@@ -3,14 +3,12 @@ import styled from "styled-components";
 import { SearchTasksList } from "./SearchTasksList";
 import { SearchUsersList } from "./SearchUsersList";
 
-export const SearchListSwitch = ({ tasks, users }) => {
-  return (
-    <ListCover>
-      <SearchTasksList tasks={tasks} />
-      <SearchUsersList users={users} />
-    </ListCover>
-  );
-};
+export const SearchListSwitch = ({ tasks, users }) => (
+  <ListCover>
+    <SearchTasksList tasks={tasks} />
+    <SearchUsersList users={users} />
+  </ListCover>
+);
 
 SearchListSwitch.propTypes = {
   tasks: PropTypes.arrayOf(
