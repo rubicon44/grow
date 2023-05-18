@@ -60,10 +60,6 @@ export const useSignUpForm = () => {
       await signup(nickname, username, email, password);
       await navigateToTasks("/tasks");
     } catch (error) {
-      console.error(
-        `ユーザーのサインアップ中にエラーが発生しました。: `,
-        error
-      );
       const verbForErrorMessage = `ユーザー`;
       const objectForErrorMessage = `サインアップ`;
       getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);

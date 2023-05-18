@@ -32,7 +32,6 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
         setCurrentUserFollowings(followingsData);
       } catch (error) {
         setError(error);
-        console.error(`ユーザー情報の取得中にエラーが発生しました。: `, error);
         const verbForErrorMessage = `ユーザー情報`;
         const objectForErrorMessage = `取得`;
         getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
@@ -61,7 +60,6 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
       await postRelationships(relationships);
       setIsFollowing(true);
     } catch (error) {
-      console.error(`ユーザーのフォロー中にエラーが発生しました。: `, error);
       const verbForErrorMessage = `ユーザー`;
       const objectForErrorMessage = `フォロー`;
       getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
@@ -80,7 +78,6 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
       await deleteRelationships(relationships);
       setIsFollowing(false);
     } catch (error) {
-      console.error(`フォローの解除中にエラーが発生しました。: `, error);
       const verbForErrorMessage = `フォロー`;
       const objectForErrorMessage = `解除`;
       getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);

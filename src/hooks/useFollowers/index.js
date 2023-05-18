@@ -22,7 +22,6 @@ export const useFollowers = () => {
         setFollowers(followersData);
       } catch (error) {
         setError(error);
-        console.error(`フォロワーの取得中にエラーが発生しました。: `, error);
         const verbForErrorMessage = `フォロワー`;
         const objectForErrorMessage = `取得`;
         getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);

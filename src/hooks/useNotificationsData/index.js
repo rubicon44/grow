@@ -29,7 +29,6 @@ export const useNotificationsData = () => {
         });
       } catch (error) {
         setError(error);
-        console.error(`通知一覧の取得中にエラーが発生しました。: `, error);
         const verbForErrorMessage = `通知一覧`;
         const objectForErrorMessage = `取得`;
         getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);

@@ -30,7 +30,6 @@ export const useTaskDelete = (taskData) => {
         state: { showPopup: true },
       });
     } catch (error) {
-      console.error(`タスクの削除中にエラーが発生しました。: `, error);
       const verbForErrorMessage = `タスク`;
       const objectForErrorMessage = `削除`;
       getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);

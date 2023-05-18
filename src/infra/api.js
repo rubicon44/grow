@@ -20,7 +20,7 @@ const setCSRFToken = async () => {
     }
     return null;
   } catch (error) {
-    console.error("Failed to get CSRF token:", error);
+    alert("Failed to get CSRF token:", error);
     throw error;
   }
 };

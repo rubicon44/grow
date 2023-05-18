@@ -23,7 +23,6 @@ export const useTaskCreate = () => {
         state: { showPopup: true },
       });
     } catch (error) {
-      console.error(`タスクの登録中にエラーが発生しました。: `, error);
       const verbForErrorMessage = `タスク`;
       const objectForErrorMessage = `登録`;
       getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
@@ -72,7 +71,7 @@ export const useTaskCreate = () => {
     }
 
     if (endDate && startDate && endDate < startDate) {
-      window.alert("開始日には、終了日よりも前の日付を設定してください。");
+      alert("開始日には、終了日よりも前の日付を設定してください。");
       setIsButtonDisabled(false);
       return;
     }

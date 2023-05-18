@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { useCurrentUserId } from "../useCurrentUserId";
+import { useGetErrorMessage } from "../useGetErrorMessage";
 import { deleteLike, getLikes, postLikes } from "../../infra/api";
 
 export const useLike = (taskId) => {
   const currentUserId = useCurrentUserId();
+  const { getErrorMessage } = useGetErrorMessage();
   const [currentTaskId, setCurrentTaskId] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -26,7 +28,9 @@ export const useLike = (taskId) => {
       setCurrentTaskId(taskId);
     } catch (error) {
       setError(error);
-      console.error(`いいねの取得中にエラーが発生しました。: `, error);
+      const verbForErrorMessage = `いいね`;
+      const objectForErrorMessage = `取得`;
+      getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
     } finally {
       setLoading(false);
     }
@@ -66,8 +70,10 @@ export const useLike = (taskId) => {
         await fetchLikeData();
         setCurrentTaskId("");
       } catch (error) {
-        setError("いいねの削除中にエラーが発生しました。");
-        console.error(`いいねの削除中にエラーが発生しました。: `, error);
+        setError(error);
+        const verbForErrorMessage = `いいね`;
+        const objectForErrorMessage = `削除`;
+        getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
       } finally {
         setLoading(false);
       }
@@ -92,7 +98,9 @@ export const useLike = (taskId) => {
         setCurrentTaskId(taskId);
       } catch (error) {
         setError("いいねの登録中にエラーが発生しました。");
-        console.error(`いいねの登録中にエラーが発生しました。: `, error);
+        const verbForErrorMessage = `いいね`;
+        const objectForErrorMessage = `登録`;
+        getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
       } finally {
         setLoading(false);
       }

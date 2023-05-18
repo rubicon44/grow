@@ -36,7 +36,6 @@ export const useTaskEdit = (taskDataTask) => {
         state: { showPopup: true },
       });
     } catch (error) {
-      console.error(`タスクの編集中にエラーが発生しました。: `, error);
       const verbForErrorMessage = `タスク`;
       const objectForErrorMessage = `編集`;
       getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
@@ -92,7 +91,7 @@ export const useTaskEdit = (taskDataTask) => {
     }
 
     if (endDate && startDate && endDate < startDate) {
-      window.alert("開始日には、終了日よりも前の日付を設定してください。");
+      alert("開始日には、終了日よりも前の日付を設定してください。");
       setIsButtonDisabled(false);
       return;
     }

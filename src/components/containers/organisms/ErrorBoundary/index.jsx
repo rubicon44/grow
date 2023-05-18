@@ -13,7 +13,7 @@ export class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    console.error(error, errorInfo);
+    alert(error, errorInfo);
   }
 
   render() {
@@ -21,7 +21,7 @@ export class ErrorBoundary extends React.Component {
     const { children } = this.props;
     if (error) {
       // return <h1>An error has occurred: {this.state.error.message}</h1>;
-      console.error(error);
+      alert(error);
       return (
         <>
           <div>エラーが発生しました。</div>

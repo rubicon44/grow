@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 
+// todo: エラー時の複数表示を改善(4回程度出現)
 export const useGetErrorMessage = () => {
   const getErrorMessage = useMemo(
     () => (error, verbForErrorMessage, objectForErrorMessage) => {
@@ -27,7 +28,7 @@ export const useGetErrorMessage = () => {
       } else {
         errorMessage = `${verbForErrorMessage}を${objectForErrorMessage}できませんでした。しばらく時間をおいて再度お試しください。`;
       }
-      window.alert(errorMessage);
+      alert(errorMessage);
     },
     []
   );

@@ -21,7 +21,6 @@ export const useUserData = () => {
 
     const handleError = (error) => {
       setError(error);
-      console.error(`ユーザーデータの取得中にエラーが発生しました。: `, error);
       const verbForErrorMessage = `ユーザーデータ`;
       const objectForErrorMessage = `取得`;
       getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);

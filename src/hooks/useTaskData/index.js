@@ -32,7 +32,6 @@ export const useTaskData = () => {
         setTaskData({ task });
       } catch (error) {
         setError(error);
-        console.error(`タスクの取得中にエラーが発生しました。: `, error);
         const verbForErrorMessage = `タスク`;
         const objectForErrorMessage = `取得`;
         getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);

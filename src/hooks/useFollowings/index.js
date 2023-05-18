@@ -22,10 +22,6 @@ export const useFollowings = () => {
         setFollowings(followingsData);
       } catch (error) {
         setError(error);
-        console.error(
-          `フォロワー中のユーザーの取得中にエラーが発生しました。: `,
-          error
-        );
         const verbForErrorMessage = `フォロワー中のユーザー`;
         const objectForErrorMessage = `取得`;
         getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);

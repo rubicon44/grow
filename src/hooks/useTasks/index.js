@@ -7,7 +7,6 @@ export const useTasks = () => {
   const { getErrorMessage } = useGetErrorMessage();
 
   if (error) {
-    console.error(`タスクの取得中にエラーが発生しました。: `, error);
     const verbForErrorMessage = `タスク一覧`;
     const objectForErrorMessage = `取得`;
     getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);

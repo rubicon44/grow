@@ -5,7 +5,7 @@ export const useMoveToEditTask = (taskData) => {
   const navigateToTaskEdit = useNavigate();
   const moveToEditTask = () => {
     if (!taskData.task) {
-      console.error("taskData.task is undefined.");
+      alert("taskData.task is undefined.");
       return;
     }
 

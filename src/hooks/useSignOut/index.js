@@ -13,7 +13,6 @@ export const useSignOut = () => {
       await navigateToTop("/");
       await signout();
     } catch (error) {
-      console.error(`ユーザーのログアウト中にエラーが発生しました。: `, error);
       const verbForErrorMessage = `ユーザー`;
       const objectForErrorMessage = `ログアウト`;
       getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);

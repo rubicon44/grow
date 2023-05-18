@@ -32,14 +32,14 @@ export const AuthProvider = ({ children }) => {
               axios.defaults.headers.common.Authorization = tokenAuth;
             })
             .catch(() => {
-              window.alert(
+              alert(
                 "このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。"
               );
               signOut(auth);
             });
         });
     } catch (error) {
-      window.alert(
+      alert(
         "このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。"
       );
     }
