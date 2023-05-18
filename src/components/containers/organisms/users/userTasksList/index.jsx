@@ -61,6 +61,7 @@ export const UserTasksList = (props) => {
 
 UserTasksList.defaultProps = {
   error: false,
+  editing: false,
   loading: false,
 };
 

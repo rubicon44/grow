@@ -26,6 +26,10 @@ export const FormInput = ({
   </FormInputCover>
 );
 
+FormInput.defaultProps = {
+  children: null,
+};
+
 FormInput.propTypes = {
   autoComplete: PropTypes.string,
   children: PropTypes.node,

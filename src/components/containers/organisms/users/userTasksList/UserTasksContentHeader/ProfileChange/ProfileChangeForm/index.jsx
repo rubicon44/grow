@@ -5,11 +5,9 @@ import { FormInput } from "../../../../../../../presentational/atoms/Input/FormI
 import { FormSubmitButton } from "../../../../../../../presentational/atoms/Button/FormSubmitButton";
 import { FormTextArea } from "../../../../../../../presentational/atoms/TextArea/FormTextArea";
 
-export const ProfileChangeForm = (props) => {
-  const { nickname, username, bio } = props.userData;
-  const { inputRefs } = props;
+export const ProfileChangeForm = ({ handleTextSubmit, inputRefs, isButtonDisabled, revertUserBioFunc, userData }) => {
+  const { nickname, username, bio } = userData;
   const { bioRef, nicknameRef, usernameRef } = inputRefs;
-  const { handleTextSubmit, isButtonDisabled, revertUserBioFunc } = props;
 
   return (
     <FormCover>

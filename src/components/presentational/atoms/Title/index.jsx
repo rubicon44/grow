@@ -6,6 +6,10 @@ export const Title = memo(({ children, className }) =>
   <BaseTitle className={className}>{children}</BaseTitle>
 );
 
+Title.defaultProps = {
+  className: "",
+};
+
 Title.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,

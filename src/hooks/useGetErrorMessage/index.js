@@ -7,7 +7,7 @@ export const useGetErrorMessage = () => {
       if (error instanceof ReferenceError) {
         errorMessage = `${verbForErrorMessage}を${objectForErrorMessage}できませんでした。しばらく時間をおいて再度お試しください。`;
       } else if (error.response) {
-        const status = error.response.status;
+        const { status } = error.response;
         switch (status) {
           case 404:
             errorMessage = `${verbForErrorMessage}を${objectForErrorMessage}できませんでした。タスクが削除された可能性があります。`;

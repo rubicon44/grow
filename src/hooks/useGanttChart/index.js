@@ -86,9 +86,7 @@ export const useGanttChart = (tasks, loading) => {
 
   const scrollToStartOrEndPosition = useCallback(() => {
     if (currentPositionNumber < preCurrentPositionNumber) {
-      const totalWidth = calenders.reduce((acc, calender) => {
-        return acc + calender.calender * 32;
-      }, 0);
+      const totalWidth = calenders.reduce((acc, calender) => acc + calender.calender * 32, 0);
       const currentPosition = totalWidth;
       document.getElementById("outer").scrollLeft = currentPosition;
     } else if (currentPositionNumber > preCurrentPositionNumber) {

@@ -1,14 +1,14 @@
 import DOMPurify from "dompurify";
 
 export const useInputSanitization = () => {
-  const sanitizeInput = (
-    value,
-    options = { ALLOWED_TAGS: [], trim: false }
-  ) => {
+  const sanitizeInput = (value, options = { ALLOWED_TAGS: [], trim: false }) => {
+    let sanitizedValue = value;
+
     if (options.trim) {
-      value = value.trim();
+      sanitizedValue = sanitizedValue.trim();
     }
-    const sanitizedValue = DOMPurify.sanitize(value, options);
+
+    sanitizedValue = DOMPurify.sanitize(sanitizedValue, options);
     return sanitizedValue;
   };
 

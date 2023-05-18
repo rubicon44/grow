@@ -7,6 +7,11 @@ export const BaseLink = ({ children, className, url }) => (
   </Link>
 );
 
+BaseLink.defaultProps = {
+  className: "",
+  children: null,
+};
+
 BaseLink.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,

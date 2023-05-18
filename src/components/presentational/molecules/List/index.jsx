@@ -19,6 +19,10 @@ export const List = ({ title, titleUrl, content, url, text }) => (
   </BaseList>
 );
 
+List.defaultProps = {
+  text: "",
+};
+
 List.propTypes = {
   content: PropTypes.string.isRequired,
   text: PropTypes.string,

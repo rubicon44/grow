@@ -24,6 +24,10 @@ export const FormTextArea = ({
   </FormTextAreaCover>
 );
 
+FormTextArea.defaultProps = {
+  children: null,
+};
+
 FormTextArea.propTypes = {
   children: PropTypes.node,
   defaultValue: PropTypes.string,

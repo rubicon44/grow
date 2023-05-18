@@ -4,11 +4,8 @@ import { ProfileChangeLink } from "./ProfileChangeLink";
 import { ProfileChangeForm } from "./ProfileChangeForm";
 
 // todo: プロフィール編集の際の「コンテンツが何度もレンダリングされる現象」を解決する(おそらくif statementの問題。)。
-export const ProfileChange = (props) => {
-  const { currentUserId } = props;
-  const { bioAble } = props;
-  const { id, nickname, username, bio } = props.userData;
-  const { setBioAbleFunc } = props;
+export const ProfileChange = ({ bioAble, currentUserId, setBioAbleFunc, userData }) => {
+  const { id, nickname, username, bio } = userData;
 
   if (bioAble === true) {
     return (
@@ -27,29 +24,13 @@ export const ProfileChange = (props) => {
     );
   }
   return (
-    String(currentUserId) === String(id) && <ProfileChangeForm {...props} />
+    String(currentUserId) === String(id) && <ProfileChangeForm currentUserId={currentUserId} setBioAbleFunc={setBioAbleFunc} userData={userData} />
   );
-};
-
-ProfileChange.defaultProps = {
-  error: false,
-  loading: false,
 };
 
 ProfileChange.propTypes = {
   bioAble: PropTypes.bool.isRequired,
   currentUserId: PropTypes.string.isRequired,
-  editing: PropTypes.bool,
-  error: PropTypes.bool,
-  handleTextSubmit: PropTypes.func.isRequired,
-  inputRefs: PropTypes.shape({
-    bioRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
-    nicknameRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
-    usernameRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
-  }).isRequired,
-  isButtonDisabled: PropTypes.bool.isRequired,
-  loading: PropTypes.bool,
-  revertUserBioFunc: PropTypes.func.isRequired,
   setBioAbleFunc: PropTypes.func.isRequired,
   userData: PropTypes.shape({
     id: PropTypes.number,

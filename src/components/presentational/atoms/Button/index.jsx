@@ -8,6 +8,10 @@ export const Button = ({ children, className, onClick }) => (
   </BaseButton>
 );
 
+Button.defaultProps = {
+  className: "",
+};
+
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,

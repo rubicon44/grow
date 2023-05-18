@@ -1,10 +1,10 @@
-import { currentUser } from "../../infra/currentUser";
 import Cookies from "js-cookie";
+import { currentUser } from "../../infra/currentUser";
 
 export const useCurrentUserId = () => {
   const user = Cookies.get("user");
   if (user) {
-    const id = currentUser().id;
+    const { id } = currentUser();
     return id;
   }
   return null;

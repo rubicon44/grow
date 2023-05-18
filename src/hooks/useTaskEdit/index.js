@@ -10,6 +10,7 @@ import { updateTask } from "../../infra/api";
 export const useTaskEdit = (taskDataTask) => {
   const navigateToUserTask = useNavigate();
   const currentUserId = useCurrentUserId();
+  const currentUserName = useCurrentUserName();
   const { getErrorMessage } = useGetErrorMessage();
   const { sanitizeInput } = useInputSanitization();
   const { validateInput, validateTask } = useInputValidation();
@@ -45,7 +46,6 @@ export const useTaskEdit = (taskDataTask) => {
     }
   };
 
-  const currentUserName = useCurrentUserName();
   const [taskData, setTaskData] = useState({
     task: {
       title: taskTitle,

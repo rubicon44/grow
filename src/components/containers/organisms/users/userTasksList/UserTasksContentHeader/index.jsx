@@ -46,6 +46,7 @@ export const UserTasksContentHeader = (props) => {
 
 UserTasksContentHeader.defaultProps = {
   error: false,
+  editing: false,
   loading: false,
 };
 

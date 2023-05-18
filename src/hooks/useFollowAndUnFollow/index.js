@@ -21,6 +21,7 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
   const [isFollowing, setIsFollowing] = useState(false);
 
   useEffect(() => {
+    const username = currentUserName;
     const fetchFollowings = async () => {
       setLoading(true);
       setError(null);
@@ -39,8 +40,6 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
         setLoading(false);
       }
     };
-
-    const username = currentUserName;
     fetchFollowings(username);
   }, [currentUserName, getErrorMessage]);
 

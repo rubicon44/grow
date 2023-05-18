@@ -11,6 +11,7 @@ export const ProfileChangeContainer = (props) => {
 
 ProfileChangeContainer.defaultProps = {
   error: false,
+  editing: false,
   loading: false,
 };
 
