@@ -36,6 +36,10 @@ export const GanttChart = (props) => {
   );
 };
 
+GanttChart.defaultProps = {
+  user: null,
+};
+
 GanttChart.propTypes = {
   calenderBodyHeight: PropTypes.number.isRequired,
   calenders: PropTypes.arrayOf(

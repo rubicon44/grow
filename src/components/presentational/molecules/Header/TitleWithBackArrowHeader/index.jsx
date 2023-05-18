@@ -11,6 +11,8 @@ export const TitleWithBackArrowHeader = memo(({ children }) => (
   </BaseTitleWithBackArrowHeader>
 ));
 
+TitleWithBackArrowHeader.displayName = "TitleWithBackArrowHeader";
+
 TitleWithBackArrowHeader.propTypes = {
   children: PropTypes.node.isRequired,
 };

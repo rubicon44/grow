@@ -11,6 +11,8 @@ export const UnLikeButton = memo(({ handleClickLikeDelete, likeData }) => (
   </ThumbUpIconCover>
 ));
 
+UnLikeButton.displayName = "UnLikeButton";
+
 UnLikeButton.propTypes = {
   handleClickLikeDelete: PropTypes.func.isRequired,
   likeData: PropTypes.shape({

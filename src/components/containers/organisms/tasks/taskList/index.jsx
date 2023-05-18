@@ -78,6 +78,8 @@ export const TaskList = ({
   );
 };
 
+TaskList.displayName = "TaskList";
+
 TaskList.propTypes = {
   currentUserId: PropTypes.string.isRequired,
   deleteCheckAble: PropTypes.bool.isRequired,

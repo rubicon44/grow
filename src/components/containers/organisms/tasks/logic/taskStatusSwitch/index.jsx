@@ -13,6 +13,8 @@ export const TaskStatusSwitch = memo(({ taskStatus }) => {
   return Component;
 });
 
+TaskStatusSwitch.displayName = "TaskStatusSwitch";
+
 TaskStatusSwitch.propTypes = {
   taskStatus: PropTypes.number.isRequired,
 };

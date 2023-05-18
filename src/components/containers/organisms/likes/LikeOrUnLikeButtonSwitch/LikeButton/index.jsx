@@ -10,6 +10,8 @@ export const LikeButton = memo(({ handleClickLikePost, likeData }) => (
   </ThumbUpIconCover>
 ));
 
+LikeButton.displayName = "LikeButton";
+
 LikeButton.propTypes = {
   handleClickLikePost: PropTypes.func.isRequired,
   likeData: PropTypes.shape({

@@ -20,6 +20,10 @@ export const UserFollowers = ({ currentUserId, followers, username }) => {
   ));
 };
 
+UserFollowers.defaultProps = {
+  followers: [],
+};
+
 UserFollowers.propTypes = {
   currentUserId: PropTypes.string.isRequired,
   followers: PropTypes.arrayOf(

@@ -30,7 +30,7 @@ export const GanttChartTaskTable = ({ elm, user, tasks }) => (
 );
 
 GanttChartTaskTable.defaultProps = {
-  user: {},
+  user: null,
 };
 
 GanttChartTaskTable.propTypes = {

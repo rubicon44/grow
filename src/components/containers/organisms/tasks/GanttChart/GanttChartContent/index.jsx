@@ -46,7 +46,7 @@ export const GanttChartContent = (props) => {
 };
 
 GanttChartTaskTable.defaultProps = {
-  user: {},
+  user: null,
 };
 
 GanttChartContent.propTypes = {
