@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useMemo } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -71,10 +71,13 @@ export const AuthProvider = ({ children }) => {
     onAuthStateChanged(auth, setCurrentUserAuth);
   }, []);
 
+  const authValue = useMemo(
+    () => ({ currentUserAuth, signin, signup, signout }),
+    [currentUserAuth, signin, signup, signout]
+  );
+
   return (
-    <AuthContext.Provider value={{ currentUserAuth, signin, signup, signout }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>
   );
 };
 

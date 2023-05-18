@@ -22,6 +22,10 @@ export const UserFollowings = ({ currentUserId, followings, username }) => {
   );
 };
 
+UserFollowings.defaultProps = {
+  followings: null,
+};
+
 UserFollowings.propTypes = {
   currentUserId: PropTypes.string.isRequired,
   followings: PropTypes.arrayOf(

@@ -18,6 +18,7 @@ const setCSRFToken = async () => {
       axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
       return csrfToken;
     }
+    return null;
   } catch (error) {
     console.error("Failed to get CSRF token:", error);
     throw error;

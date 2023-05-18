@@ -30,7 +30,8 @@ export const LikeOrUnLikeButtonSwitchContainer = memo(({ taskId }) => {
   );
 });
 
-LikeOrUnLikeButtonSwitchContainer.displayName = "LikeOrUnLikeButtonSwitchContainer";
+LikeOrUnLikeButtonSwitchContainer.displayName =
+  "LikeOrUnLikeButtonSwitchContainer";
 
 LikeOrUnLikeButtonSwitchContainer.propTypes = {
   taskId: PropTypes.string.isRequired,

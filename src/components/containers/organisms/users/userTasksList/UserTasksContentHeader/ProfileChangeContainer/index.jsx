@@ -2,11 +2,11 @@ import PropTypes from "prop-types";
 import { ProfileChange } from "../ProfileChange";
 
 export const ProfileChangeContainer = (props) => {
-  const { editing, error, loading } = props;
+  const { editing, error, loading, ...restProps } = props;
   if (error) return <>Error...</>;
   if (loading) return <>Loading...</>;
   if (editing) return <>Editing...</>;
-  return <ProfileChange {...props} />;
+  return <ProfileChange {...restProps} />;
 };
 
 ProfileChangeContainer.defaultProps = {

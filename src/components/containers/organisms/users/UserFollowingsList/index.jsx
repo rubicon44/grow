@@ -24,6 +24,7 @@ export const UserFollowingsList = ({
 UserFollowingsList.defaultProps = {
   error: false,
   loading: false,
+  followings: null,
 };
 
 UserFollowingsList.propTypes = {

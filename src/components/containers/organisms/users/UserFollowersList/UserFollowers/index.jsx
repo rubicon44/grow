@@ -21,7 +21,7 @@ export const UserFollowers = ({ currentUserId, followers, username }) => {
 };
 
 UserFollowers.defaultProps = {
-  followers: [],
+  followers: null,
 };
 
 UserFollowers.propTypes = {
@@ -32,7 +32,7 @@ UserFollowers.propTypes = {
       nickname: PropTypes.string.isRequired,
       username: PropTypes.string.isRequired,
     })
-  ).isRequired,
+  ),
   username: PropTypes.string.isRequired,
 };
 

@@ -22,6 +22,7 @@ export const UserFollowingsContainer = ({
 UserFollowingsContainer.defaultProps = {
   error: false,
   loading: false,
+  followings: null,
 };
 
 UserFollowingsContainer.propTypes = {
