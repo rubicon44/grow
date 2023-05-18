@@ -6,13 +6,12 @@ export const LogOutButtonSwitch = ({
   currentUserAuth,
   currentUserName,
   userNameInUrl,
-}) => (
+}) =>
   String(currentUserName) === String(userNameInUrl) && (
     <LogOutButtonCover>
       {currentUserAuth && <LogOutButtonContainer text="ログアウト" />}
     </LogOutButtonCover>
-  )
-);
+  );
 
 LogOutButtonSwitch.propTypes = {
   currentUserAuth: PropTypes.shape(PropTypes.instanceOf(Element).isRequired),

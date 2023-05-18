@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-export const Main = ({ children, className }) =>
-  <BaseMain className={className}>{children}</BaseMain>;
+export const Main = ({ children, className }) => (
+  <BaseMain className={className}>{children}</BaseMain>
+);
 
 Main.defaultProps = {
   className: "",

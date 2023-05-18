@@ -7,7 +7,7 @@ export const TaskDeleteOrUnDeleteButtonSwitch = ({
   deleteCheckAble,
   deleteTaskFunc,
   unDeleteCheckFunc,
-}) => (
+}) =>
   deleteCheckAble === true && (
     <BackgroundDisAbledCover>
       <BackgroundDisAbled>
@@ -16,8 +16,7 @@ export const TaskDeleteOrUnDeleteButtonSwitch = ({
         <TaskUnDeleteButton unDeleteCheckFunc={unDeleteCheckFunc} />
       </BackgroundDisAbled>
     </BackgroundDisAbledCover>
-  )
-);
+  );
 
 TaskDeleteOrUnDeleteButtonSwitch.propTypes = {
   deleteCheckAble: PropTypes.bool.isRequired,

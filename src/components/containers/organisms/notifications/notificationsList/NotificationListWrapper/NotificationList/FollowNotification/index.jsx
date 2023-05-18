@@ -4,9 +4,7 @@ import styled from "styled-components";
 
 export const FollowNotification = ({ visitor }) => (
   <UserNickNameCover>
-    <UserNickName to={`/${visitor.username}`}>
-      {visitor.nickname}
-    </UserNickName>
+    <UserNickName to={`/${visitor.username}`}>{visitor.nickname}</UserNickName>
     さんにフォローされました。
   </UserNickNameCover>
 );

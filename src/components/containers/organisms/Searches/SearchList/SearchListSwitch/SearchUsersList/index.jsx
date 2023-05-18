@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-export const SearchUsersList = ({ users }) => (
+export const SearchUsersList = ({ users }) =>
   users &&
   users.map((user) => (
     <List key={user.id}>
@@ -10,8 +10,7 @@ export const SearchUsersList = ({ users }) => (
         {user.nickname}({user.username})
       </Link>
     </List>
-  ))
-);
+  ));
 
 SearchUsersList.propTypes = {
   users: PropTypes.arrayOf(

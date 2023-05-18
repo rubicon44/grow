@@ -2,8 +2,9 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Button } from "../../../../presentational/atoms/Button/index";
 
-export const LogOutButton = ({ handleSignout, text }) =>
-  <DangerButton onClick={handleSignout}>{text}</DangerButton>;
+export const LogOutButton = ({ handleSignout, text }) => (
+  <DangerButton onClick={handleSignout}>{text}</DangerButton>
+);
 
 LogOutButton.propTypes = {
   handleSignout: PropTypes.func.isRequired,

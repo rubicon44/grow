@@ -2,13 +2,12 @@ import PropTypes from "prop-types";
 import { UserTasksAlreadyPostList } from "../UserTasksAlreadyPostList";
 import { UserTasksNoPostList } from "../UserTasksNoPostList";
 
-export const UserTasks = ({ userData }) => (
+export const UserTasks = ({ userData }) =>
   userData.tasks.length === 0 ? (
     <UserTasksNoPostList userData={userData} />
   ) : (
     <UserTasksAlreadyPostList userData={userData} />
-  )
-);
+  );
 
 UserTasks.propTypes = {
   userData: PropTypes.shape({

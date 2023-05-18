@@ -40,14 +40,14 @@ export const FollowButtonSwitchContainer = ({ userIdToFollowOrUnFollow }) => {
 };
 
 const WaitingButton = ({ children }) => (
-    <FollowChange>
-      <FollowChangeLinkCover>
-        <FollowChangeLinkNone>
-          <span>{children}</span>
-        </FollowChangeLinkNone>
-      </FollowChangeLinkCover>
-    </FollowChange>
-  );
+  <FollowChange>
+    <FollowChangeLinkCover>
+      <FollowChangeLinkNone>
+        <span>{children}</span>
+      </FollowChangeLinkNone>
+    </FollowChangeLinkCover>
+  </FollowChange>
+);
 
 FollowButtonSwitchContainer.propTypes = {
   userIdToFollowOrUnFollow: PropTypes.number.isRequired,

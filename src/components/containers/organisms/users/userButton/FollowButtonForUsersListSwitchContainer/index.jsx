@@ -56,14 +56,14 @@ FollowButtonForUsersListSwitchContainer.propTypes = {
 };
 
 const WaitingButton = ({ children }) => (
-    <FollowChange>
-      <FollowChangeLinkCover>
-        <FollowChangeLinkNone>
-          <span>{children}</span>
-        </FollowChangeLinkNone>
-      </FollowChangeLinkCover>
-    </FollowChange>
-  );
+  <FollowChange>
+    <FollowChangeLinkCover>
+      <FollowChangeLinkNone>
+        <span>{children}</span>
+      </FollowChangeLinkNone>
+    </FollowChangeLinkCover>
+  </FollowChange>
+);
 
 const FollowChange = styled.div`
   width: 100%;

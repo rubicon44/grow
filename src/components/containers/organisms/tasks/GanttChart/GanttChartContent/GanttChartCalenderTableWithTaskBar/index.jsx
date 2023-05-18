@@ -8,7 +8,7 @@ export const GanttChartCalenderTableWithTaskBar = ({
   calenderBodyHeight,
   calenders,
   styles,
-}) => (
+}) =>
   calenders.map((calender) => (
     <Fragment key={calender.date}>
       <GanttChartCalenderTable>
@@ -25,8 +25,7 @@ export const GanttChartCalenderTableWithTaskBar = ({
       </GanttChartCalenderTable>
       <GunttChartTaskBar styles={styles} />
     </Fragment>
-  ))
-);
+  ));
 
 GanttChartCalenderTableWithTaskBar.propTypes = {
   calenderBodyHeight: PropTypes.number.isRequired,

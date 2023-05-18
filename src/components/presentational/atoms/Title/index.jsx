@@ -2,9 +2,9 @@ import { memo } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-export const Title = memo(({ children, className }) =>
+export const Title = memo(({ children, className }) => (
   <BaseTitle className={className}>{children}</BaseTitle>
-);
+));
 
 Title.defaultProps = {
   className: "",

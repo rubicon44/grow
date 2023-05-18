@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { TaskStatusSwitch } from "../../../../tasks/logic/taskStatusSwitch";
 import { List } from "../../../../../../presentational/molecules/List";
 
-export const UserTasksAlreadyLikeList = ({ userData }) => (
+export const UserTasksAlreadyLikeList = ({ userData }) =>
   userData.likedTasks.map((task) => (
     <ListCoverWrapper key={task.id}>
       <ListCover>
@@ -17,8 +17,7 @@ export const UserTasksAlreadyLikeList = ({ userData }) => (
         <TaskStatusSwitch taskStatus={task.status} />
       </ListCover>
     </ListCoverWrapper>
-  ))
-);
+  ));
 
 UserTasksAlreadyLikeList.propTypes = {
   userData: PropTypes.shape({

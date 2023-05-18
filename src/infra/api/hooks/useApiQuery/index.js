@@ -20,10 +20,9 @@ export const useApiQuery = (queryKey, apiFetchFn) => {
       data,
       loading: isLoading,
     };
-  } 
-    return {
-      data: [],
-      loading: isLoading,
-    };
-  
+  }
+  return {
+    data: [],
+    loading: isLoading,
+  };
 };

@@ -4,7 +4,12 @@ import { ProfileChangeLink } from "./ProfileChangeLink";
 import { ProfileChangeForm } from "./ProfileChangeForm";
 
 // todo: プロフィール編集の際の「コンテンツが何度もレンダリングされる現象」を解決する(おそらくif statementの問題。)。
-export const ProfileChange = ({ bioAble, currentUserId, setBioAbleFunc, userData }) => {
+export const ProfileChange = ({
+  bioAble,
+  currentUserId,
+  setBioAbleFunc,
+  userData,
+}) => {
   const { id, nickname, username, bio } = userData;
 
   if (bioAble === true) {
@@ -24,7 +29,13 @@ export const ProfileChange = ({ bioAble, currentUserId, setBioAbleFunc, userData
     );
   }
   return (
-    String(currentUserId) === String(id) && <ProfileChangeForm currentUserId={currentUserId} setBioAbleFunc={setBioAbleFunc} userData={userData} />
+    String(currentUserId) === String(id) && (
+      <ProfileChangeForm
+        currentUserId={currentUserId}
+        setBioAbleFunc={setBioAbleFunc}
+        userData={userData}
+      />
+    )
   );
 };
 

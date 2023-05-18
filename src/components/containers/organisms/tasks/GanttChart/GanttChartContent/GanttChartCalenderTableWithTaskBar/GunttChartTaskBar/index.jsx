@@ -25,7 +25,7 @@ const YellowGreenCalenderTaskBar = styled(CalenderTaskBar)`
   background-color: #a1af2f;
 `;
 
-export const GunttChartTaskBar = ({ styles }) => (
+export const GunttChartTaskBar = ({ styles }) =>
   styles.map((style) => {
     const componentMap = {
       0: RedCalenderTaskBar,
@@ -40,8 +40,7 @@ export const GunttChartTaskBar = ({ styles }) => (
         style={{ top: style.top, left: style.left, width: style.width }}
       />
     );
-  })
-);
+  });
 
 GunttChartTaskBar.propTypes = {
   styles: PropTypes.arrayOf(

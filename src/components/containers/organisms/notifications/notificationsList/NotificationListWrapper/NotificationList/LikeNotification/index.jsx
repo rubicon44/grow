@@ -13,9 +13,7 @@ export const LikeNotification = ({
       タスク
     </UserNickName>
     が
-    <UserNickName to={`/${visitor.username}`}>
-      {visitor.nickname}
-    </UserNickName>
+    <UserNickName to={`/${visitor.username}`}>{visitor.nickname}</UserNickName>
     にいいねされました。
   </UserNickNameCover>
 );

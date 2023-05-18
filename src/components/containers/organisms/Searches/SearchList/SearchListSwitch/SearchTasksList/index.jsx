@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-export const SearchTasksList = ({ tasks }) => (
+export const SearchTasksList = ({ tasks }) =>
   tasks &&
   tasks.map((task) => (
     <List key={task.id}>
@@ -12,8 +12,7 @@ export const SearchTasksList = ({ tasks }) => (
         <span>cotent:{task.content}</span>
       </Link>
     </List>
-  ))
-);
+  ));
 
 SearchTasksList.propTypes = {
   tasks: PropTypes.arrayOf(
