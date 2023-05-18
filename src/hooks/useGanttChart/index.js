@@ -6,12 +6,19 @@ export const useGanttChart = (tasks, loading) => {
   const elm = useRef(null);
   const elmOfCalenderTableCover = useRef(null);
   const [calenderBodyHeight, setCalenderBodyHeight] = useState(0);
-  const updateCalenderBodyHeight = () => {
+
+  const updateCalenderBodyHeight = useCallback(() => {
     if (elm.current !== null) {
       const taskListBodyHeight = elm.current.getBoundingClientRect().height;
       setCalenderBodyHeight(taskListBodyHeight);
     }
-  };
+  // todo: 代替案を検討(elm.current)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [elm.current]);
+
+  useEffect(() => {
+    updateCalenderBodyHeight();
+  }, [updateCalenderBodyHeight]);
 
   const scrollToCurrentDate = useCallback((calenders) => {
     const currentDate = new Date();
@@ -40,6 +47,12 @@ export const useGanttChart = (tasks, loading) => {
     }
   }, []);
 
+  useEffect(() => {
+    scrollToCurrentDate(calenders);
+    // todo: 代替案を検討(elm.current)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scrollToCurrentDate, calenders, elm.current]);
+
   const handleScrollToCurrentDate = () => {
     scrollToCurrentDate(calenders);
     setCurrentPositionNumber(0);
@@ -59,15 +72,8 @@ export const useGanttChart = (tasks, loading) => {
   }, [calenders, currentPositionNumber, preCurrentPositionNumber]);
 
   useEffect(() => {
-    updateCalenderBodyHeight();
-    scrollToCurrentDate(calenders);
-  }, [updateCalenderBodyHeight]);
-
-  const years = calenders.map(calender => calender.year);
-  const uniqueYears = Array.from(new Set(years));
-  useEffect(() => {
     scrollToStartOrEndPosition();
-  }, [uniqueYears, currentPositionNumber, preCurrentPositionNumber, scrollToStartOrEndPosition]);
+  }, [currentPositionNumber, preCurrentPositionNumber, scrollToStartOrEndPosition]);
 
   return { calenderBodyHeight, calenders, elm, elmOfCalenderTableCover, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, handleScrollToCurrentDate, styles };
 };

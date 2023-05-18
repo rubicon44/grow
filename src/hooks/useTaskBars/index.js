@@ -135,7 +135,7 @@ export const useTaskBars = (tasks, loading) => {
     taskBars(tasks);
     // 無限ループを防ぐため、taskBars()をuseEffectの依存関係に含めない。
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
+  }, [loading, currentPositionNumber]);
 
   return { calenders, currentPositionNumber, handleBackToPreviousMonthClick, handleForwardToNextMonthClick, preCurrentPositionNumber, setCurrentPositionNumber, setPreCurrentPositionNumber, styles };
 };
