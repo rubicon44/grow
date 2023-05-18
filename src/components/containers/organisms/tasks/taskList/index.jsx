@@ -33,9 +33,7 @@ export const TaskList = ({
     userId: taskCreatedUserId,
   } = taskData.task;
 
-  const MemoTitleWithBackArrowHeader = memo(() => {
-    return <TitleWithBackArrowHeader>タスク詳細</TitleWithBackArrowHeader>;
-  });
+  const MemoTitleWithBackArrowHeader = memo(() => <TitleWithBackArrowHeader>タスク詳細</TitleWithBackArrowHeader>);
   return (
     <>
       <Popup message="タスクが正常に更新されました。" showPopup={showPopup} />

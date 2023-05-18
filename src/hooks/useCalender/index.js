@@ -5,17 +5,17 @@ import "dayjs/locale/ja";
 export const useCalender = () => {
   const getDays = useCallback((year, month, blockNumber) => {
     const dayOfWeek = ["日", "月", "火", "水", "木", "金", "土"];
-    let days = [];
+    const days = [];
     let date = dayjs(`${year}-${month}-01`);
     blockNumber = 1;
-    let num = date.daysInMonth();
+    const num = date.daysInMonth();
     for (let i = 0; i < num; i++) {
       days.push({
         day: date.date(),
         dayOfWeek: dayOfWeek[date.day()],
         blockNumber,
       });
-      let dateFormat = date.format();
+      const dateFormat = date.format();
       date = dayjs(`${dateFormat}`).add(1, "day");
       blockNumber++;
     }
@@ -45,7 +45,7 @@ export const useCalender = () => {
     const currentDate = currentDateFunc();
     let year = currentDate.getFullYear();
     if (currentPositionNumber < 0) {
-      year = year + currentPositionNumber;
+      year += currentPositionNumber;
     }
     return year;
   }, [currentDateFunc, currentPositionNumber]);
@@ -70,20 +70,20 @@ export const useCalender = () => {
     let blockNumber = 0;
     let days;
     let startMonth = dayjs(calenderData.startMonth);
-    let endMonth = dayjs(calenderData.endMonth);
-    let betweenMonth = endMonth.diff(startMonth, "months");
+    const endMonth = dayjs(calenderData.endMonth);
+    const betweenMonth = endMonth.diff(startMonth, "months");
     const newCalenders = [...calenderData.calenders];
     for (let i = 0; i <= betweenMonth; i++) {
       days = getDays(startMonth.year(), startMonth.format("MM"), blockNumber);
       newCalenders.push({
         date: startMonth.format("YYYY年MM月"),
         year: startMonth.year(),
-        month: startMonth.month(), //month(), 0,1..11と表示
+        month: startMonth.month(), // month(), 0,1..11と表示
         startBlockNumber: blockNumber,
         calender: days.length,
         days,
       });
-      let startMonthFormat = startMonth.format();
+      const startMonthFormat = startMonth.format();
       startMonth = dayjs(`${startMonthFormat}`).add(1, "months");
       blockNumber = days[days.length - 1].blockNumber;
       blockNumber++;
