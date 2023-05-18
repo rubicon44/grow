@@ -20,7 +20,9 @@ export const GanttChartContent = (props) => {
   const { user, tasks } = props;
   return (
     <>
-      <button onClick={handleScrollToCurrentDate}>今日の日付に移動</button>
+      <button type="button" onClick={handleScrollToCurrentDate}>
+        今日の日付に移動
+      </button>
       <ArrowIconsCover>
         <ArrowBackIosOutlinedIcon onClick={handleBackToPreviousMonthClick}>
           前月へ
@@ -45,7 +47,7 @@ export const GanttChartContent = (props) => {
   );
 };
 
-GanttChartTaskTable.defaultProps = {
+GanttChartContent.defaultProps = {
   user: null,
 };
 
@@ -96,7 +98,7 @@ GanttChartContent.propTypes = {
         status: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
       })
-    ).isRequired,
+    ),
     nickname: PropTypes.string.isRequired,
     tasks: PropTypes.arrayOf(
       PropTypes.exact({

@@ -13,8 +13,12 @@ export const LogOutButtonSwitch = ({
     </LogOutButtonCover>
   );
 
+LogOutButtonSwitch.defaultProps = {
+  currentUserAuth: null,
+};
+
 LogOutButtonSwitch.propTypes = {
-  currentUserAuth: PropTypes.shape(PropTypes.instanceOf(Element).isRequired),
+  currentUserAuth: PropTypes.shape(PropTypes.instanceOf(Element)),
   currentUserName: PropTypes.string.isRequired,
   userNameInUrl: PropTypes.string.isRequired,
 };

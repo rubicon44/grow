@@ -2,11 +2,34 @@ import PropTypes from "prop-types";
 import { ProfileChange } from "../ProfileChange";
 
 export const ProfileChangeContainer = (props) => {
-  const { editing, error, loading, ...restProps } = props;
+  const {
+    editing,
+    error,
+    loading,
+    bioAble,
+    currentUserId,
+    handleTextSubmit,
+    inputRefs,
+    isButtonDisabled,
+    revertUserBioFunc,
+    setBioAbleFunc,
+    userData,
+  } = props;
   if (error) return <>Error...</>;
   if (loading) return <>Loading...</>;
   if (editing) return <>Editing...</>;
-  return <ProfileChange {...restProps} />;
+  return (
+    <ProfileChange
+      bioAble={bioAble}
+      currentUserId={currentUserId}
+      handleTextSubmit={handleTextSubmit}
+      inputRefs={inputRefs}
+      isButtonDisabled={isButtonDisabled}
+      revertUserBioFunc={revertUserBioFunc}
+      setBioAbleFunc={setBioAbleFunc}
+      userData={userData}
+    />
+  );
 };
 
 ProfileChangeContainer.defaultProps = {

@@ -26,6 +26,8 @@ export const FormTextArea = ({
 
 FormTextArea.defaultProps = {
   children: null,
+  defaultValue: "",
+  textAreaRef: null,
 };
 
 FormTextArea.propTypes = {
@@ -34,7 +36,7 @@ FormTextArea.propTypes = {
   htmlFor: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  textAreaRef: PropTypes.object,
+  textAreaRef: PropTypes.objectOf(PropTypes.instanceOf(Element)),
 };
 
 const FormTextAreaCover = styled.div`

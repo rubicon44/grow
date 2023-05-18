@@ -39,6 +39,10 @@ export const FollowButtonSwitchContainer = ({ userIdToFollowOrUnFollow }) => {
   );
 };
 
+FollowButtonSwitchContainer.propTypes = {
+  userIdToFollowOrUnFollow: PropTypes.number.isRequired,
+};
+
 const WaitingButton = ({ children }) => (
   <FollowChange>
     <FollowChangeLinkCover>
@@ -49,8 +53,8 @@ const WaitingButton = ({ children }) => (
   </FollowChange>
 );
 
-FollowButtonSwitchContainer.propTypes = {
-  userIdToFollowOrUnFollow: PropTypes.number.isRequired,
+WaitingButton.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 const FollowChange = styled.div`

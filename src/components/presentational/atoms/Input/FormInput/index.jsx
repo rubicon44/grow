@@ -27,7 +27,10 @@ export const FormInput = ({
 );
 
 FormInput.defaultProps = {
+  autoComplete: "",
   children: null,
+  defaultValue: "",
+  inputRef: null,
 };
 
 FormInput.propTypes = {
@@ -35,7 +38,7 @@ FormInput.propTypes = {
   children: PropTypes.node,
   defaultValue: PropTypes.string,
   htmlFor: PropTypes.string.isRequired,
-  inputRef: PropTypes.object,
+  inputRef: PropTypes.objectOf(PropTypes.instanceOf(Element)),
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,

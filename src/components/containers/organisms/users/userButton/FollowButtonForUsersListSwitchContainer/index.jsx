@@ -65,6 +65,10 @@ const WaitingButton = ({ children }) => (
   </FollowChange>
 );
 
+WaitingButton.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 const FollowChange = styled.div`
   width: 100%;
   margin-bottom: 30px;

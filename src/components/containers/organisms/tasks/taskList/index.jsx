@@ -10,6 +10,11 @@ import { TitleWithBackArrowHeader } from "../../../../presentational/molecules/H
 import { List } from "../../../../presentational/molecules/List";
 import { Popup } from "../../../../presentational/atoms/Popup";
 
+const MemoTitleWithBackArrowHeader = memo(() => (
+  <TitleWithBackArrowHeader>タスク詳細</TitleWithBackArrowHeader>
+));
+MemoTitleWithBackArrowHeader.displayName = "MemoTitleWithBackArrowHeader";
+
 export const TaskList = ({
   currentUserId,
   deleteCheckAble,
@@ -33,9 +38,6 @@ export const TaskList = ({
     userId: taskCreatedUserId,
   } = taskData.task;
 
-  const MemoTitleWithBackArrowHeader = memo(() => (
-    <TitleWithBackArrowHeader>タスク詳細</TitleWithBackArrowHeader>
-  ));
   return (
     <>
       <Popup message="タスクが正常に更新されました。" showPopup={showPopup} />
@@ -90,6 +92,7 @@ TaskList.propTypes = {
   showPopup: PropTypes.bool.isRequired,
   taskData: PropTypes.shape({
     task: PropTypes.shape({
+      id: PropTypes.number.isRequired,
       content: PropTypes.string,
       endDate: PropTypes.string,
       startDate: PropTypes.string,
@@ -102,6 +105,7 @@ TaskList.propTypes = {
         nickname: PropTypes.string.isRequired,
         username: PropTypes.string.isRequired,
       }),
+      userId: PropTypes.number.isRequired,
     }).isRequired,
   }).isRequired,
   unDeleteCheckFunc: PropTypes.func.isRequired,
