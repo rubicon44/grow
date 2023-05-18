@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import { ProfileChange } from '../ProfileChange';
+import PropTypes from "prop-types";
+import { ProfileChange } from "../ProfileChange";
 
 export const ProfileChangeContainer = (props) => {
   const { editing, error, loading } = props;
@@ -28,25 +28,29 @@ ProfileChangeContainer.propTypes = {
     id: PropTypes.number,
     bio: PropTypes.string,
     email: PropTypes.string,
-    likedTasks: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number,
-      userId: PropTypes.number,
-      content: PropTypes.string,
-      endDate: PropTypes.string,
-      startDate: PropTypes.string,
-      status: PropTypes.number,
-      title: PropTypes.string,
-    })),
+    likedTasks: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        userId: PropTypes.number,
+        content: PropTypes.string,
+        endDate: PropTypes.string,
+        startDate: PropTypes.string,
+        status: PropTypes.number,
+        title: PropTypes.string,
+      })
+    ),
     nickname: PropTypes.string,
-    tasks: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number,
-      userId: PropTypes.number,
-      content: PropTypes.string,
-      endDate: PropTypes.string,
-      startDate: PropTypes.string,
-      status: PropTypes.number,
-      title: PropTypes.string,
-    })),
+    tasks: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        userId: PropTypes.number,
+        content: PropTypes.string,
+        endDate: PropTypes.string,
+        startDate: PropTypes.string,
+        status: PropTypes.number,
+        title: PropTypes.string,
+      })
+    ),
     username: PropTypes.string,
   }).isRequired,
 };

@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 export const ProfileChangeLink = ({ setBioAbleFunc }) => {
   return (
@@ -12,7 +12,7 @@ export const ProfileChangeLink = ({ setBioAbleFunc }) => {
 };
 
 ProfileChangeLink.propTypes = {
-  setBioAbleFunc: PropTypes.func.isRequired
+  setBioAbleFunc: PropTypes.func.isRequired,
 };
 
 const BioChangeLinkCover = styled.div`

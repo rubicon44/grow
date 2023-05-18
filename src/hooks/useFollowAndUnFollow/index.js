@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react';
-import { useCurrentUserId } from '../useCurrentUserId';
-import { useCurrentUserName } from '../useCurrentUserName';
-import { useGetErrorMessage } from '../useGetErrorMessage';
-import { deleteRelationships, getFollowings, postRelationships } from '../../infra/api';
+import { useEffect, useState } from "react";
+import { useCurrentUserId } from "../useCurrentUserId";
+import { useCurrentUserName } from "../useCurrentUserName";
+import { useGetErrorMessage } from "../useGetErrorMessage";
+import {
+  deleteRelationships,
+  getFollowings,
+  postRelationships,
+} from "../../infra/api";
 
 export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
   const currentUserId = useCurrentUserId();
@@ -33,7 +37,7 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
         getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
       } finally {
         setLoading(false);
-      };
+      }
     };
 
     const username = currentUserName;
@@ -51,7 +55,10 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
   const followFunc = async () => {
     try {
       setCreating(true);
-      const relationships = { followingId: currentUserId, followerId: userIdToFollowOrUnFollow };
+      const relationships = {
+        followingId: currentUserId,
+        followerId: userIdToFollowOrUnFollow,
+      };
       await postRelationships(relationships);
       setIsFollowing(true);
     } catch (error) {
@@ -61,13 +68,16 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
       getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
     } finally {
       setCreating(false);
-    };
+    }
   };
 
   const unFollowFunc = async () => {
     try {
       setDeleting(true);
-      const relationships = { followingId: currentUserId, followerId: userIdToFollowOrUnFollow };
+      const relationships = {
+        followingId: currentUserId,
+        followerId: userIdToFollowOrUnFollow,
+      };
       await deleteRelationships(relationships);
       setIsFollowing(false);
     } catch (error) {
@@ -77,17 +87,19 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
       getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
     } finally {
       setDeleting(false);
-    };
+    }
   };
 
   useEffect(() => {
     if (currentUserFollowings.length > 0) {
-      const following = currentUserFollowings.find(following => following.id === Number(userIdToFollowOrUnFollow));
+      const following = currentUserFollowings.find(
+        (following) => following.id === Number(userIdToFollowOrUnFollow)
+      );
       if (following) {
         setIsFollowing(true);
       } else {
         setIsFollowing(false);
-      };
+      }
     }
   }, [currentUserFollowings, userIdToFollowOrUnFollow]);
 

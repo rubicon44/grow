@@ -1,5 +1,5 @@
-import * as firebase from 'firebase/app';
-import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
+import * as firebase from "firebase/app";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 
 firebase.initializeApp({
   // Authentication infomation

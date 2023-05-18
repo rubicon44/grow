@@ -1,13 +1,13 @@
-import { memo } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { memo } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 export const TaskStatusSwitch = memo(({ taskStatus }) => {
   const componentMap = {
     0: <TaskStatusNot>未対応</TaskStatusNot>,
     1: <TaskStatusProcess>処理中</TaskStatusProcess>,
     2: <TaskStatusProcessed>処理済み</TaskStatusProcessed>,
-    3: <TaskStatusDone>完了</TaskStatusDone>
+    3: <TaskStatusDone>完了</TaskStatusDone>,
   };
   const Component = componentMap[taskStatus];
   return Component;
@@ -43,7 +43,6 @@ const TaskStatusProcess = styled.span`
   background: #4484c5;
 `;
 
-
 const TaskStatusProcessed = styled.span`
   position: absolute;
   top: 0;
@@ -56,7 +55,6 @@ const TaskStatusProcessed = styled.span`
   color: #fff;
   background: #5eb5a6;
 `;
-
 
 const TaskStatusDone = styled.span`
   position: absolute;

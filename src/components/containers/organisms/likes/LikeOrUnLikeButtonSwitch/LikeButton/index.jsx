@@ -1,7 +1,7 @@
-import { memo } from 'react';
-import PropTypes from 'prop-types';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import styled from 'styled-components';
+import { memo } from "react";
+import PropTypes from "prop-types";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import styled from "styled-components";
 
 export const LikeButton = memo(({ handleClickLikePost, likeData }) => {
   return (
@@ -16,11 +16,13 @@ LikeButton.propTypes = {
   handleClickLikePost: PropTypes.func.isRequired,
   likeData: PropTypes.shape({
     likeCount: PropTypes.number.isRequired,
-    likes: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      likedUserId: PropTypes.number.isRequired,
-      taskId: PropTypes.number.isRequired,
-    })).isRequired,
+    likes: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        likedUserId: PropTypes.number.isRequired,
+        taskId: PropTypes.number.isRequired,
+      })
+    ).isRequired,
   }).isRequired,
 };
 

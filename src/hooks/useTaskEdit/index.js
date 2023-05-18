@@ -1,11 +1,11 @@
-import { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useCurrentUserId } from '../useCurrentUserId';
-import { useCurrentUserName } from '../useCurrentUserName';
-import { useGetErrorMessage } from '../useGetErrorMessage';
-import { useInputSanitization } from '../useInputSanitization';
-import { useInputValidation } from '../useInputValidation';
-import { updateTask } from '../../infra/api';
+import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { useCurrentUserId } from "../useCurrentUserId";
+import { useCurrentUserName } from "../useCurrentUserName";
+import { useGetErrorMessage } from "../useGetErrorMessage";
+import { useInputSanitization } from "../useInputSanitization";
+import { useInputValidation } from "../useInputValidation";
+import { updateTask } from "../../infra/api";
 
 export const useTaskEdit = (taskDataTask) => {
   const navigateToUserTask = useNavigate();
@@ -15,12 +15,22 @@ export const useTaskEdit = (taskDataTask) => {
   const { validateInput, validateTask } = useInputValidation();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [editing, setEditing] = useState(false);
-  const { id: taskId, title: taskTitle, content: taskContent, status: taskStatus, startDate: taskStartDate, endDate: taskEndDate } = taskDataTask;
+  const {
+    id: taskId,
+    title: taskTitle,
+    content: taskContent,
+    status: taskStatus,
+    startDate: taskStartDate,
+    endDate: taskEndDate,
+  } = taskDataTask;
 
   const updateTaskFunc = async (taskId, task, currentUserId) => {
     try {
       setEditing(true);
-      await updateTask(taskId, { ...task, currentUserId: Number(currentUserId) });
+      await updateTask(taskId, {
+        ...task,
+        currentUserId: Number(currentUserId),
+      });
       navigateToUserTask(`/${currentUserName}/tasks/${taskId}`, {
         state: { showPopup: true },
       });
@@ -32,7 +42,7 @@ export const useTaskEdit = (taskDataTask) => {
     } finally {
       setEditing(false);
       setIsButtonDisabled(false);
-    };
+    }
   };
 
   const currentUserName = useCurrentUserName();
@@ -43,42 +53,51 @@ export const useTaskEdit = (taskDataTask) => {
       status: taskStatus,
       startDate: taskStartDate,
       endDate: taskEndDate,
-    }
+    },
   });
   const titleRef = useRef();
   const contentRef = useRef();
   const statusRef = useRef();
   const startDateRef = useRef();
   const endDateRef = useRef();
-  const inputRefs = { titleRef, contentRef, statusRef, startDateRef, endDateRef };
+  const inputRefs = {
+    titleRef,
+    contentRef,
+    statusRef,
+    startDateRef,
+    endDateRef,
+  };
 
   const handleTextSubmit = async (e) => {
     e.preventDefault();
     e.persist();
     setIsButtonDisabled(true);
 
-    const title = sanitizeInput(titleRef.current.value, { trim: true, ALLOWED_TAGS: [] });
+    const title = sanitizeInput(titleRef.current.value, {
+      trim: true,
+      ALLOWED_TAGS: [],
+    });
     const content = sanitizeInput(contentRef.current.value);
     const status = Number(statusRef.current.value);
     const startDate = startDateRef.current.value;
     const endDate = endDateRef.current.value;
 
     if (
-      !validateInput(title, 'タイトル', { maxLength: 255, nullFalse: false }) ||
-      !validateInput(content, 'コンテンツ', { maxLength: 5000 }) ||
+      !validateInput(title, "タイトル", { maxLength: 255, nullFalse: false }) ||
+      !validateInput(content, "コンテンツ", { maxLength: 5000 }) ||
       !validateTask(startDate, endDate)
     ) {
       setIsButtonDisabled(false);
       return;
     }
 
-    if ((endDate && startDate) && endDate < startDate) {
-      window.alert('開始日には、終了日よりも前の日付を設定してください。');
+    if (endDate && startDate && endDate < startDate) {
+      window.alert("開始日には、終了日よりも前の日付を設定してください。");
       setIsButtonDisabled(false);
       return;
-    };
+    }
 
-    const task = { title, content, status, startDate: startDate, endDate: endDate };
+    const task = { title, content, status, startDate, endDate };
     setTaskData({ task });
     await updateTaskFunc(taskId, task, currentUserId);
   };

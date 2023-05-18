@@ -1,17 +1,20 @@
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { BaseLink } from '../../atoms/Link/BaseLink';
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { BaseLink } from "../../atoms/Link/BaseLink";
 
 export const List = ({ title, titleUrl, content, url, text }) => {
   // todo: httpsにおいてXSSが機能していないことを確認する
   // const userInputText1 = `javascript: console.log(document.cookie)`;
   return (
     <BaseList>
-      <dt><Link to={titleUrl}>{title}</Link></dt>
+      <dt>
+        <Link to={titleUrl}>{title}</Link>
+      </dt>
       {/* <dt><Link to={userInputText1}>{title}</Link></dt> */}
       <dd>{content}</dd>
-      <CreatedUserCover>作成者:
+      <CreatedUserCover>
+        作成者:
         <BaseLink url={url}>{text}</BaseLink>
       </CreatedUserCover>
     </BaseList>

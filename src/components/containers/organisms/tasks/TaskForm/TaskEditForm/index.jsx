@@ -1,8 +1,13 @@
-import PropTypes from 'prop-types';
-import { TaskForm } from '..';
-import { TitleWithBackArrowHeader } from '../../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
+import PropTypes from "prop-types";
+import { TaskForm } from "..";
+import { TitleWithBackArrowHeader } from "../../../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
-export const TaskEditForm = ({ handleTextSubmit, inputRefs, isButtonDisabled, taskData }) => {
+export const TaskEditForm = ({
+  handleTextSubmit,
+  inputRefs,
+  isButtonDisabled,
+  taskData,
+}) => {
   return (
     <>
       <TitleWithBackArrowHeader>編集</TitleWithBackArrowHeader>

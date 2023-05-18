@@ -1,14 +1,24 @@
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { HeaderMenu } from './HeaderMenu';
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { HeaderMenu } from "./HeaderMenu";
 
-export const Header = ({ drawerStatus, headerLinks, headerLinksForAuth, toggleDrawer }) => {
+export const Header = ({
+  drawerStatus,
+  headerLinks,
+  headerLinksForAuth,
+  toggleDrawer,
+}) => {
   return (
     <HeaderCover>
       <Logo to="/tasks">Grow</Logo>
       <HeaderMenuGroup>
-        <HeaderMenu headerLinks={headerLinks} headerLinksForAuth={headerLinksForAuth} drawerStatus={drawerStatus} toggleDrawer={toggleDrawer} />
+        <HeaderMenu
+          headerLinks={headerLinks}
+          headerLinksForAuth={headerLinksForAuth}
+          drawerStatus={drawerStatus}
+          toggleDrawer={toggleDrawer}
+        />
       </HeaderMenuGroup>
     </HeaderCover>
   );
@@ -21,14 +31,18 @@ Header.propTypes = {
     bottom: PropTypes.bool,
     right: PropTypes.bool,
   }).isRequired,
-  headerLinks: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-  })).isRequired,
-  headerLinksForAuth: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-  })).isRequired,
+  headerLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  headerLinksForAuth: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   toggleDrawer: PropTypes.func.isRequired,
 };
 

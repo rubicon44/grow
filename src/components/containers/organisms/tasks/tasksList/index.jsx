@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { LikeOrUnLikeButtonSwitchContainer } from '../../likes/LikeOrUnLikeButtonSwitchContainer';
-import { TaskStatusSwitch } from '../logic/taskStatusSwitch';
-import { List } from '../../../../presentational/molecules/List';
-import { NextButtonLink } from '../../../../presentational/atoms/Link/NextButtonLink';
-import { Popup } from '../../../../presentational/atoms/Popup';
-import { Title } from '../../../../presentational/atoms/Title';
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { LikeOrUnLikeButtonSwitchContainer } from "../../likes/LikeOrUnLikeButtonSwitchContainer";
+import { TaskStatusSwitch } from "../logic/taskStatusSwitch";
+import { List } from "../../../../presentational/molecules/List";
+import { NextButtonLink } from "../../../../presentational/atoms/Link/NextButtonLink";
+import { Popup } from "../../../../presentational/atoms/Popup";
+import { Title } from "../../../../presentational/atoms/Title";
 
 export const TasksList = ({ showPopup, tasks }) => {
   return (
@@ -14,7 +14,12 @@ export const TasksList = ({ showPopup, tasks }) => {
       <Title>タスク一覧</Title>
       <NextButtonLink text="タスク登録" url="/tasks/create" />
       {tasks?.map((task) => {
-        const { id: taskId, title: taskTitle, content: taskContent, status: taskStatus } = task;
+        const {
+          id: taskId,
+          title: taskTitle,
+          content: taskContent,
+          status: taskStatus,
+        } = task;
         const { username, nickname } = task.user;
         return (
           <ListCover key={taskId}>
@@ -36,13 +41,15 @@ export const TasksList = ({ showPopup, tasks }) => {
 
 TasksList.propTypes = {
   showPopup: PropTypes.bool.isRequired,
-  tasks: PropTypes.arrayOf(PropTypes.shape({
-    content: PropTypes.string,
-    endDate: PropTypes.string,
-    startDate: PropTypes.string,
-    status: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-  })).isRequired,
+  tasks: PropTypes.arrayOf(
+    PropTypes.shape({
+      content: PropTypes.string,
+      endDate: PropTypes.string,
+      startDate: PropTypes.string,
+      status: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 const ListCover = styled.div`

@@ -1,9 +1,13 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 // todo: ボタンスタイル/デザインを統一し、拡張しやすくする。
 export const Button = ({ children, className, onClick }) => {
-  return <BaseButton className={className} onClick={onClick} >{children}</BaseButton>;
+  return (
+    <BaseButton className={className} onClick={onClick}>
+      {children}
+    </BaseButton>
+  );
 };
 
 Button.propTypes = {

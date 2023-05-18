@@ -1,9 +1,13 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { TaskDeleteButton } from '../TaskDeleteButton';
-import { TaskUnDeleteButton } from '../TaskUnDeleteButton';
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { TaskDeleteButton } from "../TaskDeleteButton";
+import { TaskUnDeleteButton } from "../TaskUnDeleteButton";
 
-export const TaskDeleteOrUnDeleteButtonSwitch = ({ deleteCheckAble, deleteTaskFunc, unDeleteCheckFunc }) => {
+export const TaskDeleteOrUnDeleteButtonSwitch = ({
+  deleteCheckAble,
+  deleteTaskFunc,
+  unDeleteCheckFunc,
+}) => {
   return (
     deleteCheckAble === true && (
       <BackgroundDisAbledCover>

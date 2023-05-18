@@ -1,9 +1,9 @@
-import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../auth/AuthProvider';
-import { useGetErrorMessage } from '../useGetErrorMessage';
-import { useInputSanitization } from '../useInputSanitization';
-import { useInputValidation } from '../useInputValidation';
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../auth/AuthProvider";
+import { useGetErrorMessage } from "../useGetErrorMessage";
+import { useInputSanitization } from "../useInputSanitization";
+import { useInputValidation } from "../useInputValidation";
 
 export const useSignUpForm = () => {
   const navigateToTasks = useNavigate();
@@ -20,16 +20,37 @@ export const useSignUpForm = () => {
     setIsButtonDisabled(true);
 
     try {
-      const nickname = sanitizeInput(e.target.elements.nickname.value, { trim: true, ALLOWED_TAGS: [] });
-      const username = sanitizeInput(e.target.elements.username.value, { trim: true, ALLOWED_TAGS: [] });
-      const email = sanitizeInput(e.target.elements.email.value, { trim: true, ALLOWED_TAGS: [] });
-      const password = sanitizeInput(e.target.elements.password.value, { trim: true, ALLOWED_TAGS: [] });
+      const nickname = sanitizeInput(e.target.elements.nickname.value, {
+        trim: true,
+        ALLOWED_TAGS: [],
+      });
+      const username = sanitizeInput(e.target.elements.username.value, {
+        trim: true,
+        ALLOWED_TAGS: [],
+      });
+      const email = sanitizeInput(e.target.elements.email.value, {
+        trim: true,
+        ALLOWED_TAGS: [],
+      });
+      const password = sanitizeInput(e.target.elements.password.value, {
+        trim: true,
+        ALLOWED_TAGS: [],
+      });
 
       if (
-        !validateInput(nickname, 'ニックネーム', { maxLength: 50, nullFalse: false }) ||
-        !validateInput(username, 'ユーザーネーム', { maxLength: 15, nullFalse: false }) ||
-        !validateInput(email, 'メールアドレス', { nullFalse: false }) ||
-        !validateInput(password, 'パスワード', { minLength: 6, nullFalse: false }) ||
+        !validateInput(nickname, "ニックネーム", {
+          maxLength: 50,
+          nullFalse: false,
+        }) ||
+        !validateInput(username, "ユーザーネーム", {
+          maxLength: 15,
+          nullFalse: false,
+        }) ||
+        !validateInput(email, "メールアドレス", { nullFalse: false }) ||
+        !validateInput(password, "パスワード", {
+          minLength: 6,
+          nullFalse: false,
+        }) ||
         !validateEmailFormat(email)
       ) {
         setIsButtonDisabled(false);
@@ -37,16 +58,19 @@ export const useSignUpForm = () => {
       }
 
       await signup(nickname, username, email, password);
-      await navigateToTasks('/tasks');
+      await navigateToTasks("/tasks");
     } catch (error) {
-      console.error(`ユーザーのサインアップ中にエラーが発生しました。: `, error);
+      console.error(
+        `ユーザーのサインアップ中にエラーが発生しました。: `,
+        error
+      );
       const verbForErrorMessage = `ユーザー`;
       const objectForErrorMessage = `サインアップ`;
       getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
     } finally {
       setSignuping(false);
       setIsButtonDisabled(false);
-    };
+    }
   };
 
   return {

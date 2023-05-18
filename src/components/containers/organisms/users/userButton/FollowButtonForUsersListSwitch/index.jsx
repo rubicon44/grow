@@ -1,13 +1,25 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import { FollowButton } from '../followButton';
-import { FollowingOrUnFollowButtonSwitch } from '../FollowingOrUnFollowButtonSwitch';
-import { FollowOrFollowingOrUnFollowButtonSwitch } from './FollowOrFollowingOrUnFollowButtonSwitch';
+import { useState } from "react";
+import PropTypes from "prop-types";
+import { FollowButton } from "../followButton";
+import { FollowingOrUnFollowButtonSwitch } from "../FollowingOrUnFollowButtonSwitch";
+import { FollowOrFollowingOrUnFollowButtonSwitch } from "./FollowOrFollowingOrUnFollowButtonSwitch";
 
 export const FollowButtonForUsersListSwitch = (props) => {
-  const { changeFollowButtonStyle, currentUserName, currentUserId, followFunc, isFollowing, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc, username, userIdToFollowOrUnFollow } = props;
+  const {
+    changeFollowButtonStyle,
+    currentUserName,
+    currentUserId,
+    followFunc,
+    isFollowing,
+    setChangeFollowButtonStyleToFalseFunc,
+    setChangeFollowButtonStyleToTrueFunc,
+    unFollowFunc,
+    username,
+    userIdToFollowOrUnFollow,
+  } = props;
   // todo: state位置検証
-  const [showFollowingOrUnfollowButton, setShowFollowingOrUnfollowButton] = useState(false);
+  const [showFollowingOrUnfollowButton, setShowFollowingOrUnfollowButton] =
+    useState(false);
 
   const handleButtonClick = async () => {
     if (isFollowing) {
@@ -25,18 +37,22 @@ export const FollowButtonForUsersListSwitch = (props) => {
     return isFollowing ? (
       <FollowingOrUnFollowButtonSwitch
         changeFollowButtonStyle={changeFollowButtonStyle}
-        setChangeFollowButtonStyleToFalseFunc={setChangeFollowButtonStyleToFalseFunc}
-        setChangeFollowButtonStyleToTrueFunc={setChangeFollowButtonStyleToTrueFunc}
+        setChangeFollowButtonStyleToFalseFunc={
+          setChangeFollowButtonStyleToFalseFunc
+        }
+        setChangeFollowButtonStyleToTrueFunc={
+          setChangeFollowButtonStyleToTrueFunc
+        }
         unFollowFunc={unFollowFunc}
       />
     ) : (
       <FollowButton followFunc={followFunc} onClick={handleButtonClick} />
     );
-  };
+  }
 
   if (String(currentUserId) === String(userIdToFollowOrUnFollow)) {
     return null;
-  };
+  }
 
   return (
     <FollowOrFollowingOrUnFollowButtonSwitch
@@ -45,8 +61,12 @@ export const FollowButtonForUsersListSwitch = (props) => {
       isFollowing={isFollowing}
       onClick={handleButtonClick}
       showFollowingOrUnfollowButton={showFollowingOrUnfollowButton}
-      setChangeFollowButtonStyleToFalseFunc={setChangeFollowButtonStyleToFalseFunc}
-      setChangeFollowButtonStyleToTrueFunc={setChangeFollowButtonStyleToTrueFunc}
+      setChangeFollowButtonStyleToFalseFunc={
+        setChangeFollowButtonStyleToFalseFunc
+      }
+      setChangeFollowButtonStyleToTrueFunc={
+        setChangeFollowButtonStyleToTrueFunc
+      }
       unFollowFunc={unFollowFunc}
     />
   );
@@ -62,5 +82,9 @@ FollowButtonForUsersListSwitch.propTypes = {
   setChangeFollowButtonStyleToTrueFunc: PropTypes.func.isRequired,
   unFollowFunc: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
-  userIdToFollowOrUnFollow: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object]).isRequired,
+  userIdToFollowOrUnFollow: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object,
+  ]).isRequired,
 };

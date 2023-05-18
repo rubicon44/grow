@@ -1,6 +1,6 @@
-import { memo } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { memo } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 export const Title = memo(({ children, className }) => {
   return <BaseTitle className={className}>{children}</BaseTitle>;

@@ -1,20 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { NextButtonLink } from '../../../presentational/atoms/Link/NextButtonLink';
+import React from "react";
+import PropTypes from "prop-types";
+import { NextButtonLink } from "../../../presentational/atoms/Link/NextButtonLink";
 
 export class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
     this.state = { error: null };
-  };
+  }
 
   static getDerivedStateFromError(error) {
     return { error };
-  };
+  }
 
   componentDidCatch(error, errorInfo) {
     console.error(error, errorInfo);
-  };
+  }
 
   render() {
     if (this.state.error) {
@@ -29,12 +29,12 @@ export class ErrorBoundary extends React.Component {
     }
 
     return this.props.children;
-  };
-};
+  }
+}
 
 ErrorBoundary.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]).isRequired,
 };

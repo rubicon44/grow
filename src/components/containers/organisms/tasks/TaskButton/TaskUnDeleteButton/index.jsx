@@ -1,7 +1,11 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 export const TaskUnDeleteButton = ({ unDeleteCheckFunc }) => {
-  return <button type="button" onClick={unDeleteCheckFunc}>いいえ</button>;
+  return (
+    <button type="button" onClick={unDeleteCheckFunc}>
+      いいえ
+    </button>
+  );
 };
 
 TaskUnDeleteButton.propTypes = {

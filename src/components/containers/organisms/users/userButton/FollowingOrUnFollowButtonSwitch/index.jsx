@@ -1,19 +1,30 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { FollowingButton } from '../FollowingButton';
-import { UnFollowButton} from '../UnFollowButton';
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { FollowingButton } from "../FollowingButton";
+import { UnFollowButton } from "../UnFollowButton";
 
-export const FollowingOrUnFollowButtonSwitch = ({ changeFollowButtonStyle, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc }) => {
+export const FollowingOrUnFollowButtonSwitch = ({
+  changeFollowButtonStyle,
+  setChangeFollowButtonStyleToFalseFunc,
+  setChangeFollowButtonStyleToTrueFunc,
+  unFollowFunc,
+}) => {
   return (
     <FollowChange>
       <FollowChangeLinkCover>
         {changeFollowButtonStyle ? (
           <UnFollowButton
-            setChangeFollowButtonStyleToFalseFunc={setChangeFollowButtonStyleToFalseFunc}
+            setChangeFollowButtonStyleToFalseFunc={
+              setChangeFollowButtonStyleToFalseFunc
+            }
             unFollowFunc={unFollowFunc}
           />
         ) : (
-          <FollowingButton setChangeFollowButtonStyleToTrueFunc={setChangeFollowButtonStyleToTrueFunc} />
+          <FollowingButton
+            setChangeFollowButtonStyleToTrueFunc={
+              setChangeFollowButtonStyleToTrueFunc
+            }
+          />
         )}
       </FollowChangeLinkCover>
     </FollowChange>

@@ -1,8 +1,12 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { LogOutButtonContainer } from '../../../common/LogOutButtonContainer';
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { LogOutButtonContainer } from "../../../common/LogOutButtonContainer";
 
-export const LogOutButtonSwitch = ({ currentUserAuth, currentUserName, userNameInUrl }) => {
+export const LogOutButtonSwitch = ({
+  currentUserAuth,
+  currentUserName,
+  userNameInUrl,
+}) => {
   return (
     String(currentUserName) === String(userNameInUrl) && (
       <LogOutButtonCover>

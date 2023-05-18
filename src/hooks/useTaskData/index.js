@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useCurrentTaskId } from '../useCurrentTaskId';
-import { useGetErrorMessage } from '../useGetErrorMessage';
-import { getTask } from '../../infra/api';
+import { useEffect, useState } from "react";
+import { useCurrentTaskId } from "../useCurrentTaskId";
+import { useGetErrorMessage } from "../useGetErrorMessage";
+import { getTask } from "../../infra/api";
 
 export const useTaskData = () => {
   const currentTaskId = useCurrentTaskId();
@@ -9,7 +9,14 @@ export const useTaskData = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [taskData, setTaskData] = useState({
-    task: { id: '', title: '', content: '', status: '', startDate: '', endDate: '' },
+    task: {
+      id: "",
+      title: "",
+      content: "",
+      status: "",
+      startDate: "",
+      endDate: "",
+    },
   });
 
   useEffect(() => {
@@ -22,7 +29,7 @@ export const useTaskData = () => {
         // todo: 型変換の適切性を検証
         task.id = task.id.toString();
         task.userId = task.userId.toString();
-        setTaskData({ task: task });
+        setTaskData({ task });
       } catch (error) {
         setError(error);
         console.error(`タスクの取得中にエラーが発生しました。: `, error);
@@ -31,7 +38,7 @@ export const useTaskData = () => {
         getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
       } finally {
         setLoading(false);
-      };
+      }
     };
     fetchTaskData();
   }, [currentTaskId, getErrorMessage]);

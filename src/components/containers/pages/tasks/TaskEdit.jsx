@@ -1,5 +1,5 @@
-import { useLocation } from 'react-router-dom';
-import { TaskEditTemplate } from '../../templates/tasks/TaskEditTemplate';
+import { useLocation } from "react-router-dom";
+import { TaskEditTemplate } from "../../templates/tasks/TaskEditTemplate";
 
 export const TaskEdit = () => {
   // todo: useLocationを使用せず、TaskEdit内のorganismsで直接データを取得する。

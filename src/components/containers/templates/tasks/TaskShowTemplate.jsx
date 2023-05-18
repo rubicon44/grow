@@ -1,5 +1,5 @@
-import { MainWithHeader } from '../MainWithHeader';
-import { TaskListContainer } from '../../organisms/tasks/TaskListContainer';
+import { MainWithHeader } from "../MainWithHeader";
+import { TaskListContainer } from "../../organisms/tasks/TaskListContainer";
 
 export const TaskShowTemplate = () => {
   return (

@@ -1,7 +1,7 @@
-import { useContext } from 'react';
-import PropTypes from 'prop-types';
-import { AuthContext } from '../AuthProvider';
-import { SignIn } from '../../components/containers/pages/auth/signIn';
+import { useContext } from "react";
+import PropTypes from "prop-types";
+import { AuthContext } from "../AuthProvider";
+import { SignIn } from "../../components/containers/pages/auth/signIn";
 
 export const PrivateRoute = ({ element: RouteComponent }) => {
   const { currentUserAuth } = useContext(AuthContext);
@@ -9,5 +9,5 @@ export const PrivateRoute = ({ element: RouteComponent }) => {
 };
 
 PrivateRoute.propTypes = {
-  element: PropTypes.element.isRequired
+  element: PropTypes.element.isRequired,
 };

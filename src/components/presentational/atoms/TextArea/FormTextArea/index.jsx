@@ -1,7 +1,14 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
-export const FormTextArea = ({ children, textAreaRef, htmlFor, name, defaultValue, placeholder }) => {
+export const FormTextArea = ({
+  children,
+  textAreaRef,
+  htmlFor,
+  name,
+  defaultValue,
+  placeholder,
+}) => {
   return (
     <FormTextAreaCover>
       <label htmlFor={htmlFor}>

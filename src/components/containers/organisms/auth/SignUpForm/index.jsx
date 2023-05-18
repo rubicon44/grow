@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { FormInput } from '../../../../presentational/atoms/Input/FormInput';
-import { FormSubmitButton } from '../../../../presentational/atoms/Button/FormSubmitButton';
-import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { FormInput } from "../../../../presentational/atoms/Input/FormInput";
+import { FormSubmitButton } from "../../../../presentational/atoms/Button/FormSubmitButton";
+import { TitleWithBackArrowHeader } from "../../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
 export const SignUpForm = ({ handleSubmit, isButtonDisabled }) => {
   return (
@@ -45,7 +45,9 @@ export const SignUpForm = ({ handleSubmit, isButtonDisabled }) => {
           >
             パスワード
           </FormInput>
-          <FormSubmitButton isButtonDisabled={isButtonDisabled}>会員登録</FormSubmitButton>
+          <FormSubmitButton isButtonDisabled={isButtonDisabled}>
+            会員登録
+          </FormSubmitButton>
         </form>
       </FormCover>
     </>

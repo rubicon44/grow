@@ -1,7 +1,16 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
-export const FormInput = ({ children, inputRef, htmlFor, type, name, defaultValue, placeholder, autoComplete }) => {
+export const FormInput = ({
+  children,
+  inputRef,
+  htmlFor,
+  type,
+  name,
+  defaultValue,
+  placeholder,
+  autoComplete,
+}) => {
   return (
     <FormInputCover>
       <label htmlFor={htmlFor}>
@@ -42,4 +51,4 @@ const FormInputCover = styled.div`
 
 const Input = styled.input`
   height: 30px;
-`
+`;

@@ -1,6 +1,10 @@
 export const useInputValidation = () => {
   // common
-  const validateInput = (value, inputName, { maxLength, minLength = null, nullFalse = true }) => {
+  const validateInput = (
+    value,
+    inputName,
+    { maxLength, minLength = null, nullFalse = true }
+  ) => {
     if (!value && !nullFalse) {
       window.alert(`${inputName}を入力してください。`);
       return false;
@@ -22,7 +26,7 @@ export const useInputValidation = () => {
   const validateEmailFormat = (email) => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     if (!emailRegex.test(email)) {
-      window.alert('有効なメールアドレスを入力してください。');
+      window.alert("有効なメールアドレスを入力してください。");
       return false;
     }
     return true;
@@ -31,7 +35,7 @@ export const useInputValidation = () => {
   // task
   const validateTask = (startDate, endDate) => {
     if (endDate && startDate && endDate < startDate) {
-      window.alert('開始日には、終了日よりも前の日付を設定してください。');
+      window.alert("開始日には、終了日よりも前の日付を設定してください。");
       return false;
     }
     return true;

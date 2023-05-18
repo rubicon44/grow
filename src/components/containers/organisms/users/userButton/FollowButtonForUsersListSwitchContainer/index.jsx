@@ -1,10 +1,26 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { useFollowAndUnFollow } from '../../../../../../hooks/useFollowAndUnFollow';
-import { FollowButtonForUsersListSwitch } from '../FollowButtonForUsersListSwitch';
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { useFollowAndUnFollow } from "../../../../../../hooks/useFollowAndUnFollow";
+import { FollowButtonForUsersListSwitch } from "../FollowButtonForUsersListSwitch";
 
-export const FollowButtonForUsersListSwitchContainer = ({ userIdToFollowOrUnFollow, username }) => {
-  const { changeFollowButtonStyle, creating, currentUserId, currentUserName, deleting, error, followFunc, loading, isFollowing, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc } = useFollowAndUnFollow(userIdToFollowOrUnFollow);
+export const FollowButtonForUsersListSwitchContainer = ({
+  userIdToFollowOrUnFollow,
+  username,
+}) => {
+  const {
+    changeFollowButtonStyle,
+    creating,
+    currentUserId,
+    currentUserName,
+    deleting,
+    error,
+    followFunc,
+    loading,
+    isFollowing,
+    setChangeFollowButtonStyleToFalseFunc,
+    setChangeFollowButtonStyleToTrueFunc,
+    unFollowFunc,
+  } = useFollowAndUnFollow(userIdToFollowOrUnFollow);
 
   if (error) return <>Error...</>;
   if (creating) return <WaitingButton>Creating...</WaitingButton>;
@@ -17,8 +33,12 @@ export const FollowButtonForUsersListSwitchContainer = ({ userIdToFollowOrUnFoll
       currentUserName={currentUserName}
       followFunc={followFunc}
       isFollowing={isFollowing}
-      setChangeFollowButtonStyleToFalseFunc={setChangeFollowButtonStyleToFalseFunc}
-      setChangeFollowButtonStyleToTrueFunc={setChangeFollowButtonStyleToTrueFunc}
+      setChangeFollowButtonStyleToFalseFunc={
+        setChangeFollowButtonStyleToFalseFunc
+      }
+      setChangeFollowButtonStyleToTrueFunc={
+        setChangeFollowButtonStyleToTrueFunc
+      }
       unFollowFunc={unFollowFunc}
       userIdToFollowOrUnFollow={userIdToFollowOrUnFollow}
       username={username}
@@ -27,7 +47,11 @@ export const FollowButtonForUsersListSwitchContainer = ({ userIdToFollowOrUnFoll
 };
 
 FollowButtonForUsersListSwitchContainer.propTypes = {
-  userIdToFollowOrUnFollow: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object]).isRequired,
+  userIdToFollowOrUnFollow: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object,
+  ]).isRequired,
   username: PropTypes.string.isRequired,
 };
 

@@ -1,18 +1,37 @@
-import { memo } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { LikeOrUnLikeButtonSwitchContainer } from '../../likes/LikeOrUnLikeButtonSwitchContainer';
-import { TaskDeleteCheckButton } from '../TaskButton/TaskDeleteCheckButton';
-import { TaskDeleteOrUnDeleteButtonSwitch } from '../TaskButton/TaskDeleteOrUnDeleteButtonSwitch';
-import { TaskEditButton } from '../TaskButton/TaskEditButton';
-import { TaskStatusSwitch } from '../logic/taskStatusSwitch';
-import { TitleWithBackArrowHeader } from '../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
-import { List } from '../../../../presentational/molecules/List';
-import { Popup } from '../../../../presentational/atoms/Popup';
+import { memo } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { LikeOrUnLikeButtonSwitchContainer } from "../../likes/LikeOrUnLikeButtonSwitchContainer";
+import { TaskDeleteCheckButton } from "../TaskButton/TaskDeleteCheckButton";
+import { TaskDeleteOrUnDeleteButtonSwitch } from "../TaskButton/TaskDeleteOrUnDeleteButtonSwitch";
+import { TaskEditButton } from "../TaskButton/TaskEditButton";
+import { TaskStatusSwitch } from "../logic/taskStatusSwitch";
+import { TitleWithBackArrowHeader } from "../../../../presentational/molecules/Header/TitleWithBackArrowHeader";
+import { List } from "../../../../presentational/molecules/List";
+import { Popup } from "../../../../presentational/atoms/Popup";
 
-export const TaskList = ({ currentUserId, deleteCheckAble, deleteCheckFunc, deleteTaskFunc, isButtonDisabled, moveToEditTask, showPopup, taskData, unDeleteCheckFunc }) => {
-  const { nickname: taskCreatedUserNickName, username: taskCreatedUserName } = taskData.task.user;
-  const { id: taskId, title: taskTitle, content: taskContent, status: taskStatus, startDate: taskStartDate, endDate: taskEndDate, userId: taskCreatedUserId } = taskData.task;
+export const TaskList = ({
+  currentUserId,
+  deleteCheckAble,
+  deleteCheckFunc,
+  deleteTaskFunc,
+  isButtonDisabled,
+  moveToEditTask,
+  showPopup,
+  taskData,
+  unDeleteCheckFunc,
+}) => {
+  const { nickname: taskCreatedUserNickName, username: taskCreatedUserName } =
+    taskData.task.user;
+  const {
+    id: taskId,
+    title: taskTitle,
+    content: taskContent,
+    status: taskStatus,
+    startDate: taskStartDate,
+    endDate: taskEndDate,
+    userId: taskCreatedUserId,
+  } = taskData.task;
 
   const MemoTitleWithBackArrowHeader = memo(() => {
     return <TitleWithBackArrowHeader>タスク詳細</TitleWithBackArrowHeader>;
@@ -32,7 +51,10 @@ export const TaskList = ({ currentUserId, deleteCheckAble, deleteCheckFunc, dele
         <TaskStatusSwitch taskStatus={taskStatus} />
         <div>開始日:{taskStartDate}</div>
         <div>終了日:{taskEndDate}</div>
-        <LikeOrUnLikeButtonSwitchContainer taskId={String(taskId)} currentUserId={String(currentUserId)} />
+        <LikeOrUnLikeButtonSwitchContainer
+          taskId={String(taskId)}
+          currentUserId={String(currentUserId)}
+        />
         <ButtonCover>
           <TaskEditButton
             currentUserId={currentUserId}

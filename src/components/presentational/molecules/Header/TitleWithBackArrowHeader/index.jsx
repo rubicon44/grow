@@ -1,12 +1,12 @@
-import { memo } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { BackArrow } from '../../../atoms/Arrow/BackArrow';
-import { Title } from '../../../atoms/Title';
+import { memo } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { BackArrow } from "../../../atoms/Arrow/BackArrow";
+import { Title } from "../../../atoms/Title";
 
 export const TitleWithBackArrowHeader = memo(({ children }) => {
   return (
-    <BaseTitleWithBackArrowHeader >
+    <BaseTitleWithBackArrowHeader>
       <BackArrow />
       <Title>{children}</Title>
     </BaseTitleWithBackArrowHeader>

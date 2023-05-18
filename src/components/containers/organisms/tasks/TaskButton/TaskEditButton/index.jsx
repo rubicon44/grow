@@ -1,7 +1,16 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-export const TaskEditButton = ({ currentUserId, isButtonDisabled, moveToEditTask, taskCreatedUserId }) => {
-  return String(taskCreatedUserId) === String(currentUserId) ? <button type="button" disabled={isButtonDisabled} onClick={moveToEditTask}>編集</button> : null;
+export const TaskEditButton = ({
+  currentUserId,
+  isButtonDisabled,
+  moveToEditTask,
+  taskCreatedUserId,
+}) => {
+  return String(taskCreatedUserId) === String(currentUserId) ? (
+    <button type="button" disabled={isButtonDisabled} onClick={moveToEditTask}>
+      編集
+    </button>
+  ) : null;
 };
 
 TaskEditButton.propTypes = {

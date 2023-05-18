@@ -1,15 +1,15 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-} from 'firebase/auth';
-import axios from 'axios';
-import Cookies from 'js-cookie';
-import PropTypes from 'prop-types';
-import { auth } from '../../infra/firebase';
-import { signUp, signIn } from '../../infra/api';
+} from "firebase/auth";
+import axios from "axios";
+import Cookies from "js-cookie";
+import PropTypes from "prop-types";
+import { auth } from "../../infra/firebase";
+import { signUp, signIn } from "../../infra/api";
 
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
@@ -24,20 +24,24 @@ export const AuthProvider = ({ children }) => {
           await signIn(idToken)
             .then((response) => {
               const { token, user } = response.data;
-              if (token) Cookies.set('token', token);
-              if (user) Cookies.set('user', JSON.stringify(user));
+              if (token) Cookies.set("token", token);
+              if (user) Cookies.set("user", JSON.stringify(user));
 
               axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
-              const tokenAuth = Cookies.get('token');
+              const tokenAuth = Cookies.get("token");
               axios.defaults.headers.common.Authorization = tokenAuth;
             })
             .catch(() => {
-              window.alert("このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。");
+              window.alert(
+                "このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。"
+              );
               signOut(auth);
             });
         });
     } catch (error) {
-      window.alert("このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。");
+      window.alert(
+        "このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。"
+      );
     }
   };
 
@@ -58,8 +62,8 @@ export const AuthProvider = ({ children }) => {
 
   const signout = async () => {
     await signOut(auth);
-    Cookies.remove('token');
-    Cookies.remove('user');
+    Cookies.remove("token");
+    Cookies.remove("user");
     window.location.reload();
   };
 

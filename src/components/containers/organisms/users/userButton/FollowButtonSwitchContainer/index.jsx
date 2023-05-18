@@ -1,10 +1,22 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { useFollowAndUnFollow } from '../../../../../../hooks/useFollowAndUnFollow';
-import { FollowButtonSwitch } from '../FollowButtonSwitch';
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { useFollowAndUnFollow } from "../../../../../../hooks/useFollowAndUnFollow";
+import { FollowButtonSwitch } from "../FollowButtonSwitch";
 
 export const FollowButtonSwitchContainer = ({ userIdToFollowOrUnFollow }) => {
-  const { changeFollowButtonStyle, creating, currentUserId, deleting, error, followFunc, loading, isFollowing, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc } = useFollowAndUnFollow(userIdToFollowOrUnFollow);
+  const {
+    changeFollowButtonStyle,
+    creating,
+    currentUserId,
+    deleting,
+    error,
+    followFunc,
+    loading,
+    isFollowing,
+    setChangeFollowButtonStyleToFalseFunc,
+    setChangeFollowButtonStyleToTrueFunc,
+    unFollowFunc,
+  } = useFollowAndUnFollow(userIdToFollowOrUnFollow);
   if (error) return <>Error...</>;
   if (creating) return <WaitingButton>Creating...</WaitingButton>;
   if (deleting) return <WaitingButton>Deleting...</WaitingButton>;
@@ -15,8 +27,12 @@ export const FollowButtonSwitchContainer = ({ userIdToFollowOrUnFollow }) => {
       currentUserId={currentUserId}
       followFunc={followFunc}
       isFollowing={isFollowing}
-      setChangeFollowButtonStyleToFalseFunc={setChangeFollowButtonStyleToFalseFunc}
-      setChangeFollowButtonStyleToTrueFunc={setChangeFollowButtonStyleToTrueFunc}
+      setChangeFollowButtonStyleToFalseFunc={
+        setChangeFollowButtonStyleToFalseFunc
+      }
+      setChangeFollowButtonStyleToTrueFunc={
+        setChangeFollowButtonStyleToTrueFunc
+      }
       unFollowFunc={unFollowFunc}
       userIdToFollowOrUnFollow={userIdToFollowOrUnFollow}
     />

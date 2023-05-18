@@ -1,6 +1,6 @@
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 
 export const BackArrow = () => {
   const navigate = useNavigate();

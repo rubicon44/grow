@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { ProfileChangeLink } from './ProfileChangeLink';
-import { ProfileChangeForm } from './ProfileChangeForm';
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { ProfileChangeLink } from "./ProfileChangeLink";
+import { ProfileChangeForm } from "./ProfileChangeForm";
 
 // todo: プロフィール編集の際の「コンテンツが何度もレンダリングされる現象」を解決する(おそらくif statementの問題。)。
 export const ProfileChange = (props) => {
@@ -14,7 +14,9 @@ export const ProfileChange = (props) => {
     return (
       <Profile>
         <div>
-          {String(currentUserId) === String(id) && (<ProfileChangeLink setBioAbleFunc={setBioAbleFunc} />)}
+          {String(currentUserId) === String(id) && (
+            <ProfileChangeLink setBioAbleFunc={setBioAbleFunc} />
+          )}
         </div>
         <ProfileContent>
           <UserNickName>{nickname}</UserNickName>
@@ -23,8 +25,10 @@ export const ProfileChange = (props) => {
         </ProfileContent>
       </Profile>
     );
-  };
-  return ( String(currentUserId) === String(id) && (<ProfileChangeForm {...props} />) );
+  }
+  return (
+    String(currentUserId) === String(id) && <ProfileChangeForm {...props} />
+  );
 };
 
 ProfileChange.propTypes = {
@@ -46,25 +50,29 @@ ProfileChange.propTypes = {
     id: PropTypes.number,
     bio: PropTypes.string,
     email: PropTypes.string,
-    likedTasks: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number,
-      userId: PropTypes.number,
-      content: PropTypes.string,
-      endDate: PropTypes.string,
-      startDate: PropTypes.string,
-      status: PropTypes.number,
-      title: PropTypes.string,
-    })),
+    likedTasks: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        userId: PropTypes.number,
+        content: PropTypes.string,
+        endDate: PropTypes.string,
+        startDate: PropTypes.string,
+        status: PropTypes.number,
+        title: PropTypes.string,
+      })
+    ),
     nickname: PropTypes.string,
-    tasks: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number,
-      userId: PropTypes.number,
-      content: PropTypes.string,
-      endDate: PropTypes.string,
-      startDate: PropTypes.string,
-      status: PropTypes.number,
-      title: PropTypes.string,
-    })),
+    tasks: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        userId: PropTypes.number,
+        content: PropTypes.string,
+        endDate: PropTypes.string,
+        startDate: PropTypes.string,
+        status: PropTypes.number,
+        title: PropTypes.string,
+      })
+    ),
     username: PropTypes.string,
   }).isRequired,
 };

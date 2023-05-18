@@ -1,12 +1,23 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { FollowButtonSwitchContainer } from '../../userButton/FollowButtonSwitchContainer';
-import { ProfileChangeContainer } from './ProfileChangeContainer';
-import { TitleWithBackArrowHeader } from '../../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { FollowButtonSwitchContainer } from "../../userButton/FollowButtonSwitchContainer";
+import { ProfileChangeContainer } from "./ProfileChangeContainer";
+import { TitleWithBackArrowHeader } from "../../../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
 export const UserTasksContentHeader = (props) => {
   const { currentUserId } = props;
-  const { bioAble, editing, error, handleTextSubmit, inputRefs, isButtonDisabled, loading, revertUserBioFunc, setBioAbleFunc, userData } = props;
+  const {
+    bioAble,
+    editing,
+    error,
+    handleTextSubmit,
+    inputRefs,
+    isButtonDisabled,
+    loading,
+    revertUserBioFunc,
+    setBioAbleFunc,
+    userData,
+  } = props;
   const { moveToFollowers, moveToFollowings } = props;
   return (
     <ContentHeaderCover>
@@ -54,25 +65,29 @@ UserTasksContentHeader.propTypes = {
     id: PropTypes.number,
     bio: PropTypes.string,
     email: PropTypes.string,
-    likedTasks: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number,
-      userId: PropTypes.number,
-      content: PropTypes.string,
-      endDate: PropTypes.string,
-      startDate: PropTypes.string,
-      status: PropTypes.number,
-      title: PropTypes.string,
-    })),
+    likedTasks: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        userId: PropTypes.number,
+        content: PropTypes.string,
+        endDate: PropTypes.string,
+        startDate: PropTypes.string,
+        status: PropTypes.number,
+        title: PropTypes.string,
+      })
+    ),
     nickname: PropTypes.string,
-    tasks: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number,
-      userId: PropTypes.number,
-      content: PropTypes.string,
-      endDate: PropTypes.string,
-      startDate: PropTypes.string,
-      status: PropTypes.number,
-      title: PropTypes.string,
-    })),
+    tasks: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        userId: PropTypes.number,
+        content: PropTypes.string,
+        endDate: PropTypes.string,
+        startDate: PropTypes.string,
+        status: PropTypes.number,
+        title: PropTypes.string,
+      })
+    ),
     username: PropTypes.string,
   }).isRequired,
 };

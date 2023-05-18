@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 export const FollowButton = ({ followFunc }) => {
   return (
@@ -14,7 +14,7 @@ export const FollowButton = ({ followFunc }) => {
 };
 
 FollowButton.propTypes = {
-  followFunc: PropTypes.func.isRequired
+  followFunc: PropTypes.func.isRequired,
 };
 
 const FollowChange = styled.div`

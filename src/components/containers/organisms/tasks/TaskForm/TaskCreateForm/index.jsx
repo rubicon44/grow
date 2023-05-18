@@ -1,9 +1,14 @@
-import { memo } from 'react';
-import PropTypes from 'prop-types';
-import { TaskForm } from '..';
-import { TitleWithBackArrowHeader } from '../../../../../presentational/molecules/Header/TitleWithBackArrowHeader';
+import { memo } from "react";
+import PropTypes from "prop-types";
+import { TaskForm } from "..";
+import { TitleWithBackArrowHeader } from "../../../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
-export const TaskCreateForm = ({ handleTextSubmit, inputRefs, isButtonDisabled, taskData }) => {
+export const TaskCreateForm = ({
+  handleTextSubmit,
+  inputRefs,
+  isButtonDisabled,
+  taskData,
+}) => {
   const MemoTaskForm = memo(TaskForm);
   return (
     <>

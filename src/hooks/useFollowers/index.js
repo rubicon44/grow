@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useGetErrorMessage } from '../useGetErrorMessage';
-import { getFollowers } from '../../infra/api';
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useGetErrorMessage } from "../useGetErrorMessage";
+import { getFollowers } from "../../infra/api";
 
 export const useFollowers = () => {
   const location = useLocation();
@@ -28,7 +28,7 @@ export const useFollowers = () => {
         getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
       } finally {
         setLoading(false);
-      };
+      }
     };
 
     fetchFollowers(username);
@@ -38,6 +38,6 @@ export const useFollowers = () => {
     error,
     followers,
     loading,
-    username
+    username,
   };
 };

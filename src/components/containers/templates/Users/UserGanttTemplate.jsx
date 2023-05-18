@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { HeaderContainer } from '../../organisms/common/HeaderContainer';
-import { GanttChartContainer } from '../../organisms/tasks/GanttChartContainer';
+import styled from "styled-components";
+import { HeaderContainer } from "../../organisms/common/HeaderContainer";
+import { GanttChartContainer } from "../../organisms/tasks/GanttChartContainer";
 
 export const UserGanttTemplate = () => {
   return (

@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from "react-query";
 
 export const useApiQuery = (queryKey, apiFetchFn) => {
   // const { data, isLoading, error } = useQuery(queryKey, apiFetchFn, {
@@ -13,11 +13,11 @@ export const useApiQuery = (queryKey, apiFetchFn) => {
       error,
       loading: false,
     };
-  };
+  }
 
   if (data !== undefined && data.length !== 0) {
     return {
-      data: data,
+      data,
       loading: isLoading,
     };
   } else {

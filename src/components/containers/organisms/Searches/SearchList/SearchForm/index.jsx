@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { FormInput } from '../../../../../presentational/atoms/Input/FormInput';
-import { FormSubmitButton } from '../../../../../presentational/atoms/Button/FormSubmitButton';
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { FormInput } from "../../../../../presentational/atoms/Input/FormInput";
+import { FormSubmitButton } from "../../../../../presentational/atoms/Button/FormSubmitButton";
 
 export const SearchForm = ({ handleSubmit, isButtonDisabled }) => {
   return (
@@ -25,7 +25,9 @@ export const SearchForm = ({ handleSubmit, isButtonDisabled }) => {
             </Select>
           </SelectCover>
           <FormSubmitButtonCover>
-            <FormSubmitButton isButtonDisabled={isButtonDisabled}>検索</FormSubmitButton>
+            <FormSubmitButton isButtonDisabled={isButtonDisabled}>
+              検索
+            </FormSubmitButton>
           </FormSubmitButtonCover>
         </SelectWithFormSubmitButton>
       </form>

@@ -1,29 +1,34 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 export const GunttChartTaskBar = ({ styles }) => {
-  return (
-    styles.map((style) => {
-      const componentMap = {
-        0: RedCalenderTaskBar,
-        1: BlueCalenderTaskBar,
-        2: GreenCalenderTaskBar,
-        3: YellowGreenCalenderTaskBar
-      };
-      const Component = componentMap[style.taskStatus];
-      return <Component key={style.id} style={{top: style.top, left: style.left, width: style.width}} />;
-    })
-  );
+  return styles.map((style) => {
+    const componentMap = {
+      0: RedCalenderTaskBar,
+      1: BlueCalenderTaskBar,
+      2: GreenCalenderTaskBar,
+      3: YellowGreenCalenderTaskBar,
+    };
+    const Component = componentMap[style.taskStatus];
+    return (
+      <Component
+        key={style.id}
+        style={{ top: style.top, left: style.left, width: style.width }}
+      />
+    );
+  });
 };
 
 GunttChartTaskBar.propTypes = {
-  styles: PropTypes.arrayOf(PropTypes.exact({
-    id: PropTypes.string.isRequired,
-    left: PropTypes.string.isRequired,
-    taskStatus: PropTypes.number.isRequired,
-    top: PropTypes.string.isRequired,
-    width: PropTypes.string.isRequired,
-  })).isRequired,
+  styles: PropTypes.arrayOf(
+    PropTypes.exact({
+      id: PropTypes.string.isRequired,
+      left: PropTypes.string.isRequired,
+      taskStatus: PropTypes.number.isRequired,
+      top: PropTypes.string.isRequired,
+      width: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 const CalenderTaskBar = styled.span`

@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useGetErrorMessage } from '../useGetErrorMessage';
-import { useUserNameInUrl } from '../useUserNameInUrl';
-import { getUser } from '../../infra/api';
+import { useEffect, useState } from "react";
+import { useGetErrorMessage } from "../useGetErrorMessage";
+import { useUserNameInUrl } from "../useUserNameInUrl";
+import { getUser } from "../../infra/api";
 
 export const useUserData = () => {
   const { userNameInUrl } = useUserNameInUrl();
@@ -15,7 +15,7 @@ export const useUserData = () => {
     const handleSuccess = (userData) => {
       // todo: Consider a way to change snake-case to camel-case.
       const { likedTasks, ...newUserData } = userData;
-      const newDataWithLikedTasksKey = { ...newUserData, likedTasks: likedTasks };
+      const newDataWithLikedTasksKey = { ...newUserData, likedTasks };
       setUserData(newDataWithLikedTasksKey);
     };
 
@@ -33,7 +33,7 @@ export const useUserData = () => {
 
       try {
         // todo: エラーの際、他ユーザーをフォローできてしまうかも。
-        const response = await getUser(userNameInUrl)
+        const response = await getUser(userNameInUrl);
         const userData = response.data;
         handleSuccess(userData);
       } catch (error) {
@@ -41,7 +41,7 @@ export const useUserData = () => {
       } finally {
         setLoading(false);
         setCheckUserNameChange(false);
-      };
+      }
     };
 
     fetchUserData(userNameInUrl);
@@ -53,6 +53,6 @@ export const useUserData = () => {
     setCheckUserNameChange,
     setUserData,
     userData,
-    userNameInUrl
+    userNameInUrl,
   };
 };

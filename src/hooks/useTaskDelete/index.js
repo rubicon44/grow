@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useCurrentUserId } from '../useCurrentUserId';
-import { useGetErrorMessage } from '../useGetErrorMessage';
-import { deleteTask } from '../../infra/api';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useCurrentUserId } from "../useCurrentUserId";
+import { useGetErrorMessage } from "../useGetErrorMessage";
+import { deleteTask } from "../../infra/api";
 
 export const useTaskDelete = (taskData) => {
   const navigateToUser = useNavigate();
@@ -38,7 +38,7 @@ export const useTaskDelete = (taskData) => {
       setDeleting(false);
       setIsButtonDisabled(false);
       setDeleteCheckAble(false);
-    };
+    }
   };
 
   const unDeleteCheckFunc = () => {
@@ -52,6 +52,6 @@ export const useTaskDelete = (taskData) => {
     deleteTaskFunc,
     deleting,
     isButtonDisabled,
-    unDeleteCheckFunc
+    unDeleteCheckFunc,
   };
 };

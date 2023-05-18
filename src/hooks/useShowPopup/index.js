@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 export const useShowPopup = () => {
   const location = useLocation();
@@ -10,7 +10,7 @@ export const useShowPopup = () => {
       setShowPopup(location.state.showPopup);
       // Clear location state to prevent the popup from being displayed again
       window.history.replaceState({}, document.title, location.pathname);
-    };
+    }
   }, [location]);
 
   return { showPopup };

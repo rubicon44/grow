@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { useState } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 // todo: アニメーションをつけて、popup表示をもっと目立たせたい。
 export const Popup = ({ message, showPopup }) => {
@@ -13,7 +13,11 @@ export const Popup = ({ message, showPopup }) => {
 
   setTimeout(closePopup, 3000);
 
-  return showPopup && visible ? <Message><p>{message}</p></Message> : null;
+  return showPopup && visible ? (
+    <Message>
+      <p>{message}</p>
+    </Message>
+  ) : null;
 };
 
 Popup.propTypes = {

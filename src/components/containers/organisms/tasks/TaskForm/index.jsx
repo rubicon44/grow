@@ -1,13 +1,19 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { FormInput } from '../../../../presentational/atoms/Input/FormInput';
-import { FormSubmitButton } from '../../../../presentational/atoms/Button/FormSubmitButton';
-import { FormTextArea } from '../../../../presentational/atoms/TextArea/FormTextArea';
-import { TaskFormSelect } from './ui/TaskFormSelect';
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { FormInput } from "../../../../presentational/atoms/Input/FormInput";
+import { FormSubmitButton } from "../../../../presentational/atoms/Button/FormSubmitButton";
+import { FormTextArea } from "../../../../presentational/atoms/TextArea/FormTextArea";
+import { TaskFormSelect } from "./ui/TaskFormSelect";
 
-export const TaskForm = ({ handleTextSubmit, inputRefs, isButtonDisabled, taskData }) => {
+export const TaskForm = ({
+  handleTextSubmit,
+  inputRefs,
+  isButtonDisabled,
+  taskData,
+}) => {
   const { title, content, status, startDate, endDate } = taskData.task;
-  const { titleRef, contentRef, statusRef, startDateRef, endDateRef } = inputRefs;
+  const { titleRef, contentRef, statusRef, startDateRef, endDateRef } =
+    inputRefs;
   return (
     <TaskFormCover>
       <form onSubmit={handleTextSubmit}>
@@ -30,10 +36,7 @@ export const TaskForm = ({ handleTextSubmit, inputRefs, isButtonDisabled, taskDa
         >
           内容:
         </FormTextArea>
-        <TaskFormSelect
-          defaultValue={status}
-          selectRef={statusRef}
-        />
+        <TaskFormSelect defaultValue={status} selectRef={statusRef} />
         <FormInput
           defaultValue={startDate}
           inputRef={startDateRef}
@@ -54,7 +57,9 @@ export const TaskForm = ({ handleTextSubmit, inputRefs, isButtonDisabled, taskDa
         >
           終了日:
         </FormInput>
-        <FormSubmitButton isButtonDisabled={isButtonDisabled}>{!title ? '作成' : '更新'}</FormSubmitButton>
+        <FormSubmitButton isButtonDisabled={isButtonDisabled}>
+          {!title ? "作成" : "更新"}
+        </FormSubmitButton>
       </form>
     </TaskFormCover>
   );
