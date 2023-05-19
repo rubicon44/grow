@@ -50,6 +50,10 @@ export const ProfileChange = ({
 ProfileChange.propTypes = {
   bioAble: PropTypes.bool.isRequired,
   currentUserId: PropTypes.string.isRequired,
+  handleTextSubmit: PropTypes.func.isRequired,
+  inputRefs: PropTypes.object.isRequired,
+  isButtonDisabled: PropTypes.bool.isRequired,
+  revertUserBioFunc: PropTypes.func.isRequired,
   setBioAbleFunc: PropTypes.func.isRequired,
   userData: PropTypes.shape({
     id: PropTypes.number,

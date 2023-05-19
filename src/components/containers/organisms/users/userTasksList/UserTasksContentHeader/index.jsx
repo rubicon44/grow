@@ -2,12 +2,15 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { FollowButtonSwitchContainer } from "../../userButton/FollowButtonSwitchContainer";
 import { ProfileChangeContainer } from "./ProfileChangeContainer";
+import { UserTasksCheckReLoginWhenChangedUserId } from "../UserTasksCheckReLoginWhenChangedUserId";
 import { TitleWithBackArrowHeader } from "../../../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
 export const UserTasksContentHeader = (props) => {
   const { currentUserId } = props;
   const {
     bioAble,
+    changeUserNameCheckAble,
+    changeUserNameFunc,
     editing,
     error,
     handleTextSubmit,
@@ -20,27 +23,35 @@ export const UserTasksContentHeader = (props) => {
   } = props;
   const { moveToFollowers, moveToFollowings } = props;
   return (
-    <ContentHeaderCover>
-      <TitleWithBackArrowHeader>{userData.nickname}</TitleWithBackArrowHeader>
-      <FollowButtonSwitchContainer userIdToFollowOrUnFollow={userData.id} />
-      <ProfileChangeContainer
-        bioAble={bioAble}
-        currentUserId={currentUserId}
-        editing={editing}
-        error={error}
-        handleTextSubmit={handleTextSubmit}
-        inputRefs={inputRefs}
-        isButtonDisabled={isButtonDisabled}
-        loading={loading}
-        revertUserBioFunc={revertUserBioFunc}
-        setBioAbleFunc={setBioAbleFunc}
-        userData={userData}
-      />
-      <RelationshipsCover>
-        <InteractiveSpan onClick={moveToFollowings}>フォロー中</InteractiveSpan>
-        <InteractiveSpan onClick={moveToFollowers}>フォロワー</InteractiveSpan>
-      </RelationshipsCover>
-    </ContentHeaderCover>
+    <>
+      {changeUserNameCheckAble === true && (
+        <UserTasksCheckReLoginWhenChangedUserId
+          changeUserNameFunc={changeUserNameFunc}
+          revertUserBioFunc={revertUserBioFunc}
+        />
+      )}
+      <ContentHeaderCover>
+        <TitleWithBackArrowHeader>{userData.nickname}</TitleWithBackArrowHeader>
+        <FollowButtonSwitchContainer userIdToFollowOrUnFollow={userData.id} />
+        <ProfileChangeContainer
+          bioAble={bioAble}
+          currentUserId={currentUserId}
+          editing={editing}
+          error={error}
+          handleTextSubmit={handleTextSubmit}
+          inputRefs={inputRefs}
+          isButtonDisabled={isButtonDisabled}
+          loading={loading}
+          revertUserBioFunc={revertUserBioFunc}
+          setBioAbleFunc={setBioAbleFunc}
+          userData={userData}
+        />
+        <RelationshipsCover>
+          <InteractiveSpan onClick={moveToFollowings}>フォロー中</InteractiveSpan>
+          <InteractiveSpan onClick={moveToFollowers}>フォロワー</InteractiveSpan>
+        </RelationshipsCover>
+      </ContentHeaderCover>
+    </>
   );
 };
 
@@ -52,14 +63,16 @@ UserTasksContentHeader.defaultProps = {
 
 UserTasksContentHeader.propTypes = {
   bioAble: PropTypes.bool.isRequired,
+  changeUserNameCheckAble: PropTypes.bool.isRequired,
+  changeUserNameFunc: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
   editing: PropTypes.bool,
   error: PropTypes.bool,
   handleTextSubmit: PropTypes.func.isRequired,
   inputRefs: PropTypes.shape({
-    bioRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
-    nicknameRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
-    usernameRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
+    bioRef: PropTypes.object.isRequired,
+    nicknameRef: PropTypes.object.isRequired,
+    usernameRef: PropTypes.object.isRequired,
   }).isRequired,
   isButtonDisabled: PropTypes.bool.isRequired,
   loading: PropTypes.bool,

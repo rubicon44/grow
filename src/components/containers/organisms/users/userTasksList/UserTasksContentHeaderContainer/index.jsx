@@ -1,10 +1,8 @@
 import PropTypes from "prop-types";
-import { LogOutButtonSwitchContainer } from "./LogOutButtonSwitchContainer";
-import { UserTasksContent } from "./UserTasksContent";
-import { UserTasksContentHeaderContainer } from "./UserTasksContentHeaderContainer";
-import { Popup } from "../../../../presentational/atoms/Popup";
+import { useUserEdit } from "../../../../../../hooks/useUserEdit";
+import { UserTasksContentHeader } from "../UserTasksContentHeader";
 
-export const UserTasksList = (props) => {
+export const UserTasksContentHeaderContainer = (props) => {
   const { currentUserId } = props;
   const {
     error,
@@ -12,49 +10,56 @@ export const UserTasksList = (props) => {
     setCheckUserNameChange,
     setUserData,
     userData,
-    userNameInUrl,
   } = props;
-  const { moveToFollowers, moveToFollowings, moveToGanttChart } = props;
-  const { showPopup } = props;
+  const { moveToFollowers, moveToFollowings } = props;
+  const {
+    bioAble,
+    changeUserNameCheckAble,
+    changeUserNameFunc,
+    editing,
+    handleTextSubmit,
+    inputRefs,
+    isButtonDisabled,
+    revertUserBioFunc,
+    setBioAbleFunc,
+  } = useUserEdit(setCheckUserNameChange, setUserData, userData);
+
+  // todo: userData取得時のerrorとの競合の解決。
+  if (editing) return <>Editing...</>;
   return (
-    <>
-      <Popup message="タスクが正常に削除されました。" showPopup={showPopup} />
-      <UserTasksContentHeaderContainer
+      <UserTasksContentHeader
+        bioAble={bioAble}
+        changeUserNameCheckAble={changeUserNameCheckAble}
+        changeUserNameFunc={changeUserNameFunc}
         currentUserId={String(currentUserId)}
+        editing={editing}
         error={error}
+        handleTextSubmit={handleTextSubmit}
+        inputRefs={inputRefs}
+        isButtonDisabled={isButtonDisabled}
         loading={loading}
         moveToFollowers={moveToFollowers}
         moveToFollowings={moveToFollowings}
-        setCheckUserNameChange={setCheckUserNameChange}
-        setUserData={setUserData}
+        revertUserBioFunc={revertUserBioFunc}
+        setBioAbleFunc={setBioAbleFunc}
         userData={userData}
       />
-      <UserTasksContent
-        error={error}
-        loading={loading}
-        moveToGanttChart={moveToGanttChart}
-        userData={userData}
-      />
-      <LogOutButtonSwitchContainer userNameInUrl={userNameInUrl} />
-    </>
   );
 };
 
-UserTasksList.defaultProps = {
+UserTasksContentHeaderContainer.defaultProps = {
   error: false,
   loading: false,
 };
 
-UserTasksList.propTypes = {
-  currentUserId: PropTypes.string.isRequired,
+UserTasksContentHeaderContainer.propTypes = {
   error: PropTypes.bool,
   loading: PropTypes.bool,
-  moveToFollowers: PropTypes.func.isRequired,
+  currentUserId: PropTypes.string.isRequired,
   moveToFollowings: PropTypes.func.isRequired,
-  moveToGanttChart: PropTypes.func.isRequired,
+  moveToFollowers: PropTypes.func.isRequired,
   setCheckUserNameChange: PropTypes.func.isRequired,
   setUserData: PropTypes.func.isRequired,
-  showPopup: PropTypes.bool.isRequired,
   userData: PropTypes.shape({
     id: PropTypes.number,
     bio: PropTypes.string,
@@ -84,5 +89,4 @@ UserTasksList.propTypes = {
     ),
     username: PropTypes.string,
   }).isRequired,
-  userNameInUrl: PropTypes.string.isRequired,
 };

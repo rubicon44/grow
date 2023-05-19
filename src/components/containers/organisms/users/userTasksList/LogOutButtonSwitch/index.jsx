@@ -18,7 +18,7 @@ LogOutButtonSwitch.defaultProps = {
 };
 
 LogOutButtonSwitch.propTypes = {
-  currentUserAuth: PropTypes.shape(PropTypes.instanceOf(Element)),
+  currentUserAuth: PropTypes.object,
   currentUserName: PropTypes.string.isRequired,
   userNameInUrl: PropTypes.string.isRequired,
 };
