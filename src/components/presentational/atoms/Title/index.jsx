@@ -9,11 +9,12 @@ export const Title = memo(({ children, className }) => (
 Title.displayName = "Title";
 
 Title.defaultProps = {
+  children: null,
   className: "",
 };
 
 Title.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   className: PropTypes.string,
 };
 

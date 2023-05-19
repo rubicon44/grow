@@ -51,7 +51,11 @@ ProfileChange.propTypes = {
   bioAble: PropTypes.bool.isRequired,
   currentUserId: PropTypes.string.isRequired,
   handleTextSubmit: PropTypes.func.isRequired,
-  inputRefs: PropTypes.object.isRequired,
+  inputRefs: PropTypes.shape({
+    bioRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
+    nicknameRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
+    usernameRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
+  }).isRequired,
   isButtonDisabled: PropTypes.bool.isRequired,
   revertUserBioFunc: PropTypes.func.isRequired,
   setBioAbleFunc: PropTypes.func.isRequired,

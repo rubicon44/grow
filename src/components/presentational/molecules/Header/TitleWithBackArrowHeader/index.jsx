@@ -13,8 +13,12 @@ export const TitleWithBackArrowHeader = memo(({ children }) => (
 
 TitleWithBackArrowHeader.displayName = "TitleWithBackArrowHeader";
 
+TitleWithBackArrowHeader.defaultProps = {
+  children: null,
+};
+
 TitleWithBackArrowHeader.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 const BaseTitleWithBackArrowHeader = styled.div`

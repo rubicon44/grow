@@ -70,9 +70,9 @@ UserTasksContentHeader.propTypes = {
   error: PropTypes.bool,
   handleTextSubmit: PropTypes.func.isRequired,
   inputRefs: PropTypes.shape({
-    bioRef: PropTypes.object.isRequired,
-    nicknameRef: PropTypes.object.isRequired,
-    usernameRef: PropTypes.object.isRequired,
+    bioRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]).isRequired,
+    nicknameRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]).isRequired,
+    usernameRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]).isRequired,
   }).isRequired,
   isButtonDisabled: PropTypes.bool.isRequired,
   loading: PropTypes.bool,
