@@ -4,13 +4,8 @@ import { UserTasksContentHeader } from "../UserTasksContentHeader";
 
 export const UserTasksContentHeaderContainer = (props) => {
   const { currentUserId } = props;
-  const {
-    error,
-    loading,
-    setCheckUserNameChange,
-    setUserData,
-    userData,
-  } = props;
+  const { error, loading, setCheckUserNameChange, setUserData, userData } =
+    props;
   const { moveToFollowers, moveToFollowings } = props;
   const {
     bioAble,
@@ -27,23 +22,23 @@ export const UserTasksContentHeaderContainer = (props) => {
   // todo: userData取得時のerrorとの競合の解決。
   if (editing) return <>Editing...</>;
   return (
-      <UserTasksContentHeader
-        bioAble={bioAble}
-        changeUserNameCheckAble={changeUserNameCheckAble}
-        changeUserNameFunc={changeUserNameFunc}
-        currentUserId={String(currentUserId)}
-        editing={editing}
-        error={error}
-        handleTextSubmit={handleTextSubmit}
-        inputRefs={inputRefs}
-        isButtonDisabled={isButtonDisabled}
-        loading={loading}
-        moveToFollowers={moveToFollowers}
-        moveToFollowings={moveToFollowings}
-        revertUserBioFunc={revertUserBioFunc}
-        setBioAbleFunc={setBioAbleFunc}
-        userData={userData}
-      />
+    <UserTasksContentHeader
+      bioAble={bioAble}
+      changeUserNameCheckAble={changeUserNameCheckAble}
+      changeUserNameFunc={changeUserNameFunc}
+      currentUserId={String(currentUserId)}
+      editing={editing}
+      error={error}
+      handleTextSubmit={handleTextSubmit}
+      inputRefs={inputRefs}
+      isButtonDisabled={isButtonDisabled}
+      loading={loading}
+      moveToFollowers={moveToFollowers}
+      moveToFollowings={moveToFollowings}
+      revertUserBioFunc={revertUserBioFunc}
+      setBioAbleFunc={setBioAbleFunc}
+      userData={userData}
+    />
   );
 };
 

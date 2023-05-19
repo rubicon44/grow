@@ -47,8 +47,12 @@ export const UserTasksContentHeader = (props) => {
           userData={userData}
         />
         <RelationshipsCover>
-          <InteractiveSpan onClick={moveToFollowings}>フォロー中</InteractiveSpan>
-          <InteractiveSpan onClick={moveToFollowers}>フォロワー</InteractiveSpan>
+          <InteractiveSpan onClick={moveToFollowings}>
+            フォロー中
+          </InteractiveSpan>
+          <InteractiveSpan onClick={moveToFollowers}>
+            フォロワー
+          </InteractiveSpan>
         </RelationshipsCover>
       </ContentHeaderCover>
     </>
@@ -70,9 +74,18 @@ UserTasksContentHeader.propTypes = {
   error: PropTypes.bool,
   handleTextSubmit: PropTypes.func.isRequired,
   inputRefs: PropTypes.shape({
-    bioRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]).isRequired,
-    nicknameRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]).isRequired,
-    usernameRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]).isRequired,
+    bioRef: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+    ]).isRequired,
+    nicknameRef: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+    ]).isRequired,
+    usernameRef: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+    ]).isRequired,
   }).isRequired,
   isButtonDisabled: PropTypes.bool.isRequired,
   loading: PropTypes.bool,
