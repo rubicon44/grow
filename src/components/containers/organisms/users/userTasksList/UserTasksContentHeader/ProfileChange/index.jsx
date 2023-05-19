@@ -7,6 +7,10 @@ import { ProfileChangeForm } from "./ProfileChangeForm";
 export const ProfileChange = ({
   bioAble,
   currentUserId,
+  handleTextSubmit,
+  inputRefs,
+  isButtonDisabled,
+  revertUserBioFunc,
   setBioAbleFunc,
   userData,
 }) => {
@@ -32,6 +36,10 @@ export const ProfileChange = ({
     String(currentUserId) === String(id) && (
       <ProfileChangeForm
         currentUserId={currentUserId}
+        handleTextSubmit={handleTextSubmit}
+        inputRefs={inputRefs}
+        isButtonDisabled={isButtonDisabled}
+        revertUserBioFunc={revertUserBioFunc}
         setBioAbleFunc={setBioAbleFunc}
         userData={userData}
       />

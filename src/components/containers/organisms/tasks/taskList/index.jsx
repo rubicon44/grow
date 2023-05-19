@@ -92,6 +92,7 @@ TaskList.propTypes = {
   showPopup: PropTypes.bool.isRequired,
   taskData: PropTypes.shape({
     task: PropTypes.shape({
+      // todo: string or numberに統一
       id: PropTypes.number.isRequired,
       content: PropTypes.string,
       endDate: PropTypes.string,
