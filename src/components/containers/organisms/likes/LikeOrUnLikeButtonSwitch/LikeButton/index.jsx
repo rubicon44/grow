@@ -1,16 +1,13 @@
-import { memo } from "react";
 import PropTypes from "prop-types";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import styled from "styled-components";
 
-export const LikeButton = memo(({ handleClickLikePost, likeData }) => (
+export const LikeButton = ({ handleClickLikePost, likeData }) => (
   <ThumbUpIconCover onClick={handleClickLikePost}>
     <ThumbUpIcon />
     {likeData.likeCount}
   </ThumbUpIconCover>
-));
-
-LikeButton.displayName = "LikeButton";
+);
 
 LikeButton.propTypes = {
   handleClickLikePost: PropTypes.func.isRequired,

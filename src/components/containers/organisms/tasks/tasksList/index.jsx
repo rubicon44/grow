@@ -1,3 +1,4 @@
+import { memo } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { LikeOrUnLikeButtonSwitchContainer } from "../../likes/LikeOrUnLikeButtonSwitchContainer";
@@ -6,7 +7,7 @@ import { List } from "../../../../presentational/molecules/List";
 import { NextButtonLink } from "../../../../presentational/atoms/Link/NextButtonLink";
 import { Popup } from "../../../../presentational/atoms/Popup";
 
-export const TasksList = ({ showPopup, tasks }) => (
+export const TasksList = memo(({ showPopup, tasks }) => (
   <>
     <Popup message="タスクが正常に作成されました。" showPopup={showPopup} />
     <NextButtonLink text="タスク登録" url="/tasks/create" />
@@ -33,7 +34,9 @@ export const TasksList = ({ showPopup, tasks }) => (
       );
     })}
   </>
-);
+));
+
+TasksList.displayName = "TasksList";
 
 TasksList.propTypes = {
   showPopup: PropTypes.bool.isRequired,
