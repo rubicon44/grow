@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 export const FollowingButton = ({ setChangeFollowButtonStyleToTrueFunc }) => (
+  // todo: buttonコンポーネントの使用を検討。
   <FollowChangeLinkDone onMouseEnter={setChangeFollowButtonStyleToTrueFunc}>
     <span>フォロー中</span>
   </FollowChangeLinkDone>
