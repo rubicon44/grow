@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { TaskForm } from "..";
-import { TitleWithBackArrowHeader } from "../../../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
 export const TaskEditForm = ({
   handleTextSubmit,
@@ -8,15 +7,12 @@ export const TaskEditForm = ({
   isButtonDisabled,
   taskData,
 }) => (
-  <>
-    <TitleWithBackArrowHeader>編集</TitleWithBackArrowHeader>
-    <TaskForm
-      handleTextSubmit={handleTextSubmit}
-      inputRefs={inputRefs}
-      isButtonDisabled={isButtonDisabled}
-      taskData={taskData}
-    />
-  </>
+  <TaskForm
+    handleTextSubmit={handleTextSubmit}
+    inputRefs={inputRefs}
+    isButtonDisabled={isButtonDisabled}
+    taskData={taskData}
+  />
 );
 
 TaskEditForm.propTypes = {

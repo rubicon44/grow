@@ -1,9 +1,11 @@
 import PropTypes from "prop-types";
 import { MainWithHeader } from "../MainWithHeader";
 import { TaskEditFormContainer } from "../../organisms/tasks/TaskForm/TaskEditFormContainer";
+import { TitleWithBackArrowHeader } from "../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
 export const TaskEditTemplate = ({ taskDataTask }) => (
   <MainWithHeader>
+    <TitleWithBackArrowHeader>編集</TitleWithBackArrowHeader>
     <TaskEditFormContainer taskDataTask={taskDataTask} />
   </MainWithHeader>
 );

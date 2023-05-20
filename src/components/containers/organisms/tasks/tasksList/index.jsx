@@ -5,12 +5,10 @@ import { TaskStatusSwitch } from "../logic/taskStatusSwitch";
 import { List } from "../../../../presentational/molecules/List";
 import { NextButtonLink } from "../../../../presentational/atoms/Link/NextButtonLink";
 import { Popup } from "../../../../presentational/atoms/Popup";
-import { Title } from "../../../../presentational/atoms/Title";
 
 export const TasksList = ({ showPopup, tasks }) => (
   <>
     <Popup message="タスクが正常に作成されました。" showPopup={showPopup} />
-    <Title>タスク一覧</Title>
     <NextButtonLink text="タスク登録" url="/tasks/create" />
     {tasks?.map((task) => {
       const {

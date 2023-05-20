@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { SearchForm } from "./SearchForm";
 import { SearchListSwitchContainer } from "./SearchListSwitchContainer";
-import { TitleWithBackArrowHeader } from "../../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
 export const SearchList = ({
   error,
@@ -12,21 +11,18 @@ export const SearchList = ({
   tasks,
   users,
 }) => (
-  <>
-    <TitleWithBackArrowHeader>検索一覧</TitleWithBackArrowHeader>
-    <SerchListContent>
-      <SearchForm
-        handleSubmit={handleSubmit}
-        isButtonDisabled={isButtonDisabled}
-      />
-      <SearchListSwitchContainer
-        error={error}
-        loading={loading}
-        tasks={tasks}
-        users={users}
-      />
-    </SerchListContent>
-  </>
+  <SerchListCover>
+    <SearchForm
+      handleSubmit={handleSubmit}
+      isButtonDisabled={isButtonDisabled}
+    />
+    <SearchListSwitchContainer
+      error={error}
+      loading={loading}
+      tasks={tasks}
+      users={users}
+    />
+  </SerchListCover>
 );
 
 SearchList.defaultProps = {
@@ -66,7 +62,7 @@ SearchList.propTypes = {
   ).isRequired,
 };
 
-const SerchListContent = styled.div`
+const SerchListCover = styled.div`
   min-width: 260px;
   margin-top: 25px;
   padding: 0 10px;

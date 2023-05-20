@@ -1,4 +1,3 @@
-import { memo } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { LikeOrUnLikeButtonSwitchContainer } from "../../likes/LikeOrUnLikeButtonSwitchContainer";
@@ -6,14 +5,8 @@ import { TaskDeleteCheckButton } from "../TaskButton/TaskDeleteCheckButton";
 import { TaskDeleteOrUnDeleteButtonSwitch } from "../TaskButton/TaskDeleteOrUnDeleteButtonSwitch";
 import { TaskEditButton } from "../TaskButton/TaskEditButton";
 import { TaskStatusSwitch } from "../logic/taskStatusSwitch";
-import { TitleWithBackArrowHeader } from "../../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 import { List } from "../../../../presentational/molecules/List";
 import { Popup } from "../../../../presentational/atoms/Popup";
-
-const MemoTitleWithBackArrowHeader = memo(() => (
-  <TitleWithBackArrowHeader>タスク詳細</TitleWithBackArrowHeader>
-));
-MemoTitleWithBackArrowHeader.displayName = "MemoTitleWithBackArrowHeader";
 
 export const TaskList = ({
   currentUserId,
@@ -41,7 +34,6 @@ export const TaskList = ({
   return (
     <>
       <Popup message="タスクが正常に更新されました。" showPopup={showPopup} />
-      <MemoTitleWithBackArrowHeader />
       <ListCover>
         <List
           title={taskTitle}
@@ -78,8 +70,6 @@ export const TaskList = ({
     </>
   );
 };
-
-TaskList.displayName = "TaskList";
 
 TaskList.propTypes = {
   currentUserId: PropTypes.string.isRequired,
