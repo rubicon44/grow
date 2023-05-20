@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { UserFollowersContainer } from "./UserFollowersContainer";
-import { TitleWithBackArrowHeader } from "../../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
 export const UserFollowersList = ({
   currentUserId,
@@ -9,16 +8,13 @@ export const UserFollowersList = ({
   loading,
   username,
 }) => (
-  <>
-    <TitleWithBackArrowHeader>フォロワー</TitleWithBackArrowHeader>
-    <UserFollowersContainer
-      currentUserId={currentUserId}
-      error={error}
-      followers={followers}
-      loading={loading}
-      username={username}
-    />
-  </>
+  <UserFollowersContainer
+    currentUserId={currentUserId}
+    error={error}
+    followers={followers}
+    loading={loading}
+    username={username}
+  />
 );
 
 UserFollowersList.defaultProps = {
