@@ -45,7 +45,6 @@ export const TaskList = ({
       <ListCover>
         <List
           title={taskTitle}
-          titleUrl={`/${taskCreatedUserName}/tasks/${String(taskId)}`}
           content={taskContent}
           url={`/${taskCreatedUserName}`}
           text={taskCreatedUserNickName}

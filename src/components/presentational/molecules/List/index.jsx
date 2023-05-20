@@ -7,9 +7,13 @@ export const List = ({ title, titleUrl, content, url, text }) => (
   // todo: httpsにおいてXSSできないことを確認する
   // const userInputText1 = `javascript: console.log(document.cookie)`;
   <BaseList>
-    <dt>
-      <Link to={titleUrl}>{title}</Link>
-    </dt>
+    {titleUrl ? (
+      <dt>
+        <Link to={titleUrl}>{title}</Link>
+      </dt>
+    ) : (
+      <dt>{title}</dt>
+    )}
     {/* <dt><Link to={userInputText1}>{title}</Link></dt> */}
     <dd>{content}</dd>
     <CreatedUserCover>
@@ -21,13 +25,14 @@ export const List = ({ title, titleUrl, content, url, text }) => (
 
 List.defaultProps = {
   text: "",
+  titleUrl: "",
 };
 
 List.propTypes = {
   content: PropTypes.string.isRequired,
   text: PropTypes.string,
   title: PropTypes.string.isRequired,
-  titleUrl: PropTypes.string.isRequired,
+  titleUrl: PropTypes.string,
   url: PropTypes.string.isRequired,
 };
 
