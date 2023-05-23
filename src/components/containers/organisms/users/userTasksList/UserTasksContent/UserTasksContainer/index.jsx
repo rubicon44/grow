@@ -1,20 +1,12 @@
 import PropTypes from "prop-types";
 import { UserTasks } from "../UserTasks";
 
-export const UserTasksContainer = ({ error, loading, userData }) => {
-  if (error) return <>Error...</>;
-  if (loading) return <>Loading...</>;
-  return <UserTasks userData={userData} />;
-};
-
-UserTasksContainer.defaultProps = {
-  error: false,
-  loading: false,
-};
+// todo: 不要なコンテナを削除
+export const UserTasksContainer = ({ userData }) => (
+  <UserTasks userData={userData} />
+);
 
 UserTasksContainer.propTypes = {
-  error: PropTypes.bool,
-  loading: PropTypes.bool,
   userData: PropTypes.shape({
     id: PropTypes.number,
     bio: PropTypes.string,

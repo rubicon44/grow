@@ -1,38 +1,28 @@
+import PropTypes from "prop-types";
 import { useCurrentUserId } from "../../../../../hooks/useCurrentUserId";
 import { useMoveToFollowers } from "../../../../../hooks/useMoveToFollowers";
 import { useMoveToFollowings } from "../../../../../hooks/useMoveToFollowings";
-import { useMoveToGanttChart } from "../../../../../hooks/useMoveToGanttChart";
 import { useShowPopup } from "../../../../../hooks/useShowPopup";
-import { useUserData } from "../../../../../hooks/useUserData";
 import { UserTasksList } from "../userTasksList";
 
-export const UserTasksListContainer = () => {
+export const UserTasksListContainer = ({
+  setCheckUserNameChange,
+  setUserData,
+  userData,
+  userNameInUrl,
+}) => {
   const { showPopup } = useShowPopup();
   const currentUserId = useCurrentUserId();
-  const {
-    error,
-    loading,
-    setCheckUserNameChange,
-    setUserData,
-    userData,
-    userNameInUrl,
-  } = useUserData();
 
   // todo: useMoveTo~は、API通信用のHooksと見間違える可能性があるため、名称変更した方が良い？
   const { moveToFollowers } = useMoveToFollowers(userData);
   const { moveToFollowings } = useMoveToFollowings(userData);
-  const { moveToGanttChart } = useMoveToGanttChart(userData);
 
-  if (error) return <>Error...</>;
-  if (loading) return <>Loading...</>;
   return (
     <UserTasksList
       currentUserId={currentUserId}
-      error={error}
-      loading={loading}
       moveToFollowers={moveToFollowers}
       moveToFollowings={moveToFollowings}
-      moveToGanttChart={moveToGanttChart}
       setCheckUserNameChange={setCheckUserNameChange}
       setUserData={setUserData}
       showPopup={showPopup}
@@ -40,4 +30,39 @@ export const UserTasksListContainer = () => {
       userNameInUrl={userNameInUrl}
     />
   );
+};
+
+UserTasksListContainer.propTypes = {
+  setCheckUserNameChange: PropTypes.func.isRequired,
+  setUserData: PropTypes.func.isRequired,
+  userData: PropTypes.shape({
+    id: PropTypes.number,
+    bio: PropTypes.string,
+    email: PropTypes.string,
+    likedTasks: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        userId: PropTypes.number,
+        content: PropTypes.string,
+        endDate: PropTypes.string,
+        startDate: PropTypes.string,
+        status: PropTypes.number,
+        title: PropTypes.string,
+      })
+    ),
+    nickname: PropTypes.string,
+    tasks: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        userId: PropTypes.number,
+        content: PropTypes.string,
+        endDate: PropTypes.string,
+        startDate: PropTypes.string,
+        status: PropTypes.number,
+        title: PropTypes.string,
+      })
+    ),
+    username: PropTypes.string,
+  }).isRequired,
+  userNameInUrl: PropTypes.string.isRequired,
 };

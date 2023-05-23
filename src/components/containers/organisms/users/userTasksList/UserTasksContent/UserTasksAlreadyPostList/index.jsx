@@ -1,20 +1,23 @@
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { TaskStatusSwitch } from "../../../../tasks/logic/taskStatusSwitch";
+import { LikeOrUnLikeButtonSwitchContainer } from "../../../../likes/LikeOrUnLikeButtonSwitchContainer";
 import { List } from "../../../../../../presentational/molecules/List";
+import { BaseLink } from "../../../../../../presentational/atoms/Link/BaseLink";
 
 export const UserTasksAlreadyPostList = ({ userData }) =>
   userData.tasks.map((task) => (
     <ListCoverWrapper key={task.id}>
+      <CreatedUserCover>
+        <BaseLink url={`/${userData.username}`}>{userData.nickname}</BaseLink>
+      </CreatedUserCover>
       <ListCover>
-        <List
-          title={task.title}
-          titleUrl={`/${String(userData.username)}/tasks/${String(task.id)}`}
-          content={task.content}
-          url={`/${userData.username}`}
-          text={userData.nickname}
-        />
-        <TaskStatusSwitch taskStatus={task.status} />
+        <Link to={`/${userData.username}/tasks/${String(task.id)}`}>
+          <List title={task.title} content={task.content} />
+          <TaskStatusSwitch taskStatus={task.status} />
+        </Link>
+        <LikeOrUnLikeButtonSwitchContainer taskId={String(task.id)} />
       </ListCover>
     </ListCoverWrapper>
   ));
@@ -51,13 +54,27 @@ UserTasksAlreadyPostList.propTypes = {
   }).isRequired,
 };
 
-const ListCoverWrapper = styled.div`
+const CreatedUserCover = styled.span`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 180px;
+  width: 40px;
+  height: 40px;
+  margin-top: 15px;
+  margin-right: 15px;
+  margin-left: 5px;
+  border-radius: 35px;
+  font-size: 12px;
+  color: rgb(255, 255, 255);
+  background: rgb(237, 128, 119);
+`;
+
+const ListCoverWrapper = styled.div`
+  display: flex;
   margin-top: 30px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgb(221, 221, 221);
 `;
 
 const ListCover = styled.div`

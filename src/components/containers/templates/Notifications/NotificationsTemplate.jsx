@@ -3,8 +3,8 @@ import { NotificationsListContainer } from "../../organisms/notifications/Notifi
 import { TitleWithBackArrowHeader } from "../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
 export const NotificationsTemplate = () => (
-  <MainWithHeader>
-    <TitleWithBackArrowHeader>通知一覧</TitleWithBackArrowHeader>
+  <MainWithHeader title="通知一覧">
+    <TitleWithBackArrowHeader />
     <NotificationsListContainer />
   </MainWithHeader>
 );

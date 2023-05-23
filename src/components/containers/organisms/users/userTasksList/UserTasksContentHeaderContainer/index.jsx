@@ -4,14 +4,14 @@ import { UserTasksContentHeader } from "../UserTasksContentHeader";
 
 export const UserTasksContentHeaderContainer = (props) => {
   const { currentUserId } = props;
-  const { error, loading, setCheckUserNameChange, setUserData, userData } =
-    props;
+  const { setCheckUserNameChange, setUserData, userData } = props;
   const { moveToFollowers, moveToFollowings } = props;
   const {
     bioAble,
     changeUserNameCheckAble,
     changeUserNameFunc,
     editing,
+    error,
     handleTextSubmit,
     inputRefs,
     isButtonDisabled,
@@ -20,6 +20,7 @@ export const UserTasksContentHeaderContainer = (props) => {
   } = useUserEdit(setCheckUserNameChange, setUserData, userData);
 
   // todo: userData取得時のerrorとの競合の解決。
+  if (error) return <>Error...</>;
   if (editing) return <>Editing...</>;
   return (
     <UserTasksContentHeader
@@ -32,7 +33,6 @@ export const UserTasksContentHeaderContainer = (props) => {
       handleTextSubmit={handleTextSubmit}
       inputRefs={inputRefs}
       isButtonDisabled={isButtonDisabled}
-      loading={loading}
       moveToFollowers={moveToFollowers}
       moveToFollowings={moveToFollowings}
       revertUserBioFunc={revertUserBioFunc}
@@ -42,14 +42,7 @@ export const UserTasksContentHeaderContainer = (props) => {
   );
 };
 
-UserTasksContentHeaderContainer.defaultProps = {
-  error: false,
-  loading: false,
-};
-
 UserTasksContentHeaderContainer.propTypes = {
-  error: PropTypes.bool,
-  loading: PropTypes.bool,
   currentUserId: PropTypes.string.isRequired,
   moveToFollowings: PropTypes.func.isRequired,
   moveToFollowers: PropTypes.func.isRequired,

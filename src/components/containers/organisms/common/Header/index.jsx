@@ -1,18 +1,20 @@
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { HeaderMenu } from "./HeaderMenu";
 
 export const Header = ({
+  currentUserAuth,
   drawerStatus,
   headerLinks,
   headerLinksForAuth,
+  title,
   toggleDrawer,
 }) => (
   <HeaderCover>
-    <Logo to="/tasks">Grow</Logo>
+    <Title>{title}</Title>
     <HeaderMenuGroup>
       <HeaderMenu
+        currentUserAuth={currentUserAuth}
         headerLinks={headerLinks}
         headerLinksForAuth={headerLinksForAuth}
         drawerStatus={drawerStatus}
@@ -41,27 +43,33 @@ Header.propTypes = {
       url: PropTypes.string.isRequired,
     })
   ).isRequired,
+  title: PropTypes.string.isRequired,
   toggleDrawer: PropTypes.func.isRequired,
 };
 
-const HeaderCover = styled.div`
+const HeaderCover = styled.header`
+  position: relative;
   display: flex;
   height: 50px;
   padding: 12px 15px;
   box-sizing: border-box;
-`;
-
-const Logo = styled(Link)`
-  font-size: 22px;
-  font-weight: bold;
-  font-family: YuMincho;
-  color: #ff444f;
-  text-decoraiton: none;
+  background-color: #eeeff1;
 `;
 
 const HeaderMenuGroup = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 1%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+`;
+
+const Title = styled.h1`
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
+  height: 100%;
+  font-weight: bold;
 `;

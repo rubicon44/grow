@@ -27,11 +27,10 @@ Popup.propTypes = {
 
 const Message = styled.div`
   position: absolute;
-  top: 0;
+  top: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30px;
   width: 100%;
   margin-top: 4px;
 
@@ -39,7 +38,7 @@ const Message = styled.div`
     padding: 5px;
     border: solid 1px #ddd;
     border-radius: 9999px;
-    background: #fff;
+    background: rgba(29, 155, 240, 0.1);
     font-weight: bold;
   }
 `;

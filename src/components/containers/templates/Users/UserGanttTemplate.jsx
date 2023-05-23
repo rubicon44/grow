@@ -5,9 +5,9 @@ import { TitleWithBackArrowHeader } from "../../../presentational/molecules/Head
 
 export const UserGanttTemplate = () => (
   <>
-    <HeaderContainer />
+    <HeaderContainer title="ガントチャート" />
     <Main>
-      <TitleWithBackArrowHeader>ガントチャート</TitleWithBackArrowHeader>
+      <TitleWithBackArrowHeader />
       <GanttChartContainer />
     </Main>
   </>

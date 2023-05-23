@@ -6,6 +6,7 @@ import { TaskDeleteOrUnDeleteButtonSwitch } from "../TaskButton/TaskDeleteOrUnDe
 import { TaskEditButton } from "../TaskButton/TaskEditButton";
 import { TaskStatusSwitch } from "../logic/taskStatusSwitch";
 import { List } from "../../../../presentational/molecules/List";
+import { BaseLink } from "../../../../presentational/atoms/Link/BaseLink";
 import { Popup } from "../../../../presentational/atoms/Popup";
 
 export const TaskList = ({
@@ -34,34 +35,38 @@ export const TaskList = ({
   return (
     <>
       <Popup message="タスクが正常に更新されました。" showPopup={showPopup} />
-      <ListCover>
-        <List
-          title={taskTitle}
-          content={taskContent}
-          url={`/${taskCreatedUserName}`}
-          text={taskCreatedUserNickName}
-        />
-        <TaskStatusSwitch taskStatus={taskStatus} />
-        <div>開始日:{taskStartDate}</div>
-        <div>終了日:{taskEndDate}</div>
-        <LikeOrUnLikeButtonSwitchContainer
-          taskId={String(taskId)}
-          currentUserId={String(currentUserId)}
-        />
-        <ButtonCover>
-          <TaskEditButton
-            currentUserId={currentUserId}
-            isButtonDisabled={isButtonDisabled}
-            moveToEditTask={moveToEditTask}
-            taskCreatedUserId={taskCreatedUserId}
+      <ListContainer>
+        <CreatedUserCover>
+          <BaseLink url={`/${taskCreatedUserName}`}>
+            {taskCreatedUserNickName}
+          </BaseLink>
+        </CreatedUserCover>
+        <ListCover>
+          <List title={taskTitle} content={taskContent} />
+          <TaskStatusSwitch taskStatus={taskStatus} />
+          <TaskDateCover>
+            <p>開始日:{taskStartDate}</p>
+            <p>終了日:{taskEndDate}</p>
+          </TaskDateCover>
+          <LikeOrUnLikeButtonSwitchContainer
+            taskId={String(taskId)}
+            currentUserId={String(currentUserId)}
           />
-          <TaskDeleteCheckButton
-            currentUserId={currentUserId}
-            deleteCheckFunc={deleteCheckFunc}
-            taskCreatedUserId={taskCreatedUserId}
-          />
-        </ButtonCover>
-      </ListCover>
+          <ButtonCover>
+            <TaskEditButton
+              currentUserId={currentUserId}
+              isButtonDisabled={isButtonDisabled}
+              moveToEditTask={moveToEditTask}
+              taskCreatedUserId={taskCreatedUserId}
+            />
+            <TaskDeleteCheckButton
+              currentUserId={currentUserId}
+              deleteCheckFunc={deleteCheckFunc}
+              taskCreatedUserId={taskCreatedUserId}
+            />
+          </ButtonCover>
+        </ListCover>
+      </ListContainer>
       <TaskDeleteOrUnDeleteButtonSwitch
         deleteCheckAble={deleteCheckAble}
         deleteTaskFunc={deleteTaskFunc}
@@ -101,10 +106,27 @@ TaskList.propTypes = {
   unDeleteCheckFunc: PropTypes.func.isRequired,
 };
 
+const CreatedUserCover = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin-top: 15px;
+  margin-right: 15px;
+  margin-left: -32px;
+  border-radius: 35px;
+  font-size: 12px;
+  color: rgb(255, 255, 255);
+  background: rgb(237, 128, 119);
+`;
+
+const ListContainer = styled.div`
+  display: flex;
+`;
+
 const ListCover = styled.div`
   position: relative;
-  min-width: 180px;
-  margin-top: 30px;
 `;
 
 const ButtonCover = styled.div`
@@ -112,4 +134,8 @@ const ButtonCover = styled.div`
   justify-content: end;
   align-items: center;
   margin: 10px 0;
+`;
+
+const TaskDateCover = styled.div`
+  text-align: center;
 `;

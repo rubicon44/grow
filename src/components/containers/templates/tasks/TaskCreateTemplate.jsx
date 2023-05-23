@@ -3,8 +3,8 @@ import { TaskCreateFormContainer } from "../../organisms/tasks/TaskForm/TaskCrea
 import { TitleWithBackArrowHeader } from "../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
 export const TaskCreateTemplate = () => (
-  <MainWithHeader>
-    <TitleWithBackArrowHeader>新規登録</TitleWithBackArrowHeader>
+  <MainWithHeader title="新規登録">
+    <TitleWithBackArrowHeader />
     <TaskCreateFormContainer />
   </MainWithHeader>
 );

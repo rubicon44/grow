@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import { LikeButton } from "./LikeButton";
 import { UnLikeButton } from "./UnLikeButton";
 
@@ -9,15 +10,21 @@ export const LikeOrUnLikeButtonSwitch = ({
   handleClickLikePost,
   likeData,
   taskId,
-}) =>
-  getLikedUserIdFunc() && String(currentTaskId) === String(taskId) ? (
-    <UnLikeButton
-      handleClickLikeDelete={handleClickLikeDelete}
-      likeData={likeData}
-    />
-  ) : (
-    <LikeButton handleClickLikePost={handleClickLikePost} likeData={likeData} />
-  );
+}) => (
+  <LikeOrUnLikeButtonCover>
+    {getLikedUserIdFunc() && String(currentTaskId) === String(taskId) ? (
+      <UnLikeButton
+        handleClickLikeDelete={handleClickLikeDelete}
+        likeData={likeData}
+      />
+    ) : (
+      <LikeButton
+        handleClickLikePost={handleClickLikePost}
+        likeData={likeData}
+      />
+    )}
+  </LikeOrUnLikeButtonCover>
+);
 
 LikeOrUnLikeButtonSwitch.defaultProps = {
   currentTaskId: "",
@@ -40,3 +47,7 @@ LikeOrUnLikeButtonSwitch.propTypes = {
   }).isRequired,
   taskId: PropTypes.string.isRequired,
 };
+
+const LikeOrUnLikeButtonCover = styled.div`
+  text-align: center;
+`;

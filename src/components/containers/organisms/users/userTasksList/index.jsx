@@ -6,52 +6,31 @@ import { Popup } from "../../../../presentational/atoms/Popup";
 
 export const UserTasksList = (props) => {
   const { currentUserId } = props;
-  const {
-    error,
-    loading,
-    setCheckUserNameChange,
-    setUserData,
-    userData,
-    userNameInUrl,
-  } = props;
-  const { moveToFollowers, moveToFollowings, moveToGanttChart } = props;
+  const { setCheckUserNameChange, setUserData, userData, userNameInUrl } =
+    props;
+  const { moveToFollowers, moveToFollowings } = props;
   const { showPopup } = props;
   return (
     <>
       <Popup message="タスクが正常に削除されました。" showPopup={showPopup} />
       <UserTasksContentHeaderContainer
         currentUserId={String(currentUserId)}
-        error={error}
-        loading={loading}
         moveToFollowers={moveToFollowers}
         moveToFollowings={moveToFollowings}
         setCheckUserNameChange={setCheckUserNameChange}
         setUserData={setUserData}
         userData={userData}
       />
-      <UserTasksContent
-        error={error}
-        loading={loading}
-        moveToGanttChart={moveToGanttChart}
-        userData={userData}
-      />
+      <UserTasksContent userData={userData} />
       <LogOutButtonSwitchContainer userNameInUrl={userNameInUrl} />
     </>
   );
 };
 
-UserTasksList.defaultProps = {
-  error: false,
-  loading: false,
-};
-
 UserTasksList.propTypes = {
   currentUserId: PropTypes.string.isRequired,
-  error: PropTypes.bool,
-  loading: PropTypes.bool,
   moveToFollowers: PropTypes.func.isRequired,
   moveToFollowings: PropTypes.func.isRequired,
-  moveToGanttChart: PropTypes.func.isRequired,
   setCheckUserNameChange: PropTypes.func.isRequired,
   setUserData: PropTypes.func.isRequired,
   showPopup: PropTypes.bool.isRequired,

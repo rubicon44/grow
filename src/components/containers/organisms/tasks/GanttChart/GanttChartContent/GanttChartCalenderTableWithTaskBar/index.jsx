@@ -59,6 +59,7 @@ GanttChartCalenderTableWithTaskBar.propTypes = {
 const GanttChartCalenderTable = styled.table`
   > thead,
   tbody {
+    text-align: center;
     white-space: nowrap;
   }
   > thead > tr {

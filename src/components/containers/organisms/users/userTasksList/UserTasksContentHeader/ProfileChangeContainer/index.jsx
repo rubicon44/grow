@@ -3,9 +3,6 @@ import { ProfileChange } from "../ProfileChange";
 
 export const ProfileChangeContainer = (props) => {
   const {
-    editing,
-    error,
-    loading,
     bioAble,
     currentUserId,
     handleTextSubmit,
@@ -15,9 +12,7 @@ export const ProfileChangeContainer = (props) => {
     setBioAbleFunc,
     userData,
   } = props;
-  if (error) return <>Error...</>;
-  if (loading) return <>Loading...</>;
-  if (editing) return <>Editing...</>;
+
   return (
     <ProfileChange
       bioAble={bioAble}
@@ -32,17 +27,9 @@ export const ProfileChangeContainer = (props) => {
   );
 };
 
-ProfileChangeContainer.defaultProps = {
-  error: false,
-  editing: false,
-  loading: false,
-};
-
 ProfileChangeContainer.propTypes = {
   bioAble: PropTypes.bool.isRequired,
   currentUserId: PropTypes.string.isRequired,
-  editing: PropTypes.bool,
-  error: PropTypes.bool,
   handleTextSubmit: PropTypes.func.isRequired,
   inputRefs: PropTypes.shape({
     bioRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
@@ -50,7 +37,6 @@ ProfileChangeContainer.propTypes = {
     usernameRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
   }).isRequired,
   isButtonDisabled: PropTypes.bool.isRequired,
-  loading: PropTypes.bool,
   revertUserBioFunc: PropTypes.func.isRequired,
   setBioAbleFunc: PropTypes.func.isRequired,
   userData: PropTypes.shape({

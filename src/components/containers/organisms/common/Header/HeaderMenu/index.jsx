@@ -12,6 +12,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 
 export const HeaderMenu = ({
+  currentUserAuth,
   drawerStatus,
   headerLinks,
   headerLinksForAuth,
@@ -33,16 +34,25 @@ export const HeaderMenu = ({
           </Link>
         ))}
       </List>
-      <Divider />
-      <List>
-        {headerLinksForAuth.map((headerLink) => (
-          <Link to={headerLink.url} key={headerLink.url}>
-            <ListItem button key={headerLink.text} sx={{ textAlign: "center" }}>
-              <ListItemText primary={headerLink.text} />
-            </ListItem>
-          </Link>
-        ))}
-      </List>
+
+      {!currentUserAuth && (
+        <>
+          <Divider />
+          <List>
+            {headerLinksForAuth.map((headerLink) => (
+              <Link to={headerLink.url} key={headerLink.url}>
+                <ListItem
+                  button
+                  key={headerLink.text}
+                  sx={{ textAlign: "center" }}
+                >
+                  <ListItemText primary={headerLink.text} />
+                </ListItem>
+              </Link>
+            ))}
+          </List>
+        </>
+      )}
     </div>
   );
 

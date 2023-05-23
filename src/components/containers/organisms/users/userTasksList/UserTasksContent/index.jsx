@@ -1,32 +1,78 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { UserTasksContainer } from "./UserTasksContainer";
+import { GanttChartContainer } from "../../../tasks/GanttChartContainer";
 import { UserLikedTasks } from "./UserLikedTasks";
 
-export const UserTasksContent = ({
-  error,
-  loading,
-  moveToGanttChart,
-  userData,
-}) => (
-  <UserTasksContentCover>
-    <NextGanttLink type="button" onClick={moveToGanttChart}>
-      ガントチャート
-    </NextGanttLink>
-    <UserTasksContainer error={error} laoding={loading} userData={userData} />
-    <UserLikedTasks userData={userData} />
-  </UserTasksContentCover>
-);
+// todo: ファイル数削減(100行以下)
+export const UserTasksContent = ({ userData }) => {
+  const [activeTab, setActiveTab] = useState("createdTasks");
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+  };
 
-UserTasksContent.defaultProps = {
-  error: false,
-  loading: false,
+  return (
+    <>
+      {/* todo: タスクタブ内のタスクをいいねした際、いいねタブ内のタスクを即座に更新したい。 */}
+      <UserProfileTab>
+        <li>
+          <UserProfileTabCover onClick={() => handleTabChange("createdTasks")}>
+            <UserProfileTabTaskInner>
+              <span>タスク</span>
+              {activeTab === "createdTasks" && <ActiveTabHeaderBorderBottom />}
+            </UserProfileTabTaskInner>
+          </UserProfileTabCover>
+        </li>
+        <li>
+          <UserProfileTabCover onClick={() => handleTabChange("gantt")}>
+            <UserProfileTabTaskInner>
+              <span>ガントチャート</span>
+              {activeTab === "gantt" && <ActiveTabHeaderBorderBottom />}
+            </UserProfileTabTaskInner>
+          </UserProfileTabCover>
+        </li>
+        <li>
+          <UserProfileTabCover onClick={() => handleTabChange("likedTasks")}>
+            <UserProfileTabTaskInner>
+              <span>いいね</span>
+              {activeTab === "likedTasks" && <ActiveTabHeaderBorderBottom />}
+            </UserProfileTabTaskInner>
+          </UserProfileTabCover>
+        </li>
+      </UserProfileTab>
+
+      {activeTab === "createdTasks" && (
+        <ul>
+          <li>
+            <UserTasksContainer userData={userData} />
+          </li>
+        </ul>
+      )}
+
+      {activeTab === "gantt" && (
+        <ul>
+          <Link to={`/${userData.username}/gantt`}>
+            <GanttTabContent>
+              <GanttChartContainer />
+            </GanttTabContent>
+          </Link>
+        </ul>
+      )}
+
+      {activeTab === "likedTasks" && (
+        <ul>
+          <li>
+            <UserLikedTasks userData={userData} />
+          </li>
+        </ul>
+      )}
+    </>
+  );
 };
 
 UserTasksContent.propTypes = {
-  error: PropTypes.bool,
-  loading: PropTypes.bool,
-  moveToGanttChart: PropTypes.func.isRequired,
   userData: PropTypes.shape({
     id: PropTypes.number,
     bio: PropTypes.string,
@@ -58,15 +104,60 @@ UserTasksContent.propTypes = {
   }).isRequired,
 };
 
-const UserTasksContentCover = styled.article`
-  border-top: 1px solid #ddd;
+const ActiveTabHeaderBorderBottom = styled.div`
+  position: absolute;
+  bottom: 0;
   width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: rgb(29, 155, 240);
 `;
 
-const NextGanttLink = styled.button`
-  font-size: 22px;
-  font-weight: bold;
-  font-family: YuMincho;
-  color: #ff444f;
-  text-decoraiton: none;
+const GanttTabContent = styled.li`
+  max-width: 320px;
+`;
+
+const UserProfileTab = styled.ul`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  min-width: 320px;
+  max-width: 460px;
+  height: 53px;
+  border-bottom: 1px solid #ddd;
+
+  > li {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    cursor: pointer;
+
+    &:hover {
+      background: #ddd;
+    }
+  }
+`;
+
+const UserProfileTabCover = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const UserProfileTabTaskInner = styled.div`
+  position: relative;
+  min-width: 56px;
+  height: 100%;
+  > span {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+  }
 `;

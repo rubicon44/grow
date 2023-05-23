@@ -11,12 +11,9 @@ export const UserTasksContentHeader = (props) => {
     bioAble,
     changeUserNameCheckAble,
     changeUserNameFunc,
-    editing,
-    error,
     handleTextSubmit,
     inputRefs,
     isButtonDisabled,
-    loading,
     revertUserBioFunc,
     setBioAbleFunc,
     userData,
@@ -30,39 +27,32 @@ export const UserTasksContentHeader = (props) => {
           revertUserBioFunc={revertUserBioFunc}
         />
       )}
-      <ContentHeaderCover>
-        <TitleWithBackArrowHeader>{userData.nickname}</TitleWithBackArrowHeader>
-        <FollowButtonSwitchContainer userIdToFollowOrUnFollow={userData.id} />
-        <ProfileChangeContainer
-          bioAble={bioAble}
-          currentUserId={currentUserId}
-          editing={editing}
-          error={error}
-          handleTextSubmit={handleTextSubmit}
-          inputRefs={inputRefs}
-          isButtonDisabled={isButtonDisabled}
-          loading={loading}
-          revertUserBioFunc={revertUserBioFunc}
-          setBioAbleFunc={setBioAbleFunc}
-          userData={userData}
-        />
-        <RelationshipsCover>
-          <InteractiveSpan onClick={moveToFollowings}>
-            フォロー中
-          </InteractiveSpan>
-          <InteractiveSpan onClick={moveToFollowers}>
-            フォロワー
-          </InteractiveSpan>
-        </RelationshipsCover>
-      </ContentHeaderCover>
+      <ContentHeaderContainer>
+        <ContentHeaderCover>
+          <TitleWithBackArrowHeader />
+          <FollowButtonSwitchContainer userIdToFollowOrUnFollow={userData.id} />
+          <ProfileChangeContainer
+            bioAble={bioAble}
+            currentUserId={currentUserId}
+            handleTextSubmit={handleTextSubmit}
+            inputRefs={inputRefs}
+            isButtonDisabled={isButtonDisabled}
+            revertUserBioFunc={revertUserBioFunc}
+            setBioAbleFunc={setBioAbleFunc}
+            userData={userData}
+          />
+          <RelationshipsCover>
+            <InteractiveSpan onClick={moveToFollowings}>
+              フォロー中
+            </InteractiveSpan>
+            <InteractiveSpan onClick={moveToFollowers}>
+              フォロワー
+            </InteractiveSpan>
+          </RelationshipsCover>
+        </ContentHeaderCover>
+      </ContentHeaderContainer>
     </>
   );
-};
-
-UserTasksContentHeader.defaultProps = {
-  error: false,
-  editing: false,
-  loading: false,
 };
 
 UserTasksContentHeader.propTypes = {
@@ -70,8 +60,6 @@ UserTasksContentHeader.propTypes = {
   changeUserNameCheckAble: PropTypes.bool.isRequired,
   changeUserNameFunc: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
-  editing: PropTypes.bool,
-  error: PropTypes.bool,
   handleTextSubmit: PropTypes.func.isRequired,
   inputRefs: PropTypes.shape({
     bioRef: PropTypes.oneOfType([
@@ -88,7 +76,6 @@ UserTasksContentHeader.propTypes = {
     ]).isRequired,
   }).isRequired,
   isButtonDisabled: PropTypes.bool.isRequired,
-  loading: PropTypes.bool,
   moveToFollowings: PropTypes.func.isRequired,
   moveToFollowers: PropTypes.func.isRequired,
   revertUserBioFunc: PropTypes.func.isRequired,
@@ -124,14 +111,25 @@ UserTasksContentHeader.propTypes = {
   }).isRequired,
 };
 
+const ContentHeaderContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-width: 320px;
+  max-width: 480px;
+  padding-bottom: 15px;
+`;
+
 const ContentHeaderCover = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 260px;
-  text-align: center;
-  background-color: #f8f7f3;
+  min-width: 320px;
+  padding: 0 10px;
+  box-sizing: border-box;
 `;
 
 const InteractiveSpan = styled.span`
@@ -141,7 +139,6 @@ const InteractiveSpan = styled.span`
 
 const RelationshipsCover = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   width: 100%;
   margin-bottom: 30px;

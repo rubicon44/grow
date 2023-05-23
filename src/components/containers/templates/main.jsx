@@ -15,12 +15,10 @@ Main.propTypes = {
 };
 
 const BaseMain = styled.main`
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 30px 10px;
-  text-align: center;
-  background-color: #f8f7f3;
+  margin: 20px;
+  padding-bottom: 15px;
 `;

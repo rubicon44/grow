@@ -151,6 +151,9 @@ const GanttChartTaskTableCover = styled.table`
   left: 0;
   z-index: 30;
   border: 1px solid;
+  > thead {
+    text-align: center;
+  }
   > thead,
   tbody {
     border: 1px solid;
