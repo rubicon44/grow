@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { CalenderTableBodyColorSwitch } from "../../CalenderTableBodyColorSwitch";
-import { GunttChartTaskBar } from "./GunttChartTaskBar";
+import { GanttChartTaskBar } from "./GanttChartTaskBar";
 
 export const GanttChartCalenderTableWithTaskBar = ({
   calenderBodyHeight,
@@ -23,7 +23,7 @@ export const GanttChartCalenderTableWithTaskBar = ({
           ))}
         </tbody>
       </GanttChartCalenderTable>
-      <GunttChartTaskBar styles={styles} />
+      <GanttChartTaskBar styles={styles} />
     </Fragment>
   ));
 
