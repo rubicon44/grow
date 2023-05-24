@@ -10,7 +10,7 @@ export const UserShowTemplate = () => {
     setCheckUserNameChange,
     setUserData,
     userData,
-    userNameInUrl,
+    currentPath,
   } = useUserData();
 
   if (error) return <>Error...</>;
@@ -21,7 +21,7 @@ export const UserShowTemplate = () => {
         setCheckUserNameChange={setCheckUserNameChange}
         setUserData={setUserData}
         userData={userData}
-        userNameInUrl={userNameInUrl}
+        currentPath={currentPath}
       />
     </MainWithHeader>
   );

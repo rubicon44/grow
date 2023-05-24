@@ -9,7 +9,7 @@ export const UserTasksListContainer = ({
   setCheckUserNameChange,
   setUserData,
   userData,
-  userNameInUrl,
+  currentPath,
 }) => {
   const { showPopup } = useShowPopup();
   const currentUserId = useCurrentUserId();
@@ -27,7 +27,7 @@ export const UserTasksListContainer = ({
       setUserData={setUserData}
       showPopup={showPopup}
       userData={userData}
-      userNameInUrl={userNameInUrl}
+      currentPath={currentPath}
     />
   );
 };
@@ -64,5 +64,5 @@ UserTasksListContainer.propTypes = {
     ),
     username: PropTypes.string,
   }).isRequired,
-  userNameInUrl: PropTypes.string.isRequired,
+  currentPath: PropTypes.string.isRequired,
 };

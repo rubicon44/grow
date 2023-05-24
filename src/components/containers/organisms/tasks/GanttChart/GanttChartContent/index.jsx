@@ -156,7 +156,7 @@ const GanttChartTaskTableCover = styled.table`
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 30;
+  z-index: 5;
   border: 1px solid;
   > thead {
     text-align: center;

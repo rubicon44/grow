@@ -1,38 +1,93 @@
-import { useState } from "react";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import HomeIcon from "@mui/icons-material/Home";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import SearchIcon from "@mui/icons-material/Search";
+import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { useCurrentUserName } from "../useCurrentUserName";
 
 export const useHeader = () => {
   const currentUserName = useCurrentUserName();
-  const [drawerStatus, setDrawerStatus] = useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
+  const spHeaderLinks = [
+    {
+      id: "tasks",
+      url: "/tasks",
+      text: <HomeOutlinedIcon />,
+      clickedText: <HomeIcon />,
+    },
+    {
+      id: "searches",
+      url: `/searches`,
+      text: <SearchOutlinedIcon />,
+      clickedText: <SearchIcon style={{ fontSize: "1.8rem" }} />,
+    },
+    {
+      id: "notifications",
+      url: `/notifications`,
+      text: <NotificationsOutlinedIcon />,
+      clickedText: <NotificationsIcon />,
+    },
+  ];
 
-  const headerLinks = [
-    { url: "/tasks", text: "Home" },
-    { url: "/tasks/create", text: "Post" },
-    { url: `/${currentUserName}`, text: "Report" },
-    { url: `/notifications`, text: "Notifications" },
-    { url: `/searches`, text: "Searches" },
+  const pcHeaderLinks = [
+    {
+      id: "tasks",
+      url: "/tasks",
+      text: <HomeOutlinedIcon />,
+      clickedText: <HomeIcon />,
+    },
+    {
+      id: "searches",
+      url: `/searches`,
+      text: <SearchOutlinedIcon />,
+      clickedText: <SearchIcon style={{ fontSize: "1.8rem" }} />,
+    },
+    {
+      id: "notifications",
+      url: `/notifications`,
+      text: <NotificationsOutlinedIcon />,
+      clickedText: <NotificationsIcon />,
+    },
+    {
+      id: "tasks/create",
+      url: "/tasks/create",
+      text: <AddCircleOutlineOutlinedIcon />,
+      clickedText: <AddCircleRoundedIcon />,
+    },
+    {
+      id: `${currentUserName}`,
+      url: `/${currentUserName}`,
+      text: <AccountCircleOutlinedIcon />,
+      clickedText: <AccountCircleRoundedIcon />,
+    },
   ];
 
   const headerLinksForAuth = [
-    { url: "/signIn", text: "ログイン" },
-    { url: "/signUp", text: "会員登録" },
+    {
+      id: "signIn",
+      url: "/signIn",
+      text: <LoginOutlinedIcon />,
+      clickedText: <LoginIcon />,
+    },
+    {
+      id: "signUp",
+      url: "/signUp",
+      text: <LogoutOutlinedIcon />,
+      clickedText: <LogoutIcon />,
+    },
   ];
 
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-    setDrawerStatus({ ...drawerStatus, [anchor]: open });
+  return {
+    headerLinksForAuth,
+    pcHeaderLinks,
+    spHeaderLinks,
   };
-
-  return { headerLinks, headerLinksForAuth, drawerStatus, toggleDrawer };
 };

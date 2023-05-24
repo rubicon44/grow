@@ -53,9 +53,6 @@ TasksList.propTypes = {
 };
 
 const CreatedUserCover = styled.span`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 40px;
   height: 40px;
   margin-top: 15px;
@@ -65,6 +62,13 @@ const CreatedUserCover = styled.span`
   font-size: 12px;
   color: rgb(255, 255, 255);
   background: rgb(237, 128, 119);
+  > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const ListContainer = styled.div`

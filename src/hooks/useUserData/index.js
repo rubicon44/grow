@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useGetErrorMessage } from "../useGetErrorMessage";
-import { useUserNameInUrl } from "../useUserNameInUrl";
+import { useCurrentPath } from "../useCurrentPath";
 import { getUser } from "../../infra/api";
 
 export const useUserData = () => {
-  const { userNameInUrl } = useUserNameInUrl();
+  const { currentPath } = useCurrentPath();
   const { getErrorMessage } = useGetErrorMessage();
   const [checkUserNameChange, setCheckUserNameChange] = useState(false);
   const [error, setError] = useState(null);
@@ -26,13 +26,13 @@ export const useUserData = () => {
       getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
     };
 
-    const fetchUserData = async (userNameInUrl) => {
+    const fetchUserData = async (currentPath) => {
       setLoading(true);
       setError(null);
 
       try {
         // todo: エラーの際、他ユーザーをフォローできてしまうかも。
-        const response = await getUser(userNameInUrl);
+        const response = await getUser(currentPath);
         const userData = response.data;
         handleSuccess(userData);
       } catch (error) {
@@ -43,8 +43,8 @@ export const useUserData = () => {
       }
     };
 
-    fetchUserData(userNameInUrl);
-  }, [checkUserNameChange, userNameInUrl, getErrorMessage]);
+    fetchUserData(currentPath);
+  }, [checkUserNameChange, currentPath, getErrorMessage]);
 
   return {
     error,
@@ -52,6 +52,6 @@ export const useUserData = () => {
     setCheckUserNameChange,
     setUserData,
     userData,
-    userNameInUrl,
+    currentPath,
   };
 };

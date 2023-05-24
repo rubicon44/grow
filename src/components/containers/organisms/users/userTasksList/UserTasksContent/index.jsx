@@ -28,7 +28,7 @@ export const UserTasksContent = ({ userData }) => {
         <li>
           <UserProfileTabCover onClick={() => handleTabChange("gantt")}>
             <UserProfileTabTaskInner>
-              <span>ガントチャート</span>
+              <span>チャート</span>
               {activeTab === "gantt" && <ActiveTabHeaderBorderBottom />}
             </UserProfileTabTaskInner>
           </UserProfileTabCover>

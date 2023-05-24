@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { LogOutButtonContainer } from "../../../common/LogOutButtonContainer";
 
-export const LogOutButtonSwitch = ({ currentUserName, userNameInUrl }) =>
-  String(currentUserName) === String(userNameInUrl) && (
+export const LogOutButtonSwitch = ({ currentUserName, currentPath }) =>
+  String(currentUserName) === String(currentPath) && (
     <LogOutButtonCover>
       <LogOutButtonContainer text="ログアウト" />
     </LogOutButtonCover>
@@ -11,7 +11,7 @@ export const LogOutButtonSwitch = ({ currentUserName, userNameInUrl }) =>
 
 LogOutButtonSwitch.propTypes = {
   currentUserName: PropTypes.string.isRequired,
-  userNameInUrl: PropTypes.string.isRequired,
+  currentPath: PropTypes.string.isRequired,
 };
 
 const LogOutButtonCover = styled.div`

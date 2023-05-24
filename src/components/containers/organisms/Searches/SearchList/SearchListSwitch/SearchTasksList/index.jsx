@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+// todo: ページネーション or 「さらに表示ボタン」を作成
 export const SearchTasksList = ({ tasks }) =>
   tasks &&
   tasks.map((task) => (

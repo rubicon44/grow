@@ -6,6 +6,14 @@ export const mediaquery = {
       ${css(...args)}
     }
   `,
+
+  // todo: 名称変更予定
+  desk: (...args) => css`
+    @media (min-width: 375px) {
+      ${css(...args)}
+    }
+  `,
+
   phone: (...args) => css`
     @media (max-width: 375px) {
       ${css(...args)}

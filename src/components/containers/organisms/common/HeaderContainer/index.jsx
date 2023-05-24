@@ -1,29 +1,24 @@
 import { useContext } from "react";
-import PropTypes from "prop-types";
 import { AuthContext } from "../../../../../auth/AuthProvider";
+import { useCurrentUserName } from "../../../../../hooks/useCurrentUserName";
 import { useHeader } from "../../../../../hooks/useHeader";
+import { useHeaderContext } from "../../../../../context/HeaderContext";
 import { Header } from "../Header";
 
-export const HeaderContainer = ({ title }) => {
-  const { headerLinks, headerLinksForAuth, drawerStatus, toggleDrawer } =
-    useHeader();
+export const HeaderContainer = () => {
+  const { headerLinksForAuth, pcHeaderLinks, spHeaderLinks } = useHeader();
   const { currentUserAuth } = useContext(AuthContext);
+  const currentUserName = useCurrentUserName();
+  const { clickedText, setClickedText } = useHeaderContext();
   return (
     <Header
+      clickedText={clickedText}
       currentUserAuth={currentUserAuth}
-      drawerStatus={drawerStatus}
-      headerLinks={headerLinks}
+      currentUserName={currentUserName}
       headerLinksForAuth={headerLinksForAuth}
-      title={title}
-      toggleDrawer={toggleDrawer}
+      setClickedText={setClickedText}
+      pcHeaderLinks={pcHeaderLinks}
+      spHeaderLinks={spHeaderLinks}
     />
   );
-};
-
-HeaderContainer.defaultProps = {
-  title: null,
-};
-
-HeaderContainer.propTypes = {
-  title: PropTypes.string,
 };

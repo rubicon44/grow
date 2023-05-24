@@ -10,6 +10,8 @@ import "./assets/styles/reset.css";
 import { auth } from "./infra/firebase";
 import { AuthProvider } from "./auth/AuthProvider";
 import { PrivateRoute } from "./auth/PrivateRoute";
+// Context for others
+import { HeaderContextProvider } from "./context/HeaderContext";
 // Auth
 import { SignIn } from "./components/containers/pages/auth/signIn";
 import { SignUp } from "./components/containers/pages/auth/signUp";
@@ -60,61 +62,63 @@ export const App = () => {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <Router>
-          <Routes>
-            {/* Auth */}
-            <Route path="/" element={<Top />} />
-            <Route path="/top" element={<Top />} />
-            <Route path="*" element={<NotFound />} />
-            {/* Static pages */}
-            <Route path="/signIn" element={<SignIn />} />
-            <Route path="/signUp" element={<SignUp />} />
-            {/* Task */}
-            <Route
-              path="/tasks"
-              element={<PrivateRoute element={<Tasks />} />}
-            />
-            <Route
-              path="/tasks/create"
-              element={<PrivateRoute element={<TaskCreate />} />}
-            />
-            <Route
-              path="/tasks/edit/:id"
-              element={<PrivateRoute element={<TaskEdit />} />}
-            />
-            {/* User */}
-            <Route
-              path="/:username"
-              element={<PrivateRoute element={<UserShow />} />}
-            />
-            {/* Gantt chart */}
-            <Route
-              path="/:username/gantt"
-              element={<PrivateRoute element={<UserGantt />} />}
-            />
-            <Route
-              path="/:username/tasks/:id"
-              element={<PrivateRoute element={<TaskShow />} />}
-            />
-            {/* Relationships */}
-            <Route
-              path="/:username/followings"
-              element={<PrivateRoute element={<UserFollowings />} />}
-            />
-            <Route
-              path="/:username/followers"
-              element={<PrivateRoute element={<UserFollowers />} />}
-            />
-            {/* Notifications */}
-            <Route
-              path="/notifications"
-              element={<PrivateRoute element={<Notifications />} />}
-            />
-            {/* Searches */}
-            <Route
-              path="/searches"
-              element={<PrivateRoute element={<Searches />} />}
-            />
-          </Routes>
+          <HeaderContextProvider>
+            <Routes>
+              {/* Auth */}
+              <Route path="/" element={<Top />} />
+              <Route path="/top" element={<Top />} />
+              <Route path="*" element={<NotFound />} />
+              {/* Static pages */}
+              <Route path="/signIn" element={<SignIn />} />
+              <Route path="/signUp" element={<SignUp />} />
+              {/* Task */}
+              <Route
+                path="/tasks"
+                element={<PrivateRoute element={<Tasks />} />}
+              />
+              <Route
+                path="/tasks/create"
+                element={<PrivateRoute element={<TaskCreate />} />}
+              />
+              <Route
+                path="/tasks/edit/:id"
+                element={<PrivateRoute element={<TaskEdit />} />}
+              />
+              {/* User */}
+              <Route
+                path="/:username"
+                element={<PrivateRoute element={<UserShow />} />}
+              />
+              {/* Gantt chart */}
+              <Route
+                path="/:username/gantt"
+                element={<PrivateRoute element={<UserGantt />} />}
+              />
+              <Route
+                path="/:username/tasks/:id"
+                element={<PrivateRoute element={<TaskShow />} />}
+              />
+              {/* Relationships */}
+              <Route
+                path="/:username/followings"
+                element={<PrivateRoute element={<UserFollowings />} />}
+              />
+              <Route
+                path="/:username/followers"
+                element={<PrivateRoute element={<UserFollowers />} />}
+              />
+              {/* Notifications */}
+              <Route
+                path="/notifications"
+                element={<PrivateRoute element={<Notifications />} />}
+              />
+              {/* Searches */}
+              <Route
+                path="/searches"
+                element={<PrivateRoute element={<Searches />} />}
+              />
+            </Routes>
+          </HeaderContextProvider>
         </Router>
       </AuthProvider>
     </QueryClientProvider>
