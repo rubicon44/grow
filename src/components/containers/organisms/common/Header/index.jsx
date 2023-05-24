@@ -24,6 +24,10 @@ export const Header = ({
   </HeaderCover>
 );
 
+Header.defaultProps = {
+  title: null,
+};
+
 Header.propTypes = {
   drawerStatus: PropTypes.shape({
     top: PropTypes.bool.isRequired,
@@ -43,7 +47,7 @@ Header.propTypes = {
       url: PropTypes.string.isRequired,
     })
   ).isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   toggleDrawer: PropTypes.func.isRequired,
 };
 

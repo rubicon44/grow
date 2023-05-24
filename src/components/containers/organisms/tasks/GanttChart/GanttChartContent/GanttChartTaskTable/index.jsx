@@ -48,6 +48,13 @@ GanttChartTaskTable.propTypes = {
         startDate: PropTypes.string.isRequired,
         status: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
+        user: PropTypes.exact({
+          bio: PropTypes.string,
+          email: PropTypes.string.isRequired,
+          id: PropTypes.number.isRequired,
+          nickname: PropTypes.string.isRequired,
+          username: PropTypes.string.isRequired,
+        }).isRequired,
       })
     ).isRequired,
     nickname: PropTypes.string.isRequired,

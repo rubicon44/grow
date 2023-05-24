@@ -20,6 +20,10 @@ export const HeaderContainer = ({ title }) => {
   );
 };
 
+HeaderContainer.defaultProps = {
+  title: null,
+};
+
 HeaderContainer.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 };

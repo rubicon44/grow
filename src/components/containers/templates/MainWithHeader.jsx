@@ -10,7 +10,11 @@ export const MainWithHeader = ({ children, title }) => (
   </>
 );
 
+MainWithHeader.defaultProps = {
+  title: null,
+};
+
 MainWithHeader.propTypes = {
   children: PropTypes.node.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 };
