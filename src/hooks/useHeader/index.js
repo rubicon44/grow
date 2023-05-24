@@ -4,6 +4,7 @@ import { useCurrentUserName } from "../useCurrentUserName";
 export const useHeader = () => {
   const currentUserName = useCurrentUserName();
   const [drawerStatus, setDrawerStatus] = useState({
+    top: false,
     left: false,
     bottom: false,
     right: false,
