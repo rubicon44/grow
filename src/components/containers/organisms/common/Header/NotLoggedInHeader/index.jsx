@@ -20,7 +20,7 @@ export const NotLoggedInHeader = ({
             {!clickedText || clickedText !== headerLink.id ? (
               <span>{headerLink.text}</span>
             ) : (
-              <span>{headerLink.clickedText}</span>
+              <ClickeText>{headerLink.text}</ClickeText>
             )}
           </li>
         </Link>
@@ -33,16 +33,26 @@ export const NotLoggedInHeader = ({
   ));
 };
 
+NotLoggedInHeader.defaultProps = {
+  clickedText: null,
+};
+
 NotLoggedInHeader.propTypes = {
+  clickedText: PropTypes.string,
   headerLinksForAuth: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      clickedText: PropTypes.node.isRequired,
       text: PropTypes.node.isRequired,
       url: PropTypes.string.isRequired,
     })
   ).isRequired,
+  setClickedText: PropTypes.func.isRequired,
 };
+
+const ClickeText = styled.span`
+  font-size: 1.1rem;
+  font-weight: bold;
+`;
 
 const HeaderList = styled.ul`
   display: flex;

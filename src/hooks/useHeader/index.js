@@ -8,10 +8,6 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined";
-import LoginIcon from "@mui/icons-material/Login";
-import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import LogoutIcon from "@mui/icons-material/Logout";
 import { useCurrentUserName } from "../useCurrentUserName";
 
 export const useHeader = () => {
@@ -74,14 +70,12 @@ export const useHeader = () => {
     {
       id: "signIn",
       url: "/signIn",
-      text: <LoginOutlinedIcon />,
-      clickedText: <LoginIcon />,
+      text: "ログイン",
     },
     {
       id: "signUp",
       url: "/signUp",
-      text: <LogoutOutlinedIcon />,
-      clickedText: <LogoutIcon />,
+      text: "会員登録",
     },
   ];
 

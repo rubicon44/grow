@@ -8,7 +8,6 @@ export const useHeaderContext = () => useContext(HeaderContext);
 
 export const HeaderContextProvider = ({ children }) => {
   const { currentPath } = useCurrentPath();
-  // console.log(currentPath);
   const [clickedText, setClickedText] = useState(currentPath);
 
   const value = useMemo(

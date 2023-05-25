@@ -17,34 +17,40 @@ export const Header = ({
 }) => (
   <>
     {!currentUserAuth && (
-      <NotLoggedInHeader
-        clickedText={clickedText}
-        headerLinksForAuth={headerLinksForAuth}
-        setClickedText={setClickedText}
-      />
+      <NotLoggedInHeaderCover>
+        <NotLoggedInHeader
+          clickedText={clickedText}
+          headerLinksForAuth={headerLinksForAuth}
+          setClickedText={setClickedText}
+        />
+      </NotLoggedInHeaderCover>
     )}
 
-    <SpTopHeaderCover>
-      <Link to={`/${currentUserName}`} onClick={() => setClickedText("")}>
-        <HeaderTitle>{currentUserName}</HeaderTitle>
-      </Link>
-    </SpTopHeaderCover>
+    {currentUserAuth && (
+      <>
+        <SpTopHeaderCover>
+          <Link to={`/${currentUserName}`} onClick={() => setClickedText("")}>
+            <HeaderTitle>{currentUserName}</HeaderTitle>
+          </Link>
+        </SpTopHeaderCover>
 
-    <SpHeaderCover>
-      <SpHeader
-        clickedText={clickedText}
-        setClickedText={setClickedText}
-        spHeaderLinks={spHeaderLinks}
-      />
-    </SpHeaderCover>
+        <SpHeaderCover>
+          <SpHeader
+            clickedText={clickedText}
+            setClickedText={setClickedText}
+            spHeaderLinks={spHeaderLinks}
+          />
+        </SpHeaderCover>
 
-    <PcHeaderCover>
-      <PcHeader
-        clickedText={clickedText}
-        setClickedText={setClickedText}
-        pcHeaderLinks={pcHeaderLinks}
-      />
-    </PcHeaderCover>
+        <PcHeaderCover>
+          <PcHeader
+            clickedText={clickedText}
+            setClickedText={setClickedText}
+            pcHeaderLinks={pcHeaderLinks}
+          />
+        </PcHeaderCover>
+      </>
+    )}
   </>
 );
 
@@ -58,7 +64,6 @@ Header.propTypes = {
   headerLinksForAuth: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      clickedText: PropTypes.node.isRequired,
       text: PropTypes.node.isRequired,
       url: PropTypes.string.isRequired,
     })
@@ -95,6 +100,17 @@ const HeaderTitle = styled.div`
   font-size: 12px;
   color: rgb(255, 255, 255);
   background: rgb(237, 128, 119);
+`;
+
+const NotLoggedInHeaderCover = styled.div`
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  width: 100%;
+  height: 52.5px;
+  box-sizing: border-box;
+  border-top: 1px solid #ddd;
+  background-color: #fff;
 `;
 
 const SpHeaderCover = styled.div`
