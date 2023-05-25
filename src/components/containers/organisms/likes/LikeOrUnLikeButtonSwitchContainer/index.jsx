@@ -15,7 +15,6 @@ export const LikeOrUnLikeButtonSwitchContainer = memo(({ taskId }) => {
   } = useLike(taskId);
 
   if (error) return <>Error...</>;
-  if (loading) return <>Loading...</>;
   return (
     <LikeOrUnLikeButtonSwitch
       currentTaskId={currentTaskId}

@@ -19,11 +19,9 @@ export const ProfileChange = ({
   if (bioAble === true) {
     return (
       <Profile>
-        <div>
-          {String(currentUserId) === String(id) && (
-            <ProfileChangeLink setBioAbleFunc={setBioAbleFunc} />
-          )}
-        </div>
+        {String(currentUserId) === String(id) && (
+          <ProfileChangeLink setBioAbleFunc={setBioAbleFunc} />
+        )}
         <ProfileContent>
           <UserNickName>{nickname}</UserNickName>
           <UserNickName>@{username}</UserNickName>

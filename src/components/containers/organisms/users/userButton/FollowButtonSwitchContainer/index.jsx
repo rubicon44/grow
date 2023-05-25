@@ -6,21 +6,15 @@ import { FollowButtonSwitch } from "../FollowButtonSwitch";
 export const FollowButtonSwitchContainer = ({ userIdToFollowOrUnFollow }) => {
   const {
     changeFollowButtonStyle,
-    creating,
     currentUserId,
-    deleting,
     error,
     followFunc,
-    loading,
     isFollowing,
     setChangeFollowButtonStyleToFalseFunc,
     setChangeFollowButtonStyleToTrueFunc,
     unFollowFunc,
   } = useFollowAndUnFollow(userIdToFollowOrUnFollow);
   if (error) return <>Error...</>;
-  if (creating) return <WaitingButton>Creating...</WaitingButton>;
-  if (deleting) return <WaitingButton>Deleting...</WaitingButton>;
-  if (loading) return <WaitingButton>Loading...</WaitingButton>;
   return (
     <FollowButtonSwitch
       changeFollowButtonStyle={changeFollowButtonStyle}

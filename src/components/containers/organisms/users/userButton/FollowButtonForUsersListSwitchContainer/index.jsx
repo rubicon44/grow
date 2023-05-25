@@ -9,13 +9,10 @@ export const FollowButtonForUsersListSwitchContainer = ({
 }) => {
   const {
     changeFollowButtonStyle,
-    creating,
     currentUserId,
     currentUserName,
-    deleting,
     error,
     followFunc,
-    loading,
     isFollowing,
     setChangeFollowButtonStyleToFalseFunc,
     setChangeFollowButtonStyleToTrueFunc,
@@ -23,9 +20,6 @@ export const FollowButtonForUsersListSwitchContainer = ({
   } = useFollowAndUnFollow(userIdToFollowOrUnFollow);
 
   if (error) return <>Error...</>;
-  if (creating) return <WaitingButton>Creating...</WaitingButton>;
-  if (deleting) return <WaitingButton>Deleting...</WaitingButton>;
-  if (loading) return <WaitingButton>Loading...</WaitingButton>;
   return (
     <FollowButtonForUsersListSwitch
       changeFollowButtonStyle={changeFollowButtonStyle}
