@@ -1,13 +1,11 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { SearchForm } from "./SearchForm";
-import { SearchListSwitchContainer } from "./SearchListSwitchContainer";
+import { SearchListSwitch } from "./SearchListSwitch";
 
 export const SearchList = ({
-  error,
   handleSubmit,
   isButtonDisabled,
-  loading,
   tasks,
   users,
 }) => (
@@ -16,25 +14,13 @@ export const SearchList = ({
       handleSubmit={handleSubmit}
       isButtonDisabled={isButtonDisabled}
     />
-    <SearchListSwitchContainer
-      error={error}
-      loading={loading}
-      tasks={tasks}
-      users={users}
-    />
+    <SearchListSwitch tasks={tasks} users={users} />
   </SerchListCover>
 );
 
-SearchList.defaultProps = {
-  error: false,
-  loading: false,
-};
-
 SearchList.propTypes = {
-  error: PropTypes.bool,
   handleSubmit: PropTypes.func.isRequired,
   isButtonDisabled: PropTypes.bool.isRequired,
-  loading: PropTypes.bool,
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,

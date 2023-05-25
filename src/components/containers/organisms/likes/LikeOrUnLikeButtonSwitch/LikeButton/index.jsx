@@ -12,7 +12,7 @@ export const LikeButton = ({ handleClickLikePost, likeData }) => (
 LikeButton.propTypes = {
   handleClickLikePost: PropTypes.func.isRequired,
   likeData: PropTypes.shape({
-    likeCount: PropTypes.number.isRequired,
+    likeCount: PropTypes.number,
     likes: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,

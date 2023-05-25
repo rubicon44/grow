@@ -1,17 +1,19 @@
 import { useCurrentUserId } from "../../../../../hooks/useCurrentUserId";
 import { useFollowings } from "../../../../../hooks/useFollowings";
-import { UserFollowingsList } from "../UserFollowingsList";
+import { UserFollowings } from "../UserFollowings";
 
-export const UserFollowingsListContainer = () => {
+export const UserFollowingsContainer = () => {
   const currentUserId = useCurrentUserId();
-  const { error, followings, loading, username } = useFollowings();
+  const { error, followings, username } = useFollowings();
 
+  if (error) return <>Error...</>;
+  if (followings === null) {
+    return null;
+  }
   return (
-    <UserFollowingsList
+    <UserFollowings
       currentUserId={currentUserId}
-      error={error}
       followings={followings}
-      laoding={loading}
       username={username}
     />
   );

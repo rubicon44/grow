@@ -6,7 +6,8 @@ import { Popup } from "../../../../presentational/atoms/Popup";
 
 export const UserTasksList = (props) => {
   const { currentUserId } = props;
-  const { setCheckUserNameChange, setUserData, userData, currentPath } = props;
+  const { setCheckUserNameChange, setUserData, userData, currentPathSegment } =
+    props;
   const { moveToFollowers, moveToFollowings } = props;
   const { showPopup } = props;
   return (
@@ -21,9 +22,13 @@ export const UserTasksList = (props) => {
         userData={userData}
       />
       <UserTasksContent userData={userData} />
-      <LogOutButtonSwitchContainer currentPath={currentPath} />
+      <LogOutButtonSwitchContainer currentPathSegment={currentPathSegment} />
     </>
   );
+};
+
+UserTasksList.defaultProps = {
+  currentPathSegment: null,
 };
 
 UserTasksList.propTypes = {
@@ -62,5 +67,5 @@ UserTasksList.propTypes = {
     ),
     username: PropTypes.string,
   }).isRequired,
-  currentPath: PropTypes.string.isRequired,
+  currentPathSegment: PropTypes.string,
 };

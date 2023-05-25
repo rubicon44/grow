@@ -13,6 +13,7 @@ export const FollowButtonSwitch = ({
   userIdToFollowOrUnFollow,
 }) => {
   if (String(currentUserId) === String(userIdToFollowOrUnFollow)) return null;
+  if (isFollowing === null) return null;
   if (!isFollowing) return <FollowButton followFunc={followFunc} />;
   return (
     <FollowingOrUnFollowButtonSwitch
@@ -28,12 +29,16 @@ export const FollowButtonSwitch = ({
   );
 };
 
+FollowButtonSwitch.defaultProps = {
+  isFollowing: null,
+};
+
 FollowButtonSwitch.propTypes = {
   changeFollowButtonStyle: PropTypes.bool.isRequired,
   currentUserId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     .isRequired,
   followFunc: PropTypes.func.isRequired,
-  isFollowing: PropTypes.bool.isRequired,
+  isFollowing: PropTypes.bool,
   setChangeFollowButtonStyleToFalseFunc: PropTypes.func.isRequired,
   setChangeFollowButtonStyleToTrueFunc: PropTypes.func.isRequired,
   unFollowFunc: PropTypes.func.isRequired,

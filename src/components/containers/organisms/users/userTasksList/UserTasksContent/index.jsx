@@ -2,12 +2,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { UserTasksContainer } from "./UserTasksContainer";
+import { UserTasks } from "./UserTasks";
 import { GanttChartContainer } from "../../../tasks/GanttChartContainer";
 import { UserLikedTasks } from "./UserLikedTasks";
 
 // todo: ファイル数削減(100行以下)
 export const UserTasksContent = ({ userData }) => {
+  // todo: state/関数位置の検討
   const [activeTab, setActiveTab] = useState("createdTasks");
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -46,7 +47,7 @@ export const UserTasksContent = ({ userData }) => {
       {activeTab === "createdTasks" && (
         <ul>
           <li>
-            <UserTasksContainer userData={userData} />
+            <UserTasks userData={userData} />
           </li>
         </ul>
       )}

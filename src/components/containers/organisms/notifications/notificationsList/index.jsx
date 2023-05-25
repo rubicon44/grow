@@ -8,6 +8,10 @@ export const NotificationsList = ({ currentUserName, notificationsData }) => (
   />
 );
 
+NotificationsList.defaultProps = {
+  notificationsData: null,
+};
+
 NotificationsList.propTypes = {
   currentUserName: PropTypes.string.isRequired,
   notificationsData: PropTypes.shape({
@@ -39,5 +43,5 @@ NotificationsList.propTypes = {
         checked: PropTypes.bool.isRequired,
       })
     ).isRequired,
-  }).isRequired,
+  }),
 };

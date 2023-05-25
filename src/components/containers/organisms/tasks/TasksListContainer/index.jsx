@@ -4,9 +4,11 @@ import { TasksList } from "../tasksList";
 
 export const TasksListContainer = () => {
   const { showPopup } = useShowPopup();
-  const { error, loading, tasks } = useTasks();
+  const { error, tasks } = useTasks();
 
   if (error) throw error;
-  if (loading) return <>Loading...</>;
+  if (tasks === null) {
+    return null;
+  }
   return <TasksList showPopup={showPopup} tasks={tasks} />;
 };

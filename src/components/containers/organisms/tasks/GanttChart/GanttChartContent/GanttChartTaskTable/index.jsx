@@ -2,14 +2,13 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { TaskStatusSwitchText } from "../../TaskStatusSwitchText";
 
-export const GanttChartTaskTable = ({ elm, user, tasks }) => (
+export const GanttChartTaskTable = ({ elm, tasks }) => (
   <>
     <GanttChartTaskTitle>
       <tr>
         <th>タスク</th>
         <th>開始日</th>
         <th>終了日</th>
-        <th>担当</th>
         <th>進捗</th>
       </tr>
     </GanttChartTaskTitle>
@@ -19,7 +18,6 @@ export const GanttChartTaskTable = ({ elm, user, tasks }) => (
           <td>{task.title}</td>
           <td>{task.startDate}</td>
           <td>{task.endDate}</td>
-          <td>{user.nickname}</td>
           <td>
             <TaskStatusSwitchText taskStatus={task.status} />
           </td>
@@ -29,48 +27,8 @@ export const GanttChartTaskTable = ({ elm, user, tasks }) => (
   </>
 );
 
-GanttChartTaskTable.defaultProps = {
-  user: null,
-};
-
 GanttChartTaskTable.propTypes = {
   elm: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
-  user: PropTypes.exact({
-    id: PropTypes.number.isRequired,
-    bio: PropTypes.string,
-    email: PropTypes.string.isRequired,
-    likedTasks: PropTypes.arrayOf(
-      PropTypes.exact({
-        id: PropTypes.number.isRequired,
-        userId: PropTypes.number.isRequired,
-        content: PropTypes.string.isRequired,
-        endDate: PropTypes.string.isRequired,
-        startDate: PropTypes.string.isRequired,
-        status: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        user: PropTypes.exact({
-          bio: PropTypes.string,
-          email: PropTypes.string.isRequired,
-          id: PropTypes.number.isRequired,
-          nickname: PropTypes.string.isRequired,
-          username: PropTypes.string.isRequired,
-        }).isRequired,
-      })
-    ).isRequired,
-    nickname: PropTypes.string.isRequired,
-    tasks: PropTypes.arrayOf(
-      PropTypes.exact({
-        id: PropTypes.number.isRequired,
-        userId: PropTypes.number.isRequired,
-        content: PropTypes.string.isRequired,
-        endDate: PropTypes.string.isRequired,
-        startDate: PropTypes.string.isRequired,
-        status: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-    username: PropTypes.string.isRequired,
-  }),
   tasks: PropTypes.arrayOf(
     PropTypes.exact({
       id: PropTypes.number.isRequired,

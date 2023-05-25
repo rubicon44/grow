@@ -36,7 +36,7 @@ LikeOrUnLikeButtonSwitch.propTypes = {
   handleClickLikeDelete: PropTypes.func.isRequired,
   handleClickLikePost: PropTypes.func.isRequired,
   likeData: PropTypes.shape({
-    likeCount: PropTypes.number.isRequired,
+    likeCount: PropTypes.number,
     likes: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,

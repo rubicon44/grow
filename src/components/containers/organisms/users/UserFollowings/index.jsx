@@ -1,25 +1,27 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { FollowButtonForUsersListSwitchContainer } from "../../userButton/FollowButtonForUsersListSwitchContainer";
+import { FollowButtonForUsersListSwitchContainer } from "../userButton/FollowButtonForUsersListSwitchContainer";
 
 export const UserFollowings = ({ currentUserId, followings, username }) => {
   const hasFollowings = Array.isArray(followings) && followings.length > 0;
 
-  return hasFollowings ? (
-    followings.map((following) => (
-      <UserListItem key={following.id}>
-        <Link to={`/${following.username}`}>{following.nickname}</Link>
-        <FollowButtonForUsersListSwitchContainer
-          currentUserId={currentUserId}
-          userIdToFollowOrUnFollow={following.id}
-          username={username}
-        />
-      </UserListItem>
-    ))
-  ) : (
-    <NoUserFollowings>フォローしているユーザーはいません。</NoUserFollowings>
-  );
+  if (!hasFollowings) {
+    return (
+      <NoUserFollowings>フォローしているユーザーはいません。</NoUserFollowings>
+    );
+  }
+
+  return followings.map((following) => (
+    <UserListItem key={following.id}>
+      <Link to={`/${following.username}`}>{following.nickname}</Link>
+      <FollowButtonForUsersListSwitchContainer
+        currentUserId={currentUserId}
+        userIdToFollowOrUnFollow={following.id}
+        username={username}
+      />
+    </UserListItem>
+  ));
 };
 
 UserFollowings.defaultProps = {

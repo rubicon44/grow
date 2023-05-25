@@ -4,7 +4,6 @@ import { pink } from "@mui/material/colors";
 import styled from "styled-components";
 
 // todo: ThumbUpIconCoverにspanを使用するのは適切？
-// todo: 全てのHTMLの使用が適切かどうか確認する
 export const UnLikeButton = ({ handleClickLikeDelete, likeData }) => (
   <ThumbUpIconCover onClick={handleClickLikeDelete}>
     <ThumbUpIcon sx={{ color: pink[500] }} />
@@ -15,7 +14,7 @@ export const UnLikeButton = ({ handleClickLikeDelete, likeData }) => (
 UnLikeButton.propTypes = {
   handleClickLikeDelete: PropTypes.func.isRequired,
   likeData: PropTypes.shape({
-    likeCount: PropTypes.number.isRequired,
+    likeCount: PropTypes.number,
     likes: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,

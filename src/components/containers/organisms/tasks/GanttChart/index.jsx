@@ -12,7 +12,7 @@ export const GanttChart = (props) => {
     handleScrollToCurrentDate,
     styles,
   } = props;
-  const { user, tasks } = props;
+  const { tasks } = props;
   return (
     <GanttChartContent
       calenderBodyHeight={calenderBodyHeight}
@@ -23,14 +23,9 @@ export const GanttChart = (props) => {
       handleForwardToNextMonthClick={handleForwardToNextMonthClick}
       handleScrollToCurrentDate={handleScrollToCurrentDate}
       styles={styles}
-      user={user}
       tasks={tasks}
     />
   );
-};
-
-GanttChart.defaultProps = {
-  user: null,
 };
 
 GanttChart.propTypes = {
@@ -66,42 +61,6 @@ GanttChart.propTypes = {
       width: PropTypes.string.isRequired,
     })
   ).isRequired,
-  user: PropTypes.exact({
-    id: PropTypes.number.isRequired,
-    bio: PropTypes.string,
-    email: PropTypes.string.isRequired,
-    likedTasks: PropTypes.arrayOf(
-      PropTypes.exact({
-        id: PropTypes.number.isRequired,
-        userId: PropTypes.number.isRequired,
-        content: PropTypes.string.isRequired,
-        endDate: PropTypes.string.isRequired,
-        startDate: PropTypes.string.isRequired,
-        status: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        user: PropTypes.exact({
-          bio: PropTypes.string,
-          email: PropTypes.string.isRequired,
-          id: PropTypes.number.isRequired,
-          nickname: PropTypes.string.isRequired,
-          username: PropTypes.string.isRequired,
-        }).isRequired,
-      })
-    ).isRequired,
-    nickname: PropTypes.string.isRequired,
-    tasks: PropTypes.arrayOf(
-      PropTypes.exact({
-        id: PropTypes.number.isRequired,
-        userId: PropTypes.number.isRequired,
-        content: PropTypes.string.isRequired,
-        endDate: PropTypes.string.isRequired,
-        startDate: PropTypes.string.isRequired,
-        status: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-    username: PropTypes.string.isRequired,
-  }),
   tasks: PropTypes.arrayOf(
     PropTypes.exact({
       id: PropTypes.number.isRequired,

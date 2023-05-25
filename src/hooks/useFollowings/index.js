@@ -9,7 +9,7 @@ export const useFollowings = () => {
   const { getErrorMessage } = useGetErrorMessage();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [followings, setFollowings] = useState([]);
+  const [followings, setFollowings] = useState(null);
 
   useEffect(() => {
     const fetchFollowings = async () => {

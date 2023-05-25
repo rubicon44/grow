@@ -4,9 +4,11 @@ import { NotificationsList } from "../notificationsList";
 
 export const NotificationsListContainer = () => {
   const currentUserName = useCurrentUserName();
-  const { error, loading, notificationsData } = useNotificationsData();
+  const { error, notificationsData } = useNotificationsData();
   if (error) return <>Error...</>;
-  if (loading) return <>Loading...</>;
+  if (notificationsData === null) {
+    return null;
+  }
   return (
     <NotificationsList
       currentUserName={currentUserName}

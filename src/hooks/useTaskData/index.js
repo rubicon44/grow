@@ -8,16 +8,7 @@ export const useTaskData = () => {
   const { getErrorMessage } = useGetErrorMessage();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [taskData, setTaskData] = useState({
-    task: {
-      id: "",
-      title: "",
-      content: "",
-      status: "",
-      startDate: "",
-      endDate: "",
-    },
-  });
+  const [taskData, setTaskData] = useState(null);
 
   useEffect(() => {
     const fetchTaskData = async () => {

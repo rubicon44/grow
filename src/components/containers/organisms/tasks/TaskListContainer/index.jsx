@@ -8,20 +8,20 @@ import { TaskList } from "../taskList";
 export const TaskListContainer = () => {
   const { showPopup } = useShowPopup();
   const currentUserId = useCurrentUserId();
-  const { loading, error, taskData } = useTaskData();
+  const { error, taskData } = useTaskData();
   const {
     deleteCheckAble,
     deleteCheckFunc,
     deleteTaskFunc,
-    deleting,
     isButtonDisabled,
     unDeleteCheckFunc,
   } = useTaskDelete(taskData);
   const { moveToEditTask } = useMoveToEditTask(taskData);
 
   if (error) throw error;
-  if (loading) return <>Loading...</>;
-  if (deleting) return <>Deleting...</>;
+  if (taskData === null) {
+    return null;
+  }
   return (
     <TaskList
       currentUserId={currentUserId}

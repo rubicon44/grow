@@ -18,7 +18,7 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
   const [loading, setLoading] = useState(false);
   const [changeFollowButtonStyle, setChangeFollowButtonStyle] = useState(false);
   const [currentUserFollowings, setCurrentUserFollowings] = useState([]);
-  const [isFollowing, setIsFollowing] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(null);
 
   useEffect(() => {
     const username = currentUserName;

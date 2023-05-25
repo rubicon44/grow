@@ -17,7 +17,7 @@ export const GanttChartContent = (props) => {
     handleScrollToCurrentDate,
     styles,
   } = props;
-  const { user, tasks } = props;
+  const { tasks } = props;
   return (
     <>
       <button type="button" onClick={handleScrollToCurrentDate}>
@@ -33,7 +33,7 @@ export const GanttChartContent = (props) => {
       </ArrowIconsCover>
       <GanttChartTaskAndCalenderTables id="outer">
         <GanttChartTaskTableCover>
-          <GanttChartTaskTable elm={elm} user={user} tasks={tasks} />
+          <GanttChartTaskTable elm={elm} tasks={tasks} />
         </GanttChartTaskTableCover>
         <GanttChartCalenderTableWithTaskBarCover ref={elmOfCalenderTableCover}>
           <GanttChartCalenderTableWithTaskBar
@@ -45,10 +45,6 @@ export const GanttChartContent = (props) => {
       </GanttChartTaskAndCalenderTables>
     </>
   );
-};
-
-GanttChartContent.defaultProps = {
-  user: null,
 };
 
 GanttChartContent.propTypes = {
@@ -84,42 +80,6 @@ GanttChartContent.propTypes = {
       width: PropTypes.string.isRequired,
     })
   ).isRequired,
-  user: PropTypes.exact({
-    id: PropTypes.number.isRequired,
-    bio: PropTypes.string,
-    email: PropTypes.string.isRequired,
-    likedTasks: PropTypes.arrayOf(
-      PropTypes.exact({
-        id: PropTypes.number.isRequired,
-        userId: PropTypes.number.isRequired,
-        content: PropTypes.string.isRequired,
-        endDate: PropTypes.string.isRequired,
-        startDate: PropTypes.string.isRequired,
-        status: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        user: PropTypes.exact({
-          bio: PropTypes.string,
-          email: PropTypes.string.isRequired,
-          id: PropTypes.number.isRequired,
-          nickname: PropTypes.string.isRequired,
-          username: PropTypes.string.isRequired,
-        }).isRequired,
-      })
-    ),
-    nickname: PropTypes.string.isRequired,
-    tasks: PropTypes.arrayOf(
-      PropTypes.exact({
-        id: PropTypes.number.isRequired,
-        userId: PropTypes.number.isRequired,
-        content: PropTypes.string.isRequired,
-        endDate: PropTypes.string.isRequired,
-        startDate: PropTypes.string.isRequired,
-        status: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-    username: PropTypes.string.isRequired,
-  }),
   tasks: PropTypes.arrayOf(
     PropTypes.exact({
       id: PropTypes.number.isRequired,

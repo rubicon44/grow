@@ -2,16 +2,20 @@ import PropTypes from "prop-types";
 import { useCurrentUserName } from "../../../../../../hooks/useCurrentUserName";
 import { LogOutButtonSwitch } from "../LogOutButtonSwitch";
 
-export const LogOutButtonSwitchContainer = ({ currentPath }) => {
+export const LogOutButtonSwitchContainer = ({ currentPathSegment }) => {
   const currentUserName = useCurrentUserName();
   return (
     <LogOutButtonSwitch
       currentUserName={currentUserName}
-      currentPath={currentPath}
+      currentPathSegment={currentPathSegment}
     />
   );
 };
 
+LogOutButtonSwitchContainer.defaultProps = {
+  currentPathSegment: null,
+};
+
 LogOutButtonSwitchContainer.propTypes = {
-  currentPath: PropTypes.string.isRequired,
+  currentPathSegment: PropTypes.string,
 };

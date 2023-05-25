@@ -8,11 +8,7 @@ export const useNotificationsData = () => {
   const { getErrorMessage } = useGetErrorMessage();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [notificationsData, setNotificationsData] = useState({
-    followVisitors: [],
-    likeVisitors: [],
-    notifications: [],
-  });
+  const [notificationsData, setNotificationsData] = useState(null);
 
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -35,7 +31,6 @@ export const useNotificationsData = () => {
       } finally {
         setLoading(false);
       }
-      // todo: Consider about array of dependencies of useCallback later.
     };
     fetchNotifications();
   }, [currentUserId, getErrorMessage]);

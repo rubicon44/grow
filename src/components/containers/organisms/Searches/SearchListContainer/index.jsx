@@ -6,16 +6,19 @@ export const SearchListContainer = () => {
     error,
     handleSubmit,
     isButtonDisabled,
-    loading,
     searchResultTasks,
     searchResultUsers,
   } = useSearchResults();
+
+  if (error) return <>Error...</>;
+  if (searchResultTasks === null || searchResultUsers === null) {
+    return null;
+  }
   return (
     <SearchList
       error={error}
       handleSubmit={handleSubmit}
       isButtonDisabled={isButtonDisabled}
-      loading={loading}
       tasks={searchResultTasks}
       users={searchResultUsers}
     />

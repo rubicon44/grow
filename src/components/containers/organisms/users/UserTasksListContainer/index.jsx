@@ -11,11 +11,10 @@ export const UserTasksListContainer = () => {
 
   const {
     error,
-    loading,
     setCheckUserNameChange,
     setUserData,
     userData,
-    currentPath,
+    currentPathSegment,
   } = useUserData();
 
   // todo: useMoveTo~は、API通信用のHooksと見間違える可能性があるため、名称変更した方が良い？
@@ -23,8 +22,9 @@ export const UserTasksListContainer = () => {
   const { moveToFollowings } = useMoveToFollowings(userData);
 
   if (error) return <>Error...</>;
-  if (loading) return <>Loading...</>;
-
+  if (userData === null) {
+    return null;
+  }
   return (
     <UserTasksList
       currentUserId={currentUserId}
@@ -34,7 +34,7 @@ export const UserTasksListContainer = () => {
       setUserData={setUserData}
       showPopup={showPopup}
       userData={userData}
-      currentPath={currentPath}
+      currentPathSegment={currentPathSegment}
     />
   );
 };

@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react";
 import { useGetErrorMessage } from "../useGetErrorMessage";
-import { useCurrentPath } from "../useCurrentPath";
+import { useCurrentPathSegment } from "../useCurrentPathSegment";
 import { getUser } from "../../infra/api";
 
 export const useUserData = () => {
-  const { currentPath } = useCurrentPath();
+  const { currentPathSegment } = useCurrentPathSegment();
   const { getErrorMessage } = useGetErrorMessage();
   const [checkUserNameChange, setCheckUserNameChange] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const handleSuccess = (userData) => {
-      // todo: Consider a way to change snake-case to camel-case.
       const { likedTasks, ...newUserData } = userData;
       const newDataWithLikedTasksKey = { ...newUserData, likedTasks };
       setUserData(newDataWithLikedTasksKey);
@@ -26,13 +25,12 @@ export const useUserData = () => {
       getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
     };
 
-    const fetchUserData = async (currentPath) => {
+    const fetchUserData = async (currentPathSegment) => {
       setLoading(true);
       setError(null);
 
       try {
-        // todo: エラーの際、他ユーザーをフォローできてしまうかも。
-        const response = await getUser(currentPath);
+        const response = await getUser(currentPathSegment);
         const userData = response.data;
         handleSuccess(userData);
       } catch (error) {
@@ -43,8 +41,8 @@ export const useUserData = () => {
       }
     };
 
-    fetchUserData(currentPath);
-  }, [checkUserNameChange, currentPath, getErrorMessage]);
+    fetchUserData(currentPathSegment);
+  }, [checkUserNameChange, currentPathSegment, getErrorMessage]);
 
   return {
     error,
@@ -52,6 +50,6 @@ export const useUserData = () => {
     setCheckUserNameChange,
     setUserData,
     userData,
-    currentPath,
+    currentPathSegment,
   };
 };

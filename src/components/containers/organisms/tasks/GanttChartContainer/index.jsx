@@ -16,7 +16,9 @@ export const GanttChartContainer = () => {
     styles,
   } = useGanttChart(userData?.tasks ?? [], loading);
   if (error) return <div>Error...</div>;
-  if (loading) return <div>Loading...</div>;
+  if (userData === null) {
+    return null;
+  }
   return (
     <GanttChart
       calenderBodyHeight={calenderBodyHeight}
@@ -28,7 +30,6 @@ export const GanttChartContainer = () => {
       handleForwardToNextMonthClick={handleForwardToNextMonthClick}
       handleScrollToCurrentDate={handleScrollToCurrentDate}
       styles={styles}
-      user={userData}
       tasks={userData.tasks}
     />
   );

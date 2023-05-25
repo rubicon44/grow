@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { ProfileChangeLink } from "./ProfileChangeLink";
 import { ProfileChangeForm } from "./ProfileChangeForm";
 
-// todo: プロフィール編集の際の「コンテンツが何度もレンダリングされる現象」を解決する(おそらくif statementの問題。)。
 export const ProfileChange = ({
   bioAble,
   currentUserId,

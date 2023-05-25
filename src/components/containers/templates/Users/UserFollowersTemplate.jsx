@@ -1,10 +1,10 @@
 import { MainWithHeader } from "../MainWithHeader";
-import { UserFollowersListContainer } from "../../organisms/users/UserFollowersListContainer";
+import { UserFollowersContainer } from "../../organisms/users/UserFollowersContainer";
 import { TitleWithBackArrowHeader } from "../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
 export const UserFollowersTemplate = () => (
   <MainWithHeader title="フォロワー">
     <TitleWithBackArrowHeader />
-    <UserFollowersListContainer />
+    <UserFollowersContainer />
   </MainWithHeader>
 );

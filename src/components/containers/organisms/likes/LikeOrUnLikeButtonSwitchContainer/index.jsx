@@ -11,7 +11,6 @@ export const LikeOrUnLikeButtonSwitchContainer = memo(({ taskId }) => {
     handleClickLikeDelete,
     handleClickLikePost,
     likeData,
-    loading,
   } = useLike(taskId);
 
   if (error) return <>Error...</>;
@@ -23,7 +22,6 @@ export const LikeOrUnLikeButtonSwitchContainer = memo(({ taskId }) => {
       handleClickLikeDelete={handleClickLikeDelete}
       handleClickLikePost={handleClickLikePost}
       likeData={likeData}
-      loading={loading}
       taskId={taskId}
     />
   );

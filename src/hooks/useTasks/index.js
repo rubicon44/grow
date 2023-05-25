@@ -3,7 +3,7 @@ import { getTasks } from "../../infra/api";
 import { useApiQuery } from "../../infra/api/hooks/useApiQuery";
 
 export const useTasks = () => {
-  const { data, error, loading } = useApiQuery("tasks", getTasks);
+  const { data, error } = useApiQuery("tasks", getTasks);
   const { getErrorMessage } = useGetErrorMessage();
 
   if (error) {
@@ -14,7 +14,6 @@ export const useTasks = () => {
 
   return {
     error,
-    loading,
     tasks: data?.data?.tasks || [],
   };
 };
