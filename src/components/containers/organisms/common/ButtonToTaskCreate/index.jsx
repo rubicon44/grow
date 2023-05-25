@@ -1,14 +1,13 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 
-export const LinkToTaskCreate = () => (
-  <LinkToTaskCreateStyle to="/tasks/create">
+export const ButtonToTaskCreate = () => (
+  <ButtonToTaskCreateStyle>
     <AddRoundedIcon style={{ fontSize: "2.1rem" }} />
-  </LinkToTaskCreateStyle>
+  </ButtonToTaskCreateStyle>
 );
 
-const LinkToTaskCreateStyle = styled(Link)`
+const ButtonToTaskCreateStyle = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -1,8 +1,9 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { mediaquery } from "../../../assets/styles/variable";
-import { LinkToTaskCreate } from "../organisms/common/LinkToTaskCreate";
+import { ButtonToTaskCreate } from "../organisms/common/ButtonToTaskCreate";
 import { AuthContext } from "../../../auth/AuthProvider";
 import { HeaderContainer } from "../organisms/common/HeaderContainer";
 import { Main } from "./main";
@@ -17,9 +18,11 @@ export const MainWithHeader = ({ children }) => {
       <Main>
         {children}
         {currentUserAuth && (
-          <LinkToTaskCreateCover>
-            <LinkToTaskCreate />
-          </LinkToTaskCreateCover>
+          <Link to="/tasks/create">
+            <ButtonToTaskCreateCover>
+              <ButtonToTaskCreate />
+            </ButtonToTaskCreateCover>
+          </Link>
         )}
       </Main>
     </>
@@ -30,7 +33,7 @@ MainWithHeader.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const LinkToTaskCreateCover = styled.div`
+const ButtonToTaskCreateCover = styled.div`
   position: fixed;
   bottom: 10%;
   right: 7%;
