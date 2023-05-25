@@ -56,11 +56,12 @@ export const Header = ({
 
 Header.defaultProps = {
   clickedText: null,
+  currentUserName: "",
 };
 
 Header.propTypes = {
   clickedText: PropTypes.string,
-  currentUserName: PropTypes.string.isRequired,
+  currentUserName: PropTypes.string,
   headerLinksForAuth: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,

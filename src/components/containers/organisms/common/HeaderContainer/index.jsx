@@ -1,13 +1,10 @@
-import { useContext } from "react";
-import { AuthContext } from "../../../../../auth/AuthProvider";
 import { useCurrentUserName } from "../../../../../hooks/useCurrentUserName";
 import { useHeader } from "../../../../../hooks/useHeader";
 import { useHeaderContext } from "../../../../../context/HeaderContext";
 import { Header } from "../Header";
 
-export const HeaderContainer = () => {
+export const HeaderContainer = ({ currentUserAuth }) => {
   const { headerLinksForAuth, pcHeaderLinks, spHeaderLinks } = useHeader();
-  const { currentUserAuth } = useContext(AuthContext);
   const currentUserName = useCurrentUserName();
   const { clickedText, setClickedText } = useHeaderContext();
   return (
