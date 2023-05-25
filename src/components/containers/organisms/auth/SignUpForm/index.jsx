@@ -56,6 +56,7 @@ SignUpForm.propTypes = {
 
 const FormCover = styled.div`
   min-width: 260px;
+  max-width: 360px;
   padding: 0 10px;
   text-align: left;
 `;

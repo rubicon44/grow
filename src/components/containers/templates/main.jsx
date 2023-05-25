@@ -25,4 +25,7 @@ const BaseMain = styled.main`
   ${mediaquery.phone`
     margin-top: 70px;
   `}
+  ${mediaquery.desk`
+    padding-left: 20%;
+  `}
 `;

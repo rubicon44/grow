@@ -50,6 +50,7 @@ const FormInputCover = styled.div`
     display: block;
     > input {
       min-width: 260px;
+      max-width: 360px;
     }
   }
 `;
