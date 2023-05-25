@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { mediaquery } from "../../../../../assets/styles/variable";
+import { useMediaQuery } from "@mui/material";
 import { NotLoggedInHeader } from "./NotLoggedInHeader";
 import { PcHeader } from "./PcHeader";
 import { SpHeader } from "./SpHeader";
@@ -14,45 +14,51 @@ export const Header = ({
   setClickedText,
   pcHeaderLinks,
   spHeaderLinks,
-}) => (
-  <>
-    {!currentUserAuth && (
-      <NotLoggedInHeaderCover>
-        <NotLoggedInHeader
-          clickedText={clickedText}
-          headerLinksForAuth={headerLinksForAuth}
-          setClickedText={setClickedText}
-        />
-      </NotLoggedInHeaderCover>
-    )}
-
-    {currentUserAuth && (
-      <>
-        <SpTopHeaderCover>
-          <Link to={`/${currentUserName}`} onClick={() => setClickedText("")}>
-            <HeaderTitle>{currentUserName}</HeaderTitle>
-          </Link>
-        </SpTopHeaderCover>
-
-        <SpHeaderCover>
-          <SpHeader
+}) => {
+  const isMobile = useMediaQuery("(max-width:375px)");
+  return (
+    <>
+      {!currentUserAuth && (
+        <NotLoggedInHeaderCover>
+          <NotLoggedInHeader
             clickedText={clickedText}
+            headerLinksForAuth={headerLinksForAuth}
             setClickedText={setClickedText}
-            spHeaderLinks={spHeaderLinks}
           />
-        </SpHeaderCover>
+        </NotLoggedInHeaderCover>
+      )}
 
-        <PcHeaderCover>
-          <PcHeader
-            clickedText={clickedText}
-            setClickedText={setClickedText}
-            pcHeaderLinks={pcHeaderLinks}
-          />
-        </PcHeaderCover>
-      </>
-    )}
-  </>
-);
+      {currentUserAuth &&
+        (isMobile ? (
+          <>
+            <SpHeaderCover>
+              <SpHeader
+                clickedText={clickedText}
+                setClickedText={setClickedText}
+                spHeaderLinks={spHeaderLinks}
+              />
+            </SpHeaderCover>
+            <SpTopHeaderCover>
+              <Link
+                to={`/${currentUserName}`}
+                onClick={() => setClickedText("")}
+              >
+                <HeaderTitle>{currentUserName}</HeaderTitle>
+              </Link>
+            </SpTopHeaderCover>
+          </>
+        ) : (
+          <PcHeaderCover>
+            <PcHeader
+              clickedText={clickedText}
+              setClickedText={setClickedText}
+              pcHeaderLinks={pcHeaderLinks}
+            />
+          </PcHeaderCover>
+        ))}
+    </>
+  );
+};
 
 Header.defaultProps = {
   clickedText: null,
@@ -73,7 +79,7 @@ Header.propTypes = {
   pcHeaderLinks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      clickedText: PropTypes.node.isRequired,
+      clickedText: PropTypes.node,
       text: PropTypes.node.isRequired,
       url: PropTypes.string.isRequired,
     })
@@ -123,21 +129,18 @@ const SpHeaderCover = styled.div`
   box-sizing: border-box;
   border-top: 1px solid #ddd;
   background-color: #fff;
-  ${mediaquery.desk`
-    display: none;
-  `}
 `;
 
 const SpTopHeaderCover = styled.header`
-  position: relative;
+  position: fixed;
+  top: 0;
+  width: 100%;
   display: flex;
   height: 50px;
   padding: 12px 15px;
   box-sizing: border-box;
   background-color: #eeeff1;
-  ${mediaquery.desk`
-    display: none;
-  `}
+  z-index: 30;
 `;
 
 const PcHeaderCover = styled.header`
@@ -150,7 +153,4 @@ const PcHeaderCover = styled.header`
   box-sizing: border-box;
   background-color: #eeeff1;
   z-index: 10;
-  ${mediaquery.phone`
-    display: none;
-  `}
 `;

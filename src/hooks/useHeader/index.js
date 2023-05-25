@@ -1,7 +1,5 @@
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import HomeIcon from "@mui/icons-material/Home";
-import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
@@ -9,6 +7,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useCurrentUserName } from "../useCurrentUserName";
+import { LinkToTaskCreate } from "../../components/containers/organisms/common/LinkToTaskCreate";
 
 export const useHeader = () => {
   const currentUserName = useCurrentUserName();
@@ -55,8 +54,8 @@ export const useHeader = () => {
     {
       id: "tasks/create",
       url: "/tasks/create",
-      text: <AddCircleOutlineOutlinedIcon />,
-      clickedText: <AddCircleRoundedIcon />,
+      text: <LinkToTaskCreate />,
+      clickedText: <LinkToTaskCreate />,
     },
     {
       id: `${currentUserName}`,

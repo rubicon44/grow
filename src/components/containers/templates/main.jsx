@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { mediaquery } from "../../../assets/styles/variable";
 
 export const Main = ({ children, className }) => (
   <BaseMain className={className}>{children}</BaseMain>
@@ -21,4 +22,7 @@ const BaseMain = styled.main`
   align-items: center;
   margin: 20px;
   padding-bottom: 15px;
+  ${mediaquery.phone`
+    margin-top: 70px;
+  `}
 `;
