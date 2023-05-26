@@ -1,21 +1,19 @@
 import PropTypes from "prop-types";
-import { UserTasksContentTab } from "./UserTasksContentTab";
-import { UserTasksContentList } from "./UserTasksContentList";
+import { useUserTasksContentTab } from "../../../../../../hooks/useUserTasksContentTab";
+import { UserTasksContent } from "../UserTasksContent";
 
-export const UserTasksContent = ({ activeTab, handleTabChange, userData }) => (
-  <>
-    {/* todo: タスクタブ内のタスクをいいねした際、いいねタブ内のタスクを即座に更新するか検討。 */}
-    <UserTasksContentTab
+export const UserTasksContentContainer = ({ userData }) => {
+  const { activeTab, handleTabChange } = useUserTasksContentTab();
+  return (
+    <UserTasksContent
       activeTab={activeTab}
       handleTabChange={handleTabChange}
+      userData={userData}
     />
-    <UserTasksContentList activeTab={activeTab} userData={userData} />
-  </>
-);
+  );
+};
 
-UserTasksContent.propTypes = {
-  activeTab: PropTypes.string.isRequired,
-  handleTabChange: PropTypes.func.isRequired,
+UserTasksContentContainer.propTypes = {
   userData: PropTypes.shape({
     id: PropTypes.number,
     bio: PropTypes.string,

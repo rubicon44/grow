@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { LogOutButtonSwitchContainer } from "./LogOutButtonSwitchContainer";
-import { UserTasksContent } from "./UserTasksContent";
+import { UserTasksContentContainer } from "./UserTasksContentContainer";
 import { UserTasksContentHeaderContainer } from "./UserTasksContentHeaderContainer";
 import { PopupContainer } from "../../tasks/ui/PopupContainer";
 import { TitleWithBackArrowHeader } from "../../../../presentational/molecules/Header/TitleWithBackArrowHeader";
@@ -22,7 +22,7 @@ export const UserTasksList = (props) => {
         setUserData={setUserData}
         userData={userData}
       />
-      <UserTasksContent userData={userData} />
+      <UserTasksContentContainer userData={userData} />
       <LogOutButtonSwitchContainer currentPathSegment={currentPathSegment} />
     </>
   );
