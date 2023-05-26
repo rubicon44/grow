@@ -13,8 +13,6 @@ export const UserTasksListContainer = () => {
     userData,
     currentPathSegment,
   } = useUserData();
-
-  // todo: useMoveTo~は、API通信用のHooksと見間違える可能性があるため、名称変更した方が良い？
   const { moveToFollowers } = useMoveToFollowers(userData);
   const { moveToFollowings } = useMoveToFollowings(userData);
 
