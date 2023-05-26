@@ -1,10 +1,10 @@
-import { MainWithHeader } from "../MainWithHeader";
+import { MainWithHeaderContainer } from "../MainWithHeaderContainer";
 import { TaskListContainer } from "../../organisms/tasks/TaskListContainer";
 import { TitleWithBackArrowHeader } from "../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
 export const TaskShowTemplate = () => (
-  <MainWithHeader>
+  <MainWithHeaderContainer>
     <TitleWithBackArrowHeader title="タスク詳細" />
     <TaskListContainer />
-  </MainWithHeader>
+  </MainWithHeaderContainer>
 );

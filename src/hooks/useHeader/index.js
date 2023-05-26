@@ -7,7 +7,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useCurrentUserName } from "../useCurrentUserName";
-import { ButtonToTaskCreate } from "../../components/containers/organisms/common/ButtonToTaskCreate";
+import { PcButtonToTaskCreate } from "../../components/containers/organisms/common/PcButtonToTaskCreate";
 
 export const useHeader = () => {
   const currentUserName = useCurrentUserName();
@@ -60,8 +60,8 @@ export const useHeader = () => {
     {
       id: "tasks/create",
       url: "/tasks/create",
-      text: <ButtonToTaskCreate />,
-      clickedText: <ButtonToTaskCreate />,
+      text: <PcButtonToTaskCreate />,
+      clickedText: <PcButtonToTaskCreate />,
     },
   ];
 

@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
-import { MainWithHeader } from "../MainWithHeader";
+import { MainWithHeaderContainer } from "../MainWithHeaderContainer";
 import { TaskEditFormContainer } from "../../organisms/tasks/TaskForm/TaskEditFormContainer";
 import { TitleWithBackArrowHeader } from "../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
 export const TaskEditTemplate = ({ taskDataTask }) => (
-  <MainWithHeader>
+  <MainWithHeaderContainer>
     <TitleWithBackArrowHeader title="編集" />
     <TaskEditFormContainer taskDataTask={taskDataTask} />
-  </MainWithHeader>
+  </MainWithHeaderContainer>
 );
 
 TaskEditTemplate.propTypes = {

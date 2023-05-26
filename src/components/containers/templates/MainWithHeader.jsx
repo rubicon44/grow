@@ -1,29 +1,16 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-import { mediaquery } from "../../../assets/styles/variable";
-import { AuthContext } from "../../../auth/AuthProvider";
+import { useMediaQuery } from "@mui/material";
 import { Main } from "./main";
-import { ButtonToTaskCreate } from "../organisms/common/ButtonToTaskCreate";
+import { SpButtonToTaskCreate } from "../organisms/common/SpButtonToTaskCreate";
 import { HeaderContainer } from "../organisms/common/HeaderContainer";
 
-// todo: Containerレイヤーを作成
-export const MainWithHeader = ({ children }) => {
-  const { currentUserAuth } = useContext(AuthContext);
+export const MainWithHeader = ({ children, currentUserAuth }) => {
+  const isMobile = useMediaQuery("(max-width:375px)");
   return (
     <>
       <HeaderContainer currentUserAuth={currentUserAuth} />
-      <Main>
-        {children}
-        {currentUserAuth && (
-          <Link to="/tasks/create">
-            <ButtonToTaskCreateCover>
-              <ButtonToTaskCreate />
-            </ButtonToTaskCreateCover>
-          </Link>
-        )}
-      </Main>
+      {currentUserAuth && isMobile && <SpButtonToTaskCreate />}
+      <Main>{children}</Main>
     </>
   );
 };
@@ -31,12 +18,3 @@ export const MainWithHeader = ({ children }) => {
 MainWithHeader.propTypes = {
   children: PropTypes.node.isRequired,
 };
-
-const ButtonToTaskCreateCover = styled.div`
-  position: fixed;
-  bottom: 10%;
-  right: 7%;
-  ${mediaquery.desk`
-    display: none;
-  `}
-`;
