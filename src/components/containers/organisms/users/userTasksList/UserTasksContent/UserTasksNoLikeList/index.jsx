@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const UserTasksNoLikeList = ({ userData }) => (
   <ListCover key={userData.likedTasks}>
-    <div>まだいいねはありません。</div>
+    <p>まだいいねはありません。</p>
   </ListCover>
 );
 

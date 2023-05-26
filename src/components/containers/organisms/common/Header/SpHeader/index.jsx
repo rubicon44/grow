@@ -10,8 +10,12 @@ export const SpHeader = ({ currentUserName, setClickedText }) => (
   </Header>
 );
 
+SpHeader.defaultProps = {
+  currentUserName: "",
+};
+
 SpHeader.propTypes = {
-  currentUserName: PropTypes.string.isRequired,
+  currentUserName: PropTypes.string,
   setClickedText: PropTypes.func.isRequired,
 };
 

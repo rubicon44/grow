@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const UserTasksNoPostList = ({ userData }) => (
   <ListCover key={userData.tasks}>
-    <div>まだ投稿はありません。</div>
+    <p>まだ投稿はありません。</p>
   </ListCover>
 );
 

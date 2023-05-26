@@ -1,6 +1,6 @@
 import { useCurrentUserName } from "../../../../../hooks/useCurrentUserName";
 import { useNotificationsData } from "../../../../../hooks/useNotificationsData";
-import { NotificationsList } from "../notificationsList";
+import { NotificationsList } from "..";
 
 export const NotificationsListContainer = () => {
   const currentUserName = useCurrentUserName();

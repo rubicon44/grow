@@ -7,7 +7,7 @@ export const LikeNotification = ({
   notification,
   visitor,
 }) => (
-  <UserNickNameCover>
+  <>
     あなたの
     <UserNickName to={`/${currentUserName}/tasks/${notification.taskId}`}>
       タスク
@@ -15,7 +15,7 @@ export const LikeNotification = ({
     が
     <UserNickName to={`/${visitor.username}`}>{visitor.nickname}</UserNickName>
     にいいねされました。
-  </UserNickNameCover>
+  </>
 );
 
 LikeNotification.propTypes = {
@@ -36,11 +36,6 @@ LikeNotification.propTypes = {
     username: PropTypes.string.isRequired,
   }).isRequired,
 };
-
-const UserNickNameCover = styled.div`
-  padding: 10px 0;
-  border-bottom: 1px solid #ddd;
-`;
 
 const UserNickName = styled(Link)`
   font-weight: bold;

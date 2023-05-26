@@ -30,6 +30,7 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
         const response = await getFollowings(username);
         const followingsData = response.data.followings;
         setCurrentUserFollowings(followingsData);
+        setIsFollowing(false);
       } catch (error) {
         setError(error);
         const verbForErrorMessage = `ユーザー情報`;
