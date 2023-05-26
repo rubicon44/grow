@@ -1,6 +1,5 @@
 import { MainWithHeader } from "../MainWithHeader";
 import { TasksListContainer } from "../../organisms/tasks/TasksListContainer";
-// import { Title } from "../../../presentational/atoms/Title";
 import { TitleWithBackArrowHeader } from "../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
 export const TasksTemplate = () => (

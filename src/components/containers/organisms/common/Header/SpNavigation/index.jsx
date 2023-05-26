@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-export const NotLoggedInHeader = ({
+export const SpNavigation = ({
   clickedText,
-  headerLinksForAuth,
   setClickedText,
+  spNavigationLinks,
 }) => {
-  const notLoggedInHeaderList = () => (
-    <Header>
-      {headerLinksForAuth.map((headerLink) => (
+  const SpNavigationList = () => (
+    <NavigationList>
+      {spNavigationLinks.map((headerLink) => (
         <Link
           to={headerLink.url}
           key={headerLink.url}
@@ -19,40 +19,36 @@ export const NotLoggedInHeader = ({
           {!clickedText || clickedText !== headerLink.id ? (
             <span>{headerLink.text}</span>
           ) : (
-            <ClickeText>{headerLink.text}</ClickeText>
+            <span>{headerLink.clickedText}</span>
           )}
         </Link>
       ))}
-    </Header>
+    </NavigationList>
   );
 
   return ["top"].map((anchor) => (
-    <Fragment key={anchor}>{notLoggedInHeaderList(anchor)}</Fragment>
+    <Fragment key={anchor}>{SpNavigationList(anchor)}</Fragment>
   ));
 };
 
-NotLoggedInHeader.defaultProps = {
+SpNavigation.defaultProps = {
   clickedText: null,
 };
 
-NotLoggedInHeader.propTypes = {
+SpNavigation.propTypes = {
   clickedText: PropTypes.string,
-  headerLinksForAuth: PropTypes.arrayOf(
+  setClickedText: PropTypes.func.isRequired,
+  spNavigationLinks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
+      clickedText: PropTypes.node.isRequired,
       text: PropTypes.node.isRequired,
       url: PropTypes.string.isRequired,
     })
   ).isRequired,
-  setClickedText: PropTypes.func.isRequired,
 };
 
-const ClickeText = styled.span`
-  font-size: 1.1rem;
-  font-weight: bold;
-`;
-
-const Header = styled.header`
+const NavigationList = styled.nav`
   position: fixed;
   bottom: 0;
   z-index: 10;

@@ -6,23 +6,21 @@ import { mediaquery } from "../../../../../../assets/styles/variable";
 
 export const PcHeader = ({ clickedText, setClickedText, pcHeaderLinks }) => {
   const pcHeaderList = () => (
-    <HeaderList>
+    <Header>
       {pcHeaderLinks.map((headerLink) => (
         <Link
           to={headerLink.url}
           key={headerLink.url}
           onClick={() => setClickedText(headerLink.id)}
         >
-          <li>
-            {!clickedText || clickedText !== headerLink.id ? (
-              <span>{headerLink.text}</span>
-            ) : (
-              <span>{headerLink.clickedText}</span>
-            )}
-          </li>
+          {!clickedText || clickedText !== headerLink.id ? (
+            <span>{headerLink.text}</span>
+          ) : (
+            <span>{headerLink.clickedText}</span>
+          )}
         </Link>
       ))}
-    </HeaderList>
+    </Header>
   );
 
   return ["top"].map((anchor) => (
@@ -47,11 +45,19 @@ PcHeader.propTypes = {
   setClickedText: PropTypes.func.isRequired,
 };
 
-const HeaderList = styled.ul`
+const Header = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 20%;
   height: 100%;
+  padding: 12px 15px;
+  box-sizing: border-box;
+  background-color: #eeeff1;
   ${mediaquery.desk`
     flex-direction: column;
   `}

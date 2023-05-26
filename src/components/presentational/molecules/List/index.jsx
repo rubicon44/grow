@@ -5,7 +5,7 @@ export const List = ({ title, content }) => (
   // todo: httpsにおいてXSSできないことを確認する
   // const userInputText1 = `javascript: console.log(document.cookie)`;
   <BaseList>
-    <h2>{title}</h2>
+    <h3>{title}</h3>
     {/* <Link to={userInputText1}>{title}</Link> */}
     <p>{content}</p>
   </BaseList>
@@ -22,7 +22,7 @@ const BaseList = styled.div`
   margin-top: 15px;
   text-align: left;
   word-wrap: break-word;
-  > h2 {
+  > h3 {
     font-weight: bold;
   }
   > p {

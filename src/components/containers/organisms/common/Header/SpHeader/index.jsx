@@ -1,62 +1,43 @@
-import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-export const SpHeader = ({ clickedText, setClickedText, spHeaderLinks }) => {
-  const spHeaderList = () => (
-    <HeaderList>
-      {spHeaderLinks.map((headerLink) => (
-        <Link
-          to={headerLink.url}
-          key={headerLink.url}
-          onClick={() => setClickedText(headerLink.id)}
-        >
-          <li>
-            {!clickedText || clickedText !== headerLink.id ? (
-              <span>{headerLink.text}</span>
-            ) : (
-              <span>{headerLink.clickedText}</span>
-            )}
-          </li>
-        </Link>
-      ))}
-    </HeaderList>
-  );
-
-  return ["top"].map((anchor) => (
-    <Fragment key={anchor}>{spHeaderList(anchor)}</Fragment>
-  ));
-};
-
-SpHeader.defaultProps = {
-  clickedText: null,
-};
+export const SpHeader = ({ currentUserName, setClickedText }) => (
+  <Header>
+    <Link to={`/${currentUserName}`} onClick={() => setClickedText("")}>
+      <HeaderTitle>{currentUserName}</HeaderTitle>
+    </Link>
+  </Header>
+);
 
 SpHeader.propTypes = {
-  clickedText: PropTypes.string,
+  currentUserName: PropTypes.string.isRequired,
   setClickedText: PropTypes.func.isRequired,
-  spHeaderLinks: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      clickedText: PropTypes.node.isRequired,
-      text: PropTypes.node.isRequired,
-      url: PropTypes.string.isRequired,
-    })
-  ).isRequired,
 };
 
-const HeaderList = styled.ul`
+const Header = styled.header`
+  position: fixed;
+  top: 0;
+  z-index: 30;
+  width: 100%;
+  display: flex;
+  height: 50px;
+  padding: 12px 15px;
+  box-sizing: border-box;
+  background-color: #eeeff1;
+`;
+
+const HeaderTitle = styled.h1`
+  position: absolute;
+  top: 5px;
+  left: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  > a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-  }
+  width: 40px;
+  height: 40px;
+  border-radius: 35px;
+  font-size: 12px;
+  color: rgb(255, 255, 255);
+  background: rgb(237, 128, 119);
 `;

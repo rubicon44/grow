@@ -4,7 +4,7 @@ import { useHeaderContext } from "../../../../../context/HeaderContext";
 import { Header } from "../Header";
 
 export const HeaderContainer = ({ currentUserAuth }) => {
-  const { headerLinksForAuth, pcHeaderLinks, spHeaderLinks } = useHeader();
+  const { headerLinksForAuth, pcHeaderLinks, spNavigationLinks } = useHeader();
   const currentUserName = useCurrentUserName();
   const { clickedText, setClickedText } = useHeaderContext();
   return (
@@ -15,7 +15,7 @@ export const HeaderContainer = ({ currentUserAuth }) => {
       headerLinksForAuth={headerLinksForAuth}
       setClickedText={setClickedText}
       pcHeaderLinks={pcHeaderLinks}
-      spHeaderLinks={spHeaderLinks}
+      spNavigationLinks={spNavigationLinks}
     />
   );
 };

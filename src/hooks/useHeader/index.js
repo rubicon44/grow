@@ -11,7 +11,7 @@ import { ButtonToTaskCreate } from "../../components/containers/organisms/common
 
 export const useHeader = () => {
   const currentUserName = useCurrentUserName();
-  const spHeaderLinks = [
+  const spNavigationLinks = [
     {
       id: "tasks",
       url: "/tasks",
@@ -52,16 +52,16 @@ export const useHeader = () => {
       clickedText: <NotificationsIcon />,
     },
     {
-      id: "tasks/create",
-      url: "/tasks/create",
-      text: <ButtonToTaskCreate />,
-      clickedText: <ButtonToTaskCreate />,
-    },
-    {
       id: `${currentUserName}`,
       url: `/${currentUserName}`,
       text: <AccountCircleOutlinedIcon />,
       clickedText: <AccountCircleRoundedIcon />,
+    },
+    {
+      id: "tasks/create",
+      url: "/tasks/create",
+      text: <ButtonToTaskCreate />,
+      clickedText: <ButtonToTaskCreate />,
     },
   ];
 
@@ -81,6 +81,6 @@ export const useHeader = () => {
   return {
     headerLinksForAuth,
     pcHeaderLinks,
-    spHeaderLinks,
+    spNavigationLinks,
   };
 };
