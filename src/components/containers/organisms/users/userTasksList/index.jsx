@@ -2,17 +2,18 @@ import PropTypes from "prop-types";
 import { LogOutButtonSwitchContainer } from "./LogOutButtonSwitchContainer";
 import { UserTasksContent } from "./UserTasksContent";
 import { UserTasksContentHeaderContainer } from "./UserTasksContentHeaderContainer";
-import { Popup } from "../../../../presentational/atoms/Popup";
+import { PopupContainer } from "../../tasks/ui/PopupContainer";
+import { TitleWithBackArrowHeader } from "../../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
 export const UserTasksList = (props) => {
   const { currentUserId } = props;
   const { setCheckUserNameChange, setUserData, userData, currentPathSegment } =
     props;
   const { moveToFollowers, moveToFollowings } = props;
-  const { showPopup } = props;
   return (
     <>
-      <Popup message="タスクが正常に削除されました。" showPopup={showPopup} />
+      <PopupContainer message="タスクが正常に削除されました。" />
+      <TitleWithBackArrowHeader title={userData.nickname} />
       <UserTasksContentHeaderContainer
         currentUserId={String(currentUserId)}
         moveToFollowers={moveToFollowers}
@@ -37,7 +38,6 @@ UserTasksList.propTypes = {
   moveToFollowings: PropTypes.func.isRequired,
   setCheckUserNameChange: PropTypes.func.isRequired,
   setUserData: PropTypes.func.isRequired,
-  showPopup: PropTypes.bool.isRequired,
   userData: PropTypes.shape({
     id: PropTypes.number,
     bio: PropTypes.string,

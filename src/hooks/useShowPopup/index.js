@@ -4,6 +4,13 @@ import { useLocation } from "react-router-dom";
 export const useShowPopup = () => {
   const location = useLocation();
   const [showPopup, setShowPopup] = useState(false);
+  const [visible, setVisible] = useState(true);
+
+  const closePopup = () => {
+    setVisible(false);
+  };
+
+  setTimeout(closePopup, 3000);
 
   useEffect(() => {
     if (location.state && location.state.showPopup) {
@@ -13,5 +20,5 @@ export const useShowPopup = () => {
     }
   }, [location]);
 
-  return { showPopup };
+  return { showPopup, visible };
 };

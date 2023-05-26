@@ -4,8 +4,8 @@ import { TaskEditFormContainer } from "../../organisms/tasks/TaskForm/TaskEditFo
 import { TitleWithBackArrowHeader } from "../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
 export const TaskEditTemplate = ({ taskDataTask }) => (
-  <MainWithHeader title="編集">
-    <TitleWithBackArrowHeader />
+  <MainWithHeader>
+    <TitleWithBackArrowHeader title="編集" />
     <TaskEditFormContainer taskDataTask={taskDataTask} />
   </MainWithHeader>
 );

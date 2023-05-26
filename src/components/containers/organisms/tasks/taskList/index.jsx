@@ -7,7 +7,7 @@ import { TaskEditButton } from "../TaskButton/TaskEditButton";
 import { TaskStatusSwitch } from "../logic/taskStatusSwitch";
 import { List } from "../../../../presentational/molecules/List";
 import { BaseLink } from "../../../../presentational/atoms/Link/BaseLink";
-import { Popup } from "../../../../presentational/atoms/Popup";
+import { PopupContainer } from "../ui/PopupContainer";
 
 export const TaskList = ({
   currentUserId,
@@ -16,7 +16,6 @@ export const TaskList = ({
   deleteTaskFunc,
   isButtonDisabled,
   moveToEditTask,
-  showPopup,
   taskData,
   unDeleteCheckFunc,
 }) => {
@@ -34,7 +33,7 @@ export const TaskList = ({
 
   return (
     <>
-      <Popup message="タスクが正常に更新されました。" showPopup={showPopup} />
+      <PopupContainer message="タスクが正常に更新されました。" />
       <ListContainer>
         <CreatedUserCover>
           <BaseLink url={`/${taskCreatedUserName}`}>
@@ -83,7 +82,6 @@ TaskList.propTypes = {
   deleteTaskFunc: PropTypes.func.isRequired,
   isButtonDisabled: PropTypes.bool.isRequired,
   moveToEditTask: PropTypes.func.isRequired,
-  showPopup: PropTypes.bool.isRequired,
   taskData: PropTypes.shape({
     task: PropTypes.shape({
       // todo: string or numberに統一

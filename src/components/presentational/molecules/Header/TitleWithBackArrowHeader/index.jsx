@@ -4,28 +4,32 @@ import styled from "styled-components";
 import { BackArrow } from "../../../atoms/Arrow/BackArrow";
 import { Title } from "../../../atoms/Title";
 
-export const TitleWithBackArrowHeader = memo(({ children }) => (
+export const TitleWithBackArrowHeader = memo(({ title }) => (
   <BaseTitleWithBackArrowHeader>
     <BackArrow />
-    <Title>{children}</Title>
+    <TitleCover>
+      <Title>{title}</Title>
+    </TitleCover>
   </BaseTitleWithBackArrowHeader>
 ));
 
 TitleWithBackArrowHeader.displayName = "TitleWithBackArrowHeader";
 
 TitleWithBackArrowHeader.defaultProps = {
-  children: null,
+  title: "",
 };
 
 TitleWithBackArrowHeader.propTypes = {
-  children: PropTypes.node,
+  title: PropTypes.string,
 };
 
 const BaseTitleWithBackArrowHeader = styled.div`
   display: flex;
   width: 100%;
-  > h2 {
-    width: 100%;
-    margin-right: 45px;
-  }
+`;
+
+const TitleCover = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;

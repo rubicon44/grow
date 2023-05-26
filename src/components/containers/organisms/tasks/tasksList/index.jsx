@@ -6,11 +6,11 @@ import { LikeOrUnLikeButtonSwitchContainer } from "../../likes/LikeOrUnLikeButto
 import { TaskStatusSwitch } from "../logic/taskStatusSwitch";
 import { List } from "../../../../presentational/molecules/List";
 import { BaseLink } from "../../../../presentational/atoms/Link/BaseLink";
-import { Popup } from "../../../../presentational/atoms/Popup";
+import { PopupContainer } from "../ui/PopupContainer";
 
-export const TasksList = memo(({ showPopup, tasks }) => (
+export const TasksList = memo(({ tasks }) => (
   <>
-    <Popup message="タスクが正常に作成されました。" showPopup={showPopup} />
+    <PopupContainer message="タスクが正常に作成されました。" />
     {tasks?.map((task) => {
       const {
         id: taskId,
@@ -40,7 +40,6 @@ export const TasksList = memo(({ showPopup, tasks }) => (
 TasksList.displayName = "TasksList";
 
 TasksList.propTypes = {
-  showPopup: PropTypes.bool.isRequired,
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
       content: PropTypes.string,

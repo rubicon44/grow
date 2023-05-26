@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { FollowButtonSwitchContainer } from "../../userButton/FollowButtonSwitchContainer";
 import { ProfileChangeContainer } from "./ProfileChangeContainer";
 import { UserTasksCheckReLoginWhenChangedUserId } from "../UserTasksCheckReLoginWhenChangedUserId";
-import { TitleWithBackArrowHeader } from "../../../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
 export const UserTasksContentHeader = (props) => {
   const { currentUserId } = props;
@@ -29,7 +28,6 @@ export const UserTasksContentHeader = (props) => {
       )}
       <ContentHeaderContainer>
         <ContentHeaderCover>
-          <TitleWithBackArrowHeader />
           <FollowButtonSwitchContainer userIdToFollowOrUnFollow={userData.id} />
           <ProfileChangeContainer
             bioAble={bioAble}

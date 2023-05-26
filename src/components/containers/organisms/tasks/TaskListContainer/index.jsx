@@ -1,12 +1,10 @@
 import { useCurrentUserId } from "../../../../../hooks/useCurrentUserId";
 import { useMoveToEditTask } from "../../../../../hooks/useMoveToEditTask";
-import { useShowPopup } from "../../../../../hooks/useShowPopup";
 import { useTaskData } from "../../../../../hooks/useTaskData";
 import { useTaskDelete } from "../../../../../hooks/useTaskDelete";
 import { TaskList } from "../taskList";
 
 export const TaskListContainer = () => {
-  const { showPopup } = useShowPopup();
   const currentUserId = useCurrentUserId();
   const { error, taskData } = useTaskData();
   const {
@@ -30,7 +28,6 @@ export const TaskListContainer = () => {
       deleteTaskFunc={deleteTaskFunc}
       isButtonDisabled={isButtonDisabled}
       moveToEditTask={moveToEditTask}
-      showPopup={showPopup}
       taskData={taskData}
       unDeleteCheckFunc={unDeleteCheckFunc}
     />

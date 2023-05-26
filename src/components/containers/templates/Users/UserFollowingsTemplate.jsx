@@ -3,8 +3,8 @@ import { UserFollowingsContainer } from "../../organisms/users/UserFollowingsCon
 import { TitleWithBackArrowHeader } from "../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
 export const UserFollowingsTemplate = () => (
-  <MainWithHeader title="フォロー中">
-    <TitleWithBackArrowHeader />
+  <MainWithHeader>
+    <TitleWithBackArrowHeader title="フォロー中" />
     <UserFollowingsContainer />
   </MainWithHeader>
 );

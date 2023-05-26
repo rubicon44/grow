@@ -3,8 +3,8 @@ import { SearchListContainer } from "../../organisms/Searches/SearchListContaine
 import { TitleWithBackArrowHeader } from "../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
 export const SearchTemplate = () => (
-  <MainWithHeader title="検索一覧">
-    <TitleWithBackArrowHeader />
+  <MainWithHeader>
+    <TitleWithBackArrowHeader title="検索一覧" />
     <SearchListContainer />
   </MainWithHeader>
 );

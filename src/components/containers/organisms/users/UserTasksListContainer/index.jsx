@@ -1,14 +1,11 @@
 import { useCurrentUserId } from "../../../../../hooks/useCurrentUserId";
 import { useMoveToFollowers } from "../../../../../hooks/useMoveToFollowers";
 import { useMoveToFollowings } from "../../../../../hooks/useMoveToFollowings";
-import { useShowPopup } from "../../../../../hooks/useShowPopup";
 import { useUserData } from "../../../../../hooks/useUserData";
 import { UserTasksList } from "../userTasksList";
 
 export const UserTasksListContainer = () => {
-  const { showPopup } = useShowPopup();
   const currentUserId = useCurrentUserId();
-
   const {
     error,
     setCheckUserNameChange,
@@ -32,7 +29,6 @@ export const UserTasksListContainer = () => {
       moveToFollowings={moveToFollowings}
       setCheckUserNameChange={setCheckUserNameChange}
       setUserData={setUserData}
-      showPopup={showPopup}
       userData={userData}
       currentPathSegment={currentPathSegment}
     />

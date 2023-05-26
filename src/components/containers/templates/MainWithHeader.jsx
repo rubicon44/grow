@@ -3,18 +3,17 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { mediaquery } from "../../../assets/styles/variable";
-import { ButtonToTaskCreate } from "../organisms/common/ButtonToTaskCreate";
 import { AuthContext } from "../../../auth/AuthProvider";
-import { HeaderContainer } from "../organisms/common/HeaderContainer";
 import { Main } from "./main";
+import { ButtonToTaskCreate } from "../organisms/common/ButtonToTaskCreate";
+import { HeaderContainer } from "../organisms/common/HeaderContainer";
 
-// todo: currentUserAuthの定義場所を検討。
+// todo: Containerレイヤーを作成
 export const MainWithHeader = ({ children }) => {
   const { currentUserAuth } = useContext(AuthContext);
   return (
     <>
       <HeaderContainer currentUserAuth={currentUserAuth} />
-      {/* todo: Main内にTitleWithBackArrowを作成 */}
       <Main>
         {children}
         {currentUserAuth && (
