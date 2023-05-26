@@ -15,51 +15,53 @@ export const TaskForm = ({
   const { titleRef, contentRef, statusRef, startDateRef, endDateRef } =
     inputRefs;
   return (
-    <TaskFormStyle onSubmit={handleTextSubmit}>
-      <FormInput
-        defaultValue={title}
-        inputRef={titleRef}
-        htmlFor="title"
-        type="text"
-        name="title"
-        placeholder="Title"
-      >
-        題名:
-      </FormInput>
-      <FormTextArea
-        defaultValue={content}
-        textAreaRef={contentRef}
-        htmlFor="content"
-        name="content"
-        placeholder="Content"
-      >
-        内容:
-      </FormTextArea>
-      <TaskFormSelect defaultValue={status} selectRef={statusRef} />
-      <FormInput
-        defaultValue={startDate}
-        inputRef={startDateRef}
-        htmlFor="startDate"
-        type="date"
-        name="startDate"
-        placeholder="StartDate"
-      >
-        開始日:
-      </FormInput>
-      <FormInput
-        defaultValue={endDate}
-        inputRef={endDateRef}
-        htmlFor="endDate"
-        type="date"
-        name="endDate"
-        placeholder="EndDate"
-      >
-        終了日:
-      </FormInput>
-      <FormSubmitButton isButtonDisabled={isButtonDisabled}>
-        {!title ? "作成" : "更新"}
-      </FormSubmitButton>
-    </TaskFormStyle>
+    <TaskFormCover>
+      <TaskFormStyle onSubmit={handleTextSubmit}>
+        <FormInput
+          defaultValue={title}
+          inputRef={titleRef}
+          htmlFor="title"
+          type="text"
+          name="title"
+          placeholder="Title"
+        >
+          題名:
+        </FormInput>
+        <FormTextArea
+          defaultValue={content}
+          textAreaRef={contentRef}
+          htmlFor="content"
+          name="content"
+          placeholder="Content"
+        >
+          内容:
+        </FormTextArea>
+        <TaskFormSelect defaultValue={status} selectRef={statusRef} />
+        <FormInput
+          defaultValue={startDate}
+          inputRef={startDateRef}
+          htmlFor="startDate"
+          type="date"
+          name="startDate"
+          placeholder="StartDate"
+        >
+          開始日:
+        </FormInput>
+        <FormInput
+          defaultValue={endDate}
+          inputRef={endDateRef}
+          htmlFor="endDate"
+          type="date"
+          name="endDate"
+          placeholder="EndDate"
+        >
+          終了日:
+        </FormInput>
+        <FormSubmitButton isButtonDisabled={isButtonDisabled}>
+          {!title ? "作成" : "更新"}
+        </FormSubmitButton>
+      </TaskFormStyle>
+    </TaskFormCover>
   );
 };
 
@@ -84,9 +86,24 @@ TaskForm.propTypes = {
   }).isRequired,
 };
 
+const TaskFormCover = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 30px;
+`;
+
 const TaskFormStyle = styled.form`
   min-width: 260px;
   max-width: 360px;
   padding: 0 10px;
   text-align: left;
+  > label,
+  select {
+    display: block;
+    margin-bottom: 14px;
+  }
 `;

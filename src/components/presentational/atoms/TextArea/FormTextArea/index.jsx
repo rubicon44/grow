@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import styled from "styled-components";
 
 export const FormTextArea = ({
   children,
@@ -9,19 +8,17 @@ export const FormTextArea = ({
   defaultValue,
   placeholder,
 }) => (
-  <FormTextAreaCover>
-    <label htmlFor={htmlFor}>
-      {children}
-      <textarea
-        name={name}
-        defaultValue={defaultValue}
-        ref={textAreaRef}
-        placeholder={placeholder}
-        cols="80"
-        rows="3"
-      />
-    </label>
-  </FormTextAreaCover>
+  <label htmlFor={htmlFor}>
+    {children}
+    <textarea
+      name={name}
+      defaultValue={defaultValue}
+      ref={textAreaRef}
+      placeholder={placeholder}
+      cols="80"
+      rows="3"
+    />
+  </label>
 );
 
 FormTextArea.defaultProps = {
@@ -38,14 +35,3 @@ FormTextArea.propTypes = {
   placeholder: PropTypes.string.isRequired,
   textAreaRef: PropTypes.objectOf(PropTypes.instanceOf(Element)),
 };
-
-const FormTextAreaCover = styled.div`
-  margin-bottom: 10px;
-  > label {
-    display: block;
-    > textarea {
-      min-width: 260px;
-      min-height: 200px;
-    }
-  }
-`;

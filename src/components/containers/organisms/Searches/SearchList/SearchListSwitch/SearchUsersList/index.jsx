@@ -4,14 +4,17 @@ import styled from "styled-components";
 
 // todo: ページネーション or 「さらに表示ボタン」を作成
 export const SearchUsersList = ({ users }) =>
-  users &&
-  users.map((user) => (
-    <List key={user.id}>
-      <Link to={`/${user.username}`}>
-        {user.nickname}({user.username})
-      </Link>
+  users && (
+    <List>
+      {users.map((user) => (
+        <li key={user.id}>
+          <Link to={`/${user.username}`}>
+            {user.nickname}({user.username})
+          </Link>
+        </li>
+      ))}
     </List>
-  ));
+  );
 
 SearchUsersList.propTypes = {
   users: PropTypes.arrayOf(
@@ -25,13 +28,15 @@ SearchUsersList.propTypes = {
   ).isRequired,
 };
 
-const List = styled.div`
-  display: flex;
-  align-items: center;
-  text-align: left;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ddd;
-  &:not(:first-of-type) {
+const List = styled.ul`
+  margin-top: 10px;
+  > li {
+    display: flex;
+    align-items: center;
+    min-width: 260px;
     margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
   }
 `;

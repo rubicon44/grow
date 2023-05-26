@@ -115,7 +115,7 @@ const ContentHeaderContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-width: 320px;
+  min-width: 300px;
   max-width: 480px;
   padding-bottom: 15px;
 `;
@@ -125,7 +125,7 @@ const ContentHeaderCover = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 320px;
+  min-width: 300px;
   padding: 0 10px;
   box-sizing: border-box;
 `;

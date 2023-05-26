@@ -1,13 +1,12 @@
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import { SearchTasksList } from "./SearchTasksList";
 import { SearchUsersList } from "./SearchUsersList";
 
 export const SearchListSwitch = ({ tasks, users }) => (
-  <ListCover>
+  <>
     <SearchTasksList tasks={tasks} />
     <SearchUsersList users={users} />
-  </ListCover>
+  </>
 );
 
 SearchListSwitch.propTypes = {
@@ -37,9 +36,3 @@ SearchListSwitch.propTypes = {
     })
   ).isRequired,
 };
-
-const ListCover = styled.div`
-  position: relative;
-  min-width: 180px;
-  margin-top: 30px;
-`;

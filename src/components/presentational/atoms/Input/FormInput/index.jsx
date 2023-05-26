@@ -11,19 +11,17 @@ export const FormInput = ({
   placeholder,
   autoComplete,
 }) => (
-  <FormInputCover>
-    <label htmlFor={htmlFor}>
-      {children}
-      <Input
-        type={type}
-        name={name}
-        defaultValue={defaultValue}
-        ref={inputRef}
-        placeholder={placeholder}
-        autoComplete={autoComplete}
-      />
-    </label>
-  </FormInputCover>
+  <label htmlFor={htmlFor}>
+    {children}
+    <Input
+      type={type}
+      name={name}
+      defaultValue={defaultValue}
+      ref={inputRef}
+      placeholder={placeholder}
+      autoComplete={autoComplete}
+    />
+  </label>
 );
 
 FormInput.defaultProps = {
@@ -43,17 +41,6 @@ FormInput.propTypes = {
   placeholder: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
 };
-
-const FormInputCover = styled.div`
-  margin-bottom: 10px;
-  > label {
-    display: block;
-    > input {
-      min-width: 260px;
-      max-width: 360px;
-    }
-  }
-`;
 
 const Input = styled.input`
   height: 30px;

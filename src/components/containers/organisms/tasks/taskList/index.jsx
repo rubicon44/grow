@@ -121,6 +121,7 @@ const CreatedUserCover = styled.span`
 
 const ListContainer = styled.div`
   display: flex;
+  margin-top: 30px;
 `;
 
 const ListCover = styled.div`

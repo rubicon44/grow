@@ -9,7 +9,7 @@ export const mediaquery = {
 
   // todo: 名称変更予定
   desk: (...args) => css`
-    @media (min-width: 375px) {
+    @media (min-width: 376px) {
       ${css(...args)}
     }
   `,

@@ -26,6 +26,7 @@ TitleWithBackArrowHeader.propTypes = {
 const BaseTitleWithBackArrowHeader = styled.div`
   display: flex;
   width: 100%;
+  margin-left: -10px;
 `;
 
 const TitleCover = styled.div`

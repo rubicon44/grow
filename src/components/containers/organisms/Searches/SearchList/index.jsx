@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import { SearchForm } from "./SearchForm";
 import { SearchListSwitch } from "./SearchListSwitch";
 
@@ -9,13 +8,13 @@ export const SearchList = ({
   tasks,
   users,
 }) => (
-  <SerchListCover>
+  <>
     <SearchForm
       handleSubmit={handleSubmit}
       isButtonDisabled={isButtonDisabled}
     />
     <SearchListSwitch tasks={tasks} users={users} />
-  </SerchListCover>
+  </>
 );
 
 SearchList.propTypes = {
@@ -47,9 +46,3 @@ SearchList.propTypes = {
     })
   ).isRequired,
 };
-
-const SerchListCover = styled.div`
-  min-width: 260px;
-  margin-top: 25px;
-  padding: 0 10px;
-`;
