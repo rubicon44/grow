@@ -5,7 +5,6 @@ import { FormInput } from "../../../../../../../presentational/atoms/Input/FormI
 import { FormSubmitButton } from "../../../../../../../presentational/atoms/Button/FormSubmitButton";
 import { FormTextArea } from "../../../../../../../presentational/atoms/TextArea/FormTextArea";
 
-// todo: 次はここのHTML構造/CSS修正
 export const ProfileChangeForm = ({
   handleTextSubmit,
   inputRefs,
@@ -18,7 +17,7 @@ export const ProfileChangeForm = ({
 
   return (
     <FormCover>
-      <form onSubmit={handleTextSubmit}>
+      <FormStyle onSubmit={handleTextSubmit}>
         <FormInput
           defaultValue={nickname}
           inputRef={nicknameRef}
@@ -54,7 +53,7 @@ export const ProfileChangeForm = ({
             保存
           </FormSubmitButton>
         </FormButtonCover>
-      </form>
+      </FormStyle>
     </FormCover>
   );
 };
@@ -100,7 +99,25 @@ ProfileChangeForm.propTypes = {
 };
 
 const FormCover = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 30px;
+`;
+
+const FormStyle = styled.form`
+  min-width: 260px;
+  max-width: 360px;
+  padding: 0 10px;
   text-align: left;
+  > label,
+  select {
+    display: block;
+    margin-bottom: 14px;
+  }
 `;
 
 const FormButtonCover = styled.div`

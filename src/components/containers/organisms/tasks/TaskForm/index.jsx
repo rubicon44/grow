@@ -57,9 +57,11 @@ export const TaskForm = ({
         >
           終了日:
         </FormInput>
-        <FormSubmitButton isButtonDisabled={isButtonDisabled}>
-          {!title ? "作成" : "更新"}
-        </FormSubmitButton>
+        <FormButtonCover>
+          <FormSubmitButton isButtonDisabled={isButtonDisabled}>
+            {!title ? "作成" : "更新"}
+          </FormSubmitButton>
+        </FormButtonCover>
       </TaskFormStyle>
     </TaskFormCover>
   );
@@ -106,4 +108,11 @@ const TaskFormStyle = styled.form`
     display: block;
     margin-bottom: 14px;
   }
+`;
+
+const FormButtonCover = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 10px 0;
 `;
