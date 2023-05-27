@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { FollowButtonSwitchContainer } from "../../userButton/FollowButtonSwitchContainer";
 import { ProfileChange } from "./ProfileChange";
+import { UserRelationshipsLinks } from "./UserRelationshipsLinks";
 import { UserTasksCheckReLoginWhenChangedUserId } from "../UserTasksCheckReLoginWhenChangedUserId";
 
 export const UserTasksContentHeader = (props) => {
@@ -39,14 +40,11 @@ export const UserTasksContentHeader = (props) => {
             setBioAbleFunc={setBioAbleFunc}
             userData={userData}
           />
-          {/* todo: 別コンポーネントへ切り出し予定。 */}
           <RelationshipsCover>
-            <InteractiveSpan onClick={moveToFollowings}>
-              フォロー中
-            </InteractiveSpan>
-            <InteractiveSpan onClick={moveToFollowers}>
-              フォロワー
-            </InteractiveSpan>
+            <UserRelationshipsLinks
+              moveToFollowers={moveToFollowers}
+              moveToFollowings={moveToFollowings}
+            />
           </RelationshipsCover>
         </ContentHeaderCover>
       </ContentHeaderContainer>
@@ -75,8 +73,8 @@ UserTasksContentHeader.propTypes = {
     ]).isRequired,
   }).isRequired,
   isButtonDisabled: PropTypes.bool.isRequired,
-  moveToFollowings: PropTypes.func.isRequired,
   moveToFollowers: PropTypes.func.isRequired,
+  moveToFollowings: PropTypes.func.isRequired,
   revertUserBioFunc: PropTypes.func.isRequired,
   setBioAbleFunc: PropTypes.func.isRequired,
   userData: PropTypes.shape({
@@ -129,11 +127,6 @@ const ContentHeaderCover = styled.div`
   min-width: 300px;
   padding: 0 10px;
   box-sizing: border-box;
-`;
-
-const InteractiveSpan = styled.span`
-  cursor: pointer;
-  user-select: none;
 `;
 
 const RelationshipsCover = styled.div`
