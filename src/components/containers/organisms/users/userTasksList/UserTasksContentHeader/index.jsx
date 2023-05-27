@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { FollowButtonSwitchContainer } from "../../userButton/FollowButtonSwitchContainer";
-import { ProfileChangeContainer } from "./ProfileChangeContainer";
+import { ProfileChange } from "./ProfileChange";
 import { UserTasksCheckReLoginWhenChangedUserId } from "../UserTasksCheckReLoginWhenChangedUserId";
 
 export const UserTasksContentHeader = (props) => {
@@ -29,7 +29,7 @@ export const UserTasksContentHeader = (props) => {
       <ContentHeaderContainer>
         <ContentHeaderCover>
           <FollowButtonSwitchContainer userIdToFollowOrUnFollow={userData.id} />
-          <ProfileChangeContainer
+          <ProfileChange
             bioAble={bioAble}
             currentUserId={currentUserId}
             handleTextSubmit={handleTextSubmit}
@@ -39,6 +39,7 @@ export const UserTasksContentHeader = (props) => {
             setBioAbleFunc={setBioAbleFunc}
             userData={userData}
           />
+          {/* todo: 別コンポーネントへ切り出し予定。 */}
           <RelationshipsCover>
             <InteractiveSpan onClick={moveToFollowings}>
               フォロー中
