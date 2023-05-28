@@ -69,6 +69,13 @@ GanttChart.propTypes = {
       endDate: PropTypes.string.isRequired,
       startDate: PropTypes.string.isRequired,
       status: PropTypes.number.isRequired,
+      user: PropTypes.shape({
+        id: PropTypes.number,
+        bio: PropTypes.string,
+        email: PropTypes.string,
+        nickname: PropTypes.string,
+        username: PropTypes.string,
+      }).isRequired,
       title: PropTypes.string.isRequired,
     })
   ).isRequired,

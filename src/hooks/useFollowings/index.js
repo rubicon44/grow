@@ -37,6 +37,5 @@ export const useFollowings = () => {
     error,
     followings,
     loading,
-    username,
   };
 };

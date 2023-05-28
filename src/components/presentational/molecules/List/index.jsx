@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { mediaquery } from "../../../../assets/styles/variable";
 
 export const List = ({ title, content }) => (
   // todo: httpsにおいてXSSできないことを確認する
@@ -17,8 +18,6 @@ List.propTypes = {
 };
 
 const BaseList = styled.div`
-  min-width: 180px;
-  max-width: 180px;
   margin-top: 15px;
   text-align: left;
   word-wrap: break-word;
@@ -26,10 +25,15 @@ const BaseList = styled.div`
     font-weight: bold;
   }
   > p {
-    min-height: 100px;
+    min-height: 200px;
     margin: 10px 0 5px;
-    padding: 5px;
+    padding: 10px;
     border: 1px solid #bbb;
     white-space: pre-wrap;
+    border-radius: 5px;
+    box-sizing: border-box;
+    ${mediaquery.desk`
+      min-height: 250px;
+    `}
   }
 `;

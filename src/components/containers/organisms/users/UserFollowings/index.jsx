@@ -1,26 +1,16 @@
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { FollowButtonForUsersListSwitchContainer } from "../userButton/FollowButtonForUsersListSwitchContainer";
+import { UserListItem } from "../ui/UserListItem";
 
-export const UserFollowings = ({ currentUserId, followings, username }) => {
+export const UserFollowings = ({ currentUserId, followings }) => {
   const hasFollowings = Array.isArray(followings) && followings.length > 0;
 
   if (!hasFollowings) {
-    return (
-      <NoUserFollowings>フォローしているユーザーはいません。</NoUserFollowings>
-    );
+    return <NoUser>フォローしているユーザーはいません。</NoUser>;
   }
 
-  return followings.map((following) => (
-    <UserListItem key={following.id}>
-      <Link to={`/${following.username}`}>{following.nickname}</Link>
-      <FollowButtonForUsersListSwitchContainer
-        currentUserId={currentUserId}
-        userIdToFollowOrUnFollow={following.id}
-        username={username}
-      />
-    </UserListItem>
+  return followings.map((user) => (
+    <UserListItem key={user.id} currentUserId={currentUserId} user={user} />
   ));
 };
 
@@ -37,23 +27,10 @@ UserFollowings.propTypes = {
       username: PropTypes.string.isRequired,
     })
   ),
-  username: PropTypes.string.isRequired,
 };
 
-const NoUserFollowings = styled.div`
-  height: 70px;
-  width: 200px;
+const NoUser = styled.div`
   margin-top: 15px;
-  text-align: left;
-`;
-
-const UserListItem = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  height: 70px;
-  width: 200px;
-  margin-top: 15px;
-  border-bottom: 1px solid #ddd;
+  padding: 10px;
   text-align: left;
 `;

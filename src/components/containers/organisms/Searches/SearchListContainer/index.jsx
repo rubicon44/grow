@@ -1,7 +1,9 @@
+import { useCurrentUserId } from "../../../../../hooks/useCurrentUserId";
 import { useSearchResults } from "../../../../../hooks/useSearchResults";
 import { SearchList } from "../SearchList";
 
 export const SearchListContainer = () => {
+  const currentUserId = useCurrentUserId();
   const {
     error,
     handleSubmit,
@@ -16,6 +18,7 @@ export const SearchListContainer = () => {
   }
   return (
     <SearchList
+      currentUserId={currentUserId}
       error={error}
       handleSubmit={handleSubmit}
       isButtonDisabled={isButtonDisabled}

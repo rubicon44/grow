@@ -12,13 +12,14 @@ FollowingButton.propTypes = {
   setChangeFollowButtonStyleToTrueFunc: PropTypes.func.isRequired,
 };
 
+// todo: Buttonをコンポーネント化
 const FollowChangeLinkDone = styled.a`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 36px;
-  width: 168px;
+  height: 32px;
+  width: 118px;
   border: 1px solid black;
   border-color: rgb(207, 217, 222);
   border-radius: 9999px;

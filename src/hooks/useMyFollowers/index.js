@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useCurrentUserName } from "../useCurrentUserName";
 import { useGetErrorMessage } from "../useGetErrorMessage";
 import { getFollowers } from "../../infra/api";
 
-export const useFollowers = () => {
-  const location = useLocation();
-  const { username } = location.state;
+export const useMyFollowers = () => {
+  const currentUserName = useCurrentUserName();
   const { getErrorMessage } = useGetErrorMessage();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [followers, setFollowers] = useState(null);
+  const [myFollowers, setMyFollowers] = useState(null);
 
   useEffect(() => {
     const fetchFollowers = async () => {
@@ -17,9 +16,9 @@ export const useFollowers = () => {
       setError(null);
 
       try {
-        const response = await getFollowers(username);
-        const followersData = response.data.followers;
-        setFollowers(followersData);
+        const response = await getFollowers(currentUserName);
+        const myFollowersData = response.data.followers;
+        setMyFollowers(myFollowersData);
       } catch (error) {
         setError(error);
         const verbForErrorMessage = `フォロワー`;
@@ -30,12 +29,12 @@ export const useFollowers = () => {
       }
     };
 
-    fetchFollowers(username);
-  }, [username, getErrorMessage]);
+    fetchFollowers(currentUserName);
+  }, [currentUserName, getErrorMessage]);
 
   return {
     error,
-    followers,
     loading,
+    myFollowers,
   };
 };

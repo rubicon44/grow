@@ -45,7 +45,6 @@ const UserProfileTab = styled.div`
   align-items: center;
   width: 100%;
   min-width: 320px;
-  max-width: 460px;
   height: 53px;
   border-bottom: 1px solid #ddd;
 `;

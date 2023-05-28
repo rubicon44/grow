@@ -86,6 +86,6 @@ const ListCover = styled.div`
 `;
 
 const NotificationCover = styled.li`
-  padding: 10px 0;
+  padding: 10px;
   border-bottom: 1px solid #ddd;
 `;

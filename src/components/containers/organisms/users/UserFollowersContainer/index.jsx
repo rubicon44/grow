@@ -4,7 +4,7 @@ import { UserFollowers } from "../UserFollowers";
 
 export const UserFollowersContainer = () => {
   const currentUserId = useCurrentUserId();
-  const { error, followers, username } = useFollowers();
+  const { error, followers } = useFollowers();
 
   if (error) return <>Error...</>;
   if (followers === null) {
@@ -15,7 +15,6 @@ export const UserFollowersContainer = () => {
       currentUserId={currentUserId}
       error={error}
       followers={followers}
-      username={username}
     />
   );
 };

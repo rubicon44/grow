@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { mediaquery } from "../../../assets/styles/variable";
 
 export const Main = ({ children, className }) => (
-  <BaseMain className={className}>{children}</BaseMain>
+  <BaseMain className={className}>
+    <MainInner>{children}</MainInner>
+  </BaseMain>
 );
 
 Main.defaultProps = {
@@ -16,16 +18,17 @@ Main.propTypes = {
 };
 
 const BaseMain = styled.main`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-  padding-bottom: 15px;
   ${mediaquery.phone`
     margin-top: 70px;
   `}
   ${mediaquery.desk`
     padding-left: 20%;
   `}
+`;
+
+const MainInner = styled.div`
+  max-width: 600px;
+  margin-bottom: 52.5px;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 `;

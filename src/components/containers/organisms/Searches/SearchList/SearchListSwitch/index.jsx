@@ -2,14 +2,15 @@ import PropTypes from "prop-types";
 import { SearchTasksList } from "./SearchTasksList";
 import { SearchUsersList } from "./SearchUsersList";
 
-export const SearchListSwitch = ({ tasks, users }) => (
+export const SearchListSwitch = ({ currentUserId, tasks, users }) => (
   <>
     <SearchTasksList tasks={tasks} />
-    <SearchUsersList users={users} />
+    <SearchUsersList currentUserId={currentUserId} users={users} />
   </>
 );
 
 SearchListSwitch.propTypes = {
+  currentUserId: PropTypes.string.isRequired,
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,

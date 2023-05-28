@@ -3,6 +3,7 @@ import { SearchForm } from "./SearchForm";
 import { SearchListSwitch } from "./SearchListSwitch";
 
 export const SearchList = ({
+  currentUserId,
   handleSubmit,
   isButtonDisabled,
   tasks,
@@ -13,11 +14,16 @@ export const SearchList = ({
       handleSubmit={handleSubmit}
       isButtonDisabled={isButtonDisabled}
     />
-    <SearchListSwitch tasks={tasks} users={users} />
+    <SearchListSwitch
+      currentUserId={currentUserId}
+      tasks={tasks}
+      users={users}
+    />
   </>
 );
 
 SearchList.propTypes = {
+  currentUserId: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   isButtonDisabled: PropTypes.bool.isRequired,
   tasks: PropTypes.arrayOf(

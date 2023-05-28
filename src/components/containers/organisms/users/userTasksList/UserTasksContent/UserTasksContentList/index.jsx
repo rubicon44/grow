@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import { UserTasks } from "../UserTasks";
 import { GanttChartContainer } from "../../../../tasks/GanttChartContainer";
 import { UserLikedTasks } from "../UserLikedTasks";
@@ -8,33 +7,17 @@ import { UserLikedTasks } from "../UserLikedTasks";
 export const UserTasksContentList = ({ activeTab, userData }) => (
   <>
     {/* CreatedTasksList */}
-    {activeTab === "createdTasks" && (
-      <ul>
-        <li>
-          <UserTasks userData={userData} />
-        </li>
-      </ul>
-    )}
+    {activeTab === "createdTasks" && <UserTasks userData={userData} />}
 
     {/* GanttChartList */}
     {activeTab === "gantt" && (
-      <ul>
-        <Link to={`/${userData.username}/gantt`}>
-          <GanttTabContent>
-            <GanttChartContainer />
-          </GanttTabContent>
-        </Link>
-      </ul>
+      <Link to={`/${userData.username}/gantt`}>
+        <GanttChartContainer />
+      </Link>
     )}
 
     {/* LikedTasksList */}
-    {activeTab === "likedTasks" && (
-      <ul>
-        <li>
-          <UserLikedTasks userData={userData} />
-        </li>
-      </ul>
-    )}
+    {activeTab === "likedTasks" && <UserLikedTasks userData={userData} />}
   </>
 );
 
@@ -70,7 +53,3 @@ UserTasksContentList.propTypes = {
     username: PropTypes.string,
   }).isRequired,
 };
-
-const GanttTabContent = styled.li`
-  max-width: 320px;
-`;

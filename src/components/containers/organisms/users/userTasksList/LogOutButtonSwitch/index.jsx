@@ -25,6 +25,5 @@ const LogOutButtonCover = styled.div`
   width: 100%;
   margin: 10px 0;
   padding: 10px;
-  border-top: 1px solid #000;
   box-sizing: border-box;
 `;

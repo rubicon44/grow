@@ -111,7 +111,6 @@ const FormCover = styled.div`
 const FormStyle = styled.form`
   min-width: 260px;
   max-width: 360px;
-  padding: 0 10px;
   text-align: left;
   > label,
   select {

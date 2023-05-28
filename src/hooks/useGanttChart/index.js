@@ -18,7 +18,8 @@ export const useGanttChart = (tasks, loading) => {
 
   const updateCalenderBodyHeight = useCallback(() => {
     if (elm.current !== null) {
-      const taskListBodyHeight = elm.current.getBoundingClientRect().height;
+      // todo: 「+ 4」を調整。
+      const taskListBodyHeight = elm.current.getBoundingClientRect().height + 4;
       setCalenderBodyHeight(taskListBodyHeight);
     }
     // todo: 代替案を検討(elm.current)

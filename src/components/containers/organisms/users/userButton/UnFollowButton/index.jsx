@@ -18,13 +18,14 @@ UnFollowButton.propTypes = {
   unFollowFunc: PropTypes.func.isRequired,
 };
 
+// todo: Buttonをコンポーネント化
 const FollowChangeLinkDoneToUnFollow = styled.a`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 36px;
-  width: 168px;
+  height: 32px;
+  width: 118px;
   border: 1px solid black;
   border-color: rgb(253, 201, 206);
   border-radius: 9999px;

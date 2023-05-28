@@ -19,10 +19,15 @@ export const GanttChartContent = (props) => {
   } = props;
   const { tasks } = props;
   return (
-    <>
-      <button type="button" onClick={handleScrollToCurrentDate}>
-        今日の日付に移動
-      </button>
+    <GanttChartCover>
+      <ButtonCover>
+        <ScrollToCurrentDateButton
+          type="button"
+          onClick={handleScrollToCurrentDate}
+        >
+          今日の日付に移動
+        </ScrollToCurrentDateButton>
+      </ButtonCover>
       <ArrowIconsCover>
         <ArrowBackIosOutlinedIcon onClick={handleBackToPreviousMonthClick}>
           前月へ
@@ -43,7 +48,7 @@ export const GanttChartContent = (props) => {
           />
         </GanttChartCalenderTableWithTaskBarCover>
       </GanttChartTaskAndCalenderTables>
-    </>
+    </GanttChartCover>
   );
 };
 
@@ -89,6 +94,13 @@ GanttChartContent.propTypes = {
       startDate: PropTypes.string.isRequired,
       status: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
+      user: PropTypes.shape({
+        id: PropTypes.number,
+        bio: PropTypes.string,
+        email: PropTypes.string,
+        nickname: PropTypes.string,
+        username: PropTypes.string,
+      }).isRequired,
     })
   ).isRequired,
 };
@@ -96,6 +108,30 @@ GanttChartContent.propTypes = {
 const ArrowIconsCover = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+const ButtonCover = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+// todo: Buttonコンポーネントリストを作成。
+const ScrollToCurrentDateButton = styled.button`
+  width: 125px;
+  height: 40px;
+  border: 1px solid #ddd;
+  box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 8px,
+    rgba(101, 119, 134, 0.25) 0px 1px 3px 1px;
+  border-radius: 20px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(29, 155, 240);
+`;
+
+const GanttChartCover = styled.div`
+  margin: 20px 0 10px;
+  border-bottom: 1px solid #ddd;
 `;
 
 const GanttChartTaskAndCalenderTables = styled.div`

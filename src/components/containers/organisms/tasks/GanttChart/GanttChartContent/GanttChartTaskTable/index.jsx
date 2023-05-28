@@ -6,6 +6,7 @@ export const GanttChartTaskTable = ({ elm, tasks }) => (
   <>
     <GanttChartTaskTitle>
       <tr>
+        {/* todo: sp画面の時、タスク幅が広く、チャート部分の表示が狭い。 */}
         <th>タスク</th>
         <th>開始日</th>
         <th>終了日</th>
@@ -38,6 +39,13 @@ GanttChartTaskTable.propTypes = {
       startDate: PropTypes.string.isRequired,
       status: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
+      user: PropTypes.shape({
+        id: PropTypes.number,
+        bio: PropTypes.string,
+        email: PropTypes.string,
+        nickname: PropTypes.string,
+        username: PropTypes.string,
+      }).isRequired,
     })
   ).isRequired,
 };

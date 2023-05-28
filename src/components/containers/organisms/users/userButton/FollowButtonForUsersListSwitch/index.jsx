@@ -1,4 +1,3 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 import { FollowButton } from "../followButton";
 import { FollowingOrUnFollowButtonSwitch } from "../FollowingOrUnFollowButtonSwitch";
@@ -17,23 +16,13 @@ export const FollowButtonForUsersListSwitch = (props) => {
     username,
     userIdToFollowOrUnFollow,
   } = props;
-  // todo: state位置検証
-  const [showFollowingOrUnfollowButton, setShowFollowingOrUnfollowButton] =
-    useState(false);
-
-  const handleButtonClick = async () => {
-    if (isFollowing) {
-      setShowFollowingOrUnfollowButton(true);
-      await unFollowFunc();
-      setShowFollowingOrUnfollowButton(false);
-    } else {
-      setShowFollowingOrUnfollowButton(true);
-      await followFunc();
-      setShowFollowingOrUnfollowButton(false);
-    }
-  };
 
   if (isFollowing === null) return null;
+  // 「if (currentUserName === username)」より前に定義(先にフォローボタンが表示されるのを防ぐため)
+  if (String(currentUserId) === String(userIdToFollowOrUnFollow)) {
+    return null;
+  }
+
   if (currentUserName === username) {
     return isFollowing ? (
       <FollowingOrUnFollowButtonSwitch
@@ -47,12 +36,8 @@ export const FollowButtonForUsersListSwitch = (props) => {
         unFollowFunc={unFollowFunc}
       />
     ) : (
-      <FollowButton followFunc={followFunc} onClick={handleButtonClick} />
+      <FollowButton followFunc={followFunc} />
     );
-  }
-
-  if (String(currentUserId) === String(userIdToFollowOrUnFollow)) {
-    return null;
   }
 
   return (
@@ -60,8 +45,6 @@ export const FollowButtonForUsersListSwitch = (props) => {
       changeFollowButtonStyle={changeFollowButtonStyle}
       followFunc={followFunc}
       isFollowing={isFollowing}
-      onClick={handleButtonClick}
-      showFollowingOrUnfollowButton={showFollowingOrUnfollowButton}
       setChangeFollowButtonStyleToFalseFunc={
         setChangeFollowButtonStyleToFalseFunc
       }

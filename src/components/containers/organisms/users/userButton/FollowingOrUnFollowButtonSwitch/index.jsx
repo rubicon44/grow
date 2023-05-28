@@ -38,7 +38,6 @@ FollowingOrUnFollowButtonSwitch.propTypes = {
 
 const FollowChange = styled.div`
   width: 100%;
-  margin-bottom: 30px;
 `;
 
 const FollowChangeLinkCover = styled.div`
