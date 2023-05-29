@@ -15,6 +15,7 @@ export const ProfileChange = ({
 }) => {
   const { id, nickname, username, bio } = userData;
 
+  // todo: 「フォローされています」を表示。
   if (bioAble === true) {
     return (
       <Profile>

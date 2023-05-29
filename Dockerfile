@@ -1,10 +1,16 @@
-FROM node:18.13.0-alpine
+# FROM node:18.13.0
 
-RUN apk add --no-cache git
-# RUN apk update && apk add --no-cache git chromium
+# RUN apt-get update && apt-get install -y chromium
 
 # ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-# ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
+# ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+
+FROM node:18.13.0-alpine
+
+RUN apk update && apk add --no-cache git chromium
+
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
+ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
 
 RUN mkdir /grow
 ENV FRONT_ROOT /grow
