@@ -1,16 +1,27 @@
-import PropTypes from 'prop-types';
-import { FollowButton } from '../../followButton';
-import { FollowingOrUnFollowButtonSwitch } from '../../FollowingOrUnFollowButtonSwitch';
+import PropTypes from "prop-types";
+import { FollowButton } from "../../followButton";
+import { FollowingOrUnFollowButtonSwitch } from "../../FollowingOrUnFollowButtonSwitch";
 
 export const FollowOrFollowingOrUnFollowButtonSwitch = (props) => {
-  const { changeFollowButtonStyle, followFunc, isFollowing, setChangeFollowButtonStyleToFalseFunc, setChangeFollowButtonStyleToTrueFunc, unFollowFunc } = props;
+  const {
+    changeFollowButtonStyle,
+    followFunc,
+    isFollowing,
+    setChangeFollowButtonStyleToFalseFunc,
+    setChangeFollowButtonStyleToTrueFunc,
+    unFollowFunc,
+  } = props;
 
   if (!isFollowing) return <FollowButton followFunc={followFunc} />;
   return (
     <FollowingOrUnFollowButtonSwitch
       changeFollowButtonStyle={changeFollowButtonStyle}
-      setChangeFollowButtonStyleToFalseFunc={setChangeFollowButtonStyleToFalseFunc}
-      setChangeFollowButtonStyleToTrueFunc={setChangeFollowButtonStyleToTrueFunc}
+      setChangeFollowButtonStyleToFalseFunc={
+        setChangeFollowButtonStyleToFalseFunc
+      }
+      setChangeFollowButtonStyleToTrueFunc={
+        setChangeFollowButtonStyleToTrueFunc
+      }
       unFollowFunc={unFollowFunc}
     />
   );
@@ -22,5 +33,5 @@ FollowOrFollowingOrUnFollowButtonSwitch.propTypes = {
   isFollowing: PropTypes.bool.isRequired,
   setChangeFollowButtonStyleToFalseFunc: PropTypes.func.isRequired,
   setChangeFollowButtonStyleToTrueFunc: PropTypes.func.isRequired,
-  unFollowFunc: PropTypes.func.isRequired
+  unFollowFunc: PropTypes.func.isRequired,
 };

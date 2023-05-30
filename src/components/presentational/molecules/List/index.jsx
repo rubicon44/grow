@@ -1,48 +1,39 @@
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { BaseLink } from '../../atoms/Link/BaseLink';
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { mediaquery } from "../../../../assets/styles/variable";
 
-export const List = ({ title, titleUrl, content, url, text }) => {
-  return (
-    <BaseList>
-      <dt><Link to={titleUrl}>{title}</Link></dt>
-      <dd>{content}</dd>
-      <CreatedUserCover>作成者:
-        <BaseLink url={url}>{text}</BaseLink>
-      </CreatedUserCover>
-    </BaseList>
-  );
-};
+export const List = ({ title, content }) => (
+  // todo: httpsにおいてXSSできないことを確認する
+  // const userInputText1 = `javascript: console.log(document.cookie)`;
+  <BaseList>
+    <h3>{title}</h3>
+    {/* <Link to={userInputText1}>{title}</Link> */}
+    <p>{content}</p>
+  </BaseList>
+);
 
 List.propTypes = {
   content: PropTypes.string.isRequired,
-  text: PropTypes.string,
   title: PropTypes.string.isRequired,
-  titleUrl: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
 };
 
-const BaseList = styled.dl`
-  min-width: 180px;
-  max-width: 180px;
+const BaseList = styled.div`
   margin-top: 15px;
   text-align: left;
   word-wrap: break-word;
-  > dt {
+  > h3 {
     font-weight: bold;
   }
-  > dd {
-    min-height: 100px;
+  > p {
+    min-height: 200px;
     margin: 10px 0 5px;
-    padding: 5px;
+    padding: 10px;
     border: 1px solid #bbb;
     white-space: pre-wrap;
+    border-radius: 5px;
+    box-sizing: border-box;
+    ${mediaquery.desk`
+      min-height: 250px;
+    `}
   }
-`;
-
-const CreatedUserCover = styled.div`
-  display: flex;
-  justify-content: end;
-  align-items: center;
 `;

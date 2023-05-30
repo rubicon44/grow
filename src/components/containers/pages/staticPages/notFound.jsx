@@ -1,19 +1,17 @@
-import styled from 'styled-components';
-import { mediaquery } from '../../../../assets/styles/variable';
-import { Main } from '../../templates/main';
-import { HeaderContainer } from '../../organisms/common/HeaderContainer';
-import { Title } from '../../../presentational/atoms/Title';
+import styled from "styled-components";
+import { mediaquery } from "../../../../assets/styles/variable";
+import { Main } from "../../templates/main";
+import { HeaderContainer } from "../../organisms/common/HeaderContainer";
+import { Title } from "../../../presentational/atoms/Title";
 
-export const NotFound = () => {
-  return (
-    <>
-      <HeaderContainer />
-      <Main>
-        <NotFoundTitle>お探しのページが見つかりません。</NotFoundTitle>
-      </Main>
-    </>
-  );
-};
+export const NotFound = () => (
+  <>
+    <HeaderContainer />
+    <Main>
+      <NotFoundTitle>お探しのページが見つかりません。</NotFoundTitle>
+    </Main>
+  </>
+);
 
 const NotFoundTitle = styled(Title)`
   width: 288px;

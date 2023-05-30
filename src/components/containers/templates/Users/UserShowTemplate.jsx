@@ -1,10 +1,8 @@
-import { MainWithHeader } from '../MainWithHeader';
-import { UserTasksListContainer } from '../../organisms/users/UserTasksListContainer';
+import { MainWithHeaderContainer } from "../MainWithHeaderContainer";
+import { UserTasksListContainer } from "../../organisms/users/UserTasksListContainer";
 
-export const UserShowTemplate = () => {
-  return (
-    <MainWithHeader>
-      <UserTasksListContainer />
-    </MainWithHeader>
-  );
-};
+export const UserShowTemplate = () => (
+  <MainWithHeaderContainer>
+    <UserTasksListContainer />
+  </MainWithHeaderContainer>
+);

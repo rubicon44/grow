@@ -1,7 +1,21 @@
-import { useHeader } from '../../../../../hooks/useHeader';
-import { Header } from '../Header';
+import { useCurrentUserName } from "../../../../../hooks/useCurrentUserName";
+import { useHeader } from "../../../../../hooks/useHeader";
+import { useHeaderContext } from "../../../../../context/HeaderContext";
+import { Header } from "../Header";
 
-export const HeaderContainer = () => {
-  const { headerLinks, headerLinksForAuth, drawerStatus, toggleDrawer } = useHeader();
-  return <Header headerLinks={headerLinks} headerLinksForAuth={headerLinksForAuth} drawerStatus={drawerStatus} toggleDrawer={toggleDrawer} />;
+export const HeaderContainer = ({ currentUserAuth }) => {
+  const { headerLinksForAuth, pcHeaderLinks, spNavigationLinks } = useHeader();
+  const currentUserName = useCurrentUserName();
+  const { clickedText, setClickedText } = useHeaderContext();
+  return (
+    <Header
+      clickedText={clickedText}
+      currentUserAuth={currentUserAuth}
+      currentUserName={currentUserName}
+      headerLinksForAuth={headerLinksForAuth}
+      setClickedText={setClickedText}
+      pcHeaderLinks={pcHeaderLinks}
+      spNavigationLinks={spNavigationLinks}
+    />
+  );
 };

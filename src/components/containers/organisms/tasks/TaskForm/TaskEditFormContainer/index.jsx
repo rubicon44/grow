@@ -1,16 +1,30 @@
-import PropTypes from 'prop-types';
-import { useTaskEdit } from '../../../../../../hooks/useTaskEdit';
-import { TaskEditForm } from '../TaskEditForm';
+import PropTypes from "prop-types";
+import { useTaskEdit } from "../../../../../../hooks/useTaskEdit";
+import { TaskEditForm } from "../TaskEditForm";
 
 export const TaskEditFormContainer = ({ taskDataTask }) => {
-  const { editing, handleTextSubmit, inputRefs, isButtonDisabled, taskData } = useTaskEdit(taskDataTask);
+  const {
+    editing,
+    error,
+    handleTextSubmit,
+    inputRefs,
+    isButtonDisabled,
+    taskData,
+  } = useTaskEdit(taskDataTask);
+  if (error) return <>Error...</>;
   if (editing) return <>Editing...</>;
-  return <TaskEditForm
-           handleTextSubmit={handleTextSubmit}
-           inputRefs={inputRefs}
-           isButtonDisabled={isButtonDisabled}
-           taskData={taskData}
-         />;
+  return (
+    <TaskEditForm
+      handleTextSubmit={handleTextSubmit}
+      inputRefs={inputRefs}
+      isButtonDisabled={isButtonDisabled}
+      taskData={taskData}
+    />
+  );
+};
+
+TaskEditFormContainer.defaultProps = {
+  taskData: {},
 };
 
 TaskEditFormContainer.propTypes = {

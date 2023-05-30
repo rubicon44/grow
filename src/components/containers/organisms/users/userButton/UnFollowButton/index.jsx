@@ -1,26 +1,31 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
-export const UnFollowButton = ({ setChangeFollowButtonStyleToFalseFunc, unFollowFunc }) => {
-  return (
-    <FollowChangeLinkDoneToUnFollow onMouseLeave={setChangeFollowButtonStyleToFalseFunc} onClick={unFollowFunc}>
-      <span>フォロー解除</span>
-    </FollowChangeLinkDoneToUnFollow>
-  );
-};
+export const UnFollowButton = ({
+  setChangeFollowButtonStyleToFalseFunc,
+  unFollowFunc,
+}) => (
+  <FollowChangeLinkDoneToUnFollow
+    onMouseLeave={setChangeFollowButtonStyleToFalseFunc}
+    onClick={unFollowFunc}
+  >
+    <span>フォロー解除</span>
+  </FollowChangeLinkDoneToUnFollow>
+);
 
 UnFollowButton.propTypes = {
   setChangeFollowButtonStyleToFalseFunc: PropTypes.func.isRequired,
-  unFollowFunc: PropTypes.func.isRequired
+  unFollowFunc: PropTypes.func.isRequired,
 };
 
+// todo: Buttonをコンポーネント化
 const FollowChangeLinkDoneToUnFollow = styled.a`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 36px;
-  width: 168px;
+  height: 32px;
+  width: 118px;
   border: 1px solid black;
   border-color: rgb(253, 201, 206);
   border-radius: 9999px;

@@ -1,17 +1,19 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useMemo } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-} from 'firebase/auth';
-import axios from 'axios';
-import PropTypes from 'prop-types';
-import { auth } from '../../infra/firebase';
-import { signUp, signIn } from '../../infra/api';
+} from "firebase/auth";
+import axios from "axios";
+import Cookies from "js-cookie";
+import PropTypes from "prop-types";
+import { auth } from "../../infra/firebase";
+import { signUp, signIn } from "../../infra/api";
 
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
+  // todo: state位置検証
   const [currentUserAuth, setCurrentUserAuth] = useState(null);
   const signin = async (email, password) => {
     try {
@@ -22,23 +24,24 @@ export const AuthProvider = ({ children }) => {
           await signIn(idToken)
             .then((response) => {
               const { token, user } = response.data;
-              if (token) localStorage.setItem('token', token);
-              if (user) localStorage.setItem('user', JSON.stringify(user));
+              if (token) Cookies.set("token", token);
+              if (user) Cookies.set("user", JSON.stringify(user));
 
               axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
-              const tokenAuth = localStorage.getItem('token');
+              const tokenAuth = Cookies.get("token");
               axios.defaults.headers.common.Authorization = tokenAuth;
             })
             .catch(() => {
-              // alert(response);
-              // alert('このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。');
-              window.alert("このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。");
+              alert(
+                "このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。"
+              );
               signOut(auth);
             });
         });
     } catch (error) {
-      // alert(error);
-      window.alert("このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。");
+      alert(
+        "このメールアドレスは見つかりません。再度メールアドレスをご確認の上ログインしてください。"
+      );
     }
   };
 
@@ -49,26 +52,18 @@ export const AuthProvider = ({ children }) => {
           const firebaseId = userCredential.user.uid;
           const user = { nickname, username, email, firebaseId };
           await signUp(user).then().catch();
-          // .then((response) => {
-          //   // todo:APIからユーザーオブジェクトのみが返却されるので、ポップアップでも出す？（ユーザーが作成されました！）
-          //   // もしくはエラーの場合のみ出力（取り扱いにルールを設ける）
-          // })
-          // .catch((data) => {
-          // });
           await signin(email, password);
         })
         .catch();
     } catch (error) {
-      // alert(error);
-      // alert('このメールアドレスはすでに登録されています。');
       signOut(auth);
     }
   };
 
   const signout = async () => {
     await signOut(auth);
-    localStorage.setItem('token', '');
-    localStorage.setItem('user', '');
+    Cookies.remove("token");
+    Cookies.remove("user");
     window.location.reload();
   };
 
@@ -76,10 +71,13 @@ export const AuthProvider = ({ children }) => {
     onAuthStateChanged(auth, setCurrentUserAuth);
   }, []);
 
+  const authValue = useMemo(
+    () => ({ currentUserAuth, signin, signup, signout }),
+    [currentUserAuth, signin, signup, signout]
+  );
+
   return (
-    <AuthContext.Provider value={{ currentUserAuth, signin, signup, signout }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>
   );
 };
 

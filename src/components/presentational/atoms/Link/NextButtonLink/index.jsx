@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { mediaquery } from '../../../../../assets/styles/variable';
-import { BaseLink } from '../BaseLink';
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { mediaquery } from "../../../../../assets/styles/variable";
+import { BaseLink } from "../BaseLink";
 
-export const NextButtonLink = ({ text, url }) => {
-  return <DangerButtonLink url={url} >{text}</DangerButtonLink>;
-};
+export const NextButtonLink = ({ text, url }) => (
+  <DangerButtonLink url={url}>{text}</DangerButtonLink>
+);
 
 NextButtonLink.propTypes = {
   text: PropTypes.string.isRequired,

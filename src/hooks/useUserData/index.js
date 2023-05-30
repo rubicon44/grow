@@ -1,39 +1,36 @@
-import { useEffect, useState } from 'react';
-import { useGetErrorMessage } from '../useGetErrorMessage';
-import { useUserNameInUrl } from '../useUserNameInUrl';
-import { getUser } from '../../infra/api';
+import { useEffect, useState } from "react";
+import { useGetErrorMessage } from "../useGetErrorMessage";
+import { useCurrentPathSegment } from "../useCurrentPathSegment";
+import { getUser } from "../../infra/api";
 
 export const useUserData = () => {
-  const { userNameInUrl } = useUserNameInUrl();
+  const { currentPathSegment } = useCurrentPathSegment();
   const { getErrorMessage } = useGetErrorMessage();
   const [checkUserNameChange, setCheckUserNameChange] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const handleSuccess = (userData) => {
-      // todo: Consider a way to change snake-case to camel-case.
       const { likedTasks, ...newUserData } = userData;
-      const newDataWithLikedTasksKey = { ...newUserData, likedTasks: likedTasks };
+      const newDataWithLikedTasksKey = { ...newUserData, likedTasks };
       setUserData(newDataWithLikedTasksKey);
     };
 
     const handleError = (error) => {
       setError(error);
-      console.error(`ユーザーデータの取得中にエラーが発生しました。: `, error);
       const verbForErrorMessage = `ユーザーデータ`;
       const objectForErrorMessage = `取得`;
       getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
     };
 
-    const fetchUserData = async (userNameInUrl) => {
+    const fetchUserData = async (currentPathSegment) => {
       setLoading(true);
       setError(null);
 
       try {
-        // todo: エラーの際、他ユーザーをフォローできてしまうかも。
-        const response = await getUser(userNameInUrl)
+        const response = await getUser(currentPathSegment);
         const userData = response.data;
         handleSuccess(userData);
       } catch (error) {
@@ -41,11 +38,11 @@ export const useUserData = () => {
       } finally {
         setLoading(false);
         setCheckUserNameChange(false);
-      };
+      }
     };
 
-    fetchUserData(userNameInUrl);
-  }, [checkUserNameChange, userNameInUrl, getErrorMessage]);
+    fetchUserData(currentPathSegment);
+  }, [checkUserNameChange, currentPathSegment, getErrorMessage]);
 
   return {
     error,
@@ -53,6 +50,6 @@ export const useUserData = () => {
     setCheckUserNameChange,
     setUserData,
     userData,
-    userNameInUrl
+    currentPathSegment,
   };
 };

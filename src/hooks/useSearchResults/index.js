@@ -1,7 +1,11 @@
-import { useState } from 'react';
-import { getSearches } from '../../infra/api';
+import { useState } from "react";
+import { getSearches } from "../../infra/api";
+import { useGetErrorMessage } from "../useGetErrorMessage";
+import { useInputSanitization } from "../useInputSanitization";
 
 export const useSearchResults = () => {
+  const { getErrorMessage } = useGetErrorMessage();
+  const { sanitizeInput } = useInputSanitization();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -14,7 +18,7 @@ export const useSearchResults = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await getSearches(searchData)
+      const response = await getSearches(searchData);
       const searchResults = response.data;
       setSearchResults({
         tasks: searchResults.tasks,
@@ -22,20 +26,25 @@ export const useSearchResults = () => {
       });
     } catch (error) {
       setError(error);
-      console.error(`検索中にエラーが発生しました。: `, error);
+      const verbForErrorMessage = `データ`;
+      const objectForErrorMessage = `検索`;
+      getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
     } finally {
       setLoading(false);
       setIsButtonDisabled(false);
-    };
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsButtonDisabled(true);
-    const { model } = e.target.elements;
-    const { contents } = e.target.elements;
-    const { method } = e.target.elements;
-    const searchData = { model: model.value, contents: contents.value, method: method.value };
+    const model = sanitizeInput(e.target.elements.model.value);
+    const contents = sanitizeInput(e.target.elements.contents.value, {
+      trim: true,
+      ALLOWED_TAGS: [],
+    });
+    const method = sanitizeInput(e.target.elements.method.value);
+    const searchData = { model, contents, method };
     fetchSearchesData(searchData);
   };
 

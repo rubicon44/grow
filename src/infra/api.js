@@ -1,128 +1,167 @@
-import axios from 'axios';
-import camelcaseKeys from 'camelcase-keys';
-import snakecaseKeys from 'snakecase-keys';
+import axios from "axios";
+import Cookies from "js-cookie";
+import camelcaseKeys from "camelcase-keys";
+import snakecaseKeys from "snakecase-keys";
 // axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
-axios.defaults.headers.common['Content-Type'] = 'application/json';
+axios.defaults.headers.common["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
-const tokenAuth = localStorage.getItem('token');
+const tokenAuth = Cookies.get("token");
 axios.defaults.headers.common.Authorization = tokenAuth;
 
-export const signUp = (params) => axios.post('/v1/users', snakecaseKeys(params));
+const setCSRFToken = async () => {
+  try {
+    const response = await axios.get("/v1/csrf_token");
+    const csrfToken = response.data.csrf_token.value;
+    if (csrfToken) {
+      axios.defaults.headers.common["X-CSRF-Token"] = csrfToken;
+      axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+      return csrfToken;
+    }
+    return null;
+  } catch (error) {
+    alert("Failed to get CSRF token:", error);
+    throw error;
+  }
+};
 
-export const signIn = (idToken) =>
-  axios({
-    method: 'post',
-    url: '/v1/users/sign_in',
+export const signUp = async (params) => {
+  await setCSRFToken();
+  return axios.post("/v1/users", snakecaseKeys(params));
+};
+
+export const signIn = async (idToken) => {
+  await setCSRFToken();
+  return axios({
+    method: "post",
+    url: "/v1/users/sign_in",
     headers: { idToken },
   });
+};
 
-export const getUser = (params) =>
+export const getUser = async (params) =>
   axios({
-    method: 'get',
+    method: "get",
     url: `/v1/${params}`,
     params: { currentUser: true },
-  }).then((response) => camelcaseKeys(response, {deep: true}));
+  }).then((response) => camelcaseKeys(response, { deep: true }));
 
-export const updateUser = (params, data) =>
-  axios({
-    method: 'put',
+export const updateUser = async (params, data) => {
+  await setCSRFToken();
+  return axios({
+    method: "put",
     url: `/v1/${params}`,
     data: snakecaseKeys(data),
-  }).then((response) => camelcaseKeys(response, {deep: true}));
+  }).then((response) => camelcaseKeys(response, { deep: true }));
+};
 
-// tasks
-export const getTasks = (params) =>
+export const getTasks = async (params) =>
   axios({
-    method: 'get',
-    url: '/v1/tasks',
+    method: "get",
+    url: "/v1/tasks",
     params: snakecaseKeys(params),
-  }).then((response) => camelcaseKeys(response, {deep: true}));
+    header: {},
+  }).then((response) => camelcaseKeys(response, { deep: true }));
 
-export const postTasks = (params) => axios.post('/v1/tasks', snakecaseKeys(params));
+export const postTasks = async (params) => {
+  await setCSRFToken();
+  return axios.post("/v1/tasks", snakecaseKeys(params));
+};
 
-export const getTask = (params) =>
+export const getTask = async (params) =>
   axios({
-    method: 'get',
+    method: "get",
     url: `/v1/tasks/${params}`,
-  }).then((response) => camelcaseKeys(response, {deep: true}));
+  }).then((response) => camelcaseKeys(response, { deep: true }));
 
-export const updateTask = (params, data) =>
-  axios({
-    method: 'put',
+export const updateTask = async (params, data) => {
+  await setCSRFToken();
+  return axios({
+    method: "put",
     url: `/v1/tasks/${params}`,
     data: snakecaseKeys(data),
-  }).then((response) => camelcaseKeys(response, {deep: true}));
+  }).then((response) => camelcaseKeys(response, { deep: true }));
+};
 
 // todo: dataに具体性を持たせる。
-export const deleteTask = (params, data) =>
-  axios({
-    method: 'delete',
+export const deleteTask = async (params, data) => {
+  await setCSRFToken();
+  return axios({
+    method: "delete",
     url: `/v1/tasks/${params}`,
     data: snakecaseKeys(data),
   });
+};
 
 // likes
-export const postLikes = (params) =>
-  axios({
-    method: 'post',
+export const postLikes = async (params) => {
+  await setCSRFToken();
+  return axios({
+    method: "post",
     url: `/v1/tasks/${params.taskId}/likes`,
     params: snakecaseKeys(params),
   });
+};
 
-export const getLikes = (params) =>
+export const getLikes = async (params) =>
   axios({
-    method: 'get',
+    method: "get",
     url: `/v1/tasks/${params.taskId}/likes`,
     params: snakecaseKeys(params),
-  }).then((response) => camelcaseKeys(response, {deep: true}));
+  }).then((response) => camelcaseKeys(response, { deep: true }));
 
-export const deleteLike = (params) =>
-  axios({
-    method: 'delete',
+export const deleteLike = async (params) => {
+  await setCSRFToken();
+  return axios({
+    method: "delete",
     url: `/v1/tasks/${params.taskId}/likes/${params.id}`,
     params: snakecaseKeys(params),
   });
+};
 
 // relationships
-export const postRelationships = (params) =>
-  axios({
-    method: 'post',
+export const postRelationships = async (params) => {
+  await setCSRFToken();
+  return axios({
+    method: "post",
     url: `/v1/users/${params.followingId}/relationships`,
     params: snakecaseKeys(params),
   });
+};
 
-export const deleteRelationships = (params) =>
-  axios({
-    method: 'delete',
+export const deleteRelationships = async (params) => {
+  await setCSRFToken();
+  return axios({
+    method: "delete",
     url: `/v1/users/${params.followingId}/relationships`,
     params: snakecaseKeys(params),
-  }).then((response) => camelcaseKeys(response, {deep: true}));
+  }).then((response) => camelcaseKeys(response, { deep: true }));
+};
 
-export const getFollowings = (username) =>
+export const getFollowings = async (username) =>
   axios({
-    method: 'get',
+    method: "get",
     url: `/v1/${username}/followings`,
-  }).then((response) => camelcaseKeys(response, {deep: true}));
+  }).then((response) => camelcaseKeys(response, { deep: true }));
 
-export const getFollowers = (username) =>
+export const getFollowers = async (username) =>
   axios({
-    method: 'get',
+    method: "get",
     url: `/v1/${username}/followers`,
-  }).then((response) => camelcaseKeys(response, {deep: true}));
+  }).then((response) => camelcaseKeys(response, { deep: true }));
 
 // notifications
-export const getNotifications = (params) =>
+export const getNotifications = async (params) =>
   axios({
-    method: 'get',
+    method: "get",
     url: `/v1/notifications`,
     params: snakecaseKeys(params),
-  }).then((response) => camelcaseKeys(response, {deep: true}));
+  }).then((response) => camelcaseKeys(response, { deep: true }));
 
 // searches
-export const getSearches = (params) =>
+export const getSearches = async (params) =>
   axios({
-    method: 'get',
+    method: "get",
     url: `/v1/searches`,
     params: snakecaseKeys(params),
-  }).then((response) => camelcaseKeys(response, {deep: true}));
+  }).then((response) => camelcaseKeys(response, { deep: true }));

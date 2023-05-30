@@ -5,7 +5,9 @@
   },
   "extends": [
     "react-app",
+    "airbnb",
     "react-app/jest",
+    "plugin:react/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
     "prettier"
@@ -36,8 +38,19 @@
         ]
       }
     ],
+    "react/prop-types": [
+      "error",
+      {
+        "ignore": ["currentUserAuth"]
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "react/function-component-definition": ["error", {
+      "namedComponents": "arrow-function",
+      "unnamedComponents": "arrow-function"
+    }],
     "prefer-arrow-callback": "error",
     "func-style": ["error", "declaration", { "allowArrowFunctions": true }]
   },

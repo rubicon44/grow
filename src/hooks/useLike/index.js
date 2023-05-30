@@ -1,9 +1,11 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useCurrentUserId } from '../useCurrentUserId';
-import { deleteLike, getLikes, postLikes } from '../../infra/api';
+import { useCallback, useEffect, useState } from "react";
+import { useCurrentUserId } from "../useCurrentUserId";
+import { useGetErrorMessage } from "../useGetErrorMessage";
+import { deleteLike, getLikes, postLikes } from "../../infra/api";
 
 export const useLike = (taskId) => {
   const currentUserId = useCurrentUserId();
+  const { getErrorMessage } = useGetErrorMessage();
   const [currentTaskId, setCurrentTaskId] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -15,7 +17,7 @@ export const useLike = (taskId) => {
   const fetchLikeData = useCallback(async () => {
     setLoading(true);
     setError(null);
-    const like = { currentUserId: currentUserId, taskId: taskId };
+    const like = { currentUserId, taskId };
     try {
       const response = await getLikes(like);
       const likeData = response.data;
@@ -26,19 +28,23 @@ export const useLike = (taskId) => {
       setCurrentTaskId(taskId);
     } catch (error) {
       setError(error);
-      console.error(`いいねの取得中にエラーが発生しました。: `, error);
+      const verbForErrorMessage = `いいね`;
+      const objectForErrorMessage = `取得`;
+      getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
     } finally {
       setLoading(false);
-    };
+    }
   }, [currentUserId, taskId]);
 
   // タスクをいいね済か判定する(LikeOrUnLikeButtonSwitchで使用)。
   const getLikedUserIdFunc = useCallback(() => {
     const filterLikesByUserId = (likes, userId) => {
-      const filteredLikes = likes.filter((like) => String(like.likedUserId) === String(userId));
+      const filteredLikes = likes.filter(
+        (like) => String(like.likedUserId) === String(userId)
+      );
       const likedUserId = filteredLikes.map((like) => like.likedUserId);
       return likedUserId.length > 0 ? likedUserId[0] : null;
-    }
+    };
     const likedUserId = filterLikesByUserId(likeData.likes, currentUserId);
     return likedUserId;
   }, [currentUserId, likeData.likes]);
@@ -51,24 +57,26 @@ export const useLike = (taskId) => {
     const deleteLikeData = async () => {
       setLoading(true);
       setError(null);
-      const like = { currentUserId: currentUserId, id: likeData.likes.id, taskId: taskId };
+      const like = { currentUserId, id: likeData.likes.id, taskId };
       try {
         const response = await deleteLike(like);
         const likeData = response.data;
-        setLikeData(prevState => {
+        setLikeData((prevState) => {
           const newLikeData = { ...prevState };
           newLikeData.likeCount = likeData.likeCount - 1;
           return newLikeData;
         });
         // todo: Consider using state-management-library or useContext or data-fetching-library instead of using API call twice for updating data.
         await fetchLikeData();
-        setCurrentTaskId('');
+        setCurrentTaskId("");
       } catch (error) {
-        setError('いいねの削除中にエラーが発生しました。');
-        console.error(`いいねの削除中にエラーが発生しました。: `, error);
+        setError(error);
+        const verbForErrorMessage = `いいね`;
+        const objectForErrorMessage = `削除`;
+        getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
       } finally {
         setLoading(false);
-      };
+      }
     };
     deleteLikeData();
   };
@@ -77,7 +85,7 @@ export const useLike = (taskId) => {
     const postLikeData = async () => {
       setLoading(true);
       setError(null);
-      const like = { currentUserId: currentUserId, taskId: taskId };
+      const like = { currentUserId, taskId };
       try {
         const response = await postLikes(like);
         const likeData = response.data;
@@ -89,14 +97,24 @@ export const useLike = (taskId) => {
         await fetchLikeData();
         setCurrentTaskId(taskId);
       } catch (error) {
-        setError('いいねの登録中にエラーが発生しました。');
-        console.error(`いいねの登録中にエラーが発生しました。: `, error);
+        setError("いいねの登録中にエラーが発生しました。");
+        const verbForErrorMessage = `いいね`;
+        const objectForErrorMessage = `登録`;
+        getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
       } finally {
         setLoading(false);
-      };
+      }
     };
     postLikeData();
   };
 
-  return { currentTaskId, error, getLikedUserIdFunc, handleClickLikeDelete, handleClickLikePost, likeData, loading };
+  return {
+    currentTaskId,
+    error,
+    getLikedUserIdFunc,
+    handleClickLikeDelete,
+    handleClickLikePost,
+    likeData,
+    loading,
+  };
 };

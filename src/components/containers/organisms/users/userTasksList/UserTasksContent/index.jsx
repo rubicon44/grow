@@ -1,58 +1,48 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { UserTasksContainer } from './UserTasksContainer';
-import { UserLikedTasks } from './UserLikedTasks';
+import PropTypes from "prop-types";
+import { UserTasksContentTab } from "./UserTasksContentTab";
+import { UserTasksContentList } from "./UserTasksContentList";
 
-export const UserTasksContent = ({ error, loading, moveToGanttChart, userData }) => {
-  return (
-    <UserTasksContentCover>
-      <NextGanttLink type="button" onClick={moveToGanttChart}>ガントチャート</NextGanttLink>
-      <UserTasksContainer error={error} laoding={loading} userData={userData} />
-      <UserLikedTasks userData={userData} />
-    </UserTasksContentCover>
-  );
-};
+export const UserTasksContent = ({ activeTab, handleTabChange, userData }) => (
+  <>
+    {/* todo: タスクタブ内のタスクをいいねした際、いいねタブ内のタスクを即座に更新するか検討。 */}
+    <UserTasksContentTab
+      activeTab={activeTab}
+      handleTabChange={handleTabChange}
+    />
+    <UserTasksContentList activeTab={activeTab} userData={userData} />
+  </>
+);
 
 UserTasksContent.propTypes = {
-  error: PropTypes.bool,
-  loading: PropTypes.bool,
-  moveToGanttChart: PropTypes.func.isRequired,
+  activeTab: PropTypes.string.isRequired,
+  handleTabChange: PropTypes.func.isRequired,
   userData: PropTypes.shape({
     id: PropTypes.number,
     bio: PropTypes.string,
     email: PropTypes.string,
-    likedTasks: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number,
-      userId: PropTypes.number,
-      content: PropTypes.string,
-      endDate: PropTypes.string,
-      startDate: PropTypes.string,
-      status: PropTypes.number,
-      title: PropTypes.string,
-    })),
+    likedTasks: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        userId: PropTypes.number,
+        content: PropTypes.string,
+        endDate: PropTypes.string,
+        startDate: PropTypes.string,
+        status: PropTypes.number,
+        title: PropTypes.string,
+      })
+    ),
     nickname: PropTypes.string,
-    tasks: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number,
-      userId: PropTypes.number,
-      content: PropTypes.string,
-      endDate: PropTypes.string,
-      startDate: PropTypes.string,
-      status: PropTypes.number,
-      title: PropTypes.string,
-    })),
+    tasks: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        userId: PropTypes.number,
+        content: PropTypes.string,
+        endDate: PropTypes.string,
+        startDate: PropTypes.string,
+        status: PropTypes.number,
+        title: PropTypes.string,
+      })
+    ),
     username: PropTypes.string,
   }).isRequired,
 };
-
-const UserTasksContentCover = styled.article`
-  border-top: 1px solid #ddd;
-  width: 100%;
-`;
-
-const NextGanttLink = styled.button`
-  font-size: 22px;
-  font-weight: bold;
-  font-family: YuMincho;
-  color: #ff444f;
-  text-decoraiton: none;
-`;

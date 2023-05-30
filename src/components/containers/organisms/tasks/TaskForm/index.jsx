@@ -1,16 +1,22 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { FormInput } from '../../../../presentational/atoms/Input/FormInput';
-import { FormSubmitButton } from '../../../../presentational/atoms/Button/FormSubmitButton';
-import { FormTextArea } from '../../../../presentational/atoms/TextArea/FormTextArea';
-import { TaskFormSelect } from './ui/TaskFormSelect';
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { FormInput } from "../../../../presentational/atoms/Input/FormInput";
+import { FormSubmitButton } from "../../../../presentational/atoms/Button/FormSubmitButton";
+import { FormTextArea } from "../../../../presentational/atoms/TextArea/FormTextArea";
+import { TaskFormSelect } from "./ui/TaskFormSelect";
 
-export const TaskForm = ({ handleTextSubmit, inputRefs, isButtonDisabled, taskData }) => {
+export const TaskForm = ({
+  handleTextSubmit,
+  inputRefs,
+  isButtonDisabled,
+  taskData,
+}) => {
   const { title, content, status, startDate, endDate } = taskData.task;
-  const { titleRef, contentRef, statusRef, startDateRef, endDateRef } = inputRefs;
+  const { titleRef, contentRef, statusRef, startDateRef, endDateRef } =
+    inputRefs;
   return (
     <TaskFormCover>
-      <form onSubmit={handleTextSubmit}>
+      <TaskFormStyle onSubmit={handleTextSubmit}>
         <FormInput
           defaultValue={title}
           inputRef={titleRef}
@@ -30,10 +36,7 @@ export const TaskForm = ({ handleTextSubmit, inputRefs, isButtonDisabled, taskDa
         >
           内容:
         </FormTextArea>
-        <TaskFormSelect
-          defaultValue={status}
-          selectRef={statusRef}
-        />
+        <TaskFormSelect defaultValue={status} selectRef={statusRef} />
         <FormInput
           defaultValue={startDate}
           inputRef={startDateRef}
@@ -54,8 +57,12 @@ export const TaskForm = ({ handleTextSubmit, inputRefs, isButtonDisabled, taskDa
         >
           終了日:
         </FormInput>
-        <FormSubmitButton isButtonDisabled={isButtonDisabled}>{!title ? '作成' : '更新'}</FormSubmitButton>
-      </form>
+        <FormButtonCover>
+          <FormSubmitButton isButtonDisabled={isButtonDisabled}>
+            {!title ? "作成" : "更新"}
+          </FormSubmitButton>
+        </FormButtonCover>
+      </TaskFormStyle>
     </TaskFormCover>
   );
 };
@@ -63,11 +70,11 @@ export const TaskForm = ({ handleTextSubmit, inputRefs, isButtonDisabled, taskDa
 TaskForm.propTypes = {
   handleTextSubmit: PropTypes.func.isRequired,
   inputRefs: PropTypes.shape({
-    contentRef: PropTypes.object.isRequired,
-    endDateRef: PropTypes.object.isRequired,
-    startDateRef: PropTypes.object.isRequired,
-    statusRef: PropTypes.object.isRequired,
-    titleRef: PropTypes.object.isRequired,
+    contentRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
+    endDateRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
+    startDateRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
+    statusRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
+    titleRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
   }).isRequired,
   isButtonDisabled: PropTypes.bool.isRequired,
   taskData: PropTypes.shape({
@@ -82,7 +89,30 @@ TaskForm.propTypes = {
 };
 
 const TaskFormCover = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 30px;
+`;
+
+const TaskFormStyle = styled.form`
   min-width: 260px;
+  max-width: 360px;
   padding: 0 10px;
   text-align: left;
+  > label,
+  select {
+    display: block;
+    margin-bottom: 14px;
+  }
+`;
+
+const FormButtonCover = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 10px 0;
 `;

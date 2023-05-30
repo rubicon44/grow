@@ -1,55 +1,84 @@
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { HeaderMenu } from './HeaderMenu';
+import PropTypes from "prop-types";
+import { useMediaQuery } from "@mui/material";
+import { NotLoggedInHeader } from "./NotLoggedInHeader";
+import { PcHeader } from "./PcHeader";
+import { SpHeader } from "./SpHeader";
+import { SpNavigation } from "./SpNavigation";
 
-export const Header = ({ drawerStatus, headerLinks, headerLinksForAuth, toggleDrawer }) => {
+export const Header = ({
+  clickedText,
+  currentUserAuth,
+  currentUserName,
+  headerLinksForAuth,
+  setClickedText,
+  pcHeaderLinks,
+  spNavigationLinks,
+}) => {
+  const isMobile = useMediaQuery("(max-width:375px)");
   return (
-    <HeaderCover>
-      <Logo to="/tasks">Grow</Logo>
-      <HeaderMenuGroup>
-        <HeaderMenu headerLinks={headerLinks} headerLinksForAuth={headerLinksForAuth} drawerStatus={drawerStatus} toggleDrawer={toggleDrawer} />
-      </HeaderMenuGroup>
-    </HeaderCover>
+    <>
+      {!currentUserAuth && (
+        <NotLoggedInHeader
+          clickedText={clickedText}
+          headerLinksForAuth={headerLinksForAuth}
+          setClickedText={setClickedText}
+        />
+      )}
+
+      {currentUserAuth &&
+        (isMobile ? (
+          <>
+            <SpHeader
+              currentUserName={currentUserName}
+              setClickedText={setClickedText}
+            />
+            <SpNavigation
+              clickedText={clickedText}
+              setClickedText={setClickedText}
+              spNavigationLinks={spNavigationLinks}
+            />
+          </>
+        ) : (
+          <PcHeader
+            clickedText={clickedText}
+            setClickedText={setClickedText}
+            pcHeaderLinks={pcHeaderLinks}
+          />
+        ))}
+    </>
   );
 };
 
-Header.propTypes = {
-  drawerStatus: PropTypes.shape({
-    top: PropTypes.bool.isRequired,
-    left: PropTypes.bool,
-    bottom: PropTypes.bool,
-    right: PropTypes.bool,
-  }).isRequired,
-  headerLinks: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-  })).isRequired,
-  headerLinksForAuth: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-  })).isRequired,
-  toggleDrawer: PropTypes.func.isRequired,
+Header.defaultProps = {
+  clickedText: null,
+  currentUserName: "",
 };
 
-const HeaderCover = styled.div`
-  display: flex;
-  height: 50px;
-  padding: 12px 15px;
-  box-sizing: border-box;
-`;
-
-const Logo = styled(Link)`
-  font-size: 22px;
-  font-weight: bold;
-  font-family: YuMincho;
-  color: #ff444f;
-  text-decoraiton: none;
-`;
-
-const HeaderMenuGroup = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 100%;
-`;
+Header.propTypes = {
+  clickedText: PropTypes.string,
+  currentUserName: PropTypes.string,
+  headerLinksForAuth: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      text: PropTypes.node.isRequired,
+      url: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  setClickedText: PropTypes.func.isRequired,
+  pcHeaderLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      clickedText: PropTypes.node,
+      text: PropTypes.node.isRequired,
+      url: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  spNavigationLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      clickedText: PropTypes.node.isRequired,
+      text: PropTypes.node.isRequired,
+      url: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};

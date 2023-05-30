@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react';
-import { useCurrentUserId } from '../useCurrentUserId';
-import { useCurrentUserName } from '../useCurrentUserName';
-import { useGetErrorMessage } from '../useGetErrorMessage';
-import { deleteRelationships, getFollowings, postRelationships } from '../../infra/api';
+import { useEffect, useState } from "react";
+import { useCurrentUserId } from "../useCurrentUserId";
+import { useCurrentUserName } from "../useCurrentUserName";
+import { useGetErrorMessage } from "../useGetErrorMessage";
+import {
+  deleteRelationships,
+  getFollowings,
+  postRelationships,
+} from "../../infra/api";
 
 export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
   const currentUserId = useCurrentUserId();
@@ -14,9 +18,10 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
   const [loading, setLoading] = useState(false);
   const [changeFollowButtonStyle, setChangeFollowButtonStyle] = useState(false);
   const [currentUserFollowings, setCurrentUserFollowings] = useState([]);
-  const [isFollowing, setIsFollowing] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(null);
 
   useEffect(() => {
+    const username = currentUserName;
     const fetchFollowings = async () => {
       setLoading(true);
       setError(null);
@@ -25,18 +30,16 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
         const response = await getFollowings(username);
         const followingsData = response.data.followings;
         setCurrentUserFollowings(followingsData);
+        setIsFollowing(false);
       } catch (error) {
         setError(error);
-        console.error(`ユーザー情報の取得中にエラーが発生しました。: `, error);
         const verbForErrorMessage = `ユーザー情報`;
         const objectForErrorMessage = `取得`;
         getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
       } finally {
         setLoading(false);
-      };
+      }
     };
-
-    const username = currentUserName;
     fetchFollowings(username);
   }, [currentUserName, getErrorMessage]);
 
@@ -51,43 +54,49 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
   const followFunc = async () => {
     try {
       setCreating(true);
-      const relationships = { followingId: currentUserId, followerId: userIdToFollowOrUnFollow };
+      const relationships = {
+        followingId: currentUserId,
+        followerId: userIdToFollowOrUnFollow,
+      };
       await postRelationships(relationships);
       setIsFollowing(true);
     } catch (error) {
-      console.error(`ユーザーのフォロー中にエラーが発生しました。: `, error);
       const verbForErrorMessage = `ユーザー`;
       const objectForErrorMessage = `フォロー`;
       getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
     } finally {
       setCreating(false);
-    };
+    }
   };
 
   const unFollowFunc = async () => {
     try {
       setDeleting(true);
-      const relationships = { followingId: currentUserId, followerId: userIdToFollowOrUnFollow };
+      const relationships = {
+        followingId: currentUserId,
+        followerId: userIdToFollowOrUnFollow,
+      };
       await deleteRelationships(relationships);
       setIsFollowing(false);
     } catch (error) {
-      console.error(`フォローの解除中にエラーが発生しました。: `, error);
       const verbForErrorMessage = `フォロー`;
       const objectForErrorMessage = `解除`;
       getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
     } finally {
       setDeleting(false);
-    };
+    }
   };
 
   useEffect(() => {
     if (currentUserFollowings.length > 0) {
-      const following = currentUserFollowings.find(following => following.id === Number(userIdToFollowOrUnFollow));
+      const following = currentUserFollowings.find(
+        (following) => following.id === Number(userIdToFollowOrUnFollow)
+      );
       if (following) {
         setIsFollowing(true);
       } else {
         setIsFollowing(false);
-      };
+      }
     }
   }, [currentUserFollowings, userIdToFollowOrUnFollow]);
 

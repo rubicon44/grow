@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useGetErrorMessage } from '../useGetErrorMessage';
-import { getFollowers } from '../../infra/api';
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useGetErrorMessage } from "../useGetErrorMessage";
+import { getFollowers } from "../../infra/api";
 
 export const useFollowers = () => {
   const location = useLocation();
@@ -9,7 +9,7 @@ export const useFollowers = () => {
   const { getErrorMessage } = useGetErrorMessage();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [followers, setFollowers] = useState([]);
+  const [followers, setFollowers] = useState(null);
 
   useEffect(() => {
     const fetchFollowers = async () => {
@@ -22,13 +22,12 @@ export const useFollowers = () => {
         setFollowers(followersData);
       } catch (error) {
         setError(error);
-        console.error(`フォロワーの取得中にエラーが発生しました。: `, error);
         const verbForErrorMessage = `フォロワー`;
         const objectForErrorMessage = `取得`;
         getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
       } finally {
         setLoading(false);
-      };
+      }
     };
 
     fetchFollowers(username);
@@ -38,6 +37,5 @@ export const useFollowers = () => {
     error,
     followers,
     loading,
-    username
   };
 };

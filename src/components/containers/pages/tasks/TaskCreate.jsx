@@ -1,5 +1,3 @@
-import { TaskCreateTemplate } from '../../templates/tasks/TaskCreateTemplate';
+import { TaskCreateTemplate } from "../../templates/tasks/TaskCreateTemplate";
 
-export const TaskCreate = () => {
-  return <TaskCreateTemplate />;
-};
+export const TaskCreate = () => <TaskCreateTemplate />;

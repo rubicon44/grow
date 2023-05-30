@@ -1,8 +1,15 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { mediaquery } from "../../../assets/styles/variable";
 
-export const Main = ({ children, className }) => {
-  return <BaseMain className={className}>{children}</BaseMain>;
+export const Main = ({ children, className }) => (
+  <BaseMain className={className}>
+    <MainInner>{children}</MainInner>
+  </BaseMain>
+);
+
+Main.defaultProps = {
+  className: "",
 };
 
 Main.propTypes = {
@@ -11,12 +18,17 @@ Main.propTypes = {
 };
 
 const BaseMain = styled.main`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px 10px;
-  text-align: center;
-  background-color: #f8f7f3;
+  ${mediaquery.phone`
+    margin-top: 70px;
+  `}
+  ${mediaquery.desk`
+    padding-left: 20%;
+  `}
+`;
+
+const MainInner = styled.div`
+  max-width: 600px;
+  margin-bottom: 52.5px;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 `;

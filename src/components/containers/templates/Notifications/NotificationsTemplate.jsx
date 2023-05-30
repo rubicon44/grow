@@ -1,10 +1,10 @@
-import { MainWithHeader } from '../MainWithHeader';
-import { NotificationsListContainer } from '../../organisms/notifications/NotificationsListContainer';
+import { MainWithHeaderContainer } from "../MainWithHeaderContainer";
+import { NotificationsListContainer } from "../../organisms/notifications/NotificationsListContainer";
+import { TitleWithBackArrowHeader } from "../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
-export const NotificationsTemplate = () => {
-  return (
-    <MainWithHeader>
-      <NotificationsListContainer />
-    </MainWithHeader>
-  );
-};
+export const NotificationsTemplate = () => (
+  <MainWithHeaderContainer>
+    <TitleWithBackArrowHeader title="通知一覧" />
+    <NotificationsListContainer />
+  </MainWithHeaderContainer>
+);

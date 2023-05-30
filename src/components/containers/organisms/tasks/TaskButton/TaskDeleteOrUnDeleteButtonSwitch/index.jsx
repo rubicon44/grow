@@ -1,21 +1,22 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { TaskDeleteButton } from '../TaskDeleteButton';
-import { TaskUnDeleteButton } from '../TaskUnDeleteButton';
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { TaskDeleteButton } from "../TaskDeleteButton";
+import { TaskUnDeleteButton } from "../TaskUnDeleteButton";
 
-export const TaskDeleteOrUnDeleteButtonSwitch = ({ deleteCheckAble, deleteTaskFunc, unDeleteCheckFunc }) => {
-  return (
-    deleteCheckAble === true && (
-      <BackgroundDisAbledCover>
-        <BackgroundDisAbled>
-          <div>本当に削除しますか?</div>
-          <TaskDeleteButton deleteTaskFunc={deleteTaskFunc} />
-          <TaskUnDeleteButton unDeleteCheckFunc={unDeleteCheckFunc} />
-        </BackgroundDisAbled>
-      </BackgroundDisAbledCover>
-    )
+export const TaskDeleteOrUnDeleteButtonSwitch = ({
+  deleteCheckAble,
+  deleteTaskFunc,
+  unDeleteCheckFunc,
+}) =>
+  deleteCheckAble === true && (
+    <BackgroundDisAbledCover>
+      <BackgroundDisAbled>
+        <div>本当に削除しますか?</div>
+        <TaskDeleteButton deleteTaskFunc={deleteTaskFunc} />
+        <TaskUnDeleteButton unDeleteCheckFunc={unDeleteCheckFunc} />
+      </BackgroundDisAbled>
+    </BackgroundDisAbledCover>
   );
-};
 
 TaskDeleteOrUnDeleteButtonSwitch.propTypes = {
   deleteCheckAble: PropTypes.bool.isRequired,
@@ -30,7 +31,8 @@ const BackgroundDisAbledCover = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 52%;
+  text-align: center;
   background: #ddd;
 `;
 

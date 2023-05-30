@@ -1,11 +1,18 @@
-import { useCurrentUserName } from '../../../../../hooks/useCurrentUserName';
-import { useNotificationsData } from '../../../../../hooks/useNotificationsData';
-import { NotificationsList } from '../notificationsList';
+import { useCurrentUserName } from "../../../../../hooks/useCurrentUserName";
+import { useNotificationsData } from "../../../../../hooks/useNotificationsData";
+import { NotificationsList } from "..";
 
 export const NotificationsListContainer = () => {
   const currentUserName = useCurrentUserName();
-  const { error, loading, notificationsData } = useNotificationsData();
+  const { error, notificationsData } = useNotificationsData();
   if (error) return <>Error...</>;
-  if (loading) return <>Loading...</>;
-  return <NotificationsList currentUserName={currentUserName} notificationsData={notificationsData} />;
+  if (notificationsData === null) {
+    return null;
+  }
+  return (
+    <NotificationsList
+      currentUserName={currentUserName}
+      notificationsData={notificationsData}
+    />
+  );
 };

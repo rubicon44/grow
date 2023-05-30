@@ -1,49 +1,53 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { FormInput } from '../../../../../presentational/atoms/Input/FormInput';
-import { FormSubmitButton } from '../../../../../presentational/atoms/Button/FormSubmitButton';
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { FormInput } from "../../../../../presentational/atoms/Input/FormInput";
+import { FormSubmitButton } from "../../../../../presentational/atoms/Button/FormSubmitButton";
 
-export const SearchForm = ({ handleSubmit, isButtonDisabled }) => {
-  return (
-    <SearchFormCover>
-      <form onSubmit={handleSubmit}>
-        <FormInput
-          htmlFor="contents"
-          type="contents"
-          name="contents"
-          placeholder="Contents"
-        />
-        <SelectWithFormSubmitButton>
-          <SelectCover>
-            <Select name="model">
-              <option value="user">User</option>
-              <option value="task">Task</option>
-            </Select>
-            <Select name="method">
-              <option value="partial">部分一致</option>
-              <option value="perfect">完全一致</option>
-            </Select>
-          </SelectCover>
-          <FormSubmitButtonCover>
-            <FormSubmitButton isButtonDisabled={isButtonDisabled}>検索</FormSubmitButton>
-          </FormSubmitButtonCover>
-        </SelectWithFormSubmitButton>
-      </form>
-    </SearchFormCover>
-  );
-};
+export const SearchForm = ({ handleSubmit, isButtonDisabled }) => (
+  <SearchFormStyle onSubmit={handleSubmit}>
+    <FormInput
+      htmlFor="contents"
+      type="contents"
+      name="contents"
+      placeholder="Contents"
+    />
+    <SelectWithFormSubmitButton>
+      <SelectCover>
+        <Select name="model">
+          <option value="user">User</option>
+          <option value="task">Task</option>
+        </Select>
+        <Select name="method">
+          <option value="partial">部分一致</option>
+          <option value="perfect">完全一致</option>
+        </Select>
+      </SelectCover>
+      <FormSubmitButtonCover>
+        <FormSubmitButton isButtonDisabled={isButtonDisabled}>
+          検索
+        </FormSubmitButton>
+      </FormSubmitButtonCover>
+    </SelectWithFormSubmitButton>
+  </SearchFormStyle>
+);
 
 SearchForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   isButtonDisabled: PropTypes.bool.isRequired,
 };
 
-const FormSubmitButtonCover = styled.div`
-  margin-left: auto;
+const SearchFormStyle = styled.form`
+  min-width: 260px;
+  margin-top: 30px;
+  padding: 0 10px;
+  > label {
+    display: block;
+    margin-bottom: 14px;
+  }
 `;
 
-const SearchFormCover = styled.div`
-  text-align: left;
+const FormSubmitButtonCover = styled.div`
+  margin-left: auto;
 `;
 
 const Select = styled.select`

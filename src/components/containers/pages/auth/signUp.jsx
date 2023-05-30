@@ -1,5 +1,3 @@
-import { SignUpTemplate } from '../../templates/Auth/SignUpTemplate';
+import { SignUpTemplate } from "../../templates/Auth/SignUpTemplate";
 
-export const SignUp = () => {
-  return <SignUpTemplate />;
-};
+export const SignUp = () => <SignUpTemplate />;

@@ -1,36 +1,22 @@
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import PropTypes from "prop-types";
+import { UserListItem } from "../../../../users/ui/UserListItem";
 
-export const SearchUsersList = ({ users }) => {
-  return (
-    users && (
-      users.map((user) => (
-        <List key={user.id}>
-          <Link to={`/${user.username}`}>{user.nickname}({user.username})</Link>
-        </List>
-      ))
-    )
-  );
-};
+// todo: ページネーション or 「さらに表示ボタン」を作成
+export const SearchUsersList = ({ currentUserId, users }) =>
+  users &&
+  users.map((user) => (
+    <UserListItem key={user.id} currentUserId={currentUserId} user={user} />
+  ));
 
 SearchUsersList.propTypes = {
-  users: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    bio: PropTypes.string,
-    email: PropTypes.string,
-    nickname: PropTypes.string,
-    username: PropTypes.string,
-  })).isRequired,
+  currentUserId: PropTypes.string.isRequired,
+  users: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      bio: PropTypes.string,
+      email: PropTypes.string,
+      nickname: PropTypes.string,
+      username: PropTypes.string,
+    })
+  ).isRequired,
 };
-
-const List = styled.div`
-  display: flex;
-  align-items: center;
-  text-align: left;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ddd;
-  &:not(:first-of-type) {
-    margin-top: 10px;
-  }
-`;
