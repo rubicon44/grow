@@ -65,6 +65,7 @@ export const useHeader = () => {
     },
   ];
 
+  // TODO: ページの初期マウント時に「会員登録」or「ログイン」が太字になっていない。
   const headerLinksForAuth = [
     {
       id: "signIn",

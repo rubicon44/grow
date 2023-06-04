@@ -6,7 +6,10 @@ import { LikeNotification } from "./LikeNotification";
 
 export const NotificationsList = ({ notificationsData, currentUserName }) => {
   const { followVisitors, likeVisitors, notifications } = notificationsData;
-  if ((!likeVisitors || likeVisitors.length === 0) && (!followVisitors || followVisitors.length === 0)) {
+  if (
+    (!likeVisitors || likeVisitors.length === 0) &&
+    (!followVisitors || followVisitors.length === 0)
+  ) {
     return (
       <ListCover>
         <p>通知はありません。</p>

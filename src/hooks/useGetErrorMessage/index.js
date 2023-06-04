@@ -10,6 +10,7 @@ export const useGetErrorMessage = () => {
       } else if (error.response) {
         const { status } = error.response;
         switch (status) {
+          // TODO: すべての404エラーに対して「タスク」になっている
           case 404:
             errorMessage = `${verbForErrorMessage}を${objectForErrorMessage}できませんでした。タスクが削除された可能性があります。`;
             break;
@@ -28,6 +29,7 @@ export const useGetErrorMessage = () => {
       } else {
         errorMessage = `${verbForErrorMessage}を${objectForErrorMessage}できませんでした。しばらく時間をおいて再度お試しください。`;
       }
+      // TODO: alert()ではなく、APIからのエラーステータスに合わせたコンポーネントを表示する。
       alert(errorMessage);
     },
     []
