@@ -1,27 +1,22 @@
-import { memo } from "react";
 import PropTypes from "prop-types";
-import { TasksListHeader } from "./TasksListHeader";
-import { TasksListContent } from "./TasksListContent";
+import { PopupContainer } from "../../ui/PopupContainer";
+import { TaskListItem } from "../../ui/TaskListItem";
 
-export const TasksList = memo(
-  ({ activeTab, followingUserTasks, handleTabChange, tasks }) => (
-    <>
-      <TasksListHeader
-        activeTab={activeTab}
-        handleTabChange={handleTabChange}
-      />
-      <TasksListContent
-        activeTab={activeTab}
-        followingUserTasks={followingUserTasks}
-        tasks={tasks}
-      />
-    </>
-  )
+export const TasksListContent = ({ activeTab, followingUserTasks, tasks }) => (
+  <>
+    <PopupContainer message="タスクが正常に作成されました。" />
+
+    {activeTab === "tasks" &&
+      tasks?.map((task) => <TaskListItem task={task} key={task.id} />)}
+
+    {activeTab === "followingUserTasks" &&
+      followingUserTasks?.map((task) => (
+        <TaskListItem task={task} key={task.id} />
+      ))}
+  </>
 );
 
-TasksList.displayName = "TasksList";
-
-TasksList.propTypes = {
+TasksListContent.propTypes = {
   activeTab: PropTypes.string.isRequired,
   followingUserTasks: PropTypes.arrayOf(
     PropTypes.shape({
@@ -32,7 +27,6 @@ TasksList.propTypes = {
       title: PropTypes.string.isRequired,
     })
   ).isRequired,
-  handleTabChange: PropTypes.func.isRequired,
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
       content: PropTypes.string,
