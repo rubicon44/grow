@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { TaskStatusSwitchText } from "../../TaskStatusSwitchText";
+import { TaskStatusSwitchText } from "../TaskStatusSwitchText";
 
 export const GanttChartTaskTable = ({ elm, tasks }) => (
   <>

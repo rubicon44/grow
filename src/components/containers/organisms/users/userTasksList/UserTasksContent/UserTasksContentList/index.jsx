@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import { UserTasks } from "../UserTasks";
 import { GanttChartContainer } from "../../../../tasks/GanttChartContainer";
 import { UserLikedTasks } from "../UserLikedTasks";
@@ -12,7 +13,9 @@ export const UserTasksContentList = ({ activeTab, userData }) => (
     {/* GanttChartList */}
     {activeTab === "gantt" && (
       <Link to={`/${userData.username}/gantt`}>
-        <GanttChartContainer />
+        <GanttChatContainerCover>
+          <GanttChartContainer />
+        </GanttChatContainerCover>
       </Link>
     )}
 
@@ -53,3 +56,7 @@ UserTasksContentList.propTypes = {
     username: PropTypes.string,
   }).isRequired,
 };
+
+const GanttChatContainerCover = styled.div`
+  min-height: 200px;
+`;
