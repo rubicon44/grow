@@ -59,7 +59,6 @@ export const useSearchResults = () => {
       trim: true,
       ALLOWED_TAGS: [],
     });
-    // const method = sanitizeInput(e.target.elements.method.value);
     const method = "partial";
     const searchData = { model, contents, method };
     fetchSearchesData(searchData);
