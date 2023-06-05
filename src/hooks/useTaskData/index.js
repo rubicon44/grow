@@ -4,8 +4,8 @@ import { getTask } from "../../infra/api";
 
 export const useTaskData = () => {
   const currentTaskId = useCurrentTaskId();
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [taskData, setTaskData] = useState(null);
 
   useEffect(() => {

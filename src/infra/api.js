@@ -60,7 +60,6 @@ export const getTasks = async (params) =>
     method: "get",
     url: "/v1/tasks",
     params: snakecaseKeys(params),
-    headers: {},
   }).then((response) => camelcaseKeys(response, { deep: true }));
 
 export const postTasks = async (params) => {
