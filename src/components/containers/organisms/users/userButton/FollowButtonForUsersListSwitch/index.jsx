@@ -70,9 +70,5 @@ FollowButtonForUsersListSwitch.propTypes = {
   setChangeFollowButtonStyleToTrueFunc: PropTypes.func.isRequired,
   unFollowFunc: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
-  userIdToFollowOrUnFollow: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.object,
-  ]).isRequired,
+  userIdToFollowOrUnFollow: PropTypes.string.isRequired,
 };

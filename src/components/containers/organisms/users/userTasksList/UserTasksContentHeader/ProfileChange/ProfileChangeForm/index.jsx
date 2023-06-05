@@ -68,13 +68,13 @@ ProfileChangeForm.propTypes = {
   isButtonDisabled: PropTypes.bool.isRequired,
   revertUserBioFunc: PropTypes.func.isRequired,
   userData: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string,
     likedTasks: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number,
-        userId: PropTypes.number,
+        id: PropTypes.string,
+        userId: PropTypes.string,
         content: PropTypes.string,
         endDate: PropTypes.string,
         startDate: PropTypes.string,
@@ -85,8 +85,8 @@ ProfileChangeForm.propTypes = {
     nickname: PropTypes.string,
     tasks: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number,
-        userId: PropTypes.number,
+        id: PropTypes.string,
+        userId: PropTypes.string,
         content: PropTypes.string,
         endDate: PropTypes.string,
         startDate: PropTypes.string,

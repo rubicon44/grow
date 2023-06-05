@@ -41,11 +41,7 @@ export const FollowButtonForUsersListSwitchContainer = ({
 };
 
 FollowButtonForUsersListSwitchContainer.propTypes = {
-  userIdToFollowOrUnFollow: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.object,
-  ]).isRequired,
+  userIdToFollowOrUnFollow: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
 };
 

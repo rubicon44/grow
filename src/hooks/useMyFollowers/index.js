@@ -18,7 +18,11 @@ export const useMyFollowers = () => {
       try {
         const response = await getFollowers(currentUserName);
         const myFollowersData = response.data.followers;
-        setMyFollowers(myFollowersData);
+        const myFollowersDataWithToString = myFollowersData.map((follower) => ({
+          ...follower,
+          id: follower.id.toString(),
+        }));
+        setMyFollowers(myFollowersDataWithToString);
       } catch (error) {
         setError(error);
         const verbForErrorMessage = `フォロワー`;

@@ -21,9 +21,15 @@ export const useLike = (taskId) => {
     try {
       const response = await getLikes(like);
       const likeData = response.data;
+      const transformedLikes = likeData.likes.map((like) => ({
+        ...like,
+        id: like.id.toString(),
+        likedUserId: like.likedUserId.toString(),
+        taskId: like.taskId.toString(),
+      }));
       setLikeData({
         likeCount: likeData.likeCount,
-        likes: likeData.likes,
+        likes: transformedLikes,
       });
       setCurrentTaskId(taskId);
     } catch (error) {

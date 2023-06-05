@@ -34,7 +34,7 @@ export const FollowButtonSwitchContainer = ({ userIdToFollowOrUnFollow }) => {
 };
 
 FollowButtonSwitchContainer.propTypes = {
-  userIdToFollowOrUnFollow: PropTypes.number.isRequired,
+  userIdToFollowOrUnFollow: PropTypes.string.isRequired,
 };
 
 const WaitingButton = ({ children }) => (

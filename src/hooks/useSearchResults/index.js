@@ -20,10 +20,26 @@ export const useSearchResults = () => {
     try {
       const response = await getSearches(searchData);
       const searchResults = response.data;
-      setSearchResults({
-        tasks: searchResults.tasks,
-        users: searchResults.users,
-      });
+      const transformedSearchResults = {
+        tasks: searchResults.tasks
+          ? searchResults.tasks.map((task) => ({
+              ...task,
+              id: task.id.toString(),
+              userId: task.userId.toString(),
+              user: {
+                ...task.user,
+                id: task.user.id.toString(),
+              },
+            }))
+          : [],
+        users: searchResults.users
+          ? searchResults.users.map((user) => ({
+              ...user,
+              id: user.id.toString(),
+            }))
+          : [],
+      };
+      setSearchResults(transformedSearchResults);
     } catch (error) {
       setError(error);
       const verbForErrorMessage = `データ`;
@@ -43,7 +59,7 @@ export const useSearchResults = () => {
       trim: true,
       ALLOWED_TAGS: [],
     });
-    const method = sanitizeInput(e.target.elements.method.value);
+    const method = "partial";
     const searchData = { model, contents, method };
     fetchSearchesData(searchData);
   };

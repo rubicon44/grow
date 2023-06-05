@@ -19,7 +19,11 @@ export const useFollowers = () => {
       try {
         const response = await getFollowers(username);
         const followersData = response.data.followers;
-        setFollowers(followersData);
+        const followersDataWithToString = followersData.map((follower) => ({
+          ...follower,
+          id: follower.id.toString(),
+        }));
+        setFollowers(followersDataWithToString);
       } catch (error) {
         setError(error);
         const verbForErrorMessage = `フォロワー`;

@@ -18,11 +18,30 @@ export const useNotificationsData = () => {
       try {
         const response = await getNotifications(user);
         const notificationsData = response.data;
-        setNotificationsData({
-          followVisitors: notificationsData.followVisitors,
-          likeVisitors: notificationsData.likeVisitors,
-          notifications: notificationsData.notifications,
-        });
+        const transformedNotificationsData = {
+          followVisitors: notificationsData.followVisitors.map((visitor) => ({
+            ...visitor,
+            id: visitor.id.toString(),
+          })),
+          likeVisitors: notificationsData.likeVisitors.map((visitor) => ({
+            ...visitor,
+            id: visitor.id.toString(),
+          })),
+          notifications: notificationsData.notifications.map(
+            (notification) => ({
+              ...notification,
+              id: notification.id.toString(),
+              taskId:
+                notification.taskId !== null
+                  ? notification.taskId.toString()
+                  : null,
+              visitedId: notification.visitedId.toString(),
+              visitorId: notification.visitorId.toString(),
+            })
+          ),
+        };
+
+        setNotificationsData(transformedNotificationsData);
       } catch (error) {
         setError(error);
         const verbForErrorMessage = `通知一覧`;
