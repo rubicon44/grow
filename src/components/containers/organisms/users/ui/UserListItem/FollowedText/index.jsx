@@ -20,7 +20,7 @@ const FollowedTextStyle = styled.span`
 FollowedText.propTypes = {
   myFollowers: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
       bio: PropTypes.string,
       email: PropTypes.string.isRequired,
       nickname: PropTypes.string.isRequired,

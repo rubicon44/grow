@@ -17,9 +17,9 @@ UnLikeButton.propTypes = {
     likeCount: PropTypes.number,
     likes: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        likedUserId: PropTypes.number.isRequired,
-        taskId: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
+        likedUserId: PropTypes.string.isRequired,
+        taskId: PropTypes.string.isRequired,
       })
     ).isRequired,
   }).isRequired,

@@ -15,7 +15,7 @@ export const UserTasksList = (props) => {
       <PopupContainer message="タスクが正常に削除されました。" />
       <TitleWithBackArrowHeader title={userData.nickname} />
       <UserTasksContentHeaderContainer
-        currentUserId={String(currentUserId)}
+        currentUserId={currentUserId}
         moveToFollowers={moveToFollowers}
         moveToFollowings={moveToFollowings}
         setCheckUserNameChange={setCheckUserNameChange}
@@ -39,13 +39,13 @@ UserTasksList.propTypes = {
   setCheckUserNameChange: PropTypes.func.isRequired,
   setUserData: PropTypes.func.isRequired,
   userData: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string,
     likedTasks: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number,
-        userId: PropTypes.number,
+        id: PropTypes.string,
+        userId: PropTypes.string,
         content: PropTypes.string,
         endDate: PropTypes.string,
         startDate: PropTypes.string,
@@ -56,8 +56,8 @@ UserTasksList.propTypes = {
     nickname: PropTypes.string,
     tasks: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number,
-        userId: PropTypes.number,
+        id: PropTypes.string,
+        userId: PropTypes.string,
         content: PropTypes.string,
         endDate: PropTypes.string,
         startDate: PropTypes.string,

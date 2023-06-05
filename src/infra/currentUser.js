@@ -8,8 +8,8 @@ export const currentUser = () => {
   const user = Cookies.get("user");
   if (user) {
     currentUserData = JSON.parse(user);
-    currentUserId = String(currentUserData.id);
-    currentUserName = String(currentUserData.username);
+    currentUserId = currentUserData.id;
+    currentUserName = currentUserData.username;
     returnCurrentUserData = { id: currentUserId, username: currentUserName };
   }
   return returnCurrentUserData;

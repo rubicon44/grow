@@ -40,20 +40,20 @@ TaskList.propTypes = {
   taskData: PropTypes.shape({
     task: PropTypes.shape({
       // todo: string or numberに統一
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
       content: PropTypes.string,
       endDate: PropTypes.string,
       startDate: PropTypes.string,
       status: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       user: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        bio: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired,
+        bio: PropTypes.string,
         email: PropTypes.string.isRequired,
         nickname: PropTypes.string.isRequired,
         username: PropTypes.string.isRequired,
       }),
-      userId: PropTypes.number.isRequired,
+      userId: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
   unDeleteCheckFunc: PropTypes.func.isRequired,

@@ -5,7 +5,7 @@ export const useCurrentUserId = () => {
   const user = Cookies.get("user");
   if (user) {
     const { id } = currentUser();
-    return id;
+    return id.toString();
   }
   return null;
 };

@@ -55,7 +55,7 @@ NotificationsList.propTypes = {
   notificationsData: PropTypes.shape({
     followVisitors: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         bio: PropTypes.string,
         email: PropTypes.string.isRequired,
         nickname: PropTypes.string.isRequired,
@@ -64,7 +64,7 @@ NotificationsList.propTypes = {
     ).isRequired,
     likeVisitors: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         bio: PropTypes.string,
         email: PropTypes.string.isRequired,
         nickname: PropTypes.string.isRequired,
@@ -73,10 +73,10 @@ NotificationsList.propTypes = {
     ).isRequired,
     notifications: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        taskId: PropTypes.number,
-        visitedId: PropTypes.number.isRequired,
-        visitorId: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
+        taskId: PropTypes.string,
+        visitedId: PropTypes.string.isRequired,
+        visitorId: PropTypes.string.isRequired,
         action: PropTypes.string.isRequired,
         checked: PropTypes.bool.isRequired,
       })

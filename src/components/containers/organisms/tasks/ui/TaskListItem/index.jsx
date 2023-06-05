@@ -13,26 +13,26 @@ export const TaskListItem = ({ task }) => (
       <BaseLink url={`/${task.user.username}`}>{task.user.nickname}</BaseLink>
     </CreatedUserCover>
     <ListCover>
-      <Link to={`/${task.user.username}/tasks/${String(task.id)}`}>
+      <Link to={`/${task.user.username}/tasks/${task.id}`}>
         <List title={task.title} content={task.content} />
         <TaskStatusSwitch taskStatus={task.status} />
       </Link>
-      <LikeOrUnLikeButtonSwitchContainer taskId={String(task.id)} />
+      <LikeOrUnLikeButtonSwitchContainer taskId={task.id} />
     </ListCover>
   </ListContainer>
 );
 
 TaskListItem.propTypes = {
   task: PropTypes.shape({
-    id: PropTypes.number,
-    userId: PropTypes.number,
+    id: PropTypes.string,
+    userId: PropTypes.string,
     content: PropTypes.string,
     endDate: PropTypes.string,
     startDate: PropTypes.string,
     status: PropTypes.number,
     title: PropTypes.string,
     user: PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
       bio: PropTypes.string,
       email: PropTypes.string,
       nickname: PropTypes.string,

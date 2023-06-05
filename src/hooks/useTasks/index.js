@@ -16,9 +16,37 @@ export const useTasks = () => {
     getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
   }
 
+  const transformedData = {
+    followingUserTasks:
+      data?.data?.followingUserTasks?.map((task) => ({
+        ...task,
+        id: task.id.toString(),
+        userId: task.userId.toString(),
+        user: {
+          ...task.user,
+          id: task.user.id.toString(),
+        },
+      })) || [],
+    tasks:
+      data?.data?.tasks?.map((task) => ({
+        ...task,
+        id: task.id.toString(),
+        userId: task.userId.toString(),
+        user: {
+          ...task.user,
+          id: task.user.id.toString(),
+        },
+      })) || [],
+  };
+
   return {
     error,
-    followingUserTasks: data?.data?.followingUserTasks || [],
-    tasks: data?.data?.tasks || [],
+    ...transformedData,
   };
+
+  // return {
+  //   error,
+  //   followingUserTasks: data?.data?.followingUserTasks || [],
+  //   tasks: data?.data?.tasks || [],
+  // };
 };

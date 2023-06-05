@@ -21,15 +21,15 @@ export const LikeNotification = ({
 LikeNotification.propTypes = {
   currentUserName: PropTypes.string.isRequired,
   notification: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    taskId: PropTypes.number.isRequired,
-    visitedId: PropTypes.number.isRequired,
-    visitorId: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
+    taskId: PropTypes.string.isRequired,
+    visitedId: PropTypes.string.isRequired,
+    visitorId: PropTypes.string.isRequired,
     action: PropTypes.string.isRequired,
     checked: PropTypes.bool.isRequired,
   }).isRequired,
   visitor: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     bio: PropTypes.string,
     email: PropTypes.string.isRequired,
     nickname: PropTypes.string.isRequired,

@@ -87,15 +87,15 @@ GanttChart.propTypes = {
   ).isRequired,
   tasks: PropTypes.arrayOf(
     PropTypes.exact({
-      id: PropTypes.number.isRequired,
-      userId: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
+      userId: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
       endDate: PropTypes.string.isRequired,
       startDate: PropTypes.string.isRequired,
       status: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       user: PropTypes.shape({
-        id: PropTypes.number,
+        id: PropTypes.string,
         bio: PropTypes.string,
         email: PropTypes.string,
         nickname: PropTypes.string,

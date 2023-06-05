@@ -13,13 +13,13 @@ SearchListSwitch.propTypes = {
   currentUserId: PropTypes.string.isRequired,
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
-      userId: PropTypes.number,
+      id: PropTypes.string,
+      userId: PropTypes.string,
       content: PropTypes.string,
       status: PropTypes.number,
       title: PropTypes.string,
       user: PropTypes.shape({
-        id: PropTypes.number,
+        id: PropTypes.string,
         bio: PropTypes.string,
         email: PropTypes.string,
         nickname: PropTypes.string,
@@ -29,7 +29,7 @@ SearchListSwitch.propTypes = {
   ).isRequired,
   users: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
       bio: PropTypes.string,
       email: PropTypes.string,
       nickname: PropTypes.string,

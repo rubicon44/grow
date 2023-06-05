@@ -26,7 +26,7 @@ export const TaskListItem = ({
         <p>終了日:{task.endDate}</p>
       </TaskDateCover>
       <TaskStatusSwitch taskStatus={task.status} />
-      <LikeOrUnLikeButtonSwitchContainer taskId={String(task.id)} />
+      <LikeOrUnLikeButtonSwitchContainer taskId={task.id} />
       <ButtonCover>
         <TaskEditButton
           currentUserId={currentUserId}
@@ -50,15 +50,15 @@ TaskListItem.propTypes = {
   isButtonDisabled: PropTypes.bool.isRequired,
   moveToEditTask: PropTypes.func.isRequired,
   task: PropTypes.shape({
-    id: PropTypes.number,
-    userId: PropTypes.number,
+    id: PropTypes.string,
+    userId: PropTypes.string,
     content: PropTypes.string,
     endDate: PropTypes.string,
     startDate: PropTypes.string,
     status: PropTypes.number,
     title: PropTypes.string,
     user: PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
       bio: PropTypes.string,
       email: PropTypes.string,
       nickname: PropTypes.string,

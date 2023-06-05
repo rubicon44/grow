@@ -26,7 +26,7 @@ export const UserTasksContentHeaderContainer = (props) => {
       bioAble={bioAble}
       changeUserNameCheckAble={changeUserNameCheckAble}
       changeUserNameFunc={changeUserNameFunc}
-      currentUserId={String(currentUserId)}
+      currentUserId={currentUserId}
       editing={editing}
       error={error}
       handleTextSubmit={handleTextSubmit}
@@ -48,13 +48,13 @@ UserTasksContentHeaderContainer.propTypes = {
   setCheckUserNameChange: PropTypes.func.isRequired,
   setUserData: PropTypes.func.isRequired,
   userData: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string,
     likedTasks: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number,
-        userId: PropTypes.number,
+        id: PropTypes.string,
+        userId: PropTypes.string,
         content: PropTypes.string,
         endDate: PropTypes.string,
         startDate: PropTypes.string,
@@ -65,8 +65,8 @@ UserTasksContentHeaderContainer.propTypes = {
     nickname: PropTypes.string,
     tasks: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number,
-        userId: PropTypes.number,
+        id: PropTypes.string,
+        userId: PropTypes.string,
         content: PropTypes.string,
         endDate: PropTypes.string,
         startDate: PropTypes.string,

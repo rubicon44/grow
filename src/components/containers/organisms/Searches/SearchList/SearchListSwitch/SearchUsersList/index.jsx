@@ -12,7 +12,7 @@ SearchUsersList.propTypes = {
   currentUserId: PropTypes.string.isRequired,
   users: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
       bio: PropTypes.string,
       email: PropTypes.string,
       nickname: PropTypes.string,

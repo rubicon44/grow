@@ -19,7 +19,11 @@ export const useFollowings = () => {
       try {
         const response = await getFollowings(username);
         const followingsData = response.data.followings;
-        setFollowings(followingsData);
+        const followingsDataWithToString = followingsData.map((following) => ({
+          ...following,
+          id: following.id.toString(),
+        }));
+        setFollowings(followingsDataWithToString);
       } catch (error) {
         setError(error);
         const verbForErrorMessage = `フォロワー中のユーザー`;

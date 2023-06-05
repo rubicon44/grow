@@ -36,7 +36,7 @@ export const UserListItem = ({ currentUserId, user }) => (
 UserListItem.propTypes = {
   currentUserId: PropTypes.string.isRequired,
   user: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     bio: PropTypes.string,
     email: PropTypes.string.isRequired,
     nickname: PropTypes.string.isRequired,

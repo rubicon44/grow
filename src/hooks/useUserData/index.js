@@ -32,7 +32,30 @@ export const useUserData = () => {
       try {
         const response = await getUser(currentPathSegment);
         const userData = response.data;
-        handleSuccess(userData);
+        const transformedUserData = {
+          ...userData,
+          id: userData.id.toString(),
+          likedTasks: userData.likedTasks.map((likedTask) => ({
+            ...likedTask,
+            id: likedTask.id.toString(),
+            userId: likedTask.userId.toString(),
+            user: {
+              ...likedTask.user,
+              id: likedTask.user.id.toString(),
+            },
+          })),
+          tasks: userData.tasks.map((task) => ({
+            ...task,
+            id: task.id.toString(),
+            userId: task.userId.toString(),
+            user: {
+              ...task.user,
+              id: task.user.id.toString(),
+            },
+          })),
+        };
+        handleSuccess(transformedUserData);
+        // handleSuccess(userData);
       } catch (error) {
         handleError(error);
       } finally {

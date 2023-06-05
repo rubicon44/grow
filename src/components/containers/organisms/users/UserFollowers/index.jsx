@@ -22,7 +22,7 @@ UserFollowers.propTypes = {
   currentUserId: PropTypes.string.isRequired,
   followers: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
       nickname: PropTypes.string.isRequired,
       username: PropTypes.string.isRequired,
     })

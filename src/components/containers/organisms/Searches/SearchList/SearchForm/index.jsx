@@ -17,10 +17,10 @@ export const SearchForm = ({ handleSubmit, isButtonDisabled }) => (
           <option value="user">User</option>
           <option value="task">Task</option>
         </Select>
-        <Select name="method">
+        {/* <Select name="method">
           <option value="partial">部分一致</option>
           <option value="perfect">完全一致</option>
-        </Select>
+        </Select> */}
       </SelectCover>
       <FormSubmitButtonCover>
         <FormSubmitButton isButtonDisabled={isButtonDisabled}>
