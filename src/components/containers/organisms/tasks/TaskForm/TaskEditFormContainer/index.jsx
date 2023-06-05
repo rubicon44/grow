@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
+import { useGetErrorMessage } from "../../../../../../hooks/useGetErrorMessage";
 import { useTaskEdit } from "../../../../../../hooks/useTaskEdit";
+import { ErrorMessage } from "../../../../pages/staticPages/ErrorMessage";
 import { TaskEditForm } from "../TaskEditForm";
 
 export const TaskEditFormContainer = ({ taskDataTask }) => {
+  const { getErrorMessage } = useGetErrorMessage();
   const {
     editing,
     error,
@@ -11,7 +14,8 @@ export const TaskEditFormContainer = ({ taskDataTask }) => {
     isButtonDisabled,
     taskData,
   } = useTaskEdit(taskDataTask);
-  if (error) return <>Error...</>;
+
+  if (error) return <ErrorMessage errorMessage={getErrorMessage(error)} />;
   if (editing) return <>Editing...</>;
   return (
     <TaskEditForm

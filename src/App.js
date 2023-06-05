@@ -89,11 +89,6 @@ export const App = () => {
                 path="/:username"
                 element={<PrivateRoute element={<UserShow />} />}
               />
-              {/* Gantt chart */}
-              <Route
-                path="/:username/gantt"
-                element={<PrivateRoute element={<UserGantt />} />}
-              />
               <Route
                 path="/:username/tasks/:id"
                 element={<PrivateRoute element={<TaskShow />} />}
@@ -106,6 +101,10 @@ export const App = () => {
               <Route
                 path="/:username/followers"
                 element={<PrivateRoute element={<UserFollowers />} />}
+              />
+              <Route
+                path="/:username/gantt"
+                element={<PrivateRoute element={<UserGantt />} />}
               />
               {/* Notifications */}
               <Route

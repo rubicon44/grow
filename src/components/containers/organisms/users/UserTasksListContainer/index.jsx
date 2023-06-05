@@ -1,10 +1,13 @@
 import { useCurrentUserId } from "../../../../../hooks/useCurrentUserId";
+import { useGetErrorMessage } from "../../../../../hooks/useGetErrorMessage";
 import { useMoveToFollowers } from "../../../../../hooks/useMoveToFollowers";
 import { useMoveToFollowings } from "../../../../../hooks/useMoveToFollowings";
 import { useUserData } from "../../../../../hooks/useUserData";
+import { ErrorMessage } from "../../../pages/staticPages/ErrorMessage";
 import { UserTasksList } from "../userTasksList";
 
 export const UserTasksListContainer = () => {
+  const { getErrorMessage } = useGetErrorMessage();
   const currentUserId = useCurrentUserId();
   const {
     error,
@@ -16,7 +19,7 @@ export const UserTasksListContainer = () => {
   const { moveToFollowers } = useMoveToFollowers(userData);
   const { moveToFollowings } = useMoveToFollowings(userData);
 
-  if (error) return <>Error...</>;
+  if (error) return <ErrorMessage errorMessage={getErrorMessage(error)} />;
   if (userData === null) {
     return null;
   }

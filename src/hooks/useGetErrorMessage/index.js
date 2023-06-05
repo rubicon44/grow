@@ -1,38 +1,39 @@
 import { useMemo } from "react";
 
-// todo: エラー時の複数表示を改善(4回程度出現)
 export const useGetErrorMessage = () => {
+  const errorMessages = useMemo(
+    () => ({
+      default: "エラーが発生しました。しばらく時間をおいて再度お試しください。",
+      notFound: "データが見つかりませんでした。",
+      forbidden: "アクセス権限がありません。",
+      badRequest: "不正なリクエストが送信されました。",
+      serverError: "サーバーエラーが発生しました。",
+      networkError: "ネットワークに接続されていません。",
+    }),
+    []
+  );
+
   const getErrorMessage = useMemo(
-    () => (error, verbForErrorMessage, objectForErrorMessage) => {
-      let errorMessage = `${verbForErrorMessage}を${objectForErrorMessage}できませんでした。しばらく時間をおいて再度お試しください。`;
-      if (error instanceof ReferenceError) {
-        errorMessage = `${verbForErrorMessage}を${objectForErrorMessage}できませんでした。しばらく時間をおいて再度お試しください。`;
-      } else if (error.response) {
+    () => (error) => {
+      if (error.response) {
         const { status } = error.response;
         switch (status) {
-          // TODO: すべての404エラーに対して「タスク」になっている
           case 404:
-            errorMessage = `${verbForErrorMessage}を${objectForErrorMessage}できませんでした。タスクが削除された可能性があります。`;
-            break;
+            return errorMessages.notFound;
           case 403:
-            errorMessage = `${verbForErrorMessage}を${objectForErrorMessage}する権限がありません。`;
-            break;
+            return errorMessages.forbidden;
           case 400:
-            errorMessage = `${verbForErrorMessage}を${objectForErrorMessage}できませんでした。不正なリクエストが送信されました。`;
-            break;
+            return errorMessages.badRequest;
           default:
-            errorMessage = `${verbForErrorMessage}を${objectForErrorMessage}できませんでした。サーバーエラーが発生しました。`;
-            break;
+            return errorMessages.serverError;
         }
       } else if (error.request) {
-        errorMessage = `${verbForErrorMessage}を${objectForErrorMessage}できませんでした。ネットワークに接続されていない可能性があります。`;
+        return errorMessages.networkError;
       } else {
-        errorMessage = `${verbForErrorMessage}を${objectForErrorMessage}できませんでした。しばらく時間をおいて再度お試しください。`;
+        return errorMessages.default;
       }
-      // TODO: alert()ではなく、APIからのエラーステータスに合わせたコンポーネントを表示する。
-      alert(errorMessage);
     },
-    []
+    [errorMessages]
   );
 
   return { getErrorMessage };

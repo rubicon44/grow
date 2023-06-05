@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { getSearches } from "../../infra/api";
-import { useGetErrorMessage } from "../useGetErrorMessage";
 import { useInputSanitization } from "../useInputSanitization";
 
 export const useSearchResults = () => {
-  const { getErrorMessage } = useGetErrorMessage();
   const { sanitizeInput } = useInputSanitization();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -42,9 +40,6 @@ export const useSearchResults = () => {
       setSearchResults(transformedSearchResults);
     } catch (error) {
       setError(error);
-      const verbForErrorMessage = `データ`;
-      const objectForErrorMessage = `検索`;
-      getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
     } finally {
       setLoading(false);
       setIsButtonDisabled(false);

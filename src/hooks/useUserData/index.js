@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import { useGetErrorMessage } from "../useGetErrorMessage";
 import { useCurrentPathSegment } from "../useCurrentPathSegment";
 import { getUser } from "../../infra/api";
 
 export const useUserData = () => {
   const { currentPathSegment } = useCurrentPathSegment();
-  const { getErrorMessage } = useGetErrorMessage();
   const [checkUserNameChange, setCheckUserNameChange] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -16,13 +14,6 @@ export const useUserData = () => {
       const { likedTasks, ...newUserData } = userData;
       const newDataWithLikedTasksKey = { ...newUserData, likedTasks };
       setUserData(newDataWithLikedTasksKey);
-    };
-
-    const handleError = (error) => {
-      setError(error);
-      const verbForErrorMessage = `ユーザーデータ`;
-      const objectForErrorMessage = `取得`;
-      getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
     };
 
     const fetchUserData = async (currentPathSegment) => {
@@ -55,9 +46,8 @@ export const useUserData = () => {
           })),
         };
         handleSuccess(transformedUserData);
-        // handleSuccess(userData);
       } catch (error) {
-        handleError(error);
+        setError(error);
       } finally {
         setLoading(false);
         setCheckUserNameChange(false);
@@ -65,7 +55,7 @@ export const useUserData = () => {
     };
 
     fetchUserData(currentPathSegment);
-  }, [checkUserNameChange, currentPathSegment, getErrorMessage]);
+  }, [checkUserNameChange, currentPathSegment]);
 
   return {
     error,

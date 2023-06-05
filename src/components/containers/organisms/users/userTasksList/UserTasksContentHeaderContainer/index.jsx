@@ -1,11 +1,14 @@
 import PropTypes from "prop-types";
+import { useGetErrorMessage } from "../../../../../../hooks/useGetErrorMessage";
 import { useUserEdit } from "../../../../../../hooks/useUserEdit";
+import { ErrorMessage } from "../../../../pages/staticPages/ErrorMessage";
 import { UserTasksContentHeader } from "../UserTasksContentHeader";
 
 export const UserTasksContentHeaderContainer = (props) => {
   const { currentUserId } = props;
   const { setCheckUserNameChange, setUserData, userData } = props;
   const { moveToFollowers, moveToFollowings } = props;
+  const { getErrorMessage } = useGetErrorMessage();
   const {
     bioAble,
     changeUserNameCheckAble,
@@ -19,7 +22,7 @@ export const UserTasksContentHeaderContainer = (props) => {
     setBioAbleFunc,
   } = useUserEdit(setCheckUserNameChange, setUserData, userData);
 
-  if (error) return <>Error...</>;
+  if (error) return <ErrorMessage errorMessage={getErrorMessage(error)} />;
   if (editing) return <>Editing...</>;
   return (
     <UserTasksContentHeader

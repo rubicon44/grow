@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useCurrentUserId } from "../useCurrentUserId";
 import { useCurrentUserName } from "../useCurrentUserName";
-import { useGetErrorMessage } from "../useGetErrorMessage";
 import {
   deleteRelationships,
   getFollowings,
@@ -11,7 +10,6 @@ import {
 export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
   const currentUserId = useCurrentUserId();
   const currentUserName = useCurrentUserName();
-  const { getErrorMessage } = useGetErrorMessage();
   const [error, setError] = useState(null);
   const [creating, setCreating] = useState(false);
   const [deleting, setDeleting] = useState(false);
@@ -33,15 +31,12 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
         setIsFollowing(false);
       } catch (error) {
         setError(error);
-        const verbForErrorMessage = `ユーザー情報`;
-        const objectForErrorMessage = `取得`;
-        getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
       } finally {
         setLoading(false);
       }
     };
     fetchFollowings(username);
-  }, [currentUserName, getErrorMessage]);
+  }, [currentUserName]);
 
   const setChangeFollowButtonStyleToTrueFunc = () => {
     setChangeFollowButtonStyle(true);
@@ -61,9 +56,7 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
       await postRelationships(relationships);
       setIsFollowing(true);
     } catch (error) {
-      const verbForErrorMessage = `ユーザー`;
-      const objectForErrorMessage = `フォロー`;
-      getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
+      setError(error);
     } finally {
       setCreating(false);
     }
@@ -79,9 +72,7 @@ export const useFollowAndUnFollow = (userIdToFollowOrUnFollow) => {
       await deleteRelationships(relationships);
       setIsFollowing(false);
     } catch (error) {
-      const verbForErrorMessage = `フォロー`;
-      const objectForErrorMessage = `解除`;
-      getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
+      setError(error);
     } finally {
       setDeleting(false);
     }

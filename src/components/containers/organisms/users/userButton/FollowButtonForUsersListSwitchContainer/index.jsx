@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useFollowAndUnFollow } from "../../../../../../hooks/useFollowAndUnFollow";
+import { useGetErrorMessage } from "../../../../../../hooks/useGetErrorMessage";
+import { ErrorMessage } from "../../../../pages/staticPages/ErrorMessage";
 import { FollowButtonForUsersListSwitch } from "../FollowButtonForUsersListSwitch";
 
 export const FollowButtonForUsersListSwitchContainer = ({
@@ -18,8 +20,9 @@ export const FollowButtonForUsersListSwitchContainer = ({
     setChangeFollowButtonStyleToTrueFunc,
     unFollowFunc,
   } = useFollowAndUnFollow(userIdToFollowOrUnFollow);
+  const { getErrorMessage } = useGetErrorMessage();
 
-  if (error) return <>Error...</>;
+  if (error) return <ErrorMessage errorMessage={getErrorMessage(error)} />;
   return (
     <FollowButtonForUsersListSwitch
       changeFollowButtonStyle={changeFollowButtonStyle}

@@ -4,7 +4,6 @@ import { TitleWithBackArrowHeader } from "../../../presentational/molecules/Head
 
 export const TasksTemplate = () => (
   <MainWithHeaderContainer>
-    {/* todo: 「タスク全体」と「フォロー中の人のタスクのみ」とで表示を分けるタブを作成。 */}
     <TitleWithBackArrowHeader title="タスク一覧" />
     <TasksListContainer />
   </MainWithHeaderContainer>

@@ -2,22 +2,20 @@ import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../auth/AuthProvider";
 import { useCurrentUserId } from "../useCurrentUserId";
-import { useGetErrorMessage } from "../useGetErrorMessage";
 import { useInputSanitization } from "../useInputSanitization";
 import { useInputValidation } from "../useInputValidation";
 import { updateUser } from "../../infra/api";
 
-// todo: Keep the following code within 100 lines later.
 export const useUserEdit = (setCheckUserNameChange, setUserData, userData) => {
   const navigateToSignIn = useNavigate();
   const { signout } = useContext(AuthContext);
   const currentUserId = useCurrentUserId();
-  const { getErrorMessage } = useGetErrorMessage();
   const { sanitizeInput } = useInputSanitization();
   const { validateInput } = useInputValidation();
   const [bioAble, setBioAble] = useState(true);
   const [changeUserNameCheckAble, setChangeUserNameCheckAble] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [error, setError] = useState(null);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const nicknameRef = useRef();
   const usernameRef = useRef();
@@ -47,9 +45,7 @@ export const useUserEdit = (setCheckUserNameChange, setUserData, userData) => {
         await signout();
       }
     } catch (error) {
-      const verbForErrorMessage = `ユーザーデータ`;
-      const objectForErrorMessage = `編集`;
-      getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
+      setError(error);
     } finally {
       setEditing(false);
       setIsButtonDisabled(false);
@@ -132,6 +128,7 @@ export const useUserEdit = (setCheckUserNameChange, setUserData, userData) => {
     changeUserNameCheckAble,
     changeUserNameFunc,
     editing,
+    error,
     handleTextSubmit,
     inputRefs,
     isButtonDisabled,

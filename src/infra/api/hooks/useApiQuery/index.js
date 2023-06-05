@@ -7,7 +7,6 @@ export const useApiQuery = (queryKey, apiFetchFn) => {
   const { data, isLoading, error } = useQuery(queryKey, apiFetchFn);
 
   if (error) {
-    alert(`Error in useApiQuery: ${error.message}`);
     return {
       data: [],
       error,

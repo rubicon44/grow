@@ -2,7 +2,6 @@ import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCurrentUserId } from "../useCurrentUserId";
 import { useCurrentUserName } from "../useCurrentUserName";
-import { useGetErrorMessage } from "../useGetErrorMessage";
 import { useInputSanitization } from "../useInputSanitization";
 import { useInputValidation } from "../useInputValidation";
 import { updateTask } from "../../infra/api";
@@ -11,11 +10,11 @@ export const useTaskEdit = (taskDataTask) => {
   const navigateToUserTask = useNavigate();
   const currentUserId = useCurrentUserId();
   const currentUserName = useCurrentUserName();
-  const { getErrorMessage } = useGetErrorMessage();
   const { sanitizeInput } = useInputSanitization();
   const { validateInput, validateTask } = useInputValidation();
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [error, setError] = useState(null);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const {
     id: taskId,
     title: taskTitle,
@@ -36,9 +35,7 @@ export const useTaskEdit = (taskDataTask) => {
         state: { showPopup: true },
       });
     } catch (error) {
-      const verbForErrorMessage = `タスク`;
-      const objectForErrorMessage = `編集`;
-      getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
+      setError(error);
     } finally {
       setEditing(false);
       setIsButtonDisabled(false);
@@ -103,6 +100,7 @@ export const useTaskEdit = (taskDataTask) => {
 
   return {
     editing,
+    error,
     handleTextSubmit,
     inputRefs,
     isButtonDisabled,
