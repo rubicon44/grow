@@ -10,8 +10,12 @@ export const TasksListContent = ({ activeTab, followingUserTasks, tasks }) => (
       tasks?.map((task) => <TaskListItem task={task} key={task.id} />)}
 
     {activeTab === "followingUserTasks" &&
-      followingUserTasks?.map((task) => (
-        <TaskListItem task={task} key={task.id} />
+      (followingUserTasks?.length > 0 ? (
+        followingUserTasks.map((task) => (
+          <TaskListItem task={task} key={task.id} />
+        ))
+      ) : (
+        <p>フォローしているユーザーはいません。</p>
       ))}
   </>
 );

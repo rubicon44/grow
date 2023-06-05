@@ -1,8 +1,11 @@
 import { useGanttChart } from "../../../../../hooks/useGanttChart";
+import { useGetErrorMessage } from "../../../../../hooks/useGetErrorMessage";
 import { useUserData } from "../../../../../hooks/useUserData";
+import { ErrorMessage } from "../../../pages/staticPages/ErrorMessage";
 import { GanttChart } from "../GanttChart";
 
 export const GanttChartContainer = () => {
+  const { getErrorMessage } = useGetErrorMessage();
   const { loading, error, userData } = useUserData();
   const {
     calenderBodyHeight,
@@ -15,7 +18,8 @@ export const GanttChartContainer = () => {
     handleScrollToCurrentDate,
     styles,
   } = useGanttChart(userData?.tasks ?? [], loading);
-  if (error) return <div>Error...</div>;
+
+  if (error) return <ErrorMessage errorMessage={getErrorMessage(error)} />;
   if (userData === null) {
     return null;
   }

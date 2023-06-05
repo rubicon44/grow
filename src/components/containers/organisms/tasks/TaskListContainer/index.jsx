@@ -1,11 +1,14 @@
 import { useCurrentUserId } from "../../../../../hooks/useCurrentUserId";
+import { useGetErrorMessage } from "../../../../../hooks/useGetErrorMessage";
 import { useMoveToEditTask } from "../../../../../hooks/useMoveToEditTask";
 import { useTaskData } from "../../../../../hooks/useTaskData";
 import { useTaskDelete } from "../../../../../hooks/useTaskDelete";
 import { TaskList } from "../taskList";
+import { ErrorMessage } from "../../../pages/staticPages/ErrorMessage";
 
 export const TaskListContainer = () => {
   const currentUserId = useCurrentUserId();
+  const { getErrorMessage } = useGetErrorMessage();
   const { error, taskData } = useTaskData();
   const {
     deleteCheckAble,
@@ -16,7 +19,7 @@ export const TaskListContainer = () => {
   } = useTaskDelete(taskData);
   const { moveToEditTask } = useMoveToEditTask(taskData);
 
-  if (error) throw error;
+  if (error) return <ErrorMessage errorMessage={getErrorMessage(error)} />;
   if (taskData === null) {
     return null;
   }

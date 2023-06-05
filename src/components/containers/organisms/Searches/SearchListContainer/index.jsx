@@ -1,9 +1,12 @@
 import { useCurrentUserId } from "../../../../../hooks/useCurrentUserId";
+import { useGetErrorMessage } from "../../../../../hooks/useGetErrorMessage";
 import { useSearchResults } from "../../../../../hooks/useSearchResults";
+import { ErrorMessage } from "../../../pages/staticPages/ErrorMessage";
 import { SearchList } from "../SearchList";
 
 export const SearchListContainer = () => {
   const currentUserId = useCurrentUserId();
+  const { getErrorMessage } = useGetErrorMessage();
   const {
     error,
     handleSubmit,
@@ -12,7 +15,7 @@ export const SearchListContainer = () => {
     searchResultUsers,
   } = useSearchResults();
 
-  if (error) return <>Error...</>;
+  if (error) return <ErrorMessage errorMessage={getErrorMessage(error)} />;
   if (searchResultTasks === null || searchResultUsers === null) {
     return null;
   }

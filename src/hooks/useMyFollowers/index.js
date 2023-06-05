@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useCurrentUserName } from "../useCurrentUserName";
-import { useGetErrorMessage } from "../useGetErrorMessage";
 import { getFollowers } from "../../infra/api";
 
 export const useMyFollowers = () => {
   const currentUserName = useCurrentUserName();
-  const { getErrorMessage } = useGetErrorMessage();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [myFollowers, setMyFollowers] = useState(null);
@@ -25,16 +23,13 @@ export const useMyFollowers = () => {
         setMyFollowers(myFollowersDataWithToString);
       } catch (error) {
         setError(error);
-        const verbForErrorMessage = `フォロワー`;
-        const objectForErrorMessage = `取得`;
-        getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
       } finally {
         setLoading(false);
       }
     };
 
     fetchFollowers(currentUserName);
-  }, [currentUserName, getErrorMessage]);
+  }, [currentUserName]);
 
   return {
     error,

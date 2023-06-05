@@ -1,9 +1,12 @@
 import { memo } from "react";
 import PropTypes from "prop-types";
+import { useGetErrorMessage } from "../../../../../hooks/useGetErrorMessage";
 import { useLike } from "../../../../../hooks/useLike";
+import { ErrorMessage } from "../../../pages/staticPages/ErrorMessage";
 import { LikeOrUnLikeButtonSwitch } from "../LikeOrUnLikeButtonSwitch";
 
 export const LikeOrUnLikeButtonSwitchContainer = memo(({ taskId }) => {
+  const { getErrorMessage } = useGetErrorMessage();
   const {
     currentTaskId,
     error,
@@ -13,7 +16,7 @@ export const LikeOrUnLikeButtonSwitchContainer = memo(({ taskId }) => {
     likeData,
   } = useLike(taskId);
 
-  if (error) return <>Error...</>;
+  if (error) return <ErrorMessage errorMessage={getErrorMessage(error)} />;
   return (
     <LikeOrUnLikeButtonSwitch
       currentTaskId={currentTaskId}

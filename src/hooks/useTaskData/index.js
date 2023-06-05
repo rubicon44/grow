@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useCurrentTaskId } from "../useCurrentTaskId";
-import { useGetErrorMessage } from "../useGetErrorMessage";
 import { getTask } from "../../infra/api";
 
 export const useTaskData = () => {
   const currentTaskId = useCurrentTaskId();
-  const { getErrorMessage } = useGetErrorMessage();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [taskData, setTaskData] = useState(null);
@@ -29,15 +27,12 @@ export const useTaskData = () => {
         setTaskData({ task: transformedTask });
       } catch (error) {
         setError(error);
-        const verbForErrorMessage = `タスク`;
-        const objectForErrorMessage = `取得`;
-        getErrorMessage(error, verbForErrorMessage, objectForErrorMessage);
       } finally {
         setLoading(false);
       }
     };
     fetchTaskData();
-  }, [currentTaskId, getErrorMessage]);
+  }, [currentTaskId]);
 
   return { loading, error, taskData };
 };
