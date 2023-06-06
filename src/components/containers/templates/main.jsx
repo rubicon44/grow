@@ -32,6 +32,7 @@ const BaseMain = styled.main`
 `;
 
 const MainInner = styled.div`
+  position: relative;
   max-width: ${({ maxWidth }) => maxWidth};
   margin-bottom: 52.5px;
   border-right: 1px solid #ddd;
