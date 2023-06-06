@@ -2,12 +2,15 @@ import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { mediaquery } from "../../../../../../assets/styles/variable";
 
-export const PcHeader = ({ clickedText, setClickedText, pcHeaderLinks }) => {
-  const pcHeaderList = () => (
+export const NotLoggedInNavigation = ({
+  clickedText,
+  headerLinksForAuth,
+  setClickedText,
+}) => {
+  const notLoggedInHeaderList = () => (
     <Header>
-      {pcHeaderLinks.map((headerLink) => (
+      {headerLinksForAuth.map((headerLink) => (
         <Link
           to={headerLink.url}
           key={headerLink.url}
@@ -16,7 +19,7 @@ export const PcHeader = ({ clickedText, setClickedText, pcHeaderLinks }) => {
           {!clickedText || clickedText !== headerLink.id ? (
             <span>{headerLink.text}</span>
           ) : (
-            <span>{headerLink.clickedText}</span>
+            <ClickedText>{headerLink.text}</ClickedText>
           )}
         </Link>
       ))}
@@ -24,20 +27,19 @@ export const PcHeader = ({ clickedText, setClickedText, pcHeaderLinks }) => {
   );
 
   return ["top"].map((anchor) => (
-    <Fragment key={anchor}>{pcHeaderList(anchor)}</Fragment>
+    <Fragment key={anchor}>{notLoggedInHeaderList(anchor)}</Fragment>
   ));
 };
 
-PcHeader.defaultProps = {
+NotLoggedInNavigation.defaultProps = {
   clickedText: null,
 };
 
-PcHeader.propTypes = {
+NotLoggedInNavigation.propTypes = {
   clickedText: PropTypes.string,
-  pcHeaderLinks: PropTypes.arrayOf(
+  headerLinksForAuth: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      clickedText: PropTypes.node.isRequired,
       text: PropTypes.node.isRequired,
       url: PropTypes.string.isRequired,
     })
@@ -45,22 +47,23 @@ PcHeader.propTypes = {
   setClickedText: PropTypes.func.isRequired,
 };
 
+const ClickedText = styled.span`
+  font-size: 1.1rem;
+  font-weight: bold;
+`;
+
 const Header = styled.header`
   position: fixed;
-  top: 0;
-  left: 0;
+  bottom: 0;
   z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 23%;
-  height: 100%;
-  padding: 12px 15px;
+  width: 100%;
+  height: 52.5px;
   box-sizing: border-box;
-  background-color: #eeeff1;
-  ${mediaquery.desk`
-    flex-direction: column;
-  `}
+  border-top: 1px solid #ddd;
+  background-color: #fff;
   > a {
     display: flex;
     justify-content: center;

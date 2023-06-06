@@ -1,7 +1,7 @@
 import { useCurrentUserId } from "../../../../../hooks/useCurrentUserId";
 import { useGetErrorMessage } from "../../../../../hooks/useGetErrorMessage";
 import { useSearchResults } from "../../../../../hooks/useSearchResults";
-import { ErrorMessage } from "../../../pages/staticPages/ErrorMessage";
+import { ErrorMessage } from "../../common/ErrorMessage";
 import { SearchList } from "../SearchList";
 
 export const SearchListContainer = () => {

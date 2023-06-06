@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useGetErrorMessage } from "../../../../../../../hooks/useGetErrorMessage";
 import { useMyFollowers } from "../../../../../../../hooks/useMyFollowers";
-import { ErrorMessage } from "../../../../../pages/staticPages/ErrorMessage";
+import { ErrorMessage } from "../../../../common/ErrorMessage";
 import { FollowedText } from "../FollowedText";
 
 export const FollowedTextContainer = ({ userId }) => {

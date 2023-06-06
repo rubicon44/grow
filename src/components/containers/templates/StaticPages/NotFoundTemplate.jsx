@@ -1,10 +1,10 @@
+// import { MainWithHeaderContainer } from "../MainWithHeaderContainer";
 import { MainWithHeaderForAuthContainer } from "../MainWithHeaderForAuthContainer";
-import { SignUpFormContainer } from "../../organisms/auth/SignUpFormContainer";
 import { TitleWithBackArrowHeader } from "../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
-export const SignUpTemplate = () => (
+export const NotFoundTemplate = () => (
   <MainWithHeaderForAuthContainer>
-    <TitleWithBackArrowHeader title="会員登録" />
-    <SignUpFormContainer />
+    <TitleWithBackArrowHeader title="NotFound" />
+    <p>お探しのページが見つかりません。</p>
   </MainWithHeaderForAuthContainer>
 );

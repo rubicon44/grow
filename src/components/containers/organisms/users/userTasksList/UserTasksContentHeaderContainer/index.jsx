@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useGetErrorMessage } from "../../../../../../hooks/useGetErrorMessage";
 import { useUserEdit } from "../../../../../../hooks/useUserEdit";
-import { ErrorMessage } from "../../../../pages/staticPages/ErrorMessage";
+import { ErrorMessage } from "../../../common/ErrorMessage";
 import { UserTasksContentHeader } from "../UserTasksContentHeader";
 
 export const UserTasksContentHeaderContainer = (props) => {

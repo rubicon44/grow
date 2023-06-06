@@ -4,7 +4,7 @@ import { useMoveToEditTask } from "../../../../../hooks/useMoveToEditTask";
 import { useTaskData } from "../../../../../hooks/useTaskData";
 import { useTaskDelete } from "../../../../../hooks/useTaskDelete";
 import { TaskList } from "../taskList";
-import { ErrorMessage } from "../../../pages/staticPages/ErrorMessage";
+import { ErrorMessage } from "../../common/ErrorMessage";
 
 export const TaskListContainer = () => {
   const currentUserId = useCurrentUserId();
