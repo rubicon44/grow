@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { UserListItem } from "../../../../users/ui/UserListItem";
 
-// todo: ページネーション or 「さらに表示ボタン」を作成
+// TODO: ページネーション or 「さらに表示ボタン」を作成
 export const SearchUsersList = ({ currentUserId, users }) =>
   users &&
   users.map((user) => (

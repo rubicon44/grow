@@ -4,7 +4,7 @@ import { UserTasksContentList } from "./UserTasksContentList";
 
 export const UserTasksContent = ({ activeTab, handleTabChange, userData }) => (
   <>
-    {/* todo: タスクタブ内のタスクをいいねした際、いいねタブ内のタスクを即座に更新するか検討。 */}
+    {/* TODO: タスクタブ内のタスクをいいねした際、いいねタブ内のタスクを即座に更新するか検討。 */}
     <UserTasksContentTab
       activeTab={activeTab}
       handleTabChange={handleTabChange}

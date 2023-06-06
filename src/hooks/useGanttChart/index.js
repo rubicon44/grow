@@ -18,11 +18,11 @@ export const useGanttChart = (tasks, loading) => {
 
   const updateCalenderBodyHeight = useCallback(() => {
     if (elm.current !== null) {
-      // todo: 「+ 4」を調整。
+      // TODO: 「+ 4」を調整。
       const taskListBodyHeight = elm.current.getBoundingClientRect().height + 4;
       setCalenderBodyHeight(taskListBodyHeight);
     }
-    // todo: 代替案を検討(elm.current)
+    // TODO: 代替案を検討(elm.current)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [elm.current]);
 
@@ -75,7 +75,7 @@ export const useGanttChart = (tasks, loading) => {
 
   useEffect(() => {
     scrollToCurrentDate(calenders);
-    // todo: 代替案を検討(elm.current)
+    // TODO: 代替案を検討(elm.current)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollToCurrentDate, calenders, elm.current]);
 

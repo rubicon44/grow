@@ -80,7 +80,7 @@ export const useUserEdit = (setCheckUserNameChange, setUserData, userData) => {
     await updateUserFunc(defaultUsername, user, currentUserId);
   };
 
-  // todo: [未実装]メールアドレス変更機能
+  // TODO: [未実装]メールアドレス変更機能
   const handleTextSubmit = (e) => {
     e.preventDefault();
     setIsButtonDisabled(true);

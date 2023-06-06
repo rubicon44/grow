@@ -74,7 +74,7 @@ export const useLike = (taskId) => {
           newLikeData.likeCount = likeData.likeCount - 1;
           return newLikeData;
         });
-        // todo: Consider using state-management-library or useContext or data-fetching-library instead of using API call twice for updating data.
+        // TODO: Consider using state-management-library or useContext or data-fetching-library instead of using API call twice for updating data.
         await fetchLikeData();
         setCurrentTaskId("");
       } catch (error) {
@@ -101,7 +101,7 @@ export const useLike = (taskId) => {
           ...prevState,
           likeCount: likeData.likeCount,
         }));
-        // todo: Consider using state-management-library or useContext or data-fetching-library instead of using API call twice for updating data.
+        // TODO: Consider using state-management-library or useContext or data-fetching-library instead of using API call twice for updating data.
         await fetchLikeData();
         setCurrentTaskId(taskId);
       } catch (error) {

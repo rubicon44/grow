@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-// todo: アニメーションをつけて、popup表示をもっと目立たせたい。
 export const Popup = ({ message, showPopup, visible }) =>
   showPopup && visible ? (
     <Message>

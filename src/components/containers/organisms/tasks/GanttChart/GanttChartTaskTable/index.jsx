@@ -6,7 +6,7 @@ export const GanttChartTaskTable = ({ elm, tasks }) => (
   <>
     <GanttChartTaskTitle>
       <tr>
-        {/* todo: sp画面の時、タスク幅が広く、チャート部分の表示が狭い。 */}
+        {/* TODO: sp画面の時、タスク幅が広く、チャート部分の表示が狭い。 */}
         <th>タスク</th>
         <th>開始日</th>
         <th>終了日</th>
