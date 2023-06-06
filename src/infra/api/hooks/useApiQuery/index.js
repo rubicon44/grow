@@ -4,24 +4,30 @@ export const useApiQuery = (queryKey, apiFetchFn) => {
   // const { data, isLoading, error } = useQuery(queryKey, apiFetchFn, {
   //   suspense: true
   // });
-  const { data, isLoading, error } = useQuery(queryKey, apiFetchFn);
+  const { data, error, isLoading, isFetching } = useQuery(queryKey, apiFetchFn);
 
   if (error) {
     return {
-      data: [],
+      data: null,
       error,
-      loading: false,
+      isLoading: false,
+      isFetching: false,
     };
   }
 
-  if (data !== undefined && data.length !== 0) {
+  if (data !== undefined) {
     return {
       data,
-      loading: isLoading,
+      error: null,
+      isLoading,
+      isFetching,
     };
   }
+
   return {
-    data: [],
-    loading: isLoading,
+    data: null,
+    error: null,
+    isLoading,
+    isFetching,
   };
 };
