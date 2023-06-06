@@ -1,6 +1,6 @@
 import { useCurrentUserName } from "../../../../../hooks/useCurrentUserName";
 import { useHeader } from "../../../../../hooks/useHeader";
-import { useHeaderContext } from "../../../../../context/HeaderContext";
+import { useHeaderContext } from "../../../../../context/HeaderContextProvider";
 import { Header } from "../Header";
 
 export const HeaderContainer = ({ currentUserAuth }) => {

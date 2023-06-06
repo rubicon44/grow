@@ -5,12 +5,12 @@ export const UnFollowButton = ({
   setChangeFollowButtonStyleToFalseFunc,
   unFollowFunc,
 }) => (
-  <FollowChangeLinkDoneToUnFollow
+  <FollowButton
     onMouseLeave={setChangeFollowButtonStyleToFalseFunc}
     onClick={unFollowFunc}
   >
     <span>フォロー解除</span>
-  </FollowChangeLinkDoneToUnFollow>
+  </FollowButton>
 );
 
 UnFollowButton.propTypes = {
@@ -18,14 +18,14 @@ UnFollowButton.propTypes = {
   unFollowFunc: PropTypes.func.isRequired,
 };
 
-// todo: Buttonをコンポーネント化
-const FollowChangeLinkDoneToUnFollow = styled.a`
+const FollowButton = styled.a`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 32px;
   width: 118px;
+  padding: 0px 5px;
   border: 1px solid black;
   border-color: rgb(253, 201, 206);
   border-radius: 9999px;

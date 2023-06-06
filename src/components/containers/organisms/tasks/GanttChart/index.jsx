@@ -21,12 +21,9 @@ export const GanttChart = (props) => {
   return (
     <GanttChartCover>
       <ButtonCover>
-        <ScrollToCurrentDateButton
-          type="button"
-          onClick={handleScrollToCurrentDate}
-        >
+        <ScrollButton type="button" onClick={handleScrollToCurrentDate}>
           今日の日付に移動
-        </ScrollToCurrentDateButton>
+        </ScrollButton>
       </ButtonCover>
       <ArrowIconsCover>
         <ArrowBackIosOutlinedIcon onClick={handleBackToPreviousMonthClick}>
@@ -118,7 +115,7 @@ const ButtonCover = styled.div`
 `;
 
 // todo: Buttonコンポーネントリストを作成。
-const ScrollToCurrentDateButton = styled.button`
+const ScrollButton = styled.button`
   width: 125px;
   height: 40px;
   border: 1px solid #ddd;
