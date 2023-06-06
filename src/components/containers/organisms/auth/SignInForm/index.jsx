@@ -5,7 +5,7 @@ import { FormSubmitButton } from "../../../../presentational/atoms/Button/FormSu
 
 export const SignInForm = ({ handleSubmit, isButtonDisabled }) => (
   <FormCover>
-    {/* todo: Formコンポーネント作成の検討。 */}
+    {/* TODO: Formコンポーネント作成の検討。 */}
     <form onSubmit={handleSubmit}>
       <FormInput
         htmlFor="email"

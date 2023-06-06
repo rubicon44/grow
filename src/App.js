@@ -43,7 +43,6 @@ const queryClient = new QueryClient();
 // });
 
 export const App = () => {
-  // todo: state位置検証
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     // setTimeout(() => setLoading(false), 1000)

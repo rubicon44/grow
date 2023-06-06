@@ -35,9 +35,7 @@ FollowButtonSwitch.defaultProps = {
 
 FollowButtonSwitch.propTypes = {
   changeFollowButtonStyle: PropTypes.bool.isRequired,
-  // TODO: 型の正当性をチェック
-  currentUserId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    .isRequired,
+  currentUserId: PropTypes.string.isRequired,
   followFunc: PropTypes.func.isRequired,
   isFollowing: PropTypes.bool,
   setChangeFollowButtonStyleToFalseFunc: PropTypes.func.isRequired,

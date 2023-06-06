@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { mediaquery } from "../../../../assets/styles/variable";
 
 export const List = ({ title, content }) => (
-  // todo: httpsにおいてXSSできないことを確認する
+  // TODO: httpsにおいてXSSできないことを確認する
   // const userInputText1 = `javascript: console.log(document.cookie)`;
   <BaseList>
     <h3>{title}</h3>

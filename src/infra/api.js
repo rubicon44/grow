@@ -82,7 +82,7 @@ export const updateTask = async (params, data) => {
   }).then((response) => camelcaseKeys(response, { deep: true }));
 };
 
-// todo: dataに具体性を持たせる。
+// TODO: dataに具体性を持たせる。
 export const deleteTask = async (params, data) => {
   await setCSRFToken();
   return axios({

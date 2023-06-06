@@ -39,7 +39,6 @@ TaskList.propTypes = {
   moveToEditTask: PropTypes.func.isRequired,
   taskData: PropTypes.shape({
     task: PropTypes.shape({
-      // todo: string or numberに統一
       id: PropTypes.string.isRequired,
       content: PropTypes.string,
       endDate: PropTypes.string,
