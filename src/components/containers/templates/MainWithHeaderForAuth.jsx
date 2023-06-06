@@ -1,25 +1,20 @@
 import PropTypes from "prop-types";
 import { useMediaQuery } from "@mui/material";
-import { Main } from "./main";
+import { MainForAuth } from "./MainForAuth";
 import { SpButtonToTaskCreate } from "../organisms/common/SpButtonToTaskCreate";
 import { HeaderContainer } from "../organisms/common/HeaderContainer";
 
-export const MainWithHeader = ({ children, currentUserAuth, width }) => {
+export const MainWithHeaderForAuth = ({ children, currentUserAuth }) => {
   const isMobile = useMediaQuery("(max-width:375px)");
   return (
     <>
       <HeaderContainer currentUserAuth={currentUserAuth} />
       {currentUserAuth && isMobile && <SpButtonToTaskCreate />}
-      <Main width={width}>{children}</Main>
+      <MainForAuth>{children}</MainForAuth>
     </>
   );
 };
 
-MainWithHeader.defaultProps = {
-  width: "",
-};
-
-MainWithHeader.propTypes = {
+MainWithHeaderForAuth.propTypes = {
   children: PropTypes.node.isRequired,
-  width: PropTypes.string,
 };

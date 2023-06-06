@@ -1,7 +1,7 @@
 import { useCurrentUserId } from "../../../../../hooks/useCurrentUserId";
 import { useGetErrorMessage } from "../../../../../hooks/useGetErrorMessage";
 import { useFollowings } from "../../../../../hooks/useFollowings";
-import { ErrorMessage } from "../../../pages/staticPages/ErrorMessage";
+import { ErrorMessage } from "../../common/ErrorMessage";
 import { UserFollowings } from "../UserFollowings";
 
 export const UserFollowingsContainer = () => {

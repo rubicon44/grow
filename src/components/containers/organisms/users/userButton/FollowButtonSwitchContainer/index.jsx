@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useGetErrorMessage } from "../../../../../../hooks/useGetErrorMessage";
 import { useFollowAndUnFollow } from "../../../../../../hooks/useFollowAndUnFollow";
-import { ErrorMessage } from "../../../../pages/staticPages/ErrorMessage";
+import { ErrorMessage } from "../../../common/ErrorMessage";
 import { FollowButtonSwitch } from "../FollowButtonSwitch";
 
 export const FollowButtonSwitchContainer = ({ userIdToFollowOrUnFollow }) => {

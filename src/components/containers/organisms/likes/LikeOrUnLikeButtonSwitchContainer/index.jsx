@@ -2,7 +2,7 @@ import { memo } from "react";
 import PropTypes from "prop-types";
 import { useGetErrorMessage } from "../../../../../hooks/useGetErrorMessage";
 import { useLike } from "../../../../../hooks/useLike";
-import { ErrorMessage } from "../../../pages/staticPages/ErrorMessage";
+import { ErrorMessage } from "../../common/ErrorMessage";
 import { LikeOrUnLikeButtonSwitch } from "../LikeOrUnLikeButtonSwitch";
 
 export const LikeOrUnLikeButtonSwitchContainer = memo(({ taskId }) => {

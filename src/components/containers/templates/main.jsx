@@ -2,19 +2,24 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { mediaquery } from "../../../assets/styles/variable";
 
-export const Main = ({ children, className }) => (
-  <BaseMain className={className}>
-    <MainInner>{children}</MainInner>
-  </BaseMain>
-);
+export const Main = ({ children, className, width }) => {
+  const mainInnerMaxWidth = width !== "null" ? "600px" : null;
+  return (
+    <BaseMain className={className}>
+      <MainInner maxWidth={mainInnerMaxWidth}>{children}</MainInner>
+    </BaseMain>
+  );
+};
 
 Main.defaultProps = {
   className: "",
+  width: "",
 };
 
 Main.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  width: PropTypes.string,
 };
 
 const BaseMain = styled.main`
@@ -22,12 +27,12 @@ const BaseMain = styled.main`
     margin-top: 70px;
   `}
   ${mediaquery.desk`
-    padding-left: 20%;
+    padding-left: 23%;
   `}
 `;
 
 const MainInner = styled.div`
-  max-width: 600px;
+  max-width: ${({ maxWidth }) => maxWidth};
   margin-bottom: 52.5px;
   border-right: 1px solid #ddd;
   border-bottom: 1px solid #ddd;

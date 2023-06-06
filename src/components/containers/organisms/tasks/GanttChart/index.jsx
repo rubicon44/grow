@@ -114,7 +114,6 @@ const ButtonCover = styled.div`
   justify-content: center;
 `;
 
-// todo: Buttonコンポーネントリストを作成。
 const ScrollButton = styled.button`
   width: 125px;
   height: 40px;

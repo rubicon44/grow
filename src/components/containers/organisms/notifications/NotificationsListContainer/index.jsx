@@ -1,7 +1,7 @@
 import { useCurrentUserName } from "../../../../../hooks/useCurrentUserName";
 import { useGetErrorMessage } from "../../../../../hooks/useGetErrorMessage";
 import { useNotificationsData } from "../../../../../hooks/useNotificationsData";
-import { ErrorMessage } from "../../../pages/staticPages/ErrorMessage";
+import { ErrorMessage } from "../../common/ErrorMessage";
 import { NotificationsList } from "..";
 
 export const NotificationsListContainer = () => {

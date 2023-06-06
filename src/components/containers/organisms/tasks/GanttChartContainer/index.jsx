@@ -1,7 +1,7 @@
 import { useGanttChart } from "../../../../../hooks/useGanttChart";
 import { useGetErrorMessage } from "../../../../../hooks/useGetErrorMessage";
 import { useUserData } from "../../../../../hooks/useUserData";
-import { ErrorMessage } from "../../../pages/staticPages/ErrorMessage";
+import { ErrorMessage } from "../../common/ErrorMessage";
 import { GanttChart } from "../GanttChart";
 
 export const GanttChartContainer = () => {

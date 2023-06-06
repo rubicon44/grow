@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useMediaQuery } from "@mui/material";
 import { NotLoggedInHeader } from "./NotLoggedInHeader";
+import { NotLoggedInNavigation } from "./NotLoggedInNavigation";
 import { PcHeader } from "./PcHeader";
 import { SpHeader } from "./SpHeader";
 import { SpNavigation } from "./SpNavigation";
@@ -18,11 +19,14 @@ export const Header = ({
   return (
     <>
       {!currentUserAuth && (
-        <NotLoggedInHeader
-          clickedText={clickedText}
-          headerLinksForAuth={headerLinksForAuth}
-          setClickedText={setClickedText}
-        />
+        <>
+          <NotLoggedInHeader />
+          <NotLoggedInNavigation
+            clickedText={clickedText}
+            headerLinksForAuth={headerLinksForAuth}
+            setClickedText={setClickedText}
+          />
+        </>
       )}
 
       {currentUserAuth &&

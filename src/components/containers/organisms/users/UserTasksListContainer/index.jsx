@@ -3,7 +3,7 @@ import { useGetErrorMessage } from "../../../../../hooks/useGetErrorMessage";
 import { useMoveToFollowers } from "../../../../../hooks/useMoveToFollowers";
 import { useMoveToFollowings } from "../../../../../hooks/useMoveToFollowings";
 import { useUserData } from "../../../../../hooks/useUserData";
-import { ErrorMessage } from "../../../pages/staticPages/ErrorMessage";
+import { ErrorMessage } from "../../common/ErrorMessage";
 import { UserTasksList } from "../userTasksList";
 
 export const UserTasksListContainer = () => {
