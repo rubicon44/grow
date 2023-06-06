@@ -1,6 +1,6 @@
 import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../auth/AuthProvider";
+import { AuthContext } from "../../auth/AuthContextProvider";
 import { useCurrentUserId } from "../useCurrentUserId";
 import { useInputSanitization } from "../useInputSanitization";
 import { useInputValidation } from "../useInputValidation";

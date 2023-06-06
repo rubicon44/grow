@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useFirebaseAuth } from "../../hooks/useFirebaseAuth";
 
 export const AuthContext = createContext();
-export const AuthProvider = ({ children }) => {
+export const AuthContextProvider = ({ children }) => {
   const { currentUserAuth, signin, signup, signout } = useFirebaseAuth();
 
   const authValue = useMemo(
@@ -16,6 +16,6 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-AuthProvider.propTypes = {
+AuthContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };

@@ -8,10 +8,10 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import "./assets/styles/reset.css";
 // Context for auth
 import { auth } from "./infra/firebase";
-import { AuthProvider } from "./auth/AuthProvider";
+import { AuthContextProvider } from "./auth/AuthContextProvider";
 import { PrivateRoute } from "./auth/PrivateRoute";
 // Context for others
-import { HeaderContextProvider } from "./context/HeaderContext";
+import { HeaderContextProvider } from "./context/HeaderContextProvider";
 // Auth
 import { SignIn } from "./components/containers/pages/auth/signIn";
 import { SignUp } from "./components/containers/pages/auth/signUp";
@@ -60,7 +60,7 @@ export const App = () => {
   }
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
+      <AuthContextProvider>
         <Router>
           <HeaderContextProvider>
             <Routes>
@@ -119,7 +119,7 @@ export const App = () => {
             </Routes>
           </HeaderContextProvider>
         </Router>
-      </AuthProvider>
+      </AuthContextProvider>
     </QueryClientProvider>
   );
 };
