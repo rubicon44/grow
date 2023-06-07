@@ -9,11 +9,38 @@ export const useUserData = () => {
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState(null);
 
+  const [page, setPage] = useState(1); // ページ番号
+  const pageSize = 10; // 1ページあたりのタスク数
+
   useEffect(() => {
     const handleSuccess = (userData) => {
       const { likedTasks, ...newUserData } = userData;
       const newDataWithLikedTasksKey = { ...newUserData, likedTasks };
-      setUserData(newDataWithLikedTasksKey);
+      setUserData((prevUserData) => {
+        if (prevUserData) {
+          // 重複を避けるために、新しいタスクを追加する前に重複をフィルタリング
+          const filteredLikedTasks = newDataWithLikedTasksKey.likedTasks.filter(
+            (newTask) =>
+              !prevUserData.likedTasks.find(
+                (existingTask) => existingTask.id === newTask.id
+              )
+          );
+          const filteredTasks = newDataWithLikedTasksKey.tasks.filter(
+            (newTask) =>
+              !prevUserData.tasks.find(
+                (existingTask) => existingTask.id === newTask.id
+              )
+          );
+
+          return {
+            ...prevUserData,
+            ...newDataWithLikedTasksKey,
+            likedTasks: [...prevUserData.likedTasks, ...filteredLikedTasks],
+            tasks: [...prevUserData.tasks, ...filteredTasks],
+          };
+        }
+        return newDataWithLikedTasksKey;
+      });
     };
 
     const fetchUserData = async (currentPathSegment) => {
@@ -21,7 +48,7 @@ export const useUserData = () => {
       setError(null);
 
       try {
-        const response = await getUser(currentPathSegment);
+        const response = await getUser(currentPathSegment, page, pageSize);
         const userData = response.data;
         const transformedUserData = {
           ...userData,
@@ -54,12 +81,34 @@ export const useUserData = () => {
       }
     };
 
-    fetchUserData(currentPathSegment);
-  }, [checkUserNameChange, currentPathSegment]);
+    fetchUserData(currentPathSegment, page);
+  }, [checkUserNameChange, currentPathSegment, page]);
+
+  const handleScroll = () => {
+    const scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+
+    // console.log(scrollTop);
+    // console.log(windowHeight);
+    // console.log(documentHeight);
+
+    if (scrollTop + windowHeight >= documentHeight) {
+      // 最下部にスクロールされ、データのロード中でない場合に次のページのデータを取得
+      setPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return {
     error,
     loading,
+    page,
     setCheckUserNameChange,
     setUserData,
     userData,

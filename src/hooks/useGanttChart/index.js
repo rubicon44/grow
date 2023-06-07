@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTaskBars } from "../useTaskBars";
 
-export const useGanttChart = (tasks, loading) => {
+export const useGanttChart = (tasks, loading, page) => {
   const {
     calenders,
     currentPositionNumber,
@@ -18,8 +18,7 @@ export const useGanttChart = (tasks, loading) => {
 
   const updateCalenderBodyHeight = useCallback(() => {
     if (elm.current !== null) {
-      // TODO: 「+ 4」を調整。
-      const taskListBodyHeight = elm.current.getBoundingClientRect().height + 4;
+      const taskListBodyHeight = elm.current.getBoundingClientRect().height;
       setCalenderBodyHeight(taskListBodyHeight);
     }
     // TODO: 代替案を検討(elm.current)
@@ -28,7 +27,7 @@ export const useGanttChart = (tasks, loading) => {
 
   useEffect(() => {
     updateCalenderBodyHeight();
-  }, [updateCalenderBodyHeight]);
+  }, [updateCalenderBodyHeight, page]);
 
   const scrollToCurrentDate = useCallback((calenders) => {
     const currentDate = new Date();
