@@ -5,10 +5,19 @@ import { UserTasks } from "../UserTasks";
 import { GanttChartContainer } from "../../../../tasks/GanttChartContainer";
 import { UserLikedTasks } from "../UserLikedTasks";
 
-export const UserTasksContentList = ({ activeTab, userData }) => (
+export const UserTasksContentList = ({
+  activeTab,
+  outerElementTasksRef,
+  userData,
+}) => (
   <>
     {/* CreatedTasksList */}
-    {activeTab === "createdTasks" && <UserTasks userData={userData} />}
+    {activeTab === "createdTasks" && (
+      <UserTasks
+        outerElementTasksRef={outerElementTasksRef}
+        userData={userData}
+      />
+    )}
 
     {/* GanttChartList */}
     {activeTab === "gantt" && (
@@ -24,8 +33,13 @@ export const UserTasksContentList = ({ activeTab, userData }) => (
   </>
 );
 
+UserTasksContentList.defaultProps = {
+  outerElementTasksRef: null,
+};
+
 UserTasksContentList.propTypes = {
   activeTab: PropTypes.string.isRequired,
+  outerElementTasksRef: PropTypes.objectOf(PropTypes.instanceOf(Element)),
   userData: PropTypes.shape({
     id: PropTypes.string,
     bio: PropTypes.string,

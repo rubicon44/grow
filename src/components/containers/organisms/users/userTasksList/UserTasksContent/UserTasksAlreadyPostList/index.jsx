@@ -1,10 +1,21 @@
 import PropTypes from "prop-types";
 import { TaskListItem } from "../../../../tasks/ui/TaskListItem";
 
-export const UserTasksAlreadyPostList = ({ userData }) =>
-  userData.tasks.map((task) => <TaskListItem task={task} key={task.id} />);
+export const UserTasksAlreadyPostList = ({ outerElementTasksRef, userData }) =>
+  userData.tasks.map((task) => (
+    <TaskListItem
+      outerElementTasksRef={outerElementTasksRef}
+      task={task}
+      key={task.id}
+    />
+  ));
+
+UserTasksAlreadyPostList.defaultProps = {
+  outerElementTasksRef: null,
+};
 
 UserTasksAlreadyPostList.propTypes = {
+  outerElementTasksRef: PropTypes.objectOf(PropTypes.instanceOf(Element)),
   userData: PropTypes.shape({
     id: PropTypes.string,
     bio: PropTypes.string,

@@ -3,9 +3,9 @@ import { useTasksContentTab } from "../../../../../hooks/useTasksContentTab";
 import { TasksList } from "../tasksList";
 
 export const TasksListContainer = () => {
-  const { error, followingUserTasks, isLoading, isFetching, tasks } =
-    useTasks();
   const { activeTab, handleTabChange } = useTasksContentTab();
+  const { error, followingUserTasks, isLoading, isFetching, tasks } =
+    useTasks(activeTab);
 
   if (error) throw error;
   if (tasks === null || followingUserTasks === null) {

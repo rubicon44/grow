@@ -39,11 +39,11 @@ export const signIn = async (idToken) => {
   });
 };
 
-export const getUser = async (params) =>
+export const getUser = async (currentPathSegment, dataType, page, pageSize) =>
   axios({
     method: "get",
-    url: `/v1/${params}`,
-    params: { currentUser: true },
+    url: `/v1/${currentPathSegment}`,
+    params: snakecaseKeys({ currentUser: true, dataType, page, pageSize }),
   }).then((response) => camelcaseKeys(response, { deep: true }));
 
 export const updateUser = async (params, data) => {

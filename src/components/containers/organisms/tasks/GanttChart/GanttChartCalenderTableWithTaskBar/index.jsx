@@ -62,8 +62,11 @@ const GanttChartCalenderTable = styled.table`
     text-align: center;
     white-space: nowrap;
   }
-  > thead > tr {
-    background: #7fcce3;
+  > thead {
+    height: 19px;
+    > tr {
+      background: #7fcce3;
+    }
   }
   > tbody {
     display: flex;

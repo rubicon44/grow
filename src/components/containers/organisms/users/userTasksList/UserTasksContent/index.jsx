@@ -2,20 +2,34 @@ import PropTypes from "prop-types";
 import { UserTasksContentTab } from "./UserTasksContentTab";
 import { UserTasksContentList } from "./UserTasksContentList";
 
-export const UserTasksContent = ({ activeTab, handleTabChange, userData }) => (
+export const UserTasksContent = ({
+  activeTab,
+  handleTabChange,
+  outerElementTasksRef,
+  userData,
+}) => (
   <>
     {/* TODO: タスクタブ内のタスクをいいねした際、いいねタブ内のタスクを即座に更新するか検討。 */}
     <UserTasksContentTab
       activeTab={activeTab}
       handleTabChange={handleTabChange}
     />
-    <UserTasksContentList activeTab={activeTab} userData={userData} />
+    <UserTasksContentList
+      activeTab={activeTab}
+      outerElementTasksRef={outerElementTasksRef}
+      userData={userData}
+    />
   </>
 );
+
+UserTasksContent.defaultProps = {
+  outerElementTasksRef: null,
+};
 
 UserTasksContent.propTypes = {
   activeTab: PropTypes.string.isRequired,
   handleTabChange: PropTypes.func.isRequired,
+  outerElementTasksRef: PropTypes.objectOf(PropTypes.instanceOf(Element)),
   userData: PropTypes.shape({
     id: PropTypes.string,
     bio: PropTypes.string,

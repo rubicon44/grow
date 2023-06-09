@@ -2,14 +2,22 @@ import PropTypes from "prop-types";
 import { UserTasksAlreadyPostList } from "../UserTasksAlreadyPostList";
 import { UserTasksNoPostList } from "../UserTasksNoPostList";
 
-export const UserTasks = ({ userData }) =>
+export const UserTasks = ({ outerElementTasksRef, userData }) =>
   userData.tasks.length === 0 ? (
     <UserTasksNoPostList userData={userData} />
   ) : (
-    <UserTasksAlreadyPostList userData={userData} />
+    <UserTasksAlreadyPostList
+      outerElementTasksRef={outerElementTasksRef}
+      userData={userData}
+    />
   );
 
+UserTasks.defaultProps = {
+  outerElementTasksRef: null,
+};
+
 UserTasks.propTypes = {
+  outerElementTasksRef: PropTypes.objectOf(PropTypes.instanceOf(Element)),
   userData: PropTypes.shape({
     id: PropTypes.string,
     bio: PropTypes.string,
