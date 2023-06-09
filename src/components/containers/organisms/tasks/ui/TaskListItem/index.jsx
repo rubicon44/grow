@@ -7,8 +7,8 @@ import { LikeOrUnLikeButtonSwitchContainer } from "../../../likes/LikeOrUnLikeBu
 import { List } from "../../../../../presentational/molecules/List";
 import { BaseLink } from "../../../../../presentational/atoms/Link/BaseLink";
 
-export const TaskListItem = ({ task }) => (
-  <ListContainer>
+export const TaskListItem = ({ outerElementTasksRef, task }) => (
+  <ListContainer ref={outerElementTasksRef}>
     <CreatedUserCover>
       <BaseLink url={`/${task.user.username}`}>{task.user.nickname}</BaseLink>
     </CreatedUserCover>
@@ -22,7 +22,12 @@ export const TaskListItem = ({ task }) => (
   </ListContainer>
 );
 
+TaskListItem.defaultProps = {
+  outerElementTasksRef: null,
+};
+
 TaskListItem.propTypes = {
+  outerElementTasksRef: PropTypes.objectOf(PropTypes.instanceOf(Element)),
   task: PropTypes.shape({
     id: PropTypes.string,
     userId: PropTypes.string,

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTaskBars } from "../useTaskBars";
 
-export const useGanttChart = (tasks, loading, page) => {
+export const useGanttChart = (tasks, loading, scrollHeight) => {
   const {
     calenders,
     currentPositionNumber,
@@ -27,7 +27,8 @@ export const useGanttChart = (tasks, loading, page) => {
 
   useEffect(() => {
     updateCalenderBodyHeight();
-  }, [updateCalenderBodyHeight, page]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [elm.current, scrollHeight, updateCalenderBodyHeight]);
 
   const scrollToCurrentDate = useCallback((calenders) => {
     const currentDate = new Date();

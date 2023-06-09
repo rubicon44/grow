@@ -1,14 +1,21 @@
 import PropTypes from "prop-types";
 import { LogOutButtonSwitchContainer } from "./LogOutButtonSwitchContainer";
-import { UserTasksContentContainer } from "./UserTasksContentContainer";
+import { UserTasksContent } from "./UserTasksContent";
 import { UserTasksContentHeaderContainer } from "./UserTasksContentHeaderContainer";
 import { PopupContainer } from "../../tasks/ui/PopupContainer";
 import { TitleWithBackArrowHeader } from "../../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
+// TODO: ログアウトボタンの位置を修正(無限スクロールで見えなくなる)。
 export const UserTasksList = (props) => {
+  const { activeTab, handleTabChange } = props;
   const { currentUserId } = props;
-  const { setCheckUserNameChange, setUserData, userData, currentPathSegment } =
-    props;
+  const {
+    outerElementTasksRef,
+    setCheckUserNameChange,
+    setUserData,
+    userData,
+    currentPathSegment,
+  } = props;
   const { moveToFollowers, moveToFollowings } = props;
   return (
     <>
@@ -22,7 +29,12 @@ export const UserTasksList = (props) => {
         setUserData={setUserData}
         userData={userData}
       />
-      <UserTasksContentContainer userData={userData} />
+      <UserTasksContent
+        activeTab={activeTab}
+        handleTabChange={handleTabChange}
+        outerElementTasksRef={outerElementTasksRef}
+        userData={userData}
+      />
       <LogOutButtonSwitchContainer currentPathSegment={currentPathSegment} />
     </>
   );
@@ -30,12 +42,16 @@ export const UserTasksList = (props) => {
 
 UserTasksList.defaultProps = {
   currentPathSegment: null,
+  outerElementTasksRef: null,
 };
 
 UserTasksList.propTypes = {
+  activeTab: PropTypes.string.isRequired,
   currentUserId: PropTypes.string.isRequired,
+  handleTabChange: PropTypes.func.isRequired,
   moveToFollowers: PropTypes.func.isRequired,
   moveToFollowings: PropTypes.func.isRequired,
+  outerElementTasksRef: PropTypes.objectOf(PropTypes.instanceOf(Element)),
   setCheckUserNameChange: PropTypes.func.isRequired,
   setUserData: PropTypes.func.isRequired,
   userData: PropTypes.shape({

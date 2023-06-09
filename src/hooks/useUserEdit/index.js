@@ -33,9 +33,7 @@ export const useUserEdit = (setCheckUserNameChange, setUserData, userData) => {
 
       setUserData((prevState) => ({
         ...prevState,
-        bio: userData.bio,
-        nickname: userData.nickname,
-        username: userData.username,
+        ...userData,
       }));
       setBioAble(true);
       setCheckUserNameChange(true);
