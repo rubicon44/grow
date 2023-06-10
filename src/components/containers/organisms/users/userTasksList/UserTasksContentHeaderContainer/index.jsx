@@ -6,7 +6,7 @@ import { UserTasksContentHeader } from "../UserTasksContentHeader";
 
 export const UserTasksContentHeaderContainer = (props) => {
   const { currentUserId } = props;
-  const { setCheckUserNameChange, setUserData, userData } = props;
+  const { setCheckUserNameChange, userData } = props;
   const { moveToFollowers, moveToFollowings } = props;
   const { getErrorMessage } = useGetErrorMessage();
   const {
@@ -20,7 +20,7 @@ export const UserTasksContentHeaderContainer = (props) => {
     isButtonDisabled,
     revertUserBioFunc,
     setBioAbleFunc,
-  } = useUserEdit(setCheckUserNameChange, setUserData, userData);
+  } = useUserEdit(setCheckUserNameChange);
 
   if (error) return <ErrorMessage errorMessage={getErrorMessage(error)} />;
   if (editing) return <>Editing...</>;
@@ -49,7 +49,6 @@ UserTasksContentHeaderContainer.propTypes = {
   moveToFollowings: PropTypes.func.isRequired,
   moveToFollowers: PropTypes.func.isRequired,
   setCheckUserNameChange: PropTypes.func.isRequired,
-  setUserData: PropTypes.func.isRequired,
   userData: PropTypes.shape({
     id: PropTypes.string,
     bio: PropTypes.string,

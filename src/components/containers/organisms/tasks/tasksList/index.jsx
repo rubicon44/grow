@@ -4,7 +4,13 @@ import { TasksListHeader } from "./TasksListHeader";
 import { TasksListContent } from "./TasksListContent";
 
 export const TasksList = memo(
-  ({ activeTab, followingUserTasks, handleTabChange, tasks }) => (
+  ({
+    activeTab,
+    followingUserTasks,
+    handleTabChange,
+    outerElementTasksRef,
+    tasks,
+  }) => (
     <>
       <TasksListHeader
         activeTab={activeTab}
@@ -13,6 +19,7 @@ export const TasksList = memo(
       <TasksListContent
         activeTab={activeTab}
         followingUserTasks={followingUserTasks}
+        outerElementTasksRef={outerElementTasksRef}
         tasks={tasks}
       />
     </>
@@ -20,6 +27,10 @@ export const TasksList = memo(
 );
 
 TasksList.displayName = "TasksList";
+
+TasksList.defaultProps = {
+  outerElementTasksRef: null,
+};
 
 TasksList.propTypes = {
   activeTab: PropTypes.string.isRequired,
@@ -33,6 +44,7 @@ TasksList.propTypes = {
     })
   ).isRequired,
   handleTabChange: PropTypes.func.isRequired,
+  outerElementTasksRef: PropTypes.objectOf(PropTypes.instanceOf(Element)),
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
       content: PropTypes.string,

@@ -12,11 +12,11 @@ export const UserTasksList = (props) => {
   const {
     outerElementTasksRef,
     setCheckUserNameChange,
-    setUserData,
     userData,
     currentPathSegment,
   } = props;
   const { moveToFollowers, moveToFollowings } = props;
+
   return (
     <>
       <PopupContainer message="タスクが正常に削除されました。" />
@@ -26,7 +26,6 @@ export const UserTasksList = (props) => {
         moveToFollowers={moveToFollowers}
         moveToFollowings={moveToFollowings}
         setCheckUserNameChange={setCheckUserNameChange}
-        setUserData={setUserData}
         userData={userData}
       />
       <UserTasksContent
@@ -53,7 +52,6 @@ UserTasksList.propTypes = {
   moveToFollowings: PropTypes.func.isRequired,
   outerElementTasksRef: PropTypes.objectOf(PropTypes.instanceOf(Element)),
   setCheckUserNameChange: PropTypes.func.isRequired,
-  setUserData: PropTypes.func.isRequired,
   userData: PropTypes.shape({
     id: PropTypes.string,
     bio: PropTypes.string,

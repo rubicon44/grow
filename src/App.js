@@ -12,6 +12,7 @@ import { AuthContextProvider } from "./auth/AuthContextProvider";
 import { PrivateRoute } from "./auth/PrivateRoute";
 // Context for others
 import { HeaderContextProvider } from "./context/HeaderContextProvider";
+import { UserDataContextProvider } from "./context/UserDataContextProvider";
 // Auth
 import { SignIn } from "./components/containers/pages/auth/signIn";
 import { SignUp } from "./components/containers/pages/auth/signUp";
@@ -34,13 +35,6 @@ import { Notifications } from "./components/containers/pages/notifications/notif
 import { Searches } from "./components/containers/pages/searches/searches";
 
 const queryClient = new QueryClient();
-// const queryClient = new QueryClient({
-//   defaultOptions: {
-//     queries: {
-//       suspense: true,
-//     },
-//   },
-// });
 
 export const App = () => {
   const [loading, setLoading] = useState(true);
@@ -73,7 +67,15 @@ export const App = () => {
               {/* Task */}
               <Route
                 path="/tasks"
-                element={<PrivateRoute element={<Tasks />} />}
+                element={
+                  <PrivateRoute
+                    element={
+                      <UserDataContextProvider>
+                        <Tasks />
+                      </UserDataContextProvider>
+                    }
+                  />
+                }
               />
               <Route
                 path="/tasks/create"
@@ -86,7 +88,15 @@ export const App = () => {
               {/* User */}
               <Route
                 path="/:username"
-                element={<PrivateRoute element={<UserShow />} />}
+                element={
+                  <PrivateRoute
+                    element={
+                      <UserDataContextProvider>
+                        <UserShow />
+                      </UserDataContextProvider>
+                    }
+                  />
+                }
               />
               <Route
                 path="/:username/tasks/:id"
