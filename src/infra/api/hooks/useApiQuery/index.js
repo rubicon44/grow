@@ -1,9 +1,6 @@
 import { useQuery } from "react-query";
 
 export const useApiQuery = (queryKey, apiFetchFn) => {
-  // const { data, isLoading, error } = useQuery(queryKey, apiFetchFn, {
-  //   suspense: true
-  // });
   const { data, error, isLoading, isFetching } = useQuery(queryKey, apiFetchFn);
 
   if (error) {

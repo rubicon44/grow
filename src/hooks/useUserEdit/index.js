@@ -1,12 +1,13 @@
 import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../auth/AuthContextProvider";
+import { useUserDataContext } from "../../context/UserDataContextProvider";
 import { useCurrentUserId } from "../useCurrentUserId";
 import { useInputSanitization } from "../useInputSanitization";
 import { useInputValidation } from "../useInputValidation";
 import { updateUser } from "../../infra/api";
 
-export const useUserEdit = (setCheckUserNameChange, setUserData, userData) => {
+export const useUserEdit = (setCheckUserNameChange) => {
   const navigateToSignIn = useNavigate();
   const { signout } = useContext(AuthContext);
   const currentUserId = useCurrentUserId();
@@ -22,6 +23,8 @@ export const useUserEdit = (setCheckUserNameChange, setUserData, userData) => {
   const bioRef = useRef();
   const inputRefs = { nicknameRef, usernameRef, bioRef };
 
+  const { userData, setUserData } = useUserDataContext();
+
   const updateUserFunc = async (defaultUsername, user, currentUserId) => {
     try {
       setEditing(true);
@@ -30,10 +33,14 @@ export const useUserEdit = (setCheckUserNameChange, setUserData, userData) => {
         currentUserId: Number(currentUserId),
       });
       const userData = response.data;
+      const transformedUserData = {
+        ...userData,
+        id: userData.id.toString(),
+      };
 
       setUserData((prevState) => ({
         ...prevState,
-        ...userData,
+        ...transformedUserData,
       }));
       setBioAble(true);
       setCheckUserNameChange(true);

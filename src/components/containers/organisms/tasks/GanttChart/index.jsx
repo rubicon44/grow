@@ -15,7 +15,7 @@ export const GanttChart = (props) => {
     handleBackToPreviousMonthClick,
     handleForwardToNextMonthClick,
     handleScrollToCurrentDate,
-    outerElementRef,
+    outerElementGanttChartRef,
     styles,
   } = props;
   const { tasks } = props;
@@ -35,7 +35,10 @@ export const GanttChart = (props) => {
         </ArrowForwardIosIcon>
       </ArrowIconsCover>
 
-      <GanttChartTaskAndCalenderTables id="outer" ref={outerElementRef}>
+      <GanttChartTaskAndCalenderTables
+        id="outer"
+        ref={outerElementGanttChartRef}
+      >
         <GanttChartTaskTableCover>
           <GanttChartTaskTable elm={elm} tasks={tasks} />
         </GanttChartTaskTableCover>
@@ -52,7 +55,7 @@ export const GanttChart = (props) => {
 };
 
 GanttChart.defaultProps = {
-  outerElementRef: null,
+  outerElementGanttChartRef: null,
 };
 
 GanttChart.propTypes = {
@@ -79,7 +82,7 @@ GanttChart.propTypes = {
   handleBackToPreviousMonthClick: PropTypes.func.isRequired,
   handleForwardToNextMonthClick: PropTypes.func.isRequired,
   handleScrollToCurrentDate: PropTypes.func.isRequired,
-  outerElementRef: PropTypes.objectOf(PropTypes.instanceOf(Element)),
+  outerElementGanttChartRef: PropTypes.objectOf(PropTypes.instanceOf(Element)),
   styles: PropTypes.arrayOf(
     PropTypes.exact({
       id: PropTypes.string.isRequired,

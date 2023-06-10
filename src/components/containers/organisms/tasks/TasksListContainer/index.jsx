@@ -4,8 +4,14 @@ import { TasksList } from "../tasksList";
 
 export const TasksListContainer = () => {
   const { activeTab, handleTabChange } = useTasksContentTab();
-  const { error, followingUserTasks, isLoading, isFetching, tasks } =
-    useTasks(activeTab);
+  const {
+    error,
+    followingUserTasks,
+    isLoading,
+    isFetching,
+    outerElementTasksRef,
+    tasks,
+  } = useTasks(activeTab);
 
   if (error) throw error;
   if (tasks === null || followingUserTasks === null) {
@@ -25,6 +31,7 @@ export const TasksListContainer = () => {
       activeTab={activeTab}
       followingUserTasks={followingUserTasks}
       handleTabChange={handleTabChange}
+      outerElementTasksRef={outerElementTasksRef}
       tasks={tasks}
     />
   );

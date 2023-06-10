@@ -7,7 +7,6 @@ import { useUserTasksContentTab } from "../../../../../hooks/useUserTasksContent
 import { ErrorMessage } from "../../common/ErrorMessage";
 import { UserTasksList } from "../userTasksList";
 
-// TODO: propTypesを修正(isRequiredではなくなるものが多くなる。)
 export const UserTasksListContainer = () => {
   const { getErrorMessage } = useGetErrorMessage();
   const currentUserId = useCurrentUserId();
@@ -16,7 +15,6 @@ export const UserTasksListContainer = () => {
     error,
     outerElementTasksRef,
     setCheckUserNameChange,
-    setUserData,
     userData,
     currentPathSegment,
   } = useUserData(activeTab);
@@ -36,7 +34,6 @@ export const UserTasksListContainer = () => {
       moveToFollowings={moveToFollowings}
       outerElementTasksRef={outerElementTasksRef}
       setCheckUserNameChange={setCheckUserNameChange}
-      setUserData={setUserData}
       userData={userData}
       currentPathSegment={currentPathSegment}
     />
