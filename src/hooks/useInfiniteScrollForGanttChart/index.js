@@ -3,7 +3,6 @@ import { useEffect, useRef } from "react";
 export const useInfiniteScrollForGanttChart = (
   setDataType,
   setGanttChartScrollActive,
-  setScrollHeight,
   setTasksForUserDataPage
 ) => {
   const outerElementGanttChartRef = useRef(null);
@@ -13,7 +12,6 @@ export const useInfiniteScrollForGanttChart = (
     const { scrollTop } = outerElement;
     const { scrollHeight } = outerElement;
     const { clientHeight } = outerElement;
-    setScrollHeight(scrollHeight);
 
     if (scrollTop + clientHeight >= scrollHeight) {
       // 最下部にスクロールされ、データのロード中でない場合に次のページのデータを取得

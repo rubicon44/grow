@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getSearches } from "../../infra/api";
 import { useInputSanitization } from "../useInputSanitization";
 
@@ -11,6 +11,10 @@ export const useSearchResults = () => {
     tasks: [],
     users: [],
   });
+
+  useEffect(() => {
+    document.documentElement.scrollTop = 0;
+  }, []);
 
   const fetchSearchesData = async (searchData) => {
     setLoading(true);

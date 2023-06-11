@@ -26,14 +26,18 @@ export const GanttChart = (props) => {
           今日の日付に移動
         </ScrollButton>
       </ButtonCover>
-      <ArrowIconsCover>
-        <ArrowBackIosOutlinedIcon onClick={handleBackToPreviousMonthClick}>
-          前月へ
-        </ArrowBackIosOutlinedIcon>
-        <ArrowForwardIosIcon onClick={handleForwardToNextMonthClick}>
-          次月へ
-        </ArrowForwardIosIcon>
-      </ArrowIconsCover>
+      <ArrowIconsGroup>
+        <ArrowIconsCover>
+          <ArrowBackIosOutlinedIcon onClick={handleBackToPreviousMonthClick}>
+            前月へ
+          </ArrowBackIosOutlinedIcon>
+        </ArrowIconsCover>
+        <ArrowIconsCover>
+          <ArrowForwardIosIcon onClick={handleForwardToNextMonthClick}>
+            次月へ
+          </ArrowForwardIosIcon>
+        </ArrowIconsCover>
+      </ArrowIconsGroup>
 
       <GanttChartTaskAndCalenderTables
         id="outer"
@@ -112,7 +116,11 @@ GanttChart.propTypes = {
   ).isRequired,
 };
 
-const ArrowIconsCover = styled.div`
+const ArrowIconsCover = styled.span`
+  cursor: pointer;
+`;
+
+const ArrowIconsGroup = styled.div`
   display: flex;
   justify-content: space-between;
 `;
@@ -133,6 +141,7 @@ const ScrollButton = styled.button`
   border-radius: 20px;
   color: rgb(255, 255, 255);
   background-color: rgb(29, 155, 240);
+  cursor: pointer;
 `;
 
 const GanttChartCover = styled.div`
