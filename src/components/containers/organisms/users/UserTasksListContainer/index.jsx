@@ -11,13 +11,8 @@ export const UserTasksListContainer = () => {
   const { getErrorMessage } = useGetErrorMessage();
   const currentUserId = useCurrentUserId();
   const { activeTab, handleTabChange } = useUserTasksContentTab();
-  const {
-    error,
-    outerElementTasksRef,
-    setCheckUserNameChange,
-    userData,
-    currentPathSegment,
-  } = useUserData(activeTab);
+  const { error, outerElementTasksRef, setCheckUserNameChange, userData } =
+    useUserData(activeTab);
   const { moveToFollowers } = useMoveToFollowers(userData);
   const { moveToFollowings } = useMoveToFollowings(userData);
 
@@ -35,7 +30,6 @@ export const UserTasksListContainer = () => {
       outerElementTasksRef={outerElementTasksRef}
       setCheckUserNameChange={setCheckUserNameChange}
       userData={userData}
-      currentPathSegment={currentPathSegment}
     />
   );
 };
