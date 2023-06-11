@@ -1,21 +1,31 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 
-export const SpHeader = ({ currentUserName, setClickedText }) => (
+export const SpHeader = ({
+  currentUserName,
+  handleShowLogoutConfirmation,
+  setClickedText,
+}) => (
   <Header>
     <Link to={`/${currentUserName}`} onClick={() => setClickedText("")}>
       <HeaderTitle>{currentUserName}</HeaderTitle>
     </Link>
+    <LogOutButtonCover>
+      <LogoutOutlinedIcon onClick={handleShowLogoutConfirmation} />
+    </LogOutButtonCover>
   </Header>
 );
 
 SpHeader.defaultProps = {
   currentUserName: "",
+  handleShowLogoutConfirmation: () => {},
 };
 
 SpHeader.propTypes = {
   currentUserName: PropTypes.string,
+  handleShowLogoutConfirmation: PropTypes.func,
   setClickedText: PropTypes.func.isRequired,
 };
 
@@ -44,4 +54,10 @@ const HeaderTitle = styled.h1`
   font-size: 12px;
   color: rgb(255, 255, 255);
   background: rgb(237, 128, 119);
+`;
+
+const LogOutButtonCover = styled.div`
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
 `;

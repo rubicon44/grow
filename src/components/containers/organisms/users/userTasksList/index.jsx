@@ -1,20 +1,13 @@
 import PropTypes from "prop-types";
-import { LogOutButtonSwitchContainer } from "./LogOutButtonSwitchContainer";
 import { UserTasksContent } from "./UserTasksContent";
 import { UserTasksContentHeaderContainer } from "./UserTasksContentHeaderContainer";
 import { PopupContainer } from "../../tasks/ui/PopupContainer";
 import { TitleWithBackArrowHeader } from "../../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
-// TODO: ログアウトボタンの位置を修正(無限スクロールで見えなくなる)。
 export const UserTasksList = (props) => {
   const { activeTab, handleTabChange } = props;
   const { currentUserId } = props;
-  const {
-    outerElementTasksRef,
-    setCheckUserNameChange,
-    userData,
-    currentPathSegment,
-  } = props;
+  const { outerElementTasksRef, setCheckUserNameChange, userData } = props;
   const { moveToFollowers, moveToFollowings } = props;
 
   return (
@@ -34,13 +27,11 @@ export const UserTasksList = (props) => {
         outerElementTasksRef={outerElementTasksRef}
         userData={userData}
       />
-      <LogOutButtonSwitchContainer currentPathSegment={currentPathSegment} />
     </>
   );
 };
 
 UserTasksList.defaultProps = {
-  currentPathSegment: null,
   outerElementTasksRef: null,
 };
 
@@ -81,5 +72,4 @@ UserTasksList.propTypes = {
     ),
     username: PropTypes.string,
   }).isRequired,
-  currentPathSegment: PropTypes.string,
 };

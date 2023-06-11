@@ -2,9 +2,15 @@ import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { mediaquery } from "../../../../../../assets/styles/variable";
 
-export const PcHeader = ({ clickedText, setClickedText, pcHeaderLinks }) => {
+export const PcHeader = ({
+  clickedText,
+  handleShowLogoutConfirmation,
+  setClickedText,
+  pcHeaderLinks,
+}) => {
   const pcHeaderList = () => (
     <Header>
       {pcHeaderLinks.map((headerLink) => (
@@ -20,6 +26,9 @@ export const PcHeader = ({ clickedText, setClickedText, pcHeaderLinks }) => {
           )}
         </Link>
       ))}
+      <LogOutButtonCover onClick={handleShowLogoutConfirmation}>
+        <LogoutOutlinedIcon />
+      </LogOutButtonCover>
     </Header>
   );
 
@@ -34,6 +43,7 @@ PcHeader.defaultProps = {
 
 PcHeader.propTypes = {
   clickedText: PropTypes.string,
+  handleShowLogoutConfirmation: PropTypes.func.isRequired,
   pcHeaderLinks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -69,4 +79,14 @@ const Header = styled.header`
     height: 100%;
     text-align: center;
   }
+`;
+
+const LogOutButtonCover = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  cursor: pointer;
 `;

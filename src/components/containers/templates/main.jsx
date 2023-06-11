@@ -24,7 +24,7 @@ Main.propTypes = {
 
 const BaseMain = styled.main`
   ${mediaquery.phone`
-    margin-top: 70px;
+    margin-top: 50px;
   `}
   ${mediaquery.desk`
     padding-left: 23%;
@@ -34,6 +34,7 @@ const BaseMain = styled.main`
 const MainInner = styled.div`
   position: relative;
   max-width: ${({ maxWidth }) => maxWidth};
+  min-height: 900px;
   border-right: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   ${mediaquery.phone`

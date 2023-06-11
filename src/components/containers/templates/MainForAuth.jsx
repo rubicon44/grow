@@ -18,7 +18,7 @@ MainForAuth.propTypes = {
 };
 
 const BaseMain = styled.main`
-  margin-top: 70px;
+  margin-top: 50px;
   ${mediaquery.phone`
   `}
   ${mediaquery.desk`

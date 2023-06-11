@@ -10,6 +10,7 @@ export const Header = ({
   clickedText,
   currentUserAuth,
   currentUserName,
+  handleShowLogoutConfirmation,
   headerLinksForAuth,
   setClickedText,
   pcHeaderLinks,
@@ -34,6 +35,7 @@ export const Header = ({
           <>
             <SpHeader
               currentUserName={currentUserName}
+              handleShowLogoutConfirmation={handleShowLogoutConfirmation}
               setClickedText={setClickedText}
             />
             <SpNavigation
@@ -45,6 +47,7 @@ export const Header = ({
         ) : (
           <PcHeader
             clickedText={clickedText}
+            handleShowLogoutConfirmation={handleShowLogoutConfirmation}
             setClickedText={setClickedText}
             pcHeaderLinks={pcHeaderLinks}
           />
@@ -56,11 +59,13 @@ export const Header = ({
 Header.defaultProps = {
   clickedText: null,
   currentUserName: "",
+  handleShowLogoutConfirmation: () => {},
 };
 
 Header.propTypes = {
   clickedText: PropTypes.string,
   currentUserName: PropTypes.string,
+  handleShowLogoutConfirmation: PropTypes.func,
   headerLinksForAuth: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
