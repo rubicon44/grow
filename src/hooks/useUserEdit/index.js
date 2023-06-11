@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../auth/AuthContextProvider";
 import { useUserDataContext } from "../../context/UserDataContextProvider";
@@ -24,6 +24,17 @@ export const useUserEdit = (setCheckUserNameChange) => {
   const inputRefs = { nicknameRef, usernameRef, bioRef };
 
   const { userData, setUserData } = useUserDataContext();
+
+  useEffect(() => {
+    if (changeUserNameCheckAble) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.scrollTop = 0;
+      return () => {
+        document.body.style.overflow = "visible";
+      };
+    }
+    return () => {};
+  }, [changeUserNameCheckAble]);
 
   const updateUserFunc = async (defaultUsername, user, currentUserId) => {
     try {

@@ -8,12 +8,14 @@ export const TaskDeleteOrUnDeleteButtonSwitch = ({
   deleteTaskFunc,
   unDeleteCheckFunc,
 }) =>
-  deleteCheckAble === true && (
+  deleteCheckAble && (
     <BackgroundDisAbledCover>
       <BackgroundDisAbled>
-        <div>本当に削除しますか?</div>
-        <TaskDeleteButton deleteTaskFunc={deleteTaskFunc} />
-        <TaskUnDeleteButton unDeleteCheckFunc={unDeleteCheckFunc} />
+        <ButtonGroupText>本当に削除しますか？</ButtonGroupText>
+        <ButtonGroup>
+          <TaskDeleteButton deleteTaskFunc={deleteTaskFunc} />
+          <TaskUnDeleteButton unDeleteCheckFunc={unDeleteCheckFunc} />
+        </ButtonGroup>
       </BackgroundDisAbled>
     </BackgroundDisAbledCover>
   );
@@ -26,21 +28,27 @@ TaskDeleteOrUnDeleteButtonSwitch.propTypes = {
 
 const BackgroundDisAbledCover = styled.div`
   position: absolute;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 100%;
   height: 100%;
-  text-align: center;
+  z-index: 1;
   background: #ddd;
 `;
 
 const BackgroundDisAbled = styled.div`
   margin: 30px;
+  margin-top: 40%;
   padding: 30px;
   border: 1px solid #ddd;
   border-radius: 4px;
   background: #fff;
+`;
+
+const ButtonGroupText = styled.p`
+  text-align: center;
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

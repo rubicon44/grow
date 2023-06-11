@@ -2,23 +2,30 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 export const UserTasksCheckReLoginWhenChangedUserId = ({
+  changeUserNameCheckAble,
   changeUserNameFunc,
   revertUserBioFunc,
-}) => (
-  <BackgroundDisAbledCover>
-    <BackgroundDisAbled>
-      <div>ユーザーIDの変更には際ログインが必要です。変更しますか？</div>
-      <button type="button" onClick={changeUserNameFunc}>
-        はい
-      </button>
-      <button type="button" onClick={revertUserBioFunc}>
-        いいえ
-      </button>
-    </BackgroundDisAbled>
-  </BackgroundDisAbledCover>
-);
+}) =>
+  changeUserNameCheckAble && (
+    <BackgroundDisAbledCover>
+      <BackgroundDisAbled>
+        <ButtonGroupText>
+          ユーザーIDの変更には際ログインが必要です。変更しますか？
+        </ButtonGroupText>
+        <ButtonGroup>
+          <button type="button" onClick={changeUserNameFunc}>
+            はい
+          </button>
+          <button type="button" onClick={revertUserBioFunc}>
+            いいえ
+          </button>
+        </ButtonGroup>
+      </BackgroundDisAbled>
+    </BackgroundDisAbledCover>
+  );
 
 UserTasksCheckReLoginWhenChangedUserId.propTypes = {
+  changeUserNameCheckAble: PropTypes.bool.isRequired,
   changeUserNameFunc: PropTypes.func.isRequired,
   revertUserBioFunc: PropTypes.func.isRequired,
 };
@@ -38,4 +45,14 @@ const BackgroundDisAbled = styled.div`
   border: 1px solid #ddd;
   border-radius: 4px;
   background: #fff;
+`;
+
+const ButtonGroupText = styled.p`
+  text-align: center;
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
