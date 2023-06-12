@@ -14,12 +14,12 @@ export const SearchListContainer = () => {
     isButtonDisabled,
     outerElementTasksForSearchRef,
     outerElementUsersForSearchRef,
-    searchResultTasks,
-    searchResultUsers,
+    tasks,
+    users,
   } = useSearchResults();
 
   if (error) return <ErrorMessage errorMessage={getErrorMessage(error)} />;
-  if (searchResultTasks === null || searchResultUsers === null) {
+  if (tasks === null || users === null) {
     return null;
   }
   return (
@@ -31,8 +31,8 @@ export const SearchListContainer = () => {
       isButtonDisabled={isButtonDisabled}
       outerElementTasksForSearchRef={outerElementTasksForSearchRef}
       outerElementUsersForSearchRef={outerElementUsersForSearchRef}
-      tasks={searchResultTasks}
-      users={searchResultUsers}
+      tasks={tasks}
+      users={users}
     />
   );
 };

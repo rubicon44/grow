@@ -3,6 +3,8 @@ import { getSearches } from "../../infra/api";
 import { useInfiniteScrollForTasksSearch } from "../useInfiniteScrollForTasksSearch";
 import { useInfiniteScrollForUsersSearch } from "../useInfiniteScrollForUsersSearch";
 import { useInputSanitization } from "../useInputSanitization";
+import { useHandleSuccessForSearches } from "../useHandleSuccessForSearches";
+import { useUserDataTransformation } from "../useUserDataTransformation";
 
 export const useSearchResults = () => {
   const { sanitizeInput } = useInputSanitization();
@@ -10,35 +12,25 @@ export const useSearchResults = () => {
   const [loading, setLoading] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-  const [searchResults, setSearchResults] = useState({
-    tasks: [],
-    users: [],
-  });
+  const [searchResults, setSearchResults] = useState([]);
   const [model, setModel] = useState(null);
   const [contents, setContents] = useState("");
   const [dataType, setDataType] = useState("tasks");
   const [tasksForSearchPage, setTasksForSearchPage] = useState(1);
   const [usersForSearchPage, setUsersForSearchPage] = useState(1);
   const pageSize = 3;
+  const { handleSuccessForTasks, handleSuccessForUsers } =
+    useHandleSuccessForSearches(setSearchResults);
+  const {
+    handleTransformedTasksForSearches,
+    handleTransformedUsersForSearches,
+  } = useUserDataTransformation();
 
   // modelの変更時にデータを空にする
   useEffect(() => {
-    if (model === "user") {
-      setTasksForSearchPage(1);
-      setSearchResults({
-        tasks: [],
-        users: [],
-      });
-    }
-    if (model === "task") {
-      setUsersForSearchPage(1);
-      setSearchResults({
-        tasks: [],
-        users: [],
-      });
-    }
-    return () => {};
-  }, [model]);
+    setSearchResults([]);
+    document.documentElement.scrollTop = 0;
+  }, [dataType]);
 
   const outerElementTasksForSearchRef = useInfiniteScrollForTasksSearch(
     isFetching,
@@ -72,44 +64,19 @@ export const useSearchResults = () => {
         pageNumber(),
         pageSize
       );
-      const searchResults = response.data;
+      const searchResults = response.data || [];
 
-      setSearchResults((prevSearchResults) => {
-        const existingTasks = prevSearchResults.tasks || [];
-        const existingUsers = prevSearchResults.users || [];
+      if (dataType === "tasks") {
+        const transformedUserData =
+          handleTransformedTasksForSearches(searchResults);
+        handleSuccessForTasks(transformedUserData);
+      }
 
-        let updatedTasks = [];
-        let updatedUsers = [];
-
-        if (dataType === "tasks") {
-          // 重複するタスクを除外して新しいタスクを追加
-          updatedTasks = searchResults.tasks
-            ? [
-                ...existingTasks,
-                ...searchResults.tasks.filter(
-                  (task) => !existingTasks.some((t) => t.id === task.id)
-                ),
-              ]
-            : existingTasks;
-        }
-
-        if (dataType === "users") {
-          // 重複するユーザーを除外して新しいユーザーを追加
-          updatedUsers = searchResults.users
-            ? [
-                ...existingUsers,
-                ...searchResults.users.filter(
-                  (user) => !existingUsers.some((u) => u.id === user.id)
-                ),
-              ]
-            : existingUsers;
-        }
-
-        return {
-          tasks: updatedTasks,
-          users: updatedUsers,
-        };
-      });
+      if (dataType === "users") {
+        const transformedUserData =
+          handleTransformedUsersForSearches(searchResults);
+        handleSuccessForUsers(transformedUserData);
+      }
     } catch (error) {
       setError(error);
     } finally {
@@ -127,10 +94,7 @@ export const useSearchResults = () => {
     ) {
       setTasksForSearchPage(1);
       setUsersForSearchPage(1);
-      setSearchResults({
-        tasks: [],
-        users: [],
-      });
+      setSearchResults([]);
       const method = "partial";
       const searchData = { model, contents, method };
       fetchSearchesData(searchData);
@@ -183,8 +147,8 @@ export const useSearchResults = () => {
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    dataType,
-    model,
+    // dataType,
+    // model,
     tasksForSearchPage,
     usersForSearchPage,
     // fetchSearchesData,
@@ -198,7 +162,7 @@ export const useSearchResults = () => {
     loading,
     outerElementTasksForSearchRef,
     outerElementUsersForSearchRef,
-    searchResultTasks: searchResults.tasks || [],
-    searchResultUsers: searchResults.users || [],
+    tasks: model === "task" ? searchResults : [],
+    users: model === "user" ? searchResults : [],
   };
 };

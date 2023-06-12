@@ -9,6 +9,10 @@ export const useTaskData = () => {
   const [taskData, setTaskData] = useState(null);
 
   useEffect(() => {
+    document.documentElement.scrollTop = 0;
+  }, []);
+
+  useEffect(() => {
     const fetchTaskData = async () => {
       setLoading(true);
       setError(null);

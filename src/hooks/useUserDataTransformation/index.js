@@ -1,4 +1,5 @@
 export const useUserDataTransformation = () => {
+  // UserData
   const handleTransformedUserDataForDefault = (userData) => {
     const transformedUserData = {
       ...userData,
@@ -59,9 +60,33 @@ export const useUserDataTransformation = () => {
     return transformedUserData;
   };
 
+  // Searches
+  const handleTransformedTasksForSearches = (tasks) => {
+    const transformedTasksData = tasks.map((task) => ({
+      ...task,
+      id: task.id.toString(),
+      userId: task.userId.toString(),
+      user: {
+        ...task.user,
+        id: task.user.id.toString(),
+      },
+    }));
+    return transformedTasksData;
+  };
+
+  const handleTransformedUsersForSearches = (users) => {
+    const transformedUserData = users.map((user) => ({
+      ...user,
+      id: user.id.toString(),
+    }));
+    return transformedUserData;
+  };
+
   return {
     handleTransformedUserDataForDefault,
     handleTransformedUserDataForTasks,
     handleTransformedUserDataForLikedTasks,
+    handleTransformedTasksForSearches,
+    handleTransformedUsersForSearches,
   };
 };
