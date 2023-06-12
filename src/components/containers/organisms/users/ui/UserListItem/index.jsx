@@ -6,8 +6,12 @@ import { FollowButtonForUsersListSwitchContainer } from "../../userButton/Follow
 import { FollowedTextContainer } from "./FollowedTextContainer";
 import { BaseLink } from "../../../../../presentational/atoms/Link/BaseLink";
 
-export const UserListItem = ({ currentUserId, user }) => (
-  <UserListItemStyle>
+export const UserListItem = ({
+  currentUserId,
+  outerElementUsersForSearchRef,
+  user,
+}) => (
+  <UserListItemStyle ref={outerElementUsersForSearchRef}>
     <CreatedUserCover>
       <BaseLink url={`/${user.username}`}>{user.nickname}</BaseLink>
     </CreatedUserCover>
@@ -33,8 +37,15 @@ export const UserListItem = ({ currentUserId, user }) => (
   </UserListItemStyle>
 );
 
+UserListItem.defaultProps = {
+  outerElementUsersForSearchRef: null,
+};
+
 UserListItem.propTypes = {
   currentUserId: PropTypes.string.isRequired,
+  outerElementUsersForSearchRef: PropTypes.objectOf(
+    PropTypes.instanceOf(Element)
+  ),
   user: PropTypes.shape({
     id: PropTypes.string.isRequired,
     bio: PropTypes.string,

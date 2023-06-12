@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCurrentUserId } from "../useCurrentUserId";
 import { useGetErrorMessage } from "../useGetErrorMessage";
@@ -12,6 +12,17 @@ export const useTaskDelete = (taskData) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [deleteCheckAble, setDeleteCheckAble] = useState(false);
   const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    if (deleteCheckAble) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.scrollTop = 0;
+      return () => {
+        document.body.style.overflow = "visible";
+      };
+    }
+    return () => {};
+  }, [deleteCheckAble]);
 
   const deleteCheckFunc = () => {
     setIsButtonDisabled(true);

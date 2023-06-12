@@ -15,17 +15,17 @@ export const TaskList = ({
 }) => (
   <>
     <PopupContainer message="タスクが正常に更新されました。" />
+    <TaskDeleteOrUnDeleteButtonSwitch
+      deleteCheckAble={deleteCheckAble}
+      deleteTaskFunc={deleteTaskFunc}
+      unDeleteCheckFunc={unDeleteCheckFunc}
+    />
     <TaskListItem
       currentUserId={currentUserId}
       deleteCheckFunc={deleteCheckFunc}
       isButtonDisabled={isButtonDisabled}
       moveToEditTask={moveToEditTask}
       task={taskData.task}
-    />
-    <TaskDeleteOrUnDeleteButtonSwitch
-      deleteCheckAble={deleteCheckAble}
-      deleteTaskFunc={deleteTaskFunc}
-      unDeleteCheckFunc={unDeleteCheckFunc}
     />
   </>
 );

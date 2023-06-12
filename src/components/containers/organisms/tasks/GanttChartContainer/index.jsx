@@ -6,8 +6,7 @@ import { GanttChart } from "../GanttChart";
 
 export const GanttChartContainer = () => {
   const { getErrorMessage } = useGetErrorMessage();
-  const { error, loading, outerElementGanttChartRef, scrollHeight, userData } =
-    useUserData();
+  const { error, loading, outerElementGanttChartRef, userData } = useUserData();
   const {
     calenderBodyHeight,
     calenders,
@@ -18,7 +17,7 @@ export const GanttChartContainer = () => {
     handleForwardToNextMonthClick,
     handleScrollToCurrentDate,
     styles,
-  } = useGanttChart(userData?.tasks ?? [], loading, scrollHeight);
+  } = useGanttChart(userData?.tasks ?? [], loading);
 
   if (error) return <ErrorMessage errorMessage={getErrorMessage(error)} />;
   if (userData === null) {

@@ -21,12 +21,11 @@ export const UserTasksContentHeader = (props) => {
   const { moveToFollowers, moveToFollowings } = props;
   return (
     <>
-      {changeUserNameCheckAble === true && (
-        <UserTasksCheckReLoginWhenChangedUserId
-          changeUserNameFunc={changeUserNameFunc}
-          revertUserBioFunc={revertUserBioFunc}
-        />
-      )}
+      <UserTasksCheckReLoginWhenChangedUserId
+        changeUserNameCheckAble={changeUserNameCheckAble}
+        changeUserNameFunc={changeUserNameFunc}
+        revertUserBioFunc={revertUserBioFunc}
+      />
       <ContentHeaderContainer>
         <ContentHeaderCover>
           <FollowButtonSwitchContainer userIdToFollowOrUnFollow={userData.id} />

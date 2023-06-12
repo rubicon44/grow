@@ -16,7 +16,7 @@ export const ProfileChange = ({
   const { id, nickname, username, bio } = userData;
 
   // TODO: 「フォローされています」を表示。。
-  if (bioAble === true) {
+  if (bioAble) {
     return (
       <Profile>
         {String(currentUserId) === String(id) && (

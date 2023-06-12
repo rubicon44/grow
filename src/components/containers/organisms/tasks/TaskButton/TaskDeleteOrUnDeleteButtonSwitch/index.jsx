@@ -1,21 +1,17 @@
 import PropTypes from "prop-types";
-import styled from "styled-components";
-import { TaskDeleteButton } from "../TaskDeleteButton";
-import { TaskUnDeleteButton } from "../TaskUnDeleteButton";
+import { ConfirmationPopup } from "../../../../../presentational/atoms/Popup/ConfirmationPopup";
 
 export const TaskDeleteOrUnDeleteButtonSwitch = ({
   deleteCheckAble,
   deleteTaskFunc,
   unDeleteCheckFunc,
 }) =>
-  deleteCheckAble === true && (
-    <BackgroundDisAbledCover>
-      <BackgroundDisAbled>
-        <div>本当に削除しますか?</div>
-        <TaskDeleteButton deleteTaskFunc={deleteTaskFunc} />
-        <TaskUnDeleteButton unDeleteCheckFunc={unDeleteCheckFunc} />
-      </BackgroundDisAbled>
-    </BackgroundDisAbledCover>
+  deleteCheckAble && (
+    <ConfirmationPopup
+      message="本当に削除しますか？"
+      onConfirm={deleteTaskFunc}
+      onCancel={unDeleteCheckFunc}
+    />
   );
 
 TaskDeleteOrUnDeleteButtonSwitch.propTypes = {
@@ -23,24 +19,3 @@ TaskDeleteOrUnDeleteButtonSwitch.propTypes = {
   deleteTaskFunc: PropTypes.func.isRequired,
   unDeleteCheckFunc: PropTypes.func.isRequired,
 };
-
-const BackgroundDisAbledCover = styled.div`
-  position: absolute;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  background: #ddd;
-`;
-
-const BackgroundDisAbled = styled.div`
-  margin: 30px;
-  padding: 30px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background: #fff;
-`;

@@ -1,11 +1,24 @@
 import PropTypes from "prop-types";
 import { TaskListItem } from "../../../../tasks/ui/TaskListItem";
 
-// TODO: ページネーション or 「さらに表示ボタン」を作成
-export const SearchTasksList = ({ tasks }) =>
-  tasks && tasks.map((task) => <TaskListItem task={task} key={task.id} />);
+export const SearchTasksList = ({ outerElementTasksForSearchRef, tasks }) =>
+  tasks &&
+  tasks.map((task) => (
+    <TaskListItem
+      key={task.id}
+      outerElementTasksRef={outerElementTasksForSearchRef}
+      task={task}
+    />
+  ));
+
+SearchTasksList.defaultProps = {
+  outerElementTasksForSearchRef: null,
+};
 
 SearchTasksList.propTypes = {
+  outerElementTasksForSearchRef: PropTypes.objectOf(
+    PropTypes.instanceOf(Element)
+  ),
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,

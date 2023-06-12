@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { FormInput } from "../../../../../presentational/atoms/Input/FormInput";
 import { FormSubmitButton } from "../../../../../presentational/atoms/Button/FormSubmitButton";
 
-export const SearchForm = ({ handleSubmit, isButtonDisabled }) => (
+export const SearchForm = ({
+  handleSelectChange,
+  handleSubmit,
+  isButtonDisabled,
+}) => (
   <SearchFormStyle onSubmit={handleSubmit}>
     <FormInput
       htmlFor="contents"
@@ -13,9 +17,9 @@ export const SearchForm = ({ handleSubmit, isButtonDisabled }) => (
     />
     <SelectWithFormSubmitButton>
       <SelectCover>
-        <Select name="model">
-          <option value="user">User</option>
+        <Select name="model" onChange={handleSelectChange}>
           <option value="task">Task</option>
+          <option value="user">User</option>
         </Select>
       </SelectCover>
       <FormSubmitButtonCover>
@@ -28,14 +32,19 @@ export const SearchForm = ({ handleSubmit, isButtonDisabled }) => (
 );
 
 SearchForm.propTypes = {
+  handleSelectChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   isButtonDisabled: PropTypes.bool.isRequired,
 };
 
 const SearchFormStyle = styled.form`
-  min-width: 260px;
-  margin-top: 30px;
-  padding: 0 10px;
+  position: sticky;
+  top: 50px;
+  width: 100%;
+  background-color: white;
+  padding: 10px;
+  box-sizing: border-box;
+  z-index: 9999;
   > label {
     display: block;
     margin-bottom: 14px;

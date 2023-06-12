@@ -113,7 +113,15 @@ export const App = () => {
               />
               <Route
                 path="/:username/gantt"
-                element={<PrivateRoute element={<UserGantt />} />}
+                element={
+                  <PrivateRoute
+                    element={
+                      <UserDataContextProvider>
+                        <UserGantt />
+                      </UserDataContextProvider>
+                    }
+                  />
+                }
               />
               {/* Notifications */}
               <Route

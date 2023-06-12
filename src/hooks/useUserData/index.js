@@ -14,7 +14,7 @@ export const useUserData = (activeTab) => {
   const [checkUserNameChange, setCheckUserNameChange] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { userData, setUserData } = useUserDataContext();
+  const { userData, setUserData } = useUserDataContext(null);
   const {
     handleSuccessForDefault,
     handleSuccessForTasks,
@@ -26,13 +26,11 @@ export const useUserData = (activeTab) => {
     handleTransformedUserDataForLikedTasks,
   } = useUserDataTransformation();
 
+  const [ganttChartScrollActive, setGanttChartScrollActive] = useState(false);
   const [dataType, setDataType] = useState("default");
   const [tasksForUserDataPage, setTasksForUserDataPage] = useState(1);
   const [likedTasksPage, setLikedTasksPage] = useState(1);
   const pageSize = 3;
-
-  const [scrollHeight, setScrollHeight] = useState(1); // ページ番号
-  const [ganttChartScrollActive, setGanttChartScrollActive] = useState(false);
 
   useEffect(() => {
     setTasksForUserDataPage(1);
@@ -43,7 +41,6 @@ export const useUserData = (activeTab) => {
   const outerElementGanttChartRef = useInfiniteScrollForGanttChart(
     setDataType,
     setGanttChartScrollActive,
-    setScrollHeight,
     setTasksForUserDataPage
   );
 
@@ -114,7 +111,6 @@ export const useUserData = (activeTab) => {
     loading,
     outerElementGanttChartRef,
     outerElementTasksRef,
-    scrollHeight,
     setCheckUserNameChange,
     userData,
     currentPathSegment,
