@@ -4,28 +4,46 @@ import { SearchListSwitch } from "./SearchListSwitch";
 
 export const SearchList = ({
   currentUserId,
+  handleSelectChange,
   handleSubmit,
   isButtonDisabled,
+  outerElementTasksForSearchRef,
+  outerElementUsersForSearchRef,
   tasks,
   users,
 }) => (
   <>
     <SearchForm
+      handleSelectChange={handleSelectChange}
       handleSubmit={handleSubmit}
       isButtonDisabled={isButtonDisabled}
     />
     <SearchListSwitch
       currentUserId={currentUserId}
+      outerElementTasksForSearchRef={outerElementTasksForSearchRef}
+      outerElementUsersForSearchRef={outerElementUsersForSearchRef}
       tasks={tasks}
       users={users}
     />
   </>
 );
 
+SearchList.defaultProps = {
+  outerElementTasksForSearchRef: null,
+  outerElementUsersForSearchRef: null,
+};
+
 SearchList.propTypes = {
   currentUserId: PropTypes.string.isRequired,
+  handleSelectChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   isButtonDisabled: PropTypes.bool.isRequired,
+  outerElementTasksForSearchRef: PropTypes.objectOf(
+    PropTypes.instanceOf(Element)
+  ),
+  outerElementUsersForSearchRef: PropTypes.objectOf(
+    PropTypes.instanceOf(Element)
+  ),
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,

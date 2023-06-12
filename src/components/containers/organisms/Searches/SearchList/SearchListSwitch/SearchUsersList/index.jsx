@@ -1,15 +1,30 @@
 import PropTypes from "prop-types";
 import { UserListItem } from "../../../../users/ui/UserListItem";
 
-// TODO: ページネーション or 「さらに表示ボタン」を作成
-export const SearchUsersList = ({ currentUserId, users }) =>
+export const SearchUsersList = ({
+  currentUserId,
+  outerElementUsersForSearchRef,
+  users,
+}) =>
   users &&
   users.map((user) => (
-    <UserListItem key={user.id} currentUserId={currentUserId} user={user} />
+    <UserListItem
+      key={user.id}
+      currentUserId={currentUserId}
+      outerElementUsersForSearchRef={outerElementUsersForSearchRef}
+      user={user}
+    />
   ));
+
+SearchUsersList.defaultProps = {
+  outerElementUsersForSearchRef: null,
+};
 
 SearchUsersList.propTypes = {
   currentUserId: PropTypes.string.isRequired,
+  outerElementUsersForSearchRef: PropTypes.objectOf(
+    PropTypes.instanceOf(Element)
+  ),
   users: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,

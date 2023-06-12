@@ -158,9 +158,16 @@ export const getNotifications = async (params) =>
   }).then((response) => camelcaseKeys(response, { deep: true }));
 
 // searches
-export const getSearches = async (params) =>
+export const getSearches = async (searchData, dataType, page, pageSize) =>
   axios({
     method: "get",
     url: `/v1/searches`,
-    params: snakecaseKeys(params),
+    params: snakecaseKeys({
+      model: searchData.model,
+      contents: searchData.contents,
+      method: searchData.method,
+      dataType,
+      page,
+      pageSize,
+    }),
   }).then((response) => camelcaseKeys(response, { deep: true }));

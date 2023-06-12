@@ -9,8 +9,11 @@ export const SearchListContainer = () => {
   const { getErrorMessage } = useGetErrorMessage();
   const {
     error,
+    handleSelectChange,
     handleSubmit,
     isButtonDisabled,
+    outerElementTasksForSearchRef,
+    outerElementUsersForSearchRef,
     searchResultTasks,
     searchResultUsers,
   } = useSearchResults();
@@ -23,8 +26,11 @@ export const SearchListContainer = () => {
     <SearchList
       currentUserId={currentUserId}
       error={error}
+      handleSelectChange={handleSelectChange}
       handleSubmit={handleSubmit}
       isButtonDisabled={isButtonDisabled}
+      outerElementTasksForSearchRef={outerElementTasksForSearchRef}
+      outerElementUsersForSearchRef={outerElementUsersForSearchRef}
       tasks={searchResultTasks}
       users={searchResultUsers}
     />
