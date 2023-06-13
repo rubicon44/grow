@@ -48,12 +48,8 @@ export const useSearchResults = () => {
     setIsFetching(true);
 
     const pageNumber = () => {
-      if (contents !== "") {
-        return 1;
-      }
-      if (dataType === "tasks") {
-        return tasksForSearchPage;
-      }
+      if (contents !== "") return 1;
+      if (dataType === "tasks") return tasksForSearchPage;
       return usersForSearchPage;
     };
 
@@ -120,12 +116,8 @@ export const useSearchResults = () => {
   };
 
   const handleSelectChange = (e) => {
-    if (e.target.value === "task") {
-      setDataType("tasks");
-    }
-    if (e.target.value === "user") {
-      setDataType("users");
-    }
+    if (e.target.value === "task") setDataType("tasks");
+    if (e.target.value === "user") setDataType("users");
   };
 
   // 無限スクロール実行
@@ -147,11 +139,9 @@ export const useSearchResults = () => {
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    // dataType,
-    // model,
+    // dataType, model, fetchSearchesData,
     tasksForSearchPage,
     usersForSearchPage,
-    // fetchSearchesData,
   ]);
 
   return {
