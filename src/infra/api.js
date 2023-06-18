@@ -35,7 +35,7 @@ export const signIn = async (idToken) => {
   return axios({
     method: "post",
     url: "/v1/users/sign_in",
-    headers: { idToken },
+    headers: { Authorization: idToken },
   });
 };
 
