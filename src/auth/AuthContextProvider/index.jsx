@@ -4,11 +4,32 @@ import { useFirebaseAuth } from "../../hooks/useFirebaseAuth";
 
 export const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
-  const { currentUserAuth, signin, signup, signout } = useFirebaseAuth();
+  const {
+    currentUserAuth,
+    signinWithEmailAndPassword,
+    signinWithGitHub,
+    signinWithGoogle,
+    signupWithEmailAndPassword,
+    signout,
+  } = useFirebaseAuth();
 
   const authValue = useMemo(
-    () => ({ currentUserAuth, signin, signup, signout }),
-    [currentUserAuth, signin, signup, signout]
+    () => ({
+      currentUserAuth,
+      signinWithEmailAndPassword,
+      signinWithGitHub,
+      signinWithGoogle,
+      signupWithEmailAndPassword,
+      signout,
+    }),
+    [
+      currentUserAuth,
+      signinWithEmailAndPassword,
+      signinWithGitHub,
+      signinWithGoogle,
+      signupWithEmailAndPassword,
+      signout,
+    ]
   );
 
   return (

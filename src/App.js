@@ -53,8 +53,8 @@ export const App = () => {
   }
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthContextProvider>
-        <Router>
+      <Router>
+        <AuthContextProvider>
           <HeaderContextProvider>
             <Routes>
               {/* Auth */}
@@ -135,8 +135,8 @@ export const App = () => {
               />
             </Routes>
           </HeaderContextProvider>
-        </Router>
-      </AuthContextProvider>
+        </AuthContextProvider>
+      </Router>
     </QueryClientProvider>
   );
 };

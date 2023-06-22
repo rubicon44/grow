@@ -7,7 +7,7 @@ import { useInputValidation } from "../useInputValidation";
 
 export const useSignInForm = () => {
   const navigateToTasks = useNavigate();
-  const { signin } = useContext(AuthContext);
+  const { signinWithEmailAndPassword } = useContext(AuthContext);
   const { getErrorMessage } = useGetErrorMessage();
   const { sanitizeInput } = useInputSanitization();
   const { validateInput, validateEmailFormat } = useInputValidation();
@@ -41,7 +41,7 @@ export const useSignInForm = () => {
         return;
       }
 
-      await signin(email, password);
+      await signinWithEmailAndPassword(email, password);
       await navigateToTasks("/tasks");
     } catch (error) {
       const verbForErrorMessage = `ユーザー`;
