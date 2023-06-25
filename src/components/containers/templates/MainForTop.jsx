@@ -2,17 +2,17 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { mediaquery } from "../../../assets/styles/variable";
 
-export const MainForAuth = ({ children, className }) => (
+export const MainForTop = ({ children, className }) => (
   <BaseMain className={className}>
     <MainInner>{children}</MainInner>
   </BaseMain>
 );
 
-MainForAuth.defaultProps = {
+MainForTop.defaultProps = {
   className: "",
 };
 
-MainForAuth.propTypes = {
+MainForTop.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
 };
@@ -28,7 +28,11 @@ const BaseMain = styled.main`
 `;
 
 const MainInner = styled.div`
-  width: 100%;
-  max-width: 360px;
-  padding: 20px 10px;
+  padding: 20px;
+  ${mediaquery.desk`
+    padding: 35px;
+  `}
+  ${mediaquery.desktop`
+    padding: 70px;
+  `}
 `;

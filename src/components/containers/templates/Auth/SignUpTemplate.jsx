@@ -1,12 +1,10 @@
 import { MainWithHeaderForAuthContainer } from "../MainWithHeaderForAuthContainer";
-import { AuthButtonGroupContainer } from "../../organisms/auth/AuthButtonGroupContainer";
-import { SignUpFormContainer } from "../../organisms/auth/SignUpFormContainer";
-import { TitleWithBackArrowHeader } from "../../../presentational/molecules/Header/TitleWithBackArrowHeader";
+import { SignUpContent } from "../../organisms/auth/SignUpContent";
+import { TitleWithBackArrowHeaderWithNoMargin } from "../../../presentational/molecules/Header/TitleWithBackArrowHeaderWithNoMargin";
 
 export const SignUpTemplate = () => (
   <MainWithHeaderForAuthContainer>
-    <TitleWithBackArrowHeader title="会員登録" />
-    <SignUpFormContainer />
-    <AuthButtonGroupContainer />
+    <TitleWithBackArrowHeaderWithNoMargin title="会員登録" />
+    <SignUpContent />
   </MainWithHeaderForAuthContainer>
 );
