@@ -23,9 +23,9 @@ GoogleAuthButton.propTypes = {
 
 const ButtonCover = styled.div`
   display: flex;
-  width: 360px;
+  min-width: 260px;
+  max-width: 360px;
   height: 46px;
-  margin: 0px 10px;
   font-family: Roboto, Noto Sans JP, sans-serif;
   font-family: Roboto Medium;
   font-size: 1.2rem;

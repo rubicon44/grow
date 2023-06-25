@@ -44,4 +44,5 @@ FormInput.propTypes = {
 
 const Input = styled.input`
   height: 30px;
+  margin-top: 5px;
 `;
