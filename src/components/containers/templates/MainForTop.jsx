@@ -29,6 +29,7 @@ const BaseMain = styled.main`
 
 const MainInner = styled.div`
   padding: 20px;
+  margin-bottom: 52px;
   ${mediaquery.desk`
     padding: 35px;
   `}
