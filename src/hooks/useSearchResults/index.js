@@ -19,7 +19,7 @@ export const useSearchResults = () => {
   const [dataType, setDataType] = useState("tasks");
   const [tasksForSearchPage, setTasksForSearchPage] = useState(1);
   const [usersForSearchPage, setUsersForSearchPage] = useState(1);
-  const pageSize = 3;
+  const pageSize = 10;
   const { handleSuccessForTasks, handleSuccessForUsers } =
     useHandleSuccessForSearches(setSearchResults);
   const {
