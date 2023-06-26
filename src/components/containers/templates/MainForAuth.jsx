@@ -29,6 +29,8 @@ const BaseMain = styled.main`
 
 const MainInner = styled.div`
   width: 100%;
-  max-width: 360px;
-  padding: 20px 10px;
+  max-width: 400px;
+  padding: 20px;
+  margin-bottom: 52px;
+  box-sizing: border-box;
 `;

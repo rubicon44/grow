@@ -31,7 +31,7 @@ const BaseTitleWithBackArrowHeaderWithNoMargin = styled.div`
   width: 100%;
   background-color: white;
   box-sizing: border-box;
-  z-index: 9999;
+  z-index: 20;
 `;
 
 const TitleCover = styled.div`
