@@ -6,7 +6,11 @@ export const UserFollowers = ({ currentUserId, followers }) => {
   const hasFollowers = Array.isArray(followers) && followers.length > 0;
 
   if (!hasFollowers) {
-    return <NoUser>フォロワーはいません。</NoUser>;
+    return (
+      <NoUser>
+        <p>フォロワーはいません。</p>
+      </NoUser>
+    );
   }
 
   return followers.map((user) => (
@@ -30,7 +34,6 @@ UserFollowers.propTypes = {
 };
 
 const NoUser = styled.div`
-  margin-top: 15px;
-  padding: 10px;
+  padding: 20px;
   text-align: left;
 `;

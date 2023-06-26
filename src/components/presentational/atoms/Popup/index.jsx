@@ -19,15 +19,16 @@ Popup.propTypes = {
 };
 
 const Message = styled.div`
-  position: absolute;
-  top: 25px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  margin-top: 4px;
 
   > p {
+    position: fixed;
+    top: 25px;
+    margin-top: 4px;
+    z-index: 40;
     padding: 5px;
     border: solid 1px #ddd;
     border-radius: 9999px;
