@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import { PopupContainer } from "../../ui/PopupContainer";
 import { TaskListItem } from "../../ui/TaskListItem";
 
@@ -26,7 +27,9 @@ export const TasksListContent = ({
           <TaskListItem task={task} key={task.id} />
         ))
       ) : (
-        <p>フォローしているユーザーはいません。</p>
+        <ListCover>
+          <p>フォローしているユーザーはいません。</p>
+        </ListCover>
       ))}
   </>
 );
@@ -57,3 +60,7 @@ TasksListContent.propTypes = {
     })
   ).isRequired,
 };
+
+const ListCover = styled.div`
+  padding: 20px;
+`;

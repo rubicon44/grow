@@ -7,8 +7,10 @@ export const SearchList = ({
   handleSelectChange,
   handleSubmit,
   isButtonDisabled,
+  model,
   outerElementTasksForSearchRef,
   outerElementUsersForSearchRef,
+  searchPerformed,
   tasks,
   users,
 }) => (
@@ -20,8 +22,10 @@ export const SearchList = ({
     />
     <SearchListSwitch
       currentUserId={currentUserId}
+      model={model}
       outerElementTasksForSearchRef={outerElementTasksForSearchRef}
       outerElementUsersForSearchRef={outerElementUsersForSearchRef}
+      searchPerformed={searchPerformed}
       tasks={tasks}
       users={users}
     />
@@ -38,12 +42,14 @@ SearchList.propTypes = {
   handleSelectChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   isButtonDisabled: PropTypes.bool.isRequired,
+  model: PropTypes.string.isRequired,
   outerElementTasksForSearchRef: PropTypes.objectOf(
     PropTypes.instanceOf(Element)
   ),
   outerElementUsersForSearchRef: PropTypes.objectOf(
     PropTypes.instanceOf(Element)
   ),
+  searchPerformed: PropTypes.bool.isRequired,
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,

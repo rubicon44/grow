@@ -12,13 +12,14 @@ export const useSearchResults = () => {
   const [loading, setLoading] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [searchPerformed, setSearchPerformed] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
-  const [model, setModel] = useState(null);
+  const [model, setModel] = useState("");
   const [contents, setContents] = useState("");
   const [dataType, setDataType] = useState("tasks");
   const [tasksForSearchPage, setTasksForSearchPage] = useState(1);
   const [usersForSearchPage, setUsersForSearchPage] = useState(1);
-  const pageSize = 3;
+  const pageSize = 10;
   const { handleSuccessForTasks, handleSuccessForUsers } =
     useHandleSuccessForSearches(setSearchResults);
   const {
@@ -26,8 +27,9 @@ export const useSearchResults = () => {
     handleTransformedUsersForSearches,
   } = useUserDataTransformation();
 
-  // modelの変更時にデータを空にする
   useEffect(() => {
+    setModel("");
+    // modelの変更時にデータを空にする
     setSearchResults([]);
     document.documentElement.scrollTop = 0;
   }, [dataType]);
@@ -79,6 +81,7 @@ export const useSearchResults = () => {
       setLoading(false);
       setIsButtonDisabled(false);
       setIsFetching(false);
+      setSearchPerformed(true);
     }
   };
 
@@ -150,8 +153,10 @@ export const useSearchResults = () => {
     handleSubmit,
     isButtonDisabled,
     loading,
+    model,
     outerElementTasksForSearchRef,
     outerElementUsersForSearchRef,
+    searchPerformed,
     tasks: model === "task" ? searchResults : [],
     users: model === "user" ? searchResults : [],
   };

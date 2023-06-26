@@ -41,4 +41,5 @@ UserTasksNoPostList.propTypes = {
 
 const ListCover = styled.div`
   position: relative;
+  padding: 20px;
 `;

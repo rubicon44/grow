@@ -27,7 +27,7 @@ const BackgroundDisAbledCover = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 10;
   background: #ddd;
 `;
 

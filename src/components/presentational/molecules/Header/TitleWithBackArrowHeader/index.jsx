@@ -31,7 +31,7 @@ const BaseTitleWithBackArrowHeader = styled.div`
   background-color: white;
   padding: 10px;
   box-sizing: border-box;
-  z-index: 9999;
+  z-index: 20;
 `;
 
 const TitleCover = styled.div`

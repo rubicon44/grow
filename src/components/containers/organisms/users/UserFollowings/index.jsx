@@ -6,7 +6,11 @@ export const UserFollowings = ({ currentUserId, followings }) => {
   const hasFollowings = Array.isArray(followings) && followings.length > 0;
 
   if (!hasFollowings) {
-    return <NoUser>フォローしているユーザーはいません。</NoUser>;
+    return (
+      <NoUser>
+        <p>フォローしているユーザーはいません。</p>
+      </NoUser>
+    );
   }
 
   return followings.map((user) => (
@@ -30,7 +34,6 @@ UserFollowings.propTypes = {
 };
 
 const NoUser = styled.div`
-  margin-top: 15px;
-  padding: 10px;
+  padding: 20px;
   text-align: left;
 `;

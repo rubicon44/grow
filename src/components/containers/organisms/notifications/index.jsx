@@ -85,7 +85,7 @@ NotificationsList.propTypes = {
 };
 
 const ListCover = styled.div`
-  margin-top: 30px;
+  padding: 20px;
 `;
 
 const NotificationCover = styled.li`

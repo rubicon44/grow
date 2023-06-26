@@ -12,16 +12,15 @@ export const SearchListContainer = () => {
     handleSelectChange,
     handleSubmit,
     isButtonDisabled,
+    model,
     outerElementTasksForSearchRef,
     outerElementUsersForSearchRef,
+    searchPerformed,
     tasks,
     users,
   } = useSearchResults();
 
   if (error) return <ErrorMessage errorMessage={getErrorMessage(error)} />;
-  if (tasks === null || users === null) {
-    return null;
-  }
   return (
     <SearchList
       currentUserId={currentUserId}
@@ -29,8 +28,10 @@ export const SearchListContainer = () => {
       handleSelectChange={handleSelectChange}
       handleSubmit={handleSubmit}
       isButtonDisabled={isButtonDisabled}
+      model={model}
       outerElementTasksForSearchRef={outerElementTasksForSearchRef}
       outerElementUsersForSearchRef={outerElementUsersForSearchRef}
+      searchPerformed={searchPerformed}
       tasks={tasks}
       users={users}
     />
