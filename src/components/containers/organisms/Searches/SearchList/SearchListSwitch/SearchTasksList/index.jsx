@@ -1,24 +1,38 @@
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import { TaskListItem } from "../../../../tasks/ui/TaskListItem";
 
-export const SearchTasksList = ({ outerElementTasksForSearchRef, tasks }) =>
-  tasks &&
-  tasks.map((task) => (
-    <TaskListItem
-      key={task.id}
-      outerElementTasksRef={outerElementTasksForSearchRef}
-      task={task}
-    />
-  ));
+export const SearchTasksList = ({
+  model,
+  outerElementTasksForSearchRef,
+  searchPerformed,
+  tasks,
+}) =>
+  tasks && tasks.length > 0
+    ? tasks.map((task) => (
+        <TaskListItem
+          key={task.id}
+          outerElementTasksRef={outerElementTasksForSearchRef}
+          task={task}
+        />
+      ))
+    : searchPerformed &&
+      model === "task" && (
+        <ListCover>
+          <p>検索結果がありません</p>
+        </ListCover>
+      );
 
 SearchTasksList.defaultProps = {
   outerElementTasksForSearchRef: null,
 };
 
 SearchTasksList.propTypes = {
+  model: PropTypes.string.isRequired,
   outerElementTasksForSearchRef: PropTypes.objectOf(
     PropTypes.instanceOf(Element)
   ),
+  searchPerformed: PropTypes.bool.isRequired,
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
@@ -36,3 +50,7 @@ SearchTasksList.propTypes = {
     })
   ).isRequired,
 };
+
+const ListCover = styled.div`
+  padding: 20px;
+`;
