@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
 export const FormTextArea = ({
   children,
@@ -10,7 +11,7 @@ export const FormTextArea = ({
 }) => (
   <label htmlFor={htmlFor}>
     {children}
-    <textarea
+    <TextArea
       name={name}
       defaultValue={defaultValue}
       ref={textAreaRef}
@@ -35,3 +36,8 @@ FormTextArea.propTypes = {
   placeholder: PropTypes.string.isRequired,
   textAreaRef: PropTypes.objectOf(PropTypes.instanceOf(Element)),
 };
+
+const TextArea = styled.textarea`
+  min-height: 250px;
+  resize: vertical;
+`;

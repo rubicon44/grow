@@ -44,6 +44,7 @@ export const useTaskBars = (tasks, loading) => {
     taskStartDateForStyle,
     taskStatusForStyle
   ) => {
+    // taskのheightを調整
     const top = 75 + index * 80;
     const dateFrom = dayjs(taskStartDateForStyle);
     const start = dateFrom.diff(startDate, "days");
