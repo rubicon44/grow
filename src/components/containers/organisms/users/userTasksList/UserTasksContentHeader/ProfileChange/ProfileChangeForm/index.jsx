@@ -124,4 +124,7 @@ const FormButtonCover = styled.div`
   justify-content: end;
   align-items: center;
   margin: 10px 0;
+  > * + * {
+    margin-left: 10px;
+  }
 `;

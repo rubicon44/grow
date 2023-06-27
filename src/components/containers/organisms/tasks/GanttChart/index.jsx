@@ -2,8 +2,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { mediaquery } from "../../../../../assets/styles/variable";
-import { GanttChartCalenderTableWithTaskBar } from "./GanttChartCalenderTableWithTaskBar";
 import { GanttChartTaskTable } from "./GanttChartTaskTable";
 
 export const GanttChart = (props) => {
@@ -38,22 +36,15 @@ export const GanttChart = (props) => {
           </ArrowForwardIosIcon>
         </ArrowIconsCover>
       </ArrowIconsGroup>
-
-      <GanttChartTaskAndCalenderTables
-        id="outer"
-        ref={outerElementGanttChartRef}
-      >
-        <GanttChartTaskTableCover>
-          <GanttChartTaskTable elm={elm} tasks={tasks} />
-        </GanttChartTaskTableCover>
-        <GanttChartCalenderTableWithTaskBarCover ref={elmOfCalenderTableCover}>
-          <GanttChartCalenderTableWithTaskBar
-            calenderBodyHeight={calenderBodyHeight}
-            calenders={calenders}
-            styles={styles}
-          />
-        </GanttChartCalenderTableWithTaskBarCover>
-      </GanttChartTaskAndCalenderTables>
+      <GanttChartTaskTable
+        calenderBodyHeight={calenderBodyHeight}
+        calenders={calenders}
+        elm={elm}
+        elmOfCalenderTableCover={elmOfCalenderTableCover}
+        outerElementGanttChartRef={outerElementGanttChartRef}
+        styles={styles}
+        tasks={tasks}
+      />
     </GanttChartCover>
   );
 };
@@ -147,38 +138,4 @@ const ScrollButton = styled.button`
 const GanttChartCover = styled.div`
   margin: 20px 0 10px;
   border-bottom: 1px solid #ddd;
-`;
-
-const GanttChartTaskAndCalenderTables = styled.div`
-  display: flex;
-  max-height: 450px;
-  overflow-y: scroll;
-`;
-
-const GanttChartCalenderTableWithTaskBarCover = styled.div`
-  position: relative;
-  display: flex;
-  ${mediaquery.desktop`
-    width: 1500px;
-  `}
-`;
-
-const GanttChartTaskTableCover = styled.table`
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 5;
-  border: 1px solid;
-  > thead {
-    text-align: center;
-  }
-  > thead,
-  tbody {
-    border: 1px solid;
-    > tr > th,
-    td {
-      border: 1px solid;
-      box-sizing: border-box;
-    }
-  }
 `;
