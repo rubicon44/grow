@@ -29,7 +29,7 @@ export const useListConverter = (content) => {
         return line.replace(/^- /, "・");
       });
       const filteredLines = convertedLines.filter((line) => line.trim() !== ""); // 空行をフィルタリング
-      return filteredLines.join(""); // 改行コードを除去して連結
+      return filteredLines.join("\n");
     };
 
     const convertedContent = convertList(content);
