@@ -5,6 +5,7 @@ import { remark } from "remark";
 export const useListConverter = (content) => {
   const [htmlContent, setHtmlContent] = useState("");
 
+  // TODO: checkbox永続化
   useEffect(() => {
     const convertList = (content) => {
       const lines = content.split("\n");
@@ -26,10 +27,10 @@ export const useListConverter = (content) => {
             .replace(/\\/g, "&#92;");
           return `<label style="display: flex;"><input type="checkbox" style="width: 13px; margin-right: 5px;" />${text}</label>`;
         }
-        return line.replace(/^- /, "・");
+        return line.replace(/^- /, "・") + "\n";
       });
       const filteredLines = convertedLines.filter((line) => line.trim() !== ""); // 空行をフィルタリング
-      return filteredLines.join("\n");
+      return filteredLines.join("\n"); // 改行コードを除去して連結
     };
 
     const convertedContent = convertList(content);
