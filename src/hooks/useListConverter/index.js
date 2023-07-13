@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { remarkHtml } from "remark-html";
-import { remark } from "remark";
+import remarkHtml from "remark-html";
+import remark from "remark";
 
 export const useListConverter = (content) => {
   const [htmlContent, setHtmlContent] = useState("");
