@@ -117,7 +117,7 @@ export const useUserEdit = (setCheckUserNameChange) => {
       setIsButtonDisabled(false);
       return;
     }
-    const avatarUrl = await uploadAvatarToS3();
+    const avatarUrl = await uploadAvatarToS3(defaultUsername);
     const user = { avatarUrl, nickname, username, bio };
 
     setChangeUserNameCheckAble(false);
@@ -148,7 +148,7 @@ export const useUserEdit = (setCheckUserNameChange) => {
       setIsButtonDisabled(false);
       return;
     }
-    const avatarUrl = await uploadAvatarToS3();
+    const avatarUrl = await uploadAvatarToS3(defaultUsername);
     const user = { avatarUrl, nickname, username, bio };
 
     if (defaultUsername === username) {
