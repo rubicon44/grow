@@ -47,6 +47,7 @@ TaskList.propTypes = {
       title: PropTypes.string.isRequired,
       user: PropTypes.shape({
         id: PropTypes.string.isRequired,
+        avatarUrl: PropTypes.string,
         bio: PropTypes.string,
         email: PropTypes.string.isRequired,
         nickname: PropTypes.string.isRequired,

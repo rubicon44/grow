@@ -55,6 +55,23 @@ export const updateUser = async (params, data) => {
   }).then((response) => camelcaseKeys(response, { deep: true }));
 };
 
+export const uploadFileToS3 = async (params, file) => {
+  await setCSRFToken();
+
+  const formData = new FormData();
+  formData.append("file", file);
+  const obj = Object.fromEntries(formData);
+
+  return axios({
+    method: "post",
+    url: `/v1/${params}/upload_avatar`,
+    data: obj,
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  }).then((response) => camelcaseKeys(response, { deep: true }));
+};
+
 export const getTasks = async (params) =>
   axios({
     method: "get",

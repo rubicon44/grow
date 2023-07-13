@@ -45,6 +45,7 @@ UserTasksList.propTypes = {
   setCheckUserNameChange: PropTypes.func.isRequired,
   userData: PropTypes.shape({
     id: PropTypes.string,
+    avatarUrl: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string,
     likedTasks: PropTypes.arrayOf(

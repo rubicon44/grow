@@ -52,6 +52,7 @@ SearchListSwitch.propTypes = {
       title: PropTypes.string,
       user: PropTypes.shape({
         id: PropTypes.string,
+        avatarUrl: PropTypes.string,
         bio: PropTypes.string,
         email: PropTypes.string,
         nickname: PropTypes.string,
@@ -62,6 +63,7 @@ SearchListSwitch.propTypes = {
   users: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
+      avatarUrl: PropTypes.string,
       bio: PropTypes.string,
       email: PropTypes.string,
       nickname: PropTypes.string,

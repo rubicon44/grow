@@ -1,11 +1,16 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import { mediaquery } from "../../../../../../../assets/styles/variable";
 import { ProfileChangeLink } from "./ProfileChangeLink";
 import { ProfileChangeForm } from "./ProfileChangeForm";
+import { FollowButtonSwitchContainer } from "../../../userButton/FollowButtonSwitchContainer";
+import { BaseLink } from "../../../../../../presentational/atoms/Link/BaseLink";
 
 export const ProfileChange = ({
   bioAble,
   currentUserId,
+  handleFileChange,
   handleTextSubmit,
   inputRefs,
   isButtonDisabled,
@@ -13,15 +18,35 @@ export const ProfileChange = ({
   setBioAbleFunc,
   userData,
 }) => {
-  const { id, nickname, username, bio } = userData;
+  const { id, nickname, username, bio, avatarUrl } = userData;
 
-  // TODO: 「フォローされています」を表示。。
+  // TODO: 「フォローされています」を表示。
   if (bioAble) {
     return (
       <Profile>
-        {String(currentUserId) === String(id) && (
-          <ProfileChangeLink setBioAbleFunc={setBioAbleFunc} />
-        )}
+        <ProfileHeader>
+          {/* TODO: Create CreatedUserForProfile component. */}
+          <CreatedUserCover>
+            <BaseLink url={`/${username}`}>
+              {avatarUrl ? (
+                <AvatarImage src={avatarUrl} alt="User Avatar" />
+              ) : (
+                <DefaultAvatar>
+                  <PersonOutlineOutlinedIcon />
+                </DefaultAvatar>
+              )}
+            </BaseLink>
+          </CreatedUserCover>
+          <ProfileChangeLinkCover>
+            {String(currentUserId) === String(id) ? (
+              <ProfileChangeLink setBioAbleFunc={setBioAbleFunc} />
+            ) : (
+              <FollowButtonSwitchContainer
+                userIdToFollowOrUnFollow={userData.id}
+              />
+            )}
+          </ProfileChangeLinkCover>
+        </ProfileHeader>
         <ProfileContent>
           <UserNickName>{nickname}</UserNickName>
           <UserNickName>@{username}</UserNickName>
@@ -34,6 +59,7 @@ export const ProfileChange = ({
     String(currentUserId) === String(id) && (
       <ProfileChangeForm
         currentUserId={currentUserId}
+        handleFileChange={handleFileChange}
         handleTextSubmit={handleTextSubmit}
         inputRefs={inputRefs}
         isButtonDisabled={isButtonDisabled}
@@ -48,6 +74,7 @@ export const ProfileChange = ({
 ProfileChange.propTypes = {
   bioAble: PropTypes.bool.isRequired,
   currentUserId: PropTypes.string.isRequired,
+  handleFileChange: PropTypes.func.isRequired,
   handleTextSubmit: PropTypes.func.isRequired,
   inputRefs: PropTypes.shape({
     bioRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
@@ -59,6 +86,7 @@ ProfileChange.propTypes = {
   setBioAbleFunc: PropTypes.func.isRequired,
   userData: PropTypes.shape({
     id: PropTypes.string,
+    avatarUrl: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string,
     likedTasks: PropTypes.arrayOf(
@@ -88,13 +116,61 @@ ProfileChange.propTypes = {
   }).isRequired,
 };
 
+const AvatarImage = styled.img`
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  font-size: 12px;
+`;
+
+const Bio = styled.div`
+  white-space: pre-wrap;
+`;
+
+const CreatedUserCover = styled.span`
+  > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+  ${mediaquery.desk`
+    margin-right: 10px;
+  `}
+`;
+
+const DefaultAvatar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  font-size: 12px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+`;
+
 const Profile = styled.div`
   width: 100%;
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 `;
 
 const ProfileContent = styled.div`
   text-align: left;
+`;
+
+const ProfileChangeLinkCover = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+`;
+
+const ProfileHeader = styled.div`
+  display: flex;
+  margin-bottom: 15px;
 `;
 
 const UserNickName = styled.div`
@@ -102,8 +178,4 @@ const UserNickName = styled.div`
   margin-bottom: 10px;
   font-size: 1.5rem;
   font-weight: bold;
-`;
-
-const Bio = styled.div`
-  white-space: pre-wrap;
 `;

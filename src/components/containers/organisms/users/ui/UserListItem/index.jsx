@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { mediaquery } from "../../../../../../assets/styles/variable";
 import { FollowButtonForUsersListSwitchContainer } from "../../userButton/FollowButtonForUsersListSwitchContainer";
 import { FollowedTextContainer } from "./FollowedTextContainer";
@@ -12,8 +13,17 @@ export const UserListItem = ({
   user,
 }) => (
   <UserListItemStyle ref={outerElementUsersForSearchRef}>
+    {/* TODO: Create CreatedUser component. */}
     <CreatedUserCover>
-      <BaseLink url={`/${user.username}`}>{user.nickname}</BaseLink>
+      <BaseLink url={`/${user.username}`}>
+        {user.avatarUrl ? (
+          <AvatarImage src={user.avatarUrl} alt="User Avatar" />
+        ) : (
+          <DefaultAvatar>
+            <PersonOutlineOutlinedIcon />
+          </DefaultAvatar>
+        )}
+      </BaseLink>
     </CreatedUserCover>
     <ListCover>
       <ListHeader>
@@ -48,6 +58,7 @@ UserListItem.propTypes = {
   ),
   user: PropTypes.shape({
     id: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string.isRequired,
     nickname: PropTypes.string.isRequired,
@@ -55,14 +66,16 @@ UserListItem.propTypes = {
   }).isRequired,
 };
 
-const CreatedUserCover = styled.span`
-  min-width: 40px;
+const AvatarImage = styled.img`
+  width: 40px;
   height: 40px;
-  margin-right: 5px;
   border-radius: 35px;
   font-size: 12px;
-  color: rgb(255, 255, 255);
-  background: rgb(237, 128, 119);
+`;
+
+const CreatedUserCover = styled.span`
+  width: 40px;
+  height: 40px;
   > a {
     display: flex;
     align-items: center;
@@ -73,6 +86,18 @@ const CreatedUserCover = styled.span`
   ${mediaquery.desk`
     margin-right: 10px;
   `}
+`;
+
+const DefaultAvatar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 35px;
+  font-size: 12px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
 `;
 
 const ListCover = styled.div`

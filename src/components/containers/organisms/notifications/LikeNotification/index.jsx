@@ -30,6 +30,7 @@ LikeNotification.propTypes = {
   }).isRequired,
   visitor: PropTypes.shape({
     id: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string.isRequired,
     nickname: PropTypes.string.isRequired,

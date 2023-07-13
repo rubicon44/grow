@@ -3,20 +3,23 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../auth/AuthContextProvider";
 import { useUserDataContext } from "../../context/UserDataContextProvider";
 import { useCurrentUserId } from "../useCurrentUserId";
+import { useCurrentUserName } from "../useCurrentUserName";
 import { useInputSanitization } from "../useInputSanitization";
 import { useInputValidation } from "../useInputValidation";
-import { updateUser } from "../../infra/api";
+import { updateUser, uploadFileToS3 } from "../../infra/api";
 
 export const useUserEdit = (setCheckUserNameChange) => {
   const navigateToSignIn = useNavigate();
   const { signout } = useContext(AuthContext);
   const currentUserId = useCurrentUserId();
+  const currentUserName = useCurrentUserName();
   const { sanitizeInput } = useInputSanitization();
   const { validateInput } = useInputValidation();
   const [bioAble, setBioAble] = useState(true);
   const [changeUserNameCheckAble, setChangeUserNameCheckAble] = useState(false);
   const [editing, setEditing] = useState(false);
   const [error, setError] = useState(null);
+  const [file, setFile] = useState(null);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const nicknameRef = useRef();
   const usernameRef = useRef();
@@ -43,6 +46,7 @@ export const useUserEdit = (setCheckUserNameChange) => {
         user,
         currentUserId: Number(currentUserId),
       });
+
       const userData = response.data;
       const transformedUserData = {
         ...userData,
@@ -68,6 +72,29 @@ export const useUserEdit = (setCheckUserNameChange) => {
     }
   };
 
+  // fileオブジェクトを取得
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    const newFileName = `${currentUserName}_${file.name}`;
+    const fileWithUserName = new File([file], newFileName, { type: file.type });
+    setFile(fileWithUserName);
+  };
+
+  // 画像upload関数
+  const uploadAvatarToS3 = async (defaultUsername) => {
+    try {
+      if (file) {
+        const avatarUrl = await uploadFileToS3(defaultUsername, file);
+        const avatarUrlData = avatarUrl.data;
+        return avatarUrlData;
+      }
+      return Promise.resolve();
+    } catch (error) {
+      console.error("Error uploading file to S3:", error);
+      throw error;
+    }
+  };
+
   // usernameが変更された場合
   const changeUserNameFunc = async () => {
     const defaultUsername = userData.username;
@@ -90,14 +117,15 @@ export const useUserEdit = (setCheckUserNameChange) => {
       setIsButtonDisabled(false);
       return;
     }
-    const user = { nickname, username, bio };
+    const avatarUrl = await uploadAvatarToS3();
+    const user = { avatarUrl, nickname, username, bio };
 
     setChangeUserNameCheckAble(false);
     await updateUserFunc(defaultUsername, user, currentUserId);
   };
 
   // TODO: [未実装]メールアドレス変更機能
-  const handleTextSubmit = (e) => {
+  const handleTextSubmit = async (e) => {
     e.preventDefault();
     setIsButtonDisabled(true);
 
@@ -120,7 +148,8 @@ export const useUserEdit = (setCheckUserNameChange) => {
       setIsButtonDisabled(false);
       return;
     }
-    const user = { nickname, username, bio };
+    const avatarUrl = await uploadAvatarToS3();
+    const user = { avatarUrl, nickname, username, bio };
 
     if (defaultUsername === username) {
       updateUserFunc(defaultUsername, user, currentUserId);
@@ -145,6 +174,7 @@ export const useUserEdit = (setCheckUserNameChange) => {
     changeUserNameFunc,
     editing,
     error,
+    handleFileChange,
     handleTextSubmit,
     inputRefs,
     isButtonDisabled,
