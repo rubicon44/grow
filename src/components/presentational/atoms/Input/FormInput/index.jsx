@@ -10,6 +10,7 @@ export const FormInput = ({
   defaultValue,
   placeholder,
   autoComplete,
+  onChangeFunc,
 }) => (
   <label htmlFor={htmlFor}>
     {children}
@@ -20,6 +21,7 @@ export const FormInput = ({
       ref={inputRef}
       placeholder={placeholder}
       autoComplete={autoComplete}
+      onChange={onChangeFunc}
     />
   </label>
 );
@@ -29,6 +31,7 @@ FormInput.defaultProps = {
   children: null,
   defaultValue: "",
   inputRef: null,
+  onChangeFunc: () => {},
 };
 
 FormInput.propTypes = {
@@ -38,6 +41,7 @@ FormInput.propTypes = {
   htmlFor: PropTypes.string.isRequired,
   inputRef: PropTypes.objectOf(PropTypes.instanceOf(Element)),
   name: PropTypes.string.isRequired,
+  onChangeFunc: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
 };

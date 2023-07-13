@@ -15,6 +15,7 @@ export const UserTasksContentHeaderContainer = (props) => {
     changeUserNameFunc,
     editing,
     error,
+    handleFileChange,
     handleTextSubmit,
     inputRefs,
     isButtonDisabled,
@@ -32,6 +33,7 @@ export const UserTasksContentHeaderContainer = (props) => {
       currentUserId={currentUserId}
       editing={editing}
       error={error}
+      handleFileChange={handleFileChange}
       handleTextSubmit={handleTextSubmit}
       inputRefs={inputRefs}
       isButtonDisabled={isButtonDisabled}
@@ -51,6 +53,7 @@ UserTasksContentHeaderContainer.propTypes = {
   setCheckUserNameChange: PropTypes.func.isRequired,
   userData: PropTypes.shape({
     id: PropTypes.string,
+    avatarUrl: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string,
     likedTasks: PropTypes.arrayOf(

@@ -27,6 +27,7 @@ UserFollowings.propTypes = {
   followings: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
+      avatarUrl: PropTypes.string,
       nickname: PropTypes.string.isRequired,
       username: PropTypes.string.isRequired,
     })

@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { mediaquery } from "../../../../../../assets/styles/variable";
 import { TaskStatusSwitch } from "../../logic/taskStatusSwitch";
 import { TaskDeleteCheckButton } from "../../TaskButton/TaskDeleteCheckButton";
@@ -16,8 +17,17 @@ export const TaskListItem = ({
   task,
 }) => (
   <ListContainer>
+    {/* TODO: Create CreatedUser component. */}
     <CreatedUserCover>
-      <BaseLink url={`/${task.user.username}`}>{task.user.nickname}</BaseLink>
+      <BaseLink url={`/${task.user.username}`}>
+        {task.user.avatarUrl ? (
+          <AvatarImage src={task.user.avatarUrl} alt="User Avatar" />
+        ) : (
+          <DefaultAvatar>
+            <PersonOutlineOutlinedIcon />
+          </DefaultAvatar>
+        )}
+      </BaseLink>
     </CreatedUserCover>
     <ListCover>
       <List title={task.title} content={task.content} />
@@ -59,6 +69,7 @@ TaskListItem.propTypes = {
     title: PropTypes.string,
     user: PropTypes.shape({
       id: PropTypes.string,
+      avatarUrl: PropTypes.string,
       bio: PropTypes.string,
       email: PropTypes.string,
       nickname: PropTypes.string,
@@ -67,15 +78,17 @@ TaskListItem.propTypes = {
   }).isRequired,
 };
 
-const CreatedUserCover = styled.span`
-  min-width: 40px;
+const AvatarImage = styled.img`
+  width: 40px;
   height: 40px;
-  margin-top: 15px;
-  margin-right: 5px;
   border-radius: 35px;
   font-size: 12px;
-  color: rgb(255, 255, 255);
-  background: rgb(237, 128, 119);
+`;
+
+const CreatedUserCover = styled.span`
+  width: 40px;
+  height: 40px;
+  margin-top: 15px;
   > a {
     display: flex;
     align-items: center;
@@ -86,6 +99,18 @@ const CreatedUserCover = styled.span`
   ${mediaquery.desk`
     margin-right: 10px;
   `}
+`;
+
+const DefaultAvatar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 35px;
+  font-size: 12px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
 `;
 
 const ListContainer = styled.div`

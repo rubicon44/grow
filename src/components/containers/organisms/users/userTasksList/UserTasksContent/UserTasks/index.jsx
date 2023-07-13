@@ -20,6 +20,7 @@ UserTasks.propTypes = {
   outerElementTasksRef: PropTypes.objectOf(PropTypes.instanceOf(Element)),
   userData: PropTypes.shape({
     id: PropTypes.string,
+    avatarUrl: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string,
     likedTasks: PropTypes.arrayOf(

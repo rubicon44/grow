@@ -87,6 +87,7 @@ GanttChartTaskTable.propTypes = {
       title: PropTypes.string.isRequired,
       user: PropTypes.shape({
         id: PropTypes.string,
+        avatarUrl: PropTypes.string,
         bio: PropTypes.string,
         email: PropTypes.string,
         nickname: PropTypes.string,

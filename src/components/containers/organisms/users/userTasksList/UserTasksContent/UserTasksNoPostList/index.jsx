@@ -10,6 +10,7 @@ export const UserTasksNoPostList = ({ userData }) => (
 UserTasksNoPostList.propTypes = {
   userData: PropTypes.shape({
     id: PropTypes.string,
+    avatarUrl: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string,
     likedTasks: PropTypes.arrayOf(

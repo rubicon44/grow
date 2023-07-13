@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { html } from "remark-html";
+import { remarkHtml } from "remark-html";
 import { remark } from "remark";
 
 export const useListConverter = (content) => {
@@ -27,14 +27,16 @@ export const useListConverter = (content) => {
             .replace(/\\/g, "&#92;");
           return `<label style="display: flex;"><input type="checkbox" style="width: 13px; margin-right: 5px;" />${text}</label>`;
         }
-        return line.replace(/^- /, "・") + "\n";
+        return `${line.replace(/^- /, "・")}\n`;
       });
       const filteredLines = convertedLines.filter((line) => line.trim() !== ""); // 空行をフィルタリング
       return filteredLines.join("\n"); // 改行コードを除去して連結
     };
 
     const convertedContent = convertList(content);
-    const processedContent = remark().use(html).processSync(convertedContent);
+    const processedContent = remark()
+      .use(remarkHtml)
+      .processSync(convertedContent);
     const newHtmlContent = processedContent.toString();
 
     setHtmlContent(newHtmlContent);

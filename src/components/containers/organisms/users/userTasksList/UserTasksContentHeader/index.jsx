@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { FollowButtonSwitchContainer } from "../../userButton/FollowButtonSwitchContainer";
 import { ProfileChange } from "./ProfileChange";
 import { UserRelationshipsLinks } from "./UserRelationshipsLinks";
 import { UserTasksCheckReLoginWhenChangedUserId } from "../UserTasksCheckReLoginWhenChangedUserId";
@@ -11,6 +10,7 @@ export const UserTasksContentHeader = (props) => {
     bioAble,
     changeUserNameCheckAble,
     changeUserNameFunc,
+    handleFileChange,
     handleTextSubmit,
     inputRefs,
     isButtonDisabled,
@@ -28,10 +28,10 @@ export const UserTasksContentHeader = (props) => {
       />
       <ContentHeaderContainer>
         <ContentHeaderCover>
-          <FollowButtonSwitchContainer userIdToFollowOrUnFollow={userData.id} />
           <ProfileChange
             bioAble={bioAble}
             currentUserId={currentUserId}
+            handleFileChange={handleFileChange}
             handleTextSubmit={handleTextSubmit}
             inputRefs={inputRefs}
             isButtonDisabled={isButtonDisabled}
@@ -56,6 +56,7 @@ UserTasksContentHeader.propTypes = {
   changeUserNameCheckAble: PropTypes.bool.isRequired,
   changeUserNameFunc: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
+  handleFileChange: PropTypes.func.isRequired,
   handleTextSubmit: PropTypes.func.isRequired,
   inputRefs: PropTypes.shape({
     bioRef: PropTypes.oneOfType([
@@ -78,6 +79,7 @@ UserTasksContentHeader.propTypes = {
   setBioAbleFunc: PropTypes.func.isRequired,
   userData: PropTypes.shape({
     id: PropTypes.string,
+    avatarUrl: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string,
     likedTasks: PropTypes.arrayOf(
@@ -109,7 +111,6 @@ UserTasksContentHeader.propTypes = {
 
 const ContentHeaderContainer = styled.div`
   min-width: 300px;
-  padding-bottom: 15px;
 `;
 
 const ContentHeaderCover = styled.div`
@@ -126,7 +127,7 @@ const RelationshipsCover = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   > span {
     cursor: pointer;
     &:hover {

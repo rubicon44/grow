@@ -103,6 +103,8 @@ export const useUserData = (activeTab) => {
     tasksForUserDataPage,
     likedTasksPage,
     dataType,
+    userData?.avatarUrl,
+    userData?.nickname,
     // fetchUserData,
   ]);
 

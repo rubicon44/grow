@@ -56,6 +56,7 @@ NotificationsList.propTypes = {
     followVisitors: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
+        avatarUrl: PropTypes.string,
         bio: PropTypes.string,
         email: PropTypes.string.isRequired,
         nickname: PropTypes.string.isRequired,
@@ -65,6 +66,7 @@ NotificationsList.propTypes = {
     likeVisitors: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
+        avatarUrl: PropTypes.string,
         bio: PropTypes.string,
         email: PropTypes.string.isRequired,
         nickname: PropTypes.string.isRequired,

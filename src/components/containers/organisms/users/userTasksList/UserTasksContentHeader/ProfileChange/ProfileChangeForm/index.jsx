@@ -6,6 +6,7 @@ import { FormSubmitButton } from "../../../../../../../presentational/atoms/Butt
 import { FormTextArea } from "../../../../../../../presentational/atoms/TextArea/FormTextArea";
 
 export const ProfileChangeForm = ({
+  handleFileChange,
   handleTextSubmit,
   inputRefs,
   isButtonDisabled,
@@ -38,6 +39,15 @@ export const ProfileChangeForm = ({
         >
           ユーザーネーム:
         </FormInput>
+        <FormInput
+          htmlFor="avatar-url"
+          type="file"
+          name="avatarUrl"
+          placeholder="AvatarUrl"
+          onChangeFunc={handleFileChange}
+        >
+          プロフィール画像:
+        </FormInput>
         <FormTextArea
           defaultValue={bio}
           textAreaRef={bioRef}
@@ -59,6 +69,7 @@ export const ProfileChangeForm = ({
 };
 
 ProfileChangeForm.propTypes = {
+  handleFileChange: PropTypes.func.isRequired,
   handleTextSubmit: PropTypes.func.isRequired,
   inputRefs: PropTypes.shape({
     bioRef: PropTypes.objectOf(PropTypes.instanceOf(Element)).isRequired,
@@ -69,6 +80,7 @@ ProfileChangeForm.propTypes = {
   revertUserBioFunc: PropTypes.func.isRequired,
   userData: PropTypes.shape({
     id: PropTypes.string,
+    avatarUrl: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string,
     likedTasks: PropTypes.arrayOf(
