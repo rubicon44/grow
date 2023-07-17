@@ -5,7 +5,7 @@ import { useMoveToFollowings } from "../../../../../hooks/useMoveToFollowings";
 import { useUserData } from "../../../../../hooks/useUserData";
 import { useUserTasksContentTab } from "../../../../../hooks/useUserTasksContentTab";
 import { ErrorMessage } from "../../common/ErrorMessage";
-import { UserTasksList } from "../userTasksList";
+import { UserTasksList } from "../UserTasksList";
 
 export const UserTasksListContainer = () => {
   const { getErrorMessage } = useGetErrorMessage();

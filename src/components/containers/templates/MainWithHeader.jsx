@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useMediaQuery } from "@mui/material";
-import { Main } from "./main";
+import { Main } from "./Main";
 import { LogOutConfirmation } from "../organisms/common/LogOutConfirmation";
 import { HeaderContainer } from "../organisms/common/HeaderContainer";
 import { SpButtonToTaskCreate } from "../organisms/common/SpButtonToTaskCreate";
