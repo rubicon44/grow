@@ -20,7 +20,7 @@ import { SignUp } from "./components/containers/pages/auth/signUp";
 import { NotFound } from "./components/containers/pages/staticPages/notFound";
 import { Top } from "./components/containers/pages/staticPages/top";
 // Tasks
-import { Tasks } from "./components/containers/pages/tasks/tasks";
+import { Tasks } from "./components/containers/pages/tasks/Tasks";
 import { TaskCreate } from "./components/containers/pages/tasks/TaskCreate";
 import { TaskEdit } from "./components/containers/pages/tasks/TaskEdit";
 import { TaskShow } from "./components/containers/pages/tasks/TaskShow";
