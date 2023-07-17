@@ -14,8 +14,8 @@ import { PrivateRoute } from "./auth/PrivateRoute";
 import { HeaderContextProvider } from "./context/HeaderContextProvider";
 import { UserDataContextProvider } from "./context/UserDataContextProvider";
 // Auth
-import { SignIn } from "./components/containers/pages/auth/signIn";
-import { SignUp } from "./components/containers/pages/auth/signUp";
+import { SignIn } from "./components/containers/pages/auth/SignIn";
+import { SignUp } from "./components/containers/pages/auth/SignUp";
 // Static pages
 import { NotFound } from "./components/containers/pages/staticPages/NotFound";
 import { Top } from "./components/containers/pages/staticPages/Top";
@@ -30,9 +30,9 @@ import { UserFollowings } from "./components/containers/pages/users/UserFollowin
 import { UserFollowers } from "./components/containers/pages/users/UserFollowers";
 import { UserShow } from "./components/containers/pages/users/UserShow";
 // Notifications
-import { Notifications } from "./components/containers/pages/notifications/notifications";
+import { Notifications } from "./components/containers/pages/notifications/Notifications";
 // Searches
-import { Searches } from "./components/containers/pages/searches/searches";
+import { Searches } from "./components/containers/pages/searches/Searches";
 
 const queryClient = new QueryClient();
 
