@@ -1,3 +1,3 @@
-import { SearchTemplate } from "../../templates/Searches/SearchTemplate";
+import { SearchTemplate } from "../../templates/searches/SearchTemplate";
 
 export const Searches = () => <SearchTemplate />;
