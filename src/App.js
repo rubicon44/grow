@@ -25,10 +25,10 @@ import { TaskCreate } from "./components/containers/pages/tasks/TaskCreate";
 import { TaskEdit } from "./components/containers/pages/tasks/TaskEdit";
 import { TaskShow } from "./components/containers/pages/tasks/TaskShow";
 // Users
-import { UserGantt } from "./components/containers/pages/Users/UserGantt";
-import { UserFollowings } from "./components/containers/pages/Users/UserFollowings";
-import { UserFollowers } from "./components/containers/pages/Users/UserFollowers";
-import { UserShow } from "./components/containers/pages/Users/UserShow";
+import { UserGantt } from "./components/containers/pages/users/UserGantt";
+import { UserFollowings } from "./components/containers/pages/users/UserFollowings";
+import { UserFollowers } from "./components/containers/pages/users/UserFollowers";
+import { UserShow } from "./components/containers/pages/users/UserShow";
 // Notifications
 import { Notifications } from "./components/containers/pages/notifications/notifications";
 // Searches
