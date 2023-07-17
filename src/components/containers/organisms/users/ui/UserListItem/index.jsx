@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { mediaquery } from "../../../../../../assets/styles/variable";
-import { FollowButtonForUsersListSwitchContainer } from "../../userButton/FollowButtonForUsersListSwitchContainer";
+import { FollowButtonForUsersListSwitchContainer } from "../../UserButton/FollowButtonForUsersListSwitchContainer";
 import { FollowedTextContainer } from "./FollowedTextContainer";
 import { BaseLink } from "../../../../../presentational/atoms/Link/BaseLink";
 

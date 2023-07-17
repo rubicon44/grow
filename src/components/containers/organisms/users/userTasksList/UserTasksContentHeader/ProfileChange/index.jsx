@@ -4,7 +4,7 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import { mediaquery } from "../../../../../../../assets/styles/variable";
 import { ProfileChangeLink } from "./ProfileChangeLink";
 import { ProfileChangeForm } from "./ProfileChangeForm";
-import { FollowButtonSwitchContainer } from "../../../userButton/FollowButtonSwitchContainer";
+import { FollowButtonSwitchContainer } from "../../../UserButton/FollowButtonSwitchContainer";
 import { BaseLink } from "../../../../../../presentational/atoms/Link/BaseLink";
 
 export const ProfileChange = ({
