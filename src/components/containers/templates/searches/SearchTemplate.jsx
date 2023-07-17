@@ -1,5 +1,5 @@
 import { MainWithHeaderContainer } from "../MainWithHeaderContainer";
-import { SearchListContainer } from "../../organisms/Searches/SearchListContainer";
+import { SearchListContainer } from "../../organisms/searches/SearchListContainer";
 import { TitleWithBackArrowHeader } from "../../../presentational/molecules/Header/TitleWithBackArrowHeader";
 
 export const SearchTemplate = () => (
