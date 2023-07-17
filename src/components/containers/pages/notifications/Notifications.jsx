@@ -1,3 +1,3 @@
-import { NotificationsTemplate } from "../../templates/Notifications/NotificationsTemplate";
+import { NotificationsTemplate } from "../../templates/notifications/NotificationsTemplate";
 
 export const Notifications = () => <NotificationsTemplate />;

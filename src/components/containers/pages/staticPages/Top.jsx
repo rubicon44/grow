@@ -1,3 +1,3 @@
-import { TopTemplate } from "../../templates/StaticPages/TopTemplate";
+import { TopTemplate } from "../../templates/staticPages/TopTemplate";
 
 export const Top = () => <TopTemplate />;

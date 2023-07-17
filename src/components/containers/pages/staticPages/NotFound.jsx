@@ -1,3 +1,3 @@
-import { NotFoundTemplate } from "../../templates/StaticPages/NotFoundTemplate";
+import { NotFoundTemplate } from "../../templates/staticPages/NotFoundTemplate";
 
 export const NotFound = () => <NotFoundTemplate />;
