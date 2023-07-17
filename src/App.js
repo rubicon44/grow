@@ -17,8 +17,8 @@ import { UserDataContextProvider } from "./context/UserDataContextProvider";
 import { SignIn } from "./components/containers/pages/auth/signIn";
 import { SignUp } from "./components/containers/pages/auth/signUp";
 // Static pages
-import { NotFound } from "./components/containers/pages/staticPages/notFound";
-import { Top } from "./components/containers/pages/staticPages/top";
+import { NotFound } from "./components/containers/pages/staticPages/NotFound";
+import { Top } from "./components/containers/pages/staticPages/Top";
 // Tasks
 import { Tasks } from "./components/containers/pages/tasks/Tasks";
 import { TaskCreate } from "./components/containers/pages/tasks/TaskCreate";
