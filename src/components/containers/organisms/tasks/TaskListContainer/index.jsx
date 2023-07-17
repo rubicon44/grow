@@ -3,7 +3,7 @@ import { useGetErrorMessage } from "../../../../../hooks/useGetErrorMessage";
 import { useMoveToEditTask } from "../../../../../hooks/useMoveToEditTask";
 import { useTaskData } from "../../../../../hooks/useTaskData";
 import { useTaskDelete } from "../../../../../hooks/useTaskDelete";
-import { TaskList } from "../taskList";
+import { TaskList } from "../TaskList";
 import { ErrorMessage } from "../../common/ErrorMessage";
 
 export const TaskListContainer = () => {

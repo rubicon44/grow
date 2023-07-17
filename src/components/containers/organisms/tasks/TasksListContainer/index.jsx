@@ -1,6 +1,6 @@
 import { useTasks } from "../../../../../hooks/useTasks";
 import { useTasksContentTab } from "../../../../../hooks/useTasksContentTab";
-import { TasksList } from "../tasksList";
+import { TasksList } from "../TasksList";
 
 export const TasksListContainer = () => {
   const { activeTab, handleTabChange } = useTasksContentTab();

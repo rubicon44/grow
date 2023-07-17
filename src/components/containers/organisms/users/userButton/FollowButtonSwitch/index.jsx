@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { FollowButton } from "../followButton";
+import { FollowButton } from "../FollowButton";
 import { FollowingOrUnFollowButtonSwitch } from "../FollowingOrUnFollowButtonSwitch";
 
 export const FollowButtonSwitch = ({
