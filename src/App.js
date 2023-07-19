@@ -57,11 +57,11 @@ export const App = () => {
         <AuthContextProvider>
           <HeaderContextProvider>
             <Routes>
-              {/* Auth */}
+              {/* Static pages */}
               <Route path="/" element={<Top />} />
               <Route path="/top" element={<Top />} />
               <Route path="*" element={<NotFound />} />
-              {/* Static pages */}
+              {/* Auth */}
               <Route path="/signIn" element={<SignIn />} />
               <Route path="/signUp" element={<SignUp />} />
               {/* Task */}
